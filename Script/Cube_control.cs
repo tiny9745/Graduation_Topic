@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Cube_control : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    private Vector3 move_xz;
-    public float speed = 10f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float moveSpeed = 5f; // 移動速度
 
-    // Update is called once per frame
     void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-        move_xz = new Vector3(0f, 0f, moveZ);
-        move_xz = transform.TransformDirection(move_xz);
-        move_xz *= speed;
+        // 獲取玩家的輸入
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        // 計算移動方向
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+
+        // 將移動方向轉換成世界空間
+        movement = transform.TransformDirection(movement);
+
+        // 移動角色
+        transform.position += movement * moveSpeed * Time.deltaTime;
     }
 }
