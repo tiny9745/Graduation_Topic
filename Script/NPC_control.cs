@@ -11,11 +11,19 @@ public class NPCCtrl : MonoBehaviour
     public GameObject TargetObj;
     public int DetectDistance = 10;
     public int NPC_HP;
+    private Camera mainCamera;
+    public GameObject cube;
     void Start()
     {
-        
-        NPC_HP = 100;
+        cube = GameObject.Find("NPC");
+        Renderer renderer = cube.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = false;
+        }
+        mainCamera = Camera.main;
         TargetObj = GameObject.Find("Player");
+        NPC_HP = 100;
         npcNavi = GetComponent<NavMeshAgent>();
     }
     // Update is called once per frame
@@ -23,6 +31,7 @@ public class NPCCtrl : MonoBehaviour
     {
         float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         float NPC_Speed = npcNavi.velocity.magnitude;   // 取得NPC的速度.
+        transform.LookAt(mainCamera.transform);
         if (dist < DetectDistance && NPC_HP > 0) // 偵測NPC和玩家之間的距離, 如在所設定的距離內, 開始追蹤
         {
             npcNavi.destination = TargetObj.transform.position;  // 
