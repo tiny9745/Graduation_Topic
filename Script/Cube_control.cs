@@ -3,7 +3,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // 移動速度
-
+    public GameObject cube;
+    void Start()
+    {
+        Renderer renderer = cube.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = false;
+        }
+    }
     void Update()
     {
         // 獲取玩家的輸入
