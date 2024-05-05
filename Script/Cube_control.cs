@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cube;
     void Start()
     {
+        cube = GameObject.Find("Player");
         Renderer renderer = cube.GetComponent<Renderer>();
         if (renderer != null)
         {
