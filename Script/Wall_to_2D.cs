@@ -8,7 +8,6 @@ public class Wall_to_2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cube = GameObject.Find("NPC");
         Renderer renderer = cube.GetComponent<Renderer>();
         if (renderer != null)
         {
