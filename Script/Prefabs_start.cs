@@ -5,7 +5,7 @@ using UnityEngine;
 public class Prefabs_start : MonoBehaviour
 {
     public GameObject prefabToSpawn; // 要生成的預製體
-    int numberOfPrefabs = 10; // 要生成的預製體數量
+    public int numberOfPrefabs = 10; // 要生成的預製體數量
     public float NPC_postion_minX = -5f; // 範圍最小X值
     public float NPC_postion_maxX = 5f; // 範圍最大X值
     public float NPC_postion_minZ = -5f; // 範圍最小Z值

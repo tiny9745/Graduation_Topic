@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player_Movement : MonoBehaviour
 {
     public float moveSpeed = 5f; // 移動速度
     public GameObject cube;
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         movement = transform.TransformDirection(movement);
 
         // 移動角色
-        transform.position += movement * moveSpeed * Time.deltaTime;
+        transform.position += movement * static_parameters.MC_Wspeed * Time.deltaTime;
+        Debug.Log(static_parameters.MC_Wspeed);
     }
 }
