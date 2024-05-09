@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 6446928640530387092}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
   TargetObj: {fileID: 0}
   DetectDistance: 10
   NPC_HP: 100
+  NPC_ATK: 10
   cube: {fileID: 5553406589361572726}
 --- !u!195 &6446928640530387092
 NavMeshAgent:
