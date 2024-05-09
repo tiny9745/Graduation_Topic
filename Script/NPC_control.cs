@@ -41,9 +41,10 @@ public class NPCCtrl : MonoBehaviour
             npcNavi.destination = transform.position;
         }
     }
-    //NPC攻擊判定
+
     private void OnCollisionEnter(Collision Hit)
     {
+        //NPC攻擊判定
         if (Hit.gameObject.CompareTag("Player"))
         {
             static_parameters.MC_HP -= NPC_ATK;
@@ -51,6 +52,11 @@ public class NPCCtrl : MonoBehaviour
         else
         {
             Debug.LogWarning("找不到對應組件");
+        }
+        //NPC被攻擊判定
+        if(NPC_HP<=0)
+        {
+            Destroy(gameObject);
         }
     }
 }
