@@ -5,7 +5,6 @@ using UnityEngine;
 public class Wall_to_2D : MonoBehaviour
 {
     public GameObject cube;
-    // Start is called before the first frame update
     void Start()
     {
         Renderer renderer = cube.GetComponent<Renderer>();
