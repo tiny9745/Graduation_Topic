@@ -34,7 +34,6 @@ public class MC_col : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("NPC"))
         {
-            print("Player_HP=" + static_parameters.MC_HP);
             if (static_parameters.MC_HP <= 0)
             {
                 static_parameters.MC_HP = 0;

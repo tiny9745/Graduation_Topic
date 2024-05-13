@@ -22,7 +22,7 @@ public class NPCCtrl : MonoBehaviour
         {
             renderer.enabled = false;
         }
-        mainCamera = FindObjectOfType<Camera>();
+        mainCamera = FindObjectOfType<Camera>();//Get camera
         TargetObj = GameObject.Find("Player");
         npcNavi = GetComponent<NavMeshAgent>();
     }
@@ -48,6 +48,7 @@ public class NPCCtrl : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player"))
         {
             static_parameters.MC_HP -= NPC_ATK;
+            print("Player_HP=" + static_parameters.MC_HP);
         }
         else
         {
