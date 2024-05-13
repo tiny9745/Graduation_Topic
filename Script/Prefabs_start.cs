@@ -14,11 +14,10 @@ public class Prefabs_start : MonoBehaviour
     public float NPC_postion_maxZ = 5f;
     float randomX;
     float randomZ;
-    bool enemy_open = true;
-    public GameObject door;
+    bool enemy_open = false;//Control the portal
     void Start()
     {
-        
+        Debug.Log("GGGGKE");
         for (int i = 0; i < static_parameters.Max_enemy; i++)
         {
             // Randomly generate positions within range
@@ -26,6 +25,7 @@ public class Prefabs_start : MonoBehaviour
             randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
             GenerateNPC(new Vector3(randomX, 0f, randomZ));
         }
+        static_parameters.Change_enemy = 0;
     }
 
     // Update is called once per frame
@@ -33,17 +33,16 @@ public class Prefabs_start : MonoBehaviour
     {
         if(static_parameters.Change_enemy == 0)
         {
-            door.SetActive(true);
+            enemy_open =true;
         }
     }
 
     private void OnCollisionEnter(Collision Go_next_stage)
     {
-        Renderer renderer = door.GetComponent<Renderer>();
-        Debug.Log("inter");
-        if (Go_next_stage.gameObject.CompareTag("Player"))
+        if (Go_next_stage.gameObject.CompareTag("Player") && enemy_open)
         {
-            SceneManager.LoadScene("magic_house");
+            enemy_open = false;
+            SceneManager.LoadScene("Game_fight");
         }
     }
 
@@ -53,8 +52,9 @@ public class Prefabs_start : MonoBehaviour
         GameObject npc = Instantiate(prefabToSpawn, position, Quaternion.identity);
     }
 
-    void New_enemy_generate()
+    /*void New_enemy_generate()
     {
+        static_parameters.Change_enemy = static_parameters.Max_enemy;
         for (int i = 0; i < static_parameters.Max_enemy; i++)
         {          
             // Randomly generate positions within range
@@ -62,7 +62,5 @@ public class Prefabs_start : MonoBehaviour
             randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
             GenerateNPC(new Vector3(randomX, 0f, randomZ));
         }
-        static_parameters.Change_enemy = static_parameters.Max_enemy;
-        enemy_open = true;
-    }
+    }*/
 }

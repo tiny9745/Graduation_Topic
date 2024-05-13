@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class Wall_to_2D : MonoBehaviour
 {
-    public GameObject cube;
     void Start()
     {
-        Renderer renderer = cube.GetComponent<Renderer>();
+        Renderer renderer = GetComponent<Renderer>();
         if (renderer != null)
         {
             renderer.enabled = false;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

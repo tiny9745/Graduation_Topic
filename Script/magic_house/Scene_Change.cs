@@ -10,7 +10,7 @@ public class Scene_Change : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("A1");
+            SceneManager.LoadScene("Game_fight");
         }
     }
 }

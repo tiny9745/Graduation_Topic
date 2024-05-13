@@ -12,4 +12,5 @@ public class static_parameters : MonoBehaviour
 
     static public int Max_enemy = 10;//Default number of enemies
     static public int Change_enemy = Max_enemy;
+    static public bool enemy_open = false;//Control the portal
 }

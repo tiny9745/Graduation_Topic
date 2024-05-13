@@ -22,7 +22,7 @@ public class NPCCtrl : MonoBehaviour
         {
             renderer.enabled = false;
         }
-        mainCamera = Camera.main;
+        mainCamera = FindObjectOfType<Camera>();
         TargetObj = GameObject.Find("Player");
         npcNavi = GetComponent<NavMeshAgent>();
     }
@@ -30,13 +30,13 @@ public class NPCCtrl : MonoBehaviour
     void Update()
     {
         float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
-        _ = npcNavi.velocity.magnitude;   // 取得NPC的速度.
+        _ = npcNavi.velocity.magnitude;  // Get NPC speed
         transform.LookAt(mainCamera.transform);
-        if (dist < DetectDistance && NPC_HP > 0) // 偵測NPC和玩家之間的距離, 如在所設定的距離內, 開始追蹤
+        if (dist < DetectDistance && NPC_HP > 0)
         {
-            npcNavi.destination = TargetObj.transform.position;  // 
+            npcNavi.destination = TargetObj.transform.position;  
         }
-        else // 追蹤自己的位置 
+        else // Track your location 
         {
             npcNavi.destination = transform.position;
         }
@@ -44,7 +44,7 @@ public class NPCCtrl : MonoBehaviour
 
     private void OnCollisionEnter(Collision Hit)
     {
-        //NPC攻擊判定
+        //NPC attack determination
         if (Hit.gameObject.CompareTag("Player"))
         {
             static_parameters.MC_HP -= NPC_ATK;
@@ -53,8 +53,8 @@ public class NPCCtrl : MonoBehaviour
         {
             Debug.LogWarning("找不到對應組件");
         }
-        //NPC被攻擊判定
-        if(NPC_HP<=0)
+        //NPC is determined to be attacked
+        if (NPC_HP<=0)
         {
             Destroy(gameObject);
             static_parameters.Change_enemy--;
