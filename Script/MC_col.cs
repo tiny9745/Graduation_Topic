@@ -16,20 +16,20 @@ public class MC_col : MonoBehaviour
     }
     void Update()
     {
-        // 獲取玩家的輸入
+        // Get player input
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // 計算移動方向
+        // Calculate movement direction
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
-        // 將移動方向轉換成世界空間
+        // Convert movement direction to world space
         movement = transform.TransformDirection(movement);
 
-        // 移動角色
+        // Move character
         transform.position += movement * static_parameters.MC_Wspeed * Time.deltaTime;
     }
-    //被攻擊判定
+    //Determined to be attacked
     private void OnCollisionEnter(Collision Hit)
     {
         if (Hit.gameObject.CompareTag("NPC"))
@@ -45,7 +45,7 @@ public class MC_col : MonoBehaviour
         {
             Debug.LogWarning("找不到對應組件");
         }
-        //攻擊的判定位於武器類別的tag偵測上
-        //達成通關條件
+        //The attack is determined based on the tag detection of the weapon category
+        //Meet customs clearance conditions
     }
 }
