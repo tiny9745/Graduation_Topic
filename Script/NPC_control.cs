@@ -57,6 +57,7 @@ public class NPCCtrl : MonoBehaviour
         if(NPC_HP<=0)
         {
             Destroy(gameObject);
+            static_parameters.Change_enemy--;
         }
     }
 }
