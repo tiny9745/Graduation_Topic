@@ -11,6 +11,7 @@ public class Prefabs_start : MonoBehaviour
     public float NPC_postion_maxZ = 5f;
     float randomX;
     float randomZ;
+    bool enemy_open = true;
     void Start()
     {
         for (int i = 0; i < static_parameters.Max_enemy; i++)
@@ -25,8 +26,9 @@ public class Prefabs_start : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(static_parameters.Change_enemy == 0)
+        if(static_parameters.Change_enemy == 0 && enemy_open)
         {
+            enemy_open = false;
             New_enemy_generate();
         }
     }
@@ -41,10 +43,12 @@ public class Prefabs_start : MonoBehaviour
     {
         for (int i = 0; i < static_parameters.Max_enemy; i++)
         {
+            
             // Randomly generate positions within range
             randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
             randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
             GenerateNPC(new Vector3(randomX, 0f, randomZ));
         }
+        enemy_open = true;
     }
 }
