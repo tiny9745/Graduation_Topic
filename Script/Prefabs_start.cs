@@ -5,7 +5,6 @@ using UnityEngine;
 public class Prefabs_start : MonoBehaviour
 {
     public GameObject prefabToSpawn; // 要生成的預製體
-    public int numberOfPrefabs = 10; // 要生成的預製體數量
     public float NPC_postion_minX = -5f; // 範圍最小X值
     public float NPC_postion_maxX = 5f; // 範圍最大X值
     public float NPC_postion_minZ = -5f; // 範圍最小Z值
@@ -15,7 +14,7 @@ public class Prefabs_start : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < numberOfPrefabs; i++)
+        for (int i = 0; i < static_parameters.numberOfPrefabs; i++)
         {
             // 在範圍內隨機生成位置
             randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
