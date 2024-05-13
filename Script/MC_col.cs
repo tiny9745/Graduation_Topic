@@ -46,5 +46,6 @@ public class MC_col : MonoBehaviour
             Debug.LogWarning("找不到對應組件");
         }
         //攻擊的判定位於武器類別的tag偵測上
+        //達成通關條件
     }
 }
