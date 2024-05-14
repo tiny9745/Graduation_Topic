@@ -17,6 +17,7 @@ public class Prefabs_start : MonoBehaviour
     bool enemy_open = false;//Control the portal
     void Start()
     {
+        Debug.Log(enemy_open);
         for (int i = 0; i < static_parameters.Max_enemy; i++)
         {
             // Randomly generate positions within range
@@ -39,7 +40,6 @@ public class Prefabs_start : MonoBehaviour
     {
         if (Go_next_stage.gameObject.CompareTag("Player") && enemy_open)
         {
-            enemy_open = false;
             SceneManager.LoadScene("Game_fight");
         }
     }
@@ -49,16 +49,4 @@ public class Prefabs_start : MonoBehaviour
         // Generate the prefab and place it at the generated location
         GameObject npc = Instantiate(prefabToSpawn, position, Quaternion.identity);
     }
-
-    /*void New_enemy_generate()
-    {
-        static_parameters.Change_enemy = static_parameters.Max_enemy;
-        for (int i = 0; i < static_parameters.Max_enemy; i++)
-        {          
-            // Randomly generate positions within range
-            randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
-            randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
-            GenerateNPC(new Vector3(randomX, 0f, randomZ));
-        }
-    }*/
 }
