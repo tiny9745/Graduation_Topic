@@ -5,7 +5,7 @@ using UnityEngine;
 public class static_parameters : MonoBehaviour
 {
     //Player's basic value
-    static public int MC_HP_Max = 100;
+    static public int MC_HP_Max = 200;
     static public int MC_HP = MC_HP_Max;
     static public int MC_ATK = 15;
     static public int MC_Wspeed = 5;
