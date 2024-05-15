@@ -9,6 +9,7 @@ public class MC_col : MonoBehaviour
     public GameObject MC;
     private RectTransform HPimg_White,HPimg_Red, HPimg_Green;
     public string targetSceneName = "Game_fight";
+    public string PrepareSceneName = "magic_house";
     void Start()
     {
         MC = GameObject.Find("Player");
@@ -51,6 +52,10 @@ public class MC_col : MonoBehaviour
         if (scene.name == targetSceneName)
         {
             FindHPImage();
+        }
+        if (scene.name == PrepareSceneName)
+        {
+            static_parameters.MC_HP = static_parameters.MC_HP_Max;
         }
     }
     private void FindHPImage()
@@ -95,7 +100,6 @@ public class MC_col : MonoBehaviour
             }*/
             if (static_parameters.MC_HP <= 0)
             {
-                static_parameters.MC_HP = static_parameters.MC_HP_Max;
                 SceneManager.LoadScene("magic_house");
             }
         }
