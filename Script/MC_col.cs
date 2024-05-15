@@ -1,12 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MC_col : MonoBehaviour
 {
     public GameObject MC;
-    public Image HPimg;
+    private Image HPimg;
+    public string targetSceneName = "Game_fight";
     void Start()
     {
         MC = GameObject.Find("Player");
@@ -30,6 +32,40 @@ public class MC_col : MonoBehaviour
 
         // Move character
         transform.position += movement * static_parameters.MC_Wspeed * Time.deltaTime;
+    }
+
+    // Subscribe to events
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    // Unsubscribe event
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Check whether the loaded scene is the target scene
+        if (scene.name == targetSceneName)
+        {
+            FindHPImage();
+        }
+    }
+    private void FindHPImage()
+    {
+        // Find all "Image" in the scene
+        Image[] foundImages = FindObjectsOfType<Image>();
+        foreach (Image img in foundImages)
+        {
+            if (img.name == "HP_change")
+            {
+                HPimg = img;
+                Debug.Log("成功找到名為 'HP_change' 的 Image 元件");
+                break;
+            }
+        }
     }
     //Determined to be attacked
     private void OnCollisionEnter(Collision Hit)
