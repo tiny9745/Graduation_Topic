@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MC_col : MonoBehaviour
 {
     public GameObject MC;
-    private RectTransform HPimg_Red,HPimg_Green;
+    private RectTransform HPimg_White,HPimg_Red, HPimg_Green;
     public string targetSceneName = "Game_fight";
     void Start()
     {
@@ -59,32 +59,40 @@ public class MC_col : MonoBehaviour
         RectTransform[] foundRectTransforms = FindObjectsOfType<RectTransform>();
         foreach (RectTransform rectTransform in foundRectTransforms)
         {
-            // 检查 RectTransform 组件的名称是否为 "HP_change"
+            // 檢查 RectTransform 组件的名稱是否為指定名稱"
+            if (rectTransform.name == "HP_Max")
+            {
+                HPimg_White = rectTransform;
+                Debug.Log("成功找到名為 'HP_Max' 的 RectTransform 组件0");
+            }
             if (rectTransform.name == "HP_change")
             {
                 HPimg_Green = rectTransform;
-                Debug.Log("成功找到名为 'HP_change' 的 RectTransform 组件1");   
+                Debug.Log("成功找到名為 'HP_change' 的 RectTransform 组件1");   
             }
             if (rectTransform.name == "HP_change_after")
             {
                 HPimg_Red = rectTransform;
-                Debug.Log("成功找到名为 'HP_change_after' 的 RectTransform 组件2");
+                Debug.Log("成功找到名為 'HP_change_after' 的 RectTransform 组件2");
                 break; // 找到目标后退出循环
             }
         }
+        HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
+        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
+        HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
     }
     //Determined to be attacked
     private void OnCollisionEnter(Collision Hit)
     {
         if (Hit.gameObject.CompareTag("NPC"))
         {
-            //HPimg.fillAmount = static_parameters.MC_HP *(1/static_parameters.MC_HP_Max);
-            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP/static_parameters.MC_HP_Max*100, HPimg_Green.sizeDelta.y);
-            if (HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
+            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP/2, HPimg_Green.sizeDelta.y);
+            /*if (HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
             {
+                Debug.Log("in");
                 //讓傷害量(紅色血條)逐漸追上當前血量
                 HPimg_Red.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 10;
-            }
+            }*/
             if (static_parameters.MC_HP <= 0)
             {
                 static_parameters.MC_HP = static_parameters.MC_HP_Max;
