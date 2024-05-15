@@ -84,7 +84,7 @@ public class MC_col : MonoBehaviour
         }
         HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
         HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
-        HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
+        //HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
     }
     //Determined to be attacked
     private void OnCollisionEnter(Collision Hit)

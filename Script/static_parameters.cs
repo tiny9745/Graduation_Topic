@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,4 +13,6 @@ public class static_parameters : MonoBehaviour
 
     static public int Max_enemy = 10;//Default number of enemies
     static public int Change_enemy = Max_enemy;
+
+    static public bool isSceneLoading = false; // 用于跟踪场景是否正在加载
 }
