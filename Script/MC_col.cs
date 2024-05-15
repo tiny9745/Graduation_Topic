@@ -72,7 +72,7 @@ public class MC_col : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("NPC"))
         {
-            HPimg.fillAmount = static_parameters.MC_HP *(1/static_parameters.MC_HP_Max);
+            HPimg.fillAmount = static_parameters.MC_HP *(1/static_parameters.MC_HP_Max);//待測
             if (static_parameters.MC_HP <= 0)
             {
                 static_parameters.MC_HP = 0;
