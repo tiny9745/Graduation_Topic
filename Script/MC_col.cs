@@ -64,7 +64,7 @@ public class MC_col : MonoBehaviour
         RectTransform[] foundRectTransforms = FindObjectsOfType<RectTransform>();
         foreach (RectTransform rectTransform in foundRectTransforms)
         {
-            // 檢查 RectTransform 组件的名稱是否為指定名稱"
+            // Check whether the name of the RectTransform component is the specified name"
             if (rectTransform.name == "HP_Max")
             {
                 HPimg_White = rectTransform;
@@ -79,7 +79,7 @@ public class MC_col : MonoBehaviour
             {
                 HPimg_Red = rectTransform;
                 Debug.Log("成功找到名為 'HP_change_after' 的 RectTransform 组件2");
-                break; // 找到目标后退出循环
+                break;
             }
         }
         HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
@@ -95,7 +95,7 @@ public class MC_col : MonoBehaviour
             /*if (HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
             {
                 Debug.Log("in");
-                //讓傷害量(紅色血條)逐漸追上當前血量
+                //Let the damage amount (health bar2) gradually catch up with the current blood volume
                 HPimg_Red.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 10;
             }*/
             if (static_parameters.MC_HP <= 0)
