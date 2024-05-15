@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MC_col : MonoBehaviour
 {
     public GameObject MC;
-    private Image HPimg;
+    private RectTransform HPimg_Red,HPimg_Green;
     public string targetSceneName = "Game_fight";
     void Start()
     {
@@ -56,14 +56,20 @@ public class MC_col : MonoBehaviour
     private void FindHPImage()
     {
         // Find all "Image" in the scene
-        Image[] foundImages = FindObjectsOfType<Image>();
-        foreach (Image img in foundImages)
+        RectTransform[] foundRectTransforms = FindObjectsOfType<RectTransform>();
+        foreach (RectTransform rectTransform in foundRectTransforms)
         {
-            if (img.name == "HP_change")
+            // 检查 RectTransform 组件的名称是否为 "HP_change"
+            if (rectTransform.name == "HP_change")
             {
-                HPimg = img;
-                Debug.Log("成功找到名為 'HP_change' 的 Image 元件");
-                break;
+                HPimg_Green = rectTransform;
+                Debug.Log("成功找到名为 'HP_change' 的 RectTransform 组件1");   
+            }
+            if (rectTransform.name == "HP_change_after")
+            {
+                HPimg_Red = rectTransform;
+                Debug.Log("成功找到名为 'HP_change_after' 的 RectTransform 组件2");
+                break; // 找到目标后退出循环
             }
         }
     }
@@ -72,11 +78,17 @@ public class MC_col : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("NPC"))
         {
-            HPimg.fillAmount = static_parameters.MC_HP *(1/static_parameters.MC_HP_Max);//待測
+            //HPimg.fillAmount = static_parameters.MC_HP *(1/static_parameters.MC_HP_Max);
+            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP/static_parameters.MC_HP_Max*100, HPimg_Green.sizeDelta.y);
+            if (HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
+            {
+                //讓傷害量(紅色血條)逐漸追上當前血量
+                HPimg_Red.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 10;
+            }
             if (static_parameters.MC_HP <= 0)
             {
-                static_parameters.MC_HP = 0;
-                Destroy(gameObject);
+                static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                SceneManager.LoadScene("magic_house");
             }
         }
         //The attack is determined based on the tag detection of the weapon category
