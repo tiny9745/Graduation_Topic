@@ -111,7 +111,6 @@ public class MC_col : MonoBehaviour
         {
             HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_Green.sizeDelta.y);
         }
-        Debug.Log("Red.x:" + HPimg_Red.sizeDelta.x + ",Green.x:" + HPimg_Green.sizeDelta.x);
         if (static_parameters.MC_HP <= 0)
         {
             SceneManager.LoadScene("magic_house");
