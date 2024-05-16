@@ -1305,6 +1305,7 @@ GameObject:
   - component: {fileID: 412413371}
   - component: {fileID: 412413370}
   - component: {fileID: 412413369}
+  - component: {fileID: 412413373}
   m_Layer: 5
   m_Name: note_book
   m_TagString: Untagged
@@ -1386,7 +1387,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 412413371}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 412413373}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &412413371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1425,6 +1438,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412413367}
   m_CullTransparentMesh: 1
+--- !u!114 &412413373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412413367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b5ae31697d0ea4da2be134a705457f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &457602689
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,7 +1943,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877772745}
   serializedVersion: 2
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -5.2207128e-12, z: 2.897682e-12, w: 1}
+=======
+  m_LocalRotation: {x: -0, y: 7.727152e-13, z: -4.285461e-13, w: 1}
+>>>>>>> 97188be573278ccd1d3609fd4b188f28ebb51460
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3364,7 +3393,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709573525}
   serializedVersion: 2
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.25066265, y: -0.000000018623524, z: 0.0000000048221716, w: 0.9680745}
+=======
+  m_LocalRotation: {x: 0.25066265, y: -0.000000018623838, z: 0.0000000048222533, w: 0.9680745}
+>>>>>>> 97188be573278ccd1d3609fd4b188f28ebb51460
   m_LocalPosition: {x: -0.5, y: 10.820001, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
