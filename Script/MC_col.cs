@@ -10,9 +10,9 @@ public class MC_col : MonoBehaviour
     private RectTransform HPimg_White,HPimg_Red, HPimg_Green;
     public string targetSceneName = "Game_fight";
     public string PrepareSceneName = "magic_house";
+    float horizontalInput, verticalInput;
     void Start()
     {
-        FindHPImage();
         MC = GameObject.Find("Player");
         Renderer renderer = MC.GetComponent<Renderer>();
         if (renderer != null)
@@ -23,8 +23,8 @@ public class MC_col : MonoBehaviour
     void Update()
     {
         // Get player input
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
         // Calculate movement direction
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
@@ -34,6 +34,12 @@ public class MC_col : MonoBehaviour
 
         // Move character
         transform.position += movement * static_parameters.MC_Wspeed * Time.deltaTime;
+
+        //MC HP change
+        if(static_parameters.MC_HP_tmp != static_parameters.MC_HP) 
+        {
+            MC_HP();
+        }
     }
 
     // Subscribe to events
@@ -84,25 +90,23 @@ public class MC_col : MonoBehaviour
             }
         }
         HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
-        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
+        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP/2, HPimg_White.sizeDelta.y);
         //HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
     }
     //Determined to be attacked
-    private void OnCollisionEnter(Collision Hit)
+    void MC_HP()
     {
-        if (Hit.gameObject.CompareTag("NPC"))
+        static_parameters.MC_HP_tmp = static_parameters.MC_HP;
+        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_Green.sizeDelta.y);
+        /*if (HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
         {
-            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP/2, HPimg_Green.sizeDelta.y);
-            /*if (HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
-            {
-                Debug.Log("in");
-                //Let the damage amount (health bar2) gradually catch up with the current blood volume
-                HPimg_Red.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 10;
-            }*/
-            if (static_parameters.MC_HP <= 0)
-            {
-                SceneManager.LoadScene("magic_house");
-            }
+            Debug.Log("in");
+            //Let the damage amount (health bar2) gradually catch up with the current blood volume
+            HPimg_Red.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 10;
+        }*/
+        if (static_parameters.MC_HP <= 0)
+        {
+            SceneManager.LoadScene("magic_house");
         }
         //The attack is determined based on the tag detection of the weapon category
         //Meet customs clearance conditions
