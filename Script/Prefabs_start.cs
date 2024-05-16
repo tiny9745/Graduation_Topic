@@ -17,7 +17,7 @@ public class Prefabs_start : MonoBehaviour
     bool enemy_open = false;//Control the portal
     void Start()
     {
-        Debug.Log(enemy_open);
+        Debug.Log("enemy_open:" + enemy_open);
         for (int i = 0; i < static_parameters.Max_enemy; i++)
         {
             // Randomly generate positions within range
@@ -25,6 +25,7 @@ public class Prefabs_start : MonoBehaviour
             randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
             GenerateNPC(new Vector3(randomX, 0f, randomZ));
         }
+        static_parameters.Change_enemy = 0;
     }
 
     // Update is called once per frame
