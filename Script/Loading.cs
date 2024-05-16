@@ -10,6 +10,13 @@ public class Loading : MonoBehaviour
 
     void Start()
     {
+        // 检查变量是否已分配
+        if (loadingScreen == null || loadingBar == null)
+        {
+            Debug.LogError("LoadingScreen or LoadingBar is not assigned in the inspector.");
+            return;
+        }
+
         if (!StaticParameters.isSceneLoading)
         {
             StaticParameters.isSceneLoading = true;
@@ -32,6 +39,12 @@ public class Loading : MonoBehaviour
             Debug.Log("Loading progress: " + progressValue);
             yield return null;
         }
+
+        // 确保进度条填满
+        loadingBar.fillAmount = 1f;
+
+        // 停止显示加载屏幕
+        loadingScreen.SetActive(false);
         StaticParameters.isSceneLoading = false;
     }
 }
