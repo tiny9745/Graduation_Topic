@@ -10,7 +10,6 @@ public class Loading : MonoBehaviour
 
     void Start()
     {
-        // 检查变量是否已分配
         if (loadingScreen == null || loadingBar == null)
         {
             Debug.LogError("LoadingScreen or LoadingBar is not assigned in the inspector.");
