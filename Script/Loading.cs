@@ -5,28 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class Loading : MonoBehaviour
 {
-    public string targetSceneName = "Game_fight";
-    public GameObject loadingScreen;
-    public Image loadingBar;
+    public GameObject loadingScreen; // 加载界面
+    public Image loadingBar; // 加载进度条
 
     void Start()
     {
         if (!StaticParameters.isSceneLoading)
         {
             StaticParameters.isSceneLoading = true;
-            StartCoroutine(LoadSceneAsync(targetSceneName));
+            string currentSceneName = SceneManager.GetActiveScene().name; // 获取当前场景的名称
+            StartCoroutine(LoadSceneAsync(currentSceneName));
         }
     }
 
     IEnumerator LoadSceneAsync(string sceneName)
     {
-        // Start asynchronous loading of scenes
+        // 开始异步加载场景
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         loadingScreen.SetActive(true);
 
         while (!operation.isDone)
         {
-            // Calculate loading progress (Unity reports progress between 0 and 0.9)
+            // 计算加载进度（Unity报告的进度在0和0.9之间）
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
             loadingBar.fillAmount = progressValue;
             Debug.Log("Loading progress: " + progressValue);

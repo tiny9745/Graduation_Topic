@@ -18,6 +18,7 @@ public class MC_col : MonoBehaviour
         {
             renderer.enabled = false;
         }
+        //HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_Green.sizeDelta.y);
     }
     void Update()
     {
