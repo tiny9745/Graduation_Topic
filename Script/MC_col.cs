@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class MC_col : MonoBehaviour
 {
     public GameObject MC;
-    private RectTransform HPimg_White,HPimg_Red, HPimg_Green;
+    private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
     public string targetSceneName = "Game_fight";
     public string PrepareSceneName = "magic_house";
     float horizontalInput, verticalInput;
+
     void Start()
     {
         MC = GameObject.Find("Player");
@@ -20,6 +21,7 @@ public class MC_col : MonoBehaviour
             renderer.enabled = false;
         }
     }
+
     void Update()
     {
         // Get player input
@@ -36,10 +38,11 @@ public class MC_col : MonoBehaviour
         transform.position += movement * static_parameters.MC_Wspeed * Time.deltaTime;
 
         //MC HP change
-        if(static_parameters.MC_HP_tmp != static_parameters.MC_HP) 
+        if (static_parameters.MC_HP_tmp != static_parameters.MC_HP)
         {
             MC_HP();
         }
+        MC_HP_effects();
     }
 
     // Subscribe to events
@@ -47,6 +50,7 @@ public class MC_col : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+
     // Unsubscribe event
     private void OnDisable()
     {
@@ -65,6 +69,7 @@ public class MC_col : MonoBehaviour
             static_parameters.MC_HP = static_parameters.MC_HP_Max;
         }
     }
+
     private void FindHPImage()
     {
         // Find all "Image" in the scene
@@ -75,40 +80,51 @@ public class MC_col : MonoBehaviour
             if (rectTransform.name == "HP_Max")
             {
                 HPimg_White = rectTransform;
-                Debug.Log("成功找到名為 'HP_Max' 的 RectTransform 组件0");
+                Debug.Log("成功找到名为 'HP_Max' 的 RectTransform 组件0");
             }
             if (rectTransform.name == "HP_change")
             {
-                HPimg_Green = rectTransform;
-                Debug.Log("成功找到名為 'HP_change' 的 RectTransform 组件1");   
+                HPimg_Red = rectTransform;
+                Debug.Log("成功找到名为 'HP_change_after' 的 RectTransform 组件1");
             }
             if (rectTransform.name == "HP_change_after")
             {
-                HPimg_Red = rectTransform;
-                Debug.Log("成功找到名為 'HP_change_after' 的 RectTransform 组件2");
+                HPimg_Green = rectTransform;
+                Debug.Log("成功找到名为 'HP_change' 的 RectTransform 组件2");
                 break;
             }
         }
-        HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
-        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP/2, HPimg_White.sizeDelta.y);
-        //HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP_Max/2, HPimg_White.sizeDelta.y);
+
+        if (HPimg_White != null && HPimg_Red != null && HPimg_Green != null)
+        {
+            HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max / 2, HPimg_White.sizeDelta.y);
+            HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_White.sizeDelta.y);
+            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_White.sizeDelta.y);
+        }
     }
+
     //Determined to be attacked
     void MC_HP()
     {
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
-        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_Green.sizeDelta.y);
-        /*if (HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
+        if (HPimg_Green != null)
         {
-            Debug.Log("in");
-            //Let the damage amount (health bar2) gradually catch up with the current blood volume
-            HPimg_Red.sizeDelta += new Vector2(-1, 0) * Time.deltaTime * 10;
-        }*/
+            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_Green.sizeDelta.y);
+        }
+        Debug.Log("Red.x:" + HPimg_Red.sizeDelta.x + ",Green.x:" + HPimg_Green.sizeDelta.x);
         if (static_parameters.MC_HP <= 0)
         {
             SceneManager.LoadScene("magic_house");
         }
-        //The attack is determined based on the tag detection of the weapon category
-        //Meet customs clearance conditions
+    }
+
+    void MC_HP_effects()
+    {
+        if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
+        {
+            Debug.Log("HPimg_Red.sizeDelta.x:" + HPimg_Red.sizeDelta.x);
+            // Let the damage amount (health bar2) gradually catch up with the current blood volume
+            HPimg_Red.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * 6f;
+        }
     }
 }

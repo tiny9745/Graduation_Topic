@@ -9,7 +9,7 @@ public class Loading_fight : MonoBehaviour
     public GameObject loadingScreen;
     public Image loadingBar;
 
-    public float loadingSpeed = 0.3f; // 设置进度条更新速度，1为正常速度，0.5为减慢一倍
+    public float loadingSpeed = 0.3f;
 
     void Start()
     {
@@ -24,18 +24,18 @@ public class Loading_fight : MonoBehaviour
     {
         // 开始异步加载场景
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        operation.allowSceneActivation = false; // 暂时不激活场景，直到我们手动允许
+        operation.allowSceneActivation = false; // Do not activate scenes until manually allowed
         loadingScreen.SetActive(true);
 
         float targetFillAmount = 0f;
 
         while (!operation.isDone)
         {
-            // 计算加载进度（Unity报告的进度在0和0.9之间）
+            // Calculate loading progress
             targetFillAmount = Mathf.Clamp01(operation.progress / 0.9f);
             Debug.Log("Target loading progress: " + targetFillAmount);
 
-            // 将进度条的填充值逐渐更新到目标值
+            // Gradually update the progress bar to the target value
             while (loadingBar.fillAmount < targetFillAmount)
             {
                 loadingBar.fillAmount += Time.deltaTime * loadingSpeed;
@@ -49,14 +49,13 @@ public class Loading_fight : MonoBehaviour
             yield return null;
         }
 
-        // 确保进度条最终填充到1（场景加载完成）
+        // Make sure the progress bar is loaded
         while (loadingBar.fillAmount < 1f)
         {
             loadingBar.fillAmount += Time.deltaTime * loadingSpeed;
             yield return null;
         }
-
-        loadingScreen.SetActive(false); // 隐藏加载界面
+        loadingScreen.SetActive(false);
         StaticParameters.isSceneLoading = false;
     }
 }
