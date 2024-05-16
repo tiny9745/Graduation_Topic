@@ -11,9 +11,9 @@ public class Loading_migic : MonoBehaviour
 
     void Start()
     {
-        if (!StaticParameters.isSceneLoading)
+        if (!StaticParameters_magic.isSceneLoading_magic)
         {
-            StaticParameters.isSceneLoading = true;
+            StaticParameters_magic.isSceneLoading_magic = true;
             StartCoroutine(LoadSceneAsync(targetSceneName));
         }
     }
@@ -26,10 +26,10 @@ public class Loading_migic : MonoBehaviour
 
         while (!operation.isDone)
         {
+            Debug.Log("Loading progress: " + loadingBar.fillAmount);
             // Calculate loading progress (Unity reports progress between 0 and 0.9)
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
             loadingBar.fillAmount = progressValue;
-            Debug.Log("Loading progress: " + progressValue);
             yield return null;
         }
         StaticParameters_magic.isSceneLoading_magic = false;

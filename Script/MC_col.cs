@@ -12,13 +12,13 @@ public class MC_col : MonoBehaviour
     public string PrepareSceneName = "magic_house";
     void Start()
     {
+        FindHPImage();
         MC = GameObject.Find("Player");
         Renderer renderer = MC.GetComponent<Renderer>();
         if (renderer != null)
         {
             renderer.enabled = false;
         }
-        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_Green.sizeDelta.y);
     }
     void Update()
     {
