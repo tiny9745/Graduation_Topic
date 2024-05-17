@@ -9,7 +9,7 @@ public class NPCCtrl : MonoBehaviour
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
     public GameObject TargetObj;
-    public int DetectDistance = 10;
+    public int DetectDistance = 3;
     public int NPC_HP = 100;
     public int NPC_ATK = 10;
     private Camera mainCamera;

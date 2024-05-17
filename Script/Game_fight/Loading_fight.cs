@@ -33,13 +33,11 @@ public class Loading_fight : MonoBehaviour
         {
             // Calculate loading progress
             targetFillAmount = Mathf.Clamp01(operation.progress / 0.9f);
-            Debug.Log("Target loading progress: " + targetFillAmount);
 
             // Gradually update the progress bar to the target value
             while (loadingBar.fillAmount < targetFillAmount)
             {
                 loadingBar.fillAmount += Time.deltaTime * loadingSpeed;
-                Debug.Log("Current loading progress: " + loadingBar.fillAmount);
                 yield return null;
             }
             if (operation.progress >= 0.9f)

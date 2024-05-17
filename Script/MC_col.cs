@@ -121,7 +121,6 @@ public class MC_col : MonoBehaviour
     {
         if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
         {
-            Debug.Log("HPimg_Red.sizeDelta.x:" + HPimg_Red.sizeDelta.x);
             // Let the damage amount (health bar2) gradually catch up with the current blood volume
             HPimg_Red.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * 6f;
         }

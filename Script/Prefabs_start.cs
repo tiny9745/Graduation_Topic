@@ -8,10 +8,11 @@ using UnityEngine.UI;
 public class Prefabs_start : MonoBehaviour
 {
     public GameObject prefabToSpawn; //Prefab to generate
-    public float NPC_postion_minX = -5f;
-    public float NPC_postion_maxX = 5f;
-    public float NPC_postion_minZ = -5f;
-    public float NPC_postion_maxZ = 5f;
+    public float NPC_postion_minX = -25f;
+    public float NPC_postion_maxX = 25f;
+    public float NPC_postion_minZ = -25f;
+    public float NPC_postion_maxZ = 25f;
+    public Transform NPPP;
     float randomX;
     float randomZ;
     bool enemy_open = false;//Control the portal
@@ -20,6 +21,7 @@ public class Prefabs_start : MonoBehaviour
         Debug.Log("enemy_open:" + enemy_open);
         for (int i = 0; i < static_parameters.Max_enemy; i++)
         {
+
             // Randomly generate positions within range
             randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
             randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
@@ -47,7 +49,8 @@ public class Prefabs_start : MonoBehaviour
 
     void GenerateNPC(Vector3 position)
     {
+        Debug.Log("position:" + position);
         // Generate the prefab and place it at the generated location
-        GameObject npc = Instantiate(prefabToSpawn, position, Quaternion.identity);
+        Instantiate(prefabToSpawn, position, Quaternion.identity);
     }
 }
