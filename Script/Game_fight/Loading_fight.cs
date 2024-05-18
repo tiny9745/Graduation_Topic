@@ -15,6 +15,7 @@ public class Loading_fight : MonoBehaviour
     {
         if (!StaticParameters.isSceneLoading)
         {
+            Time.timeScale = 0;
             StaticParameters.isSceneLoading = true;
             StartCoroutine(LoadSceneAsync(targetSceneName));
         }
@@ -22,7 +23,7 @@ public class Loading_fight : MonoBehaviour
 
     IEnumerator LoadSceneAsync(string sceneName)
     {
-        // 开始异步加载场景
+        // Asynchronous loading of scenes
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false; // Do not activate scenes until manually allowed
         loadingScreen.SetActive(true);
@@ -37,7 +38,7 @@ public class Loading_fight : MonoBehaviour
             // Gradually update the progress bar to the target value
             while (loadingBar.fillAmount < targetFillAmount)
             {
-                loadingBar.fillAmount += Time.deltaTime * loadingSpeed;
+                loadingBar.fillAmount += Time.unscaledDeltaTime * loadingSpeed; // "unscaledDeltaTime" is not affected by "Time.timeScale"
                 yield return null;
             }
             if (operation.progress >= 0.9f)
@@ -50,10 +51,11 @@ public class Loading_fight : MonoBehaviour
         // Make sure the progress bar is loaded
         while (loadingBar.fillAmount < 1f)
         {
-            loadingBar.fillAmount += Time.deltaTime * loadingSpeed;
+            loadingBar.fillAmount += Time.unscaledDeltaTime * loadingSpeed;
             yield return null;
         }
         loadingScreen.SetActive(false);
+        Time.timeScale = 1;
         StaticParameters.isSceneLoading = false;
     }
 }

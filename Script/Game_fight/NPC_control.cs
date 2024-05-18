@@ -14,17 +14,20 @@ public class NPCCtrl : MonoBehaviour
     int NPC_ATK = 10;
     private Quaternion initialRotation;
     //private Camera mainCamera;
-    public GameObject cube;
+    public GameObject NPC01;
 
     void Start()
     {
         initialRotation = transform.rotation;
-        cube = GameObject.Find("NPC");
-        Renderer renderer = cube.GetComponent<Renderer>();
-        if (renderer != null)
+        NPC01 = GameObject.Find("NPC");
+        if (NPC01 != null)
         {
-            renderer.enabled = false;
-        }
+            Renderer renderer = NPC01.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+            };
+        }       
         //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
     // Update is called once per frame

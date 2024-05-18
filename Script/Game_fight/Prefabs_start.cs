@@ -12,13 +12,11 @@ public class Prefabs_start : MonoBehaviour
     float NPC_postion_maxX = 25f;
     float NPC_postion_minZ = -25f;
     float NPC_postion_maxZ = 25f;
-    public Transform NPPP;
     float randomX;
     float randomZ;
     bool enemy_open = false;//Control the portal
     void Start()
     {
-        Debug.Log("enemy_open:" + enemy_open);
         for (int i = 0; i < static_parameters.Max_enemy; i++)
         {
 
@@ -49,7 +47,6 @@ public class Prefabs_start : MonoBehaviour
 
     void GenerateNPC(Vector3 position)
     {
-        Debug.Log("position:" + position);
         // Generate the prefab and place it at the generated location
         Instantiate(prefabToSpawn, position, Quaternion.identity);
     }
