@@ -350,10 +350,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabToSpawn: {fileID: 5553406589361572726, guid: e45256ea4d1f8184088dcc28826cd2c2, type: 3}
-  NPC_postion_minX: -5
-  NPC_postion_maxX: 5
-  NPC_postion_minZ: -5
-  NPC_postion_maxZ: 5
   NPPP: {fileID: 0}
 --- !u!1 &1124389366
 GameObject:
@@ -446,7 +442,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.612943, y: 16.82979, z: -8.852481}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 1, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -857,6 +853,7 @@ GameObject:
   - component: {fileID: 1866990618}
   - component: {fileID: 1866990617}
   - component: {fileID: 1866990621}
+  - component: {fileID: 1866990622}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -963,6 +960,18 @@ MonoBehaviour:
   loadingScreen: {fileID: 2008351053}
   loadingBar: {fileID: 2008351052}
   loadingSpeed: 0.3
+--- !u!114 &1866990622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866990616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7651617c3511c604db207806538d4e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2008351050
 PrefabInstance:
   m_ObjectHideFlags: 0
