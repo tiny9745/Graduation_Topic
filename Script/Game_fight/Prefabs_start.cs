@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class Prefabs_start : MonoBehaviour
 {
     public GameObject prefabToSpawn; //Prefab to generate
-    float NPC_postion_minX = -45f;
-    float NPC_postion_maxX = 45f;
-    float NPC_postion_minZ = -45f;
-    float NPC_postion_maxZ = 45f;
+    float NPC_postion_minX = -25f;
+    float NPC_postion_maxX = 25f;
+    float NPC_postion_minZ = -25f;
+    float NPC_postion_maxZ = 25f;
     public Transform NPPP;
     float randomX;
     float randomZ;

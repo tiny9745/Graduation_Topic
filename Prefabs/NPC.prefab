@@ -113,7 +113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5553406589361572726}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.032408588, y: -0.80581903, z: -0.044292543, w: 0.58961296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 37.7, y: 0.58333397, z: -19.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -205,9 +205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetObj: {fileID: 0}
-  DetectDistance: 10
-  NPC_HP: 100
-  NPC_ATK: 10
   cube: {fileID: 5553406589361572726}
 --- !u!195 &6446928640530387092
 NavMeshAgent:

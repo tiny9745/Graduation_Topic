@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -9,36 +9,46 @@ public class NPCCtrl : MonoBehaviour
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
     public GameObject TargetObj;
-    public int DetectDistance = 3;
-    public int NPC_HP = 100;
-    public int NPC_ATK = 10;
-    private Camera mainCamera;
+    int DetectDistance = 15;
+    int NPC_HP = 100;
+    int NPC_ATK = 10;
+    private Quaternion initialRotation;
+    //private Camera mainCamera;
     public GameObject cube;
+
     void Start()
     {
+        initialRotation = transform.rotation;
         cube = GameObject.Find("NPC");
         Renderer renderer = cube.GetComponent<Renderer>();
         if (renderer != null)
         {
             renderer.enabled = false;
         }
-        mainCamera = FindObjectOfType<Camera>();//Get camera
-        TargetObj = GameObject.Find("Player");
-        npcNavi = GetComponent<NavMeshAgent>();
+        //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
     // Update is called once per frame
     void Update()
     {
-        float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
-        _ = npcNavi.velocity.magnitude;  // Get NPC speed
-        transform.LookAt(mainCamera.transform);
-        if (dist < DetectDistance && NPC_HP > 0)
+        transform.rotation = initialRotation;
+        if (TargetObj == null)
         {
-            npcNavi.destination = TargetObj.transform.position;  
+            TargetObj = GameObject.Find("Player");
+            npcNavi = GetComponent<NavMeshAgent>();
         }
-        else // Track your location 
+        else
         {
-            npcNavi.destination = transform.position;
+            float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+            if (dist < DetectDistance && NPC_HP > 0)
+            {
+                npcNavi.destination = TargetObj.transform.position;
+            }
+            else // Track your location 
+            {
+                npcNavi.destination = transform.position;
+            }
+            _ = npcNavi.velocity.magnitude;  // Get NPC speed
+            //transform.LookAt(mainCamera.transform);
         }
     }
 
@@ -52,7 +62,7 @@ public class NPCCtrl : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("ß‰§£®ÏπÔ¿≥≤’•Û");
+            Debug.LogWarning("Êâæ‰∏çÂà∞Â∞çÊáâÁµÑ‰ª∂");
         }
         //NPC is determined to be attacked
         if (NPC_HP<=0)
