@@ -1,0 +1,85 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
+
+public class NPC01_Ctrl : MonoBehaviour
+{
+    // Start is called before the first frame update
+    NavMeshAgent npcNavi;
+    public GameObject TargetObj;
+    int DetectDistance = 15;
+    float NPC_HP = 100;
+    int NPC_ATK = 10;
+    float npcSpeed = 3f;
+    private Quaternion initialRotation;
+    //private Camera mainCamera;
+    public GameObject NPC01;
+
+    void Start()
+    {
+        initialRotation = transform.rotation;
+        NPC01 = GameObject.Find("NPC01");
+        if (NPC01 != null)
+        {
+            Renderer renderer = NPC01.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+            };
+        }
+        npcNavi = GetComponent<NavMeshAgent>();
+        //mainCamera = FindObjectOfType<Camera>();//Get camera
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.rotation = initialRotation;
+        if (TargetObj == null)
+        {
+            TargetObj = GameObject.Find("Player");
+            npcNavi = GetComponent<NavMeshAgent>();
+            // Set the speed after each acquisition of the NavMeshAgent component
+            if (npcNavi != null)
+            {
+                npcNavi.speed = npcSpeed;
+            }
+        }
+        else
+        {
+            float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+            if (dist < DetectDistance && NPC_HP > 0)
+            {
+                npcNavi.destination = TargetObj.transform.position;
+            }
+            else // Track your location 
+            {
+                npcNavi.destination = transform.position;
+            }
+            //transform.LookAt(mainCamera.transform);
+        }
+    }
+
+    private void OnCollisionEnter(Collision Hit)
+    {
+        //NPC attack determination
+        if (Hit.gameObject.CompareTag("Player"))
+        {
+            static_parameters.MC_HP -= NPC_ATK;
+            print("Player_HP=" + static_parameters.MC_HP);
+        }
+        else
+        {
+            Debug.LogWarning("找不到對應組件");
+        }
+        //NPC is determined to be attacked
+        if (NPC_HP <= 0)
+        {
+            Destroy(gameObject);
+            static_parameters.Change_enemy--;
+        }
+    }
+}

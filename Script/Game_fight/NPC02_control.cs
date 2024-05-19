@@ -1,33 +1,35 @@
-Ôªøusing System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-public class NPCA_Ctrl : MonoBehaviour
+
+public class NPC02_control : MonoBehaviour
 {
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
     public GameObject TargetObj;
-    int DetectDistance = 15;
-    int NPC_HP = 100;
-    int NPC_ATK = 10;
+    int DetectDistance = 25;
+    float NPC_HP = 80;
+    int NPC_ATK = 20;
+    float npcSpeed = 5f;
     private Quaternion initialRotation;
     //private Camera mainCamera;
-    public GameObject NPC01;
+    public GameObject NPC02;
 
     void Start()
     {
         initialRotation = transform.rotation;
-        NPC01 = GameObject.Find("NPC");
-        if (NPC01 != null)
+        NPC02 = GameObject.Find("NPC");
+        if (NPC02 != null)
         {
-            Renderer renderer = NPC01.GetComponent<Renderer>();
+            Renderer renderer = NPC02.GetComponent<Renderer>();
             if (renderer != null)
             {
                 renderer.enabled = false;
             };
-        }       
+        }
         //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
     // Update is called once per frame
@@ -38,6 +40,11 @@ public class NPCA_Ctrl : MonoBehaviour
         {
             TargetObj = GameObject.Find("Player");
             npcNavi = GetComponent<NavMeshAgent>();
+            // Set the speed after each acquisition of the NavMeshAgent component
+            if (npcNavi != null)
+            {
+                npcNavi.speed = npcSpeed;
+            }
         }
         else
         {
@@ -50,7 +57,6 @@ public class NPCA_Ctrl : MonoBehaviour
             {
                 npcNavi.destination = transform.position;
             }
-            _ = npcNavi.velocity.magnitude;  // Get NPC speed
             //transform.LookAt(mainCamera.transform);
         }
     }
@@ -65,10 +71,10 @@ public class NPCA_Ctrl : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Êâæ‰∏çÂà∞Â∞çÊáâÁµÑ‰ª∂");
+            Debug.LogWarning("ß‰§£®ÏπÔ¿≥≤’•Û");
         }
         //NPC is determined to be attacked
-        if (NPC_HP<=0)
+        if (NPC_HP <= 0)
         {
             Destroy(gameObject);
             static_parameters.Change_enemy--;

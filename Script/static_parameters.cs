@@ -12,8 +12,7 @@ public class static_parameters : MonoBehaviour
     static public int MC_Wspeed = 10;
     static public float MC_ATK_Speed = 1;
 
-    static public int Max_enemy = 10;//Default number of enemies
-    static public int Change_enemy = Max_enemy;
+    static public int Change_enemy;
 
     static public bool isSceneLoading = false; //Used to track whether the scene is loading
 }
