@@ -12,6 +12,7 @@ public class MC_col : MonoBehaviour
     public string targetSceneName = "Game_fight";
     public string PrepareSceneName = "magic_house";
     float horizontalInput, verticalInput;
+    Transform sprite;
     short face;
     void Start()
     {
@@ -30,12 +31,19 @@ public class MC_col : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         // Calculate movement direction
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
 
         // Convert movement direction to world space
-        movement = transform.TransformDirection(movement);
-        // Move character
-        transform.position += movement * static_parameters.MC_Wspeed * Time.deltaTime;
+        if (movement.magnitude > 1)
+        {
+            movement.Normalize();
+        }
+
+        // Scale the movement vector by speed and deltaTime
+        movement = movement * static_parameters.MC_Wspeed * Time.deltaTime;
+
+        // Apply the movement to the character's position
+        transform.position += movement;
 
         // Determine the direction of the character
         if(movement != Vector3.zero)
@@ -46,7 +54,7 @@ public class MC_col : MonoBehaviour
                 face = 2;
             }else if (movement.z > 0){
                 face = 3;
-            }else{
+            }else if (movement.z < 0){
                 face = 4;
             }
         }
@@ -56,6 +64,7 @@ public class MC_col : MonoBehaviour
             MC_HP();
         }
         MC_HP_effects();
+        LateUpdate();
         SetLookDirection(face);
     }
 
@@ -132,11 +141,34 @@ public class MC_col : MonoBehaviour
     }
 
     void SetLookDirection(int face){
-       /* switch (face){
+        switch (face){
             case 1:
-                transform.Rotate(0, -90, 0, Space.Self);
-            break;
-        }*/
+                SetRotation(0, -90, 0);;
+                break;
+            case 2:
+                SetRotation(0, 90, 0);
+                break;
+            case 3:
+                SetRotation(0, 180, 0);
+                break;
+            case 4:
+                SetRotation(0, 0, 0);
+                break;        
+        }
+    }
+
+    void SetRotation(float x, float y, float z)
+    {
+        Quaternion newRotation = Quaternion.Euler(x, y, z);
+        transform.rotation = newRotation;
+    }
+    void LateUpdate()
+    {
+        // Reset the sprite's local rotation to keep it fixed
+        if (sprite != null)
+        {
+            sprite.localRotation = Quaternion.identity;
+        }
     }
 }
 
