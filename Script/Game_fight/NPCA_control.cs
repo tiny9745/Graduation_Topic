@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
-public class NPCCtrl : MonoBehaviour
+public class NPCA_Ctrl : MonoBehaviour
 {
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
