@@ -98,9 +98,10 @@ public class RandomTileGround : MonoBehaviour
         meshFilter.mesh = mesh;
 
         // 创建并分配一个材质
-        Material material = new Material(Shader.Find("Sprites/Default"));
+        Material material = new Material(Shader.Find("Standard")); // 使用支持深度写入的着色器
         material.mainTexture = combinedTexture; // 使用合并的纹理
         meshRenderer.material = material;
+        meshRenderer.sortingOrder = 0; // 设置排序顺序
     }
 
     void MakeTexturesReadable()
