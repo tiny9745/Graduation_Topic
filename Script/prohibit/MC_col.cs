@@ -12,7 +12,7 @@ public class MC_col : MonoBehaviour
     private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
     public string targetSceneName = "Game_fight";
     public string PrepareSceneName = "magic_house";
-    float horizontalInput, verticalInput;
+    public float horizontalInput, verticalInput;
     short face=4;
     void Start()
     {
@@ -56,7 +56,7 @@ public class MC_col : MonoBehaviour
         }
         MC_HP_effects();
         skill();
-        SetLookDirection(face);
+        //SetLookDirection(face);
     }
     void LateUpdate(){
         // Reset the sprite's local rotation to keep it fixed
