@@ -5,25 +5,23 @@ using UnityEngine;
 
 public class RandomTileGround : MonoBehaviour
 {
-    public Sprite[] sprites; // 自定义数量的 sprite 图片
-    public int tilesX = 10; // X 轴上的瓦片数量
-    public int tilesZ = 10; // Z 轴上的瓦片数量
-    public float tileSize = 1.0f; // 每个瓦片的大小
+    public Sprite[] sprites; // Custom number of sprite images
+    public int tilesX = 10; // Number of tiles on the X-axis
+    public int tilesZ = 10; // Number of tiles on the Z-axis
+    public float tileSize = 1.0f; // size of each tile
 
     void Start()
     {
-        // 确保所有纹理都是可读的
+        // Make sure textures are readable
         MakeTexturesReadable();
 
-        // 创建一个新的 GameObject 作为地面
+        // Create a new GameObject to use as the ground
         GameObject ground = new GameObject("Ground");
         MeshRenderer meshRenderer = ground.AddComponent<MeshRenderer>();
         MeshFilter meshFilter = ground.AddComponent<MeshFilter>();
-
-        // 创建一个新的 mesh
         Mesh mesh = new Mesh();
 
-        // 计算顶点、UV 和三角形
+        // Calculate vertices, UVs and triangles
         int tileCount = tilesX * tilesZ;
         Vector3[] vertices = new Vector3[tileCount * 4];
         Vector2[] uvs = new Vector2[tileCount * 4];
@@ -32,16 +30,16 @@ public class RandomTileGround : MonoBehaviour
         int vertIndex = 0;
         int triIndex = 0;
 
-        // 创建一个纹理，结合所有 sprite 纹理
-        Texture2D combinedTexture = new Texture2D(1, 1); // 临时大小，将稍后调整大小
+        // Create a texture that combines all sprite textures
+        Texture2D combinedTexture = new Texture2D(1, 1);
         Texture2D[] textures = new Texture2D[sprites.Length];
         for (int i = 0; i < sprites.Length; i++)
         {
             textures[i] = sprites[i].texture;
         }
-        Rect[] rects = combinedTexture.PackTextures(textures, 0, 4096); // 调整最大大小
+        Rect[] rects = combinedTexture.PackTextures(textures, 0, 4096); // Adjust the maximum size
 
-        // 计算地面中心点位置
+        // Calculate center point position
         float halfSizeX = (tilesX * tileSize) / 2.0f;
         float halfSizeZ = (tilesZ * tileSize) / 2.0f;
 
@@ -49,17 +47,17 @@ public class RandomTileGround : MonoBehaviour
         {
             for (int z = 0; z < tilesZ; z++)
             {
-                // 计算瓦片位置，以中心点为原点展开
+                // Calculate the tile position, taking the center point as the origin
                 float xPos = x * tileSize - halfSizeX;
                 float zPos = z * tileSize - halfSizeZ;
 
-                // 分配每个瓦片的顶点
+                // Allocate vertices to each tile
                 vertices[vertIndex + 0] = new Vector3(xPos, 0, zPos);
                 vertices[vertIndex + 1] = new Vector3(xPos + tileSize, 0, zPos);
                 vertices[vertIndex + 2] = new Vector3(xPos, 0, zPos + tileSize);
                 vertices[vertIndex + 3] = new Vector3(xPos + tileSize, 0, zPos + tileSize);
 
-                // 随机选择一个 sprite
+                // randomly select a sprite
                 int randomIndex = Random.Range(0, sprites.Length);
                 Rect rect = rects[randomIndex];
 
@@ -69,13 +67,13 @@ public class RandomTileGround : MonoBehaviour
                 spriteUVs[2] = new Vector2(rect.xMin, rect.yMax);
                 spriteUVs[3] = new Vector2(rect.xMax, rect.yMax);
 
-                // 分配每个瓦片的 UVs
+                // Assign UVs to each tile
                 uvs[vertIndex + 0] = spriteUVs[0];
                 uvs[vertIndex + 1] = spriteUVs[1];
                 uvs[vertIndex + 2] = spriteUVs[2];
                 uvs[vertIndex + 3] = spriteUVs[3];
 
-                // 分配每个瓦片的三角形
+                // Allocate triangles to each tile
                 triangles[triIndex + 0] = vertIndex + 0;
                 triangles[triIndex + 1] = vertIndex + 2;
                 triangles[triIndex + 2] = vertIndex + 1;
@@ -88,20 +86,20 @@ public class RandomTileGround : MonoBehaviour
             }
         }
 
-        // 将顶点、UV 和三角形应用到 mesh 上
+        // Apply vertices, UVs, and triangles to the mesh
         mesh.vertices = vertices;
         mesh.uv = uvs;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        // 将 mesh 分配给 MeshFilter 和 MeshRenderer
+        // Assign mesh to MeshFilter and MeshRenderer
         meshFilter.mesh = mesh;
 
-        // 创建并分配一个材质
-        Material material = new Material(Shader.Find("Standard")); // 使用支持深度写入的着色器
-        material.mainTexture = combinedTexture; // 使用合并的纹理
+        // Create and assign a material
+        Material material = new Material(Shader.Find("Standard")); // Use a shader that supports depth writing
+        material.mainTexture = combinedTexture; // Use merged textures
         meshRenderer.material = material;
-        meshRenderer.sortingOrder = 0; // 设置排序顺序
+        meshRenderer.sortingOrder = 0; // Set sort order
     }
 
     void MakeTexturesReadable()
@@ -126,7 +124,7 @@ public class RandomTileGround : MonoBehaviour
 
 public class MakeTexturesReadable : MonoBehaviour
 {
-    public Texture2D[] textures; // 在此分配您的 sprite 纹理
+    public Texture2D[] textures; //  Assign sprite texture
 
     void Start()
     {
