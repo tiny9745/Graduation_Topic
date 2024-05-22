@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AI_Baking_obstacle : MonoBehaviour
 {
@@ -16,11 +17,11 @@ public class AI_Baking_obstacle : MonoBehaviour
     float randomZ;
     int obstach_ramdom;
     int i;
-    // Start is called before the first frame update
+
     void Start()
     {
         obstach_ramdom = Random.Range(4, 9);
-        print("obstach_ramdom:"+ obstach_ramdom);
+        Debug.Log("obstach_ramdom:" + obstach_ramdom);
         for (i = 0; i < obstach_ramdom; i++)
         {
             // Randomly generate positions within range
@@ -28,14 +29,10 @@ public class AI_Baking_obstacle : MonoBehaviour
             randomZ = Random.Range(obstach_postion_minZ, obstach_postion_maxZ);
             Generateobstach(new Vector3(randomX, 0f, randomZ));
         }
+        // Ensure the NavMeshSurface is ready to build the NavMesh
         surface.BuildNavMesh();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void Generateobstach(Vector3 position)
     {
         // Generate the prefab and place it at the generated location
