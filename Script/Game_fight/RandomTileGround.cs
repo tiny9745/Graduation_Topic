@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RandomTileGround : MonoBehaviour
 {
-    public Sprite[] sprites; // 四张 sprite 图片
+    public Sprite[] sprites; // 自定义数量的 sprite 图片
     public int tilesX = 10; // X 轴上的瓦片数量
     public int tilesZ = 10; // Z 轴上的瓦片数量
     public float tileSize = 1.0f; // 每个瓦片的大小
@@ -24,19 +24,34 @@ public class RandomTileGround : MonoBehaviour
         Mesh mesh = new Mesh();
 
         // 计算顶点、UV 和三角形
-        Vector3[] vertices = new Vector3[tilesX * tilesZ * 4];
-        Vector2[] uvs = new Vector2[tilesX * tilesZ * 4];
-        int[] triangles = new int[tilesX * tilesZ * 6];
+        int tileCount = tilesX * tilesZ;
+        Vector3[] vertices = new Vector3[tileCount * 4];
+        Vector2[] uvs = new Vector2[tileCount * 4];
+        int[] triangles = new int[tileCount * 6];
 
         int vertIndex = 0;
         int triIndex = 0;
+
+        // 创建一个纹理，结合所有 sprite 纹理
+        Texture2D combinedTexture = new Texture2D(1, 1); // 临时大小，将稍后调整大小
+        Texture2D[] textures = new Texture2D[sprites.Length];
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            textures[i] = sprites[i].texture;
+        }
+        Rect[] rects = combinedTexture.PackTextures(textures, 0, 4096); // 调整最大大小
+
+        // 计算地面中心点位置
+        float halfSizeX = (tilesX * tileSize) / 2.0f;
+        float halfSizeZ = (tilesZ * tileSize) / 2.0f;
+
         for (int x = 0; x < tilesX; x++)
         {
             for (int z = 0; z < tilesZ; z++)
             {
-                // 计算瓦片位置
-                float xPos = x * tileSize;
-                float zPos = z * tileSize;
+                // 计算瓦片位置，以中心点为原点展开
+                float xPos = x * tileSize - halfSizeX;
+                float zPos = z * tileSize - halfSizeZ;
 
                 // 分配每个瓦片的顶点
                 vertices[vertIndex + 0] = new Vector3(xPos, 0, zPos);
@@ -46,15 +61,13 @@ public class RandomTileGround : MonoBehaviour
 
                 // 随机选择一个 sprite
                 int randomIndex = Random.Range(0, sprites.Length);
-                Sprite sprite = sprites[randomIndex];
-                Debug.Log($"Tile ({x}, {z}) uses sprite index: {randomIndex}"); // 调试日志
+                Rect rect = rects[randomIndex];
 
-                Rect rect = sprite.rect;
                 Vector2[] spriteUVs = new Vector2[4];
-                spriteUVs[0] = new Vector2(rect.xMin / sprite.texture.width, rect.yMin / sprite.texture.height);
-                spriteUVs[1] = new Vector2(rect.xMax / sprite.texture.width, rect.yMin / sprite.texture.height);
-                spriteUVs[2] = new Vector2(rect.xMin / sprite.texture.width, rect.yMax / sprite.texture.height);
-                spriteUVs[3] = new Vector2(rect.xMax / sprite.texture.width, rect.yMax / sprite.texture.height);
+                spriteUVs[0] = new Vector2(rect.xMin, rect.yMin);
+                spriteUVs[1] = new Vector2(rect.xMax, rect.yMin);
+                spriteUVs[2] = new Vector2(rect.xMin, rect.yMax);
+                spriteUVs[3] = new Vector2(rect.xMax, rect.yMax);
 
                 // 分配每个瓦片的 UVs
                 uvs[vertIndex + 0] = spriteUVs[0];
@@ -86,16 +99,6 @@ public class RandomTileGround : MonoBehaviour
 
         // 创建并分配一个材质
         Material material = new Material(Shader.Find("Sprites/Default"));
-
-        // 创建一个纹理，结合所有 sprite 纹理
-        Texture2D combinedTexture = new Texture2D(1, 1); // 临时大小，将稍后调整大小
-        List<Texture2D> textures = new List<Texture2D>();
-        foreach (Sprite sprite in sprites)
-        {
-            textures.Add(sprite.texture);
-        }
-        combinedTexture.PackTextures(textures.ToArray(), 0, 4096); // 调整最大大小
-
         material.mainTexture = combinedTexture; // 使用合并的纹理
         meshRenderer.material = material;
     }
