@@ -30,7 +30,6 @@ public class NPC01_Ctrl : MonoBehaviour
                 renderer.enabled = false;
             };
         }
-        npcNavi = GetComponent<NavMeshAgent>();
         //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
 

@@ -21,7 +21,7 @@ public class NPC02_control : MonoBehaviour
     void Start()
     {
         initialRotation = transform.rotation;
-        NPC02 = GameObject.Find("NPC");
+        NPC02 = GameObject.Find("NPC02");
         if (NPC02 != null)
         {
             Renderer renderer = NPC02.GetComponent<Renderer>();

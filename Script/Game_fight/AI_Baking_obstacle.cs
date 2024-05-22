@@ -21,7 +21,6 @@ public class AI_Baking_obstacle : MonoBehaviour
     void Start()
     {
         obstach_ramdom = Random.Range(4, 9);
-        Debug.Log("obstach_ramdom:" + obstach_ramdom);
         for (i = 0; i < obstach_ramdom; i++)
         {
             // Randomly generate positions within range
