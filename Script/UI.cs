@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     int Diarystatus = 0;
@@ -10,7 +10,7 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,7 +18,19 @@ public class UI : MonoBehaviour
     {
         
     }
-    public void Onclick()
+    public void Onclick1()
+    {
+        print("Button Clicked");
+    }
+    public void Onclick2()
+    {
+        print("Button Clicked");
+    }
+    public void Onclick3()
+    {
+        print("Button Clicked");
+    }
+    public void Onclick4()
     {
         print("Button Clicked");
     }
