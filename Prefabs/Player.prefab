@@ -16,8 +16,6 @@ GameObject:
   - component: {fileID: 5169620181529821383}
   - component: {fileID: 3192938207778560710}
   - component: {fileID: 7676975597639515731}
-  - component: {fileID: 5515845543358294032}
-  - component: {fileID: 2143629140378992922}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -155,6 +153,8 @@ MonoBehaviour:
   spriteTransform: {fileID: 0}
   targetSceneName: Game_fight
   PrepareSceneName: magic_house
+  horizontalInput: 0
+  verticalInput: 0
 --- !u!114 &3192938207778560710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,42 +188,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 0.5, z: 2}
   m_Center: {x: 0, y: 1, z: -1.5}
---- !u!95 &5515845543358294032
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2274165221566979942}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9d70f3f252c5ef144bb895e35d452834, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!111 &2143629140378992922
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2274165221566979942}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 97e0c0f516800d744a7748c42be5ae57, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &3428443558140354762
 GameObject:
   m_ObjectHideFlags: 0

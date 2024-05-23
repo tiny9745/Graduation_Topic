@@ -13,6 +13,11 @@ public class Loading_fight : MonoBehaviour
 
     void Start()
     {
+        if (loadingScreen == null || loadingBar == null)
+        {
+            Debug.LogError("LoadingScreen or LoadingBar not found in the current scene.");
+            return;
+        }
         if (!StaticParameters.isSceneLoading)
         {
             Time.timeScale = 0;
