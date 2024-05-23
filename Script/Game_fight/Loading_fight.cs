@@ -15,13 +15,13 @@ public class Loading_fight : MonoBehaviour
     {
         if (loadingScreen == null || loadingBar == null)
         {
-            Debug.LogError("LoadingScreen or LoadingBar not found in the current scene.");
+            Debug.Log("LoadingScreen or LoadingBar not found in the current scene.");
             return;
         }
-        if (!StaticParameters.isSceneLoading)
+        if (!StaticParameters_fight.isSceneLoading_fight)
         {
             Time.timeScale = 0;
-            StaticParameters.isSceneLoading = true;
+            StaticParameters_fight.isSceneLoading_fight = true;
             StartCoroutine(LoadSceneAsync(targetSceneName));
         }
     }
@@ -61,11 +61,11 @@ public class Loading_fight : MonoBehaviour
         }
         loadingScreen.SetActive(false);
         Time.timeScale = 1;
-        StaticParameters.isSceneLoading = false;
+        StaticParameters_fight.isSceneLoading_fight = false;
     }
 }
 
-public static class StaticParameters
+public static class StaticParameters_fight
 {
-    public static bool isSceneLoading = false;
+    public static bool isSceneLoading_fight = false;
 }

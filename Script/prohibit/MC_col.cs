@@ -125,9 +125,20 @@ public class MC_col : MonoBehaviour
     }
 
     void MC_HP_effects(){
-        if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x){
-            // Let the damage amount (health bar2) gradually catch up with the current blood volume
-            HPimg_Red.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * 6f;
+        if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
+        {
+            float baseSpeed = 6f;
+            // The difference between the current health bar and the damage bar
+            float difference = HPimg_Red.sizeDelta.x - HPimg_Green.sizeDelta.x;
+
+            // Adjust speed according to difference
+            float speed = baseSpeed + (difference * 0.1f);
+            HPimg_Red.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * speed;
+
+            if (HPimg_Red.sizeDelta.x < HPimg_Green.sizeDelta.x)
+            {
+                HPimg_Red.sizeDelta = new Vector2(HPimg_Green.sizeDelta.x, HPimg_Red.sizeDelta.y);
+            }
         }
     }
 
