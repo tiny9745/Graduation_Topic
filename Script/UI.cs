@@ -12,14 +12,26 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Notebook = GameObject.Find("Notebook");BattleUI = GameObject.Find("BattleUI");
+        Background = GameObject.Find("NoteBG");Menulayout = GameObject.Find("Menulayout");
+        BookMarks = GameObject.Find("BookMarks");LeftMark = GameObject.Find("LeftMark");
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z)){
-            openclose();
+            print(static_parameters.Bookstate);
+            if (!static_parameters.Bookstate){
+                static_parameters.Bookstate = true;
+                Notebook.SetActive(true);Background.SetActive(true);
+                BookMarks.SetActive(true);Background.SetActive(true);
+                Background.SetActive(false);LeftMark.SetActive(false);
+            }else{
+                static_parameters.Bookstate = false;
+                Notebook.SetActive(false);BattleUI.SetActive(true);
+            }
+            
         }
     }
     public void Onclick1()
@@ -37,21 +49,5 @@ public class UI : MonoBehaviour
     public void Onclick4()
     {
         Diarystatus = 4;
-    }
-    public void openclose()
-    {
-        print(static_parameters.Bookstate);
-        if (!static_parameters.Bookstate)
-        {
-            static_parameters.Bookstate = true;
-            Notebook.SetActive(true);
-            BattleUI.SetActive(false);
-        }
-        else
-        {
-            static_parameters.Bookstate = false;
-            Notebook.SetActive(false);
-            BattleUI.SetActive(true);
-        }
     }
 }

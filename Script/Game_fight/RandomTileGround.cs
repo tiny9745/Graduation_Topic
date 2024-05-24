@@ -19,7 +19,7 @@ public class RandomTileGround : MonoBehaviour
         GameObject ground = new GameObject("Ground");
         MeshRenderer meshRenderer = ground.AddComponent<MeshRenderer>();
         MeshFilter meshFilter = ground.AddComponent<MeshFilter>();
-        Mesh mesh = new();
+        Mesh mesh = new Mesh();
 
         // Calculate vertices, UVs and triangles
         int tileCount = tilesX * tilesZ;
