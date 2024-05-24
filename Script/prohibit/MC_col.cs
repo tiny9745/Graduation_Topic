@@ -40,8 +40,7 @@ public class MC_col : MonoBehaviour
         // Determine the direction of the character
         if(movement != Vector3.zero){
             if (movement.x > 0){
-                face = 1;
-                
+                face = 1;            
             }else if (movement.x < 0){
                 face = 2;
             }else if (movement.z > 0){
@@ -56,7 +55,7 @@ public class MC_col : MonoBehaviour
         }
         MC_HP_effects();
         skill();
-        //SetLookDirection(face);
+        SetLookDirection(face);
     }
     void LateUpdate(){
         // Reset the sprite's local rotation to keep it fixed
@@ -123,7 +122,7 @@ public class MC_col : MonoBehaviour
             SceneManager.LoadScene("magic_house");
         }
     }
-
+    
     void MC_HP_effects(){
         if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
         {
