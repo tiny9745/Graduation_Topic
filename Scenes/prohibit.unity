@@ -1727,6 +1727,7 @@ GameObject:
   - component: {fileID: 412413371}
   - component: {fileID: 412413370}
   - component: {fileID: 412413369}
+  - component: {fileID: 412413373}
   m_Layer: 5
   m_Name: note_book
   m_TagString: Untagged
@@ -1828,7 +1829,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412413367}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1859,6 +1860,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412413367}
   m_CullTransparentMesh: 1
+--- !u!114 &412413373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412413367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b5ae31697d0ea4da2be134a705457f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Notebook: {fileID: 0}
+  BattleUI: {fileID: 0}
+  Background: {fileID: 0}
+  Menulayout: {fileID: 0}
+  BookMarks: {fileID: 0}
+  LeftMark: {fileID: 0}
 --- !u!1 &418709972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2888,11 +2907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877772745}
   serializedVersion: 2
-<<<<<<< HEAD
-  m_LocalRotation: {x: -0.000000014901161, y: 0.000000007522085, z: -0.000000004175302, w: 1}
-=======
   m_LocalRotation: {x: 0.000000014901161, y: -0.000000007522085, z: 0.000000004175302, w: 1}
->>>>>>> b54f0fcf0fa31462f5c2b3e0af2c8f08925545c0
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5384,11 +5399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709573525}
   serializedVersion: 2
-<<<<<<< HEAD
-  m_LocalRotation: {x: 0.2506626, y: 0.000000008328531, z: -0.0000000021564983, w: 0.96807456}
-=======
   m_LocalRotation: {x: 0.2506626, y: -4.427867e-23, z: 9.758067e-24, w: 0.9680745}
->>>>>>> b54f0fcf0fa31462f5c2b3e0af2c8f08925545c0
   m_LocalPosition: {x: -0.5, y: 16.5, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7376,7 +7387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2047872723
 RectTransform:
   m_ObjectHideFlags: 0
