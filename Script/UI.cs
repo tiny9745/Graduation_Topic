@@ -6,32 +6,47 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     int Diarystatus = 0;
-    GameObject notebook;
+    public GameObject Notebook; public GameObject BattleUI;
+    public GameObject Background;public GameObject Menulayout;
+    public GameObject BookMarks; public GameObject LeftMark;
     // Start is called before the first frame update
     void Start()
     {
-
+        Notebook = GameObject.Find("Notebook");BattleUI = GameObject.Find("BattleUI");
+        Background = GameObject.Find("NoteBG");Menulayout = GameObject.Find("Menulayout");
+        BookMarks = GameObject.Find("BookMarks");LeftMark = GameObject.Find("LeftMark");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Z)){
+            if (!static_parameters.Bookstate){
+                static_parameters.Bookstate = true;
+                Notebook.SetActive(true);Background.SetActive(true);
+                BookMarks.SetActive(true);Background.SetActive(true);
+                Background.SetActive(false);LeftMark.SetActive(false);
+            }else{
+                static_parameters.Bookstate = false;
+                Notebook.SetActive(false);BattleUI.SetActive(true);
+            }
+            
+        }
     }
     public void Onclick1()
     {
-        print("Button Clicked");
+        Diarystatus = 1;
     }
     public void Onclick2()
     {
-        print("Button Clicked");
+        Diarystatus = 2;
     }
     public void Onclick3()
     {
-        print("Button Clicked");
+        Diarystatus = 3;
     }
     public void Onclick4()
     {
-        print("Button Clicked");
+        Diarystatus = 4;
     }
 }
