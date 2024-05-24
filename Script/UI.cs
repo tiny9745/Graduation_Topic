@@ -21,6 +21,7 @@ public class UI : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z)){
+            print(static_parameters.Bookstate);
             if (!static_parameters.Bookstate){
                 static_parameters.Bookstate = true;
                 Notebook.SetActive(true);Background.SetActive(true);
