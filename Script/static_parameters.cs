@@ -15,5 +15,5 @@ public class static_parameters : MonoBehaviour
     static public int Change_enemy;
 
     static public bool isSceneLoading = false; //Used to track whether the scene is loading
-    static public bool Bookstate = true; //Used to track whether the scene is changing
+    static public bool Bookstate = false; //Used to track whether the scene is changing
 }
