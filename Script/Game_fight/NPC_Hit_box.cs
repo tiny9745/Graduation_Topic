@@ -7,7 +7,6 @@ public class NPC_Hit_box : MonoBehaviour
     public GameObject Player;
     void Start()
     {
-        // 在 Start 方法中找到 Player 遊戲對象
         Player = GameObject.Find("Player");
         if (Player == null)
         {
@@ -20,16 +19,14 @@ public class NPC_Hit_box : MonoBehaviour
     {
         if (Player != null)
         {
-            // 獲取目標方向
+            // Get target direction
             Vector3 direction = Player.transform.position - transform.position;
-            direction.y = 0; // 保持Y軸不變
+            direction.y = 0;
 
             if (direction != Vector3.zero)
             {
-                // 計算目標旋轉
+                // target rotation
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-                // 設置當前物體的旋轉
                 transform.rotation = targetRotation;
             }
         }
