@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class Puzzle : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Book; public GameObject Extra1;
-    bool OC = false; 
+    bool OC = true; 
     void Start()
     {
         
@@ -15,26 +15,29 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // MoveDiary();
-    }
-    public void Open()
-    {
-        OC = true;
-    }
-    public void Close()
-    {
-        OC = false;
+        // MoveDiary();
+
     }
     public void MoveDiary(){
         if (OC)
         {
-            Book.transform.position +=Vector3.MoveTowards(Book.transform.localPosition,new Vector3(-300,0,0),0.1f);
-            Extra1.transform.position +=Vector3.MoveTowards(Extra1.transform.localPosition,new Vector3(-250,0,0),0.1f);
+            print(OC);
+            Vector3 targetPosition1 = new Vector3(-300, Book.transform.localPosition.y, Book.transform.localPosition.z);
+            Book.transform.localPosition = targetPosition1;
+
+            Vector3 targetPosition2 = new Vector3(-250, Extra1.transform.localPosition.y, Extra1.transform.localPosition.z);
+            Extra1.transform.localPosition = targetPosition2;
+            OC = false;
         }
         else
         {
-            Book.transform.position = Vector3.MoveTowards(Book.transform.localPosition,new Vector3(0,0,0),0.1f);
-            Extra1.transform.position = Vector3.MoveTowards(Extra1.transform.localPosition,new Vector3(0,0,0),0.1f);
+            print(OC);
+            Vector3 targetPosition1 = new Vector3(0, Book.transform.localPosition.y, Book.transform.localPosition.z);
+            Book.transform.localPosition = targetPosition1;
+
+            Vector3 targetPosition2 = new Vector3(0, Extra1.transform.localPosition.y, Extra1.transform.localPosition.z);
+            Extra1.transform.localPosition = targetPosition2;
+            OC = true;
         }
     }
 }
