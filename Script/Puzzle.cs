@@ -5,7 +5,7 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Dairy; public GameObject Extra1;
+    public GameObject Book; public GameObject Extra1;
     bool OC = false; 
     void Start()
     {
@@ -15,7 +15,7 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveDiary();
+       // MoveDiary();
     }
     public void Open()
     {
@@ -28,13 +28,13 @@ public class Puzzle : MonoBehaviour
     public void MoveDiary(){
         if (OC)
         {
-            Dairy.transform.position +=Vector3.MoveTowards(Dairy.transform.position,new Vector3(-300,0,0),0.1f);
-            Extra1.transform.position +=Vector3.MoveTowards(Extra1.transform.position,new Vector3(-250,0,0),0.1f);
+            Book.transform.position +=Vector3.MoveTowards(Book.transform.localPosition,new Vector3(-300,0,0),0.1f);
+            Extra1.transform.position +=Vector3.MoveTowards(Extra1.transform.localPosition,new Vector3(-250,0,0),0.1f);
         }
         else
         {
-            Dairy.transform.position = Vector3.MoveTowards(Dairy.transform.position,new Vector3(0,0,0),0.1f);
-            Extra1.transform.position = Vector3.MoveTowards(Extra1.transform.position,new Vector3(0,0,0),0.1f);
+            Book.transform.position = Vector3.MoveTowards(Book.transform.localPosition,new Vector3(0,0,0),0.1f);
+            Extra1.transform.position = Vector3.MoveTowards(Extra1.transform.localPosition,new Vector3(0,0,0),0.1f);
         }
     }
 }
