@@ -40,7 +40,6 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        print(static_parameters.Bookstate);
         if (!static_parameters.Bookstate)
         {
             Time.timeScale = 0;

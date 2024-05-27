@@ -15,7 +15,7 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        MoveDiary();
     }
     public void Open()
     {
@@ -25,15 +25,16 @@ public class Puzzle : MonoBehaviour
     {
         OC = false;
     }
-    void MoveDiary(){
+    public void MoveDiary(){
         if (OC)
         {
-            Dairy.transform.position +=Vector3.MoveTowards(Dairy.transform.localPosition,new Vector3(-155,0,0),0.1f);
-            Extra1.transform.position +=Vector3.MoveTowards(Extra1.transform.localPosition,new Vector3(-150,0,0),0.1f);
+            Dairy.transform.position +=Vector3.MoveTowards(Dairy.transform.position,new Vector3(-300,0,0),0.1f);
+            Extra1.transform.position +=Vector3.MoveTowards(Extra1.transform.position,new Vector3(-250,0,0),0.1f);
         }
         else
         {
-            Dairy.transform.position = Vector3.MoveTowards(Dairy.transform.position, Extra1.transform.position, 0.1f);
+            Dairy.transform.position = Vector3.MoveTowards(Dairy.transform.position,new Vector3(0,0,0),0.1f);
+            Extra1.transform.position = Vector3.MoveTowards(Extra1.transform.position,new Vector3(0,0,0),0.1f);
         }
     }
 }
