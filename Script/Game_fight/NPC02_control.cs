@@ -10,10 +10,9 @@ public class NPC02_control : MonoBehaviour
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
     public GameObject TargetObj;
-    int DetectDistance = 25;
-    float NPC_HP = 80;
-    int NPC_ATK = 20;
-    float npcSpeed = 5f;
+    public static int DetectDistance = 25; public static int NPC_ATK = 20;
+    public static float NPC_HP = 80; public static float npcSpeed = 5f;
+
     private Quaternion initialRotation;
     //private Camera mainCamera;
     public GameObject NPC02;
@@ -71,7 +70,7 @@ public class NPC02_control : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("§ä¤£¨ì¹ïÀ³²Õ¥ó");
+            Debug.LogWarning("ï¿½ä¤£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¥ï¿½");
         }
         //NPC is determined to be attacked
         if (NPC_HP <= 0)

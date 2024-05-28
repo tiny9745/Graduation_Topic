@@ -10,16 +10,13 @@ public class NPC01_Ctrl : MonoBehaviour
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
     public GameObject TargetObj;
-    int DetectDistance = 15;
-    float NPC_HP = 100;
-    int NPC_ATK = 10;
-    float npcSpeed = 3f;
+    public static int DetectDistance = 15; public static int NPC_ATK = 10;
+    public static float NPC_HP = 100; public static float npcSpeed = 3f;
     private Quaternion initialRotation;
     //private Camera mainCamera;
     public GameObject NPC01;
 
-    void Start()
-    {
+    void Start(){
         initialRotation = transform.rotation;
         NPC01 = GameObject.Find("NPC01");
         if (NPC01 != null)
@@ -34,8 +31,7 @@ public class NPC01_Ctrl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         transform.rotation = initialRotation;
         if (TargetObj == null)
         {
@@ -62,8 +58,7 @@ public class NPC01_Ctrl : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision Hit)
-    {
+    private void OnCollisionEnter(Collision Hit){
         //NPC attack determination
         if (Hit.gameObject.CompareTag("Player"))
         {

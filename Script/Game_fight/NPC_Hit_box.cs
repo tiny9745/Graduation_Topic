@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPC_Hit_box : MonoBehaviour
 {
     public GameObject Player;
+    int NPC_ATK = 0;
     void Start()
     {
         Player = GameObject.Find("Player");
@@ -29,6 +30,13 @@ public class NPC_Hit_box : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = targetRotation;
             }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player hit!");
         }
     }
 }
