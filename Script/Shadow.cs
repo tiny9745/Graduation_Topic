@@ -1,18 +1,18 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Shadow : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;  // ±N±zªºSpriteRenderer©ì©ñ¨ì¦¹³B
-    public Light sceneLight;  // ±N³õ´º¤¤ªº¥ú·½©ì©ñ¨ì¦¹³B
+    public SpriteRenderer spriteRenderer;  // å°†æ‚¨çš„ SpriteRenderer æ‹–æ”¾åˆ°æ­¤å¤„
+    public Light sceneLight;  // å°†åœºæ™¯ä¸­çš„å…‰æºæ‹–æ”¾åˆ°æ­¤å¤„
     private Material spriteMaterial;
     private GameObject quad;
-    private Sprite lastSprite;  // ¥Î©óÀË¬d·í«esprite¬O§_§ïÅÜ
+    private Sprite lastSprite;  // ç”¨äºæ£€æŸ¥å½“å‰ sprite æ˜¯å¦æ”¹å˜
 
     void Start()
     {
-        // ³Ğ«Ø¤@­Ó·sªº§÷½è
+        // åˆ›å»ºä¸€ä¸ªæ–°çš„æè´¨
         spriteMaterial = new Material(Shader.Find("Standard"));
-        spriteMaterial.SetFloat("_Mode", 3);  // ³]¸m¬°Transparent¼Ò¦¡
+        spriteMaterial.SetFloat("_Mode", 3);  // è®¾ç½®ä¸º Transparent æ¨¡å¼
         spriteMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
         spriteMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
         spriteMaterial.SetInt("_ZWrite", 0);
@@ -21,24 +21,34 @@ public class Shadow : MonoBehaviour
         spriteMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
         spriteMaterial.renderQueue = 3000;
 
-        // ±NSpriteªºTexture³]¸m¬°§÷½èªº¥D¯¾²z
+        // å°† Sprite çš„ Texture è®¾ç½®ä¸ºæè´¨çš„ä¸»çº¹ç†
         spriteMaterial.mainTexture = spriteRenderer.sprite.texture;
 
-        // ³Ğ«Ø¤@­ÓQuad¨Ã³]¸m¨ä¦ì¸m©M¤j¤p
+        // åˆ›å»ºä¸€ä¸ª Quad å¹¶è®¾ç½®å…¶ä½ç½®å’Œå¤§å°
         quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        quad.transform.position = transform.position;  // ½T«O»Pªş¥[¤¸¥ó¦ì¸m¹ï»ô
+        quad.transform.position = transform.position;  // ç¡®ä¿ä¸é™„åŠ ç»„ä»¶ä½ç½®å¯¹é½
 
-        // ³]¸mQuadªº¤j¤p¡A¨Ï¨ä»Pªş¥[¤¸¥óªº¤j¤p¤@­P
+        // ç§»é™¤ Quad ä¸Šçš„ Rigidbody ç»„ä»¶
+        Destroy(quad.GetComponent<Rigidbody>());
+
+        // ç§»é™¤ Quad ä¸Šçš„ MeshCollider ç»„ä»¶
+        Destroy(quad.GetComponent<MeshCollider>());
+
+        // è®¾ç½® Quad çš„å¤§å°ï¼Œä½¿å…¶ä¸é™„åŠ ç»„ä»¶çš„å¤§å°ä¸€è‡´
         UpdateQuadSize();
 
-        // ±N§÷½èÀ³¥Î¨ìQuad¤W
+        // å°†æè´¨åº”ç”¨åˆ° Quad ä¸Š
         quad.GetComponent<Renderer>().material = spriteMaterial;
 
-        // ½T«OQuadªº¤¤¤ßÂI¹ï»ô
-        quad.transform.parent = transform;  // ³]¸m¤÷ª«Åé¥H«K©ó¹ï»ô
-        quad.transform.localPosition = Vector3.zero;  // ­«¸m¥»¦a¦ì¸m¥H¹ï»ô¤¤¤ß
+        // è®¾ç½®é˜´å½±æ¨¡å¼ä¸ºäº§ç”Ÿé˜´å½±ä½†ä¸æ¥æ”¶é˜´å½±
+        quad.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        quad.GetComponent<Renderer>().receiveShadows = true;
 
-        // ½T«O¥ú·½¦s¦b¨Ã±Ò¥Î¼v¤l
+        // ç¡®ä¿ Quad çš„ä¸­å¿ƒç‚¹å¯¹é½
+        quad.transform.parent = transform;  // è®¾ç½®çˆ¶ç‰©ä½“ä»¥ä¾¿äºå¯¹é½
+        quad.transform.localPosition = Vector3.zero;  // é‡ç½®æœ¬åœ°ä½ç½®ä»¥å¯¹é½ä¸­å¿ƒ
+
+        // ç¡®ä¿å…‰æºå­˜åœ¨å¹¶å¯ç”¨é˜´å½±
         if (sceneLight != null)
         {
             sceneLight.shadows = LightShadows.Soft;
@@ -51,7 +61,7 @@ public class Shadow : MonoBehaviour
 
     void Update()
     {
-        // ¶È¦bSprite§ïÅÜ®É§ó·s§÷½èªº¥D¯¾²z©MQuadªº¤j¤p
+        // ä»…åœ¨ Sprite æ”¹å˜æ—¶æ›´æ–°æè´¨çš„ä¸»çº¹ç†å’Œ Quad çš„å¤§å°
         if (spriteRenderer.sprite != lastSprite)
         {
             lastSprite = spriteRenderer.sprite;
@@ -64,7 +74,9 @@ public class Shadow : MonoBehaviour
     {
         if (spriteRenderer != null)
         {
+            // è·å– Sprite çš„ bounds å¤§å°
             Bounds bounds = spriteRenderer.bounds;
+            // è®¾ç½® Quad çš„å¤§å°ï¼Œä½¿å…¶ä¸ Sprite çš„å¤§å°ä¸€è‡´
             quad.transform.localScale = new Vector3(bounds.size.x, bounds.size.y, 1);
         }
     }

@@ -2804,6 +2804,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2274165221566979942, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
   m_PrefabInstance: {fileID: 6307192819533923248}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &732250020 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8222829110606115957, guid: 02828429ddb93f94eb8d1575561ab69e, type: 3}
+  m_PrefabInstance: {fileID: 1595195153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &753399126
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,7 +3118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877772745}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000014901161, y: -0.000000007522083, z: 0.000000004175301, w: 1}
+  m_LocalRotation: {x: 0.000000014901161, y: 0.000000007522085, z: -0.000000004175302, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3137,7 +3142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &884804823
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4362,18 +4367,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1135363991}
         m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
         m_MethodName: MoveDiary
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1135363991}
-        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: Open
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5670,6 +5663,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4588038875668808818, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
   m_PrefabInstance: {fileID: 6307192819533923248}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1374869216 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 779120021661902059, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+  m_PrefabInstance: {fileID: 6307192819533923248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1374869217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374869208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de3d6220f4e21fe4c8a247e3a5b7cca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1374869216}
+  sceneLight: {fileID: 732250020}
 --- !u!1 &1375198600
 GameObject:
   m_ObjectHideFlags: 0
@@ -6468,6 +6480,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8222829110606115957, guid: 02828429ddb93f94eb8d1575561ab69e, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 0.65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6945,7 +6961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709573525}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2506626, y: 5.94464e-23, z: 3.3319016e-24, w: 0.9680745}
+  m_LocalRotation: {x: 0.2506626, y: 5.699401e-23, z: -1.0425861e-23, w: 0.9680745}
   m_LocalPosition: {x: -0.5, y: 16.5, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8700,7 +8716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2047872723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9205,6 +9221,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3428443558140354762, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1374869214}
+    - targetCorrespondingSourceObject: {fileID: 3428443558140354762, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1374869217}
   m_SourcePrefab: {fileID: 100100000, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
