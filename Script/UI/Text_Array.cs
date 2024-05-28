@@ -27,7 +27,7 @@ public class Text_Array : MonoBehaviour
     {
         foreach (Text_content content in Text_contents)
         {
-            Debug.Log($"Name_Text: {content.Name_Text}, Name_number: {content.Name_number}, Feeling: {content.Feeling}, Attribute_effect_name: {content.Attribute_effect_name}, Attribute_effect_value: {content.Attribute_effect_value}");
+            //Debug.Log($"Name_Text: {content.Name_Text}, Name_number: {content.Name_number}, Feeling: {content.Feeling}, Attribute_effect_name: {content.Attribute_effect_name}, Attribute_effect_value: {content.Attribute_effect_value}");
         }
     }
 }
