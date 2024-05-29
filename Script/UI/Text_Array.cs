@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class Text_Array : MonoBehaviour
 {
-    // ¥ş°ìÅÜ¼Æ©w¸q
-    static public List<Text_content> Text_contents;
+    // å…¨å±€å˜é‡å®šä¹‰
+    static public List<Text_content> Text_contents = new List<Text_content>();
 
     void Awake()
     {
-        Text_contents = new List<Text_content>();
+        // åˆå§‹åŒ–Text_contenté¡¹
+        Text_contents.Add(new Text_content(0, "æ¿€æ˜‚çš„", 0, 0, 5, false));
+        Text_contents.Add(new Text_content(1, "é ¹å–ªçš„", 1, 1, 2.2f, false));
+        Text_contents.Add(new Text_content(2, "æ†¤æ…¨çš„", 2, 2, 1.1f, false));
+        Text_contents.Add(new Text_content(3, "æ…Œå¿™çš„", 3, 3, 0.6f, true));
+        Text_contents.Add(new Text_content(4, "ç„¡èŠçš„", 1, 1, 1.05f, true));
+        Text_contents.Add(new Text_content(5, "ç–²æ†Šçš„", 1, 3, 0.8f, true));
 
-        // ²K¥[Text_content¶µ¥Ø
-        Text_contents.Add(new Text_content("¿E©ùªº", 0, 0, 0, 5));
-        Text_contents.Add(new Text_content("ÀZ³àªº", 1, 1, 1, 2.2f));
-        Text_contents.Add(new Text_content("¼«´nªº", 2, 2, 2, 1.1f));
-        Text_contents.Add(new Text_content("·W¦£ªº", 3, 3, 3, 0.6f));
-        Text_contents.Add(new Text_content("µL²áªº", 4, 1, 1, 1.05f));
-        Text_contents.Add(new Text_content("¯h¾Îªº", 5, 1, 3, 0.8f));
-
-        // ¥´¦LText_contentsªº¤º®e
+        // æ‰“å°Text_contentsçš„å†…å®¹
         PrintTextContents();
     }
 
@@ -27,7 +24,7 @@ public class Text_Array : MonoBehaviour
     {
         foreach (Text_content content in Text_contents)
         {
-            //Debug.Log($"Name_Text: {content.Name_Text}, Name_number: {content.Name_number}, Feeling: {content.Feeling}, Attribute_effect_name: {content.Attribute_effect_name}, Attribute_effect_value: {content.Attribute_effect_value}");
+            Debug.Log($"Name_number: {content.Name_number}, Name_Text: {content.Name_Text}, Feeling: {content.Feeling}, Attribute_effect_name: {content.Attribute_effect_name}, Attribute_effect_value: {content.Attribute_effect_value}, Text_exist: {content.Text_exist}");
         }
     }
 }
@@ -39,13 +36,15 @@ public class Text_content
     public int Feeling; // 0=happy,1=sad,2=angry,3=surprise
     public int Attribute_effect_name; // 0=HP, 1=att_pow, 2=att_speed, 3=walk_speed, 4=defense
     public float Attribute_effect_value;
+    public bool Text_exist;
 
-    public Text_content(string Name_Text, int Name_number, int Feeling, int Attribute_effect_name, float Attribute_effect_value)
+    public Text_content(int Name_number, string Name_Text, int Feeling, int Attribute_effect_name, float Attribute_effect_value, bool Text_exist)
     {
-        this.Name_Text = Name_Text;
         this.Name_number = Name_number;
+        this.Name_Text = Name_Text;
         this.Feeling = Feeling;
         this.Attribute_effect_name = Attribute_effect_name;
         this.Attribute_effect_value = Attribute_effect_value;
+        this.Text_exist = Text_exist;
     }
 }
