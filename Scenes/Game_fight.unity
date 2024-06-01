@@ -2388,7 +2388,7 @@ GameObject:
   - component: {fileID: 458425157}
   - component: {fileID: 458425156}
   - component: {fileID: 458425155}
-  - component: {fileID: 458425154}
+  - component: {fileID: 458425158}
   m_Layer: 0
   m_Name: door
   m_TagString: door
@@ -2396,20 +2396,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &458425154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458425149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e3c68a0f8b0524d9b126428855e4bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabNPC01: {fileID: 5642523929771483394, guid: 6e871a4ae30ddba4a9ef73497a257407, type: 3}
-  prefabNPC02: {fileID: 3321726118843967734, guid: 03f42a7a501200246badafa7bf4d0b41, type: 3}
 --- !u!65 &458425155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2481,6 +2467,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458425149}
   m_Mesh: {fileID: -1560822384944277031, guid: bc30c19ca9cb54c4281c18527419fe11, type: 3}
+--- !u!114 &458425158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458425149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201ec1a0e0ab2e143b4cce91b57de677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &481081030
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,6 +3330,7 @@ GameObject:
   - component: {fileID: 708759937}
   - component: {fileID: 708759936}
   - component: {fileID: 708759939}
+  - component: {fileID: 708759940}
   m_Layer: 0
   m_Name: GF_script
   m_TagString: Untagged
@@ -3366,6 +3365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: Game_fight
+  targetSceneName_Boss: Game_fight_Boss
   loadingScreen: {fileID: 1626434307180792666}
   loadingBar: {fileID: 6432092591878321827}
   loadingSpeed: 0.3
@@ -3396,6 +3396,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36237d7df9553e41b26dfad6185b16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &708759940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708759935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e3c68a0f8b0524d9b126428855e4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabNPC01: {fileID: 5642523929771483394, guid: 6e871a4ae30ddba4a9ef73497a257407, type: 3}
+  prefabNPC02: {fileID: 3321726118843967734, guid: 03f42a7a501200246badafa7bf4d0b41, type: 3}
 --- !u!1 &720376805
 GameObject:
   m_ObjectHideFlags: 0
@@ -10542,6 +10556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: Game_fight
+  targetSceneName_Boss: Game_fight_Boss
   loadingScreen: {fileID: 0}
   loadingBar: {fileID: 0}
   loadingSpeed: 0.5

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Loading_fight : MonoBehaviour
 {
     public string targetSceneName = "Game_fight";
+    public string targetSceneName_Boss = "Game_fight_Boss";
     public GameObject loadingScreen;
     public Image loadingBar;
 
@@ -22,7 +23,14 @@ public class Loading_fight : MonoBehaviour
         {
             Time.timeScale = 0;
             StaticParameters_fight.isSceneLoading_fight = true;
-            StartCoroutine(LoadSceneAsync(targetSceneName));
+            if (static_parameters.stage_number % 3 == 0)
+            {
+                StartCoroutine(LoadSceneAsync(targetSceneName_Boss));
+            }
+            else
+            {
+                StartCoroutine(LoadSceneAsync(targetSceneName));
+            }
         }
     }
 
