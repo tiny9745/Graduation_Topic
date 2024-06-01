@@ -10,7 +10,7 @@ public class Puzzle : MonoBehaviour
     public Image Page_now;
     public Sprite Page_change; public Sprite Page_check;
     //public GameObject Yes;
-    public static bool OC = true; 
+    public static bool OC = true;
     void Start()
     {
         
@@ -29,10 +29,7 @@ public class Puzzle : MonoBehaviour
         Page_now.sprite = Page_check;
     }
     public void MoveDiarytoleft(){
-        if (OC)
-        {      
-           // Yes.SetActive(true);
-     
+        if (OC){      
             Vector3 targetPosition1 = new Vector3(-300, Book.transform.localPosition.y, Book.transform.localPosition.z);
             Book.transform.localPosition = targetPosition1;
 
@@ -44,10 +41,7 @@ public class Puzzle : MonoBehaviour
         }
     }
     public void MoveDiarytoright(){
-        if (!OC)
-        {           
-            //Yes.SetActive(false);
-
+        if(!OC){           
             Vector3 targetPosition1 = new Vector3(0, Book.transform.localPosition.y, Book.transform.localPosition.z);
             Book.transform.localPosition = targetPosition1;
 
@@ -57,5 +51,14 @@ public class Puzzle : MonoBehaviour
             Extra2.transform.localPosition = targetPosition3;
             OC = true;
         }
+    }
+
+    public void comfirm(){
+        Extra2.SetActive(false);
+        CheckPage();
+    }
+    public void cancel(){
+        Extra2.SetActive(false);
+        ChangePage();
     }
 }
