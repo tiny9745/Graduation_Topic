@@ -9,6 +9,7 @@ public class NPC02_control : MonoBehaviour
 {
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
+    private Collider hitboxCollider;
     public GameObject TargetObj;
     public static int DetectDistance = 25; public static int NPC_ATK = 20;
     public static float NPC_HP = 80; public static float npcSpeed = 5f;
@@ -22,65 +23,78 @@ public class NPC02_control : MonoBehaviour
     {
         initialRotation = transform.rotation;
         NPC02 = GameObject.Find("NPC02");
-        if (NPC02 != null)
-        {
+        if (NPC02 != null){
             Renderer renderer = NPC02.GetComponent<Renderer>();
-            if (renderer != null)
-            {
+            if (renderer != null){
                 renderer.enabled = false;
             };
+        }
+
+        Transform hitboxTransform = transform.Find("Hitbox");
+        if (hitboxTransform != null){
+            hitboxCollider = hitboxTransform.GetComponent<Collider>();
+            DisableHitbox();      
+            if (hitboxCollider == null){
+                Debug.LogError("No Collider component found on the Hitbox.");
+            }
+        }else{
+            Debug.LogError("No child object named 'Hitbox' found.");
         }
         //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         transform.rotation = initialRotation;
-        if (TargetObj == null)
-        {
+        if (TargetObj == null){
             TargetObj = GameObject.Find("Player");
             npcNavi = GetComponent<NavMeshAgent>();
             // Set the speed after each acquisition of the NavMeshAgent component
-            if (npcNavi != null)
-            {
+            if (npcNavi != null){
                 npcNavi.speed = npcSpeed;
             }
-        }
-        else
-        {
+        }else{
             float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
-            if (dist < DetectDistance && NPC_HP > 0)
-            {
+            if (dist < DetectDistance && NPC_HP > 0){
                 npcNavi.destination = TargetObj.transform.position;
-            }
-            else // Track your location 
-            {
+            }else{
+                // Track your location
                 npcNavi.destination = transform.position;
             }
             //transform.LookAt(mainCamera.transform);
         }
     }
-
-    private void OnCollisionEnter(Collision Hit)
-    {
+    
+    private void OnCollisionEnter(Collision Hit){
         //NPC attack determination
-        if (Hit.gameObject.CompareTag("Player"))
-        {
+        if (Hit.gameObject.CompareTag("Player")){
             static_parameters.MC_HP -= NPC_ATK;
             print("Player_HP=" + static_parameters.MC_HP);
         }
         //NPC is determined to be attacked
-        if (NPC_HP <= 0)
-        {
+        if (NPC_HP <= 0){
             Destroy(gameObject);
             static_parameters.Change_enemy--;
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
+    private void OnTriggerEnter(Collider other){
+        if (other.gameObject.tag == "Player"){
+            EnableHitbox();
             Debug.Log("Player in hit!");
+        }
+    }
+    // Method to enable the hitbox
+    public void EnableHitbox(){
+        if (hitboxCollider != null){
+            hitboxCollider.enabled = true;
+            Debug.Log("Hitbox enabled.");
+        }
+    }
+
+    // Method to disable the hitbox
+    public void DisableHitbox(){
+        if (hitboxCollider != null){
+            hitboxCollider.enabled = false;
+            Debug.Log("Hitbox disabled.");
         }
     }
 }

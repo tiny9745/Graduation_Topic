@@ -32,4 +32,13 @@ public class NPC_Hit_box : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {          
+            Debug.Log("Player in hit!");
+        }
+        
+    }
+    
 }
