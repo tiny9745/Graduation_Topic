@@ -12,6 +12,7 @@ public class NPC02_control : MonoBehaviour
     public GameObject TargetObj;
     public static int DetectDistance = 25; public static int NPC_ATK = 20;
     public static float NPC_HP = 80; public static float npcSpeed = 5f;
+    bool hit = false;
 
     private Quaternion initialRotation;
     //private Camera mainCamera;
@@ -68,15 +69,18 @@ public class NPC02_control : MonoBehaviour
             static_parameters.MC_HP -= NPC_ATK;
             print("Player_HP=" + static_parameters.MC_HP);
         }
-        else
-        {
-            Debug.LogWarning("�䤣������ե�");
-        }
         //NPC is determined to be attacked
         if (NPC_HP <= 0)
         {
             Destroy(gameObject);
             static_parameters.Change_enemy--;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player in hit!");
         }
     }
 }
