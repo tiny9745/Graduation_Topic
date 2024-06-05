@@ -16,7 +16,6 @@ public class NPC_Hit_box : MonoBehaviour
             npcCtrl = GetComponentInParent<NPC02_control>();
         }
     }
-
     // Update is called once per frame
     void Update()
     {

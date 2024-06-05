@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MC_col : MonoBehaviour
 {
-    public GameObject MC;
+    public GameObject MC; private Collider McCollider;
     public Animator animator;
     public Transform spriteTransform;
     private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
@@ -19,10 +19,10 @@ public class MC_col : MonoBehaviour
     {
         MC = GameObject.Find("Player");
         Renderer renderer = MC.GetComponent<Renderer>();
-        if (renderer != null)
-        {
+        if (renderer != null){
             renderer.enabled = false;
         }
+        McCollider = MC.GetComponent<Collider>();
     }
 
     void Update()
@@ -51,18 +51,30 @@ public class MC_col : MonoBehaviour
             }
         }
         //MC HP change
-        if (static_parameters.MC_HP_tmp != static_parameters.MC_HP){
-            MC_HP();
-        }
+        if (static_parameters.MC_HP_tmp != static_parameters.MC_HP)MC_HP();
         MC_HP_effects();
         skill();
         SetLookDirection(face);
     }
     void LateUpdate(){
-        // Reset the sprite's local rotation to keep it fixed
-        
+        // this is the last function to be called in the frame        
     }
-
+    void skill(){
+        if (Input.GetKeyDown(KeyCode.J)){
+            animator.SetBool("Attack", true);
+            Invoke("Enabledhitbox", 0.3f);
+            Invoke("Disabledhitbox", 0.8f);
+        }
+        if (Input.GetKeyUp(KeyCode.J)){
+            animator.SetBool("Attack", false);
+        }
+    }
+    void Enabledhitbox(){
+        McCollider.enabled = true;
+    }
+    void Disabledhitbox(){
+        McCollider.enabled = false;
+    }
     // Subscribe to events
     private void OnEnable(){
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -126,18 +138,14 @@ public class MC_col : MonoBehaviour
     }
     
     void MC_HP_effects(){
-        if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
-        {
+        if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x){
             float baseSpeed = 6f;
             // The difference between the current health bar and the damage bar
             float difference = HPimg_Red.sizeDelta.x - HPimg_Green.sizeDelta.x;
-
             // Adjust speed according to difference
             float speed = baseSpeed + (difference * 0.1f);
             HPimg_Red.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * speed;
-
-            if (HPimg_Red.sizeDelta.x < HPimg_Green.sizeDelta.x)
-            {
+            if (HPimg_Red.sizeDelta.x < HPimg_Green.sizeDelta.x){
                 HPimg_Red.sizeDelta = new Vector2(HPimg_Green.sizeDelta.x, HPimg_Red.sizeDelta.y);
             }
         }
@@ -172,14 +180,7 @@ public class MC_col : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         
     }
-    void skill(){
-        if (Input.GetKeyDown(KeyCode.J)){
-            animator.SetBool("Attack", true);
-        }
-        if (Input.GetKeyUp(KeyCode.J)){
-            animator.SetBool("Attack", false);
-        }
-    }
+    
 }
 
 
