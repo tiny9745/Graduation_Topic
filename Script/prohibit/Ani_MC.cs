@@ -24,7 +24,6 @@ public class Ani_MC : MonoBehaviour
         }
         else
         {
-            print("elsw");
             if (MC_Ctrl.verticalInput > 0 && MC_Ctrl.horizontalInput > 0)
             {
                 Angle_sum = 45;
@@ -64,7 +63,6 @@ public class Ani_MC : MonoBehaviour
             }
             else if(MC_Ctrl.horizontalInput == 0 && MC_Ctrl.horizontalInput == 0)
             {
-                print("?");
                 if (Angle_sum == 45)
                 {
 

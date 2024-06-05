@@ -11,12 +11,11 @@ public class NPC02_control : MonoBehaviour
     NavMeshAgent npcNavi;
     private Collider hitboxCollider;
     public GameObject TargetObj;
-    public static int DetectDistance = 25; public static int NPC_ATK = 20;
+    public static int DetectDistance = 25; public static int NPC02_ATK = 20;
     public static float NPC_HP = 80; public static float npcSpeed = 5f;
     bool hit = false;
 
     private Quaternion initialRotation;
-    //private Camera mainCamera;
     public GameObject NPC02;
 
     void Start()
@@ -40,7 +39,6 @@ public class NPC02_control : MonoBehaviour
         }else{
             Debug.LogError("No child object named 'Hitbox' found.");
         }
-        //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
     // Update is called once per frame
     void Update(){
@@ -57,20 +55,14 @@ public class NPC02_control : MonoBehaviour
             if (dist < DetectDistance && NPC_HP > 0){
                 npcNavi.destination = TargetObj.transform.position;
             }else{
-                // Track your location
                 npcNavi.destination = transform.position;
             }
-            //transform.LookAt(mainCamera.transform);
         }
     }
-    
+    public int getNPC02_ATK(){
+        return NPC02_ATK;
+    }
     private void OnCollisionEnter(Collision Hit){
-        //NPC attack determination
-        if (Hit.gameObject.CompareTag("Player")){
-            static_parameters.MC_HP -= NPC_ATK;
-            print("Player_HP=" + static_parameters.MC_HP);
-        }
-        //NPC is determined to be attacked
         if (NPC_HP <= 0){
             Destroy(gameObject);
             static_parameters.Change_enemy--;
@@ -78,23 +70,25 @@ public class NPC02_control : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other){
         if (other.gameObject.tag == "Player"){
-            EnableHitbox();
-            Debug.Log("Player in hit!");
+            NPC02attack();
         }
     }
+
+    private void NPC02attack(){
+        EnableHitbox();
+        Invoke("DisableHitbox", 1f);
+    }
+
     // Method to enable the hitbox
     public void EnableHitbox(){
         if (hitboxCollider != null){
             hitboxCollider.enabled = true;
-            Debug.Log("Hitbox enabled.");
         }
     }
-
     // Method to disable the hitbox
     public void DisableHitbox(){
         if (hitboxCollider != null){
             hitboxCollider.enabled = false;
-            Debug.Log("Hitbox disabled.");
         }
     }
 }

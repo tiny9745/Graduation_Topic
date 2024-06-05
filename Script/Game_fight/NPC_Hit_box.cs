@@ -4,41 +4,40 @@ using UnityEngine;
 
 public class NPC_Hit_box : MonoBehaviour
 {
+    public NPC02_control npcCtrl;
     public GameObject Player;
     int NPC_ATK = 0;
-    void Start()
-    {
+    void Start(){
         Player = GameObject.Find("Player");
-        if (Player == null)
-        {
+        if (Player == null){
             Debug.LogError("Player object not found!");
+        }
+        if (npcCtrl == null){
+            npcCtrl = GetComponentInParent<NPC02_control>();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Player != null)
-        {
+        if (npcCtrl != null) NPC_ATK = npcCtrl.getNPC02_ATK();   
+        if (Player != null){
             // Get target direction
             Vector3 direction = Player.transform.position - transform.position;
             direction.y = 0;
-
-            if (direction != Vector3.zero)
-            {
+            if (direction != Vector3.zero){
                 // target rotation
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = targetRotation;
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {          
-            Debug.Log("Player in hit!");
-        }
-        
+    private void OnTriggerEnter(Collider Hit){
+                //NPC attack determination
+        if (Hit.gameObject.CompareTag("Player")){
+            static_parameters.MC_HP -= NPC_ATK;
+            print("Player_HP=" + static_parameters.MC_HP);
+        }      
     }
     
 }
