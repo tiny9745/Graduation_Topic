@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MC_col : MonoBehaviour
 {
     public GameObject MC;
+    public Animator animator;
     public Transform spriteTransform;
     private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
     public string targetSceneName = "Game_fight";
@@ -173,10 +174,10 @@ public class MC_col : MonoBehaviour
     }
     void skill(){
         if (Input.GetKeyDown(KeyCode.J)){
-            
+            animator.SetBool("Attack", true);
         }
         if (Input.GetKeyUp(KeyCode.J)){
-            
+            animator.SetBool("Attack", false);
         }
     }
 }
