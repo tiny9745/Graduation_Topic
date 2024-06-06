@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8171358156442963724}
   m_Layer: 0
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: NPC_Att
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9579cdfe16cba0147843a918b5199fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcCtrl: {fileID: 0}
   Player: {fileID: 0}
 --- !u!1 &3321726118843967734
 GameObject:

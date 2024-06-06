@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ public class MC_col : MonoBehaviour
     public Animator animator;
     public Transform spriteTransform;
     private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
+    public Material Deduct_Blood;
+    private Material originalMaterial;
     public string targetSceneName = "Game_fight";
     public string PrepareSceneName = "magic_house";
     public float horizontalInput, verticalInput;
@@ -18,10 +21,10 @@ public class MC_col : MonoBehaviour
     void Start()
     {
         MC = GameObject.Find("Player");
-        Renderer renderer = MC.GetComponent<Renderer>();
-        if (renderer != null)
+        Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
+        if (renderer1 != null)
         {
-            renderer.enabled = false;
+            originalMaterial = renderer1.material;
         }
     }
 
@@ -169,9 +172,6 @@ public class MC_col : MonoBehaviour
         transform.rotation = newRotation;
     }
     
-    private void OnTriggerEnter(Collider other){
-        
-    }
     void skill(){
         if (Input.GetKeyDown(KeyCode.J)){
 
@@ -179,6 +179,22 @@ public class MC_col : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.J)){
 
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        // 检查碰撞物体是否具有Renderer组件
+        Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
+        if (other.CompareTag("NPC_Att"))
+        {
+            renderer1.material = Deduct_Blood;
+            StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
+        }
+    }
+
+    private IEnumerator ResetMaterialAfterDelay(Renderer renderer1, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        renderer1.material = originalMaterial;
     }
 }
 

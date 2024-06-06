@@ -7157,9 +7157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc16b8a71413194abf5e2b6e76f23f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1374869211}
-  playerPrefab: {fileID: 712140338}
-  MC_Ctrl: {fileID: 0}
 --- !u!4 &1374869215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4588038875668808818, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
@@ -7177,7 +7174,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374869208}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de3d6220f4e21fe4c8a247e3a5b7cca6, type: 3}
   m_Name: 
@@ -10285,9 +10282,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 624174167629694148, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 624174167629694148, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 624174167629694148, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc21eb091654df0448671c299dccd1cc, type: 2}
+    - target: {fileID: 624174167629694148, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: abf0a32352e4f624dad8f478cab43ab2, type: 2}
     - target: {fileID: 2274165221566979942, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428443558140354762, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+      propertyPath: m_TagString
+      value: NPC_Att
       objectReference: {fileID: 0}
     - target: {fileID: 4588038875668808818, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -10298,9 +10315,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 712140338}
     - target: {fileID: 5169620181529821383, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+      propertyPath: normal
+      value: 
+      objectReference: {fileID: 2100000, guid: abf0a32352e4f624dad8f478cab43ab2, type: 2}
+    - target: {fileID: 5169620181529821383, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 1374869211}
+    - target: {fileID: 5169620181529821383, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
+      propertyPath: Deduct_Blood
+      value: 
+      objectReference: {fileID: 2100000, guid: fc21eb091654df0448671c299dccd1cc, type: 2}
     - target: {fileID: 5169620181529821383, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
       propertyPath: spriteTransform
       value: 
