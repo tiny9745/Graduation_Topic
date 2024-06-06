@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC_Hit_box : MonoBehaviour
+public class NPC02_Hit_box : MonoBehaviour
 {
     public NPC02_control npcCtrl;
     public GameObject Player;
     int NPC_ATK = 0;
+    public float coordinate_X = 0;
+    public float coordinate_Z = 0;
     void Start(){
         Player = GameObject.Find("Player");
         if (Player == null){
@@ -29,10 +31,12 @@ public class NPC_Hit_box : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 transform.rotation = targetRotation;
             }
+            coordinate_X = direction.x;
+            coordinate_Z = direction.z;
         }
     }
     private void OnTriggerEnter(Collider Hit){
-                //NPC attack determination
+        //NPC attack determination
         if (Hit.gameObject.CompareTag("Player")){
             static_parameters.MC_HP -= NPC_ATK;
             print("Player_HP=" + static_parameters.MC_HP);
