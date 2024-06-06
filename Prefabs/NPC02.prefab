@@ -68,8 +68,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcCtrl: {fileID: 0}
   Player: {fileID: 0}
-  coordinate_X: 0
-  coordinate_Z: 0
 --- !u!1 &3296704742090377216
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,12 +161,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3296704742090377216}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de3d6220f4e21fe4c8a247e3a5b7cca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 228647283469798888}
+  spriteRenderer: {fileID: 4579599327382956586}
   sceneLight: {fileID: 0}
 --- !u!95 &124343239934936072
 Animator:
@@ -316,8 +314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 124343239934936072}
   TargetObj: {fileID: 0}
-  hitboxPrefab: {fileID: 8194500919678564730}
   NPC02: {fileID: 0}
+  hitbox_Robot: {fileID: 1334729586656068037}
 --- !u!195 &5936887255690602063
 NavMeshAgent:
   m_ObjectHideFlags: 0

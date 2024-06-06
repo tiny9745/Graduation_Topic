@@ -10,11 +10,10 @@ public class NPC02_control : MonoBehaviour
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
     public Animator animator;
-    private Collider hitboxCollider;
     public GameObject TargetObj;
-    public Transform hitboxPrefab;
     public static int DetectDistance = 25; public static int NPC02_ATK = 20;
     public static float NPC_HP = 80; public static float npcSpeed = 5f;
+    bool hit_Ani = false;
     bool hit = false;
     float coordinate_X;
     float coordinate_Z;
@@ -22,6 +21,7 @@ public class NPC02_control : MonoBehaviour
 
     private Quaternion initialRotation;
     public GameObject NPC02;
+    public GameObject hitbox_Robot;
 
     void Start()
     {
@@ -33,65 +33,71 @@ public class NPC02_control : MonoBehaviour
                 renderer.enabled = false;
             };
         }
-
-        Transform hitboxTransform = transform.Find("Hitbox");
-        if (hitboxTransform != null){
-            hitboxCollider = hitboxTransform.GetComponent<Collider>();
-            DisableHitbox();      
-            if (hitboxCollider == null){
-                Debug.LogError("No Collider component found on the Hitbox.");
-            }
-        }else{
-            Debug.LogError("No child object named 'Hitbox' found.");
-        }
+        hitbox_Robot.SetActive(false);
     }
     // Update is called once per frame
     void Update(){
-        Transform NPC02_hit = Instantiate(hitboxPrefab, transform.position, Quaternion.identity);
-        NPC02_Hit_box NPC02_hit_col = NPC02_hit.GetComponent<NPC02_Hit_box>();
-        coordinate_X = NPC02_hit_col.coordinate_X;
-        coordinate_Z = NPC02_hit_col.coordinate_Z;
-        if (hit == false)
+        if (hit_Ani == false)
         {
             if (transform.position != lastPosition)
             {
-                if (coordinate_X >= 0 && coordinate_Z >= 0)
+                if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
                     animator.Play("Robot_stand_RB");
                 }
-                if (coordinate_X <= 0 && coordinate_Z >= 0)
+                if (coordinate_X < 0 && coordinate_Z >= 0)
                 {
                     animator.Play("Robot_stand_LB");
                 }
-                if (coordinate_X <= 0 && coordinate_Z <= 0)
+                if (coordinate_X <= 0 && coordinate_Z < 0)
                 {
                     animator.Play("Robot_stand_LF");
                 }
-                if (coordinate_X >= 0 && coordinate_Z <= 0)
+                if (coordinate_X > 0 && coordinate_Z <= 0)
                 {
                     animator.Play("Robot_stand_RF");
                 }
             }
             else
             {
-                if (coordinate_X >= 0 && coordinate_Z >= 0)
+                if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
                     animator.Play("Robot_walk_RB");
                 }
-                if (coordinate_X <= 0 && coordinate_Z >= 0)
+                if (coordinate_X < 0 && coordinate_Z >= 0)
                 {
                     animator.Play("Robot_walk_LB");
                 }
-                if (coordinate_X <= 0 && coordinate_Z <= 0)
+                if (coordinate_X <= 0 && coordinate_Z < 0)
                 {
                     animator.Play("Robot_walk_LF");
                 }
-                if (coordinate_X >= 0 && coordinate_Z <= 0)
+                if (coordinate_X > 0 && coordinate_Z <= 0)
                 {
                     animator.Play("Robot_walk_RF");
                 }
             }
-        }       
+        }
+        else
+        {
+            if (coordinate_X >= 0 && coordinate_Z > 0)
+            {
+                animator.Play("Robot_Att_RB");
+            }
+            if (coordinate_X < 0 && coordinate_Z >= 0)
+            {
+                animator.Play("Robot_Att_LB");
+            }
+            if (coordinate_X <= 0 && coordinate_Z < 0)
+            {
+                animator.Play("Robot_Att_LF");
+            }
+            if (coordinate_X > 0 && coordinate_Z <= 0)
+            {
+                animator.Play("Robot_Att_RF");
+            }
+
+        }
         lastPosition = transform.position;
 
         transform.rotation = initialRotation;
@@ -110,9 +116,15 @@ public class NPC02_control : MonoBehaviour
                 npcNavi.destination = transform.position;
             }
         }
+        coordinate_X = TargetObj.transform.position.x - transform.position.x;
+        coordinate_Z = TargetObj.transform.position.z - transform.position.z;
     }
-    public int getNPC02_ATK(){
+    public int GetNPC02_ATK(){
         return NPC02_ATK;
+    }
+    public bool GetNPC02_hit()
+    {
+        return hit;
     }
     private void OnCollisionEnter(Collision Hit){
         if (NPC_HP <= 0){
@@ -121,26 +133,22 @@ public class NPC02_control : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other){
+        //EnableHitbox();
+        
         if (other.gameObject.tag == "Player"){
-            NPC02attack();
+            hit_Ani = true;
+            Invoke("EnableHitbox", 1.15f); 
         }
-    }
-
-    private void NPC02attack(){
-        EnableHitbox();
-        Invoke("DisableHitbox", 1f);
     }
 
     // Method to enable the hitbox
-    public void EnableHitbox(){
-        if (hitboxCollider != null){
-            hitboxCollider.enabled = true;
-        }
+    void EnableHitbox(){
+        hitbox_Robot.SetActive(true);
+        hit = false;
+        Invoke("EndAttANimation", 0.85f);
     }
-    // Method to disable the hitbox
-    public void DisableHitbox(){
-        if (hitboxCollider != null){
-            hitboxCollider.enabled = false;
-        }
+    void EndAttANimation()
+    {
+        hit_Ani = false;
     }
 }
