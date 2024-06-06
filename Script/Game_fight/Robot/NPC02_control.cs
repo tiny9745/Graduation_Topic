@@ -9,11 +9,16 @@ public class NPC02_control : MonoBehaviour
 {
     // Start is called before the first frame update
     NavMeshAgent npcNavi;
+    public Animator animator;
     private Collider hitboxCollider;
     public GameObject TargetObj;
+    public Transform hitboxPrefab;
     public static int DetectDistance = 25; public static int NPC02_ATK = 20;
     public static float NPC_HP = 80; public static float npcSpeed = 5f;
     bool hit = false;
+    float coordinate_X;
+    float coordinate_Z;
+    private Vector3 lastPosition;
 
     private Quaternion initialRotation;
     public GameObject NPC02;
@@ -42,6 +47,53 @@ public class NPC02_control : MonoBehaviour
     }
     // Update is called once per frame
     void Update(){
+        Transform NPC02_hit = Instantiate(hitboxPrefab, transform.position, Quaternion.identity);
+        NPC02_Hit_box NPC02_hit_col = NPC02_hit.GetComponent<NPC02_Hit_box>();
+        coordinate_X = NPC02_hit_col.coordinate_X;
+        coordinate_Z = NPC02_hit_col.coordinate_Z;
+        if (hit == false)
+        {
+            if (transform.position != lastPosition)
+            {
+                if (coordinate_X >= 0 && coordinate_Z >= 0)
+                {
+                    animator.Play("Robot_stand_RB");
+                }
+                if (coordinate_X <= 0 && coordinate_Z >= 0)
+                {
+                    animator.Play("Robot_stand_LB");
+                }
+                if (coordinate_X <= 0 && coordinate_Z <= 0)
+                {
+                    animator.Play("Robot_stand_LF");
+                }
+                if (coordinate_X >= 0 && coordinate_Z <= 0)
+                {
+                    animator.Play("Robot_stand_RF");
+                }
+            }
+            else
+            {
+                if (coordinate_X >= 0 && coordinate_Z >= 0)
+                {
+                    animator.Play("Robot_walk_RB");
+                }
+                if (coordinate_X <= 0 && coordinate_Z >= 0)
+                {
+                    animator.Play("Robot_walk_LB");
+                }
+                if (coordinate_X <= 0 && coordinate_Z <= 0)
+                {
+                    animator.Play("Robot_walk_LF");
+                }
+                if (coordinate_X >= 0 && coordinate_Z <= 0)
+                {
+                    animator.Play("Robot_walk_RF");
+                }
+            }
+        }       
+        lastPosition = transform.position;
+
         transform.rotation = initialRotation;
         if (TargetObj == null){
             TargetObj = GameObject.Find("Player");
