@@ -40,22 +40,18 @@ public class Ani_MC : MonoBehaviour
                 if (Angle_sum == 45)
                 {
                     animator.Play("MC_Att_BR01");
-                    //animator.Play("MC_Att_BR02");
                 }
                 else if (Angle_sum == 315)
                 {
                     animator.Play("MC_Att_FR01");
-                    //animator.Play("MC_Att_FR02");
                 }
                 else if (Angle_sum == 225)
                 {
                     animator.Play("MC_Att_FL01");
-                    //animator.Play("MC_Att_FR02");
                 }
                 else if (Angle_sum == 135)
                 {
                     animator.Play("MC_Att_BL01");
-                    //animator.Play("MC_Att_BL02");
                 }
                 else if (Angle_sum == 270)
                 {
@@ -64,17 +60,14 @@ public class Ani_MC : MonoBehaviour
                 else if (Angle_sum == 90)
                 {
                     animator.Play("MC_Att_BR01");
-                    //animator.Play("MC_Att_BR02");
                 }
                 else if (Angle_sum == 180)
                 {
                     animator.Play("MC_Att_FL01");
-                    //animator.Play("MC_Att_FL02");
                 }
                 else if (Angle_sum == 0)
                 {
                     animator.Play("MC_Att_FR01");
-                    //animator.Play("MC_Att_FR02");
                 }
             }
             if (elapsedTime > 1f && elapsedTime <= 2f)

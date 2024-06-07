@@ -11,8 +11,8 @@ public class NPC02_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public static int DetectDistance = 25; public static int NPC02_ATK = 20;
-    public static float NPC_HP = 80; public static float npcSpeed = 5f;
+    int DetectDistance = 20; int NPC02_ATK = 20;
+    float NPC_HP = 80; float npcSpeed = 5f;
     bool hit_Ani = false;
     bool hit = false;
     float coordinate_X;
@@ -96,7 +96,6 @@ public class NPC02_control : MonoBehaviour
             {
                 animator.Play("Robot_Att_RF");
             }
-
         }
         lastPosition = transform.position;
 
