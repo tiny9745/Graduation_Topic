@@ -8,23 +8,27 @@ using UnityEngine.UI;
 
 public class MC_col : MonoBehaviour
 {
+    public NPC01_Ctrl npctral01; public NPC02_control npctral02;
     public GameObject MC;
     public Animator animator;
     public Transform spriteTransform;
     private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
-    public Material Deduct_Blood;
-    private Material originalMaterial;
-    public string targetSceneName = "Game_fight";
-    public string PrepareSceneName = "magic_house";
+    public Material Deduct_Blood;private Material originalMaterial;
+    public string targetSceneName = "Game_fight";public string PrepareSceneName = "magic_house";
     public float horizontalInput, verticalInput;
     short face=4;
     void Start()
     {
         MC = GameObject.Find("Player");
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
-        if (renderer1 != null)
-        {
+        if (renderer1 != null){
             originalMaterial = renderer1.material;
+        }
+        if (npctral01 == null){
+            npctral01 = GetComponentInParent<NPC01_Ctrl>();
+        }
+        if (npctral02 == null){
+            npctral02 = GetComponentInParent<NPC02_control>();
         }
     }
 
@@ -62,15 +66,13 @@ public class MC_col : MonoBehaviour
         SetLookDirection(face);
     }
     void LateUpdate(){
-        // Reset the sprite's local rotation to keep it fixed
-        
+        // Reset the sprite's local rotation to keep it fixed  
     }
 
     // Subscribe to events
     private void OnEnable(){
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
     // Unsubscribe event
     private void OnDisable(){
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -129,18 +131,15 @@ public class MC_col : MonoBehaviour
     }
     
     void MC_HP_effects(){
-        if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
-        {
+        if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x){
             float baseSpeed = 6f;
             // The difference between the current health bar and the damage bar
             float difference = HPimg_Red.sizeDelta.x - HPimg_Green.sizeDelta.x;
-
             // Adjust speed according to difference
             float speed = baseSpeed + (difference * 0.1f);
             HPimg_Red.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * speed;
 
-            if (HPimg_Red.sizeDelta.x < HPimg_Green.sizeDelta.x)
-            {
+            if (HPimg_Red.sizeDelta.x < HPimg_Green.sizeDelta.x){
                 HPimg_Red.sizeDelta = new Vector2(HPimg_Green.sizeDelta.x, HPimg_Red.sizeDelta.y);
             }
         }
@@ -180,15 +179,20 @@ public class MC_col : MonoBehaviour
 
         }
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         // 检查碰撞物体是否具有Renderer组件
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
-        if (other.CompareTag("NPC_Att"))
-        {
+        if (other.CompareTag("NPC_Att")){
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
         }
+
+        if (other.CompareTag("NPC")){
+            npctral01.NPC_HP -= static_parameters.MC_ATK;
+            npctral02.NPC_HP-= static_parameters.MC_ATK;
+        } 
     }
 
     private IEnumerator ResetMaterialAfterDelay(Renderer renderer1, float delay)

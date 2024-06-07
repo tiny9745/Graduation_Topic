@@ -18,7 +18,6 @@ public class NPC02_control : MonoBehaviour
     float coordinate_X;
     float coordinate_Z;
     private Vector3 lastPosition;
-
     private Quaternion initialRotation;
     public GameObject NPC02;
     public GameObject hitbox_Robot;
