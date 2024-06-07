@@ -190,8 +190,14 @@ public class MC_col : MonoBehaviour
         }
 
         if (other.CompareTag("NPC")){
+            if (npctral01 != null){
             npctral01.NPC_HP -= static_parameters.MC_ATK;
+            print(npctral01.NPC_HP);
+            }
+            if (npctral02 != null){
             npctral02.NPC_HP-= static_parameters.MC_ATK;
+            print(npctral02.NPC_HP);
+            }
         } 
     }
 
