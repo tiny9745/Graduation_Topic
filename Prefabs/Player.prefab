@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 624174167629694148}
   - component: {fileID: 8657509937729418956}
   - component: {fileID: 8733406729300463072}
-  - component: {fileID: 5169620181529821383}
   - component: {fileID: 3192938207778560710}
   - component: {fileID: 7676975597639515731}
   m_Layer: 0
@@ -138,26 +137,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5169620181529821383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2274165221566979942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a01b1c00d4e611645b12ffdeda86ab28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MC: {fileID: 2274165221566979942}
-  animator: {fileID: 4044528890447612566}
-  spriteTransform: {fileID: 4588038875668808818}
-  Deduct_Blood: {fileID: 2100000, guid: fc21eb091654df0448671c299dccd1cc, type: 2}
-  targetSceneName: Game_fight
-  PrepareSceneName: magic_house
-  horizontalInput: 0
-  verticalInput: 0
 --- !u!114 &3192938207778560710
 MonoBehaviour:
   m_ObjectHideFlags: 0

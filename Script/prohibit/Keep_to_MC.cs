@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Keep : MonoBehaviour
+public class Keep_to_MC : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameObject Player;
     void Start()
     {
-        Player  = GameObject.Find("Player");
-        DontDestroyOnLoad(Player);
+        //Player  = GameObject.Find("Player_S");
+        DontDestroyOnLoad(this);
     }
     private void OnEnable()
     {

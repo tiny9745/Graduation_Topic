@@ -66,7 +66,7 @@ public class NPC01_control : MonoBehaviour
         else if (hit_Ani == false)
         {
             npcNavi.speed = npcSpeed;
-            if (transform.position != lastPosition)
+            if (transform.position == lastPosition)
             {
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
