@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class MC_col : MonoBehaviour
 {
-    public NPC01_Ctrl npctral01; public NPC02_control npctral02;
+    public NPC01_control npctral01; public NPC02_control npctral02;
     public GameObject MC;
     public Animator animator;
     public Transform spriteTransform;
@@ -25,7 +25,7 @@ public class MC_col : MonoBehaviour
             originalMaterial = renderer1.material;
         }
         if (npctral01 == null){
-            npctral01 = GetComponentInParent<NPC01_Ctrl>();
+            npctral01 = GetComponentInParent<NPC01_control>();
         }
         if (npctral02 == null){
             npctral02 = GetComponentInParent<NPC02_control>();

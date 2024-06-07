@@ -12,11 +12,9 @@ public class NPC02_control : MonoBehaviour
     public Animator animator;
     public GameObject TargetObj;
     int DetectDistance = 20; int NPC02_ATK = 20;
-    float NPC_HP = 80; float npcSpeed = 5f;
-    bool hit_Ani = false;
-    bool hit = false;
-    float coordinate_X;
-    float coordinate_Z;
+    public float NPC_HP = 80; float npcSpeed = 5f;
+    bool hit_Ani = false;bool hit = false;
+    float coordinate_X;float coordinate_Z;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC02;
