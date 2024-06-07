@@ -11,8 +11,8 @@ public class NPC01_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    int DetectDistance = 15; int NPC01_ATK = 8;
-    float NPC_HP = 100; float npcSpeed = 3f;
+    public int DetectDistance = 15;public int NPC01_ATK = 8;
+    public float NPC_HP = 100;public float npcSpeed = 3f;
     private Quaternion initialRotation;
     //private Camera mainCamera;
     public GameObject NPC01;
@@ -181,12 +181,10 @@ public class NPC01_control : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //EnableHitbox();
-
         if (other.gameObject.tag == "Player")
         {
             hit_Ani = true;
-            Invoke("EnableHitbox", 1.15f);
+            EnableHitbox();
         }
     }
 
@@ -195,7 +193,7 @@ public class NPC01_control : MonoBehaviour
     {
         hitbox_Crystal_baby.SetActive(true);
         hit = false;
-        Invoke("EndAttANimation", 0.85f);
+        Invoke("EndAttANimation", 1f);
     }
     void EndAttANimation()
     {
