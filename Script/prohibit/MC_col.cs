@@ -13,13 +13,15 @@ public class MC_col : MonoBehaviour
     public Animator animator;
     public Transform spriteTransform;
     private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
-    public Material Deduct_Blood;private Material originalMaterial;
-    public string targetSceneName = "Game_fight";public string PrepareSceneName = "magic_house";
-    public float horizontalInput, verticalInput;
-    short face=4;
+    public Material Deduct_Blood; private Material originalMaterial;
+    public string targetSceneName = "Game_fight"; public string PrepareSceneName = "magic_house";
+    public Play_move MC_move;
+
+    short face = 4;
     void Start()
-    {
+    {      
         MC = GameObject.Find("Player");
+        MC_move = GetComponentInParent<Play_move>();
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         if (renderer1 != null){
             originalMaterial = renderer1.material;
@@ -34,10 +36,8 @@ public class MC_col : MonoBehaviour
 
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
         // Calculate movement direction
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
+        Vector3 movement = new Vector3(MC_move.horizontalInput, 0f, MC_move.verticalInput);
 
         // Convert movement direction to world space
         if (movement.magnitude > 1){

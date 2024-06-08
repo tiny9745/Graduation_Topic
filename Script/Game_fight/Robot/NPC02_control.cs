@@ -36,7 +36,7 @@ public class NPC02_control : MonoBehaviour
     void Update(){
         if (hit_Ani == false)
         {
-            if (transform.position != lastPosition)
+            if (transform.position == lastPosition)
             {
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {

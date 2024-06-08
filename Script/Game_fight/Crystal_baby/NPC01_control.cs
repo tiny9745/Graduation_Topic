@@ -11,8 +11,8 @@ public class NPC01_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 15;public int NPC01_ATK = 8;
-    public float NPC_HP = 100;public float npcSpeed = 3f;
+    public int DetectDistance = 18; public int NPC01_ATK = 8;
+    public float NPC_HP = 100; public float npcSpeed = 3f;
     private Quaternion initialRotation;
     //private Camera mainCamera;
     public GameObject NPC01;
@@ -66,7 +66,7 @@ public class NPC01_control : MonoBehaviour
         else if (hit_Ani == false)
         {
             npcNavi.speed = npcSpeed;
-            if (transform.position != lastPosition)
+            if (transform.position == lastPosition)
             {
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
@@ -108,7 +108,6 @@ public class NPC01_control : MonoBehaviour
         }
         else
         {
-            print("run");
             if (coordinate_X >= 0 && coordinate_Z > 0)
             {
                 animator.Play("Crystal_baby_Big_Att_RB");
