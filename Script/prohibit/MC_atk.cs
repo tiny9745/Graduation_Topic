@@ -5,7 +5,7 @@ using UnityEngine;
 public class MC_atk : MonoBehaviour
 {
     private Collider MC_Collider;
-    public TakeHit npchit;
+    public TakeHit NPChit;
     int attackDamage;
 
     // Start is called before the first frame update
@@ -32,10 +32,10 @@ public class MC_atk : MonoBehaviour
     private void OnTriggerEnter(Collider hit)
     {
         if (hit.CompareTag("NPC")){
-            NPCtrl npc = GetComponent<NPCtrl>();
-                if (npc != null)
+            NPChit = hit.GetComponent<TakeHit>();
+                if (NPChit != null)
                 {
-                    npc.TakeDamage(attackDamage);
+                    NPChit.TakeDamage(attackDamage);
                 }
         }
     }
