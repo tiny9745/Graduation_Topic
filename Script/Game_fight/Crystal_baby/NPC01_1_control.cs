@@ -1,0 +1,199 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class NPC01_1_control : MonoBehaviour
+{
+    NavMeshAgent npcNavi;
+    public Animator animator;
+    public GameObject TargetObj;
+    public int DetectDistance = 20; public int NPC01_ATK = 4;
+    public float NPC_HP = 40; public float npcSpeed = 4f;
+    private Quaternion initialRotation;
+    public GameObject NPC01_1;
+
+    bool hit_Ani = false;
+    bool hit = false;
+    float coordinate_X;
+    float coordinate_Z;
+    private Vector3 lastPosition;
+    public GameObject hitbox_Crystal_baby_small;
+
+    void Start()
+    {
+        static_parameters.Change_enemy++;
+        initialRotation = transform.rotation;
+        lastPosition = transform.position;
+        NPC01_1 = GameObject.Find("NPC01_1");
+        if (NPC01_1 != null)
+        {
+            Renderer renderer = NPC01_1.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+            };
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        TargetObj = GameObject.Find("Player");
+        npcNavi = GetComponent<NavMeshAgent>();
+        if (NPC_HP <= 0)
+        {
+            npcNavi.speed = 0;
+            if (coordinate_X >= 0 && coordinate_Z > 0)
+            {
+                animator.Play("Crystal_baby_small_Bomb_RB");
+            }
+            if (coordinate_X < 0 && coordinate_Z >= 0)
+            {
+                animator.Play("Crystal_baby_small_Bomb_LB");
+            }
+            if (coordinate_X <= 0 && coordinate_Z < 0)
+            {
+                animator.Play("Crystal_baby_small_Bomb_LF");
+            }
+            if (coordinate_X > 0 && coordinate_Z <= 0)
+            {
+                animator.Play("Crystal_baby_small_Bomb_RF");
+            }
+            Invoke("dead", 2f);
+        }
+        else if (hit_Ani == false)
+        {
+            npcNavi.speed = npcSpeed;
+            if (transform.position == lastPosition)
+            {
+                if (coordinate_X >= 0 && coordinate_Z > 0)
+                {
+                    animator.Play("Crystal_baby_small_stand_RB");
+                }
+                if (coordinate_X < 0 && coordinate_Z >= 0)
+                {
+                    animator.Play("Crystal_baby_small_stand_LB");
+                }
+                if (coordinate_X <= 0 && coordinate_Z < 0)
+                {
+                    animator.Play("Crystal_baby_small_stand_LF");
+                }
+                if (coordinate_X > 0 && coordinate_Z <= 0)
+                {
+                    animator.Play("Crystal_baby_small_stand_RF");
+                }
+            }
+            else
+            {
+                if (coordinate_X >= 0 && coordinate_Z > 0)
+                {
+                    animator.Play("Crystal_baby_small_walk_RB");
+                }
+                if (coordinate_X < 0 && coordinate_Z >= 0)
+                {
+                    animator.Play("Crystal_baby_small_walk_LB");
+                }
+                if (coordinate_X <= 0 && coordinate_Z < 0)
+                {
+                    animator.Play("Crystal_baby_small_walk_LF");
+                }
+                if (coordinate_X > 0 && coordinate_Z <= 0)
+                {
+                    animator.Play("Crystal_baby_small_walk_RF");
+                }
+            }
+        }
+        else
+        {
+            npcNavi.speed = npcSpeed * 6;
+            if (coordinate_X >= 0 && coordinate_Z > 0)
+            {
+                animator.Play("Crystal_baby_small_Att_RB");
+            }
+            if (coordinate_X < 0 && coordinate_Z >= 0)
+            {
+                animator.Play("Crystal_baby_small_Att_LB");
+            }
+            if (coordinate_X <= 0 && coordinate_Z < 0)
+            {
+                animator.Play("Crystal_baby_small_Att_LF");
+            }
+            if (coordinate_X > 0 && coordinate_Z <= 0)
+            {
+                animator.Play("Crystal_baby_small_Att_RF");
+            }
+        }
+        transform.rotation = initialRotation;
+        if (TargetObj == null)
+        {
+            if (npcNavi != null)
+            {
+                npcNavi.speed = npcSpeed;
+            }
+        }
+        else
+        {
+            float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+            if (dist < DetectDistance && NPC_HP > 0)
+            {
+                npcNavi.destination = TargetObj.transform.position;
+            }
+            else // Track your location 
+            {
+                npcNavi.destination = transform.position;
+            }
+        }
+        initialRotation = transform.rotation;
+        lastPosition = transform.position;
+        coordinate_X = TargetObj.transform.position.x - transform.position.x;
+        coordinate_Z = TargetObj.transform.position.z - transform.position.z;
+    }
+    public int GetNPC01_ATK()
+    {
+        return NPC01_ATK;
+    }
+    public bool GetNPC01_hit()
+    {
+        return hit;
+    }
+    private void OnCollisionEnter(Collision Hit)
+    {
+        //NPC attack determination
+        if (Hit.gameObject.CompareTag("Player"))
+        {
+            static_parameters.MC_HP -= NPC01_ATK;
+            print("Player_HP=" + static_parameters.MC_HP);
+        }
+        else
+        {
+            Debug.LogWarning("找不到對應組件");
+        }
+        //NPC is determined to be attacked
+        if (NPC_HP <= 0)
+        {
+            Destroy(gameObject);
+            static_parameters.Change_enemy--;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            hit_Ani = true;
+            EnableHitbox();
+        }
+    }
+
+    // Method to enable the hitbox
+    void EnableHitbox()
+    {
+        hitbox_Crystal_baby_small.SetActive(true);
+        hit = false;
+        Invoke("EndAttANimation", 1f);
+    }
+    void EndAttANimation()
+    {
+        hit_Ani = false;
+    }
+}

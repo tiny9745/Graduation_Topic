@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Prefabs_start : MonoBehaviour
 {
     // Prefab to generate
+    public GameObject prefabNPC01_1;
     public GameObject prefabNPC01;
     public GameObject prefabNPC02;
     float NPC_postion_minX = -25f;
@@ -27,6 +28,12 @@ public class Prefabs_start : MonoBehaviour
         {
             Number_NPC01 = 5;
             Number_NPC02 = 1;
+            for (int i = 0; i < Number_NPC01-2; i++)
+            {
+                randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
+                randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
+                GenerateNPC01_1(new Vector3(randomX, transform.position.y, randomZ));
+            }
             for (int i = 0; i < Number_NPC01; i++)
             {
                 randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
@@ -114,6 +121,11 @@ public class Prefabs_start : MonoBehaviour
         }
     }*/
 
+    void GenerateNPC01_1(Vector3 position)
+    {
+        // Generate the prefab and place it at the generated location
+        GameObject npc = Instantiate(prefabNPC01_1, position, Quaternion.identity);
+    }
     void GenerateNPC01(Vector3 position)
     {
         // Generate the prefab and place it at the generated location

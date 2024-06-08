@@ -26,6 +26,7 @@ public class NPC01_control : MonoBehaviour
 
     void Start(){
         initialRotation = transform.rotation;
+        lastPosition = transform.position;
         NPC01 = GameObject.Find("NPC01");
         if (NPC01 != null)
         {
@@ -68,6 +69,7 @@ public class NPC01_control : MonoBehaviour
             npcNavi.speed = npcSpeed;
             if (transform.position == lastPosition)
             {
+                print("stand");
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
                     animator.Play("Crystal_baby_Big_stand_RB");
@@ -87,7 +89,7 @@ public class NPC01_control : MonoBehaviour
             }
             else
             {
-                npcNavi.speed = npcSpeed * 5;
+                print("walk");
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
                     animator.Play("Crystal_baby_Big_walk_RB");
@@ -108,6 +110,8 @@ public class NPC01_control : MonoBehaviour
         }
         else
         {
+            print("Att");
+            npcNavi.speed = npcSpeed * 5;
             if (coordinate_X >= 0 && coordinate_Z > 0)
             {
                 animator.Play("Crystal_baby_Big_Att_RB");
@@ -125,7 +129,6 @@ public class NPC01_control : MonoBehaviour
                 animator.Play("Crystal_baby_Big_Att_RF");
             }
         }
-        transform.rotation = initialRotation;
         if (TargetObj == null)
         {
             //TargetObj = GameObject.Find("Player");
@@ -149,6 +152,8 @@ public class NPC01_control : MonoBehaviour
             }
             //transform.LookAt(mainCamera.transform);
         }
+        initialRotation = transform.rotation;
+        lastPosition = transform.position;
         coordinate_X = TargetObj.transform.position.x - transform.position.x;
         coordinate_Z = TargetObj.transform.position.z - transform.position.z;
     }
@@ -172,11 +177,11 @@ public class NPC01_control : MonoBehaviour
             Debug.LogWarning("找不到對應組件");
         }
         //NPC is determined to be attacked
-        /*if (NPC_HP <= 0)
+        if (NPC_HP <= 0)
         {
             Destroy(gameObject);
             static_parameters.Change_enemy--;
-        }*/
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -199,8 +204,8 @@ public class NPC01_control : MonoBehaviour
         hit_Ani = false;
     }
 
-    bool dead_open = true;
-    void dead()
+    //bool dead_open = true;
+    /*void dead()
     {
         if (dead_open)
         {
@@ -208,5 +213,5 @@ public class NPC01_control : MonoBehaviour
             static_parameters.Change_enemy++; //It is recommended to calculate the newly generated objects
             Destroy(gameObject);
         }
-    }
+    }*/
 }
