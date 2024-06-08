@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class MC_col : MonoBehaviour
 {
-    public NPC01_control npctral01; public NPC02_control npctral02;
     public GameObject MC;
     public Animator animator;
     public Transform spriteTransform;
@@ -25,12 +24,6 @@ public class MC_col : MonoBehaviour
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         if (renderer1 != null){
             originalMaterial = renderer1.material;
-        }
-        if (npctral01 == null){
-            npctral01 = GetComponentInParent<NPC01_control>();
-        }
-        if (npctral02 == null){
-            npctral02 = GetComponentInParent<NPC02_control>();
         }
     }
 
@@ -62,7 +55,6 @@ public class MC_col : MonoBehaviour
             MC_HP();
         }
         MC_HP_effects();
-        skill();
         SetLookDirection(face);
     }
     void LateUpdate(){
@@ -171,15 +163,6 @@ public class MC_col : MonoBehaviour
         transform.rotation = newRotation;
     }
     
-    void skill(){
-        if (Input.GetKeyDown(KeyCode.J)){
-
-        }
-        if (Input.GetKeyDown(KeyCode.K)){
-
-        }
-    }
-    
     private void OnTriggerEnter(Collider other)
     {
         // 检查碰撞物体是否具有Renderer组件
@@ -188,17 +171,6 @@ public class MC_col : MonoBehaviour
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
         }
-
-        if (other.CompareTag("NPC")){
-            if (npctral01 != null){
-            npctral01.NPC_HP -= static_parameters.MC_ATK;
-            print(npctral01.NPC_HP);
-            }
-            if (npctral02 != null){
-            npctral02.NPC_HP-= static_parameters.MC_ATK;
-            print(npctral02.NPC_HP);
-            }
-        } 
     }
 
     private IEnumerator ResetMaterialAfterDelay(Renderer renderer1, float delay)
