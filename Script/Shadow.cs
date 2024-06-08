@@ -11,6 +11,7 @@ public class Shadow : MonoBehaviour
     void Start()
     {
         // 创建一个新的材质
+        sceneLight = GameObject.Find("Directional Light")?.GetComponent<Light>();
         spriteMaterial = new Material(Shader.Find("Standard"));
         spriteMaterial.SetFloat("_Mode", 3);  // 设置为 Transparent 模式
         spriteMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
