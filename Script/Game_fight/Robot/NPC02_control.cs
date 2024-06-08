@@ -129,8 +129,7 @@ public class NPC02_control : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other){
-        //EnableHitbox();
-        
+        //EnableHitbox();       
         if (other.gameObject.tag == "Player"){
             hit_Ani = true;
             Invoke("EnableHitbox", 1.15f); 

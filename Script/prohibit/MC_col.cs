@@ -175,7 +175,7 @@ public class MC_col : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J)){
 
         }
-        if (Input.GetKeyUp(KeyCode.J)){
+        if (Input.GetKeyDown(KeyCode.K)){
 
         }
     }
