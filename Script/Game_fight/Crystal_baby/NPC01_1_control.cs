@@ -12,11 +12,10 @@ public class NPC01_1_control : MonoBehaviour
     public float NPC_HP = 40; public float npcSpeed = 4f;
     private Quaternion initialRotation;
     public GameObject NPC01_1;
-
+    bool dead_open = true;
     bool hit_Ani = false;
     bool hit = false;
-    float coordinate_X;
-    float coordinate_Z;
+    float coordinate_X; float coordinate_Z;
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby_small;
 
@@ -144,7 +143,7 @@ public class NPC01_1_control : MonoBehaviour
                 npcNavi.destination = transform.position;
             }
         }
-        initialRotation = transform.rotation;
+        transform.rotation = initialRotation;
         lastPosition = transform.position;
         coordinate_X = TargetObj.transform.position.x - transform.position.x;
         coordinate_Z = TargetObj.transform.position.z - transform.position.z;
@@ -168,12 +167,6 @@ public class NPC01_1_control : MonoBehaviour
         {
             Debug.LogWarning("�䤣������ե�");
         }
-        //NPC is determined to be attacked
-        if (NPC_HP <= 0)
-        {
-            Destroy(gameObject);
-            static_parameters.Change_enemy--;
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -194,5 +187,14 @@ public class NPC01_1_control : MonoBehaviour
     void EndAttANimation()
     {
         hit_Ani = false;
+    }
+    void dead()
+    {
+        if (dead_open)
+        {
+            static_parameters.Change_enemy--;
+            Destroy(gameObject);
+            dead_open = false;
+        }
     }
 }

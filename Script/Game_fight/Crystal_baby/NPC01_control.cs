@@ -15,16 +15,15 @@ public class NPC01_control : MonoBehaviour
     public float NPC_HP = 100; public float npcSpeed = 3f;
     private Quaternion initialRotation;
     //private Camera mainCamera;
-    public GameObject NPC01;
-
+    public GameObject NPC01; public GameObject NPC01_1;
+    bool dead_open = true;
     bool hit_Ani = false;
     bool hit = false;
-    float coordinate_X;
-    float coordinate_Z;
+    float coordinate_X; float coordinate_Z;
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby;
 
-    void Start(){
+    void Start() {
         initialRotation = transform.rotation;
         lastPosition = transform.position;
         NPC01 = GameObject.Find("NPC01");
@@ -36,11 +35,12 @@ public class NPC01_control : MonoBehaviour
                 renderer.enabled = false;
             };
         }
+        Invoke("try1", 3f);
         //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update() {
         TargetObj = GameObject.Find("Player");
         npcNavi = GetComponent<NavMeshAgent>();
         if (NPC_HP <= 0)
@@ -62,7 +62,7 @@ public class NPC01_control : MonoBehaviour
             {
                 animator.Play("Crystal_baby_Big_bomb_RF");
             }
-            Invoke("dead", 2f);
+            Invoke("dead", 1.6f);
         }
         else if (hit_Ani == false)
         {
@@ -149,7 +149,7 @@ public class NPC01_control : MonoBehaviour
             }
             //transform.LookAt(mainCamera.transform);
         }
-        initialRotation = transform.rotation;
+        transform.rotation = initialRotation;
         lastPosition = transform.position;
         coordinate_X = TargetObj.transform.position.x - transform.position.x;
         coordinate_Z = TargetObj.transform.position.z - transform.position.z;
@@ -162,7 +162,7 @@ public class NPC01_control : MonoBehaviour
     {
         return hit;
     }
-    private void OnCollisionEnter(Collision Hit){
+    private void OnCollisionEnter(Collision Hit) {
         //NPC attack determination
         if (Hit.gameObject.CompareTag("Player"))
         {
@@ -174,11 +174,6 @@ public class NPC01_control : MonoBehaviour
             Debug.LogWarning("找不到對應組件");
         }
         //NPC is determined to be attacked
-        if (NPC_HP <= 0)
-        {
-            Destroy(gameObject);
-            static_parameters.Change_enemy--;
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -201,14 +196,28 @@ public class NPC01_control : MonoBehaviour
         hit_Ani = false;
     }
 
-    //bool dead_open = true;
-    /*void dead()
+    void try1() 
+    { 
+        NPC_HP = 0;
+    }
+
+    void dead()
     {
         if (dead_open)
         {
+            Vector3 originalPosition = transform.position;
+            Vector3 position1 = new Vector3(originalPosition.x - 5, originalPosition.y, originalPosition.z);
+            Vector3 position2 = new Vector3(originalPosition.x + 5, originalPosition.y, originalPosition.z);
+
+            Instantiate(NPC01_1, position1, Quaternion.identity);
+            Instantiate(NPC01_1, position2, Quaternion.identity);
+            static_parameters.Change_enemy--;
+            Invoke("Des", 0.4f);
             dead_open = false;
-            static_parameters.Change_enemy++; //It is recommended to calculate the newly generated objects
-            Destroy(gameObject);
         }
-    }*/
+    }
+    private void Des()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -8,7 +8,6 @@ public class Keep_to_MC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Player  = GameObject.Find("Player_S");
         DontDestroyOnLoad(this);
     }
     private void OnEnable()
