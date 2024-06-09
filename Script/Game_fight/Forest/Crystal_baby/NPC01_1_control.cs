@@ -165,7 +165,7 @@ public class NPC01_1_control : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("�䤣������ե�");
+            Debug.LogWarning("?");
         }
     }
     private void OnTriggerEnter(Collider other)

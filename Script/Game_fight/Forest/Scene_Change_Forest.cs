@@ -12,10 +12,15 @@ public class Scene_Change_Forest : MonoBehaviour
 
     private void Update()
     {
-        if(static_parameters.Change_enemy == 0)
+        if (static_parameters.Change_enemy == 0)
         {
             CloseDoor01.SetActive(false);
             CloseDoor02.SetActive(false);
+        }
+        else
+        {
+            CloseDoor01.SetActive(true);
+            CloseDoor02.SetActive(true);
         }
     }
     private void OnCollisionEnter(Collision Hit)

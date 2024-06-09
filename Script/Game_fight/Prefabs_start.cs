@@ -21,8 +21,6 @@ public class Prefabs_start : MonoBehaviour
 
     void Start()
     {
-        static_parameters.Change_enemy = Number_NPC01 + Number_NPC02;
-
         // Randomly generate positions within range
         if (static_parameters.stage_number == 1)
         {
@@ -94,8 +92,6 @@ public class Prefabs_start : MonoBehaviour
                 GenerateNPC02(new Vector3(randomX, transform.position.y, randomZ));
             }
         }
-
-        //static_parameters.Change_enemy = 0;
     }
 
     // Update is called once per frame

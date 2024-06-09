@@ -26,6 +26,7 @@ public class NPC01_control : MonoBehaviour
     public NPC_HP nPC_hP;
 
     void Start() {
+        static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         lastPosition = transform.position;

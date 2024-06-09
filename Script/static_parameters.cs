@@ -12,7 +12,7 @@ public class static_parameters : MonoBehaviour
     static public int MC_Wspeed = 10;
 
     static public float MC_ATK_Speed = 1;
-    static public int Change_enemy;
+    static public int Change_enemy = 0;
 
     static public bool isSceneLoading = false; //Used to track whether the scene is loading
     static public bool Bookstate = false; //Used to track whether the scene is changing
