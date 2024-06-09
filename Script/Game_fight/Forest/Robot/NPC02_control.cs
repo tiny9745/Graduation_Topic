@@ -125,8 +125,8 @@ public class NPC02_control : MonoBehaviour
     }
     private void OnCollisionEnter(Collision Hit){
         if (NPC_HP <= 0){
-            Destroy(gameObject);
             static_parameters.Change_enemy--;
+            Destroy(gameObject);
         }
     }
     private void OnTriggerEnter(Collider other){
