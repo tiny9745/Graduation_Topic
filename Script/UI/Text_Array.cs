@@ -8,13 +8,28 @@ public class Text_Array : MonoBehaviour
 
     void Awake()
     {
-        // 初始化Text_content项
-        Text_contents.Add(new Text_content(0, "激昂的", 0, 0, 5, false));
-        Text_contents.Add(new Text_content(1, "頹喪的", 1, 1, 2.2f, false));
-        Text_contents.Add(new Text_content(2, "憤慨的", 2, 2, 1.1f, false));
-        Text_contents.Add(new Text_content(3, "慌忙的", 3, 3, 0.6f, true));
-        Text_contents.Add(new Text_content(4, "無聊的", 1, 1, 1.05f, true));
-        Text_contents.Add(new Text_content(5, "疲憊的", 1, 3, 0.8f, true));
+        // 初始化Text_content
+        Text_contents.Add(new Text_content(1100, "《醜小鴨與天鵝湖 》", 0, 0, 5, false));
+            Text_contents.Add(new Text_content(1110, "幸福生活", 3, 3, 0.6f, false));
+            Text_contents.Add(new Text_content(1120, "救世主", 1, 1, 1.05f, false));
+            Text_contents.Add(new Text_content(1130, "反轉", 1, 3, 0.8f, false));
+        
+        Text_contents.Add(new Text_content(1200, "《薔薇的女兒》", 1, 1, 2.2f, false));
+            Text_contents.Add(new Text_content(1210, "憤怒", 3, 3, 0.6f, false));
+            Text_contents.Add(new Text_content(1220, "驚訝", 1, 1, 1.05f, false));
+            Text_contents.Add(new Text_content(1230, "驚悚", 1, 3, 0.8f, false));
+            Text_contents.Add(new Text_content(1240, "緊張", 1, 3, 0.8f, false));
+        
+        Text_contents.Add(new Text_content(1300, "《奇異蘋果》", 2, 2, 1.1f, false));
+            Text_contents.Add(new Text_content(1310, "反轉", 3, 3, 0.6f, false));
+                Text_contents.Add(new Text_content(1311, "浪費", 3, 3, 0.6f, false));
+                Text_contents.Add(new Text_content(1312, "糟蹋", 3, 3, 0.6f, false));
+            Text_contents.Add(new Text_content(1320, "緊張", 1, 1, 1.05f, false));
+                Text_contents.Add(new Text_content(1321, "不適", 1, 1, 1.05f, false));
+                Text_contents.Add(new Text_content(1322, "過敏", 1, 1, 1.05f, false));
+            Text_contents.Add(new Text_content(1330, "有趣", 1, 3, 0.8f, false));
+                Text_contents.Add(new Text_content(1321, "浪費", 1, 1, 1.05f, false));
+                Text_contents.Add(new Text_content(1332, "驚訝", 1, 3, 0.8f, false));
 
         // 打印Text_contents的内容
         PrintTextContents();
@@ -32,13 +47,13 @@ public class Text_Array : MonoBehaviour
 public class Text_content
 {
     public string Name_Text;
-    public int Name_number;
+    public uint Name_number;//The n diary, which sentence, which branch
     public int Feeling; // 0=happy,1=sad,2=angry,3=surprise
     public int Attribute_effect_name; // 0=HP, 1=att_pow, 2=att_speed, 3=walk_speed, 4=defense
     public float Attribute_effect_value;
     public bool Text_exist;
 
-    public Text_content(int Name_number, string Name_Text, int Feeling, int Attribute_effect_name, float Attribute_effect_value, bool Text_exist)
+    public Text_content(uint Name_number, string Name_Text, int Feeling, int Attribute_effect_name, float Attribute_effect_value, bool Text_exist)
     {
         this.Name_number = Name_number;
         this.Name_Text = Name_Text;
