@@ -11,7 +11,8 @@ public class MC_atk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Transform Collider = transform.Find("Hitbox");
+        MC_Collider = Collider.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -33,8 +34,8 @@ public class MC_atk : MonoBehaviour
     {
         if (hit.CompareTag("NPC")){
             NPChit = hit.GetComponent<TakeHit>();
-                if (NPChit != null)
-                {
+                if (NPChit != null){
+                    print(NPChit);
                     NPChit.TakeDamage(attackDamage);
                 }
         }

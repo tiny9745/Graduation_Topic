@@ -69,7 +69,6 @@ public class NPC01_control : MonoBehaviour
             npcNavi.speed = npcSpeed;
             if (transform.position == lastPosition)
             {
-                print("stand");
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
                     animator.Play("Crystal_baby_Big_stand_RB");
@@ -89,7 +88,6 @@ public class NPC01_control : MonoBehaviour
             }
             else
             {
-                print("walk");
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
                     animator.Play("Crystal_baby_Big_walk_RB");
@@ -110,7 +108,6 @@ public class NPC01_control : MonoBehaviour
         }
         else
         {
-            print("Att");
             npcNavi.speed = npcSpeed * 5;
             if (coordinate_X >= 0 && coordinate_Z > 0)
             {

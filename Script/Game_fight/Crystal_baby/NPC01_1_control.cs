@@ -163,11 +163,10 @@ public class NPC01_1_control : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player"))
         {
             static_parameters.MC_HP -= NPC01_ATK;
-            print("Player_HP=" + static_parameters.MC_HP);
         }
         else
         {
-            Debug.LogWarning("§ä¤£¨ì¹ïÀ³²Õ¥ó");
+            Debug.LogWarning("ï¿½ä¤£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¥ï¿½");
         }
         //NPC is determined to be attacked
         if (NPC_HP <= 0)
