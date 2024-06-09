@@ -5,14 +5,17 @@ using UnityEngine;
 public class MC_atk : MonoBehaviour
 {
     private Collider MC_Collider;
-    public TakeHit NPChit;
+    public TakeHit NPChit;public Ani_MC MC_Ani;
+    short T1,T2=-1;
     int attackDamage;
 
     // Start is called before the first frame update
     void Start()
     {
-        Transform Collider = transform.Find("Hitbox");
-        MC_Collider = Collider.GetComponent<Collider>();
+        Transform hitboxTransform = transform.Find("Hitbox");
+        if (hitboxTransform != null){
+            MC_Collider = hitboxTransform.GetComponent<Collider>();
+        }
     }
 
     // Update is called once per frame
@@ -20,11 +23,28 @@ public class MC_atk : MonoBehaviour
     {
         attackDamage=static_parameters.MC_ATK;
         MC_Collider = GetComponent<Collider>();
-        skill();
+        T1 = static_parameters.Attactstate;
+        if (T1!=T2){
+            skill();
+            T2=T1;
+        }
     }
     void skill(){
-        if (Input.GetKeyDown(KeyCode.J)){
-
+        if (Input.GetKey(KeyCode.J)){
+            switch (static_parameters.Attactstate){
+                case 1:
+                    MC_Collider.enabled = true;
+                    melee1();
+                    break;
+                case 2:
+                    MC_Collider.enabled = true;
+                    melee1();
+                    break;
+                case 3:;
+                    MC_Collider.enabled = true;
+                    melee2();
+                    break;
+            }
         }
         if (Input.GetKeyDown(KeyCode.K)){
 
@@ -45,5 +65,14 @@ public class MC_atk : MonoBehaviour
     }
     public void CloseCollider(){
         MC_Collider.enabled = false;
+    }
+    void melee1(){
+        OpenCollider();
+        Invoke("CloseCollider", 0.5f);
+    }
+    void melee2(){
+        CloseCollider();
+        Invoke("OpenCollider", 0.3f);
+        Invoke("CloseCollider", 0.6f);
     }
 }
