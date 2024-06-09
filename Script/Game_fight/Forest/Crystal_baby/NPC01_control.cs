@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class NPC01_control : MonoBehaviour
 {
-    // Start is called before the first frame update
-    NavMeshAgent npcNavi;
+    NavMeshAgent npcNavi;public TakeHit NPChit;
     public Animator animator;
     public GameObject TargetObj;
     public int DetectDistance = 18; public int NPC01_ATK = 8;
@@ -17,9 +16,7 @@ public class NPC01_control : MonoBehaviour
     private Quaternion initialRotation;
     //private Camera mainCamera;
     public GameObject NPC01; public GameObject NPC01_1;
-    bool dead_open = true;
-    bool hit_Ani = false;
-    bool hit = false;
+    bool dead_open = true;bool hit_Ani = false;bool hit = false;
     float coordinate_X; float coordinate_Z;
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby;
@@ -150,7 +147,6 @@ public class NPC01_control : MonoBehaviour
             {
                 npcNavi.destination = transform.position;
             }
-            //transform.LookAt(mainCamera.transform);
         }
         transform.rotation = initialRotation;
         lastPosition = transform.position;

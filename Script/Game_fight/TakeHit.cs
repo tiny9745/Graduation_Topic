@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class TakeHit : MonoBehaviour
 {
-    public NPC01_control NPC01;
-    public NPC02_control NPC02;
-    int npc_health;
+    float S1, S2 = -1;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,8 +16,10 @@ public class TakeHit : MonoBehaviour
     {
         
     }
-    public void TakeDamage(int damage){
-        npc_health -= damage;
-        print(npc_health);
+    public void TakeDamage(float damage){
+        S1 = damage;
+        if(S1 != S2){           
+            S2 = S1;
+        }
     }
 }

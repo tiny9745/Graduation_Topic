@@ -60,19 +60,20 @@ public class MC_atk : MonoBehaviour
                 }
         }
     }
-    public void OpenCollider(){
-        MC_Collider.enabled = true;
-    }
-    public void CloseCollider(){
-        MC_Collider.enabled = false;
-    }
     void melee1(){
         OpenCollider();
         Invoke("CloseCollider", 0.5f);
     }
     void melee2(){
         CloseCollider();
-        Invoke("OpenCollider", 0.3f);
-        Invoke("CloseCollider", 0.6f);
+        Invoke("OpenCollider", 0.2f);
+        Invoke("CloseCollider", 0.7f);
     }
+    public void OpenCollider(){
+        MC_Collider.enabled = true;
+    }
+    public void CloseCollider(){
+        MC_Collider.enabled = false;
+    }
+    
 }
