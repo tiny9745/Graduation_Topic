@@ -29,16 +29,29 @@ public class Text_Array : MonoBehaviour
             Text_contents.Add(new Text_content(1330, "有趣", "none", 0, 0, 0, 0, false));
                 Text_contents.Add(new Text_content(1321, "浪費", "happy", 0, 0, 0, 0, false));
                 Text_contents.Add(new Text_content(1332, "驚訝", "happy", 0, 0, 0, 0, false));
-
-        // 打印Text_contents的内容
-        PrintTextContents();
     }
 
-    void PrintTextContents()
+    public void SetRandomTextExistToTrue()
     {
+        List<Text_content> falseTextContents = new List<Text_content>();
+
+        // 过滤出 Text_exist 为 false 的对象
         foreach (Text_content content in Text_contents)
         {
-           // Debug.Log($"Name_number: {content.Name_number}, Name_Text: {content.Name_Text}, Feeling: {content.Feeling}, Attribute_effect_name: {content.Attribute_effect_name}, Attribute_effect_value: {content.Attribute_effect_value}, Text_exist: {content.Text_exist}");
+            if (!content.Text_exist)
+            {
+                falseTextContents.Add(content);
+            }
+        }
+
+        // 随机选择一个对象并将其 Text_exist 设置为 true
+        if (falseTextContents.Count > 0)
+        {
+            int randomIndex = Random.Range(0, falseTextContents.Count);
+            falseTextContents[randomIndex].Text_exist = true;
+
+            // 打印已修改的对象
+            Debug.Log($"Modified Text_content: Name_number: {falseTextContents[randomIndex].Name_number}, Name_Text: {falseTextContents[randomIndex].Name_Text}, Text_exist: {falseTextContents[randomIndex].Text_exist}");
         }
     }
 }
