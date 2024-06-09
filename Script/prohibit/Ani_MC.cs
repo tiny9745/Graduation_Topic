@@ -9,8 +9,7 @@ public class Ani_MC : MonoBehaviour
     public GameObject playerPrefab;
     private Play_move MC_move;
     int Angle_sum = 270;
-    private float startTime;
-    private float elapsedTime;
+    private float startTime; private float elapsedTime;
     public GameObject Play_s;
     // Start is called before the first frame update
     void Start()
@@ -33,11 +32,13 @@ public class Ani_MC : MonoBehaviour
             if (startTime <= 0)
             {
                 startTime = Time.time;
+                static_parameters.Attactstate=0;
             }
-            // ­pºâ¤w¹L®É¶¡
+            // ï¿½pï¿½ï¿½wï¿½Lï¿½É¶ï¿½
             elapsedTime = Time.time - startTime;
             if (elapsedTime <= 1f)
             {
+                static_parameters.Attactstate=1;
                 if (Angle_sum == 45)
                 {
                     animator.Play("MC_Att_BR01");
@@ -73,6 +74,7 @@ public class Ani_MC : MonoBehaviour
             }
             if (elapsedTime > 1f && elapsedTime <= 2f)
             {
+                static_parameters.Attactstate=2;
                 if (Angle_sum == 45)
                 {
                     animator.Play("MC_Att_BR02");
@@ -108,6 +110,7 @@ public class Ani_MC : MonoBehaviour
             }
             if (elapsedTime > 2f && elapsedTime <= 3f)
             {
+                static_parameters.Attactstate=3;
                 if (Angle_sum == 45)
                 {
                     animator.Play("MC_Att_BR03");
@@ -144,6 +147,7 @@ public class Ani_MC : MonoBehaviour
             else if (elapsedTime > 2.25f)
             {
                 startTime = 0;
+                static_parameters.Attactstate=0;
             }
         }
         else
@@ -223,6 +227,6 @@ public class Ani_MC : MonoBehaviour
                     animator.Play("MC_Stand_Right");
                 }
             }
-        }
+        }  
     }
 }

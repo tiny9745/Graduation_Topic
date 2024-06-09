@@ -9854,6 +9854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994301319670457339}
   - component: {fileID: 8298056760238735611}
+  - component: {fileID: 8298056760238735612}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -9908,19 +9909,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2025978009133766561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6821772963036599349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 992c960c791380f4d86c95c0ba34544a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPChit: {fileID: 0}
 --- !u!114 &2324080431796827303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10229,7 +10217,6 @@ GameObject:
   - component: {fileID: 4426482259938332005}
   - component: {fileID: 2324080431796827303}
   - component: {fileID: 8676149383117319065}
-  - component: {fileID: 2025978009133766561}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10259,11 +10246,11 @@ PrefabInstance:
       objectReference: {fileID: 3244589227877007187}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -8.881784e-16
+      value: -1.1866064e-12
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 4.440892e-16
+      value: 6.5880634e-13
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10287,11 +10274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008328528
+      value: 0.000000008327924
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000002156498
+      value: -0.0000000021563415
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10331,6 +10318,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 1, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8298056760238735612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793950853102337315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992c960c791380f4d86c95c0ba34544a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPChit: {fileID: 0}
+  MC_Ani: {fileID: 0}
 --- !u!114 &8676149383117319065
 MonoBehaviour:
   m_ObjectHideFlags: 0
