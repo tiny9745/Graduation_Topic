@@ -14,8 +14,7 @@ public class NPC01_Hit_box : MonoBehaviour
         {
             Debug.LogError("Player object not found!");
         }
-        if (npcCtrl == null)
-        {
+        if (npcCtrl == null){
             npcCtrl = GetComponentInParent<NPC01_control>();
         }
     }
