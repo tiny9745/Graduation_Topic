@@ -12,7 +12,8 @@ public class NPC01_control : MonoBehaviour
     public Animator animator;
     public GameObject TargetObj;
     public int DetectDistance = 18; public int NPC01_ATK = 8;
-    public float NPC_HP = 100; public float npcSpeed = 3f;
+    public float NPC_HP_Max = 100; public float npcSpeed = 3f;
+    public float NPC_HP;
     private Quaternion initialRotation;
     //private Camera mainCamera;
     public GameObject NPC01; public GameObject NPC01_1;
@@ -22,8 +23,10 @@ public class NPC01_control : MonoBehaviour
     float coordinate_X; float coordinate_Z;
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby;
+    public NPC_HP nPC_hP;
 
     void Start() {
+        NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         lastPosition = transform.position;
         NPC01 = GameObject.Find("NPC01");
@@ -35,7 +38,6 @@ public class NPC01_control : MonoBehaviour
                 renderer.enabled = false;
             };
         }
-        Invoke("try1", 3f);
         //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
 
@@ -194,11 +196,6 @@ public class NPC01_control : MonoBehaviour
     void EndAttANimation()
     {
         hit_Ani = false;
-    }
-
-    void try1() 
-    { 
-        NPC_HP = 0;
     }
 
     void dead()

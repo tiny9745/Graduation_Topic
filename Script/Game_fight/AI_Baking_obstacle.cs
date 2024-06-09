@@ -57,4 +57,3 @@ public class AI_Baking_obstacle : MonoBehaviour
         Instantiate(Scenes_object_decorate[types_random_decorate], position, Quaternion.identity);
     }
 }
-
