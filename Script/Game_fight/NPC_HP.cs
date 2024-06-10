@@ -13,7 +13,7 @@ public class NPC_HP : MonoBehaviour
     void Start()
     {
         maxHealth = control.NPC_HP_Max;
-        initialScale = healthBarFill.transform.localScale; // 存储初始缩放
+        initialScale = healthBarFill.transform.localScale; // Store initial zoom
         UpdateHealthBar();
     }
 
@@ -25,6 +25,7 @@ public class NPC_HP : MonoBehaviour
         healthBarFill.transform.localScale = newScale;
     }
 
+    // Make sure the health volume is between 0 and maximum health volume
     public void TakeDamage(float damage)
     {
         control.NPC_HP -= damage;
@@ -35,7 +36,7 @@ public class NPC_HP : MonoBehaviour
     public void Heal(float amount)
     {
         control.NPC_HP += amount;
-        control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, maxHealth); // 确保血量在0到最大血量之间
+        control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, maxHealth); 
         UpdateHealthBar();
     }
 }
