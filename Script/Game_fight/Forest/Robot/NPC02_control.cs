@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class NPC02_control : MonoBehaviour
 {
@@ -17,8 +13,10 @@ public class NPC02_control : MonoBehaviour
     float coordinate_X;float coordinate_Z;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC02;
+    public GameObject NPC02;    
     public GameObject hitbox_Robot;
+    public GameObject Drop;
+    bool dead_open = true;
 
     void Start()
     {
@@ -35,7 +33,12 @@ public class NPC02_control : MonoBehaviour
     }
     // Update is called once per frame
     void Update(){
-        if (hit_Ani == false)
+        if (NPC_HP <= 0)
+        {
+            npcNavi.speed = 0;
+            dead();
+        }
+        else if (hit_Ani == false)
         {
             if (transform.position == lastPosition)
             {
@@ -123,12 +126,7 @@ public class NPC02_control : MonoBehaviour
     {
         return hit;
     }
-    private void OnCollisionEnter(Collision Hit){
-        if (NPC_HP <= 0){
-            static_parameters.Change_enemy--;
-            Destroy(gameObject);
-        }
-    }
+
     private void OnTriggerEnter(Collider other){
         //EnableHitbox();       
         if (other.gameObject.tag == "Player"){
@@ -146,5 +144,19 @@ public class NPC02_control : MonoBehaviour
     void EndAttANimation()
     {
         hit_Ani = false;
+    }
+    void dead()
+    {
+        if (dead_open)
+        {
+            static_parameters.Change_enemy--;
+            if (static_parameters.Change_enemy == 0)
+            {
+                Vector3 currentPosition = transform.position;
+                Instantiate(Drop, currentPosition, Quaternion.identity);
+            }
+            Destroy(gameObject);
+            dead_open = false;
+        }
     }
 }
