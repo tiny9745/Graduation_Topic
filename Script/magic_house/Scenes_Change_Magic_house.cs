@@ -7,7 +7,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
 {
     private void OnCollisionEnter(Collision Hit)
     {
-        if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0)
+        if (Hit.gameObject.CompareTag("Player"))
         {
             static_parameters.stage_number++;
             if (static_parameters.stage_number % 4 == 0)

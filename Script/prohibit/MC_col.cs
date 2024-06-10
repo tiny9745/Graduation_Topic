@@ -117,7 +117,7 @@ public class MC_col : MonoBehaviour
             HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_Green.sizeDelta.y);
         }
         if (static_parameters.MC_HP <= 0){
-            static_parameters.stage_number = 0;
+            static_parameters.stage_number--;
             SceneManager.LoadScene("magic_house");
         }
     }

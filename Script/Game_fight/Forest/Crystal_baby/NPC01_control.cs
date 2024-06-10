@@ -159,12 +159,6 @@ public class NPC01_control : MonoBehaviour
     {
         return hit;
     }
-    private void OnCollisionEnter(Collision Hit) {
-        if (Hit.gameObject.CompareTag("MC_Att"))
-        {
-            NPC_HP -= static_parameters.MC_ATK;
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -175,6 +169,7 @@ public class NPC01_control : MonoBehaviour
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
             NPC_HP -= static_parameters.MC_ATK;
+            nPC_hP.TakeDamage(static_parameters.MC_ATK);
             print("NPC_HP:" + NPC_HP);
             MC_to_Att = false;
             Invoke("wait_MC_att", 0.2f);
