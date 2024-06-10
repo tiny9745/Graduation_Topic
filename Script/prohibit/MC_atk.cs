@@ -16,6 +16,7 @@ public class MC_atk : MonoBehaviour
         if (hitboxTransform != null){
             MC_Collider = hitboxTransform.GetComponent<Collider>();
         }
+        CloseCollider();
     }
 
     // Update is called once per frame
@@ -50,16 +51,6 @@ public class MC_atk : MonoBehaviour
 
         }
     }
-    /*private void OnTriggerEnter(Collider hit)
-    {
-        if (hit.CompareTag("NPC")){
-            NPChit = hit.GetComponent<TakeHit>();
-                if (NPChit != null){
-                    print(NPChit);
-                    NPChit.TakeDamage(attackDamage);
-                }
-        }
-    }*/
     void melee1(){
         OpenCollider();
         Invoke("CloseCollider", 0.5f);
