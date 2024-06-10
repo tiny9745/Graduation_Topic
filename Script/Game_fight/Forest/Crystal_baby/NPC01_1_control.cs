@@ -19,6 +19,7 @@ public class NPC01_1_control : MonoBehaviour
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby_small;
     public GameObject Drop;
+    bool MC_to_Att = true;
 
     void Start()
     {
@@ -159,14 +160,8 @@ public class NPC01_1_control : MonoBehaviour
     }
     private void OnCollisionEnter(Collision Hit)
     {
-        //NPC attack determination
-        if (Hit.gameObject.CompareTag("Player"))
-        {
-            static_parameters.MC_HP -= NPC01_ATK;
-        }
-        else
-        {
-            Debug.LogWarning("?");
+        if (Hit.gameObject.CompareTag("MC_Att")){
+            NPC_HP -= static_parameters.MC_ATK;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -176,6 +171,18 @@ public class NPC01_1_control : MonoBehaviour
             hit_Ani = true;
             EnableHitbox();
         }
+        if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+        {
+            NPC_HP -= static_parameters.MC_ATK;
+            print("NPC_HP:" + NPC_HP);
+            MC_to_Att = false;
+            Invoke("wait_MC_att", 0.2f);
+        }
+    }
+
+    void wait_MC_att()
+    {
+        MC_to_Att = true;
     }
 
     // Method to enable the hitbox
