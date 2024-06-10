@@ -21,12 +21,12 @@ public class MC_atk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attackDamage = static_parameters.MC_ATK;
+        attackDamage=static_parameters.MC_ATK;
         MC_Collider = GetComponent<Collider>();
         T1 = static_parameters.Attactstate;
         if (T1!=T2){
             skill();
-            T2 = T1;
+            T2=T1;
         }
     }
     void skill(){
@@ -50,7 +50,7 @@ public class MC_atk : MonoBehaviour
 
         }
     }
-    private void OnTriggerEnter(Collider hit)
+    /*private void OnTriggerEnter(Collider hit)
     {
         if (hit.CompareTag("NPC")){
             NPChit = hit.GetComponent<TakeHit>();
@@ -59,7 +59,7 @@ public class MC_atk : MonoBehaviour
                     NPChit.TakeDamage(attackDamage);
                 }
         }
-    }
+    }*/
     void melee1(){
         OpenCollider();
         Invoke("CloseCollider", 0.5f);

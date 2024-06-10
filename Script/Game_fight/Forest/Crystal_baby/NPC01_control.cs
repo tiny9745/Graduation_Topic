@@ -21,6 +21,7 @@ public class NPC01_control : MonoBehaviour
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby;
     public NPC_HP nPC_hP;
+    bool MC_to_Att = true;
 
     void Start() {
         static_parameters.Change_enemy++;
@@ -128,9 +129,6 @@ public class NPC01_control : MonoBehaviour
         }
         if (TargetObj == null)
         {
-            //TargetObj = GameObject.Find("Player");
-            //npcNavi = GetComponent<NavMeshAgent>();
-            // Set the speed after each acquisition of the NavMeshAgent component
             if (npcNavi != null)
             {
                 npcNavi.speed = npcSpeed;
@@ -162,17 +160,10 @@ public class NPC01_control : MonoBehaviour
         return hit;
     }
     private void OnCollisionEnter(Collision Hit) {
-        //NPC attack determination
-        if (Hit.gameObject.CompareTag("Player"))
+        if (Hit.gameObject.CompareTag("MC_Att"))
         {
-            static_parameters.MC_HP -= NPC01_ATK;
-            print("Player_HP=" + static_parameters.MC_HP);
+            NPC_HP -= static_parameters.MC_ATK;
         }
-        else
-        {
-            Debug.LogWarning("找不到對應組件");
-        }
-        //NPC is determined to be attacked
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -181,6 +172,18 @@ public class NPC01_control : MonoBehaviour
             hit_Ani = true;
             EnableHitbox();
         }
+        if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+        {
+            NPC_HP -= static_parameters.MC_ATK;
+            print("NPC_HP:" + NPC_HP);
+            MC_to_Att = false;
+            Invoke("wait_MC_att", 0.2f);
+        }
+    }
+
+    void wait_MC_att()
+    {
+        MC_to_Att = true;
     }
 
     // Method to enable the hitbox
