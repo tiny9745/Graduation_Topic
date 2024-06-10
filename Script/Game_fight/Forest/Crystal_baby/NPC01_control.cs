@@ -204,7 +204,7 @@ public class NPC01_control : MonoBehaviour
             Instantiate(NPC01_1, position1, Quaternion.identity);
             Instantiate(NPC01_1, position2, Quaternion.identity);
             static_parameters.Change_enemy--;
-            Invoke("Des", 0.4f);
+            Des();
             dead_open = false;
         }
     }
