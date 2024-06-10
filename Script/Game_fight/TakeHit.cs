@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TakeHit : MonoBehaviour
 {
-    float S1, S2 = -1;
+    float npc_health = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +16,8 @@ public class TakeHit : MonoBehaviour
     {
         
     }
-    public void TakeDamage(float damage){
-        S1 = damage;
-        if(S1 != S2){           
-            S2 = S1;
+    public void TakeDamage(int damage){
+        npc_health -= damage;
+        print(npc_health);
         }
-    }
 }
