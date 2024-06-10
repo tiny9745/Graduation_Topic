@@ -18,6 +18,7 @@ public class NPC01_1_control : MonoBehaviour
     float coordinate_X; float coordinate_Z;
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby_small;
+    public GameObject Drop;
 
     void Start()
     {
@@ -193,6 +194,11 @@ public class NPC01_1_control : MonoBehaviour
         if (dead_open)
         {
             static_parameters.Change_enemy--;
+            if (static_parameters.Change_enemy == 0)
+            {
+                Vector3 currentPosition = transform.position;
+                Instantiate(Drop, currentPosition, Quaternion.identity);
+            }
             Destroy(gameObject);
             dead_open = false;
         }
