@@ -5,7 +5,7 @@ using UnityEngine;
 public class MC_atk : MonoBehaviour
 {
     private Collider MC_Collider;
-    public TakeHit NPChit;public Ani_MC MC_Ani;
+    public TakeHit NPChit;
     short T1,T2=-1;
     int attackDamage;
 
