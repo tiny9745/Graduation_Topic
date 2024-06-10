@@ -64,7 +64,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 animator.Play("Crystal_baby_small_Bomb_RF");
             }
-            Invoke("dead", 2f);
+            Invoke("dead", 0.8f);
         }
         else if (hit_Ani == false)
         {
