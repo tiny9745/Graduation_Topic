@@ -25,6 +25,7 @@ public class MC_col : MonoBehaviour
         if (renderer1 != null){
             originalMaterial = renderer1.material;
         }
+        FindHPImage();
     }
 
     void Update()
@@ -85,8 +86,7 @@ public class MC_col : MonoBehaviour
     private void FindHPImage(){
         // Find all "Image" in the scene
         RectTransform[] foundRectTransforms = FindObjectsOfType<RectTransform>();
-        foreach (RectTransform rectTransform in foundRectTransforms)
-        {
+        foreach (RectTransform rectTransform in foundRectTransforms){
             // Check whether the name of the RectTransform component is the specified name"
             if (rectTransform.name == "HP_Max")
             {
@@ -102,7 +102,6 @@ public class MC_col : MonoBehaviour
                 break;
             }
         }
-
         if (HPimg_White != null && HPimg_Red != null && HPimg_Green != null){
             HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max / 2, HPimg_White.sizeDelta.y);
             HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_White.sizeDelta.y);
