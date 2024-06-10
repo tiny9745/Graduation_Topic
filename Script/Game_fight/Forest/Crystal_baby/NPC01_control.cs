@@ -20,7 +20,7 @@ public class NPC01_control : MonoBehaviour
     float coordinate_X; float coordinate_Z;
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby;
-    public NPC_HP nPC_hP;
+    public NPC_HP_01 nPC_hP;
     bool MC_to_Att = true;
 
     void Start() {
@@ -37,7 +37,6 @@ public class NPC01_control : MonoBehaviour
                 renderer.enabled = false;
             };
         }
-        //mainCamera = FindObjectOfType<Camera>();//Get camera
     }
 
     // Update is called once per frame

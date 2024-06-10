@@ -1,13 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC_HP : MonoBehaviour
+public class NPC_HP_01_1 : MonoBehaviour
 {
     public SpriteRenderer healthBarFill;
     public float MaxHealth;
     private Vector3 initialScale;
-    public NPC01_control control;
+    public NPC01_1_control control;
 
     void Start()
     {

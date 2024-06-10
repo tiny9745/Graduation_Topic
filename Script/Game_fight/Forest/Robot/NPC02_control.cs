@@ -7,10 +7,9 @@ public class NPC02_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 20;
-    public int NPC02_ATK = 20;
-    public float NPC_HP = 80;
-    public float npcSpeed = 5f;
+    public int DetectDistance = 20; public int NPC02_ATK = 20;
+    public float NPC_HP_Max = 80; public float npcSpeed = 5f;
+    public float NPC_HP;
     bool hit_Ani = false;
     bool hit = false;
     float coordinate_X;
@@ -22,10 +21,12 @@ public class NPC02_control : MonoBehaviour
     public GameObject Drop;
     bool dead_open = true;
     bool MC_to_Att = true;
+    public NPC_HP_02 nPC_hP;
 
     void Start()
     {
         static_parameters.Change_enemy++;
+        NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         NPC02 = GameObject.Find("NPC02");
         if (NPC02 != null)
@@ -177,6 +178,7 @@ public class NPC02_control : MonoBehaviour
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
             NPC_HP -= static_parameters.MC_ATK;
+            nPC_hP.TakeDamage(static_parameters.MC_ATK);
             print("NPC_HP:" + NPC_HP);
             MC_to_Att = false;
             Invoke("wait_MC_att", 0.2f);

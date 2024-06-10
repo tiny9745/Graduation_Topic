@@ -9,7 +9,8 @@ public class NPC01_1_control : MonoBehaviour
     public Animator animator;
     public GameObject TargetObj;
     public int DetectDistance = 20; public int NPC01_ATK = 4;
-    public float NPC_HP = 40; public float npcSpeed = 4f;
+    public float NPC_HP_Max = 40; public float npcSpeed = 4f;
+    public float NPC_HP;
     private Quaternion initialRotation;
     public GameObject NPC01_1;
     bool dead_open = true;
@@ -19,11 +20,13 @@ public class NPC01_1_control : MonoBehaviour
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby_small;
     public GameObject Drop;
+    public NPC_HP_01_1 nPC_hP;
     bool MC_to_Att = true;
 
     void Start()
     {
         static_parameters.Change_enemy++;
+        NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         lastPosition = transform.position;
         NPC01_1 = GameObject.Find("NPC01_1");
@@ -158,12 +161,6 @@ public class NPC01_1_control : MonoBehaviour
     {
         return hit;
     }
-    private void OnCollisionEnter(Collision Hit)
-    {
-        if (Hit.gameObject.CompareTag("MC_Att")){
-            NPC_HP -= static_parameters.MC_ATK;
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -174,6 +171,7 @@ public class NPC01_1_control : MonoBehaviour
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
             NPC_HP -= static_parameters.MC_ATK;
+            nPC_hP.TakeDamage(static_parameters.MC_ATK);
             print("NPC_HP:" + NPC_HP);
             MC_to_Att = false;
             Invoke("wait_MC_att", 0.2f);

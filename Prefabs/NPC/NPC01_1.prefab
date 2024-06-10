@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8046484801250225074}
   - component: {fileID: 1879722841461864958}
   - component: {fileID: 2275708434813800622}
+  - component: {fileID: 3014055151402225431}
   m_Layer: 0
   m_Name: NPC01_1
   m_TagString: NPC
@@ -76,11 +77,13 @@ MonoBehaviour:
   TargetObj: {fileID: 0}
   DetectDistance: 10
   NPC01_ATK: 4
-  NPC_HP: 40
+  NPC_HP_Max: 40
   npcSpeed: 4
+  NPC_HP: 40
   NPC01_1: {fileID: 0}
   hitbox_Crystal_baby_small: {fileID: 2939803849758536278}
   Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
+  nPC_hP: {fileID: 3014055151402225431}
 --- !u!195 &8046484801250225074
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -136,6 +139,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f3b275dbe3dca419dfb37b45d3bf84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3014055151402225431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654828963857941581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4e0e1d1f9bd0c4984f55c745741cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarFill: {fileID: 4506713637935871793}
+  MaxHealth: 0
+  control: {fileID: 6354764557137383320}
 --- !u!1 &2288497789995992781
 GameObject:
   m_ObjectHideFlags: 0
