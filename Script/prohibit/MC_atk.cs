@@ -6,7 +6,7 @@ public class MC_atk : MonoBehaviour
 {
     private Collider MC_Collider;
     public TakeHit NPChit;
-    short T1,T2=-1;
+    short T1,T2=-9;
     int attackDamage;
 
     // Start is called before the first frame update
@@ -16,15 +16,18 @@ public class MC_atk : MonoBehaviour
         if (hitboxTransform != null){
             MC_Collider = hitboxTransform.GetComponent<Collider>();
         }
-        CloseCollider();
     }
-
     // Update is called once per frame
     void Update()
     {
         attackDamage=static_parameters.MC_ATK;
         MC_Collider = GetComponent<Collider>();
         T1 = static_parameters.Attactstate;
+        if(T2 == -9){
+            CloseCollider();
+            T2 = -1;
+        }
+
         if (T1!=T2){
             skill();
             T2=T1;
@@ -65,6 +68,7 @@ public class MC_atk : MonoBehaviour
     }
     public void CloseCollider(){
         MC_Collider.enabled = false;
+        print("close");
     }
     
 }
