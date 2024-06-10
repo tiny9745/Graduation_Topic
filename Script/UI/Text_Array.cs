@@ -9,13 +9,13 @@ public class Text_Array : MonoBehaviour
     {
         // 初始化Text_content
         Text_contents.Add(new Text_content(1100, "《醜小鴨與天鵝湖 》", "none", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1110, "幸福生活", "happy", 0, 0, 0, 0, false));
+            Text_contents.Add(new Text_content(1110, "幸福生活", "happy", 0, 0, 0, 0, true));
             Text_contents.Add(new Text_content(1120, "救世主", "happy", 0, 0, 0, 0, false));
             Text_contents.Add(new Text_content(1130, "反轉", "happy", 0, 0, 0, 0, false));
         
         Text_contents.Add(new Text_content(1200, "《薔薇的女兒》", "none", 0, 0, 0, 0, false));
             Text_contents.Add(new Text_content(1210, "憤怒", "happy", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1220, "驚訝", "happy", 0, 0, 0, 0, false));
+            Text_contents.Add(new Text_content(1220, "驚訝", "happy", 0, 0, 0, 0, true));
             Text_contents.Add(new Text_content(1230, "驚悚", "happy", 0, 0, 0, 0, false));
             Text_contents.Add(new Text_content(1240, "緊張", "happy", 0, 0, 0, 0, false));
         
@@ -27,7 +27,7 @@ public class Text_Array : MonoBehaviour
                 Text_contents.Add(new Text_content(1321, "不適", "happy", 0, 0, 0, 0, false));
                 Text_contents.Add(new Text_content(1322, "過敏", "happy", 0, 0, 0, 0, false));
             Text_contents.Add(new Text_content(1330, "有趣", "none", 0, 0, 0, 0, false));
-                Text_contents.Add(new Text_content(1321, "浪費", "happy", 0, 0, 0, 0, false));
+                Text_contents.Add(new Text_content(1321, "浪費", "happy", 0, 0, 0, 0, true));
                 Text_contents.Add(new Text_content(1332, "驚訝", "happy", 0, 0, 0, 0, false));
     }
 
