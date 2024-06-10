@@ -16,8 +16,7 @@ public class TakeHit : MonoBehaviour
     {
         
     }
-    /*public void TakeDamage(int damage){
+    public void TakeDamage(int damage){
         npc_health -= damage;
-        print(npc_health);
-        }*/
+        }
 }
