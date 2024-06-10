@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class Auto_text_paper : MonoBehaviour
 {
-    public GameObject itemPrefab; // 预置子元素
-    public GameObject itemPanel; // 包含 Vertical Layout Group 的面板
+    public GameObject itemPrefab; // Preset child elements
+    public GameObject itemPanel;
 
     void Start()
     {
-        GenerateItems(); // 生成物体
+        GenerateItems(); // generate objects
     }
 
     void GenerateItems()
@@ -22,8 +22,8 @@ public class Auto_text_paper : MonoBehaviour
             {
                 print("content" + content);
                 GameObject item = Instantiate(itemPrefab, itemPanel.transform);
-                item.name = content.Name_number.ToString(); // 设置生成对象的名称
-                item.GetComponentInChildren<Text>().text = content.Name_Text; // 设置生成对象的文本内容
+                item.name = content.Name_number.ToString(); // Set the name of the generated object
+                item.GetComponentInChildren<Text>().text = content.Name_Text; // Set the text content of the generated object
                 if (!content.Text_exist)
                 {
                     item.SetActive(content.Text_exist);

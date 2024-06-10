@@ -5,23 +5,26 @@ using UnityEngine.UI;
 public class Drag_Text : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private RectTransform _rectTransform;
-    private Vector2 _originalRectPosition;
+    private Vector2 _originalPosition;
+    private Vector2 _dragStartPosition; // Record the starting position of dragging
     private CanvasGroup _canvasGroup;
 
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        _originalRectPosition = _rectTransform.anchoredPosition;
+        _originalPosition = _rectTransform.anchoredPosition;
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // 确保_canvasGroup已初始化
         if (_canvasGroup != null)
         {
             _canvasGroup.blocksRaycasts = false;
         }
+
+        // Record the starting position of dragging
+        _dragStartPosition = _rectTransform.anchoredPosition;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -31,11 +34,12 @@ public class Drag_Text : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // 确保_canvasGroup已初始化
         if (_canvasGroup != null)
         {
             _canvasGroup.blocksRaycasts = true;
         }
-        _rectTransform.anchoredPosition = _originalRectPosition;
+
+        //Reset the object's position to the position when dragging started
+        _rectTransform.anchoredPosition = _dragStartPosition;
     }
 }

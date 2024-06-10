@@ -4,16 +4,26 @@ using UnityEngine.UI;
 
 public class Drag_End : MonoBehaviour, IDropHandler
 {
+    bool LR_switch = true;
+    public GameObject Diary_text_Left;
+    public GameObject Diary_text_Right;
     public void OnDrop(PointerEventData eventData)
     {
-        Text dragText = eventData.pointerDrag.GetComponent<Text>(); // 获取拖拽物体上的Text组件
-        Text dropText = GetComponent<Text>(); // 获取当前物体上的Text组件
+        Text dragText = eventData.pointerDrag.GetComponent<Text>(); // Get the Text component on the dragged object
+        Text dropText = GetComponent<Text>(); // Get the Text component on the current object
 
-        // 如果两者都存在，则进行文本内容的替换
+        // If both exist, replace the text content
         if (dragText != null && dropText != null)
         {
-            dropText.text = dragText.text;
-            Destroy(eventData.pointerDrag);
+            dropText.text += dragText.text;
+            eventData.pointerDrag.SetActive(false);
+
+            if(LR_switch && dropText.text.Length >= 50)
+            {
+                LR_switch = false;
+            }
+            Diary_text_Left.SetActive(LR_switch);
+            Diary_text_Left.SetActive(!LR_switch);
         }
     }
 }
