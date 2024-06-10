@@ -25,7 +25,6 @@ public class NPC_HP_01 : MonoBehaviour
         newScale.x = initialScale.x * fillAmount;
         healthBarFill.transform.localScale = newScale;
     }
-
     // Ensure health is between 0 and maximum health
     public void TakeDamage(float damage)
     {
@@ -47,6 +46,6 @@ public class NPC_HP_01 : MonoBehaviour
         Rect rect = sprite.rect;
         Vector2 pivot = new Vector2(0, sprite.pivot.y / rect.height);
         Sprite newSprite = Sprite.Create(sprite.texture, rect, pivot, sprite.pixelsPerUnit);
-        spriteRenderer.sprite = newSprite;
+        spriteRenderer.sprite = newSprite;      
     }
 }
