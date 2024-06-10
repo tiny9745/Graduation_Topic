@@ -25,6 +25,9 @@ public class MC_col : MonoBehaviour
         if (renderer1 != null){
             originalMaterial = renderer1.material;
         }
+        if(Blood_Col == null){
+            Blood_Col = GetComponent<Blood_col>();
+        }
     }
 
     void Update()
@@ -50,15 +53,11 @@ public class MC_col : MonoBehaviour
                 face = 4;
             }
         }
-        //MC HP change
-        if (static_parameters.MC_HP_tmp != static_parameters.MC_HP){
-           Blood_Col.MC_HP();
-        }
         if (static_parameters.MC_HP <= 0){
             static_parameters.stage_number--;
             SceneManager.LoadScene("magic_house");
         }
-        Blood_Col.MC_HP_effects();
+
         SetLookDirection(face);
     }
     void LateUpdate(){
@@ -76,7 +75,7 @@ public class MC_col : MonoBehaviour
         // Check whether the loaded scene is the target scene
         if (scene.name == targetSceneName)
         {
-            Blood_Col.FindHPImage();
+            if(Blood_Col!=null)Blood_Col.FindHPImage();
         }
         if (scene.name == PrepareSceneName)
         {

@@ -14,7 +14,10 @@ public class Blood_col : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        
+        if (static_parameters.MC_HP_tmp != static_parameters.MC_HP){
+           MC_HP();
+        }
+        MC_HP_effects();
     }
     public void FindHPImage(){
     // Find all "Image" in the scene
