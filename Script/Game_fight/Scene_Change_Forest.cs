@@ -30,7 +30,9 @@ public class Scene_Change_Forest : MonoBehaviour
             static_parameters.stage_number++;
             if (static_parameters.stage_number%4 == 0)
             {
-                SceneManager.LoadScene("Game_fight_Boss");
+                //SceneManager.LoadScene("Game_fight_Boss");
+                SceneManager.LoadScene("magic_house");
+                static_parameters.stage_number = 0;
             }
             else
             {

@@ -17,7 +17,6 @@ public class Prefabs_start : MonoBehaviour
     float randomZ;
     int Number_NPC01;
     int Number_NPC02;
-    //bool enemy_open = false; // Control the portal
 
     void Start()
     {
@@ -94,28 +93,6 @@ public class Prefabs_start : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (static_parameters.Change_enemy == 0)
-        {
-            enemy_open = true;
-        }*/
-    }
-
-    /*private void OnCollisionEnter(Collision Go_next_stage)
-    {
-        if (Go_next_stage.gameObject.CompareTag("Player") && enemy_open)
-        {
-            SceneManager.LoadScene("Game_fight");
-        }
-    }*/
-
-    void GenerateNPC01_1(Vector3 position)
-    {
-        // Generate the prefab and place it at the generated location
-        GameObject npc = Instantiate(prefabNPC01_1, position, Quaternion.identity);
-    }
     void GenerateNPC01(Vector3 position)
     {
         // Generate the prefab and place it at the generated location
