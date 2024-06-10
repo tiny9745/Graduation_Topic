@@ -24,11 +24,11 @@ public class Blood_col : MonoBehaviour
         RectTransform[] foundRectTransforms = FindObjectsOfType<RectTransform>();
         foreach (RectTransform rectTransform in foundRectTransforms){
         // Check whether the name of the RectTransform component is the specified name"
-        if (rectTransform.name == "HP_Max"){
+        if (rectTransform.name == "HP_BG"){
             HPimg_White = rectTransform;
         }
         if (rectTransform.name == "HP_change"){
-               HPimg_Red = rectTransform;
+            HPimg_Red = rectTransform;
         }
         if (rectTransform.name == "HP_change_after"){
             HPimg_Green = rectTransform;
@@ -36,9 +36,9 @@ public class Blood_col : MonoBehaviour
         }
         }
         if (HPimg_White != null && HPimg_Red != null && HPimg_Green != null){
-            HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max / 2, HPimg_White.sizeDelta.y);
-            HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_White.sizeDelta.y);
-            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_White.sizeDelta.y);
+            HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max, HPimg_White.sizeDelta.y);
+            HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP, HPimg_White.sizeDelta.y);
+            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP, HPimg_White.sizeDelta.y);
         }
     }
 
@@ -46,7 +46,8 @@ public class Blood_col : MonoBehaviour
     public void MC_HP(){
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
         if (HPimg_Green != null){
-            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP / 2, HPimg_Green.sizeDelta.y);
+            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP, HPimg_Green.sizeDelta.y);
+            print("HPimg_White: " + HPimg_White.sizeDelta.x + " HPimg_Red: " + HPimg_Red.sizeDelta.x + " HPimg_Green: " + HPimg_Green.sizeDelta.x);
         }
     }
     

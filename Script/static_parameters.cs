@@ -5,8 +5,8 @@ using UnityEngine;
 public class static_parameters : MonoBehaviour
 {
     //Player's basic value
-    static public int MC_HP_Max = 200;static public int MC_HP = MC_HP_Max;
-    static public int MC_HP_tmp = MC_HP;static public int MC_ATK = 20;
+    static public int MC_HP_Max = 1000;static public int MC_HP = MC_HP_Max;
+    static public int MC_HP_tmp = MC_HP;static public int MC_ATK = 50;
     static public int MC_Wspeed = 10;
     static public short Attactstate = 0;
 
