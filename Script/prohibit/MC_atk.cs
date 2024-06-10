@@ -21,12 +21,12 @@ public class MC_atk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attackDamage=static_parameters.MC_ATK;
+        attackDamage = static_parameters.MC_ATK;
         MC_Collider = GetComponent<Collider>();
         T1 = static_parameters.Attactstate;
         if (T1!=T2){
             skill();
-            T2=T1;
+            T2 = T1;
         }
     }
     void skill(){
