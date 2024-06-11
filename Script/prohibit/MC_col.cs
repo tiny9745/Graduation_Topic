@@ -19,7 +19,7 @@ public class MC_col : MonoBehaviour
     short face = 4;
     void Start()
     {      
-        MC = GameObject.Find("Player");
+        MC = GameObject.Find("Player_S");
         MC_move = GetComponentInParent<Play_move>();
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         if (renderer1 != null){
