@@ -150,7 +150,7 @@ public class Ani_MC : MonoBehaviour
                 static_parameters.Attactstate=0;
             }
         }
-        else
+        else//verticalInput=垂直，horizontalInput=水平
         {
             if (MC_move.verticalInput > 0 && MC_move.horizontalInput > 0)
             {
@@ -159,8 +159,8 @@ public class Ani_MC : MonoBehaviour
             }
             else if (MC_move.verticalInput > 0 && MC_move.horizontalInput < 0)
             {
-                animator.Play("MC_Walk_Right");
-                Angle_sum = 315;
+                animator.Play("MC_Walk_Left");
+                Angle_sum = 135;
             }
             else if (MC_move.verticalInput < 0 && MC_move.horizontalInput < 0)
             {
@@ -169,8 +169,8 @@ public class Ani_MC : MonoBehaviour
             }
             else if (MC_move.verticalInput < 0 && MC_move.horizontalInput > 0)
             {
-                animator.Play("MC_Walk_Left");
-                Angle_sum = 135;
+                animator.Play("MC_Walk_Right");
+                Angle_sum = 315;
             }
             else if (MC_move.verticalInput < 0)
             {

@@ -11,10 +11,10 @@ public class Auto_text_paper : MonoBehaviour
 
     void Start()
     {
-        GenerateItems(); // generate objects
+        GenerateItems();
     }
 
-    public void GenerateItems()
+    private void GenerateItems()
     {
         del_any_text();
         if (Text_Array.Text_contents != null)
@@ -135,15 +135,15 @@ public class Auto_text_paper : MonoBehaviour
         }
     }
 
-     void del_any_text()
+    private void del_any_text()
     {
         Queue<Transform> children = new Queue<Transform>();
-        // 添加所有子物件到队列
+        // Add all child objects to the queue
         foreach (Transform child in transform)
         {
             children.Enqueue(child);
         }
-        // 销毁队列中的每个子物件
+        // Destroy each child object in the queue
         while (children.Count > 0)
         {
             Transform child = children.Dequeue();
