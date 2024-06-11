@@ -23,10 +23,31 @@ public class Auto_text_paper : MonoBehaviour
             {
                 if (content.Text_exist)
                 {
-                    GameObject item = Instantiate(itemPrefab, itemPanel.transform);
-                    item.name = content.Name_number.ToString(); // 设置生成对象的名称
-                    item.GetComponentInChildren<Text>().text = content.Name_Text; // 设置生成对象的文本内容
-                    Text_into(item);
+                    if (Text_Array.diary_step[0] == 0 && content.Name_number < 100) // diary_step=0 is <100
+                    {
+                        GameObject item = Instantiate(itemPrefab, itemPanel.transform);
+                        item.name = content.Name_number.ToString();
+                        item.GetComponentInChildren<Text>().text = content.Name_Text;
+                        //Text_into(item);
+                    }
+                    else if (Text_Array.diary_step[0] == 1 && content.Name_number > 1000 && content.Name_number < 10000) // diary_step=1 is >1000 & <10000
+                    {
+                        GameObject item = Instantiate(itemPrefab, itemPanel.transform);
+                        item.name = content.Name_number.ToString();
+                        item.GetComponentInChildren<Text>().text = content.Name_Text;
+                    }
+                    else if (Text_Array.diary_step[0] == 2 && content.Name_number > 10000) // diary_step=2 is >10000
+                    {
+                        GameObject item = Instantiate(itemPrefab, itemPanel.transform);
+                        item.name = content.Name_number.ToString();
+                        item.GetComponentInChildren<Text>().text = content.Name_Text;
+                    }
+                    else if (Text_Array.diary_step[0] == -1) // diary_step=2 is >10000
+                    {
+                        GameObject item = Instantiate(itemPrefab, itemPanel.transform);
+                        item.name = content.Name_number.ToString();
+                        item.GetComponentInChildren<Text>().text = content.Name_Text;
+                    }
                 }
             }
         }
@@ -66,18 +87,58 @@ public class Auto_text_paper : MonoBehaviour
 
     public void diary_text_chose(int item)
     {
-        //diary_End啟用，位置待商榷
-        print("iiiiiiiiiii");
-        if (Text_Array.diary_step[0] == 1 && item > 1000 && item < 1300)
+        if (Text_Array.Text_contents != null)
+        {
+            foreach (Text_content content in Text_Array.Text_contents)
+            {
+                if (item == 11)
+                {
+                    if (content.Text_exist && content.Name_number < 1200 && content.Name_number > 1100)
+                    {
+                        del_any_text();
+                        GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                        item2.name = content.Name_number.ToString();
+                        item2.GetComponentInChildren<Text>().text = content.Name_Text; 
+                    }
+                }
+                if(item == 12)
+                {
+                    if (content.Text_exist && content.Name_number < 1300 && content.Name_number > 1400)
+                    {
+                        del_any_text();
+                        GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                        item2.name = content.Name_number.ToString();
+                        item2.GetComponentInChildren<Text>().text = content.Name_Text; 
+                    }
+                }
+                if (item == 13)
+                {
+                    if (content.Text_exist && content.Name_number < 1400 && content.Name_number > 1500)
+                    {
+                        del_any_text();
+                        GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                        item2.name = content.Name_number.ToString(); 
+                        item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                    }
+                }
+            }
+        }
+
+        if (Text_Array.diary_step[0] == 2 && item > 1000 && item < 1300)
         {
             Text_Array.diary_step[0] = -1;
             del_any_text();
         }
-        else if (Text_Array.diary_step[0] == 2 && item > 1300 && item < 1400)
+        else if (Text_Array.diary_step[0] == 3 && item > 1300 && item < 1400)
         {
             Text_Array.diary_step[0] = -1;
             del_any_text();
         }
+    }
+
+    void filter_dairy_text()
+    {
+
     }
 
      void del_any_text()
@@ -94,6 +155,7 @@ public class Auto_text_paper : MonoBehaviour
             Transform child = children.Dequeue();
             Destroy(child.gameObject);
         }
+        print("del");
     }
 }
 
