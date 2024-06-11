@@ -4,31 +4,38 @@ using UnityEngine;
 public class Text_Array : MonoBehaviour
 {
     static public List<Text_content> Text_contents = new List<Text_content>();
-
+    static public short[] diary_step;
+    static public ushort diary_number = 0;
     void Awake()
     {
-        // 初始化Text_content
-        Text_contents.Add(new Text_content(1100, "《醜小鴨與天鵝湖 》", "none", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1110, "幸福生活", "happy", 0, 0, 0, 0, true));
-            Text_contents.Add(new Text_content(1120, "救世主", "happy", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1130, "反轉", "happy", 0, 0, 0, 0, false));
+        //diary_step
+        diary_step = new short[3];
+        diary_step[0] = 0;
+        diary_step[1] = 0;
+        diary_step[2] = 0;
+
+        //diary_text
+        Text_contents.Add(new Text_content(11, "《醜小鴨與天鵝湖 》", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1110, "幸福生活", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1120, "救世主", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1130, "反轉", "none", 0, 0, 0, 0, true));
         
-        Text_contents.Add(new Text_content(1200, "《薔薇的女兒》", "none", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1210, "憤怒", "happy", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1220, "驚訝", "happy", 0, 0, 0, 0, true));
-            Text_contents.Add(new Text_content(1230, "驚悚", "happy", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1240, "緊張", "happy", 0, 0, 0, 0, false));
+        Text_contents.Add(new Text_content(12, "《薔薇的女兒》", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1210, "憤怒", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1220, "驚訝", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1230, "驚悚", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1240, "緊張", "none", 0, 0, 0, 0, true));
         
-        Text_contents.Add(new Text_content(1300, "《奇異蘋果》", "none", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1310, "反轉", "none", 0, 0, 0, 0, false));
-                Text_contents.Add(new Text_content(1311, "浪費", "happy", 0, 0, 0, 0, false));
-                Text_contents.Add(new Text_content(1312, "糟蹋", "happy", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1320, "緊張", "none", 0, 0, 0, 0, false));
-                Text_contents.Add(new Text_content(1321, "不適", "happy", 0, 0, 0, 0, false));
-                Text_contents.Add(new Text_content(1322, "過敏", "happy", 0, 0, 0, 0, false));
-            Text_contents.Add(new Text_content(1330, "有趣", "none", 0, 0, 0, 0, false));
-                Text_contents.Add(new Text_content(1321, "浪費", "happy", 0, 0, 0, 0, true));
-                Text_contents.Add(new Text_content(1332, "驚訝", "happy", 0, 0, 0, 0, false));
+        Text_contents.Add(new Text_content(13, "《奇異蘋果》", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1310, "反轉", "none", 0, 0, 0, 0, true));
+                Text_contents.Add(new Text_content(13110, "浪費", "none", 0, 0, 0, 0, true));
+                Text_contents.Add(new Text_content(13120, "糟蹋", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1320, "緊張", "none", 0, 0, 0, 0, true));
+                Text_contents.Add(new Text_content(13210, "不適", "none", 0, 0, 0, 0, true));
+                Text_contents.Add(new Text_content(13220, "過敏", "none", 0, 0, 0, 0, true));
+            Text_contents.Add(new Text_content(1330, "有趣", "none", 0, 0, 0, 0, true));
+                Text_contents.Add(new Text_content(13210, "浪費", "none", 0, 0, 0, 0, true));
+                Text_contents.Add(new Text_content(13320, "驚訝", "none", 0, 0, 0, 0, true));
     }
 
     public void SetRandomTextExistToTrue()
