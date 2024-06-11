@@ -21,34 +21,25 @@ public class Shadow : MonoBehaviour
         spriteMaterial.EnableKeyword("_ALPHABLEND_ON");
         spriteMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
         spriteMaterial.renderQueue = 3000;
-
         // 将 Sprite 的 Texture 设置为材质的主纹理
         spriteMaterial.mainTexture = spriteRenderer.sprite.texture;
-
         // 创建一个 Quad 并设置其位置和大小
         quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
         quad.transform.position = transform.position;  // 确保与附加组件位置对齐
-
         // 移除 Quad 上的 Rigidbody 组件
         Destroy(quad.GetComponent<Rigidbody>());
-
         // 移除 Quad 上的 MeshCollider 组件
         Destroy(quad.GetComponent<MeshCollider>());
-
         // 设置 Quad 的大小，使其与附加组件的大小一致
         UpdateQuadSize();
-
         // 将材质应用到 Quad 上
         quad.GetComponent<Renderer>().material = spriteMaterial;
-
         // 设置阴影模式为产生阴影但不接收阴影
         quad.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         quad.GetComponent<Renderer>().receiveShadows = true;
-
         // 确保 Quad 的中心点对齐
         quad.transform.parent = transform;  // 设置父物体以便于对齐
         quad.transform.localPosition = Vector3.zero;  // 重置本地位置以对齐中心
-
         // 确保光源存在并启用阴影
         if (sceneLight != null)
         {
