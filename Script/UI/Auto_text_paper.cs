@@ -59,6 +59,7 @@ public class Auto_text_paper : MonoBehaviour
     public void diary_text_chose(int item)
     {
         del_any_text();
+
         if (Text_Array.Text_contents != null)
         {
             foreach (Text_content content in Text_Array.Text_contents)

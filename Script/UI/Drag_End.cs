@@ -17,12 +17,11 @@ public class Drag_End : MonoBehaviour, IDropHandler
         if (dragText != null && dropText != null)
         {
             Text_Array.diary_step[Text_Array.diary_number]++;
+            dropText.text += dragText.text;
             if (int.TryParse(dragText.name, out int itemNameInt))
             {
                 Diary_Auto.diary_text_chose(itemNameInt);
             }
-            dropText.text += dragText.text;
-
             if(LR_switch && dropText.text.Length >= 50)
             {
                 LR_switch = false;
