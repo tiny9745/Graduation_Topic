@@ -27,7 +27,6 @@ public class MC_atk : MonoBehaviour
             CloseCollider();
             T2 = -1;
         }
-
         if (T1!=T2){
             skill();
             T2=T1;
@@ -68,7 +67,6 @@ public class MC_atk : MonoBehaviour
     }
     public void CloseCollider(){
         MC_Collider.enabled = false;
-        print("close");
     }
     
 }
