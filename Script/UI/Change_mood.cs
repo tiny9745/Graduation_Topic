@@ -16,7 +16,7 @@ public class Change_mood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Change("sad");
+        //Change("sad");
     }
     public void Change(string mood){
         if(mood=="wow") Mood.sprite = wow;
