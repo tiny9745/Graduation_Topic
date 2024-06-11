@@ -7,7 +7,7 @@ public class MC_atk : MonoBehaviour
     private Collider MC_Collider;
     public TakeHit NPChit;
     short T1,T2=-9;
-    int attackDamage;
+    float attackDamage;
 
     // Start is called before the first frame update
     void Start()

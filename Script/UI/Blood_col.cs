@@ -47,7 +47,7 @@ public class Blood_col : MonoBehaviour
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
         if (HPimg_Green != null){
             HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP, HPimg_Green.sizeDelta.y);
-            print("HPimg_White: " + HPimg_White.sizeDelta.x + " HPimg_Red: " + HPimg_Red.sizeDelta.x + " HPimg_Green: " + HPimg_Green.sizeDelta.x);
+            //print("HPimg_White: " + HPimg_White.sizeDelta.x + " HPimg_Red: " + HPimg_Red.sizeDelta.x + " HPimg_Green: " + HPimg_Green.sizeDelta.x);
         }
     }
     
