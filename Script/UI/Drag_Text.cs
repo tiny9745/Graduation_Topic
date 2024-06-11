@@ -38,7 +38,6 @@ public class Drag_Text : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             _canvasGroup.blocksRaycasts = true;
         }
-
         //Reset the object's position to the position when dragging started
         _rectTransform.anchoredPosition = _dragStartPosition;
     }
