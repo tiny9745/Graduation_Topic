@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Auto_text_paper : MonoBehaviour
 {
@@ -10,10 +9,16 @@ public class Auto_text_paper : MonoBehaviour
     public GameObject itemPanel;
     public GameObject ExtraPage2;
     public Text ExtraPage2_text;
+    public float[][] diary_buff_check;
     int i = 0;
 
     void Start()
     {
+        diary_buff_check = new float[5][];
+        diary_buff_check[0][0] = 0;
+        diary_buff_check[0][1] = 0;
+        diary_buff_check[0][2] = 0;
+        diary_buff_check[0][3] = 0;
         GenerateItems();
     }
 
@@ -26,8 +31,10 @@ public class Auto_text_paper : MonoBehaviour
             {
                 if (content.Text_exist)
                 {
+                    print("0");
                     if (Text_Array.diary_step[0] == 0 && content.Name_number < 100) // diary_step=0 is <100
                     {
+                        print("1");
                         GameObject item = Instantiate(itemPrefab, itemPanel.transform);
                         item.name = content.Name_number.ToString();
                         item.GetComponentInChildren<Text>().text = content.Name_Text;
@@ -123,21 +130,35 @@ public class Auto_text_paper : MonoBehaviour
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
                         }
                     }
+
+                    diary_buff_check[0][0] += content.HP;
+                    diary_buff_check[0][1] += content.Att_pow;
+                    diary_buff_check[0][2] += content.Att_speed;
+                    diary_buff_check[0][3] += content.Walk_speed;
                 }
             }
         }
 
         if (Text_Array.diary_step[0] == 2 && item > 1000 && item < 1300)
         {
-            Text_Array.diary_step[0] = -1;
-            ExtraPage2.SetActive(true);
-            del_any_text();
+            extraPage2_open_check();
+
         }
         else if (Text_Array.diary_step[0] == 3 && item > 1300 && item < 1400)
         {
-            Text_Array.diary_step[0] = -1;
-            ExtraPage2.SetActive(true);
-            del_any_text();
+            extraPage2_open_check();
+        }
+    }
+
+    private void extraPage2_open_check()
+    {
+        ExtraPage2_text.text = "";
+        Text_Array.diary_step[0] = -1;
+        ExtraPage2.SetActive(true);
+        del_any_text();
+        for (int x = 0; x < 4; x++)
+        {
+            ExtraPage2_text.text += diary_buff_check[0][x].ToString()+ "\r\n";
         }
     }
 
