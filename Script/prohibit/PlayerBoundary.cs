@@ -9,16 +9,17 @@ public class PlayerBoundary : MonoBehaviour
     public Vector3 maxBoundary= new Vector3(30,3f,30); // Define the maximum boundary
     void Start()
     {
-        Vector3 position = transform.position;
-        position.x = Mathf.Clamp(position.x, minBoundary.x, maxBoundary.x);
-        position.y = Mathf.Clamp(position.y, minBoundary.y, maxBoundary.y);
-        position.z = Mathf.Clamp(position.z, minBoundary.z, maxBoundary.z);
-        transform.position = position;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 position = transform.position;
+        position.x = Mathf.Clamp(position.x, minBoundary.x, maxBoundary.x);
+        position.y = Mathf.Clamp(position.y, minBoundary.y, maxBoundary.y);
+        position.z = Mathf.Clamp(position.z, minBoundary.z, maxBoundary.z);
+        transform.position = position;
         
     }
 }
