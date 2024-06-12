@@ -38,7 +38,7 @@ public class Puzzle : MonoBehaviour
 
             Vector3 targetPosition2 = new Vector3(-250, Extra1.transform.localPosition.y, Extra1.transform.localPosition.z);
             Extra1.transform.localPosition = targetPosition2;
-            Vector3 targetPosition3 = new Vector3(-250, Extra2.transform.localPosition.y, Extra2.transform.localPosition.z);
+            Vector3 targetPosition3 = new Vector3(Extra2.transform.localPosition.x - 250, Extra2.transform.localPosition.y, Extra2.transform.localPosition.z);
             Extra2.transform.localPosition = targetPosition3;
             OC = false;
         }

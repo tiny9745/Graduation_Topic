@@ -8,6 +8,9 @@ public class Auto_text_paper : MonoBehaviour
 {
     public GameObject itemPrefab; // Preset child elements
     public GameObject itemPanel;
+    public GameObject ExtraPage2;
+    public Text ExtraPage2_text;
+    int i = 0;
 
     void Start()
     {
@@ -127,11 +130,13 @@ public class Auto_text_paper : MonoBehaviour
         if (Text_Array.diary_step[0] == 2 && item > 1000 && item < 1300)
         {
             Text_Array.diary_step[0] = -1;
+            ExtraPage2.SetActive(true);
             del_any_text();
         }
         else if (Text_Array.diary_step[0] == 3 && item > 1300 && item < 1400)
         {
             Text_Array.diary_step[0] = -1;
+            ExtraPage2.SetActive(true);
             del_any_text();
         }
     }
@@ -150,6 +155,17 @@ public class Auto_text_paper : MonoBehaviour
             Transform child = children.Dequeue();
             Destroy(child.gameObject);
         }
+    }
+
+    public void ExtraPage2_Yes()
+    {
+        //i++;
+    }
+
+    public void ExtraPage2_No()
+    {
+        ExtraPage2.SetActive(false);
+        Text_Array.diary_step[i] = 0;
     }
 }
 
