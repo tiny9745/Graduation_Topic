@@ -40,6 +40,12 @@ public class Drag_End : MonoBehaviour, IDropHandler
         }
     }
 
+    public void clear_text()
+    {
+        leftText.text = "";
+        rightText.text = "";
+    }
+
     public void SetText(string fullText)
     {
         leftText.text = "";

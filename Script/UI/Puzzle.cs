@@ -60,6 +60,7 @@ public class Puzzle : MonoBehaviour
 
     public void comfirm(){
         Extra2.SetActive(false);
+        MoveDiarytoright();
         CheckPage();
     }
     public void cancel(){

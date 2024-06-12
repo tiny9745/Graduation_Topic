@@ -10,15 +10,30 @@ public class Auto_text_paper : MonoBehaviour
     public GameObject ExtraPage2;
     public Text ExtraPage2_text;
     public float[][] diary_buff_check;
-    int i = 0;
+    string[] diary_buff_name;
+    public Text[] diary_name;
+    public Text ALLB;
+    int temp = 0;
 
     void Start()
     {
         diary_buff_check = new float[5][];
-        diary_buff_check[0][0] = 0;
-        diary_buff_check[0][1] = 0;
-        diary_buff_check[0][2] = 0;
-        diary_buff_check[0][3] = 0;
+        for (int i = 0; i < diary_buff_check.Length; i++)
+        {
+            diary_buff_check[i] = new float[4];
+        }
+        for(int i = 0;i < 5; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                diary_buff_check[i][j] = 0;
+            }
+        }
+        diary_buff_name = new string[4];
+        for (int i = 0; i < diary_buff_name.Length; i++)
+        {
+            diary_buff_name[i] = "";
+        }
         GenerateItems();
     }
 
@@ -31,10 +46,8 @@ public class Auto_text_paper : MonoBehaviour
             {
                 if (content.Text_exist)
                 {
-                    print("0");
                     if (Text_Array.diary_step[0] == 0 && content.Name_number < 100) // diary_step=0 is <100
                     {
-                        print("1");
                         GameObject item = Instantiate(itemPrefab, itemPanel.transform);
                         item.name = content.Name_number.ToString();
                         item.GetComponentInChildren<Text>().text = content.Name_Text;
@@ -69,7 +82,6 @@ public class Auto_text_paper : MonoBehaviour
     public void diary_text_chose(int item)
     {
         del_any_text();
-
         if (Text_Array.Text_contents != null)
         {
             foreach (Text_content content in Text_Array.Text_contents)
@@ -130,11 +142,13 @@ public class Auto_text_paper : MonoBehaviour
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
                         }
                     }
-
-                    diary_buff_check[0][0] += content.HP;
-                    diary_buff_check[0][1] += content.Att_pow;
-                    diary_buff_check[0][2] += content.Att_speed;
-                    diary_buff_check[0][3] += content.Walk_speed;
+                    if (item == content.Name_number)
+                    {
+                        diary_buff_check[0][0] += content.HP;
+                        diary_buff_check[0][1] += content.Att_pow;
+                        diary_buff_check[0][2] += content.Att_speed;
+                        diary_buff_check[0][3] += content.Walk_speed;
+                    }
                 }
             }
         }
@@ -156,10 +170,14 @@ public class Auto_text_paper : MonoBehaviour
         Text_Array.diary_step[0] = -1;
         ExtraPage2.SetActive(true);
         del_any_text();
-        for (int x = 0; x < 4; x++)
-        {
-            ExtraPage2_text.text += diary_buff_check[0][x].ToString()+ "\r\n";
-        }
+        ExtraPage2_text.text += "HP:+";
+        ExtraPage2_text.text += diary_buff_check[0][0].ToString()+ "\r\n";
+        ExtraPage2_text.text += "ATK_Pow:+";
+        ExtraPage2_text.text += diary_buff_check[0][1].ToString() + "\r\n";
+        ExtraPage2_text.text += "ATK_Speed:+";
+        ExtraPage2_text.text += diary_buff_check[0][2].ToString() + "\r\n";
+        ExtraPage2_text.text += "Walk_Speed:+";
+        ExtraPage2_text.text += diary_buff_check[0][3].ToString() + "\r\n";
     }
 
     private void del_any_text()
@@ -180,13 +198,22 @@ public class Auto_text_paper : MonoBehaviour
 
     public void ExtraPage2_Yes()
     {
-        //i++;
+        diary_buff_name[0] = ExtraPage2_text.text;
+    }
+    public void click_D1()
+    {
+        ALLB.text = diary_buff_name[0];
+    }
+    public void click_D2()
+    {
+        ALLB.text = diary_buff_name[1];
     }
 
     public void ExtraPage2_No()
     {
         ExtraPage2.SetActive(false);
-        Text_Array.diary_step[i] = 0;
+        Text_Array.diary_step[temp] = 0;
+        GenerateItems();
     }
 }
 
