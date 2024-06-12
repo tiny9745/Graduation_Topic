@@ -10,6 +10,7 @@ public class Puzzle : MonoBehaviour
     public Image Page_now;
     public Sprite Page_change; public Sprite Page_check;
     public GameObject Diary_text_Left;public GameObject Diary_text_Right;
+    public Text Diary_Left_Text;
     //public GameObject Yes;
     public static bool OC = true;
     void Start()
@@ -25,6 +26,7 @@ public class Puzzle : MonoBehaviour
     }
     public void ChangePage(){
         Page_now.sprite = Page_change;
+        Diary_Left_Text.text = "我今天讀了一本書，";
     }
     public void CheckPage(){
         Page_now.sprite = Page_check;

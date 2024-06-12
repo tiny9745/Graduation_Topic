@@ -208,7 +208,7 @@ public class Auto_text_paper : MonoBehaviour
     public void ExtraPage2_Yes()
     {
         diary_buff_name[0] = ExtraPage2_text.text;
-        diary_name[0].text = "【小說篇】<第一篇>";
+        diary_name[0].text = "新讀的小說";
     }
     public void click_D1()
     {

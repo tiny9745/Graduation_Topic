@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using static UnityEditor.Progress;
+using UnityEngine.UI;
 
 public class Shadow : MonoBehaviour
 {
@@ -38,8 +40,8 @@ public class Shadow : MonoBehaviour
         quad.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         quad.GetComponent<Renderer>().receiveShadows = true;
         // 确保 Quad 的中心点对齐
-        quad.transform.parent = transform;  // 设置父物体以便于对齐
-        quad.transform.localPosition = Vector3.zero;  // 重置本地位置以对齐中心
+        quad.transform.parent = transform; 
+        quad.transform.localPosition = Vector3.zero;
         // 确保光源存在并启用阴影
         if (sceneLight != null)
         {
@@ -48,6 +50,14 @@ public class Shadow : MonoBehaviour
         else
         {
             Debug.LogWarning("Scene light not assigned. Please assign a light source in the inspector.");
+        }
+        RectTransform rectTransform = quad.GetComponent<RectTransform>();
+        Transform quadTransform = quad.GetComponent<Transform>();
+        if (quadTransform != null)
+        {
+            Vector3 newPosition = quadTransform.localPosition;
+            newPosition.z = 0.05f; // Set the Z position
+            quadTransform.localPosition = newPosition;
         }
     }
 
