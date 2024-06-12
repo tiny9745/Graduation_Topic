@@ -9,10 +9,11 @@ public class Text_Array : MonoBehaviour
     void Awake()
     {
         //diary_step
-        diary_step = new short[3];
+        diary_step = new short[4];
         diary_step[0] = 0;
         diary_step[1] = 0;
         diary_step[2] = 0;
+        diary_step[3] = 0;
 
         //diary_text
         Text_contents.Add(new Text_content(11, "《醜小鴨與天鵝湖 》", "none", 25, 5, 0, 0, true, "我感覺自己就像主角醜小鴨，但爸媽卻希望我像天鵝一樣功成名就。\r\n明明在水底下，醜小鴨與天鵝都在努力用腳打水，好讓自己保持優雅。可是他們只看得見我表面上醜陋不堪，沒人會知道我有多麼努力才能活著。\r\n我的結局也能如醜小鴨一樣來個"));

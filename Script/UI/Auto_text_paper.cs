@@ -46,29 +46,38 @@ public class Auto_text_paper : MonoBehaviour
             {
                 if (content.Text_exist)
                 {
-                    if (Text_Array.diary_step[0] == 0 && content.Name_number < 100) // diary_step=0 is <100
+                    GameObject item = null;
+                    if (Text_Array.diary_step[0] == 0 && content.Name_number < 100)
                     {
-                        GameObject item = Instantiate(itemPrefab, itemPanel.transform);
-                        item.name = content.Name_number.ToString();
-                        item.GetComponentInChildren<Text>().text = content.Name_Text;
+                        item = Instantiate(itemPrefab, itemPanel.transform);
                     }
-                    else if (Text_Array.diary_step[0] == 1 && content.Name_number > 1000 && content.Name_number < 10000) // diary_step=1 is >1000 & <10000
+                    else if (Text_Array.diary_step[0] == 1 && content.Name_number > 1000 && content.Name_number < 10000)
                     {
-                        GameObject item = Instantiate(itemPrefab, itemPanel.transform);
-                        item.name = content.Name_number.ToString();
-                        item.GetComponentInChildren<Text>().text = content.Name_Text;
+                        item = Instantiate(itemPrefab, itemPanel.transform);
                     }
-                    else if (Text_Array.diary_step[0] == 2 && content.Name_number > 10000) // diary_step=2 is >10000
+                    else if (Text_Array.diary_step[0] == 2 && content.Name_number > 10000)
                     {
-                        GameObject item = Instantiate(itemPrefab, itemPanel.transform);
-                        item.name = content.Name_number.ToString();
-                        item.GetComponentInChildren<Text>().text = content.Name_Text;
+                        item = Instantiate(itemPrefab, itemPanel.transform);
                     }
-                    else if (Text_Array.diary_step[0] == -1) // diary_step=2 is >10000
+                    else if (Text_Array.diary_step[0] == -1)
                     {
-                        GameObject item = Instantiate(itemPrefab, itemPanel.transform);
+                        item = Instantiate(itemPrefab, itemPanel.transform);
+                    }
+
+                    if (item != null)
+                    {
                         item.name = content.Name_number.ToString();
                         item.GetComponentInChildren<Text>().text = content.Name_Text;
+
+                        // Set sorting order of the Canvas component
+                        Canvas canvas = item.GetComponent<Canvas>();
+                        if (canvas == null)
+                        {
+                            canvas = item.AddComponent<Canvas>();
+                            item.AddComponent<GraphicRaycaster>();
+                        }
+                        canvas.overrideSorting = true;
+                        canvas.sortingOrder = 2; // Set the sorting order to 2
                     }
                 }
             }
@@ -158,7 +167,7 @@ public class Auto_text_paper : MonoBehaviour
             extraPage2_open_check();
 
         }
-        else if (Text_Array.diary_step[0] == 3 && item > 1300 && item < 1400)
+        else if (Text_Array.diary_step[0] == 3 && item > 13000 && item < 14000)
         {
             extraPage2_open_check();
         }
@@ -199,6 +208,7 @@ public class Auto_text_paper : MonoBehaviour
     public void ExtraPage2_Yes()
     {
         diary_buff_name[0] = ExtraPage2_text.text;
+        diary_name[0].text = "【小說篇】<第一篇>";
     }
     public void click_D1()
     {
