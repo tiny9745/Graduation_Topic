@@ -13,6 +13,8 @@ public class Auto_text_paper : MonoBehaviour
     string[] diary_buff_name;
     public Text[] diary_name;
     public Text ALLB;
+    public Drag_End drag_end;
+    public Change_mood change_mood;
     int temp = 0;
 
     void Start()
@@ -157,19 +159,19 @@ public class Auto_text_paper : MonoBehaviour
                         diary_buff_check[0][1] += content.Att_pow;
                         diary_buff_check[0][2] += content.Att_speed;
                         diary_buff_check[0][3] += content.Walk_speed;
+                        if (Text_Array.diary_step[0] == 2 && item > 1000 && item < 1300)
+                        {
+                            change_mood.Change(content.Feeling);
+                            extraPage2_open_check();
+                        }
+                        else if (Text_Array.diary_step[0] == 3 && item > 13000 && item < 14000)
+                        {
+                            change_mood.Change(content.Feeling);
+                            extraPage2_open_check();
+                        }
                     }
                 }
             }
-        }
-
-        if (Text_Array.diary_step[0] == 2 && item > 1000 && item < 1300)
-        {
-            extraPage2_open_check();
-
-        }
-        else if (Text_Array.diary_step[0] == 3 && item > 13000 && item < 14000)
-        {
-            extraPage2_open_check();
         }
     }
 
@@ -208,7 +210,10 @@ public class Auto_text_paper : MonoBehaviour
     public void ExtraPage2_Yes()
     {
         diary_buff_name[0] = ExtraPage2_text.text;
-        diary_name[0].text = "新讀的小說";
+        if (diary_name[0].text == "")
+        {
+            diary_name[0].text = "新讀的小說";
+        }
     }
     public void click_D1()
     {

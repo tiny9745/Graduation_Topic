@@ -388,7 +388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ef211b094733bac4c9732d01e1bbcd9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15ac64af33cf16f4cb5600b0b52246b0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -606,19 +606,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 68111852}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1135363991}
-        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: MoveDiarytoleft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &71134261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,6 +1218,7 @@ MonoBehaviour:
   Diary_Auto: {fileID: 1887275796}
   leftText: {fileID: 161857126}
   rightText: {fileID: 605811393}
+  all_text: 
 --- !u!1 &179370772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,7 +1980,7 @@ RectTransform:
   m_Father: {fileID: 1146789633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.99999624}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2648,7 +2637,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 264383307}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999624
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3555,6 +3544,7 @@ MonoBehaviour:
   Diary_Auto: {fileID: 1887275796}
   leftText: {fileID: 161857126}
   rightText: {fileID: 605811393}
+  all_text: 
 --- !u!1 &632191487
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,7 +4782,7 @@ MonoBehaviour:
   sad: {fileID: 21300000, guid: 39d6564c2914abf40bc49da2bee1203a, type: 3}
   happy: {fileID: 21300000, guid: 15fae3814b89b5241b28726ac31ab4b8, type: 3}
   angry: {fileID: 21300000, guid: 821e2ee1d2337024691a93bf43c10f63, type: 3}
-  normal: {fileID: 21300000, guid: 404ff462394f32841bb801c00a65fbb5, type: 3}
+  normal: {fileID: 21300000, guid: 310e0a8638bbacc4bb3e103603807494, type: 3}
 --- !u!1 &996713756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5696,6 +5686,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1135363991}
+        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
+        m_MethodName: MoveDiarytoleft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1135363989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5755,6 +5757,7 @@ MonoBehaviour:
   Diary_text_Left: {fileID: 161857124}
   Diary_text_Right: {fileID: 605811391}
   Diary_Left_Text: {fileID: 161857126}
+  drag_end: {fileID: 161857128}
 --- !u!1 &1136562458
 GameObject:
   m_ObjectHideFlags: 0
@@ -7578,7 +7581,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1742206629
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8694,7 +8697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000025001958}
+  m_AnchoredPosition: {x: 0, y: -0.0000021085173}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1887275790
@@ -8811,6 +8814,8 @@ MonoBehaviour:
   - {fileID: 1742206628}
   - {fileID: 854292498}
   ALLB: {fileID: 67612161}
+  drag_end: {fileID: 0}
+  change_mood: {fileID: 990590620}
 --- !u!114 &1887275797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9721,6 +9726,7 @@ GameObject:
   - component: {fileID: 4426482259938332005}
   - component: {fileID: 2324080431796827303}
   - component: {fileID: 8676149383117319065}
+  - component: {fileID: 8676149383117319066}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9774,11 +9780,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -8.881784e-16
+      value: 8.881784e-16
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 4.440892e-16
+      value: -4.440892e-16
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9802,11 +9808,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000000832853
+      value: 0.000000008328531
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021564985
+      value: -0.0000000021564988
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9871,6 +9877,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15b243fa88382341bf519d3a193f26d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8676149383117319066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821772963036599349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6332e9520f580b84daae5addf9c7f378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minBoundary: {x: -30, y: 2.5, z: -30}
+  maxBoundary: {x: 30, y: 3, z: 30}
 --- !u!114 &8830870452476947111
 MonoBehaviour:
   m_ObjectHideFlags: 0

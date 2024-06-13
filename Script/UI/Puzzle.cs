@@ -11,6 +11,8 @@ public class Puzzle : MonoBehaviour
     public Sprite Page_change; public Sprite Page_check;
     public GameObject Diary_text_Left;public GameObject Diary_text_Right;
     public Text Diary_Left_Text;
+
+    public Drag_End drag_end;
     //public GameObject Yes;
     public static bool OC = true;
     void Start()
@@ -26,7 +28,10 @@ public class Puzzle : MonoBehaviour
     }
     public void ChangePage(){
         Page_now.sprite = Page_change;
-        Diary_Left_Text.text = "我今天讀了一本書，";
+        if (drag_end.all_text == "")
+        {
+            Diary_Left_Text.text = "我今天讀了一本書，";
+        }
     }
     public void CheckPage(){
         Page_now.sprite = Page_check;
@@ -54,7 +59,7 @@ public class Puzzle : MonoBehaviour
 
             Vector3 targetPosition2 = new Vector3(0, Extra1.transform.localPosition.y, Extra1.transform.localPosition.z);
             Extra1.transform.localPosition = targetPosition2;
-            Vector3 targetPosition3 = new Vector3(0, Extra2.transform.localPosition.y, Extra2.transform.localPosition.z);
+            Vector3 targetPosition3 = new Vector3(1408, Extra2.transform.localPosition.y, Extra2.transform.localPosition.z);
             Extra2.transform.localPosition = targetPosition3;
             OC = true;
         }

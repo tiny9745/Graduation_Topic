@@ -9,6 +9,7 @@ public class Drag_End : MonoBehaviour, IDropHandler
     public Auto_text_paper Diary_Auto;
     public Text leftText;
     public Text rightText;
+    public string all_text;//陣列
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -29,6 +30,7 @@ public class Drag_End : MonoBehaviour, IDropHandler
                         if (itemNameInt == content.Name_number)
                         {
                             fullText += content.Text_text;
+                            all_text = fullText;
                         }
                     }
                 }
