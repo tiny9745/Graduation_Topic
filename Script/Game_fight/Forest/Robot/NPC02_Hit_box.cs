@@ -40,5 +40,4 @@ public class NPC02_Hit_box : MonoBehaviour
             print("Player_HP=" + static_parameters.MC_HP);
         }      
     }
-    
 }

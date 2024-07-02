@@ -22,6 +22,7 @@ public class NPC02_control : MonoBehaviour
     bool dead_open = true;
     bool MC_to_Att = true;
     public NPC_HP_02 nPC_hP;
+    int NPC_angle = 0;
 
     void Start()
     {
@@ -92,26 +93,39 @@ public class NPC02_control : MonoBehaviour
                 npcNavi.destination = transform.position;
             }
 
-            coordinate_X = TargetObj.transform.position.x - transform.position.x;
-            coordinate_Z = TargetObj.transform.position.z - transform.position.z;
+            Vector3 direction = TargetObj.transform.position - transform.position;
+            Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
+
+            // 計算正前方向量（在XZ平面上）
+            Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
+
+            // 計算兩個向量之間的夾角
+            NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
+
+            // 輸出相對角度
+            if (NPC_angle < 0)
+            {
+                NPC_angle += 360;
+            }
+            Debug.Log("相對角度: " + NPC_angle);
         }
     }
 
     private void PlayStandAnimation()
     {
-        if (coordinate_X >= 0 && coordinate_Z > 0)
+        if (NPC_angle >= 0 && NPC_angle < 90)
         {
             animator.Play("Robot_stand_RB");
         }
-        else if (coordinate_X < 0 && coordinate_Z >= 0)
+        else if (NPC_angle >= 270 && NPC_angle < 360)
         {
             animator.Play("Robot_stand_LB");
         }
-        else if (coordinate_X <= 0 && coordinate_Z < 0)
+        else if (NPC_angle >= 180 && NPC_angle < 270)
         {
             animator.Play("Robot_stand_LF");
         }
-        else if (coordinate_X > 0 && coordinate_Z <= 0)
+        else if (NPC_angle >= 90 && NPC_angle < 180)
         {
             animator.Play("Robot_stand_RF");
         }
@@ -119,19 +133,19 @@ public class NPC02_control : MonoBehaviour
 
     private void PlayWalkAnimation()
     {
-        if (coordinate_X >= 0 && coordinate_Z > 0)
+        if (NPC_angle >= 0 && NPC_angle < 90)
         {
             animator.Play("Robot_walk_RB");
         }
-        else if (coordinate_X < 0 && coordinate_Z >= 0)
+        else if (NPC_angle >= 270 && NPC_angle < 360)
         {
             animator.Play("Robot_walk_LB");
         }
-        else if (coordinate_X <= 0 && coordinate_Z < 0)
+        else if (NPC_angle >= 180 && NPC_angle < 270)
         {
             animator.Play("Robot_walk_LF");
         }
-        else if (coordinate_X > 0 && coordinate_Z <= 0)
+        else if (NPC_angle >= 90 && NPC_angle < 180)
         {
             animator.Play("Robot_walk_RF");
         }
@@ -139,19 +153,19 @@ public class NPC02_control : MonoBehaviour
 
     private void PlayAttackAnimation()
     {
-        if (coordinate_X >= 0 && coordinate_Z > 0)
+        if (NPC_angle >= 0 && NPC_angle < 90)
         {
             animator.Play("Robot_Att_RB");
         }
-        else if (coordinate_X < 0 && coordinate_Z >= 0)
+        else if (NPC_angle >= 270 && NPC_angle < 360)
         {
             animator.Play("Robot_Att_LB");
         }
-        else if (coordinate_X <= 0 && coordinate_Z < 0)
+        else if (NPC_angle >= 180 && NPC_angle < 270)
         {
             animator.Play("Robot_Att_LF");
         }
-        else if (coordinate_X > 0 && coordinate_Z <= 0)
+        else if (NPC_angle >= 90 && NPC_angle < 180)
         {
             animator.Play("Robot_Att_RF");
         }

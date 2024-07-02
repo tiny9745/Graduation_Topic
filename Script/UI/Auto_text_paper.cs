@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Auto_text_paper : MonoBehaviour
 {
@@ -70,16 +71,7 @@ public class Auto_text_paper : MonoBehaviour
                     {
                         item.name = content.Name_number.ToString();
                         item.GetComponentInChildren<Text>().text = content.Name_Text;
-
-                        // Set sorting order of the Canvas component
-                        Canvas canvas = item.GetComponent<Canvas>();
-                        if (canvas == null)
-                        {
-                            canvas = item.AddComponent<Canvas>();
-                            item.AddComponent<GraphicRaycaster>();
-                        }
-                        canvas.overrideSorting = true;
-                        canvas.sortingOrder = 2; // Set the sorting order to 2
+                        SetCanvasSortingOrder(item);
                     }
                 }
             }
@@ -106,6 +98,13 @@ public class Auto_text_paper : MonoBehaviour
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            if (item != null)
+                            {
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+
+                                SetCanvasSortingOrder(item2);
+                            }
                         }
                     }
                     else if (item == 12)
@@ -115,6 +114,11 @@ public class Auto_text_paper : MonoBehaviour
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            item2.name = content.Name_number.ToString();
+                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            item2.name = content.Name_number.ToString();
+                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            SetCanvasSortingOrder(item2);
                         }
                     }
                     else if (item == 13)
@@ -124,6 +128,9 @@ public class Auto_text_paper : MonoBehaviour
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            item2.name = content.Name_number.ToString();
+                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            SetCanvasSortingOrder(item2);
                         }
                     }
                     else if (item == 1310)
@@ -133,6 +140,9 @@ public class Auto_text_paper : MonoBehaviour
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            item2.name = content.Name_number.ToString();
+                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            SetCanvasSortingOrder(item2);
                         }
                     }
                     else if (item == 1320)
@@ -142,6 +152,9 @@ public class Auto_text_paper : MonoBehaviour
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            item2.name = content.Name_number.ToString();
+                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            SetCanvasSortingOrder(item2);
                         }
                     }
                     else if (item == 1330)
@@ -151,8 +164,13 @@ public class Auto_text_paper : MonoBehaviour
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                            item2.name = content.Name_number.ToString();
+                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
+
+                            SetCanvasSortingOrder(item2);
                         }
                     }
+
                     if (item == content.Name_number)
                     {
                         diary_buff_check[0][0] += content.HP;
@@ -173,6 +191,18 @@ public class Auto_text_paper : MonoBehaviour
                 }
             }
         }
+    }
+   
+    void SetCanvasSortingOrder(GameObject item)// Set sorting order of the Canvas component
+    {
+        Canvas canvas = item.GetComponent<Canvas>();
+        if (canvas == null)
+        {
+            canvas = item.AddComponent<Canvas>();
+            item.AddComponent<GraphicRaycaster>();
+        }
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = 2; // Set the sorting order to 2
     }
 
     private void extraPage2_open_check()
