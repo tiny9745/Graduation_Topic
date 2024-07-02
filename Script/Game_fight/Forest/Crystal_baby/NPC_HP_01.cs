@@ -30,6 +30,7 @@ public class NPC_HP_01 : MonoBehaviour
     {
         minus = (int)(damage*damage-(damage+NPC_DEF));
         if (minus < 5) minus = 5;
+        print("HP:" + control.NPC_HP + ",minus:" + minus);
         control.NPC_HP -= minus;
         control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, MaxHealth);
         UpdateHealthBar();

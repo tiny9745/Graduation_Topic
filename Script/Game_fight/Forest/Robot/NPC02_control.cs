@@ -107,7 +107,6 @@ public class NPC02_control : MonoBehaviour
             {
                 NPC_angle += 360;
             }
-            Debug.Log("相對角度: " + NPC_angle);
         }
     }
 
