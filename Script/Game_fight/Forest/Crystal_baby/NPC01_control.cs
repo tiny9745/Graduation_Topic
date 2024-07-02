@@ -10,7 +10,7 @@ public class NPC01_control : MonoBehaviour
     NavMeshAgent npcNavi;public TakeHit NPChit;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 18; public int NPC01_ATK = 8;
+    public int DetectDistance = 18; public int NPC01_ATK = 8; public int NPC01_DEF = 5;
     public float NPC_HP_Max = 100; public float npcSpeed = 3f;
     public float NPC_HP;
     private Quaternion initialRotation;
@@ -200,8 +200,7 @@ public class NPC01_control : MonoBehaviour
         }
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
-            NPC_HP -= static_parameters.MC_ATK;
-            nPC_hP.TakeDamage(static_parameters.MC_ATK);
+            nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
             MC_to_Att = false;
             Invoke("wait_MC_att", 0.2f);
         }
@@ -230,8 +229,7 @@ public class NPC01_control : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-    void dead()
-    {
+    void dead(){
         if (dead_open)
         {
             Vector3 originalPosition = transform.position;

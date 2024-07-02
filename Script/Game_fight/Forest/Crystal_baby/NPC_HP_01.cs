@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class NPC_HP_01 : MonoBehaviour
 {
     public SpriteRenderer healthBarFill;
-    public float MaxHealth;
+    public float MaxHealth;int minus;
     private Vector3 initialScale;
     public NPC01_control control;
 
@@ -26,9 +26,11 @@ public class NPC_HP_01 : MonoBehaviour
         healthBarFill.transform.localScale = newScale;
     }
     // Ensure health is between 0 and maximum health
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage,int NPC_DEF)
     {
-        control.NPC_HP -= damage;
+        minus = (int)(damage*damage-(damage+NPC_DEF));
+        if (minus < 5) minus = 5;
+        control.NPC_HP -= minus;
         control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, MaxHealth);
         UpdateHealthBar();
     }
