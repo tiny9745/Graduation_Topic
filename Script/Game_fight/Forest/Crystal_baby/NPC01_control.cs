@@ -22,6 +22,7 @@ public class NPC01_control : MonoBehaviour
     public GameObject hitbox_Crystal_baby;
     public NPC_HP_01 nPC_hP;
     bool MC_to_Att = true;
+    private bool isFacingRight = true;
 
     void Start() {
         static_parameters.Change_enemy++;
@@ -52,11 +53,11 @@ public class NPC01_control : MonoBehaviour
             }
             if (coordinate_X < 0 && coordinate_Z >= 0)
             {
-                animator.Play("Crystal_baby_Big_bomb_LB");
+                animator.Play("Crystal_baby_Big_bomb_RB");
             }
             if (coordinate_X <= 0 && coordinate_Z < 0)
             {
-                animator.Play("Crystal_baby_Big_bomb_LF");
+                animator.Play("Crystal_baby_Big_bomb_RF");
             }
             if (coordinate_X > 0 && coordinate_Z <= 0)
             {
@@ -75,11 +76,11 @@ public class NPC01_control : MonoBehaviour
                 }
                 if (coordinate_X < 0 && coordinate_Z >= 0)
                 {
-                    animator.Play("Crystal_baby_Big_stand_LB");
+                    animator.Play("Crystal_baby_Big_stand_RB");
                 }
                 if (coordinate_X <= 0 && coordinate_Z < 0)
                 {
-                    animator.Play("Crystal_baby_Big_stand_LF");
+                    animator.Play("Crystal_baby_Big_stand_RF");
                 }
                 if (coordinate_X > 0 && coordinate_Z <= 0)
                 {
@@ -90,18 +91,34 @@ public class NPC01_control : MonoBehaviour
             {
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
+                    if (!isFacingRight)
+                    {
+                        Flip();
+                    }
                     animator.Play("Crystal_baby_Big_walk_RB");
                 }
                 if (coordinate_X < 0 && coordinate_Z >= 0)
                 {
-                    animator.Play("Crystal_baby_Big_walk_LB");
+                    if (isFacingRight)
+                    {
+                        Flip();
+                    }
+                    animator.Play("Crystal_baby_Big_walk_RB");
                 }
                 if (coordinate_X <= 0 && coordinate_Z < 0)
                 {
-                    animator.Play("Crystal_baby_Big_walk_LF");
+                    if (isFacingRight)
+                    {
+                        Flip();
+                    }
+                    animator.Play("Crystal_baby_Big_walk_RF");
                 }
                 if (coordinate_X > 0 && coordinate_Z <= 0)
                 {
+                    if (!isFacingRight)
+                    {
+                        Flip();
+                    }
                     animator.Play("Crystal_baby_Big_walk_RF");
                 }
             }
@@ -111,18 +128,34 @@ public class NPC01_control : MonoBehaviour
             npcNavi.speed = npcSpeed * 5;
             if (coordinate_X >= 0 && coordinate_Z > 0)
             {
+                if (!isFacingRight)
+                {
+                    Flip();
+                }
                 animator.Play("Crystal_baby_Big_Att_RB");
             }
             if (coordinate_X < 0 && coordinate_Z >= 0)
             {
-                animator.Play("Crystal_baby_Big_Att_LB");
+                if (isFacingRight)
+                {
+                    Flip();
+                }
+                animator.Play("Crystal_baby_Big_Att_RB");
             }
             if (coordinate_X <= 0 && coordinate_Z < 0)
             {
-                animator.Play("Crystal_baby_Big_Att_LF");
+                if (isFacingRight)
+                {
+                    Flip();
+                }
+                animator.Play("Crystal_baby_Big_Att_RF");
             }
             if (coordinate_X > 0 && coordinate_Z <= 0)
             {
+                if (!isFacingRight)
+                {
+                    Flip();
+                }
                 animator.Play("Crystal_baby_Big_Att_RF");
             }
         }
@@ -190,7 +223,13 @@ public class NPC01_control : MonoBehaviour
     {
         hit_Ani = false;
     }
-
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
     void dead()
     {
         if (dead_open)

@@ -23,6 +23,7 @@ public class NPC02_control : MonoBehaviour
     bool MC_to_Att = true;
     public NPC_HP_02 nPC_hP;
     int NPC_angle = 0;
+    private bool isFacingRight = true;
 
     void Start()
     {
@@ -115,18 +116,34 @@ public class NPC02_control : MonoBehaviour
     {
         if (NPC_angle >= 0 && NPC_angle < 90)
         {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
             animator.Play("Robot_stand_RB");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
-            animator.Play("Robot_stand_LB");
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Robot_stand_RB");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
-            animator.Play("Robot_stand_LF");
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Robot_stand_RF");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
             animator.Play("Robot_stand_RF");
         }
     }
@@ -135,18 +152,34 @@ public class NPC02_control : MonoBehaviour
     {
         if (NPC_angle >= 0 && NPC_angle < 90)
         {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
             animator.Play("Robot_walk_RB");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
-            animator.Play("Robot_walk_LB");
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Robot_walk_RB");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
-            animator.Play("Robot_walk_LF");
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Robot_walk_RF");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
             animator.Play("Robot_walk_RF");
         }
     }
@@ -155,18 +188,34 @@ public class NPC02_control : MonoBehaviour
     {
         if (NPC_angle >= 0 && NPC_angle < 90)
         {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
             animator.Play("Robot_Att_RB");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
-            animator.Play("Robot_Att_LB");
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Robot_Att_RB");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
-            animator.Play("Robot_Att_LF");
+            if(isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Robot_Att_RF");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
             animator.Play("Robot_Att_RF");
         }
     }
@@ -214,7 +263,13 @@ public class NPC02_control : MonoBehaviour
     {
         hit_Ani = false;
     }
-
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
     void dead()
     {
         if (dead_open)

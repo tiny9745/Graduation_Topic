@@ -22,6 +22,7 @@ public class NPC01_1_control : MonoBehaviour
     public GameObject Drop;
     public NPC_HP_01_1 nPC_hP;
     bool MC_to_Att = true;
+    private bool isFacingRight = true;
 
     void Start()
     {
@@ -73,18 +74,34 @@ public class NPC01_1_control : MonoBehaviour
             {
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
+                    if (!isFacingRight)
+                    {
+                        Flip();
+                    }
                     animator.Play("Crystal_baby_small_stand_RB");
                 }
                 if (coordinate_X < 0 && coordinate_Z >= 0)
                 {
-                    animator.Play("Crystal_baby_small_stand_LB");
+                    if (isFacingRight)
+                    {
+                        Flip();
+                    }
+                    animator.Play("Crystal_baby_small_stand_RB");
                 }
                 if (coordinate_X <= 0 && coordinate_Z < 0)
                 {
-                    animator.Play("Crystal_baby_small_stand_LF");
+                    if (isFacingRight)
+                    {
+                        Flip();
+                    }
+                    animator.Play("Crystal_baby_small_stand_RF");
                 }
                 if (coordinate_X > 0 && coordinate_Z <= 0)
                 {
+                    if (!isFacingRight)
+                    {
+                        Flip();
+                    }
                     animator.Play("Crystal_baby_small_stand_RF");
                 }
             }
@@ -92,18 +109,34 @@ public class NPC01_1_control : MonoBehaviour
             {
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
+                    if (!isFacingRight)
+                    {
+                        Flip();
+                    }
                     animator.Play("Crystal_baby_small_walk_RB");
                 }
                 if (coordinate_X < 0 && coordinate_Z >= 0)
                 {
-                    animator.Play("Crystal_baby_small_walk_LB");
+                    if (isFacingRight)
+                    {
+                        Flip();
+                    }
+                    animator.Play("Crystal_baby_small_walk_RB");
                 }
                 if (coordinate_X <= 0 && coordinate_Z < 0)
                 {
-                    animator.Play("Crystal_baby_small_walk_LF");
+                    if (isFacingRight)
+                    {
+                        Flip();
+                    }
+                    animator.Play("Crystal_baby_small_walk_RF");
                 }
                 if (coordinate_X > 0 && coordinate_Z <= 0)
                 {
+                    if (!isFacingRight)
+                    {
+                        Flip();
+                    }
                     animator.Play("Crystal_baby_small_walk_RF");
                 }
             }
@@ -113,18 +146,34 @@ public class NPC01_1_control : MonoBehaviour
             npcNavi.speed = npcSpeed * 6;
             if (coordinate_X >= 0 && coordinate_Z > 0)
             {
+                if (!isFacingRight)
+                {
+                    Flip();
+                }
                 animator.Play("Crystal_baby_small_Att_RB");
             }
             if (coordinate_X < 0 && coordinate_Z >= 0)
             {
-                animator.Play("Crystal_baby_small_Att_LB");
+                if (isFacingRight)
+                {
+                    Flip();
+                }
+                animator.Play("Crystal_baby_small_Att_RB");
             }
             if (coordinate_X <= 0 && coordinate_Z < 0)
             {
-                animator.Play("Crystal_baby_small_Att_LF");
+                if (isFacingRight)
+                {
+                    Flip();
+                }
+                animator.Play("Crystal_baby_small_Att_RF");
             }
             if (coordinate_X > 0 && coordinate_Z <= 0)
             {
+                if (!isFacingRight)
+                {
+                    Flip();
+                }
                 animator.Play("Crystal_baby_small_Att_RF");
             }
         }
@@ -192,6 +241,13 @@ public class NPC01_1_control : MonoBehaviour
     void EndAttANimation()
     {
         hit_Ani = false;
+    }
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
     void dead()
     {
