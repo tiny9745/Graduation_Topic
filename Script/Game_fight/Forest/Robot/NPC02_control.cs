@@ -1,4 +1,5 @@
-﻿using Unity.Burst.CompilerServices;
+﻿using System.Drawing;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,8 +13,6 @@ public class NPC02_control : MonoBehaviour
     public float NPC_HP;
     bool hit_Ani = false;
     bool hit = false;
-    float coordinate_X;
-    float coordinate_Z;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC02;
@@ -118,7 +117,7 @@ public class NPC02_control : MonoBehaviour
         {
             if (!isFacingRight)
             {
-                Flip();
+                //Flip();
             }
             animator.Play("Robot_stand_RB");
         }
@@ -126,7 +125,7 @@ public class NPC02_control : MonoBehaviour
         {
             if (isFacingRight)
             {
-                Flip();
+                //Flip();
             }
             animator.Play("Robot_stand_RB");
         }
@@ -134,7 +133,7 @@ public class NPC02_control : MonoBehaviour
         {
             if (isFacingRight)
             {
-                Flip();
+                //Flip();
             }
             animator.Play("Robot_stand_RF");
         }
@@ -142,7 +141,7 @@ public class NPC02_control : MonoBehaviour
         {
             if (!isFacingRight)
             {
-                Flip();
+                //Flip();
             }
             animator.Play("Robot_stand_RF");
         }
