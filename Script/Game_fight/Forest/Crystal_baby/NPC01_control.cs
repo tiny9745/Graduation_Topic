@@ -23,6 +23,7 @@ public class NPC01_control : MonoBehaviour
     public NPC_HP_01 nPC_hP;
     bool MC_to_Att = true;
     private bool isFacingRight = true;
+    public GameObject Img_npc;
 
     void Start() {
         static_parameters.Change_enemy++;
@@ -225,9 +226,9 @@ public class NPC01_control : MonoBehaviour
     void Flip()
     {
         isFacingRight = !isFacingRight;
-        Vector3 theScale = transform.localScale;
+        Vector3 theScale = Img_npc.transform.localScale;
         theScale.x *= -1;
-        transform.localScale = theScale;
+        Img_npc.transform.localScale = theScale;
     }
     void dead(){
         if (dead_open)
