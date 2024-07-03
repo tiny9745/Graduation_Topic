@@ -8,7 +8,7 @@ public class NPC02_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 20; public int NPC02_ATK = 20;
+    public int DetectDistance = 20; public float NPC02_ATK = 20;public float NPC02_DEF = 10;
     public float NPC_HP_Max = 80; public float npcSpeed = 5f;
     public float NPC_HP;
     bool hit_Ani = false;
@@ -218,7 +218,7 @@ public class NPC02_control : MonoBehaviour
         }
     }
 
-    public int GetNPC02_ATK()
+    public float GetNPC02_ATK()
     {
         return NPC02_ATK;
     }

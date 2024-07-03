@@ -6,7 +6,7 @@ public class NPC01_Hit_box : MonoBehaviour
 {
     public NPC01_control npcCtrl;
     public GameObject Player;
-    int NPC_ATK = 0; int minus;
+    float NPC_ATK = 0; int minus;
     void Start()
     {
         Player = GameObject.Find("Player");

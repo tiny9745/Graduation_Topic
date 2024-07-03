@@ -8,7 +8,7 @@ public class NPC01_1_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 20; public int NPC01_ATK = 4;public int NPC01_DEF = 2;
+    public int DetectDistance = 20; public float NPC01_ATK = 4;public float NPC01_DEF = 2;
     public float NPC_HP_Max = 40; public float npcSpeed = 4f;
     public float NPC_HP;
     private Quaternion initialRotation;
@@ -202,7 +202,7 @@ public class NPC01_1_control : MonoBehaviour
         coordinate_X = TargetObj.transform.position.x - transform.position.x;
         coordinate_Z = TargetObj.transform.position.z - transform.position.z;
     }
-    public int GetNPC01_ATK()
+    public float GetNPC01_ATK()
     {
         return NPC01_ATK;
     }

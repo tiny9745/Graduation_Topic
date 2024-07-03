@@ -6,7 +6,7 @@ public class NPC01_1_Hit_box : MonoBehaviour
 {
     public NPC01_1_control npcCtrl;
     public GameObject Player;
-    int NPC_ATK = 0;int minus;
+    float NPC_ATK = 0;float minus;
     void Start()
     {
         Player = GameObject.Find("Player");
@@ -47,8 +47,8 @@ public class NPC01_1_Hit_box : MonoBehaviour
     }
     void Damage()
     {
-        minus = (int)(NPC_ATK*NPC_ATK-(static_parameters.MC_DEF+NPC_ATK));
-        if (minus < 5) minus = 5;
+        minus = (float)(NPC_ATK*NPC_ATK-(static_parameters.MC_DEF+NPC_ATK));
+        if (minus < 5) minus = 5.0f;
         static_parameters.MC_HP -= minus;
     }
 }
