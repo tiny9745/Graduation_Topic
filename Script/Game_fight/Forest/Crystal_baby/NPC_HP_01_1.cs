@@ -28,7 +28,7 @@ public class NPC_HP_01_1 : MonoBehaviour
     // Ensure health is between 0 and maximum health
     public void TakeDamage(float damage,float NPC_DEF)
     {
-        minus = (float)(damage*damage-(damage+NPC_DEF));
+        minus = (float)(damage*damage/(damage+NPC_DEF));
         if (minus < 5) minus = 5;
         control.NPC_HP -= minus;
         control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, MaxHealth);
