@@ -80,6 +80,7 @@ public class MC_col : MonoBehaviour
         if (scene.name == PrepareSceneName)
         {
             static_parameters.MC_HP = static_parameters.MC_HP_Max;
+            print("MC_HP_Max" + static_parameters.MC_HP_Max + ",MC_HP" + static_parameters.MC_HP);
         }
     }
 
