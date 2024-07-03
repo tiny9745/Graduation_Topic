@@ -23,6 +23,7 @@ public class NPC02_control : MonoBehaviour
     public NPC_HP_02 nPC_hP;
     int NPC_angle = 0;
     private bool isFacingRight = true;
+    public GameObject Img_npc;
 
     void Start()
     {
@@ -116,7 +117,7 @@ public class NPC02_control : MonoBehaviour
         {
             if (!isFacingRight)
             {
-                //Flip();
+                Flip();
             }
             animator.Play("Robot_stand_RB");
         }
@@ -124,7 +125,7 @@ public class NPC02_control : MonoBehaviour
         {
             if (isFacingRight)
             {
-                //Flip();
+                Flip();
             }
             animator.Play("Robot_stand_RB");
         }
@@ -132,7 +133,7 @@ public class NPC02_control : MonoBehaviour
         {
             if (isFacingRight)
             {
-                //Flip();
+                Flip();
             }
             animator.Play("Robot_stand_RF");
         }
@@ -140,7 +141,7 @@ public class NPC02_control : MonoBehaviour
         {
             if (!isFacingRight)
             {
-                //Flip();
+                Flip();
             }
             animator.Play("Robot_stand_RF");
         }
@@ -264,9 +265,9 @@ public class NPC02_control : MonoBehaviour
     void Flip()
     {
         isFacingRight = !isFacingRight;
-        Vector3 theScale = transform.localScale;
+        Vector3 theScale = Img_npc.transform.localScale;
         theScale.x *= -1;
-        transform.localScale = theScale;
+        Img_npc.transform.localScale = theScale;
     }
     void dead()
     {
