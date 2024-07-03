@@ -31,6 +31,7 @@ public class NPC_HP_01 : MonoBehaviour
         minus = (float)(damage*damage/(damage+NPC_DEF));
         if (minus < 5) minus = 5;
         print("HP:" + control.NPC_HP + ",minus:" + minus);
+        print("damage:"+damage);
         print(damage*damage);
         print(damage+NPC_DEF);
         control.NPC_HP -= minus;
