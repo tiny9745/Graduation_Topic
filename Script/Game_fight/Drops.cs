@@ -17,7 +17,7 @@ public class Drops : MonoBehaviour
         {
             if (text_array != null)
             {
-                text_array.SetRandomTextExistToTrue();
+                //text_array.SetRandomTextExistToTrue();
             }
             Destroy(gameObject);
         }
