@@ -9,12 +9,16 @@ public class RandomTileGround : MonoBehaviour
     public int tilesX = 10; // Number of tiles on the X-axis
     public int tilesZ = 10; // Number of tiles on the Z-axis
     public float tileSize = 1.0f; // size of each tile
-
+    public GameObject Player;
+    Vector3 minBoundary; // Define the minimum boundary
+    Vector3 maxBoundary; // Define the maximum boundary
     void Start()
     {
+        Player = GameObject.Find("Player");
+        minBoundary = new Vector3(-tilesX * tileSize / 2, 3f, -tilesZ * tileSize / 2);
+        maxBoundary = new Vector3(tilesX * tileSize / 2, 3f, tilesZ * tileSize / 2);
         // Make sure textures are readable
         MakeTexturesReadable();
-
         // Create a new GameObject to use as the ground
         GameObject ground = new GameObject("Ground");
         MeshRenderer meshRenderer = ground.AddComponent<MeshRenderer>();
@@ -102,22 +106,31 @@ public class RandomTileGround : MonoBehaviour
         meshRenderer.sortingOrder = 0; // Set sort order
     }
 
+    void Update()
+    {
+        Vector3 position = Player.transform.position;
+        position.x = Mathf.Clamp(position.x, minBoundary.x, maxBoundary.x);
+        position.y = Mathf.Clamp(position.y, minBoundary.y, maxBoundary.y);
+        position.z = Mathf.Clamp(position.z, minBoundary.z, maxBoundary.z);
+        Player.transform.position = position;
+
+    }
     void MakeTexturesReadable()
     {
 #if UNITY_EDITOR
         foreach (Sprite sprite in sprites)
         {
             Texture2D texture = sprite.texture;
-            string assetPath = UnityEditor.AssetDatabase.GetAssetPath(texture);
-            TextureImporter importer = UnityEditor.AssetImporter.GetAtPath(assetPath) as TextureImporter;
+            string assetPath = AssetDatabase.GetAssetPath(texture);
+            TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
 
             if (importer != null)
             {
                 importer.isReadable = true;
-                UnityEditor.AssetDatabase.ImportAsset(assetPath);
+                AssetDatabase.ImportAsset(assetPath);
             }
         }
-        UnityEditor.AssetDatabase.Refresh();
+        AssetDatabase.Refresh();
 #endif
     }
 }
