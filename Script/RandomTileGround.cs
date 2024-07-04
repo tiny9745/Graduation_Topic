@@ -65,17 +65,10 @@ public class RandomTileGround : MonoBehaviour
                 int randomIndex = Random.Range(0, sprites.Length);
                 Rect rect = rects[randomIndex];
 
-                Vector2[] spriteUVs = new Vector2[4];
-                spriteUVs[0] = new Vector2(rect.xMin, rect.yMin);
-                spriteUVs[1] = new Vector2(rect.xMax, rect.yMin);
-                spriteUVs[2] = new Vector2(rect.xMin, rect.yMax);
-                spriteUVs[3] = new Vector2(rect.xMax, rect.yMax);
-
-                // Assign UVs to each tile
-                uvs[vertIndex + 0] = spriteUVs[0];
-                uvs[vertIndex + 1] = spriteUVs[1];
-                uvs[vertIndex + 2] = spriteUVs[2];
-                uvs[vertIndex + 3] = spriteUVs[3];
+                uvs[vertIndex + 0] = new Vector2(rect.xMin, rect.yMin);
+                uvs[vertIndex + 1] = new Vector2(rect.xMax, rect.yMin);
+                uvs[vertIndex + 2] = new Vector2(rect.xMin, rect.yMax);
+                uvs[vertIndex + 3] = new Vector2(rect.xMax, rect.yMax);
 
                 // Allocate triangles to each tile
                 triangles[triIndex + 0] = vertIndex + 0;
@@ -108,12 +101,7 @@ public class RandomTileGround : MonoBehaviour
 
     void Update()
     {
-        Vector3 position = Player.transform.position;
-        position.x = Mathf.Clamp(position.x, minBoundary.x, maxBoundary.x);
-        position.y = Mathf.Clamp(position.y, minBoundary.y, maxBoundary.y);
-        position.z = Mathf.Clamp(position.z, minBoundary.z, maxBoundary.z);
-        Player.transform.position = position;
-
+        Player.transform.position = new Vector3(Mathf.Clamp(Player.transform.position.x, minBoundary.x, maxBoundary.x),Mathf.Clamp(Player.transform.position.y, minBoundary.y, maxBoundary.y),Mathf.Clamp(Player.transform.position.z, minBoundary.z, maxBoundary.z));
     }
     void MakeTexturesReadable()
     {
