@@ -6,7 +6,7 @@ public class NPC02_Hit_box : MonoBehaviour
 {
     public NPC02_control npcCtrl;
     public GameObject Player;
-    float NPC_ATK = 0;
+    float NPC_ATK = 0, minus;
     void Start(){
         Player = GameObject.Find("Player");
         if (Player == null){
@@ -35,9 +35,10 @@ public class NPC02_Hit_box : MonoBehaviour
         //NPC attack determination
         if (Hit.gameObject.CompareTag("Player"))
         {
-            static_parameters.MC_HP -= NPC_ATK;
+            minus = (float)(NPC_ATK*NPC_ATK/(static_parameters.MC_DEF+NPC_ATK));
+            if (minus < 5) minus = 5.0f;
+            static_parameters.MC_HP -= minus;
             this.enabled = false;
-            print("Player_HP=" + static_parameters.MC_HP);
         }      
     }
 }

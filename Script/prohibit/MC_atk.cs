@@ -5,7 +5,6 @@ using UnityEngine;
 public class MC_atk : MonoBehaviour
 {
     private Collider MC_Collider;
-    public TakeHit NPChit;
     short T1,T2=-9;
     float attackDamage;
 

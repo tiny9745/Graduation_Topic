@@ -240,7 +240,7 @@ public class NPC02_control : MonoBehaviour
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
             NPC_HP -= static_parameters.MC_ATK;
-            nPC_hP.TakeDamage(static_parameters.MC_ATK);
+            nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
             MC_to_Att = false;
             Invoke("wait_MC_att", 0.2f);
         }

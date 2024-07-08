@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class NPC01_control : MonoBehaviour
 {
-    NavMeshAgent npcNavi;public TakeHit NPChit;
+    NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
     public int DetectDistance = 18; public int NPC01_ATK = 8; public int NPC01_DEF = 5;

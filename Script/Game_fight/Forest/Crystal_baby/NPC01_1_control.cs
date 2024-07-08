@@ -13,9 +13,7 @@ public class NPC01_1_control : MonoBehaviour
     public float NPC_HP;
     private Quaternion initialRotation;
     public GameObject NPC01_1;
-    bool dead_open = true;
-    bool hit_Ani = false;
-    bool hit = false;
+    bool dead_open = true; bool hit_Ani = false; bool hit = false;
     float coordinate_X; float coordinate_Z;
     private Vector3 lastPosition;
     public GameObject hitbox_Crystal_baby_small;
