@@ -19,6 +19,11 @@ public class Blood_col : MonoBehaviour
         if (static_parameters.MC_HP_tmp != static_parameters.MC_HP){
            MC_HP();
         }
+        if (static_parameters.MC_HP_Max_tmp != static_parameters.MC_HP_Max) {
+            print("blood_base return");
+            blood_base = blood_tmp / static_parameters.MC_HP_Max;
+            static_parameters.MC_HP_Max_tmp = static_parameters.MC_HP_Max;
+        }
         MC_HP_effects();
     }
     public void FindHPImage(){
