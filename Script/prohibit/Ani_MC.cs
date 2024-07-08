@@ -32,7 +32,7 @@ public class Ani_MC : MonoBehaviour
             if (startTime <= 0)
             {
                 startTime = Time.time;
-                static_parameters.Attactstate=0;
+                static_parameters.Attactstate = 0;
             }
 
             elapsedTime = Time.time - startTime;

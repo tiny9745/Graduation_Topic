@@ -28,6 +28,8 @@ public class MC_col : MonoBehaviour
         if(Blood_Col == null){
             Blood_Col = GetComponent<Blood_col>();
         }
+        //static_parameters.MC_Wspeed = 48;
+        //static_parameters.MC_ATK_Speed = 3;
     }
 
     void Update()
@@ -60,17 +62,69 @@ public class MC_col : MonoBehaviour
         SetLookDirection(face);
         if (static_parameters.MC_ATK_Speed_tmp != static_parameters.MC_ATK_Speed) {
             static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
-            SetAnimationSpeed(animator, static_parameters.MC_ATK_Speed);
-            print("MC_ATK_Speed:" + static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_BR01", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_FR01", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_FL01", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_BL01", static_parameters.MC_ATK_Speed);
+
+            SetAnimationSpeed_ATK("MC_Att_BR02", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_FR02", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_FL02", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_BL02", static_parameters.MC_ATK_Speed);
+
+            SetAnimationSpeed_ATK("MC_Att_BR03", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_FR03", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_FL03", static_parameters.MC_ATK_Speed);
+            SetAnimationSpeed_ATK("MC_Att_BL03", static_parameters.MC_ATK_Speed);
+        }
+        if(static_parameters.MC_Wspeed!= static_parameters.MC_Wspeed_tmp)
+        {
+            static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
+            SetAnimationSpeed_Walk("MC_Walk_Back", static_parameters.MC_Wspeed);
+            SetAnimationSpeed_Walk("MC_Walk_Left", static_parameters.MC_Wspeed);
+            SetAnimationSpeed_Walk("MC_Walk_Front", static_parameters.MC_Wspeed);
+            SetAnimationSpeed_Walk("MC_Walk_Right", static_parameters.MC_Wspeed);
+
+            SetAnimationSpeed_Walk("MC_Stand_Front", static_parameters.MC_Wspeed);
+            SetAnimationSpeed_Walk("MC_Stand_Right", static_parameters.MC_Wspeed);
+            SetAnimationSpeed_Walk("MC_Stand_Back", static_parameters.MC_Wspeed);
+            SetAnimationSpeed_Walk("MC_Stand_Left", static_parameters.MC_Wspeed);
+
+            print("MC_Walk_Speed:" + static_parameters.MC_Wspeed);
         }
     }
 
-    private void SetAnimationSpeed(Animator anim, float speed) {
-        if (anim != null) {
-            animator.speed = speed;
+    void SetAnimationSpeed_ATK(string animName, float animSpeed)
+    {
+        // Ensure the animator is not null
+        if (animator != null)
+        {
+            // Check if the animator has the specified animation state
+            if (animator.HasState(0, Animator.StringToHash(animName)))
+            {
+                // Set the speed of the specified animation
+                animator.SetFloat(animName + "Speed", animSpeed);
+            }
+            else
+            {
+                Debug.LogWarning("Animator does not have the specified animation state: " + animName);
+            }
         }
     }
-
+    void SetAnimationSpeed_Walk(string animName, float animSpeed)
+    {
+        if (animator != null)
+        {
+            if (animator.HasState(0, Animator.StringToHash(animName)))
+            {
+                animator.SetFloat(animName + "Speed", animSpeed);
+            }
+            else
+            {
+                Debug.LogWarning("Animator does not have the specified animation state: " + animName);
+            }
+        }
+    }
 
     void LateUpdate(){
         // Reset the sprite's local rotation to keep it fixed  
