@@ -57,9 +57,21 @@ public class MC_col : MonoBehaviour
             static_parameters.stage_number--;
             SceneManager.LoadScene("magic_house");
         }
-
         SetLookDirection(face);
+        if (static_parameters.MC_ATK_Speed_tmp != static_parameters.MC_ATK_Speed) {
+            static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
+            SetAnimationSpeed(animator, static_parameters.MC_ATK_Speed);
+            print("MC_ATK_Speed:" + static_parameters.MC_ATK_Speed);
+        }
     }
+
+    private void SetAnimationSpeed(Animator anim, float speed) {
+        if (anim != null) {
+            animator.speed = speed;
+        }
+    }
+
+
     void LateUpdate(){
         // Reset the sprite's local rotation to keep it fixed  
     }

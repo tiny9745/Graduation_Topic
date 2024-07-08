@@ -34,9 +34,9 @@ public class Ani_MC : MonoBehaviour
                 startTime = Time.time;
                 static_parameters.Attactstate=0;
             }
-            // �p��w�L�ɶ�
+
             elapsedTime = Time.time - startTime;
-            if (elapsedTime <= 1f)
+            if (elapsedTime <= 1f / static_parameters.MC_ATK_Speed)
             {
                 static_parameters.Attactstate=1;
                 if (Angle_sum == 45)
@@ -72,7 +72,7 @@ public class Ani_MC : MonoBehaviour
                     animator.Play("MC_Att_FR01");
                 }
             }
-            if (elapsedTime > 1f && elapsedTime <= 2f)
+            if (elapsedTime > 1f / static_parameters.MC_ATK_Speed && elapsedTime <= 2f / static_parameters.MC_ATK_Speed)
             {
                 static_parameters.Attactstate=2;
                 if (Angle_sum == 45)
@@ -108,7 +108,7 @@ public class Ani_MC : MonoBehaviour
                     animator.Play("MC_Att_FR02");
                 }
             }
-            if (elapsedTime > 2f && elapsedTime <= 3f)
+            if (elapsedTime > 2f / static_parameters.MC_ATK_Speed && elapsedTime <= 3f / static_parameters.MC_ATK_Speed)
             {
                 static_parameters.Attactstate=3;
                 if (Angle_sum == 45)
@@ -144,7 +144,7 @@ public class Ani_MC : MonoBehaviour
                     animator.Play("MC_Att_FR03");
                 }
             }
-            else if (elapsedTime > 2.25f)
+            else if (elapsedTime > 2.25f / static_parameters.MC_ATK_Speed)
             {
                 startTime = 0;
                 static_parameters.Attactstate=0;
