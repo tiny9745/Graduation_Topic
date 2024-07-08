@@ -9726,7 +9726,6 @@ GameObject:
   - component: {fileID: 4426482259938332005}
   - component: {fileID: 2324080431796827303}
   - component: {fileID: 8676149383117319065}
-  - component: {fileID: 8676149383117319066}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -9792,11 +9791,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 8.881784e-16
+      value: -0.0000000011596626
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.440892e-16
+      value: 6.4369665e-10
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9820,11 +9819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008328529
+      value: 0.000000008241197
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000021564983
+      value: -0.0000000021338855
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9889,20 +9888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15b243fa88382341bf519d3a193f26d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8676149383117319066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6821772963036599349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6332e9520f580b84daae5addf9c7f378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minBoundary: {x: -30, y: 2.5, z: -30}
-  maxBoundary: {x: 30, y: 3, z: 35}
 --- !u!114 &8830870452476947111
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -257,7 +257,6 @@ public class NPC02_control : MonoBehaviour
         hit = false;
         Invoke("EndAttANimation", 0.85f);
     }
-
     void EndAttANimation()
     {
         hit_Ani = false;

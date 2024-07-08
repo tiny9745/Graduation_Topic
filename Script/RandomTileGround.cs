@@ -9,12 +9,16 @@ public class RandomTileGround : MonoBehaviour
     public int tilesX = 10; // Number of tiles on the X-axis
     public int tilesZ = 10; // Number of tiles on the Z-axis
     public float tileSize = 1.0f; // size of each tile
-
+    public GameObject Player;
+    Vector3 minBoundary; // Define the minimum boundary
+    Vector3 maxBoundary; // Define the maximum boundary
     void Start()
     {
+        Player = GameObject.Find("Player");
+        minBoundary = new Vector3(-tilesX * tileSize / 2, 3f, -tilesZ * tileSize / 2);
+        maxBoundary = new Vector3(tilesX * tileSize / 2, 3f, tilesZ * tileSize / 2);
         // Make sure textures are readable
         MakeTexturesReadable();
-
         // Create a new GameObject to use as the ground
         GameObject ground = new GameObject("Ground");
         MeshRenderer meshRenderer = ground.AddComponent<MeshRenderer>();
@@ -61,17 +65,10 @@ public class RandomTileGround : MonoBehaviour
                 int randomIndex = Random.Range(0, sprites.Length);
                 Rect rect = rects[randomIndex];
 
-                Vector2[] spriteUVs = new Vector2[4];
-                spriteUVs[0] = new Vector2(rect.xMin, rect.yMin);
-                spriteUVs[1] = new Vector2(rect.xMax, rect.yMin);
-                spriteUVs[2] = new Vector2(rect.xMin, rect.yMax);
-                spriteUVs[3] = new Vector2(rect.xMax, rect.yMax);
-
-                // Assign UVs to each tile
-                uvs[vertIndex + 0] = spriteUVs[0];
-                uvs[vertIndex + 1] = spriteUVs[1];
-                uvs[vertIndex + 2] = spriteUVs[2];
-                uvs[vertIndex + 3] = spriteUVs[3];
+                uvs[vertIndex + 0] = new Vector2(rect.xMin, rect.yMin);
+                uvs[vertIndex + 1] = new Vector2(rect.xMax, rect.yMin);
+                uvs[vertIndex + 2] = new Vector2(rect.xMin, rect.yMax);
+                uvs[vertIndex + 3] = new Vector2(rect.xMax, rect.yMax);
 
                 // Allocate triangles to each tile
                 triangles[triIndex + 0] = vertIndex + 0;
@@ -102,22 +99,26 @@ public class RandomTileGround : MonoBehaviour
         meshRenderer.sortingOrder = 0; // Set sort order
     }
 
+    void Update()
+    {
+        Player.transform.position = new Vector3(Mathf.Clamp(Player.transform.position.x, minBoundary.x, maxBoundary.x),Mathf.Clamp(Player.transform.position.y, minBoundary.y, maxBoundary.y),Mathf.Clamp(Player.transform.position.z, minBoundary.z, maxBoundary.z));
+    }
     void MakeTexturesReadable()
     {
 #if UNITY_EDITOR
         foreach (Sprite sprite in sprites)
         {
             Texture2D texture = sprite.texture;
-            string assetPath = UnityEditor.AssetDatabase.GetAssetPath(texture);
-            TextureImporter importer = UnityEditor.AssetImporter.GetAtPath(assetPath) as TextureImporter;
+            string assetPath = AssetDatabase.GetAssetPath(texture);
+            TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
 
             if (importer != null)
             {
                 importer.isReadable = true;
-                UnityEditor.AssetDatabase.ImportAsset(assetPath);
+                AssetDatabase.ImportAsset(assetPath);
             }
         }
-        UnityEditor.AssetDatabase.Refresh();
+        AssetDatabase.Refresh();
 #endif
     }
 }
