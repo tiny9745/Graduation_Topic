@@ -14,19 +14,21 @@ public class RandomTileGround : MonoBehaviour
     public GameObject Player_S;
     Vector3 minBoundary; // Define the minimum boundary
     Vector3 maxBoundary; // Define the maximum boundary
+
     void Start()
     {
         Player = GameObject.Find("Player");
         Player_S = GameObject.Find("Player_S");
         minBoundary = new Vector3(-tilesX * tileSize / 2, 3f, -tilesZ * tileSize / 2);
         maxBoundary = new Vector3(tilesX * tileSize / 2, 3f, tilesZ * tileSize / 2);
+
         // Make sure textures are readable
         MakeTexturesReadable();
         // Create a new GameObject to use as the ground
         GameObject ground = new GameObject("Ground");
         MeshRenderer meshRenderer = ground.AddComponent<MeshRenderer>();
         MeshFilter meshFilter = ground.AddComponent<MeshFilter>();
-        Mesh mesh = new();     
+        Mesh mesh = new();
 
         // Calculate vertices, UVs and triangles
         int tileCount = tilesX * tilesZ;
@@ -64,10 +66,11 @@ public class RandomTileGround : MonoBehaviour
                 vertices[vertIndex + 2] = new Vector3(xPos, 0, zPos + tileSize);
                 vertices[vertIndex + 3] = new Vector3(xPos + tileSize, 0, zPos + tileSize);
 
-                // randomly select a sprite
-                int randomIndex = Random.Range(0, sprites.Length);
-                Rect rect = rects[randomIndex];
+                // Determine the sprite index based on the tile's position
+                int spriteIndex = (z * tilesX + x) % sprites.Length;
+                Rect rect = rects[spriteIndex];
 
+                // Assign UVs to each tile
                 uvs[vertIndex + 0] = new Vector2(rect.xMin, rect.yMin);
                 uvs[vertIndex + 1] = new Vector2(rect.xMax, rect.yMin);
                 uvs[vertIndex + 2] = new Vector2(rect.xMin, rect.yMax);
@@ -100,19 +103,25 @@ public class RandomTileGround : MonoBehaviour
         material.mainTexture = combinedTexture; // Use merged textures
         meshRenderer.material = material;
         meshRenderer.sortingOrder = 0; // Set sort order
+
         ResetPosition();
     }
+
     void Update()
     {
-        Player.transform.position = new Vector3(Mathf.Clamp(Player.transform.position.x, minBoundary.x, maxBoundary.x),Mathf.Clamp(Player.transform.position.y, minBoundary.y, maxBoundary.y),Mathf.Clamp(Player.transform.position.z, minBoundary.z, maxBoundary.z));
+        Player.transform.position = new Vector3(
+            Mathf.Clamp(Player.transform.position.x, minBoundary.x, maxBoundary.x),
+            Mathf.Clamp(Player.transform.position.y, minBoundary.y, maxBoundary.y),
+            Mathf.Clamp(Player.transform.position.z, minBoundary.z, maxBoundary.z)
+        );
     }
+
     // 在場景加載完成後重設物件位置到原點
     void ResetPosition()
     {
         // 將物件位置設置為原點
         Player_S.transform.position = new Vector3(0, 0, -tilesZ * tileSize / 2);
         Player.transform.position = Player_S.transform.position;
-        print("Zero_Zero");
     }
 
     void MakeTexturesReadable()
