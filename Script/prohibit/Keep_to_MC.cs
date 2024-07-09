@@ -10,7 +10,7 @@ public class Keep_to_MC : MonoBehaviour
     {
         DontDestroyOnLoad(this);
     }
-    private void OnEnable()
+    /*private void OnEnable()
     {
         SceneManager.sceneLoaded += ResetPosition;
     }
@@ -26,5 +26,5 @@ public class Keep_to_MC : MonoBehaviour
     {
         // 將物件位置設置為原點
         transform.position = Vector3.zero;
-    }
+    }*/
 }

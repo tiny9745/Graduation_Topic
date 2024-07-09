@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RandomTileGround : MonoBehaviour
 {
@@ -10,11 +11,13 @@ public class RandomTileGround : MonoBehaviour
     public int tilesZ = 10; // Number of tiles on the Z-axis
     public float tileSize = 1.0f; // size of each tile
     public GameObject Player;
+    public GameObject Player_S;
     Vector3 minBoundary; // Define the minimum boundary
     Vector3 maxBoundary; // Define the maximum boundary
     void Start()
     {
         Player = GameObject.Find("Player");
+        Player_S = GameObject.Find("Player_S");
         minBoundary = new Vector3(-tilesX * tileSize / 2, 3f, -tilesZ * tileSize / 2);
         maxBoundary = new Vector3(tilesX * tileSize / 2, 3f, tilesZ * tileSize / 2);
         // Make sure textures are readable
@@ -23,7 +26,7 @@ public class RandomTileGround : MonoBehaviour
         GameObject ground = new GameObject("Ground");
         MeshRenderer meshRenderer = ground.AddComponent<MeshRenderer>();
         MeshFilter meshFilter = ground.AddComponent<MeshFilter>();
-        Mesh mesh = new();
+        Mesh mesh = new();     
 
         // Calculate vertices, UVs and triangles
         int tileCount = tilesX * tilesZ;
@@ -97,12 +100,21 @@ public class RandomTileGround : MonoBehaviour
         material.mainTexture = combinedTexture; // Use merged textures
         meshRenderer.material = material;
         meshRenderer.sortingOrder = 0; // Set sort order
+        ResetPosition();
     }
-
     void Update()
     {
         Player.transform.position = new Vector3(Mathf.Clamp(Player.transform.position.x, minBoundary.x, maxBoundary.x),Mathf.Clamp(Player.transform.position.y, minBoundary.y, maxBoundary.y),Mathf.Clamp(Player.transform.position.z, minBoundary.z, maxBoundary.z));
     }
+    // 在場景加載完成後重設物件位置到原點
+    void ResetPosition()
+    {
+        // 將物件位置設置為原點
+        Player_S.transform.position = new Vector3(0, 0, -tilesZ * tileSize / 2);
+        Player.transform.position = Player_S.transform.position;
+        print("Zero_Zero");
+    }
+
     void MakeTexturesReadable()
     {
 #if UNITY_EDITOR
