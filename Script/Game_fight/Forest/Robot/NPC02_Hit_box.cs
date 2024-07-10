@@ -35,10 +35,13 @@ public class NPC02_Hit_box : MonoBehaviour
         //NPC attack determination
         if (Hit.gameObject.CompareTag("Player"))
         {
-            minus = (float)(NPC_ATK*NPC_ATK/(static_parameters.MC_DEF+NPC_ATK));
-            if (minus < 5) minus = 5.0f;
-            static_parameters.MC_HP -= minus;
-            this.enabled = false;
+            if(!static_parameters.invincible){
+                minus = (float)(NPC_ATK*NPC_ATK/(static_parameters.MC_DEF+NPC_ATK));
+                if (minus < 5) minus = 5.0f;
+                static_parameters.MC_HP -= minus;
+                this.enabled = false;
+            }
+            
         }      
     }
 }

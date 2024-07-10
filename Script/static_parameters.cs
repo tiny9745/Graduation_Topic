@@ -11,7 +11,7 @@ public class static_parameters : MonoBehaviour
     static public float MC_Wspeed = 6; static public float MC_Wspeed_tmp = MC_Wspeed;
     static public float MC_ATK_Speed = 1; static public float MC_ATK_Speed_tmp = MC_ATK_Speed;
     static public short Attactstate = 0;
-
+    static public bool invincible = false;
     static public int Change_enemy = 0;
 
     static public bool isSceneLoading = false; //Used to track whether the scene is loading

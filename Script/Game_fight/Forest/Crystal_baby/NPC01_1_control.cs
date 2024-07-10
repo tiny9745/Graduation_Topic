@@ -10,7 +10,7 @@ public class NPC01_1_control : MonoBehaviour
     public GameObject TargetObj;
     public int DetectDistance = 20; public float NPC01_ATK = 4;public float NPC01_DEF = 2;
     public float NPC_HP_Max = 40; public float npcSpeed = 4f;
-    public float NPC_HP;
+    public float NPC_HP; public float minus;
     private Quaternion initialRotation;
     public GameObject NPC01_1;
     bool dead_open = true; bool hit_Ani = false; bool hit = false;
@@ -234,7 +234,6 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
-            NPC_HP -= static_parameters.MC_ATK;
             nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
             MC_to_Att = false;
             Invoke("wait_MC_att", 0.2f);
