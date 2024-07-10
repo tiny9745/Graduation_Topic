@@ -46,8 +46,11 @@ public class NPC01_Hit_box : MonoBehaviour
     }
     void Damage()
     {
-        minus = (int)(NPC_ATK*NPC_ATK/(static_parameters.MC_DEF+NPC_ATK));
-        if (minus < 5) minus = 5;
-        static_parameters.MC_HP -= minus;
+        if(!static_parameters.invincible){
+            minus = (int)(NPC_ATK*NPC_ATK/(static_parameters.MC_DEF+NPC_ATK));
+            if (minus < 5) minus = 5;
+            static_parameters.MC_HP -= minus;
+        }
+        
     }
 }
