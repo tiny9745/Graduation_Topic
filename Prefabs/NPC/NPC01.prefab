@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 4507803500508676976}
   - component: {fileID: 8932678650194305499}
   - component: {fileID: 2970550427832215894}
-  - component: {fileID: 3632148104627750232}
   - component: {fileID: 1840519291462866230}
   m_Layer: 0
   m_Name: NPC01
@@ -238,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f98f067b5d858448cf88372a392864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPChit: {fileID: 0}
   animator: {fileID: 5040306042332483355}
   TargetObj: {fileID: 0}
   DetectDistance: 18
@@ -295,18 +293,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 2, z: 10}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &3632148104627750232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5642523929771483394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87f3b275dbe3dca419dfb37b45d3bf84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1840519291462866230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +381,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8fc57beeae92e4442b797a80fcb6c910, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
