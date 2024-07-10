@@ -50,19 +50,35 @@ public class NPC01_1_control : MonoBehaviour
             npcNavi.speed = 0;
             if (coordinate_X >= 0 && coordinate_Z > 0)
             {
-                animator.Play("Crystal_baby_small_Bomb_RB");
+                if (isFacingRight)
+                {
+                    Flip();
+                }
+                animator.Play("Crystal_baby_small_Bomb_LB");
             }
             if (coordinate_X < 0 && coordinate_Z >= 0)
             {
+                if (!isFacingRight)
+                {
+                    Flip();
+                }
                 animator.Play("Crystal_baby_small_Bomb_LB");
             }
             if (coordinate_X <= 0 && coordinate_Z < 0)
             {
+                if (!isFacingRight)
+                {
+                    Flip();
+                }
                 animator.Play("Crystal_baby_small_Bomb_LF");
             }
             if (coordinate_X > 0 && coordinate_Z <= 0)
             {
-                animator.Play("Crystal_baby_small_Bomb_RF");
+                if (isFacingRight)
+                {
+                    Flip();
+                }
+                animator.Play("Crystal_baby_small_Bomb_LF");
             }
             Invoke("dead", 0.8f);
         }
@@ -73,70 +89,70 @@ public class NPC01_1_control : MonoBehaviour
             {
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
-                    if (!isFacingRight)
+                    if (isFacingRight)
                     {
                         Flip();
                     }
-                    animator.Play("Crystal_baby_small_stand_RB");
+                    animator.Play("Crystal_baby_small_stand_LB");
                 }
                 if (coordinate_X < 0 && coordinate_Z >= 0)
                 {
-                    if (isFacingRight)
+                    if (!isFacingRight)
                     {
                         Flip();
                     }
-                    animator.Play("Crystal_baby_small_stand_RB");
+                    animator.Play("Crystal_baby_small_stand_LB");
                 }
                 if (coordinate_X <= 0 && coordinate_Z < 0)
-                {
-                    if (isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_small_stand_RF");
-                }
-                if (coordinate_X > 0 && coordinate_Z <= 0)
                 {
                     if (!isFacingRight)
                     {
                         Flip();
                     }
-                    animator.Play("Crystal_baby_small_stand_RF");
+                    animator.Play("Crystal_baby_small_stand_LF");
+                }
+                if (coordinate_X > 0 && coordinate_Z <= 0)
+                {
+                    if (isFacingRight)
+                    {
+                        Flip();
+                    }
+                    animator.Play("Crystal_baby_small_stand_LF");
                 }
             }
             else
             {
                 if (coordinate_X >= 0 && coordinate_Z > 0)
                 {
-                    if (!isFacingRight)
+                    if (isFacingRight)
                     {
                         Flip();
                     }
-                    animator.Play("Crystal_baby_small_walk_RB");
+                    animator.Play("Crystal_baby_small_walk_LB");
                 }
                 if (coordinate_X < 0 && coordinate_Z >= 0)
                 {
-                    if (isFacingRight)
+                    if (!isFacingRight)
                     {
                         Flip();
                     }
-                    animator.Play("Crystal_baby_small_walk_RB");
+                    animator.Play("Crystal_baby_small_walk_LB");
                 }
                 if (coordinate_X <= 0 && coordinate_Z < 0)
-                {
-                    if (isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_small_walk_RF");
-                }
-                if (coordinate_X > 0 && coordinate_Z <= 0)
                 {
                     if (!isFacingRight)
                     {
                         Flip();
                     }
-                    animator.Play("Crystal_baby_small_walk_RF");
+                    animator.Play("Crystal_baby_small_walk_LF");
+                }
+                if (coordinate_X > 0 && coordinate_Z <= 0)
+                {
+                    if (isFacingRight)
+                    {
+                        Flip();
+                    }
+                    animator.Play("Crystal_baby_small_walk_LF");
                 }
             }
         }
