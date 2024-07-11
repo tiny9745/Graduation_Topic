@@ -52,11 +52,12 @@ public class NPC02_control : MonoBehaviour
     void Update()
     {
         if (npcNavi == null) return;
-
         if (NPC_HP <= 0)
         {
+            NPC_HP = 0;
+            Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
-            dead();
+            dead();          
         }
         else if (!hit_Ani)
         {
@@ -271,15 +272,20 @@ public class NPC02_control : MonoBehaviour
     {
         if (dead_open)
         {
+            Img_npc.transform.rotation = Quaternion.Euler(0, 0, -45);
+            animator.speed = 0;
             static_parameters.Change_enemy--;
             if (static_parameters.Change_enemy == 0)
             {
                 Vector3 currentPosition = transform.position;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
+            Invoke("dead_after", 5);
             dead_open = false;
-            npcNavi = null;
-            Destroy(gameObject);
         }
+    }
+    void dead_after()
+    {
+        Destroy(gameObject);
     }
 }
