@@ -14,7 +14,16 @@ public class Play_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+        Doge();
+    }
+    void Doge()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("Doge");
+        }
     }
 }

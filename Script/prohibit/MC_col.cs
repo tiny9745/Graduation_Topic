@@ -15,8 +15,6 @@ public class MC_col : MonoBehaviour
     public string PrepareSceneName = "magic_house";
     public Play_move MC_move;
 
-    short face = 4;
-
     void Start()
     {
         MC = GameObject.Find("Player");
@@ -47,19 +45,19 @@ public class MC_col : MonoBehaviour
         {
             if (movement.x > 0)
             {
-                face = 1;
+                static_parameters.face = 1;
             }
             else if (movement.x < 0)
             {
-                face = 2;
+                static_parameters.face = 2;
             }
             else if (movement.z > 0)
             {
-                face = 3;
+                static_parameters.face = 3;
             }
             else if (movement.z < 0)
             {
-                face = 4;
+                static_parameters.face = 4;
             }
         }
 
@@ -69,7 +67,7 @@ public class MC_col : MonoBehaviour
             SceneManager.LoadScene("magic_house");
         }
 
-        SetLookDirection(face);
+        SetLookDirection(static_parameters.face);
 
         // Check and update the attack speed
         if (static_parameters.MC_ATK_Speed_tmp != static_parameters.MC_ATK_Speed)
