@@ -13,12 +13,11 @@ public class MC_col : MonoBehaviour
     private Material originalMaterial;
     public string targetSceneName = "Game_fight";
     public string PrepareSceneName = "magic_house";
-    public Play_move MC_move;
+    
 
     void Start()
     {
         MC = GameObject.Find("Player");
-        MC_move = GetComponentInParent<Play_move>();
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         if (renderer1 != null)
         {
@@ -32,34 +31,7 @@ public class MC_col : MonoBehaviour
 
     void Update()
     {
-        Vector3 movement = new Vector3(MC_move.horizontalInput, 0f, MC_move.verticalInput);
 
-        if (movement.magnitude > 1)
-        {
-            movement.Normalize();
-        }
-        movement = movement * static_parameters.MC_Wspeed * Time.deltaTime;
-        transform.position += movement;
-
-        if (movement != Vector3.zero)
-        {
-            if (movement.x > 0)
-            {
-                static_parameters.face = 1;
-            }
-            else if (movement.x < 0)
-            {
-                static_parameters.face = 2;
-            }
-            else if (movement.z > 0)
-            {
-                static_parameters.face = 3;
-            }
-            else if (movement.z < 0)
-            {
-                static_parameters.face = 4;
-            }
-        }
 
         if (static_parameters.MC_HP <= 0)
         {
