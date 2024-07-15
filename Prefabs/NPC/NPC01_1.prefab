@@ -80,6 +80,7 @@ MonoBehaviour:
   NPC_HP_Max: 40
   npcSpeed: 4
   NPC_HP: 40
+  minus: 0
   NPC01_1: {fileID: 0}
   hitbox_Crystal_baby_small: {fileID: 2939803849758536278}
   Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
@@ -94,7 +95,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 654828963857941581}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1.12
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
