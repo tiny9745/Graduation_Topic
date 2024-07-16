@@ -9,6 +9,7 @@ public class Prefabs_start : MonoBehaviour
     public GameObject prefabNPC01_1;
     public GameObject prefabNPC01;
     public GameObject prefabNPC02;
+    public GameObject prefabNPC03;
     float NPC_postion_minX = -25f;
     float NPC_postion_maxX = 25f;
     float NPC_postion_minZ = -25f;
@@ -17,25 +18,26 @@ public class Prefabs_start : MonoBehaviour
     float randomZ;
     int Number_NPC01;
     int Number_NPC02;
+    int Number_NPC03;
 
     void Start()
     {
         // Randomly generate positions within range
         if (static_parameters.stage_number == 1)
         {
-            Number_NPC01 = 5;
-            Number_NPC02 = 1;
+            Number_NPC01 = 4;
+            Number_NPC03 = 2;
             for (int i = 0; i < Number_NPC01; i++)
             {
                 randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
                 randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
                 GenerateNPC01(new Vector3(randomX, transform.position.y, randomZ));
             }
-            for (int i = 0; i < Number_NPC02; i++)
+            for (int i = 0; i < Number_NPC03; i++)
             {
                 randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
                 randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
-                GenerateNPC02(new Vector3(randomX, transform.position.y, randomZ));
+                GenerateNPC03(new Vector3(randomX, transform.position.y, randomZ));
             }
         }
         else if (static_parameters.stage_number == 2)
@@ -90,6 +92,12 @@ public class Prefabs_start : MonoBehaviour
                 randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
                 GenerateNPC02(new Vector3(randomX, transform.position.y, randomZ));
             }
+            for (int i = 0; i < Number_NPC03; i++)
+            {
+                randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
+                randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
+                GenerateNPC03(new Vector3(randomX, transform.position.y, randomZ));
+            }
         }
     }
 
@@ -102,5 +110,10 @@ public class Prefabs_start : MonoBehaviour
     void GenerateNPC02(Vector3 position)
     {
         GameObject npc = Instantiate(prefabNPC02, position, Quaternion.identity);
+    }
+
+    void GenerateNPC03(Vector3 position)
+    {
+        GameObject npc = Instantiate(prefabNPC03, position, Quaternion.identity);
     }
 }
