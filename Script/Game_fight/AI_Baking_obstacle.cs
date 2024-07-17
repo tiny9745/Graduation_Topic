@@ -12,10 +12,10 @@ public class AI_Baking_obstacle : MonoBehaviour
     public NavMeshSurface surface;
     public GameObject[] Scenes_object_obstacle;
     public GameObject[] Scenes_object_decorate;
-    float obstach_postion_minX = -30f;
-    float obstach_postion_maxX = 30f;
-    float obstach_postion_minZ = -30f;
-    float obstach_postion_maxZ = 30f;
+    float obstach_postion_minX = -50f;
+    float obstach_postion_maxX = 50f;
+    float obstach_postion_minZ = -50f;
+    float obstach_postion_maxZ = 50f;
     float randomX;
     float randomZ;
     int obstach_random_obstacle;
@@ -43,6 +43,11 @@ public class AI_Baking_obstacle : MonoBehaviour
             randomZ = Random.Range(obstach_postion_minZ, obstach_postion_maxZ);
             Generateobstach2(new Vector3(randomX, Scenes_object_decorate[types_random_decorate].transform.position.y, randomZ));
         }
+        Invoke("wait_build", .2f);
+    }
+
+    void wait_build()
+    {
         // Ensure the NavMeshSurface is ready to build the NavMesh
         surface.BuildNavMesh();
     }

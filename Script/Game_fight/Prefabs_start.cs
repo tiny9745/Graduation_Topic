@@ -10,10 +10,10 @@ public class Prefabs_start : MonoBehaviour
     public GameObject prefabNPC01;
     public GameObject prefabNPC02;
     public GameObject prefabNPC03;
-    float NPC_postion_minX = -25f;
-    float NPC_postion_maxX = 25f;
-    float NPC_postion_minZ = -25f;
-    float NPC_postion_maxZ = 25f;
+    float NPC_postion_minX = -50f;
+    float NPC_postion_maxX = 50f;
+    float NPC_postion_minZ = -50f;
+    float NPC_postion_maxZ = 50f;
     float randomX;
     float randomZ;
     int Number_NPC01;
