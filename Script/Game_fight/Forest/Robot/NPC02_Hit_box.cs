@@ -40,8 +40,7 @@ public class NPC02_Hit_box : MonoBehaviour
                 if (minus < 5) minus = 5.0f;
                 static_parameters.MC_HP -= minus;
                 this.enabled = false;
-            }
-            
+            }       
         }      
     }
 }
