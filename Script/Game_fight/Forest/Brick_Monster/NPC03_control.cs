@@ -47,6 +47,16 @@ public class NPC03_control : MonoBehaviour
         {
             npcNavi.speed = npcSpeed;
         }
+
+        // Check if nPC_hP is assigned
+        if (nPC_hP == null)
+        {
+            nPC_hP = GetComponent<NPC_HP_03>();
+            if (nPC_hP == null)
+            {
+                Debug.LogError("NPC_HP_03 component not found on " + gameObject.name);
+            }
+        }
     }
 
     void Update()
@@ -235,6 +245,18 @@ public class NPC03_control : MonoBehaviour
         }
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
+            if (static_parameters.MC_ATK == null)
+            {
+                Debug.LogError("MC_ATK is not assigned in static_parameters.");
+                return;
+            }
+
+            if (nPC_hP == null)
+            {
+                Debug.LogError("nPC_hP is not assigned.");
+                return;
+            }
+
             NPC_HP -= static_parameters.MC_ATK;
             print("NPC_HP:" + NPC_HP);
             nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
@@ -254,10 +276,12 @@ public class NPC03_control : MonoBehaviour
         hit = false;
         Invoke("EndAttANimation", 0.85f);
     }
+
     void EndAttANimation()
     {
         hit_Ani = false;
     }
+
     void Flip()
     {
         isFacingRight = !isFacingRight;
@@ -265,6 +289,7 @@ public class NPC03_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
+
     void dead()
     {
         if (dead_open)
@@ -281,6 +306,7 @@ public class NPC03_control : MonoBehaviour
             dead_open = false;
         }
     }
+
     void dead_after()
     {
         Destroy(gameObject);
