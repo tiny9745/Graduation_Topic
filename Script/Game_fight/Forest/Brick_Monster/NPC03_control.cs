@@ -257,7 +257,7 @@ public class NPC03_control : MonoBehaviour
                 return;
             }
 
-            NPC_HP -= static_parameters.MC_ATK;
+            knock_back();
             print("NPC_HP:" + NPC_HP);
             nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
             MC_to_Att = false;
@@ -288,6 +288,12 @@ public class NPC03_control : MonoBehaviour
         Vector3 theScale = Img_npc.transform.localScale;
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
+    }
+    void knock_back()
+    {
+        print("knock_back");
+        Vector3 currentPosition = transform.position;
+        transform.position = currentPosition + 0.5f * Vector3.back;
     }
 
     void dead()

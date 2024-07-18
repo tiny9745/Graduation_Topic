@@ -239,7 +239,7 @@ public class NPC02_control : MonoBehaviour
         }
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
-            NPC_HP -= static_parameters.MC_ATK;
+            knock_back();
             nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
             MC_to_Att = false;
             Invoke("wait_MC_att", 0.2f);
@@ -283,6 +283,11 @@ public class NPC02_control : MonoBehaviour
             Invoke("dead_after", 5);
             dead_open = false;
         }
+    }
+    void knock_back()
+    {
+        Vector3 currentPosition = transform.position;
+        transform.position = currentPosition + 0.5f * Vector3.back;
     }
     void dead_after()
     {
