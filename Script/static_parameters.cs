@@ -8,7 +8,7 @@ public class static_parameters : MonoBehaviour
     static public float MC_HP_Max = 100;static public float MC_HP = MC_HP_Max;
     static public float MC_HP_tmp = MC_HP; static public float MC_HP_Max_tmp = MC_HP_Max;
     static public float MC_ATK = 1; static public float MC_DEF = 10;
-    static public float MC_Wspeed = 6; static public float MC_Wspeed_tmp = MC_Wspeed;
+    static public float MC_Wspeed = 6; static public float MC_Wspeed_tmp = MC_Wspeed; static public float knockback_force = 5;
     static public float MC_ATK_Speed = 1; static public float MC_ATK_Speed_tmp = MC_ATK_Speed;
     static public short Attactstate = 0; static public short face = 0;
     static public bool invincible = false;

@@ -301,7 +301,7 @@ public class NPC03_control : MonoBehaviour
     {
         print("knock_back");
         Vector3 currentPosition = transform.position;
-        transform.position = currentPosition + 0.5f * Vector3.back;
+        transform.position = currentPosition + 5f * Vector3.back;
     }
 
     void dead()
