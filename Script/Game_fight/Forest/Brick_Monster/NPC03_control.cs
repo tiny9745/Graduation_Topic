@@ -243,33 +243,35 @@ public class NPC03_control : MonoBehaviour
         return hit;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            hit_Ani = true;
-            Invoke("EnableHitbox", 1.15f);
-            Invoke("closeHitbox", 1.2f);
-        }
-        if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-        {
-            if (static_parameters.MC_ATK == null)
+        if (NPC_HP > 0) {
+            if (other.gameObject.tag == "Player")
             {
-                Debug.LogError("MC_ATK is not assigned in static_parameters.");
-                return;
+                hit_Ani = true;
+                Invoke("EnableHitbox", 1.2f);
+                Invoke("closeHitbox", 1.7f);
             }
-
-            if (nPC_hP == null)
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                Debug.LogError("nPC_hP is not assigned.");
-                return;
-            }
+                if (static_parameters.MC_ATK == null)
+                {
+                    Debug.LogError("MC_ATK is not assigned in static_parameters.");
+                    return;
+                }
 
-            knock_back();
-            print("NPC_HP:" + NPC_HP);
-            nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
-            MC_to_Att = false;
-            Invoke("wait_MC_att", 0.2f);
+                if (nPC_hP == null)
+                {
+                    Debug.LogError("nPC_hP is not assigned.");
+                    return;
+                }
+
+                knock_back();
+                print("NPC_HP:" + NPC_HP);
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.2f);
+            }
         }
     }
 
@@ -308,6 +310,7 @@ public class NPC03_control : MonoBehaviour
         {
             Img_npc.transform.rotation = Quaternion.Euler(0, 0, -45);
             animator.speed = 0;
+            hitbox_Brick_Monster.SetActive(false);
             static_parameters.Change_enemy--;
             print(static_parameters.Change_enemy);
             if (static_parameters.Change_enemy == 0)
