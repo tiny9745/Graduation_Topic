@@ -9,6 +9,7 @@ public class Drops : MonoBehaviour
     void Start()
     {
         text_array = FindObjectOfType<Text_Array>();
+        print("drop_exist:"+transform.position);
     }
 
     private void OnCollisionEnter(Collision Hit)
@@ -17,6 +18,7 @@ public class Drops : MonoBehaviour
         {
             if (text_array != null)
             {
+                print("drop_eat");
                 //text_array.SetRandomTextExistToTrue();
             }
             Destroy(gameObject);

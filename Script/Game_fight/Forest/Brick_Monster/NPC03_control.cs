@@ -303,9 +303,11 @@ public class NPC03_control : MonoBehaviour
             Img_npc.transform.rotation = Quaternion.Euler(0, 0, -45);
             animator.speed = 0;
             static_parameters.Change_enemy--;
+            print(static_parameters.Change_enemy);
             if (static_parameters.Change_enemy == 0)
             {
                 Vector3 currentPosition = transform.position;
+                print("currentPosition:"+currentPosition);
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             Invoke("dead_after", 5);
