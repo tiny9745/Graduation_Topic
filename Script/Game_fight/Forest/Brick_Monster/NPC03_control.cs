@@ -8,9 +8,10 @@ public class NPC03_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 26; public float NPC03_ATK = 25; public float NPC03_DEF = 5;
+    public int DetectDistance = 22; public float NPC03_ATK = 25; public float NPC03_DEF = 5;
     public float NPC_HP_Max = 70; public float npcSpeed = 4f;
     public float NPC_HP;
+    float dist;
     bool hit_Ani = false;
     bool hit = false;
     private Vector3 lastPosition;
@@ -62,7 +63,11 @@ public class NPC03_control : MonoBehaviour
     void Update()
     {
         if (npcNavi == null) return;
-        if (NPC_HP <= 0)
+        if (TargetObj != null)
+        {
+            dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+        }
+            if (NPC_HP <= 0)
         {
             NPC_HP = 0;
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
@@ -84,7 +89,10 @@ public class NPC03_control : MonoBehaviour
         {
             PlayAttackAnimation();
         }
-
+        if (dist >= DetectDistance*3/5)
+        {
+            hit_Ani = false;
+        }
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
@@ -95,7 +103,6 @@ public class NPC03_control : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null)
         {
-            float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
             if (dist < DetectDistance && NPC_HP > 0)
             {
                 npcNavi.destination = TargetObj.transform.position;
@@ -242,6 +249,7 @@ public class NPC03_control : MonoBehaviour
         {
             hit_Ani = true;
             Invoke("EnableHitbox", 1.15f);
+            Invoke("closeHitbox", 1.2f);
         }
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
@@ -274,12 +282,10 @@ public class NPC03_control : MonoBehaviour
     {
         hitbox_Brick_Monster.SetActive(true);
         hit = false;
-        Invoke("EndAttANimation", 0.85f);
     }
-
-    void EndAttANimation()
+    void closeHitbox()
     {
-        hit_Ani = false;
+        hitbox_Brick_Monster.SetActive(false);
     }
 
     void Flip()

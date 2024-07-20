@@ -8,7 +8,7 @@ public class NPC04_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 10; public float NPC04_ATK = 15; public float NPC04_DEF = 15;
+    public int DetectDistance = 15; public float NPC04_ATK = 15; public float NPC04_DEF = 15;
     public float NPC_HP_Max = 150; public float npcSpeed = 6f;
     public float NPC_HP;
     bool hit_Ani = false;
