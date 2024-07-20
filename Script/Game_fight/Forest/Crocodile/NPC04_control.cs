@@ -115,7 +115,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_stand");
+            animator.Play("crocodile_LB_stand");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -123,7 +123,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_stand");
+            animator.Play("crocodile_LB_stand");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -131,7 +131,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_stand");
+            animator.Play("crocodile_LF_stand");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -139,7 +139,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_stand");
+            animator.Play("crocodile_LF_stand");
         }
     }
 
@@ -151,7 +151,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_walk");
+            animator.Play("crocodile_LB_walk");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -159,7 +159,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_walk");
+            animator.Play("crocodile_LB_walk");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -167,7 +167,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_walk");
+            animator.Play("crocodile_LF_walk");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -175,7 +175,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_walk");
+            animator.Play("crocodile_LF_walk");
         }
     }
 
@@ -187,7 +187,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_atk");
+            animator.Play("crocodile_LB_atk");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -195,7 +195,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_atk");
+            animator.Play("crocodile_LB_atk");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -203,7 +203,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_atk");
+            animator.Play("crocodile_LF_atk");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -211,7 +211,7 @@ public class NPC04_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_atk");
+            animator.Play("crocodile_LF_atk");
         }
     }
 
@@ -234,6 +234,18 @@ public class NPC04_control : MonoBehaviour
         }
         if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
         {
+            if (static_parameters.MC_ATK == null)
+            {
+                Debug.LogError("MC_ATK is not assigned in static_parameters.");
+                return;
+            }
+
+            if (nPC_hP == null)
+            {
+                Debug.LogError("nPC_hP is not assigned.");
+                return;
+            }
+
             NPC_HP -= static_parameters.MC_ATK;
             nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
             MC_to_Att = false;
