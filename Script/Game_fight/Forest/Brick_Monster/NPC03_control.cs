@@ -243,14 +243,19 @@ public class NPC03_control : MonoBehaviour
         return hit;
     }
 
+    bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
+        print("OnTriggerStay");
         if (NPC_HP > 0) {
             if (other.gameObject.tag == "Player")
             {
-                hit_Ani = true;
-                Invoke("EnableHitbox", 1.2f);
-                Invoke("closeHitbox", 1.7f);
+                if (open_EnableHitbox)
+                {
+                    hit_Ani = true;
+                    Invoke("EnableHitbox", 1.4f);
+                    open_EnableHitbox = false;
+                }
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
@@ -283,11 +288,13 @@ public class NPC03_control : MonoBehaviour
     void EnableHitbox()
     {
         hitbox_Brick_Monster.SetActive(true);
+        Invoke("closeHitbox", 0.5f);//atk time
         hit = false;
     }
     void closeHitbox()
     {
         hitbox_Brick_Monster.SetActive(false);
+        open_EnableHitbox = true;
     }
 
     void Flip()
