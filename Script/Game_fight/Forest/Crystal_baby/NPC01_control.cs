@@ -13,6 +13,7 @@ public class NPC01_control : MonoBehaviour
     public int DetectDistance = 18; public int NPC01_ATK = 8; public int NPC01_DEF = 5;
     public float NPC_HP_Max = 100; public float npcSpeed = 3f;
     public float NPC_HP;
+    float dist;
     private Quaternion initialRotation;
     //private Camera mainCamera;
     public GameObject NPC01; public GameObject NPC01_1;
@@ -38,6 +39,22 @@ public class NPC01_control : MonoBehaviour
             {
                 renderer.enabled = false;
             };
+        }
+        hitbox_Crystal_baby.SetActive(false);
+
+        npcNavi = GetComponent<NavMeshAgent>();
+        if (npcNavi != null)
+        {
+            npcNavi.speed = npcSpeed;
+        }
+
+        if (nPC_hP == null)
+        {
+            nPC_hP = GetComponent<NPC_HP_01>();
+            if (nPC_hP == null)
+            {
+                Debug.LogError("NPC_HP_01 component not found on " + gameObject.name);
+            }
         }
     }
 
@@ -192,6 +209,10 @@ public class NPC01_control : MonoBehaviour
                 animator.Play("Crystal_baby_Big_Att_LF");
             }
         }
+        if (dist >= DetectDistance * 3 / 5)
+        {
+            hit_Ani = false;
+        }
         if (TargetObj == null)
         {
             if (npcNavi != null)
@@ -224,18 +245,23 @@ public class NPC01_control : MonoBehaviour
     {
         return hit;
     }
-    private void OnTriggerEnter(Collider other)
+
+    bool open_EnableHitbox = true;
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (NPC_HP > 0)
         {
-            hit_Ani = true;
-            EnableHitbox();
-        }
-        if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-        {
-            nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
-            MC_to_Att = false;
-            Invoke("wait_MC_att", 0.2f);
+            if (other.gameObject.tag == "Player" && open_EnableHitbox)
+            {
+                hit_Ani = true;
+                EnableHitbox();
+            }
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            {
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.2f);
+            }
         }
     }
 
@@ -248,12 +274,13 @@ public class NPC01_control : MonoBehaviour
     void EnableHitbox()
     {
         hitbox_Crystal_baby.SetActive(true);
+        Invoke("closeHitbox", 0.5f);
         hit = false;
-        Invoke("EndAttANimation", 1f);
     }
-    void EndAttANimation()
+    void closeHitbox()
     {
-        hit_Ani = false;
+        hitbox_Crystal_baby.SetActive(false);
+        open_EnableHitbox = true;
     }
     void Flip()
     {

@@ -11,6 +11,7 @@ public class NPC04_control : MonoBehaviour
     public int DetectDistance = 15; public float NPC04_ATK = 15; public float NPC04_DEF = 15;
     public float NPC_HP_Max = 150; public float npcSpeed = 6f;
     public float NPC_HP;
+    float dist;
     bool hit_Ani = false;
     bool hit = false;
     private Vector3 lastPosition;
@@ -46,11 +47,24 @@ public class NPC04_control : MonoBehaviour
         {
             npcNavi.speed = npcSpeed;
         }
+
+        if (nPC_hP == null)
+        {
+            nPC_hP = GetComponent<NPC_HP_04>();
+            if (nPC_hP == null)
+            {
+                Debug.LogError("NPC_HP_04 component not found on " + gameObject.name);
+            }
+        }
     }
 
     void Update()
     {
         if (npcNavi == null) return;
+        if (TargetObj != null)
+        {
+            dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+        }
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
@@ -84,7 +98,6 @@ public class NPC04_control : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null)
         {
-            float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
             if (dist < DetectDistance && NPC_HP > 0)
             {
                 npcNavi.destination = TargetObj.transform.position;
@@ -225,31 +238,37 @@ public class NPC04_control : MonoBehaviour
         return hit;
     }
 
-    private void OnTriggerEnter(Collider other)
+    bool open_EnableHitbox = true;
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (NPC_HP > 0)
         {
-            hit_Ani = true;
-            Invoke("EnableHitbox", 1.15f);
-        }
-        if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-        {
-            if (static_parameters.MC_ATK == null)
+            if (other.gameObject.tag == "Player" && open_EnableHitbox)
             {
-                Debug.LogError("MC_ATK is not assigned in static_parameters.");
-                return;
-            }
+                hit_Ani = true;
+                Invoke("EnableHitbox", 1.4f);
+                open_EnableHitbox = false;
 
-            if (nPC_hP == null)
+            }
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                Debug.LogError("nPC_hP is not assigned.");
-                return;
-            }
+                if (static_parameters.MC_ATK == null)
+                {
+                    Debug.LogError("MC_ATK is not assigned in static_parameters.");
+                    return;
+                }
 
-            NPC_HP -= static_parameters.MC_ATK;
-            nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
-            MC_to_Att = false;
-            Invoke("wait_MC_att", 0.2f);
+                if (nPC_hP == null)
+                {
+                    Debug.LogError("nPC_hP is not assigned.");
+                    return;
+                }
+
+                NPC_HP -= static_parameters.MC_ATK;
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.2f);
+            }
         }
     }
 
@@ -262,11 +281,12 @@ public class NPC04_control : MonoBehaviour
     {
         hitbox_Brick_Monster.SetActive(true);
         hit = false;
-        Invoke("EndAttANimation", 0.85f);
+        Invoke("closeHitbox", 0.3f);
     }
-    void EndAttANimation()
+    void closeHitbox()
     {
-        hit_Ani = false;
+        hitbox_Brick_Monster.SetActive(false);
+        open_EnableHitbox = true;
     }
     void Flip()
     {

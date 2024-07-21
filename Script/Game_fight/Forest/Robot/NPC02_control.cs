@@ -12,6 +12,7 @@ public class NPC02_control : MonoBehaviour
     public int DetectDistance = 20; public float NPC02_ATK = 20;public float NPC02_DEF = 10;
     public float NPC_HP_Max = 80; public float npcSpeed = 5f;
     public float NPC_HP;
+    float dist;
     bool hit_Ani = false;
     bool hit = false;
     private Vector3 lastPosition;
@@ -47,6 +48,15 @@ public class NPC02_control : MonoBehaviour
         if (npcNavi != null)
         {
             npcNavi.speed = npcSpeed;
+        }
+
+        if (nPC_hP == null)
+        {
+            nPC_hP = GetComponent<NPC_HP_02>();
+            if (nPC_hP == null)
+            {
+                Debug.LogError("NPC_HP_02 component not found on " + gameObject.name);
+            }
         }
     }
 
@@ -231,19 +241,23 @@ public class NPC02_control : MonoBehaviour
         return hit;
     }
 
-    private void OnTriggerEnter(Collider other)
+    bool open_EnableHitbox = true;
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (NPC_HP > 0)
         {
-            hit_Ani = true;
-            Invoke("EnableHitbox", 1.15f);
-        }
-        if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-        {
-            knock_back();
-            nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
-            MC_to_Att = false;
-            Invoke("wait_MC_att", 0.2f);
+            if (other.gameObject.tag == "Player" && open_EnableHitbox)
+            {
+                hit_Ani = true;
+                Invoke("EnableHitbox", 1.15f);
+            }
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            {
+                knock_back();
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.2f);
+            }
         }
     }
 
@@ -255,12 +269,13 @@ public class NPC02_control : MonoBehaviour
     void EnableHitbox()
     {
         hitbox_Robot.SetActive(true);
+        Invoke("closeHitbox", 0.2f);
         hit = false;
-        Invoke("EndAttANimation", 0.85f);
     }
-    void EndAttANimation()
+    void closeHitbox()
     {
-        hit_Ani = false;
+        hitbox_Robot.SetActive(false);
+        open_EnableHitbox = true;
     }
     void Flip()
     {
