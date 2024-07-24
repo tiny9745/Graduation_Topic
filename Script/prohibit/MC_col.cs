@@ -184,7 +184,7 @@ public class MC_col : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
-        if (other.CompareTag("NPC_Att"))
+        if (other.CompareTag("NPC_Att")&&!static_parameters.invincible)
         {
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
