@@ -259,12 +259,6 @@ public class NPC02_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                if (static_parameters.MC_ATK == null)
-                {
-                    Debug.LogError("MC_ATK is not assigned in static_parameters.");
-                    return;
-                }
-
                 if (nPC_hP == null)
                 {
                     Debug.LogError("nPC_hP is not assigned.");
