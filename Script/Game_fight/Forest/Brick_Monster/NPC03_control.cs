@@ -246,7 +246,6 @@ public class NPC03_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-        print("OnTriggerStay");
         if (NPC_HP > 0) {
             if (other.gameObject.tag == "Player")
             {
@@ -304,12 +303,6 @@ public class NPC03_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
-    void knock_back()
-    {
-        print("knock_back");
-        Vector3 currentPosition = transform.position;
-        transform.position = currentPosition + 5f * Vector3.back;
-    }
 
     void dead()
     {
@@ -319,18 +312,21 @@ public class NPC03_control : MonoBehaviour
             animator.speed = 0;
             hitbox_Brick_Monster.SetActive(false);
             static_parameters.Change_enemy--;
-            print(static_parameters.Change_enemy);
             if (static_parameters.Change_enemy == 0)
             {
                 Vector3 currentPosition = transform.position;
-                print("currentPosition:"+currentPosition);
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             Invoke("dead_after", 5);
             dead_open = false;
         }
     }
-
+    void knock_back()
+    {
+        print("knock_back");
+        Vector3 currentPosition = transform.position;
+        transform.position = currentPosition + 5f * Vector3.back;
+    }
     void dead_after()
     {
         Destroy(gameObject);

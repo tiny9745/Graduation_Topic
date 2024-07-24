@@ -9,7 +9,7 @@ public class NPC02_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 20; public float NPC02_ATK = 20;public float NPC02_DEF = 10;
+    public int DetectDistance = 20; public float NPC02_ATK = 60; public float NPC02_DEF = 10;
     public float NPC_HP_Max = 80; public float npcSpeed = 5f;
     public float NPC_HP;
     float dist;
@@ -63,12 +63,16 @@ public class NPC02_control : MonoBehaviour
     void Update()
     {
         if (npcNavi == null) return;
+        if (TargetObj != null)
+        {
+            dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+        }
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
-            dead();          
+            dead();
         }
         else if (!hit_Ani)
         {
@@ -85,7 +89,10 @@ public class NPC02_control : MonoBehaviour
         {
             PlayAttackAnimation();
         }
-
+        if (dist >= DetectDistance * 3 / 5)
+        {
+            hit_Ani = false;
+        }
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
@@ -96,7 +103,6 @@ public class NPC02_control : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null)
         {
-            float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
             if (dist < DetectDistance && NPC_HP > 0)
             {
                 npcNavi.destination = TargetObj.transform.position;
@@ -108,14 +114,10 @@ public class NPC02_control : MonoBehaviour
 
             Vector3 direction = TargetObj.transform.position - transform.position;
             Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
-
-            // Calculate the forward vector (on the XZ plane)
             Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
 
-            // Calculate the angle between two vectors
             NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
 
-            // relative angle
             if (NPC_angle < 0)
             {
                 NPC_angle += 360;
@@ -215,7 +217,7 @@ public class NPC02_control : MonoBehaviour
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
-            if(!isFacingRight)
+            if (!isFacingRight)
             {
                 Flip();
             }
@@ -242,17 +244,33 @@ public class NPC02_control : MonoBehaviour
     }
 
     bool open_EnableHitbox = true;
+    bool tmp_to_atk = false;
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0)
         {
-            if (other.gameObject.tag == "Player" && open_EnableHitbox)
+            if (other.gameObject.tag == "Player")
             {
-                hit_Ani = true;
-                Invoke("EnableHitbox", 1.15f);
+                if (open_EnableHitbox)
+                {
+                    hit_Ani = true;
+                    Invoke("EnableHitbox", 1.15f);
+                }
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                if (static_parameters.MC_ATK == null)
+                {
+                    Debug.LogError("MC_ATK is not assigned in static_parameters.");
+                    return;
+                }
+
+                if (nPC_hP == null)
+                {
+                    Debug.LogError("nPC_hP is not assigned.");
+                    return;
+                }
+
                 knock_back();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
                 MC_to_Att = false;
@@ -268,14 +286,28 @@ public class NPC02_control : MonoBehaviour
 
     void EnableHitbox()
     {
-        hitbox_Robot.SetActive(true);
-        Invoke("closeHitbox", 0.2f);
-        hit = false;
+        if (tmp_to_atk)
+        {
+            hitbox_Robot.SetActive(true);
+            closeHitbox();
+            hit = false;
+            tmp_to_atk = false;
+        }
+        else
+        {
+            hitbox_Robot.SetActive(true);
+            hit = false;
+            Invoke("wait_atk", 1f);
+        }
     }
     void closeHitbox()
     {
         hitbox_Robot.SetActive(false);
         open_EnableHitbox = true;
+    }
+    void wait_atk()
+    {
+        tmp_to_atk = true;
     }
     void Flip()
     {
@@ -290,6 +322,7 @@ public class NPC02_control : MonoBehaviour
         {
             Img_npc.transform.rotation = Quaternion.Euler(0, 0, -45);
             animator.speed = 0;
+            hitbox_Robot.SetActive(false);
             static_parameters.Change_enemy--;
             if (static_parameters.Change_enemy == 0)
             {
