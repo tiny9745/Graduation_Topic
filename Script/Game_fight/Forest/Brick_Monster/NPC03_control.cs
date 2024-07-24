@@ -67,7 +67,7 @@ public class NPC03_control : MonoBehaviour
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         }
-            if (NPC_HP <= 0)
+        if (NPC_HP <= 0)
         {
             NPC_HP = 0;
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;

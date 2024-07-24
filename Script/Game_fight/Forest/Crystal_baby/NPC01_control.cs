@@ -175,7 +175,6 @@ public class NPC01_control : MonoBehaviour
         }
         else
         {
-            npcNavi.speed = npcSpeed * 5;
             if (coordinate_X >= 0 && coordinate_Z > 0)
             {
                 if (isFacingRight)
@@ -247,7 +246,7 @@ public class NPC01_control : MonoBehaviour
     }
 
     bool open_EnableHitbox = true;
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (NPC_HP > 0)
         {
