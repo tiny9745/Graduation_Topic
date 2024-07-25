@@ -229,4 +229,20 @@ public class Ani_MC : MonoBehaviour
             }
         }  
     }
+    void MC_ani_state(){
+        switch(static_parameters.Attactstate){
+            case 0:
+                animator.Play("MC_Stand_Front");
+                break;
+            case 1:
+                animator.Play("MC_Att_FR01");
+                break;
+            case 2:
+                animator.Play("MC_Att_FR02");
+                break;
+            case 3:
+                animator.Play("MC_Att_FR03");
+                break;
+        }
+    }
 }
