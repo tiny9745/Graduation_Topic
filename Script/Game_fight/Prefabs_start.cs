@@ -30,7 +30,7 @@ public class Prefabs_start : MonoBehaviour
             Number_NPC04 = 1;
             Number_NPC03 = 1;
             Number_NPC02 = 1;
-            //Number_NPC01 = 1;
+            Number_NPC01 = 1;
             NPC_into();
         }
         else if (static_parameters.stage_number == 2)

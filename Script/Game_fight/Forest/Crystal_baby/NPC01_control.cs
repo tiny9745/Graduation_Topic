@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class NPC01_control : MonoBehaviour
 {
@@ -14,15 +12,18 @@ public class NPC01_control : MonoBehaviour
     public float NPC_HP_Max = 100; public float npcSpeed = 3f;
     public float NPC_HP;
     float dist;
-    private Quaternion initialRotation;
-    //private Camera mainCamera;
-    public GameObject NPC01; public GameObject NPC01_1;
-    bool dead_open = true;bool hit_Ani = false;bool hit = false;
-    float coordinate_X; float coordinate_Z;
+    bool hit_Ani = false;
+    bool hit = false;
     private Vector3 lastPosition;
+    private Quaternion initialRotation;
+    public GameObject NPC01; public GameObject NPC01_1;
     public GameObject hitbox_Crystal_baby;
-    public NPC_HP_01 nPC_hP;
+    public GameObject Drop;
+    bool dead_open = true;
     bool MC_to_Att = true;
+    //float coordinate_X; float coordinate_Z;
+    public NPC_HP_01 nPC_hP;
+    int NPC_angle = 0;
     private bool isFacingRight = true;
     public GameObject Img_npc;
 
@@ -30,7 +31,6 @@ public class NPC01_control : MonoBehaviour
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
-        lastPosition = transform.position;
         NPC01 = GameObject.Find("NPC01");
         if (NPC01 != null)
         {
@@ -58,168 +58,45 @@ public class NPC01_control : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update() {
-        TargetObj = GameObject.Find("Player");
-        npcNavi = GetComponent<NavMeshAgent>();
+    void Update() 
+    {
+        if (npcNavi == null) return;
+        if (TargetObj != null)
+        {
+            dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+        }
         if (NPC_HP <= 0)
         {
-            npcNavi.speed = 0;
-            if (coordinate_X >= 0 && coordinate_Z > 0)
-            {
-                if (isFacingRight)
-                {
-                    Flip();
-                }
-                animator.Play("Crystal_baby_Big_bomb_LB");
-            }
-            if (coordinate_X < 0 && coordinate_Z >= 0)
-            {
-                if (!isFacingRight)
-                {
-                    Flip();
-                }
-                animator.Play("Crystal_baby_Big_bomb_LB");
-            }
-            if (coordinate_X <= 0 && coordinate_Z < 0)
-            {
-                if (!isFacingRight)
-                {
-                    Flip();
-                }
-                animator.Play("Crystal_baby_Big_bomb_LF");
-            }
-            if (coordinate_X > 0 && coordinate_Z <= 0)
-            {
-                if (isFacingRight)
-                {
-                    Flip();
-                }
-                animator.Play("Crystal_baby_Big_bomb_LF");
-            }
-            Invoke("dead", 1.6f);
+            PlayBombAnimation();
         }
-        else if (hit_Ani == false)
-        {
-            npcNavi.speed = npcSpeed;
+        else if (!hit_Ani)
+        {        
+            //npcNavi.speed = npcSpeed;
             if (transform.position == lastPosition)
             {
-                if (coordinate_X >= 0 && coordinate_Z > 0)
-                {
-                    if (isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_Big_stand_LB");
-                }
-                if (coordinate_X < 0 && coordinate_Z >= 0)
-                {
-                    if (!isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_Big_stand_LB");
-                }
-                if (coordinate_X <= 0 && coordinate_Z < 0)
-                {
-                    if (!isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_Big_stand_LF");
-                }
-                if (coordinate_X > 0 && coordinate_Z <= 0)
-                {
-                    if (isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_Big_stand_LF");
-                }
+                PlayStandAnimation();
             }
             else
             {
-                if (coordinate_X >= 0 && coordinate_Z > 0)
-                {
-                    if (isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_Big_walk_LB");
-                }
-                if (coordinate_X < 0 && coordinate_Z >= 0)
-                {
-                    if (!isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_Big_walk_LB");
-                }
-                if (coordinate_X <= 0 && coordinate_Z < 0)
-                {
-                    if (!isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_Big_walk_LF");
-                }
-                if (coordinate_X > 0 && coordinate_Z <= 0)
-                {
-                    if (isFacingRight)
-                    {
-                        Flip();
-                    }
-                    animator.Play("Crystal_baby_Big_walk_LF");
-                }
+                PlayWalkAnimation();                
             }
         }
         else
         {
-            if (coordinate_X >= 0 && coordinate_Z > 0)
-            {
-                if (isFacingRight)
-                {
-                    Flip();
-                }
-                animator.Play("Crystal_baby_Big_Att_LB");
-            }
-            if (coordinate_X < 0 && coordinate_Z >= 0)
-            {
-                if (!isFacingRight)
-                {
-                    Flip();
-                }
-                animator.Play("Crystal_baby_Big_Att_LB");
-            }
-            if (coordinate_X <= 0 && coordinate_Z < 0)
-            {
-                if (!isFacingRight)
-                {
-                    Flip();
-                }
-                animator.Play("Crystal_baby_Big_Att_LF");
-            }
-            if (coordinate_X > 0 && coordinate_Z <= 0)
-            {
-                if (isFacingRight)
-                {
-                    Flip();
-                }
-                animator.Play("Crystal_baby_Big_Att_LF");
-            }
+            PlayAttackAnimation();            
         }
         if (dist >= DetectDistance * 3 / 5)
         {
             hit_Ani = false;
         }
+        lastPosition = transform.position;
+        transform.rotation = initialRotation;
+
         if (TargetObj == null)
         {
-            if (npcNavi != null)
-            {
-                npcNavi.speed = npcSpeed;
-            }
+            TargetObj = GameObject.Find("Player");
         }
-        else
+        /*else
         {
             float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
             if (dist < DetectDistance && NPC_HP > 0)
@@ -230,11 +107,176 @@ public class NPC01_control : MonoBehaviour
             {
                 npcNavi.destination = transform.position;
             }
+        }*/
+
+        if (TargetObj != null && npcNavi != null)
+        {
+            if (dist < DetectDistance && NPC_HP > 0)
+            {
+                npcNavi.destination = TargetObj.transform.position;
+            }
+            else
+            {
+                npcNavi.destination = transform.position;
+            }
+
+            Vector3 direction = TargetObj.transform.position - transform.position;
+            Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
+            Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
+
+            NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
+
+            if (NPC_angle < 0)
+            {
+                NPC_angle += 360;
+            }
         }
-        transform.rotation = initialRotation;
-        lastPosition = transform.position;
-        coordinate_X = TargetObj.transform.position.x - transform.position.x;
-        coordinate_Z = TargetObj.transform.position.z - transform.position.z;
+    }
+
+    private void PlayStandAnimation()
+    {
+        if (NPC_angle >= 0 && NPC_angle < 90)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_stand_LB");
+        }
+        if (NPC_angle >= 270 && NPC_angle < 360)
+        {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_stand_LB");
+        }
+        if (NPC_angle >= 180 && NPC_angle < 270)
+        {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_stand_LF");
+        }
+        if (NPC_angle >= 90 && NPC_angle < 180)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_stand_LF");
+        }
+    }
+
+    private void PlayWalkAnimation()
+    {
+        if (NPC_angle >= 0 && NPC_angle < 90)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_walk_LB");
+        }
+        if (NPC_angle >= 270 && NPC_angle < 360)
+        {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_walk_LB");
+        }
+        if (NPC_angle >= 180 && NPC_angle < 270)
+        {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_walk_LF");
+        }
+        if (NPC_angle >= 90 && NPC_angle < 180)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_walk_LF");
+        }
+    }
+
+    private void PlayAttackAnimation()
+    {
+        if (NPC_angle >= 0 && NPC_angle < 90)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_Att_LB");
+        }
+        if (NPC_angle >= 270 && NPC_angle < 360)
+        {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_Att_LB");
+        }
+        if (NPC_angle >= 180 && NPC_angle < 270)
+        {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_Att_LF");
+        }
+        if (NPC_angle >= 90 && NPC_angle < 180)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_Att_LF");
+        }
+    }
+
+    private void PlayBombAnimation()
+    {
+        npcNavi.speed = 0;
+        if (NPC_angle >= 0 && NPC_angle < 90)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_bomb_LB");
+        }
+        if (NPC_angle >= 270 && NPC_angle < 360)
+        {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_bomb_LB");
+        }
+        if (NPC_angle >= 180 && NPC_angle < 270)
+        {
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_bomb_LF");
+        }
+        if (NPC_angle >= 90 && NPC_angle < 180)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            animator.Play("Crystal_baby_Big_bomb_LF");
+        }
+        Invoke("dead", 1.6f);
     }
     public int GetNPC01_ATK()
     {
@@ -246,17 +288,28 @@ public class NPC01_control : MonoBehaviour
     }
 
     bool open_EnableHitbox = true;
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0)
         {
-            if (other.gameObject.tag == "Player" && open_EnableHitbox)
+            if (other.gameObject.tag == "Player")
             {
-                hit_Ani = true;
-                EnableHitbox();
+                if (open_EnableHitbox)
+                {
+                    hit_Ani = true;
+                    Invoke("EnableHitbox", 1.1f);
+                    open_EnableHitbox = false;
+                }
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                if (nPC_hP == null)
+                {
+                    Debug.LogError("nPC_hP is not assigned.");
+                    return;
+                }
+
+                print("NPC_HP:" + NPC_HP);
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);

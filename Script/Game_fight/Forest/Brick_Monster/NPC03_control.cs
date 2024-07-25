@@ -30,7 +30,6 @@ public class NPC03_control : MonoBehaviour
     {
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
-        print("NPC_HP:" + NPC_HP);
         initialRotation = transform.rotation;
         NPC03 = GameObject.Find("NPC03");
         if (NPC03 != null)
@@ -49,7 +48,6 @@ public class NPC03_control : MonoBehaviour
             npcNavi.speed = npcSpeed;
         }
 
-        // Check if nPC_hP is assigned
         if (nPC_hP == null)
         {
             nPC_hP = GetComponent<NPC_HP_03>();

@@ -6,7 +6,7 @@ public class NPC01_Hit_box : MonoBehaviour
 {
     public NPC01_control npcCtrl;
     public GameObject Player;
-    float NPC_ATK = 0; int minus;
+    float NPC_ATK = 0; float minus;
     void Start()
     {
         Player = GameObject.Find("Player");
@@ -24,6 +24,7 @@ public class NPC01_Hit_box : MonoBehaviour
         if (npcCtrl != null) NPC_ATK = npcCtrl.GetNPC01_ATK();
         if (Player != null)
         {
+            print("NPC01");
             // Get target direction
             Vector3 direction = Player.transform.position - transform.position;
             direction.y = 0;
@@ -47,10 +48,9 @@ public class NPC01_Hit_box : MonoBehaviour
     void Damage()
     {
         if(!static_parameters.invincible){
-            minus = (int)(NPC_ATK*NPC_ATK/(static_parameters.MC_DEF+NPC_ATK));
-            if (minus < 5) minus = 5;
+            minus = (int)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
+            if (minus < 5) minus = 5.0f;
             static_parameters.MC_HP -= minus;
-        }
-        
+        }       
     }
 }

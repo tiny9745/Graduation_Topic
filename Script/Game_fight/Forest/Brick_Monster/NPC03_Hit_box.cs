@@ -25,6 +25,7 @@ public class NPC03_Hit_box : MonoBehaviour
         if (npcCtrl != null) NPC_ATK = npcCtrl.GetNPC03_ATK();
         if (Player != null)
         {
+            print("NPC03");
             Vector3 direction = Player.transform.position - transform.position;
             direction.y = 0;
             if (direction != Vector3.zero)
