@@ -21,7 +21,6 @@ public class NPC01_control : MonoBehaviour
     public GameObject Drop;
     bool dead_open = true;
     bool MC_to_Att = true;
-    //float coordinate_X; float coordinate_Z;
     public NPC_HP_01 nPC_hP;
     int NPC_angle = 0;
     private bool isFacingRight = true;
