@@ -11,6 +11,7 @@ public class Prefabs_start : MonoBehaviour
     public GameObject prefabNPC02;
     public GameObject prefabNPC03;
     public GameObject prefabNPC04;
+    public GameObject prefabNPC05;
     float NPC_postion_minX = -50f;
     float NPC_postion_maxX = 50f;
     float NPC_postion_minZ = -50f;
@@ -21,6 +22,7 @@ public class Prefabs_start : MonoBehaviour
     int Number_NPC02;
     int Number_NPC03;
     int Number_NPC04;
+    int Number_NPC05;
 
     void Start()
     {
@@ -81,6 +83,12 @@ public class Prefabs_start : MonoBehaviour
             randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
             GenerateNPC04(new Vector3(randomX, transform.position.y, randomZ));
         }
+        /*for (int i = 0; i < Number_NPC05; i++)
+        {
+            randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
+            randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
+            GenerateNPC05(new Vector3(randomX, transform.position.y, randomZ));
+        }*/
     }
     void GenerateNPC01(Vector3 position)
     {
@@ -100,5 +108,9 @@ public class Prefabs_start : MonoBehaviour
     void GenerateNPC04(Vector3 position)
     {
         GameObject npc = Instantiate(prefabNPC04, position, Quaternion.identity);
+    }
+    void GenerateNPC05(Vector3 position)
+    {
+        GameObject npc = Instantiate(prefabNPC05, position, Quaternion.identity);
     }
 }
