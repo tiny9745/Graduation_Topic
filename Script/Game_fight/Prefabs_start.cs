@@ -29,6 +29,7 @@ public class Prefabs_start : MonoBehaviour
         // Randomly generate positions within range
         if (static_parameters.stage_number == 1)
         {
+            Number_NPC05 = 1;
             Number_NPC04 = 1;
             Number_NPC03 = 1;
             Number_NPC02 = 1;
@@ -83,12 +84,12 @@ public class Prefabs_start : MonoBehaviour
             randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
             GenerateNPC04(new Vector3(randomX, transform.position.y, randomZ));
         }
-        /*for (int i = 0; i < Number_NPC05; i++)
+        for (int i = 0; i < Number_NPC05; i++)
         {
             randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
             randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
             GenerateNPC05(new Vector3(randomX, transform.position.y, randomZ));
-        }*/
+        }
     }
     void GenerateNPC01(Vector3 position)
     {
