@@ -266,7 +266,7 @@ public class NPC03_control : MonoBehaviour
                 print("NPC_HP:" + NPC_HP);
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
-                Invoke("wait_MC_att", 0.2f);
+                Invoke("wait_MC_att", 0.1f);
             }
         }
     }

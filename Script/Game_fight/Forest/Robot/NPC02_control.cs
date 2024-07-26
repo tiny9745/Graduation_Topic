@@ -255,6 +255,7 @@ public class NPC02_control : MonoBehaviour
                 {
                     hit_Ani = true;
                     Invoke("EnableHitbox", 1.15f);
+                    open_EnableHitbox = false;
                 }
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
@@ -268,7 +269,7 @@ public class NPC02_control : MonoBehaviour
                 knock_back();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
                 MC_to_Att = false;
-                Invoke("wait_MC_att", 0.2f);
+                Invoke("wait_MC_att", 0.35f);
             }
         }
     }
@@ -280,29 +281,16 @@ public class NPC02_control : MonoBehaviour
 
     void EnableHitbox()
     {
-        if (tmp_to_atk)
-        {
-            hitbox_Robot.SetActive(true);
-            closeHitbox();
-            hit = false;
-            tmp_to_atk = false;
-        }
-        else
-        {
-            hitbox_Robot.SetActive(true);
-            hit = false;
-            Invoke("wait_atk", 1f);
-        }
+        hitbox_Robot.SetActive(true);
+        Invoke("closeHitbox", 0.5f);//atk time
+        hit = false;
     }
     void closeHitbox()
     {
         hitbox_Robot.SetActive(false);
         open_EnableHitbox = true;
     }
-    void wait_atk()
-    {
-        tmp_to_atk = true;
-    }
+
     void Flip()
     {
         isFacingRight = !isFacingRight;
