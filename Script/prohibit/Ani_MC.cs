@@ -34,124 +34,26 @@ public class Ani_MC : MonoBehaviour
                 startTime = Time.time;
                 static_parameters.Attactstate = 0;
             }
-
             elapsedTime = Time.time - startTime;
             if (elapsedTime <= 1f / static_parameters.MC_ATK_Speed)
             {
-                static_parameters.Attactstate=1;
-                if (Angle_sum == 45)
-                {
-                    animator.Play("MC_Att_BR01");
-                }
-                else if (Angle_sum == 315)
-                {
-                    animator.Play("MC_Att_FR01");
-                }
-                else if (Angle_sum == 225)
-                {
-                    animator.Play("MC_Att_FL01");
-                }
-                else if (Angle_sum == 135)
-                {
-                    animator.Play("MC_Att_BL01");
-                }
-                else if (Angle_sum == 270)
-                {
-                    animator.Play("MC_Att_FR01");
-                }
-                else if (Angle_sum == 90)
-                {
-                    animator.Play("MC_Att_BR01");
-                }
-                else if (Angle_sum == 180)
-                {
-                    animator.Play("MC_Att_FL01");
-                }
-                else if (Angle_sum == 0)
-                {
-                    animator.Play("MC_Att_FR01");
-                }
+                static_parameters.Attactstate=1;             
             }
             if (elapsedTime > 1f / static_parameters.MC_ATK_Speed && elapsedTime <= 2f / static_parameters.MC_ATK_Speed)
             {
-                static_parameters.Attactstate=2;
-                if (Angle_sum == 45)
-                {
-                    animator.Play("MC_Att_BR02");
-                }
-                else if (Angle_sum == 315)
-                {
-                    animator.Play("MC_Att_FR02");
-                }
-                else if (Angle_sum == 225)
-                {
-                    animator.Play("MC_Att_FR02");
-                }
-                else if (Angle_sum == 135)
-                {
-                    animator.Play("MC_Att_BL02");
-                }
-                else if (Angle_sum == 270)
-                {
-                    animator.Play("MC_Att_FR02");
-                }
-                else if (Angle_sum == 90)
-                {
-                    animator.Play("MC_Att_BR02");
-                }
-                else if (Angle_sum == 180)
-                {
-                    animator.Play("MC_Att_FL02");
-                }
-                else if (Angle_sum == 0)
-                {
-                    animator.Play("MC_Att_FR02");
-                }
+                static_parameters.Attactstate=2;               
             }
             if (elapsedTime > 2f / static_parameters.MC_ATK_Speed && elapsedTime <= 3f / static_parameters.MC_ATK_Speed)
             {
-                static_parameters.Attactstate=3;
-                if (Angle_sum == 45)
-                {
-                    animator.Play("MC_Att_BR03");
-                }
-                else if (Angle_sum == 315)
-                {
-                    animator.Play("MC_Att_FR03");
-                }
-                else if (Angle_sum == 225)
-                {
-                    animator.Play("MC_Att_FR03");
-                }
-                else if (Angle_sum == 135)
-                {
-                    animator.Play("MC_Att_BL03");
-                }
-                else if (Angle_sum == 270)
-                {
-                    animator.Play("MC_Att_FR03");
-                }
-                else if (Angle_sum == 90)
-                {
-                    animator.Play("MC_Att_BR03");
-                }
-                else if (Angle_sum == 180)
-                {
-                    animator.Play("MC_Att_FL03");
-                }
-                else if (Angle_sum == 0)
-                {
-                    animator.Play("MC_Att_FR03");
-                }
+                static_parameters.Attactstate=3;              
             }
             else if (elapsedTime > 2.25f / static_parameters.MC_ATK_Speed)
             {
                 startTime = 0;
                 static_parameters.Attactstate=0;
             }
-        }
-        else//verticalInput=垂直，horizontalInput=水平
-        {
+            MC_ani_state();
+        }else{//verticalInput=垂直，horizontalInput=水平     
             if (MC_move.verticalInput > 0 && MC_move.horizontalInput > 0)
             {
                 animator.Play("MC_Walk_Back");
@@ -231,16 +133,109 @@ public class Ani_MC : MonoBehaviour
     }
     void MC_ani_state(){
         switch(static_parameters.Attactstate){
-            case 0:
-                animator.Play("MC_Stand_Front");
-                break;
             case 1:
-                animator.Play("MC_Att_FR01");
+                if (Angle_sum == 0)
+                {
+                    animator.Play("MC_Att_FR01");
+                }
+                else if (Angle_sum == 45)
+                {
+                    animator.Play("MC_Att_BR01");
+                }
+                else if (Angle_sum == 90)
+                {
+                    animator.Play("MC_Att_BR01");
+                }
+                else if (Angle_sum == 135)
+                {
+                    animator.Play("MC_Att_BL01");
+                }
+                else if (Angle_sum == 180)
+                {
+                    animator.Play("MC_Att_FL01");
+                }
+                else if (Angle_sum == 225)
+                {
+                    animator.Play("MC_Att_FL01");
+                }
+                else if (Angle_sum == 270)
+                {
+                    animator.Play("MC_Att_FR01");
+                }
+                else if (Angle_sum == 315)
+                {
+                    animator.Play("MC_Att_FR01");
+                }
                 break;
             case 2:
-                animator.Play("MC_Att_FR02");
+                if (Angle_sum == 0)
+                {
+                    animator.Play("MC_Att_FR02");
+                }
+                else if (Angle_sum == 45)
+                {
+                    animator.Play("MC_Att_BR02");
+                }
+                else if (Angle_sum == 90)
+                {
+                    animator.Play("MC_Att_BR02");
+                }
+                else if (Angle_sum == 135)
+                {
+                    animator.Play("MC_Att_BL02");
+                }
+                else if (Angle_sum == 180)
+                {
+                    animator.Play("MC_Att_FL02");
+                }
+                else if (Angle_sum == 225)
+                {
+                    animator.Play("MC_Att_FL02");
+                }
+                else if (Angle_sum == 270)
+                {
+                    animator.Play("MC_Att_FR02");
+                }
+                else if (Angle_sum == 315)
+                {
+                    animator.Play("MC_Att_FR02");
+                }
                 break;
             case 3:
+                if (Angle_sum == 0)
+                {
+                    animator.Play("MC_Att_FR03");
+                }
+                else if (Angle_sum == 45)
+                {
+                    animator.Play("MC_Att_BR03");
+                }
+                else if (Angle_sum == 90)
+                {
+                    animator.Play("MC_Att_BR03");
+                }
+                else if (Angle_sum == 135)
+                {
+                    animator.Play("MC_Att_BL03");
+                }
+                else if (Angle_sum == 180)
+                {
+                    animator.Play("MC_Att_FL03");
+                }
+                else if (Angle_sum == 225)
+                {
+                    animator.Play("MC_Att_FL03");
+                }
+                else if (Angle_sum == 270)
+                {
+                    animator.Play("MC_Att_FR03");
+                }
+                else if (Angle_sum == 315)
+                {
+                    animator.Play("MC_Att_FR03");
+                }
+                break;
+            case 4:
                 animator.Play("MC_Att_FR03");
                 break;
         }
