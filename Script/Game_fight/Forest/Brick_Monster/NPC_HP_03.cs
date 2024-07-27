@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPC_HP_03 : MonoBehaviour
 {
+    //
     public SpriteRenderer healthBarFill;
     public float MaxHealth, minus;
     private Vector3 initialScale;

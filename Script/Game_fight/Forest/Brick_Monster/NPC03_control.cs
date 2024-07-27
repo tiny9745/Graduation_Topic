@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NPC03_control : MonoBehaviour
 {
+    //
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
