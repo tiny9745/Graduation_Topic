@@ -78,10 +78,6 @@ public class NPC05_control : MonoBehaviour
             {
                 PlayStandAnimation();
             }
-            else
-            {
-                PlayWalkAnimation();
-            }
         }
         else
         {
@@ -131,7 +127,7 @@ public class NPC05_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_stand");
+            animator.Play("Tumbler_stand_LB");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -139,7 +135,7 @@ public class NPC05_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_stand");
+            animator.Play("Tumbler_stand_LB");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -147,7 +143,7 @@ public class NPC05_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_stand");
+            animator.Play("Tumbler_stand_LF");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -155,43 +151,7 @@ public class NPC05_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_stand");
-        }
-    }
-
-    private void PlayWalkAnimation()
-    {
-        if (NPC_angle >= 0 && NPC_angle < 90)
-        {
-            if (isFacingRight)
-            {
-                Flip();
-            }
-            animator.Play("blocksLB_walk");
-        }
-        else if (NPC_angle >= 270 && NPC_angle < 360)
-        {
-            if (!isFacingRight)
-            {
-                Flip();
-            }
-            animator.Play("blocksLB_walk");
-        }
-        else if (NPC_angle >= 180 && NPC_angle < 270)
-        {
-            if (!isFacingRight)
-            {
-                Flip();
-            }
-            animator.Play("blocksLF_walk");
-        }
-        else if (NPC_angle >= 90 && NPC_angle < 180)
-        {
-            if (isFacingRight)
-            {
-                Flip();
-            }
-            animator.Play("blocksLF_walk");
+            animator.Play("Tumbler_stand_LF");
         }
     }
 
@@ -203,7 +163,7 @@ public class NPC05_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_atk");
+            animator.Play("Tumbler_Atk_LB");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -211,7 +171,7 @@ public class NPC05_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLB_atk");
+            animator.Play("Tumbler_Atk_LB");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -219,7 +179,7 @@ public class NPC05_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_atk");
+            animator.Play("Tumbler_Atk_LF");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -227,7 +187,7 @@ public class NPC05_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("blocksLF_atk");
+            animator.Play("Tumbler_Atk_LF");
         }
     }
 
