@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Ani_MC : MonoBehaviour
 {
+    //stand 0 walk 1 melee attack 2~4
     public Animator animator;
     public GameObject playerPrefab;
     private Play_move MC_move;
@@ -23,34 +24,34 @@ public class Ani_MC : MonoBehaviour
     {
         this.transform.position = new Vector3(Play_s.transform.position.x, transform.position.y, Play_s.transform.position.z);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (Input.GetKeyDown(KeyCode.J))
-        {
+        if(Input.GetKeyDown(KeyCode.J)){
             startTime = 0;
         }
-        if (Input.GetKey(KeyCode.J))
+
+        if(Input.GetKey(KeyCode.J))
         {
-            if (startTime <= 0)
+            if(startTime <= 0)
             {
                 startTime = Time.time;
-                static_parameters.Attactstate = 0;
+                static_parameters.Ani_state = 0;
             }
             elapsedTime = Time.time - startTime;
             if (elapsedTime <= 1f / static_parameters.MC_ATK_Speed)
             {
-                static_parameters.Attactstate=1;             
+                static_parameters.Ani_state=1;             
             }
             if (elapsedTime > 1f / static_parameters.MC_ATK_Speed && elapsedTime <= 2f / static_parameters.MC_ATK_Speed)
             {
-                static_parameters.Attactstate=2;               
+                static_parameters.Ani_state=2;               
             }
             if (elapsedTime > 2f / static_parameters.MC_ATK_Speed && elapsedTime <= 3f / static_parameters.MC_ATK_Speed)
             {
-                static_parameters.Attactstate=3;              
+                static_parameters.Ani_state=3;              
             }
             else if (elapsedTime > 2.25f / static_parameters.MC_ATK_Speed)
             {
                 startTime = 0;
-                static_parameters.Attactstate=0;
+                static_parameters.Ani_state=0;
             }
             MC_ani_state();
         }else{//verticalInput=垂直，horizontalInput=水平     
@@ -132,8 +133,13 @@ public class Ani_MC : MonoBehaviour
         }  
     }
     void MC_ani_state(){
-        switch(static_parameters.Attactstate){
+        switch(static_parameters.Ani_state){
+            case 0:
+                break;
             case 1:
+
+                break;    
+            case 2:
                 if (Angle_sum == 0)
                 {
                     animator.Play("MC_Att_FR01");
@@ -167,7 +173,7 @@ public class Ani_MC : MonoBehaviour
                     animator.Play("MC_Att_FR01");
                 }
                 break;
-            case 2:
+            case 3:
                 if (Angle_sum == 0)
                 {
                     animator.Play("MC_Att_FR02");
@@ -201,7 +207,7 @@ public class Ani_MC : MonoBehaviour
                     animator.Play("MC_Att_FR02");
                 }
                 break;
-            case 3:
+            case 4:
                 if (Angle_sum == 0)
                 {
                     animator.Play("MC_Att_FR03");
@@ -235,8 +241,8 @@ public class Ani_MC : MonoBehaviour
                     animator.Play("MC_Att_FR03");
                 }
                 break;
-            case 4:
-                animator.Play("MC_Att_FR03");
+            case 5:
+                
                 break;
         }
     }
