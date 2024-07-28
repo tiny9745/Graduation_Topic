@@ -21,6 +21,7 @@ public class Play_move : MonoBehaviour
         walkSpeed = static_parameters.MC_Wspeed;
         dashSpeed = walkSpeed * 3;
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
+        print(horizontalInput);print(verticalInput);
 
         if (movement.magnitude > 1)
         {
