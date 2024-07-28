@@ -1,11 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NPC03_control : MonoBehaviour
 {
-    //
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
@@ -302,6 +301,13 @@ public class NPC03_control : MonoBehaviour
     {
         if (dead_open)
         {
+            Transform parentTransform = GameObject.Find("blocksLF_stb_0").transform;
+            Transform childTransform = parentTransform.Find("Quad");
+            if (childTransform != null)
+            {
+                GameObject childGameObject = childTransform.gameObject;
+                childGameObject.SetActive(false);
+            }
             Img_npc.transform.rotation = Quaternion.Euler(0, 0, -45);
             animator.speed = 0;
             hitbox_Brick_Monster.SetActive(false);

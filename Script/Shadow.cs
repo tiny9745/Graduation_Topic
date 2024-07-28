@@ -74,7 +74,7 @@ public class Shadow : MonoBehaviour
 
     void UpdateQuadSize()
     {
-        if (spriteRenderer != null)
+        if (spriteRenderer != null && quad != null)
         {
             // 获取 Sprite 的 bounds 大小
             Bounds bounds = spriteRenderer.bounds;
