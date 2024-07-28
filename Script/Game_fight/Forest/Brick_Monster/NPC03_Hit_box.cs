@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPC03_Hit_box : MonoBehaviour
 {
+    //
     public NPC03_control npcCtrl;
     public GameObject Player;
     float NPC_ATK = 0, minus;
