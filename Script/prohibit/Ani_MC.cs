@@ -28,25 +28,21 @@ public class Ani_MC : MonoBehaviour
             startTime = 0;
         }
 
-        if(Input.GetKey(KeyCode.J))
-        {
-            if(startTime <= 0)
-            {
+        if(Input.GetKey(KeyCode.J)){
+            if(startTime <= 0){
                 startTime = Time.time;
                 static_parameters.Ani_state = 0;
             }
             elapsedTime = Time.time - startTime;
-            if (elapsedTime <= 1f / static_parameters.MC_ATK_Speed)
+            if (elapsedTime <= 1f / static_parameters.MC_ATK_Speed){
+                static_parameters.Ani_state=2;             
+            }else if (elapsedTime > 1f / static_parameters.MC_ATK_Speed && elapsedTime <= 2f / static_parameters.MC_ATK_Speed)
             {
-                static_parameters.Ani_state=1;             
-            }
-            if (elapsedTime > 1f / static_parameters.MC_ATK_Speed && elapsedTime <= 2f / static_parameters.MC_ATK_Speed)
-            {
-                static_parameters.Ani_state=2;               
+                static_parameters.Ani_state=3;               
             }
             if (elapsedTime > 2f / static_parameters.MC_ATK_Speed && elapsedTime <= 3f / static_parameters.MC_ATK_Speed)
             {
-                static_parameters.Ani_state=3;              
+                static_parameters.Ani_state=4;              
             }
             else if (elapsedTime > 2.25f / static_parameters.MC_ATK_Speed)
             {

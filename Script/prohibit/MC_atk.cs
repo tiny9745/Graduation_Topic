@@ -35,6 +35,7 @@ public class MC_atk : MonoBehaviour
         if (Input.GetKey(KeyCode.J)){
             switch (static_parameters.Ani_state){
                 case 2:
+                    print("2");
                     MC_Collider.enabled = true;
                     melee1();
                     break;
