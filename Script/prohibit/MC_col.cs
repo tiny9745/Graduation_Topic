@@ -160,15 +160,15 @@ public class MC_col : MonoBehaviour
                 SetRotation(0, -90, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
-            case 2:
+            case 3:
                 SetRotation(0, 90, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
-            case 3:
+            case 5:
                 SetRotation(0, 180, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
-            case 4:
+            case 7:
                 SetRotation(0, 0, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
                 break;

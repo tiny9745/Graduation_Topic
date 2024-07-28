@@ -9,7 +9,7 @@ public class Play_move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -21,38 +21,51 @@ public class Play_move : MonoBehaviour
         walkSpeed = static_parameters.MC_Wspeed;
         dashSpeed = walkSpeed * 3;
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
-        print(horizontalInput);print(verticalInput);
 
         if (movement.magnitude > 1)
         {
             movement.Normalize();
         }
-        if(!DashCD){
-        movement = movement * walkSpeed * Time.deltaTime;
-        }else{
-        movement = movement * dashSpeed * Time.deltaTime;
+        if (!DashCD)
+        {
+            movement = movement * walkSpeed * Time.deltaTime;
+        }
+        else
+        {
+            movement = movement * dashSpeed * Time.deltaTime;
         }
         transform.position += movement;
 
         if (movement != Vector3.zero)
         {
-            if (movement.x > 0)
-            {
-                static_parameters.face = 1;
+            if (horizontalInput > 0){
+                static_parameters.face = 1;//r
             }
-            else if (movement.x < 0)
-            {
-                static_parameters.face = 2;
+            if (horizontalInput < 0){
+                static_parameters.face = 3;//l
             }
-            else if (movement.z > 0)
-            {
-                static_parameters.face = 3;
+            if (verticalInput > 0){
+                static_parameters.face = 5;//f
             }
-            else if (movement.z < 0)
-            {
-                static_parameters.face = 4;
+            if (verticalInput < 0){
+                static_parameters.face = 7;//b
+            }    
+            if (horizontalInput > 0 && verticalInput > 0){
+                static_parameters.face=2;//fr
+            }              
+            if (horizontalInput > 0 && verticalInput < 0){
+                static_parameters.face=4;//br
+            }               
+            if (horizontalInput < 0 && verticalInput > 0){
+                static_parameters.face=6;//fl
+            }               
+            if (horizontalInput < 0 && verticalInput < 0){
+                static_parameters.face=8;//bl
             }
+        }else{
+            static_parameters.face = 0;
         }
+
         if (Input.GetKeyDown(KeyCode.L))
         {
             DashCD = true;
