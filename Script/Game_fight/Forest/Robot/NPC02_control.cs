@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using Unity.Burst.CompilerServices;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -70,6 +70,7 @@ public class NPC02_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
+            hitbox_Robot.SetActive (false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             dead();
