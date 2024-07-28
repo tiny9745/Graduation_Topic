@@ -68,6 +68,7 @@ public class NPC05_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
+            hitbox_Brick_Monster.SetActive (false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             dead();
@@ -222,8 +223,6 @@ public class NPC05_control : MonoBehaviour
                     Debug.LogError("nPC_hP is not assigned.");
                     return;
                 }
-
-                knock_back();
                 print("NPC_HP:" + NPC_HP);
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
                 MC_to_Att = false;
@@ -274,12 +273,7 @@ public class NPC05_control : MonoBehaviour
             dead_open = false;
         }
     }
-    void knock_back()
-    {
-        print("knock_back");
-        Vector3 currentPosition = transform.position;
-        transform.position = currentPosition + 5f * Vector3.back;
-    }
+
     void dead_after()
     {
         Destroy(gameObject);

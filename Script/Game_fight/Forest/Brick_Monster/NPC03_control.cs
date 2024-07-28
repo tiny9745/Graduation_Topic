@@ -69,6 +69,7 @@ public class NPC03_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
+            hitbox_Brick_Monster.SetActive (false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             dead();
