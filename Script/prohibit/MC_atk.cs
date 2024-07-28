@@ -21,7 +21,7 @@ public class MC_atk : MonoBehaviour
     {
         attackDamage=static_parameters.MC_ATK;
         MC_Collider = GetComponent<Collider>();
-        T1 = static_parameters.Attactstate;
+        T1 = static_parameters.Ani_state;
         if(T2 == -9){
             CloseCollider();
             T2 = -1;
@@ -33,16 +33,16 @@ public class MC_atk : MonoBehaviour
     }
     void skill(){
         if (Input.GetKey(KeyCode.J)){
-            switch (static_parameters.Attactstate){
-                case 1:
-                    MC_Collider.enabled = true;
-                    melee1();
-                    break;
+            switch (static_parameters.Ani_state){
                 case 2:
                     MC_Collider.enabled = true;
                     melee1();
                     break;
-                case 3:;
+                case 3:
+                    MC_Collider.enabled = true;
+                    melee1();
+                    break;
+                case 4:;
                     MC_Collider.enabled = true;
                     melee2();
                     break;
