@@ -296,11 +296,12 @@ public class NPC04_control : MonoBehaviour
     {
         if (dead_open)
         {
-            Transform parentTransform = GameObject.Find("crocodileLB_stb_0").transform;
-            Transform childTransform = parentTransform.Find("Quad");
-            if (childTransform != null)
+            Transform object_A = this.transform;
+            Transform object_B = object_A.Find("tumblerLF_stb_0").transform;
+            Transform object_C = object_B.Find("Quad");
+            if (object_C != null)
             {
-                GameObject childGameObject = childTransform.gameObject;
+                GameObject childGameObject = object_C.gameObject;
                 childGameObject.SetActive(false);
             }
             Img_npc.transform.rotation = Quaternion.Euler(0, 0, -45);
