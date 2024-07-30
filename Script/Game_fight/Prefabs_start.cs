@@ -29,9 +29,9 @@ public class Prefabs_start : MonoBehaviour
         // Randomly generate positions within range
         if (static_parameters.stage_number == 1)
         {
-            //Number_NPC05 = 5;
+            Number_NPC05 = 5;
             //Number_NPC04 = 1;
-            Number_NPC03 = 5;
+            //Number_NPC03 = 5;
             //Number_NPC02 = 1;
             //Number_NPC01 = 1;
             NPC_into();
