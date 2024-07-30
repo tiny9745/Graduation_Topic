@@ -75,7 +75,6 @@ public class MC_col : MonoBehaviour
             SetAnimationSpeed_Walk("MC_Stand_Back", static_parameters.MC_Wspeed);
             SetAnimationSpeed_Walk("MC_Stand_Left", static_parameters.MC_Wspeed);
 
-            print("MC_Walk_Speed:" + static_parameters.MC_Wspeed);
         }
     }
 
@@ -148,7 +147,6 @@ public class MC_col : MonoBehaviour
         if (scene.name == PrepareSceneName)
         {
             static_parameters.MC_HP = static_parameters.MC_HP_Max;
-            print("MC_HP_Max" + static_parameters.MC_HP_Max + ",MC_HP" + static_parameters.MC_HP);
         }
     }
 
@@ -157,21 +155,37 @@ public class MC_col : MonoBehaviour
         switch (face)
         {
             case 1:
-                SetRotation(0, -90, 0);
+                SetRotation(0, 270, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
+            case 2:
+                SetRotation(0, 225, 0);
+                spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
+                break;    
             case 3:
-                SetRotation(0, 90, 0);
-                spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
-                break;
-            case 5:
                 SetRotation(0, 180, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
+            case 4:
+                SetRotation(0, 135, 0);
+                spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
+                break;    
+            case 5:
+                SetRotation(0, 90, 0);
+                spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case 6:
+                SetRotation(0, 45, 0);
+                spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
+                break;    
             case 7:
                 SetRotation(0, 0, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
+            case 8:
+                SetRotation(0, 315, 0);
+                spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
+                break;    
         }
     }
 

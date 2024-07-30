@@ -20,7 +20,6 @@ public class Blood_col : MonoBehaviour
            MC_HP();
         }
         if (static_parameters.MC_HP_Max_tmp != static_parameters.MC_HP_Max) {
-            print("blood_base return");
             blood_base = blood_tmp / static_parameters.MC_HP_Max;
             static_parameters.MC_HP_Max_tmp = static_parameters.MC_HP_Max;
         }
@@ -43,7 +42,6 @@ public class Blood_col : MonoBehaviour
         }
         }
         blood_base = blood_tmp / static_parameters.MC_HP_Max;
-        print(blood_tmp + "/" + static_parameters.MC_HP_Max + "->blood_tmp = "+blood_base);
         if (HPimg_White != null && HPimg_Red != null && HPimg_Green != null){
             HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max*blood_base, HPimg_White.sizeDelta.y);
             HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_White.sizeDelta.y);
