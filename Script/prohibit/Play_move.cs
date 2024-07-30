@@ -15,59 +15,56 @@ public class Play_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
         walkSpeed = static_parameters.MC_Wspeed;
         dashSpeed = walkSpeed * 3;
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
 
-        if (movement.magnitude > 1)
-        {
+        if (movement.magnitude > 1){
             movement.Normalize();
         }
-        if (!DashCD)
-        {
+        if (!DashCD){
             movement = movement * walkSpeed * Time.deltaTime;
-        }
-        else
-        {
+        }else{
             movement = movement * dashSpeed * Time.deltaTime;
         }
+        
         transform.position += movement;
 
         if (movement != Vector3.zero)
         {
-            if (horizontalInput > 0){
-                static_parameters.face = 1;//r
-            }
-            if (horizontalInput < 0){
-                static_parameters.face = 3;//l
-            }
-            if (verticalInput > 0){
-                static_parameters.face = 5;//f
-            }
-            if (verticalInput < 0){
-                static_parameters.face = 7;//b
-            }    
+
             if (horizontalInput > 0 && verticalInput > 0){
-                static_parameters.face=2;//fr
-            }              
-            if (horizontalInput > 0 && verticalInput < 0){
-                static_parameters.face=4;//br
-            }               
-            if (horizontalInput < 0 && verticalInput > 0){
-                static_parameters.face=6;//fl
-            }               
-            if (horizontalInput < 0 && verticalInput < 0){
-                static_parameters.face=8;//bl
+                static_parameters.face = 2;//fr              
+            }
+            else if (horizontalInput < 0 && verticalInput > 0){
+                static_parameters.face = 4;//fl
+            }
+            else if (horizontalInput < 0 && verticalInput < 0){
+                static_parameters.face = 6;//bl
+            }
+            else if (horizontalInput > 0 && verticalInput < 0){
+                static_parameters.face = 8;//br
+            }else{
+                if (horizontalInput > 0){
+                    static_parameters.face = 1;//r               
+                }
+                if (verticalInput > 0){
+                    static_parameters.face = 3;//f                
+                }
+                if (horizontalInput < 0){
+                    static_parameters.face = 5;//l           
+                }
+                if (verticalInput < 0){
+                    static_parameters.face = 7;//b
+                }
             }
         }else{
             static_parameters.face = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
+        if (Input.GetKeyDown(KeyCode.L)){
             DashCD = true;
             static_parameters.invincible = true;
             Invoke("DogeCooldown", 0.2f);
