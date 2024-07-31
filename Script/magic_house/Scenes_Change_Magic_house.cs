@@ -9,15 +9,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player"))
         {
-            static_parameters.stage_number++;
-            if (static_parameters.stage_number % 4 == 0)
-            {
-                //SceneManager.LoadScene("Game_fight_Boss");
-            }
-            else
-            {
-                SceneManager.LoadScene("Game_fight");
-            }
+            SceneManager.LoadScene("house_outside");
         }
     }
 }
