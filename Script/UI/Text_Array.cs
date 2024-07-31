@@ -135,21 +135,37 @@ public class Text_Array : MonoBehaviour
             Text_contents.Add(new Text_content(53220, "吸引", "wow", 50, 0, 0, 0, true, "人。\r\n不過，要是沒做好防潮處理，有這麼多木頭也會吸引到白蟻吧？唔，一想到這麼現實的事情，不禁沒了幻想泡泡的魔力。\r\n好吧，至少在書店裡可以體驗到被書包圍的感覺！"));
             
             //diary_day01
-            Text_contents.Add(new Text_content(21, "小心翼翼", "none", 25, 5, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(2110, "療癒", "none", 50, 0, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(21110, "愜意", "happy", 50, 0, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(21120, "放鬆", "happy", 50, 0, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(2120, "浪漫", "none", 25, 5, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(21210, "通俗", "none", 50, 0, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(21220, "常見", "none", 50, 0, 0, 0, true, ""));
+            Text_contents.Add(new Text_content(61, "日記", "none", 25, 5, 0, 0, true, "。我沒注意到補習班的男老師靠近，他一把就抽走我的"));
+            Text_contents.Add(new Text_content(6110, "日記", "none", 50, 0, 0, 0, true, "，攤開的本子就這麼被他舉高晃在空中，他甚至怒斥我：「不准在補習班寫作業以外的東西！下次再被我看到就沒收、還要唸給所有人聽！」我真的太"));
+            Text_contents.Add(new Text_content(61110, "憤怒", "angry", 50, 0, 0, 0, true, "了！明明我已經完成作業了，為什麼我不能寫其他的東西？難道他是怕我寫了一些對他不利的話嗎？真好笑。\r\n絲毫不尊重我的隱私，真不愧是爸媽找的補習班！"));
+            Text_contents.Add(new Text_content(61120, "驚訝", "wow", 50, 0, 0, 0, true, "了。他以為自己是警察在審問犯人嗎？雖然很不爽，但我不敢頂嘴，我怕他真的把我的日記公開。要是被爸媽知道，所有的錯又會落到我的身上。\r\n下次不帶日記到補習班了。"));
 
-            Text_contents.Add(new Text_content(22, "詢問", "none", 25, 5, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(2210, "憤怒", "angry", 50, 0, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(2220, "面面相覷", "sad", 50, 0, 0, 0, true, ""));
+            Text_contents.Add(new Text_content(6120, "筆", "none", 25, 5, 0, 0, true, "，一副頤指氣使的對我說：「你的握筆不對啊，你爸媽沒好好教你嗎？」他忽然將手搭在我的手上，說是要"));
+            Text_contents.Add(new Text_content(61210, "教導", "none", 50, 0, 0, 0, true, "我如何握筆。我覺得很不舒服，但不知道該怎麼反應，只是整個人"));
+            Text_contents.Add(new Text_content(61211, "僵硬", "sad", 50, 0, 0, 0, true, "在原地。幸好另一個女老師剛好進來教室，他馬上就放開了我的手。\r\n後來我洗了十多次手，卻感覺仍然洗不去皮膚上的噁心感。"));
+            Text_contents.Add(new Text_content(61212, "緊張", "sad", 50, 0, 0, 0, true, "了起來。這是性騷擾嗎？還是說只是普通的肢體接觸？會不會只是我誤會了？要是我跟別人講，別人會相信我嗎？我不知道。\r\n我回家後洗手洗了許久，還是感覺很怪。"));
 
-            Text_contents.Add(new Text_content(23, "疲倦", "none", 50, 0, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(2310, "過敏", "wow", 25, 5, 0, 0, true, ""));
-            Text_contents.Add(new Text_content(2320, "不適", "wow", 50, 0, 0, 0, true, ""));
+            Text_contents.Add(new Text_content(61220, "我", "none", 50, 0, 0, 0, true, "重新學習握筆的方式。我還以為我回到了幼兒園的時候，他把筆和我的手調整成所謂的「正確握筆姿勢」，但我只覺得寫起來"));
+            Text_contents.Add(new Text_content(61221, "彆扭", "angry", 50, 0, 0, 0, true, "。\r\n只要能寫出好看的字，怎麼握筆都無所謂吧？我不懂這老師這麼多管閒事幹嘛，他寫的字甚至比我還難看懂；比起握筆姿勢，我看他還比較需要練習如何寫好端正的字。"));
+            Text_contents.Add(new Text_content(61222, "奇怪", "wow", 50, 0, 0, 0, true, "。\r\n我不習慣以這樣的方式寫字，也不懂為何連握筆都有一個「正確」方式。感覺人們沒有一個規定就會找不到方向，必須遵循著某種規則才能活著。\r\n總之，怎麼寫字我還是會照原來的方式，我不想連這麼一點小事的決定權也被人剝奪。"));
+
+            Text_contents.Add(new Text_content(62, "作業", "none", 25, 5, 0, 0, true, "。是我最不擅長的數學，國中時還勉強能應付，但升上高中後幾乎跟不上進度。看著紙張上的題目，我只覺得"));
+            Text_contents.Add(new Text_content(6210, "疲倦", "none", 50, 0, 0, 0, true, "感襲來。明明寫的都是中文字，為什麼我就是無法理解題目意思呢？看了也不知道要套入什麼公式，就算真的套入公式好了，我也算不出來正確答案。補習班老師看我好像很苦惱，於是過來"));
+            Text_contents.Add(new Text_content(62110, "教導", "happy", 50, 0, 0, 0, true, "我不懂的地方，她教了我一個更簡約的算法。雖然有點偷吃步，但我一下子便聽懂了！\r\n不曉得之後遇到類似的題目我能不能解得出來，但至少我完成了現在的作業。"));
+            Text_contents.Add(new Text_content(62120, "詢問", "happy", 50, 0, 0, 0, true, "我哪裡不懂。我告訴她：我不知道為什麼要用這個公式，於是老師細心解釋，並一步一步帶我解題，我不懂的部分也會仔細說明，讓我徹底清楚。\r\n真的很感謝老師，我想我有那麼一點不排斥數學了。"));
+
+            Text_contents.Add(new Text_content(6220, "困惑", "none", 50, 0, 0, 0, true, "，不禁懷疑是否我的理解力變差了。上課時聽老師講解感覺聽懂了，但為何面對回家作業時就完全算不出來呢？這實在是太"));
+            Text_contents.Add(new Text_content(62210, "煩躁", "wow", 25, 5, 0, 0, true, "了。我跟數學作業本大眼瞪小眼，我認識它、它認識我，但卻是誰也不理解誰。我真的不知道要怎麼辦，所以乾脆全部選C，計算題全部代入同一個公式強行計算。\r\n唉……反正我至少完成了作業，對吧。"));
+            Text_contents.Add(new Text_content(62220, "挫折", "sad", 50, 0, 0, 0, true, "了。可是我又不敢拿題目去問老師怎麼解題，只好默默假裝自己正在努力認真寫，不想讓別人發現其實我根本就不會算。\r\n我真的很討厭數學。"));
+
+            Text_contents.Add(new Text_content(63, "作文", "none", 25, 5, 0, 0, true, "。題目是〈為自己而活〉。真是個"));
+            Text_contents.Add(new Text_content(6310, "有趣", "none", 50, 0, 0, 0, true, "的題目。為了自己而活？這題目與我八竿子打不著，從我出生以來，都是為了爸媽的欲望生活，練討厭的才藝、讀煩悶的書，沒有一樣是我真正想追求的事物"));
+            Text_contents.Add(new Text_content(63110, "幸福生活", "happy", 50, 0, 0, 0, true, "了！我只想為自己而活，我想要用我的文字改變世界！我希望所有人都能被溫柔善待！字句裡皆充滿正面能量，我想老師會很喜歡這樣的內容。\r\n文字似乎真的有力量，寫完作文後我感覺自己心靈暫時也變得很正向呢。"));
+            Text_contents.Add(new Text_content(63120, "我", "happy", 50, 0, 0, 0, true, "了呢。我想活成什麼樣子呢？突然要想還真有點不知所措呢……我好像從來沒有想過這個問題。也許是當個樂善好施、善良的人？還是說情緒穩定、又勇敢的人呢？嗯……我想這些都行吧。"));
+
+            Text_contents.Add(new Text_content(6320, "奇怪", "none", 50, 0, 0, 0, true, "的題目。我想，很多人都難說自己是認真為了自己而活吧。\r\n在世上總有牽掛，孩子為了父母而活、夫妻為了彼此而活……能為了自己而活的人，真的有嗎？怎麼想都很"));
+            Text_contents.Add(new Text_content(63210, "困惑", "sad", 25, 5, 0, 0, true, "，要是真的有這樣純粹的人，我真想向他請教請教。\r\n我總感覺也許有人會說這樣的人是自私自利，可是人生是自己過的呀，為什麼要特別去插手別人的生活呢？如果連自己都活不好，還要去管別人閒事，那才真的是討人厭。:("));
+            Text_contents.Add(new Text_content(63220, "厲害", "wow", 50, 0, 0, 0, true, "，他能夠放下世俗牽掛，完完全全的成為最好的自己。要是爸媽可以減少一些對我的控制欲，我是不是也能朝為自己而活這個目的稍微前進一點？\r\n可惜現實根本不是這樣，我只能在作文寫入美好的想像。"));
         }
     }
 
