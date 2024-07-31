@@ -297,7 +297,7 @@ public class NPC04_control : MonoBehaviour
         if (dead_open)
         {
             Transform object_A = this.transform;
-            Transform object_B = object_A.Find("tumblerLF_stb_0").transform;
+            Transform object_B = object_A.Find("crocodileLB_stb_0").transform;
             Transform object_C = object_B.Find("Quad");
             if (object_C != null)
             {
