@@ -133,7 +133,7 @@ public class NPC01_1_control : MonoBehaviour
     {
         if (NPC_angle >= 0 && NPC_angle < 90)
         {
-            if (isFacingRight)
+            if (!isFacingRight)
             {
                 Flip();
             }
@@ -141,7 +141,7 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 270 && NPC_angle < 360)
         {
-            if (!isFacingRight)
+            if (isFacingRight)
             {
                 Flip();
             }
@@ -149,7 +149,7 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 180 && NPC_angle < 270)
         {
-            if (!isFacingRight)
+            if (isFacingRight)
             {
                 Flip();
             }
@@ -157,7 +157,7 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 90 && NPC_angle < 180)
         {
-            if (isFacingRight)
+            if (!isFacingRight)
             {
                 Flip();
             }
@@ -205,7 +205,7 @@ public class NPC01_1_control : MonoBehaviour
     {
         if (NPC_angle >= 0 && NPC_angle < 90)
         {
-            if (!isFacingRight)
+            if (isFacingRight)
             {
                 Flip();
             }
@@ -213,7 +213,7 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 270 && NPC_angle < 360)
         {
-            if (isFacingRight)
+            if (!isFacingRight)
             {
                 Flip();
             }
@@ -221,7 +221,7 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 180 && NPC_angle < 270)
         {
-            if (isFacingRight)
+            if (!isFacingRight)
             {
                 Flip();
             }
@@ -229,7 +229,7 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 90 && NPC_angle < 180)
         {
-            if (!isFacingRight)
+            if (isFacingRight)
             {
                 Flip();
             }
@@ -243,7 +243,7 @@ public class NPC01_1_control : MonoBehaviour
         if (NPC_angle >= 0 && NPC_angle < 90)
         {
             print("dying");
-            if (isFacingRight)
+            if (!isFacingRight)
             {
                 Flip();
             }
@@ -252,7 +252,7 @@ public class NPC01_1_control : MonoBehaviour
         if (NPC_angle >= 270 && NPC_angle < 360)
         {
             print("dying");
-            if (!isFacingRight)
+            if (isFacingRight)
             {
                 Flip();
             }
@@ -261,7 +261,7 @@ public class NPC01_1_control : MonoBehaviour
         if (NPC_angle >= 180 && NPC_angle < 270)
         {
             print("dying");
-            if (!isFacingRight)
+            if (isFacingRight)
             {
                 Flip();
             }
@@ -270,7 +270,7 @@ public class NPC01_1_control : MonoBehaviour
         if (NPC_angle >= 90 && NPC_angle < 180)
         {
             print("dying");
-            if (isFacingRight)
+            if (!isFacingRight)
             {
                 Flip();
             }
