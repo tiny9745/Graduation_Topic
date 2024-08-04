@@ -164,7 +164,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_stand_LB");
+            animator.Play("Crystal_baby_small_Stand_LB");
         }
         if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -172,7 +172,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_stand_LB");
+            animator.Play("Crystal_baby_small_Stand_LB");
         }
         if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -180,7 +180,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_stand_LF");
+            animator.Play("Crystal_baby_small_Stand_LF");
         }
         if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -188,7 +188,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_stand_LF");
+            animator.Play("Crystal_baby_small_Stand_LF");
         }
     }
 
@@ -200,7 +200,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_walk_LB");
+            animator.Play("Crystal_baby_small_Walk_LB");
         }
         if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -208,7 +208,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_walk_LB");
+            animator.Play("Crystal_baby_small_Walk_LB");
         }
         if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -216,7 +216,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_walk_LF");
+            animator.Play("Crystal_baby_small_Walk_LF");
         }
         if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -224,7 +224,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_walk_LF");
+            animator.Play("Crystal_baby_small_Walk_LF");
         }
     }
 
@@ -236,7 +236,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_Att_LB");
+            animator.Play("Crystal_baby_small_Atk_LB");
         }
         if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -244,7 +244,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_Att_LB");
+            animator.Play("Crystal_baby_small_Atk_LB");
         }
         if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -252,7 +252,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_Att_LF");
+            animator.Play("Crystal_baby_small_Atk_LF");
         }
         if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -260,7 +260,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_Att_LF");
+            animator.Play("Crystal_baby_small_Atk_LF");
         }
     }
 
