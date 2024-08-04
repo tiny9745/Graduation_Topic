@@ -25,20 +25,22 @@ public class NPC01_1_control : MonoBehaviour
     int NPC_angle = 0;
     private bool isFacingRight = true;
     public GameObject Img_npc;
-
+    SpriteRenderer spriterenderer;
     void Start()
     {
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         NPC01_1 = GameObject.Find("NPC01_1");
+        spriterenderer = Img_npc.GetComponent<SpriteRenderer>();
         if (NPC01_1 != null)
         {
             Renderer renderer = NPC01_1.GetComponent<Renderer>();
+
             if (renderer != null)
             {
                 renderer.enabled = false;
-            };
+            }
         }
         hitbox_Crystal_baby_small.SetActive(false);
 
@@ -54,6 +56,31 @@ public class NPC01_1_control : MonoBehaviour
             if (nPC_hP == null)
             {
                 Debug.LogError("NPC_HP_01_1 component not found on " + gameObject.name);
+            }
+        }
+        if (spriterenderer != null)
+        {
+            int color_change = Random.Range(0, 5);
+            switch (color_change)
+            {
+                case 0:
+                    spriterenderer.color = new Color(155/255f, 255/255f, 155/255f, 1f);
+                    break;
+                case 1:
+                    spriterenderer.color = new Color(0f, 190f/255f, 255f/255f, 1f);
+                    break;
+                case 2:
+                    spriterenderer.color = new Color(230/255f, 230/255f, 0f, 1f);
+                    break;
+                case 3:
+                    spriterenderer.color = new Color(230/255f, 125/255f, 230/255f, 1f);
+                    break;
+                case 4:
+                    spriterenderer.color = new Color(140/255f, 110/255f, 210/255f, 1f);
+                    break;
+                case 5:
+                    spriterenderer.color = new Color(255/255f, 105/255f, 70/255f, 1f);
+                    break;
             }
         }
     }
@@ -209,7 +236,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_Att_RB");
+            animator.Play("Crystal_baby_small_Att_LB");
         }
         if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -217,7 +244,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_Att_RB");
+            animator.Play("Crystal_baby_small_Att_LB");
         }
         if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -225,7 +252,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_Att_RF");
+            animator.Play("Crystal_baby_small_Att_LF");
         }
         if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -233,7 +260,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 Flip();
             }
-            animator.Play("Crystal_baby_small_Att_RF");
+            animator.Play("Crystal_baby_small_Att_LF");
         }
     }
 
@@ -242,7 +269,6 @@ public class NPC01_1_control : MonoBehaviour
         npcNavi.speed = 0;
         if (NPC_angle >= 0 && NPC_angle < 90)
         {
-            print("dying");
             if (!isFacingRight)
             {
                 Flip();
@@ -251,7 +277,6 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 270 && NPC_angle < 360)
         {
-            print("dying");
             if (isFacingRight)
             {
                 Flip();
@@ -260,7 +285,6 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 180 && NPC_angle < 270)
         {
-            print("dying");
             if (isFacingRight)
             {
                 Flip();
@@ -269,7 +293,6 @@ public class NPC01_1_control : MonoBehaviour
         }
         if (NPC_angle >= 90 && NPC_angle < 180)
         {
-            print("dying");
             if (!isFacingRight)
             {
                 Flip();
