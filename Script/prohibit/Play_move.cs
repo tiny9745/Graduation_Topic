@@ -15,8 +15,16 @@ public class Play_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        if (Input.GetKey(KeyCode.J))
+        {
+            horizontalInput = Input.GetAxis("Horizontal") * 0.1f;
+            verticalInput = Input.GetAxis("Vertical") * 0.1f;
+        }
+        else
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+        }
         walkSpeed = static_parameters.MC_Wspeed;
         dashSpeed = walkSpeed * 3;
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
