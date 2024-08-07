@@ -8,19 +8,16 @@ public class NPC01_1_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 20; public float NPC01_ATK = 4;public float NPC01_DEF = 2;
-    public float NPC_HP_Max = 40; public float npcSpeed = 4f;
-    public float NPC_HP; public float minus;
+    public int DetectDistance = 20;
+    public float NPC01_ATK = 4, NPC01_DEF = 2, NPC_HP_Max = 40, npcSpeed = 4f, NPC_HP, minus;
     float dist;
-    bool hit_Ani = false;
-    bool hit = false;
+    private float damageCooldown = 1.0f; // Time in seconds between damage instances
+    private float nextDamageTime = 0.0f;
+    bool hit_Ani = false, hit = false,dead_open = true, MC_to_Att = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC01_1;
-    public GameObject hitbox_Crystal_baby_small;
-    public GameObject Drop;
-    bool dead_open = true;
-    bool MC_to_Att = true;
+    public GameObject hitbox_Crystal_baby_small,Drop;
     public NPC_HP_01_1 nPC_hP;
     int NPC_angle = 0;
     private bool isFacingRight = true;
@@ -313,7 +310,7 @@ public class NPC01_1_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -331,11 +328,11 @@ public class NPC01_1_control : MonoBehaviour
                     Debug.LogError("nPC_hP is not assigned.");
                     return;
                 }
-
                 print("NPC_HP:" + NPC_HP);
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
+                nextDamageTime = Time.time + damageCooldown;
             }
         }
     }
