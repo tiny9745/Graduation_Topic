@@ -110,9 +110,9 @@ public class RandomTileGround : MonoBehaviour
     void Update()
     {
         Player.transform.position = new Vector3(
-            Mathf.Clamp(Player.transform.position.x, minBoundary.x, maxBoundary.x),
+            Mathf.Clamp(Player.transform.position.x, minBoundary.x+20, maxBoundary.x-20),
             Mathf.Clamp(Player.transform.position.y, minBoundary.y, maxBoundary.y),
-            Mathf.Clamp(Player.transform.position.z, minBoundary.z, maxBoundary.z)
+            Mathf.Clamp(Player.transform.position.z, minBoundary.z+10, maxBoundary.z-30)
         );
     }
 
