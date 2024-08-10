@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.AI;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public class AI_Baking_obstacle : MonoBehaviour
 {
@@ -12,41 +10,73 @@ public class AI_Baking_obstacle : MonoBehaviour
     public NavMeshSurface surface;
     public GameObject[] Scenes_object_obstacle;
     public GameObject[] Scenes_object_decorate;
+
+    // Reference to the RandomTileGround component
+    public RandomTileGround randomTileGround;
+
+    // Variables to hold range values based on RandomTileGround
     float obstach_postion_minX = -50f;
     float obstach_postion_maxX = 50f;
     float obstach_postion_minZ = -50f;
     float obstach_postion_maxZ = 50f;
+
     float randomX;
     float randomZ;
     int obstach_random_obstacle;
     int types_random_obstacle;
     int obstach_random_decorate;
     int types_random_decorate;
-    int i;
-    public RandomTileGround RandomTileGround;
+    bool randomTileGround_found = false;
+
     void Start()
     {
-        //obstach_postion_minX = RandomTileGround.minBoundary.x - RandomTileGround.padding_X_min;
-        //obstach_postion_maxX = RandomTileGround.maxBoundary.x - RandomTileGround.padding_X_max;
-        //obstach_postion_minZ = RandomTileGround.minBoundary.z - RandomTileGround.padding_Z_min;
-        //obstach_postion_maxZ = RandomTileGround.maxBoundary.z - RandomTileGround.padding_Z_max;
+        
+    }
+    void Update()
+    {
+        if (randomTileGround_found == false)InitializeObstacleRanges();
+    }
+
+    void InitializeObstacleRanges()
+    {
+        // Ensure randomTileGround is assigned
+        if (randomTileGround != null)
+        {
+            obstach_postion_minX = randomTileGround.minBoundary.x + randomTileGround.padding_X_min;
+            obstach_postion_maxX = randomTileGround.maxBoundary.x - randomTileGround.padding_X_max;
+            obstach_postion_minZ = randomTileGround.minBoundary.z + randomTileGround.padding_Z_min;
+            obstach_postion_maxZ = randomTileGround.maxBoundary.z - randomTileGround.padding_Z_max;
+            randomTileGround_found = true;
+            obstach_random();
+        }
+        else
+        {
+            print("RandomTileGround reference is not assigned.");
+        }
+    }
+
+    void obstach_random()
+    {
+        int i;
         obstach_random_obstacle = Random.Range(6, 13);
         for (i = 0; i < obstach_random_obstacle; i++)
         {
-            types_random_obstacle = Random.Range(0, 10);
+            types_random_obstacle = Random.Range(0, Scenes_object_obstacle.Length);
             // Randomly generate positions within range
             randomX = Random.Range(obstach_postion_minX, obstach_postion_maxX);
             randomZ = Random.Range(obstach_postion_minZ, obstach_postion_maxZ);
             Generateobstach(new Vector3(randomX, Scenes_object_obstacle[types_random_obstacle].transform.position.y, randomZ));
         }
+
         obstach_random_decorate = Random.Range(16, 25);
         for (i = 0; i < obstach_random_decorate; i++)
         {
-            types_random_decorate = Random.Range(0, 26);
+            types_random_decorate = Random.Range(0, Scenes_object_decorate.Length);
             randomX = Random.Range(obstach_postion_minX, obstach_postion_maxX);
             randomZ = Random.Range(obstach_postion_minZ, obstach_postion_maxZ);
             Generateobstach2(new Vector3(randomX, Scenes_object_decorate[types_random_decorate].transform.position.y, randomZ));
         }
+
         Invoke("wait_build", .2f);
     }
 
@@ -59,10 +89,11 @@ public class AI_Baking_obstacle : MonoBehaviour
     void Generateobstach(Vector3 position)
     {
         // Generate the prefab and place it at the generated location
-        Instantiate(Scenes_object_obstacle[types_random_obstacle], position, Quaternion.identity);
+        Instantiate(Scenes_object_obstacle[Random.Range(0, Scenes_object_obstacle.Length)], position, Quaternion.identity);
     }
+
     void Generateobstach2(Vector3 position)
     {
-        Instantiate(Scenes_object_decorate[types_random_decorate], position, Quaternion.identity);
+        Instantiate(Scenes_object_decorate[Random.Range(0, Scenes_object_decorate.Length)], position, Quaternion.identity);
     }
 }

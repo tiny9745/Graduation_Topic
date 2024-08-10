@@ -22,6 +22,7 @@ public class RandomTileGround : MonoBehaviour
     private Texture2D combinedTexture;
     private Material material;
 
+
     void Start()
     {
         InitializeBoundaries();
@@ -29,7 +30,6 @@ public class RandomTileGround : MonoBehaviour
         CreateGroundMesh();
         CreateAndAssignMaterial();
         ResetPlayerPosition();
-
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
