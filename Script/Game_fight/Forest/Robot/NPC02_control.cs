@@ -12,6 +12,7 @@ public class NPC02_control : MonoBehaviour
     public int DetectDistance = 20; public float NPC02_ATK = 60; public float NPC02_DEF = 10;
     public float NPC_HP_Max = 80; public float npcSpeed = 5f;
     public float NPC_HP;
+    private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
     float dist;
     bool hit_Ani = false;
     bool hit = false;
@@ -248,29 +249,31 @@ public class NPC02_control : MonoBehaviour
     bool tmp_to_atk = false;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
-            if (other.gameObject.tag == "Player")
+            if (NPC_HP > 0)
             {
-                if (open_EnableHitbox)
+                if (other.gameObject.tag == "Player")
                 {
-                    hit_Ani = true;
-                    Invoke("EnableHitbox", 1.15f);
-                    open_EnableHitbox = false;
+                    if (open_EnableHitbox)
+                    {
+                        hit_Ani = true;
+                        Invoke("EnableHitbox", 1.1f);
+                        open_EnableHitbox = false;
+                    }
                 }
-            }
-            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-            {
-                if (nPC_hP == null)
+                if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
                 {
-                    Debug.LogError("nPC_hP is not assigned.");
-                    return;
+                    if (nPC_hP == null)
+                    {
+                        Debug.LogError("nPC_hP is not assigned.");
+                        return;
+                    }
+                    nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
+                    MC_to_Att = false;
+                    Invoke("wait_MC_att", 0.2f);
+                    nextDamageTime = Time.time + damageCooldown;
                 }
-
-                knock_back();
-                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
-                MC_to_Att = false;
-                Invoke("wait_MC_att", 0.35f);
             }
         }
     }

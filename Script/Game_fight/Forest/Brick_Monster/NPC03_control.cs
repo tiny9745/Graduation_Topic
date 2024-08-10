@@ -12,8 +12,8 @@ public class NPC03_control : MonoBehaviour
     public float NPC_HP_Max = 70; public float npcSpeed = 4f;
     public float NPC_HP;
     float dist;
-    bool hit_Ani = false;
-    bool hit = false;
+    private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
+    bool hit_Ani = false,hit = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC03;
@@ -245,29 +245,31 @@ public class NPC03_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0) {
-            if (other.gameObject.tag == "Player")
+       if (NPC_HP > 0 && Time.time >= nextDamageTime)
+        {
+            if (NPC_HP > 0)
             {
-                if (open_EnableHitbox)
+                if (other.gameObject.tag == "Player")
                 {
-                    hit_Ani = true;
-                    Invoke("EnableHitbox", 1.4f);
-                    open_EnableHitbox = false;
+                    if (open_EnableHitbox)
+                    {
+                        hit_Ani = true;
+                        Invoke("EnableHitbox", 1.1f);
+                        open_EnableHitbox = false;
+                    }
                 }
-            }
-            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-            {
-                if (nPC_hP == null)
+                if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
                 {
-                    Debug.LogError("nPC_hP is not assigned.");
-                    return;
+                    if (nPC_hP == null)
+                    {
+                        Debug.LogError("nPC_hP is not assigned.");
+                        return;
+                    }
+                    nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
+                    MC_to_Att = false;
+                    Invoke("wait_MC_att", 0.2f);
+                    nextDamageTime = Time.time + damageCooldown;
                 }
-
-                knock_back();
-                print("NPC_HP:" + NPC_HP);
-                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
-                MC_to_Att = false;
-                Invoke("wait_MC_att", 0.1f);
             }
         }
     }

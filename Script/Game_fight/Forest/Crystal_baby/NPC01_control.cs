@@ -8,25 +8,24 @@ public class NPC01_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 18; public int NPC01_ATK = 8; public int NPC01_DEF = 5;
-    public float NPC_HP_Max = 100; public float npcSpeed = 3f;
-    public float NPC_HP;
+    public int DetectDistance = 18;
+    public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100,npcSpeed = 3f,NPC_HP;
     float dist;
-    bool hit_Ani = false;
-    bool hit = false;
+    private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
+    bool hit_Ani = false,hit = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC01; public GameObject NPC01_1;
     public GameObject hitbox_Crystal_baby;
     public GameObject Drop;
-    bool dead_open = true;
-    bool MC_to_Att = true;
+    bool dead_open = true, MC_to_Att = true;
     public NPC_HP_01 nPC_hP;
     int NPC_angle = 0;
     private bool isFacingRight = true;
     public GameObject Img_npc;
 
-    void Start() {
+    void Start()
+    {
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -57,7 +56,7 @@ public class NPC01_control : MonoBehaviour
         }
     }
 
-    void Update() 
+    void Update()
     {
         if (npcNavi == null) return;
         if (TargetObj != null)
@@ -69,7 +68,7 @@ public class NPC01_control : MonoBehaviour
             PlayBombAnimation();
         }
         else if (!hit_Ani)
-        {        
+        {
             //npcNavi.speed = npcSpeed;
             if (transform.position == lastPosition)
             {
@@ -77,12 +76,12 @@ public class NPC01_control : MonoBehaviour
             }
             else
             {
-                PlayWalkAnimation();                
+                PlayWalkAnimation();
             }
         }
         else
         {
-            PlayAttackAnimation();            
+            PlayAttackAnimation();
         }
         if (dist >= DetectDistance * 3 / 5)
         {
@@ -277,7 +276,7 @@ public class NPC01_control : MonoBehaviour
         }
         Invoke("dead", 1.6f);
     }
-    public int GetNPC01_ATK()
+    public float GetNPC01_ATK()
     {
         return NPC01_ATK;
     }
@@ -289,29 +288,31 @@ public class NPC01_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
-            if (other.gameObject.tag == "Player")
+            if (NPC_HP > 0)
             {
-                if (open_EnableHitbox)
+                if (other.gameObject.tag == "Player")
                 {
-                    hit_Ani = true;
-                    Invoke("EnableHitbox", 1.1f);
-                    open_EnableHitbox = false;
+                    if (open_EnableHitbox)
+                    {
+                        hit_Ani = true;
+                        Invoke("EnableHitbox", 1.1f);
+                        open_EnableHitbox = false;
+                    }
                 }
-            }
-            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-            {
-                if (nPC_hP == null)
+                if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
                 {
-                    Debug.LogError("nPC_hP is not assigned.");
-                    return;
+                    if (nPC_hP == null)
+                    {
+                        Debug.LogError("nPC_hP is not assigned.");
+                        return;
+                    }
+                    nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
+                    MC_to_Att = false;
+                    Invoke("wait_MC_att", 0.2f);
+                    nextDamageTime = Time.time + damageCooldown;
                 }
-
-                print("NPC_HP:" + NPC_HP);
-                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
-                MC_to_Att = false;
-                Invoke("wait_MC_att", 0.2f);
             }
         }
     }
@@ -340,7 +341,8 @@ public class NPC01_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
-    void dead(){
+    void dead()
+    {
         if (dead_open)
         {
             Vector3 originalPosition = transform.position;
