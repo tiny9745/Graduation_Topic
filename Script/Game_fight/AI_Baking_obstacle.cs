@@ -23,9 +23,13 @@ public class AI_Baking_obstacle : MonoBehaviour
     int obstach_random_decorate;
     int types_random_decorate;
     int i;
-
+    public RandomTileGround RandomTileGround;
     void Start()
     {
+        //obstach_postion_minX = RandomTileGround.minBoundary.x - RandomTileGround.padding_X_min;
+        //obstach_postion_maxX = RandomTileGround.maxBoundary.x - RandomTileGround.padding_X_max;
+        //obstach_postion_minZ = RandomTileGround.minBoundary.z - RandomTileGround.padding_Z_min;
+        //obstach_postion_maxZ = RandomTileGround.maxBoundary.z - RandomTileGround.padding_Z_max;
         obstach_random_obstacle = Random.Range(6, 13);
         for (i = 0; i < obstach_random_obstacle; i++)
         {

@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 1875171809}
   - component: {fileID: 1875171810}
   m_Layer: 0
-  m_Name: MH_script
+  m_Name: HO_script
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 1875171807}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3298829, y: 7.4026403, z: 39.104927}
+  m_LocalPosition: {x: -6.268468, y: -53.157715, z: 10.360571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -491,15 +491,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: c449e8e88c6e3104087b9c8361b05e99, type: 3}
-  - {fileID: 21300000, guid: e9d7e6ba712cb8d4c9d5b4ed350c1bcd, type: 3}
   - {fileID: 21300000, guid: 8b9fe3918ee5ef44dbc23a74be6a3eff, type: 3}
   - {fileID: 21300000, guid: 2ab309f7032990c48a2c927de3ad32e1, type: 3}
-  tilesX: 5
-  tilesZ: 5
+  - {fileID: 21300000, guid: c449e8e88c6e3104087b9c8361b05e99, type: 3}
+  - {fileID: 21300000, guid: e9d7e6ba712cb8d4c9d5b4ed350c1bcd, type: 3}
+  tilesX: 12
+  tilesZ: 12
   tileSize: 20
-  Player: {fileID: 0}
-  Player_S: {fileID: 0}
+  player: {fileID: 0}
+  player_S: {fileID: 0}
+  padding_X_min: 30
+  padding_X_max: 30
+  padding_Z_min: 15
+  padding_Z_max: 75
 --- !u!224 &218288462070546707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -949,7 +953,7 @@ Transform:
   m_GameObject: {fileID: 1455601195591972434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.06, y: 2.88, z: 24}
+  m_LocalPosition: {x: 4.06, y: 2.88, z: 49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -995,8 +999,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.5711536, y: 8.195996, z: 3.1836548}
-  m_Center: {x: -3.411645, y: 0.71079016, z: -1.9005661}
+  m_Size: {x: 8, y: 8, z: 4}
+  m_Center: {x: -4, y: 1, z: -2}
 --- !u!114 &5104066628531120930
 MonoBehaviour:
   m_ObjectHideFlags: 0
