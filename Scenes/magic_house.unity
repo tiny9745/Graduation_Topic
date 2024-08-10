@@ -495,11 +495,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2ab309f7032990c48a2c927de3ad32e1, type: 3}
   - {fileID: 21300000, guid: c449e8e88c6e3104087b9c8361b05e99, type: 3}
   - {fileID: 21300000, guid: e9d7e6ba712cb8d4c9d5b4ed350c1bcd, type: 3}
-  tilesX: 5
-  tilesZ: 5
+  tilesX: 8
+  tilesZ: 8
   tileSize: 20
-  Player: {fileID: 0}
-  Player_S: {fileID: 0}
+  player: {fileID: 0}
+  player_S: {fileID: 0}
+  padding_X_min: 15
+  padding_X_max: 15
+  padding_Z_min: 15
+  padding_Z_max: 15
 --- !u!224 &218288462070546707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -949,7 +953,7 @@ Transform:
   m_GameObject: {fileID: 1455601195591972434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.06, y: 2.88, z: 24}
+  m_LocalPosition: {x: 4.06, y: 2.88, z: 69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -995,8 +999,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.5711536, y: 8.195996, z: 3.1836548}
-  m_Center: {x: -3.411645, y: 0.71079016, z: -1.9005661}
+  m_Size: {x: 8, y: 8, z: 4}
+  m_Center: {x: -4, y: 1, z: -2}
 --- !u!114 &5104066628531120930
 MonoBehaviour:
   m_ObjectHideFlags: 0
