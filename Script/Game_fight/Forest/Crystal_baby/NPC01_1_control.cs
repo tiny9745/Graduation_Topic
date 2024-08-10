@@ -312,27 +312,29 @@ public class NPC01_1_control : MonoBehaviour
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
-            if (other.gameObject.tag == "Player")
+            if (NPC_HP > 0)
             {
-                if (open_EnableHitbox)
+                if (other.gameObject.tag == "Player")
                 {
-                    hit_Ani = true;
-                    Invoke("EnableHitbox", 1.1f);
-                    open_EnableHitbox = false;
+                    if (open_EnableHitbox)
+                    {
+                        hit_Ani = true;
+                        Invoke("EnableHitbox", 1.1f);
+                        open_EnableHitbox = false;
+                    }
                 }
-            }
-            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-            {
-                if (nPC_hP == null)
+                if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
                 {
-                    Debug.LogError("nPC_hP is not assigned.");
-                    return;
+                    if (nPC_hP == null)
+                    {
+                        Debug.LogError("nPC_hP is not assigned.");
+                        return;
+                    }
+                    nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
+                    MC_to_Att = false;
+                    Invoke("wait_MC_att", 0.2f);
+                    nextDamageTime = Time.time + damageCooldown;
                 }
-                print("NPC_HP:" + NPC_HP);
-                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
-                MC_to_Att = false;
-                Invoke("wait_MC_att", 0.2f);
-                nextDamageTime = Time.time + damageCooldown;
             }
         }
     }
