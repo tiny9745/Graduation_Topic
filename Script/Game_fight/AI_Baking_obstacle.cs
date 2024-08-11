@@ -10,7 +10,8 @@ public class AI_Baking_obstacle : MonoBehaviour
     public NavMeshSurface surface;
     public GameObject[] Scenes_object_obstacle;
     public GameObject[] Scenes_object_decorate;
-
+    public GameObject[] Scenes_object_obstacle_outside_big;
+    public GameObject[] Scenes_object_obstacle_outside_small;
     // Reference to the RandomTileGround component
     public RandomTileGround randomTileGround;
 
@@ -22,10 +23,9 @@ public class AI_Baking_obstacle : MonoBehaviour
 
     float randomX;
     float randomZ;
-    int obstach_random_obstacle;
-    int types_random_obstacle;
-    int obstach_random_decorate;
-    int types_random_decorate;
+    int types_random;
+    int obstach_random;
+
     bool randomTileGround_found = false;
 
     void Start()
@@ -47,7 +47,8 @@ public class AI_Baking_obstacle : MonoBehaviour
             obstach_postion_minZ = randomTileGround.minBoundary.z + randomTileGround.padding_Z_min;
             obstach_postion_maxZ = randomTileGround.maxBoundary.z - randomTileGround.padding_Z_max;
             randomTileGround_found = true;
-            obstach_random();
+            obstach_random_inside();
+            //obstach_random_outside();
         }
         else
         {
@@ -55,29 +56,41 @@ public class AI_Baking_obstacle : MonoBehaviour
         }
     }
 
-    void obstach_random()
+    void obstach_random_inside()
     {
         int i;
-        obstach_random_obstacle = Random.Range(6, 13);
-        for (i = 0; i < obstach_random_obstacle; i++)
+        obstach_random = Random.Range(6, 13);
+        for (i = 0; i < obstach_random; i++)
         {
-            types_random_obstacle = Random.Range(0, Scenes_object_obstacle.Length);
+            types_random = Random.Range(0, Scenes_object_obstacle.Length);
             // Randomly generate positions within range
             randomX = Random.Range(obstach_postion_minX, obstach_postion_maxX);
             randomZ = Random.Range(obstach_postion_minZ, obstach_postion_maxZ);
-            Generateobstach(new Vector3(randomX, Scenes_object_obstacle[types_random_obstacle].transform.position.y, randomZ));
+            Generateobstach(new Vector3(randomX, Scenes_object_obstacle[types_random].transform.position.y, randomZ));
         }
 
-        obstach_random_decorate = Random.Range(16, 25);
-        for (i = 0; i < obstach_random_decorate; i++)
+        obstach_random = Random.Range(16, 25);
+        for (i = 0; i < obstach_random; i++)
         {
-            types_random_decorate = Random.Range(0, Scenes_object_decorate.Length);
+            types_random = Random.Range(0, Scenes_object_decorate.Length);
             randomX = Random.Range(obstach_postion_minX, obstach_postion_maxX);
             randomZ = Random.Range(obstach_postion_minZ, obstach_postion_maxZ);
-            Generateobstach2(new Vector3(randomX, Scenes_object_decorate[types_random_decorate].transform.position.y, randomZ));
+            Generateobstach2(new Vector3(randomX, Scenes_object_decorate[types_random].transform.position.y, randomZ));
         }
 
         Invoke("wait_build", .2f);
+    }
+    void obstach_random_outside()
+    {
+        int i;
+        obstach_random = Random.Range(20, 30);
+        for (i = 0; i < obstach_random; i++)
+        {
+            types_random = Random.Range(0, Scenes_object_obstacle_outside_small.Length);
+            randomX = Random.Range(obstach_postion_minX, obstach_postion_maxX);
+            randomZ = Random.Range(obstach_postion_minZ, obstach_postion_maxZ);
+            Generateobstach2(new Vector3(randomX, Scenes_object_obstacle_outside_small[types_random].transform.position.y, randomZ));
+        }
     }
 
     void wait_build()
