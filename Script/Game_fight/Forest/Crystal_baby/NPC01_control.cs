@@ -20,7 +20,7 @@ public class NPC01_control : MonoBehaviour
     public GameObject Drop;
     bool dead_open = true, MC_to_Att = true;
     public NPC_HP_01 nPC_hP;
-    int NPC_angle = 0;
+    int NPC_angle = 0,Pcounter = 0;
     private bool isFacingRight = true;
     public GameObject Img_npc;
 
@@ -117,7 +117,6 @@ public class NPC01_control : MonoBehaviour
             {
                 npcNavi.destination = transform.position;
             }
-
             Vector3 direction = TargetObj.transform.position - transform.position;
             Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
             Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
@@ -307,6 +306,13 @@ public class NPC01_control : MonoBehaviour
                     {
                         Debug.LogError("nPC_hP is not assigned.");
                         return;
+                    }
+
+                    if(Pcounter < 5){
+                        Pcounter++;
+                        print(Pcounter);
+                    }else{
+                        Pcounter = 0;
                     }
                     nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                     MC_to_Att = false;
