@@ -13,6 +13,8 @@ public class AI_Baking_obstacle : MonoBehaviour
     public GameObject[] Scenes_object_obstacle_outside_small;
     public GameObject[] Scenes_object_obstacle_outside_big;
 
+    public GameObject block_fog;
+
     public RandomTileGround randomTileGround;
 
     float obstach_postion_minX, obstach_postion_maxX;
@@ -45,6 +47,9 @@ public class AI_Baking_obstacle : MonoBehaviour
 
             obstach_random_inside();
             obstach_random_outside();
+
+            // 调用生成物体的方法
+            GenerateShaderAppliedObjects();
         }
         else
         {
@@ -76,9 +81,10 @@ public class AI_Baking_obstacle : MonoBehaviour
             Vector3 position;
 
             // Try generating locations until you find a non-overlapping location
-            do{
+            do
+            {
                 position = isInside ? GenerateInsidePosition(objects[typeIndex]) : GenerateOutsidePosition(objects[typeIndex]);
-            } 
+            }
             while (IsPositionUsed(position, usedPositions));
 
             usedPositions.Add(position);
@@ -129,6 +135,19 @@ public class AI_Baking_obstacle : MonoBehaviour
         }
 
         return new Vector3(randomX, obj.transform.position.y, randomZ);
+    }
+
+    // 生成Shader物件的方法
+    void GenerateShaderAppliedObjects()
+    {
+        float lengthX = obstach_postion_maxX - obstach_postion_minX;
+        Vector3 scale = block_fog.transform.localScale;
+        scale.x = lengthX;
+        block_fog.transform.localScale = scale;
+        for (float z = randomTileGround.maxBoundary.z; z >= obstach_postion_maxZ; z -= 7.5f)
+        {
+            GameObject blockFogInstance = Instantiate(block_fog, new Vector3(0, 0, z), Quaternion.identity);
+        }
     }
 
     void BuildNavMesh()
