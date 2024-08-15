@@ -3,8 +3,11 @@ Shader "Unlit/block_cloud"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Alpha ("Alpha", Range(0,1)) = 0.5 // 控制透明度的屬性
-        _DarknessFactor ("Darkness Factor", Range(1, 10)) = 3.0 // 控制漸變強度的屬性
+        _Alpha ("Alpha", Range(0,1)) = 0.5 
+        _DarknessFactor ("Darkness Factor", Range(1, 10)) = 3.0 
+        _FogDensity ("Fog Density", Range(1, 10)) = 2.0
+        _NearDarkness ("Near Darkness", Range(0, 1)) = 0.5
+        _MinFogEffect ("Min Fog Effect", Range(0, 1)) = 0.4
     }
     SubShader
     {
@@ -13,8 +16,8 @@ Shader "Unlit/block_cloud"
 
         Pass
         {
-            Blend SrcAlpha OneMinusSrcAlpha // 使得shader支持透明
-            ZWrite Off  // 禁用深度写入，避免透明物体遮挡问题
+            Blend SrcAlpha OneMinusSrcAlpha 
+            ZWrite Off  
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -25,6 +28,7 @@ Shader "Unlit/block_cloud"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float3 worldPos : TEXCOORD1;
             };
 
             struct v2f
@@ -32,42 +36,38 @@ Shader "Unlit/block_cloud"
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
-                float distance : TEXCOORD1; // 用來存儲物件到相機的距離
+                float3 worldPos : TEXCOORD1;
             };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            float _Alpha; // 透明度參數
-            float _DarknessFactor; // 控制漸變強度的參數
+            float _Alpha; 
+            float _DarknessFactor;
+            float _FogDensity;
+            float _NearDarkness;
+            float _MinFogEffect;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 UNITY_TRANSFER_FOG(o, o.vertex);
-
-                // 計算物件到相機的距離
-                o.distance = length(ObjSpaceViewDir(v.vertex));
 
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // 將距離轉換成暗化係數，並加強暗化效果
-                float darkness = pow(saturate(i.distance / 100.0), _DarknessFactor);
-
-                // 取得材質顏色
+                float distance = length(i.worldPos - _WorldSpaceCameraPos);
+                float darkness = pow(saturate(distance / 100.0), _DarknessFactor) * _FogDensity;
+                float nearDarkness = saturate(distance / 100.0) * _NearDarkness;
+                float fogEffect = max(_MinFogEffect, darkness);
                 fixed4 col = tex2D(_MainTex, i.uv);
 
-                // 根據距離變暗
-                col.rgb *= darkness;
-
-                // 應用透明度
+                col.rgb = lerp(col.rgb, float3(0, 0, 0), fogEffect);
                 col.a *= _Alpha;
-
-                // 應用霧效
                 UNITY_APPLY_FOG(i.fogCoord, col);
 
                 return col;
