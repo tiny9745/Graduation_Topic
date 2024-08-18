@@ -61,17 +61,15 @@ Shader "Unlit/block_cloud"
             fixed4 frag (v2f i) : SV_Target
             {
                 float distance = length(i.worldPos - _WorldSpaceCameraPos);
-
-                float darkness = pow(saturate(distance / 100.0), _DarknessFactor) * _FogDensity;
+                float invertedDistance = 1.0 - saturate(distance / 100.0);
+                float darkness = pow(invertedDistance, _DarknessFactor) * _FogDensity;
                 float fogEffect = max(_MinFogEffect, darkness);
-
                 fixed4 col = tex2D(_MainTex, i.uv);
 
                 col.rgb *= fogEffect;
                 col.a *= _Alpha;
 
                 UNITY_APPLY_FOG(i.fogCoord, col);
-
                 return col;
             }
             ENDCG
