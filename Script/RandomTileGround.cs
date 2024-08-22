@@ -148,13 +148,13 @@ public class RandomTileGround : MonoBehaviour
 
     void CreateAndAssignMaterial()
     {
-        material = new Material(Shader.Find("Standard"))
+        material = new Material(Shader.Find("Custom/AlwaysInFrontSprite"))
         {
             mainTexture = combinedTexture
         };
 
         meshRenderer.material = material;
-        meshRenderer.sortingOrder = 0;
+        meshRenderer.sortingOrder = -1;
     }
 
     void Update()

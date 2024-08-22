@@ -31,16 +31,12 @@ public class MC_col : MonoBehaviour
 
     void Update()
     {
-
-
         if (static_parameters.MC_HP <= 0)
         {
             static_parameters.stage_number--;
             SceneManager.LoadScene("magic_house");
         }
-
         SetLookDirection(static_parameters.face);
-
         // Check and update the attack speed
         if (static_parameters.MC_ATK_Speed_tmp != static_parameters.MC_ATK_Speed)
         {
@@ -74,7 +70,6 @@ public class MC_col : MonoBehaviour
             SetAnimationSpeed_Walk("MC_Stand_Right", static_parameters.MC_Wspeed);
             SetAnimationSpeed_Walk("MC_Stand_Back", static_parameters.MC_Wspeed);
             SetAnimationSpeed_Walk("MC_Stand_Left", static_parameters.MC_Wspeed);
-
         }
     }
 
