@@ -137,7 +137,7 @@ public class AI_Baking_obstacle : MonoBehaviour
 
         return new Vector3(randomX, obj.transform.position.y, randomZ);
     }
-
+    
 void GenerateShaderAppliedObjects()
 {
     float lengthX = obstach_postion_maxX - obstach_postion_minX;
@@ -154,7 +154,7 @@ void GenerateShaderAppliedObjects()
 
     GameObject blockFogInstance = Instantiate(
         block_fog, 
-        new Vector3(centerX, 0, randomTileGround.maxBoundary.z - lengthZ / 2), 
+        new Vector3(centerX, 25, randomTileGround.maxBoundary.z - lengthZ / 2), 
         Quaternion.identity
     );
 }
@@ -168,11 +168,11 @@ void GenerateShaderAppliedObjects2()
     scale.z = lengthZ;
     block_fog.transform.localScale = scale;
 
-    float centerZ = randomTileGround.maxBoundary.z - (lengthZ / 2);
+    float centerZ = randomTileGround.maxBoundary.z - (lengthZ - randomTileGround.minBoundary.z) / 2 - 10f;
 
     GameObject blockFogInstance = Instantiate(
         block_fog, 
-        new Vector3(randomTileGround.maxBoundary.x + (lengthX / 2), 0, centerZ), 
+        new Vector3(randomTileGround.maxBoundary.x + (lengthX / 2), 25, centerZ), 
         Quaternion.identity
     );
 }
@@ -187,11 +187,11 @@ void GenerateShaderAppliedObjects3()
     scale.z = lengthZ;
     block_fog.transform.localScale = scale;
 
-    float centerZ = randomTileGround.maxBoundary.z - (lengthZ / 2);
+    float centerZ = randomTileGround.maxBoundary.z - (lengthZ - randomTileGround.minBoundary.z) / 2 - 10f;
 
     GameObject blockFogInstance = Instantiate(
         block_fog, 
-        new Vector3(randomTileGround.minBoundary.x + (lengthX / 2), 0, centerZ), 
+        new Vector3(randomTileGround.minBoundary.x + (lengthX / 2), 25, centerZ), 
         Quaternion.identity
     );
 }
