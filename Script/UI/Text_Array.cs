@@ -4,7 +4,7 @@ using UnityEngine;
 public class Text_Array : MonoBehaviour
 {
     static public List<Text_content> Text_contents = new List<Text_content>();
-    static public short[] diary_step;
+    static public short[] diary_step;  short pickdiary = 0;
     static public uint diary_number = 0;
     static public bool Add_array = true;
     void Awake()
@@ -169,6 +169,18 @@ public class Text_Array : MonoBehaviour
         }
     }
 
+    public void pick1(){
+        pickdiary=1;
+    }
+    public void pick2(){
+        pickdiary=2;
+    }
+    public void pick3(){
+        pickdiary=3;
+    }
+    public void pick4(){
+        pickdiary=4;
+    }
     public void SetRandomTextExistToTrue()
     {
         List<Text_content> falseTextContents = new List<Text_content>();
