@@ -9,7 +9,7 @@ public class Puzzle : MonoBehaviour
     public GameObject Book; public GameObject Extra1; public GameObject Extra2;
     public Image Page_now;
     public Sprite Page_change; public Sprite Page_check;
-    public GameObject Diary_text_Left;public GameObject Diary_text_Right;
+    public GameObject Diary_text_Left, Diary_text_Right;
     public Text Diary_Left_Text;
 
     public Drag_End drag_end;

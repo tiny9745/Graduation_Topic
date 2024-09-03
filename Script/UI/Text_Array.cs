@@ -7,6 +7,7 @@ public class Text_Array : MonoBehaviour
     static public short[] diary_step;  short pickdiary = 0;
     static public uint diary_number = 0;
     static public bool Add_array = true;
+    public GameObject diarypointer;
     void Awake()
     {
         if (Add_array)
@@ -169,18 +170,7 @@ public class Text_Array : MonoBehaviour
         }
     }
 
-    public void pick1(){
-        pickdiary=1;
-    }
-    public void pick2(){
-        pickdiary=2;
-    }
-    public void pick3(){
-        pickdiary=3;
-    }
-    public void pick4(){
-        pickdiary=4;
-    }
+
     public void SetRandomTextExistToTrue()
     {
         List<Text_content> falseTextContents = new List<Text_content>();
@@ -205,6 +195,38 @@ public class Text_Array : MonoBehaviour
                 static_parameters.MC_Wspeed += falseTextContents[randomIndex].Walk_speed;
             // 打印已修改的对象
             Debug.Log($"Modified Text_content: Name_number: {falseTextContents[randomIndex].Name_number}, Name_Text: {falseTextContents[randomIndex].Name_Text}, MC_HP_Max: {static_parameters.MC_HP_Max}, MC_ATK: {static_parameters.MC_ATK}, MC_ATK_Speed: {static_parameters.MC_ATK_Speed}, MC_speed: {static_parameters.MC_Wspeed}, Text_exist: {falseTextContents[randomIndex].Text_exist}");
+        }
+    }
+    public void pick1(){
+        pickdiary=1;
+    }
+    public void pick2(){
+        pickdiary=2;
+    }
+    public void pick3(){
+        pickdiary=3;
+    }
+    public void pick4(){
+        pickdiary=4;
+    }
+    public void pickplace(){
+        switch(pickdiary){
+            case 1:
+                Vector3 targetPosition1 = new Vector3(diarypointer.transform.localPosition.x, 780, diarypointer.transform.localPosition.z);
+                diarypointer.transform.localPosition = targetPosition1;
+                break;
+            case 2:
+                Vector3 targetPosition2 = new Vector3(diarypointer.transform.localPosition.x, 620, diarypointer.transform.localPosition.z);
+                diarypointer.transform.localPosition = targetPosition2;
+                break;
+            case 3:
+                Vector3 targetPosition3 = new Vector3(diarypointer.transform.localPosition.x, 450, diarypointer.transform.localPosition.z);
+                diarypointer.transform.localPosition = targetPosition3;
+                break;
+            case 4:
+                Vector3 targetPosition4 = new Vector3(diarypointer.transform.localPosition.x, 300, diarypointer.transform.localPosition.z);
+                diarypointer.transform.localPosition = targetPosition4;
+                break;
         }
     }
 }
@@ -241,3 +263,4 @@ public class Text_content
         }
     }
 }
+
