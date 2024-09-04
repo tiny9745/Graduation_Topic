@@ -199,32 +199,36 @@ public class Text_Array : MonoBehaviour
     }
     public void pick1(){
         pickdiary=1;
+        pickplace();
     }
     public void pick2(){
         pickdiary=2;
+        pickplace();
     }
     public void pick3(){
         pickdiary=3;
+        pickplace();
     }
     public void pick4(){
         pickdiary=4;
+        pickplace();
     }
     public void pickplace(){
         switch(pickdiary){
             case 1:
-                Vector3 targetPosition1 = new Vector3(diarypointer.transform.localPosition.x, 780, diarypointer.transform.localPosition.z);
+                Vector3 targetPosition1 = new Vector3(diarypointer.transform.localPosition.x, 230, diarypointer.transform.localPosition.z);
                 diarypointer.transform.localPosition = targetPosition1;
                 break;
             case 2:
-                Vector3 targetPosition2 = new Vector3(diarypointer.transform.localPosition.x, 620, diarypointer.transform.localPosition.z);
+                Vector3 targetPosition2 = new Vector3(diarypointer.transform.localPosition.x, 70, diarypointer.transform.localPosition.z);
                 diarypointer.transform.localPosition = targetPosition2;
                 break;
             case 3:
-                Vector3 targetPosition3 = new Vector3(diarypointer.transform.localPosition.x, 450, diarypointer.transform.localPosition.z);
+                Vector3 targetPosition3 = new Vector3(diarypointer.transform.localPosition.x, -90, diarypointer.transform.localPosition.z);
                 diarypointer.transform.localPosition = targetPosition3;
                 break;
             case 4:
-                Vector3 targetPosition4 = new Vector3(diarypointer.transform.localPosition.x, 300, diarypointer.transform.localPosition.z);
+                Vector3 targetPosition4 = new Vector3(diarypointer.transform.localPosition.x, -250, diarypointer.transform.localPosition.z);
                 diarypointer.transform.localPosition = targetPosition4;
                 break;
         }
