@@ -4,7 +4,7 @@ using UnityEngine;
 public class Text_Array : MonoBehaviour
 {
     static public List<Text_content> Text_contents = new List<Text_content>();
-    static public short[] diary_step;  short pickdiary = 0;
+    static public short[] diary_step;  short pickdiary = 1;
     static public uint diary_number = 0;
     static public bool Add_array = true;
     public GameObject diarypointer;
