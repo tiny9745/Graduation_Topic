@@ -216,20 +216,36 @@ public class Text_Array : MonoBehaviour
     public void pickplace(){
         switch(pickdiary){
             case 1:
-                Vector3 targetPosition1 = new Vector3(diarypointer.transform.localPosition.x, 230, diarypointer.transform.localPosition.z);
-                diarypointer.transform.localPosition = targetPosition1;
+                if (pickdiary == 1){
+                    static_parameters.pickdiary=1;
+                }else{
+                    Vector3 targetPosition1 = new Vector3(diarypointer.transform.localPosition.x, 230, diarypointer.transform.localPosition.z);
+                    diarypointer.transform.localPosition = targetPosition1;
+                }               
                 break;
             case 2:
-                Vector3 targetPosition2 = new Vector3(diarypointer.transform.localPosition.x, 70, diarypointer.transform.localPosition.z);
-                diarypointer.transform.localPosition = targetPosition2;
+                if (pickdiary == 2){
+                    static_parameters.pickdiary=2;
+                }else{
+                    Vector3 targetPosition2 = new Vector3(diarypointer.transform.localPosition.x, 70, diarypointer.transform.localPosition.z);
+                    diarypointer.transform.localPosition = targetPosition2;
+                }
                 break;
             case 3:
-                Vector3 targetPosition3 = new Vector3(diarypointer.transform.localPosition.x, -90, diarypointer.transform.localPosition.z);
-                diarypointer.transform.localPosition = targetPosition3;
+                if (pickdiary == 3){
+                    static_parameters.pickdiary=3;
+                }else{
+                    Vector3 targetPosition3 = new Vector3(diarypointer.transform.localPosition.x, -90, diarypointer.transform.localPosition.z);
+                    diarypointer.transform.localPosition = targetPosition3;
+                }
                 break;
             case 4:
-                Vector3 targetPosition4 = new Vector3(diarypointer.transform.localPosition.x, -250, diarypointer.transform.localPosition.z);
-                diarypointer.transform.localPosition = targetPosition4;
+                if (pickdiary == 4){
+                    static_parameters.pickdiary=4;
+                }else{
+                    Vector3 targetPosition4 = new Vector3(diarypointer.transform.localPosition.x, -250, diarypointer.transform.localPosition.z);
+                    diarypointer.transform.localPosition = targetPosition4;
+                }
                 break;
         }
     }
