@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement; // input SceneManager
+using UnityEngine.SceneManagement;
 
 public class RandomTileGround : MonoBehaviour
 {
@@ -21,7 +21,6 @@ public class RandomTileGround : MonoBehaviour
     private Mesh mesh;
     private Texture2D combinedTexture;
     private Material material;
-
 
     void Start()
     {
@@ -148,13 +147,25 @@ public class RandomTileGround : MonoBehaviour
 
     void CreateAndAssignMaterial()
     {
-        material = new Material(Shader.Find("Custom/AlwaysInFrontSprite"))
-        {
-            mainTexture = combinedTexture
-        };
+        material = new Material(Shader.Find("Standard"));
+        material.mainTexture = combinedTexture;
+
+        // 確保材質的 `RenderQueue` 設置正確，並且材質支援透明度
+        material.SetFloat("_Glossiness", 0.0f);  // 你可以調整這個值來控制表面的光滑度
+        material.SetFloat("_Metallic", 0.0f);  // 調整這個值來控制材質的金屬度
+        material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        material.SetInt("_ZWrite", 1);  // ZWrite 可以確保正確的深度渲染
+        material.DisableKeyword("_ALPHATEST_ON");
+        material.EnableKeyword("_ALPHABLEND_ON");
+        material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+        material.renderQueue = 2000;  // 設定為不透明物體的渲染順序
 
         meshRenderer.material = material;
-        meshRenderer.sortingOrder = -1;
+
+        // 啟用陰影投射和接收
+        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        meshRenderer.receiveShadows = true;
     }
 
     void Update()
