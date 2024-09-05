@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Text_Array : MonoBehaviour
 {
     static public List<Text_content> Text_contents = new List<Text_content>();
-    static public short[] diary_step;  short pickdiary = 1;
+    static public short[] diary_step; short pickdiary = 1;
     static public uint diary_number = 0;
     static public bool Add_array = true;
     public GameObject diarypointer;
@@ -54,7 +55,7 @@ public class Text_Array : MonoBehaviour
             Text_contents.Add(new Text_content(22, "詢問", "none", 25, 5, 0, 0, false, "爸媽能不能讓我回去房間，但他們似乎沒罵夠我。因為我今天去補習班時遲到了十五分鐘，老師就打給媽媽說，結果她知道了非常生氣。\r\n我不想說是因為我跑去逛書店而錯過公車，來不及趕上補習班的時間。\r\n但我也不想說謊，所以爸媽逼問不出來時，就"));
             Text_contents.Add(new Text_content(2210, "憤怒", "angry", 50, 0, 0, 0, false, "得對我破口大罵。外面的雷雨聲剛好蓋過他們的怒罵聲，所以我有些放空的看著他們扭曲的臉龐。\r\n他們唸了半小時，才肯放我走。我本來打算在今夜閱讀新借的小說，現在心情卻無了。"));
             Text_contents.Add(new Text_content(2220, "面面相覷", "sad", 50, 0, 0, 0, false, "了一會兒，最後媽媽嘆了一口氣的，爸爸看起來也很疲憊。他們要我下次別遲到了，補習班費錢、希望我好好學習之類的叮嚀。\r\n我回到房間裡聽著雨聲滴答滴答，我想這剛好反映了我們家的情況。"));
-            
+
             Text_contents.Add(new Text_content(23, "疲倦", "none", 50, 0, 0, 0, false, "不堪，但就算很累，我也想趕快利用空閒時間翻閱今天新借來的小說。\r\n但我今天有點"));
             Text_contents.Add(new Text_content(2310, "過敏", "wow", 25, 5, 0, 0, false, "，因為天氣驟然變涼，所以一直在流鼻水。桌子上很快就堆滿衛生紙水餃，害我沒辦法專心看書，一直在擤鼻涕，鼻子都快揉成小丑的紅鼻子了。\r\n……嗯，這算不算跟這本《小丑夢魘》的小丑不謀而合了呢？\U0001f921"));
             Text_contents.Add(new Text_content(2320, "不適", "wow", 50, 0, 0, 0, false, "，早上體育課還掛著大太陽，跑了八百公尺讓我身體覺得很不舒服。晚上卻馬上下起大雨，瞬間的濕冷讓我更疲憊了。\r\n但是我真的好想看小說，所以還是稍微看了半小時。最後身體真的承受不了，才倒頭大睡。"));
@@ -72,7 +73,7 @@ public class Text_Array : MonoBehaviour
             //diary_plant01
             Text_contents.Add(new Text_content(41, "黃金葛", "none", 25, 5, 0, 0, false, "，她還交付了我一個任務，要我之後就負責照顧這些盆栽。\r\n可能看到我為難的表情，阿姨就笑著說這些植物很好養，只要偶爾澆水就好。我"));
             Text_contents.Add(new Text_content(4110, "點頭", "none", 50, 0, 0, 0, false, "，阿姨好像很開心，還說今天就讓我負責澆水就好，澆完水就可以自由活動了。只要澆水就好嗎？突然減少的工作任務讓我有點"));
-            
+
             Text_contents.Add(new Text_content(41110, "開心", "none", 50, 0, 0, 0, false, "，因為多了很多時間可以去看書了！\r\n我把澆水壺裝滿水，小心翼翼澆在植物上。我從來沒有照顧過植物，這很"));
             Text_contents.Add(new Text_content(41111, "彆扭", "happy", 50, 0, 0, 0, false, "，不過我一次只澆一點點水，慢慢加就不會有過滿的問題，所以看起來還行！\r\n希望這株小黃金葛可以活得很健康！"));
             Text_contents.Add(new Text_content(41112, "奇怪", "happy", 50, 0, 0, 0, false, "吧？我想爸媽不會讓我嘗試園藝，我也沒看過我們家有任何植物出現。\r\n所以，我很期待這株小黃金葛可以長得更加茁壯。"));
@@ -89,7 +90,7 @@ public class Text_Array : MonoBehaviour
             Text_contents.Add(new Text_content(4210, "點頭", "none", 50, 0, 0, 0, false, "了，但是我完全沒有園藝經驗呀！？這該怎麼辦……要去跟阿姨說明嗎？可是她會不會很"));
             Text_contents.Add(new Text_content(42110, "失望", "sad", 50, 0, 0, 0, false, "？她一定是覺得我有辦法勝任，才會將這個任務交付給我。如果我做得不好，她會不會就變一個態度，不給我好臉色看……\r\n不行，我得去查查怎麼照顧仙人掌，不能讓這些可愛的植物栽在我手裡，我也不想讓阿姨討厭。"));
             Text_contents.Add(new Text_content(42120, "憤怒", "sad", 50, 0, 0, 0, false, "？要是我說我辦不到，她會不會怪我為什麼連照顧植物都不會？我不想讓人失望……我後來去查了關於照顧仙人掌的書籍，溫度、水分、土壤似乎都是照顧的要點……有點複雜，但我會努力嘗試。"));
-    
+
             Text_contents.Add(new Text_content(4210, "搖頭", "none", 50, 0, 0, 0, false, "，阿姨說這不會太難，只要看仙人掌土壤乾了再澆水就好，平時就跟它們講講話就好。\r\n我不曉得這是什麼意思，難道仙人掌也需要社交嗎？我找了一本的書和椅子坐在了窗台旁，和這些仙人掌"));
             Text_contents.Add(new Text_content(42210, "面面相覷", "happy", 50, 0, 0, 0, false, "。我向這些仙人掌打個招呼，跟它們說今天天氣很好。\r\n斜斜照射進來的太陽灑落在仙人掌上，發出淺金色的光輝。"));
             Text_contents.Add(new Text_content(42220, "僵硬", "wow", 50, 0, 0, 0, false, "的相對無言，當然啦、仙人掌本來就不會講話了。我還在猶豫要不要跟它們說話，最後卻只是默默翻起了介紹仙人掌的書。\r\n……原來仙人掌會開花啊！"));
@@ -134,7 +135,7 @@ public class Text_Array : MonoBehaviour
             Text_contents.Add(new Text_content(5320, "愜意", "none", 50, 0, 0, 0, false, "！我好想住進像這樣的房間裡，頂到天花板的書架上擺滿了書籍，哇！想想就覺得"));
             Text_contents.Add(new Text_content(53210, "浪漫", "happy", 50, 0, 0, 0, false, "，畢竟和書作伴是件愉悅的事。\r\n我翻閱了一些新書推薦區的書，其中幾本我好像在圖書館的新書區有看過？之後借來看看好了。\r\n這次逛了逛後我沒買任何書籍，也許下次再說吧！"));
             Text_contents.Add(new Text_content(53220, "吸引", "wow", 50, 0, 0, 0, false, "人。\r\n不過，要是沒做好防潮處理，有這麼多木頭也會吸引到白蟻吧？唔，一想到這麼現實的事情，不禁沒了幻想泡泡的魔力。\r\n好吧，至少在書店裡可以體驗到被書包圍的感覺！"));
-            
+
             //diary_day01
             Text_contents.Add(new Text_content(61, "日記", "none", 25, 5, 0, 0, false, "。我沒注意到補習班的男老師靠近，他一把就抽走我的"));
             Text_contents.Add(new Text_content(6110, "日記", "none", 50, 0, 0, 0, false, "，攤開的本子就這麼被他舉高晃在空中，他甚至怒斥我：「不准在補習班寫作業以外的東西！下次再被我看到就沒收、還要唸給所有人聽！」我真的太"));
@@ -189,60 +190,104 @@ public class Text_Array : MonoBehaviour
         {
             int randomIndex = Random.Range(0, falseTextContents.Count);
             falseTextContents[randomIndex].Text_exist = true;
-                static_parameters.MC_HP_Max += falseTextContents[randomIndex].HP;
-                static_parameters.MC_ATK += falseTextContents[randomIndex].Att_pow;
-                static_parameters.MC_ATK_Speed += falseTextContents[randomIndex].Att_speed;
-                static_parameters.MC_Wspeed += falseTextContents[randomIndex].Walk_speed;
+            static_parameters.MC_HP_Max += falseTextContents[randomIndex].HP;
+            static_parameters.MC_ATK += falseTextContents[randomIndex].Att_pow;
+            static_parameters.MC_ATK_Speed += falseTextContents[randomIndex].Att_speed;
+            static_parameters.MC_Wspeed += falseTextContents[randomIndex].Walk_speed;
             // 打印已修改的对象
             Debug.Log($"Modified Text_content: Name_number: {falseTextContents[randomIndex].Name_number}, Name_Text: {falseTextContents[randomIndex].Name_Text}, MC_HP_Max: {static_parameters.MC_HP_Max}, MC_ATK: {static_parameters.MC_ATK}, MC_ATK_Speed: {static_parameters.MC_ATK_Speed}, MC_speed: {static_parameters.MC_Wspeed}, Text_exist: {falseTextContents[randomIndex].Text_exist}");
         }
     }
-    public void pick1(){
-        pickdiary=1;
+    public void pick1()
+    {
+        pickdiary = 1;
+        click_button_Y();
         pickplace();
     }
-    public void pick2(){
-        pickdiary=2;
+    public void pick2()
+    {
+        pickdiary = 2;
+        click_button_Y();
         pickplace();
     }
-    public void pick3(){
-        pickdiary=3;
+    public void pick3()
+    {
+        pickdiary = 3;
+        click_button_Y();
         pickplace();
     }
-    public void pick4(){
-        pickdiary=4;
+    public void pick4()
+    {
+        pickdiary = 4;
+        click_button_Y();
         pickplace();
     }
-    public void pickplace(){
-        switch(pickdiary){
+
+    private void click_button_Y()
+    {
+        // 檢查當前被選中的 UI 元件
+        GameObject selectedButton = EventSystem.current.currentSelectedGameObject;
+
+        if (selectedButton != null)
+        {
+            // 取得按鈕的 RectTransform 並獲取其 Y 座標
+            RectTransform rectTransform = selectedButton.GetComponent<RectTransform>();
+            Vector3 buttonPos = rectTransform.position; // 世界座標
+            float buttonY = buttonPos.y;
+            Debug.Log("pickdiary:" + pickdiary);
+
+            //替換成更新後的位置
+            RectTransform rectTransform1 = diarypointer.GetComponent<RectTransform>();
+            Vector3 currentPosition = rectTransform1.anchoredPosition;
+            currentPosition.y = buttonY;
+            rectTransform1.anchoredPosition = currentPosition;
+        }
+    }
+
+    public void pickplace()
+    {
+        switch (pickdiary)
+        {
             case 1:
-                if (pickdiary == 1){
-                    static_parameters.pickdiary=1;
-                }else{
+                if (pickdiary == 1)
+                {
+                    static_parameters.pickdiary = 1;
+                }
+                else
+                {
                     Vector3 targetPosition1 = new Vector3(diarypointer.transform.localPosition.x, 230, diarypointer.transform.localPosition.z);
                     diarypointer.transform.localPosition = targetPosition1;
-                }               
+                }
                 break;
             case 2:
-                if (pickdiary == 2){
-                    static_parameters.pickdiary=2;
-                }else{
+                if (pickdiary == 2)
+                {
+                    static_parameters.pickdiary = 2;
+                }
+                else
+                {
                     Vector3 targetPosition2 = new Vector3(diarypointer.transform.localPosition.x, 70, diarypointer.transform.localPosition.z);
                     diarypointer.transform.localPosition = targetPosition2;
                 }
                 break;
             case 3:
-                if (pickdiary == 3){
-                    static_parameters.pickdiary=3;
-                }else{
+                if (pickdiary == 3)
+                {
+                    static_parameters.pickdiary = 3;
+                }
+                else
+                {
                     Vector3 targetPosition3 = new Vector3(diarypointer.transform.localPosition.x, -90, diarypointer.transform.localPosition.z);
                     diarypointer.transform.localPosition = targetPosition3;
                 }
                 break;
             case 4:
-                if (pickdiary == 4){
-                    static_parameters.pickdiary=4;
-                }else{
+                if (pickdiary == 4)
+                {
+                    static_parameters.pickdiary = 4;
+                }
+                else
+                {
                     Vector3 targetPosition4 = new Vector3(diarypointer.transform.localPosition.x, -250, diarypointer.transform.localPosition.z);
                     diarypointer.transform.localPosition = targetPosition4;
                 }
