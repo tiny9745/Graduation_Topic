@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Text_Array : MonoBehaviour
@@ -9,16 +10,20 @@ public class Text_Array : MonoBehaviour
     static public uint diary_number = 0;
     static public bool Add_array = true;
     public GameObject diarypointer;
+    public Auto_text_paper auto_Text_Paper;
+    short[] pick_tmp;
     void Awake()
     {
         if (Add_array)
         {
             //diary_step
             diary_step = new short[4];
-            diary_step[0] = 0;
-            diary_step[1] = 0;
-            diary_step[2] = 0;
-            diary_step[3] = 0;
+            pick_tmp = new short[4];
+            for (int i = 0; i < 4; i++)
+            {
+                pick_tmp[i] = 0;
+                diary_step[i] = 0;
+            }
 
             //diary_novel01
             Text_contents.Add(new Text_content(11, "《醜小鴨與天鵝湖》", "none", 25, 5, 0, 0, true, "我感覺自己就像主角醜小鴨，但爸媽卻希望我像天鵝一樣功成名就。\r\n明明在水底下，醜小鴨與天鵝都在努力用腳打水，好讓自己保持優雅。可是他們只看得見我表面上醜陋不堪，沒人會知道我有多麼努力才能活著。\r\n我的結局也能如醜小鴨一樣來個"));
@@ -198,26 +203,43 @@ public class Text_Array : MonoBehaviour
             Debug.Log($"Modified Text_content: Name_number: {falseTextContents[randomIndex].Name_number}, Name_Text: {falseTextContents[randomIndex].Name_Text}, MC_HP_Max: {static_parameters.MC_HP_Max}, MC_ATK: {static_parameters.MC_ATK}, MC_ATK_Speed: {static_parameters.MC_ATK_Speed}, MC_speed: {static_parameters.MC_Wspeed}, Text_exist: {falseTextContents[randomIndex].Text_exist}");
         }
     }
+
     public void pick1()
     {
+        pick_tmp[0]++;
+        pick_tmp[1] = 0;
+        pick_tmp[2] = 0;
+        pick_tmp[3] = 0;
         pickdiary = 1;
         click_button_Y();
         pickplace();
     }
     public void pick2()
     {
+        pick_tmp[0] = 0;
+        pick_tmp[1]++;
+        pick_tmp[2] = 0;
+        pick_tmp[3] = 0;
         pickdiary = 2;
         click_button_Y();
         pickplace();
     }
     public void pick3()
     {
+        pick_tmp[0] = 0;
+        pick_tmp[1] = 0;
+        pick_tmp[2]++;
+        pick_tmp[3] = 0;
         pickdiary = 3;
         click_button_Y();
         pickplace();
     }
     public void pick4()
     {
+        pick_tmp[0] = 0;
+        pick_tmp[1] = 0;
+        pick_tmp[2] = 0;
+        pick_tmp[3]++;
         pickdiary = 4;
         click_button_Y();
         pickplace();
@@ -234,7 +256,6 @@ public class Text_Array : MonoBehaviour
             RectTransform rectTransform = selectedButton.GetComponent<RectTransform>();
             Vector3 buttonPos = rectTransform.position; // 世界座標
             float buttonY = buttonPos.y;
-            Debug.Log("pickdiary:" + pickdiary);
 
             //替換成更新後的位置
             RectTransform rectTransform1 = diarypointer.GetComponent<RectTransform>();
@@ -249,50 +270,46 @@ public class Text_Array : MonoBehaviour
         switch (pickdiary)
         {
             case 1:
-                if (pickdiary == 1)
-                {
-                    static_parameters.pickdiary = 1;
-                }
-                else
-                {
-                    Vector3 targetPosition1 = new Vector3(diarypointer.transform.localPosition.x, 230, diarypointer.transform.localPosition.z);
-                    diarypointer.transform.localPosition = targetPosition1;
-                }
+                static_parameters.pickdiary = 1;
                 break;
             case 2:
-                if (pickdiary == 2)
-                {
-                    static_parameters.pickdiary = 2;
-                }
-                else
-                {
-                    Vector3 targetPosition2 = new Vector3(diarypointer.transform.localPosition.x, 70, diarypointer.transform.localPosition.z);
-                    diarypointer.transform.localPosition = targetPosition2;
-                }
+                static_parameters.pickdiary = 2;
                 break;
             case 3:
-                if (pickdiary == 3)
-                {
-                    static_parameters.pickdiary = 3;
-                }
-                else
-                {
-                    Vector3 targetPosition3 = new Vector3(diarypointer.transform.localPosition.x, -90, diarypointer.transform.localPosition.z);
-                    diarypointer.transform.localPosition = targetPosition3;
-                }
+                static_parameters.pickdiary = 3;
                 break;
             case 4:
-                if (pickdiary == 4)
-                {
-                    static_parameters.pickdiary = 4;
-                }
-                else
-                {
-                    Vector3 targetPosition4 = new Vector3(diarypointer.transform.localPosition.x, -250, diarypointer.transform.localPosition.z);
-                    diarypointer.transform.localPosition = targetPosition4;
-                }
+                static_parameters.pickdiary = 4;
                 break;
         }
+        for (int i = 0; i < 3; i++) if (pick_tmp[i] == 2)
+            {
+                pick_tmp[i] = 3;
+                // 確保 EventSystem 存在
+                if (EventSystem.current != null)
+                {
+                    // 獲取當前選中的按鈕，確保有選中的按鈕
+                    GameObject selectedButton = EventSystem.current.currentSelectedGameObject;
+                    if (selectedButton != null)
+                    {
+                        // 嘗試獲取 Button 組件
+                        Button buttonComponent = selectedButton.GetComponent<Button>();
+
+                        if (buttonComponent != null)
+                        {
+                            // 自訂禁用狀態的外觀，讓按鈕禁用時保持原樣
+                            ColorBlock colors = buttonComponent.colors;
+                            colors.disabledColor = colors.normalColor;
+                            buttonComponent.colors = colors;
+
+                            // 將按鈕設置為不可互動
+                            buttonComponent.interactable = false;
+                        }
+                    }
+                }
+                auto_Text_Paper.diary_name[i].text = auto_Text_Paper.Pick_Text.text;
+                auto_Text_Paper.Pick_Text.text = "";
+            }
     }
 }
 

@@ -12,6 +12,7 @@ public class Auto_text_paper : MonoBehaviour
     public Text ExtraPage2_text;
     public float[][] diary_buff_check;
     string[] diary_buff_name;
+    public Text Pick_Text;
     public Text[] diary_name;
     public Text ALLB;
     public Drag_End drag_end;
@@ -25,7 +26,7 @@ public class Auto_text_paper : MonoBehaviour
         {
             diary_buff_check[i] = new float[4];
         }
-        for(int i = 0;i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 4; j++)
             {
@@ -192,7 +193,7 @@ public class Auto_text_paper : MonoBehaviour
             }
         }
     }
-   
+
     void SetCanvasSortingOrder(GameObject item)// Set sorting order of the Canvas component
     {
         Canvas canvas = item.GetComponent<Canvas>();
@@ -212,7 +213,7 @@ public class Auto_text_paper : MonoBehaviour
         ExtraPage2.SetActive(true);
         del_any_text();
         ExtraPage2_text.text += "HP:+";
-        ExtraPage2_text.text += diary_buff_check[0][0].ToString()+ "\r\n";
+        ExtraPage2_text.text += diary_buff_check[0][0].ToString() + "\r\n";
         ExtraPage2_text.text += "ATK_Pow:+";
         ExtraPage2_text.text += diary_buff_check[0][1].ToString() + "\r\n";
         ExtraPage2_text.text += "ATK_Speed:+";
@@ -240,11 +241,16 @@ public class Auto_text_paper : MonoBehaviour
     public void ExtraPage2_Yes()
     {
         diary_buff_name[0] = ExtraPage2_text.text;
-        if (diary_name[0].text == "")
+        if (Text_Array.diary_number == 0)
         {
-            diary_name[0].text = "新讀的小說";
+            Pick_Text.text = "新讀的小說";
+        }
+        else if (Text_Array.diary_number >= 1)
+        {
+            Pick_Text.text = "其他的小說";
         }
     }
+
     public void click_D1()
     {
         ALLB.text = diary_buff_name[0];
