@@ -1,27 +1,23 @@
-Shader "Custom/AlwaysInFrontSprite"
+Shader "Custom/AlwaysInFront"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-        _Color ("Color", Color) = (1,1,1,1)
+        _MainTex ("Texture", 2D) = "white" {}  // 定義主要的貼圖
     }
     SubShader
     {
-        Tags { "Queue" = "Overlay" "RenderType"="Transparent" }
+        Tags { "Queue" = "Overlay" }  // 渲染順序設定為 Overlay，確保總是在最上層
         Pass
         {
-            ZTest LEqual
-            ZWrite Off
-            Cull Off
-            Blend SrcAlpha OneMinusSrcAlpha
-            Lighting Off
-
+            ZWrite Off  // 不寫入深度緩衝區
+            ZTest Always  // 始終通過深度測試
+            
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
 
-            struct appdata_t
+            struct appdata
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
@@ -29,26 +25,23 @@ Shader "Custom/AlwaysInFrontSprite"
 
             struct v2f
             {
-                float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
+                float4 pos : SV_POSITION;
             };
 
             sampler2D _MainTex;
-            float4 _MainTex_ST;
-            fixed4 _Color;
 
-            v2f vert(appdata_t v)
+            v2f vert (appdata v)
             {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.uv = v.uv;
                 return o;
             }
 
-            fixed4 frag(v2f i) : SV_Target
+            fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv) * _Color;
-                return col;
+                return tex2D(_MainTex, i.uv);
             }
             ENDCG
         }
