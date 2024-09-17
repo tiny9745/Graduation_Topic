@@ -8,6 +8,7 @@ public class NPC01_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
+    public bool NPC01_hit = false;
     public int DetectDistance = 18,Pcounter = 0;
     public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100,npcSpeed = 3f,NPC_HP;
     float dist;
@@ -301,23 +302,21 @@ public class NPC01_control : MonoBehaviour
                     }
                 }
                 if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-                {
+                {   
+                    NPC01_hit = true;
+                    print("NPC01_hit");
                     if (nPC_hP == null)
                     {
                         Debug.LogError("nPC_hP is not assigned.");
                         return;
                     }
-
-                    if(Pcounter < 5){
-                        Pcounter++;
-                        print(Pcounter);
-                    }else{
-                        Pcounter = 0;
-                    }
                     nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                     MC_to_Att = false;
                     Invoke("wait_MC_att", 0.2f);
                     nextDamageTime = Time.time + damageCooldown;
+                }else{
+                    NPC01_hit = false;
+                    print("NPC01_not_hit");
                 }
             }
         }
