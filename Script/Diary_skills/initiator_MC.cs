@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class initiator_MC : MonoBehaviour
 {
+    float timer_f = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +26,14 @@ public class initiator_MC : MonoBehaviour
             {
                 if (Skill_public_funtion.feel_to_skill == 0)
                 {
+                    timer_f += Time.deltaTime;
                     if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
                     {
-
+                        timer_f = 0;
                     }
-                    else if (Skill_public_funtion.Normal_blood_deduction_NPC == false &&)
+                    else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f >10f)
                     {
-
+                        static_parameters.MC_HP-=
                     }
                 }
                 else if (Skill_public_funtion.feel_to_skill == 1)
