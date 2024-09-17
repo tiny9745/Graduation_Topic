@@ -8,7 +8,7 @@ public class NPC01_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 18;
+    public int DetectDistance = 18,Pcounter = 0;
     public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100,npcSpeed = 3f,NPC_HP;
     float dist;
     private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
@@ -20,7 +20,7 @@ public class NPC01_control : MonoBehaviour
     public GameObject Drop;
     bool dead_open = true, MC_to_Att = true;
     public NPC_HP_01 nPC_hP;
-    int NPC_angle = 0,Pcounter = 0;
+    int NPC_angle = 0;
     private bool isFacingRight = true;
     public GameObject Img_npc;
 
