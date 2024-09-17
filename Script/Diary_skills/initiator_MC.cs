@@ -19,38 +19,29 @@ public class initiator_MC : MonoBehaviour
 
     void fight_instinct()
     {
-        if (Skill_public_funtion.fight_instinct[0] == true)
+        if (Skill_public_funtion.fight_instinct == true)
         {
+            if (Skill_public_funtion.feel_to_skill == 0)
+            {
 
-        }
-        else if (Skill_public_funtion.fight_instinct[1] == true)
-        {
+            }
+            else if (Skill_public_funtion.feel_to_skill == 1)
+            {
 
-        }
-        else if (Skill_public_funtion.fight_instinct[2] == true)
-        {
+            }
+            else if (Skill_public_funtion.feel_to_skill == 2)
+            {
 
-        }
-        else if (Skill_public_funtion.fight_instinct[3] == true)
-        {
+            }
+            else if (Skill_public_funtion.feel_to_skill == 3)
+            {
 
+            }
         }
     }
     void Accurate_calculation()
     {
-        if (Skill_public_funtion.Accurate_calculation[0] == true)
-        {
-
-        }
-        else if (Skill_public_funtion.Accurate_calculation[1] == true)
-        {
-
-        }
-        else if (Skill_public_funtion.Accurate_calculation[2] == true)
-        {
-
-        }
-        else if (Skill_public_funtion.Accurate_calculation[3] == true)
+        if (Skill_public_funtion.Accurate_calculation == true)
         {
 
         }
