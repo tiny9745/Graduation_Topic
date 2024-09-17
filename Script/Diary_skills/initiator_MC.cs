@@ -21,6 +21,38 @@ public class initiator_MC : MonoBehaviour
     {
         if (Skill_public_funtion.fight_instinct == true)
         {
+            if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
+            {
+                if (Skill_public_funtion.feel_to_skill == 0)
+                {
+                    if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
+                    {
+
+                    }
+                    else if (Skill_public_funtion.Normal_blood_deduction_NPC == false &&)
+                    {
+
+                    }
+                }
+                else if (Skill_public_funtion.feel_to_skill == 1)
+                {
+
+                }
+                else if (Skill_public_funtion.feel_to_skill == 2)
+                {
+
+                }
+                else if (Skill_public_funtion.feel_to_skill == 3)
+                {
+
+                }
+            }
+        }
+    }
+    void Accurate_calculation()
+    {
+        if (Skill_public_funtion.Accurate_calculation == true)
+        {
             if (Skill_public_funtion.feel_to_skill == 0)
             {
 
@@ -37,13 +69,6 @@ public class initiator_MC : MonoBehaviour
             {
 
             }
-        }
-    }
-    void Accurate_calculation()
-    {
-        if (Skill_public_funtion.Accurate_calculation == true)
-        {
-
         }
     }
 }
