@@ -33,7 +33,7 @@ public class initiator_MC : MonoBehaviour
                     }
                     else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f >10f)
                     {
-                        static_parameters.MC_HP-=
+                        
                     }
                 }
                 else if (Skill_public_funtion.feel_to_skill == 1)
