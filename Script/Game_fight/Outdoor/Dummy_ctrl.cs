@@ -11,11 +11,11 @@ public class Dummy_ctrl : MonoBehaviour
     public float NPC_HP;
     float dist;
     private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
-    bool hit_Ani,hit = false;
+    bool hit_Ani,hit = false ,hitbox=true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject Dummy;
-    public GameObject hitbox_Brick_Monster;
+    public GameObject Hitbox;
     public GameObject Drop;
     bool dead_open = true;
     bool MC_to_Att = true;
@@ -41,11 +41,11 @@ public class Dummy_ctrl : MonoBehaviour
             {
                 if (other.gameObject.tag == "Player")
                 {
-                    if (open_EnableHitbox)
+                    if (hitbox)
                     {
                         hit_Ani = true;
                         Invoke("EnableHitbox", 1.1f);
-                        open_EnableHitbox = false;
+                        hitbox = false;
                     }
                 }
                 if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
@@ -66,14 +66,14 @@ public class Dummy_ctrl : MonoBehaviour
 
     void EnableHitbox()
     {
-        hitbox_Brick_Monster.SetActive(true);
+        Hitbox.SetActive(true);
         Invoke("closeHitbox", 0.5f);//atk time
         hit = false;
     }
     void closeHitbox()
     {
-        hitbox_Brick_Monster.SetActive(false);
-        open_EnableHitbox = true;
+        Hitbox.SetActive(false);
+        hitbox = true;
     }
 
 }
