@@ -24,32 +24,35 @@ public class initiator_MC : MonoBehaviour
         {
             if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
             {
-                if (Skill_public_funtion.feel_to_skill == 0)
+                switch (Skill_public_funtion.feel_to_skill)
                 {
-                    timer_f += Time.deltaTime;
-                    if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
-                    {
-                        timer_f = 0;
-                        Skill_public_funtion.Normal_blood_deduction_NPC = false;
-                    }
-                    else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
-                    {
-                        static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
-                        timer_f = 0;
-                    }
+                    case 0:
+                        timer_f += Time.deltaTime;
+                        if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
+                        {
+                            timer_f = 0;
+                            Skill_public_funtion.Normal_blood_deduction_NPC = false;
+                        }
+                        else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
+                        {
+                            static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
+                            timer_f = 0;
+                        }
+                        break; 
+                    case 1:
+                        //to_NPC
+                        break; 
+                    case 2:
+                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp) { static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2); }
+                        break;
+                    case 3:
+                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp) static_parameters.MC_ATK *= 1.5f;
+                        break;
                 }
-                else if (Skill_public_funtion.feel_to_skill == 1)
-                {
-                    //to_NPC
-                }
-                else if (Skill_public_funtion.feel_to_skill == 2)
-                {
-
-                }
-                else if (Skill_public_funtion.feel_to_skill == 3)
-                {
-
-                }
+            }
+            else //reduction
+            {
+                static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
             }
         }
     }
@@ -57,21 +60,20 @@ public class initiator_MC : MonoBehaviour
     {
         if (Skill_public_funtion.Accurate_calculation == true)
         {
-            if (Skill_public_funtion.feel_to_skill == 0)
+            switch (Skill_public_funtion.feel_to_skill)
             {
+                case 0:
 
-            }
-            else if (Skill_public_funtion.feel_to_skill == 1)
-            {
+                    break; 
+                case 1:
 
-            }
-            else if (Skill_public_funtion.feel_to_skill == 2)
-            {
+                    break;
+                case 2:
 
-            }
-            else if (Skill_public_funtion.feel_to_skill == 3)
-            {
+                    break;
+                case 3:
 
+                    break;
             }
         }
     }

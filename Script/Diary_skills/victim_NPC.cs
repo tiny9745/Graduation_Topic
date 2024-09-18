@@ -23,21 +23,20 @@ public class victim_NPC : MonoBehaviour
         {
             if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
             {
-                if (Skill_public_funtion.feel_to_skill == 0)
+                switch (Skill_public_funtion.feel_to_skill)
                 {
-                    //to_MC
-                }
-                else if (Skill_public_funtion.feel_to_skill == 1)
-                {
+                    case 0:
 
-                }
-                else if (Skill_public_funtion.feel_to_skill == 2)
-                {
+                        break;
+                    case 1:
 
-                }
-                else if (Skill_public_funtion.feel_to_skill == 3)
-                {
+                        break;
+                    case 2:
 
+                        break;
+                    case 3:
+
+                        break;
                 }
             }
         }
@@ -46,21 +45,20 @@ public class victim_NPC : MonoBehaviour
     {
         if (Skill_public_funtion.Accurate_calculation == true)
         {
-            if (Skill_public_funtion.feel_to_skill == 0)
+            switch (Skill_public_funtion.feel_to_skill)
             {
+                case 0:
 
-            }
-            else if (Skill_public_funtion.feel_to_skill == 1)
-            {
+                    break;
+                case 1:
 
-            }
-            else if (Skill_public_funtion.feel_to_skill == 2)
-            {
+                    break;
+                case 2:
 
-            }
-            else if (Skill_public_funtion.feel_to_skill == 3)
-            {
+                    break;
+                case 3:
 
+                    break;
             }
         }
     }

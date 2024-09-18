@@ -350,7 +350,7 @@ public class Text_content
         if (Text_exist)
         {
             static_parameters.MC_HP_Max += HP;
-            static_parameters.MC_ATK += Att_pow;
+            static_parameters.MC_ATK += Att_pow; static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
             static_parameters.MC_ATK_Speed += Att_speed;
             static_parameters.MC_Wspeed += Walk_speed;
         }
