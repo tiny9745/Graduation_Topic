@@ -27,16 +27,16 @@ public class victim_NPC : MonoBehaviour
                 switch (Skill_public_funtion.feel_to_skill)
                 {
                     case 0:
-
+                        //to_MC
                         break;
                     case 1:
-                        NPC_Hp -= Mathf.Pow(NPC_Atk, 2) / (static_parameters.MC_ATK + NPC_Def)*0.2f;
+                        NPC_Hp -= Mathf.Pow(NPC_Atk, 2) / (NPC_Atk + NPC_Def)*0.2f;
                         break;
                     case 2:
-
+                        //to_MC
                         break;
                     case 3:
-
+                        //to_MC
                         break;
                 }
             }
