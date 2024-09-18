@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class initiator_MC : MonoBehaviour
@@ -38,15 +39,25 @@ public class initiator_MC : MonoBehaviour
                             static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
                             timer_f = 0;
                         }
-                        break; 
+                        break;
                     case 1:
                         //to_NPC
-                        break; 
+                        break;
                     case 2:
-                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp) { static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2); }
+                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp) 
+                        { 
+                            static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2); 
+                        }
                         break;
                     case 3:
-                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp) static_parameters.MC_ATK *= 1.5f;
+                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
+                        {
+                            static_parameters.MC_ATK *= 1.5f;
+                        }
+                        if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
+                        {
+                            static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + static_parameters.MC_DEF) * 0.1f;
+                        }
                         break;
                 }
             }

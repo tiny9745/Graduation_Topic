@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class victim_NPC : MonoBehaviour
 {
+    public float NPC_Atk, NPC_Def, NPC_Hp;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class victim_NPC : MonoBehaviour
 
                         break;
                     case 1:
-
+                        NPC_Hp -= Mathf.Pow(NPC_Atk, 2) / (static_parameters.MC_ATK + NPC_Def)*0.2f;
                         break;
                     case 2:
 
