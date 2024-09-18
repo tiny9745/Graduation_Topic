@@ -12,4 +12,5 @@ public class Skill_public_funtion : MonoBehaviour
 
     //¦UÃþNPC¦©¦åbool
     static public bool Normal_blood_deduction_NPC = false;
+    static public uint blood_deduction_NPC_coumt = 0;
 }

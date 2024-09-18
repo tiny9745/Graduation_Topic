@@ -80,10 +80,40 @@ public class initiator_MC : MonoBehaviour
                     {
                         time_A_B = !time_A_B;
                         timer_f = 0;
-
                     }
-                    break; 
+                    if (time_A_B)
+                    {
+                        if (static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
+                        {
+                            static_parameters.MC_ATK *= 1.1f;
+                            static_parameters.MC_DEF = static_parameters.MC_DEF_tmp;
+                        }
+                    }
+                    else
+                    {
+                        if (static_parameters.MC_DEF_tmp == static_parameters.MC_DEF)
+                        {
+                            static_parameters.MC_DEF *= 1.1f;
+                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                        }
+                    }
+                    break;
                 case 1:
+                    if (Skill_public_funtion.blood_deduction_NPC_coumt >= 400)
+                    {
+                        Skill_public_funtion.blood_deduction_NPC_coumt = 0;
+                        time_A_B = !time_A_B;
+                        if (time_A_B)
+                        {
+                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                            static_parameters.MC_ATK *= 1.5f;
+                        }
+                        else
+                        {
+                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                            static_parameters.MC_ATK *= 0.8f;
+                        }
+                    }
 
                     break;
                 case 2:
