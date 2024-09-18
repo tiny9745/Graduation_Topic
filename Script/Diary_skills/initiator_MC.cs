@@ -30,6 +30,7 @@ public class initiator_MC : MonoBehaviour
                     if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
                     {
                         timer_f = 0;
+                        Skill_public_funtion.Normal_blood_deduction_NPC = false;
                     }
                     else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
                     {
@@ -39,7 +40,7 @@ public class initiator_MC : MonoBehaviour
                 }
                 else if (Skill_public_funtion.feel_to_skill == 1)
                 {
-
+                    //to_NPC
                 }
                 else if (Skill_public_funtion.feel_to_skill == 2)
                 {

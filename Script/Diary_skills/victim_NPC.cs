@@ -25,7 +25,7 @@ public class victim_NPC : MonoBehaviour
             {
                 if (Skill_public_funtion.feel_to_skill == 0)
                 {
-
+                    //to_MC
                 }
                 else if (Skill_public_funtion.feel_to_skill == 1)
                 {
