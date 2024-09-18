@@ -9,15 +9,15 @@ public class Dummy_ctrl : MonoBehaviour
     public int DetectDistance = 15; public float Dummy_ATK = 15; public float Dummy_DEF = 15;
     public float NPC_HP_Max = 150; public float npcSpeed = 6f;
     public float NPC_HP;
-    float dist;
+    //float dist;
     private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
     bool hit_Ani,hit = false ,hitbox=true;
-    private Vector3 lastPosition;
-    private Quaternion initialRotation;
+    //private Vector3 lastPosition;
+    //private Quaternion initialRotation;
     public GameObject Dummy;
     public GameObject Hitbox;
     public GameObject Drop;
-    bool dead_open = true;
+    //bool dead_open = true;
     bool MC_to_Att = true;
     public NPC_HP_04 nPC_hP;
     public GameObject Img_npc;
@@ -75,5 +75,4 @@ public class Dummy_ctrl : MonoBehaviour
         Hitbox.SetActive(false);
         hitbox = true;
     }
-
 }
