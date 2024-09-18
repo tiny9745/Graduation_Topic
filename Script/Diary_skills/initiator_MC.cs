@@ -6,6 +6,7 @@ using UnityEngine;
 public class initiator_MC : MonoBehaviour
 {
     float timer_f = 0;
+    bool time_A_B = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +75,13 @@ public class initiator_MC : MonoBehaviour
             switch (Skill_public_funtion.feel_to_skill)
             {
                 case 0:
+                    timer_f += Time.deltaTime;
+                    if (timer_f > 60)
+                    {
+                        time_A_B = !time_A_B;
+                        timer_f = 0;
 
+                    }
                     break; 
                 case 1:
 
