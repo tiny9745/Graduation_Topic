@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e80775df4b4c774587d93a22c82d096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarFill: {fileID: 484458763}
+  healthBarFill: {fileID: 281353523}
   MaxHealth: 0
   minus: 0
   control: {fileID: 828858712}
@@ -839,9 +839,8 @@ MonoBehaviour:
   DetectDistance: 15
   Dummy_ATK: 15
   Dummy_DEF: 15
-  NPC_HP_Max: 150
+  NPC_HP_Max: 850
   NPC_HP: 0
-  Dummy: {fileID: 0}
   hitbox_Dummy: {fileID: 2006640223}
   nPC_hP: {fileID: 828858709}
 --- !u!65 &828858713
@@ -2600,7 +2599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1091213031240024686
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class Dummy_ctrl : MonoBehaviour
     public float NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit = false;
-    public GameObject Dummy;
     public GameObject hitbox_Dummy;
     bool MC_to_Att = true;
     public Dummy_HP nPC_hP;
@@ -19,15 +18,6 @@ public class Dummy_ctrl : MonoBehaviour
     void Start()
     {
         NPC_HP = NPC_HP_Max;
-        Dummy = GameObject.Find("dummy");
-        if (Dummy != null)
-        {
-            Renderer renderer = Dummy.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.enabled = false;
-            }
-        }
         hitbox_Dummy.SetActive(false);
 
         if (nPC_hP == null)
