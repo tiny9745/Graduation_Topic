@@ -8,7 +8,7 @@ public class Dummy_ctrl : MonoBehaviour
     //public Animator animator;
     public int DetectDistance = 15; public float Dummy_ATK = 15; public float Dummy_DEF = 15;
     public float NPC_HP_Max = 150;// public float npcSpeed = 6f;
-    public float NPC_HP;
+    public float NPC_HP=800;
     //float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani, hit = false, hitbox = true;
@@ -50,6 +50,7 @@ public class Dummy_ctrl : MonoBehaviour
                 }
                 if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
                 {
+                    print("NPC_HP: " + NPC_HP);
                     if (nPC_hP == null)
                     {
                         Debug.LogError("nPC_hP is not assigned.");
