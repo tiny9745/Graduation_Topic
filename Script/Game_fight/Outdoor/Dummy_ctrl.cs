@@ -10,8 +10,8 @@ public class Dummy_ctrl : MonoBehaviour
     public float NPC_HP_Max = 150;// public float npcSpeed = 6f;
     public float NPC_HP;
     //float dist;
-    private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
-    bool hit_Ani,hit = false ,hitbox=true;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
+    bool hit_Ani, hit = false, hitbox = true;
     //private Vector3 lastPosition;
     //private Quaternion initialRotation;
     public GameObject Dummy;
@@ -24,18 +24,18 @@ public class Dummy_ctrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerStay(Collider other)
     {
-       if (NPC_HP > 0 && Time.time >= nextDamageTime)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
             if (NPC_HP > 0)
             {
