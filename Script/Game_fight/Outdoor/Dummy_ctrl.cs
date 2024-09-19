@@ -19,7 +19,7 @@ public class Dummy_ctrl : MonoBehaviour
     //public GameObject Drop;
     //bool dead_open = true;
     bool MC_to_Att = true;
-    public NPC_HP_04 nPC_hP;
+    public Dummy_HP nPC_hP;
     //public GameObject Img_npc;
     // Start is called before the first frame update
     void Start()
