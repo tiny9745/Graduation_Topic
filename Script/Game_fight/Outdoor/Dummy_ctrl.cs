@@ -1,38 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Dummy_ctrl : MonoBehaviour
 {
-    //public Animator animator;
+    public GameObject TargetObj;
     public int DetectDistance = 15; public float Dummy_ATK = 15; public float Dummy_DEF = 15;
-    public float NPC_HP_Max = 150;// public float npcSpeed = 6f;
+    public float NPC_HP_Max = 150;
     public float NPC_HP;
-    //float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani, hit = false, hitbox = true;
-    //private Vector3 lastPosition;
-    //private Quaternion initialRotation;
+    bool hit = false;
     public GameObject Dummy;
-    public GameObject Hitbox;
-    //public GameObject Drop;
-    //bool dead_open = true;
+    public GameObject hitbox_Dummy;
     bool MC_to_Att = true;
     public Dummy_HP nPC_hP;
-    //public GameObject Img_npc;
-    // Start is called before the first frame update
+
+
     void Start()
     {
+        NPC_HP = NPC_HP_Max;
+        Dummy = GameObject.Find("dummy");
+        if (Dummy != null)
+        {
+            Renderer renderer = Dummy.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+            }
+        }
+        hitbox_Dummy.SetActive(false);
 
+        if (nPC_hP == null)
+        {
+            nPC_hP = GetComponent<Dummy_HP>();
+            if (nPC_hP == null)
+            {
+                Debug.LogError("Dummy_HP component not found on " + gameObject.name);
+            }
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (NPC_HP <= 0)
+        {
+            NPC_HP = NPC_HP_Max;
+            hitbox_Dummy.SetActive(false);
+        }
 
+        if (TargetObj == null)
+        {
+            TargetObj = GameObject.Find("Player");
+        }
     }
 
+    public float GetDummy_ATK()
+    {
+        return Dummy_ATK;
+    }
+
+    public bool GetDummy_hit()
+    {
+        return hit;
+    }
+
+    bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime)
@@ -41,11 +73,10 @@ public class Dummy_ctrl : MonoBehaviour
             {
                 if (other.gameObject.tag == "Player")
                 {
-                    if (hitbox)
+                    if (open_EnableHitbox)
                     {
-                        hit_Ani = true;
-                        Invoke("EnableHitbox", 1.1f);
-                        hitbox = false;
+                        Invoke("EnableHitbox", 0.1f);
+                        open_EnableHitbox = false;
                     }
                 }
                 if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
@@ -64,15 +95,19 @@ public class Dummy_ctrl : MonoBehaviour
         }
     }
 
+    void wait_MC_att()
+    {
+        MC_to_Att = true;
+    }
     void EnableHitbox()
     {
-        Hitbox.SetActive(true);
-        Invoke("closeHitbox", 0.5f);//atk time
+        hitbox_Dummy.SetActive(true);
         hit = false;
+        Invoke("closeHitbox", 0.3f);
     }
     void closeHitbox()
     {
-        Hitbox.SetActive(false);
-        hitbox = true;
+        hitbox_Dummy.SetActive(false);
+        open_EnableHitbox = true;
     }
 }

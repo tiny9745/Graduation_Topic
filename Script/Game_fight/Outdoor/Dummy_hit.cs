@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class Dummy_hit : MonoBehaviour
 {
+    
     public Dummy_ctrl npcCtrl;
     public GameObject Player;
     float NPC_ATK = 0, minus;
-    // Start is called before the first frame update
     void Start()
     {
-     if (npcCtrl == null)
+        Player = GameObject.Find("Player");
+        if (Player == null)
+        {
+            Debug.LogError("Player object not found!");
+        }
+        if (npcCtrl == null)
         {
             npcCtrl = GetComponentInParent<Dummy_ctrl>();
-        }   
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if (npcCtrl != null) NPC_ATK = npcCtrl.GetNPC03_ATK();
-
+        if (npcCtrl != null) NPC_ATK = npcCtrl.GetDummy_ATK();
+        if (Player != null)
+        {
+            Vector3 direction = Player.transform.position - transform.position;
+            direction.y = 0;
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = targetRotation;
+            }
+        }
     }
-
     private void OnTriggerEnter(Collider Hit)
     {
         if (Hit.gameObject.CompareTag("Player"))
@@ -31,7 +43,7 @@ public class Dummy_hit : MonoBehaviour
             {
                 minus = (float)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
                 if (minus < 5) minus = 5.0f;
-                static_parameters.MC_HP -= 1.0f;
+                static_parameters.MC_HP -= minus;
                 this.enabled = false;
             }
         }
