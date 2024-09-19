@@ -5,7 +5,7 @@ using UnityEngine;
 public class Dummy_ctrl : MonoBehaviour
 {
     public GameObject TargetObj;
-    public int DetectDistance = 15; public float Dummy_ATK = 15; public float Dummy_DEF = 15;
+    public float Dummy_ATK = 15; public float Dummy_DEF = 15;
     public float NPC_HP_Max = 850;
     public float NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
