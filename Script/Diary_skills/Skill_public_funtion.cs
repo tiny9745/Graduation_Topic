@@ -10,7 +10,7 @@ public class Skill_public_funtion : MonoBehaviour
     static public bool fight_instinct = false; static public uint fight_instinct_level = 1; static public uint fight_instinct_addition = 0;//skill 02
     static public bool Accurate_calculation = false; static public uint Accurate_calculation_level = 1; static public uint Accurate_calculation_addition = 0;//skill 03
 
-    //¦UÃþNPC¦©¦åbool
+    //
     static public bool Normal_blood_deduction_NPC = false;
     static public uint blood_deduction_NPC_coumt = 0;
 }
