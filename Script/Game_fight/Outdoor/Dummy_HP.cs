@@ -23,6 +23,7 @@ public class Dummy_HP : MonoBehaviour
         if (minus < 5) minus = 5;
         control.NPC_HP -= minus;
         control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, MaxHealth);
+        print("NPC_HP: " + control.NPC_HP);
         //UpdateHealthBar();
     }
 }
