@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Dummy_ctrl : MonoBehaviour
 {
-    public Animator animator;
+    //public Animator animator;
     public int DetectDistance = 15; public float Dummy_ATK = 15; public float Dummy_DEF = 15;
     public float NPC_HP_Max = 150;// public float npcSpeed = 6f;
     public float NPC_HP;
@@ -16,11 +16,11 @@ public class Dummy_ctrl : MonoBehaviour
     //private Quaternion initialRotation;
     public GameObject Dummy;
     public GameObject Hitbox;
-    public GameObject Drop;
+    //public GameObject Drop;
     //bool dead_open = true;
     bool MC_to_Att = true;
     public NPC_HP_04 nPC_hP;
-    public GameObject Img_npc;
+    //public GameObject Img_npc;
     // Start is called before the first frame update
     void Start()
     {

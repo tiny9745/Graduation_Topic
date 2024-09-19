@@ -493,6 +493,11 @@ GameObject:
   - component: {fileID: 828858705}
   - component: {fileID: 828858706}
   - component: {fileID: 828858707}
+  - component: {fileID: 828858712}
+  - component: {fileID: 828858711}
+  - component: {fileID: 828858710}
+  - component: {fileID: 828858709}
+  - component: {fileID: 828858708}
   m_Layer: 0
   m_Name: 1-dummy
   m_TagString: Untagged
@@ -590,6 +595,82 @@ CapsuleCollider:
   m_Height: 7.9064283
   m_Direction: 1
   m_Center: {x: 0, y: 0.06, z: 0}
+--- !u!114 &828858708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828858704}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc001bf499ccf3478f13524f89ae385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPC_Atk: 0
+  NPC_Def: 0
+  NPC_Hp: 0
+--- !u!114 &828858709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828858704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e80775df4b4c774587d93a22c82d096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 0
+  minus: 0
+  control: {fileID: 828858712}
+--- !u!114 &828858710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828858704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be50c5fdbc7fde499f01eb89f53b2e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcCtrl: {fileID: 828858712}
+  Player: {fileID: 0}
+--- !u!114 &828858711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828858704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bbf3870591f5248a87e48d845db5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &828858712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828858704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af829535d359a541a18eab2930fc943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetectDistance: 15
+  Dummy_ATK: 15
+  Dummy_DEF: 15
+  NPC_HP_Max: 150
+  NPC_HP: 0
+  Dummy: {fileID: 0}
+  Hitbox: {fileID: 828858704}
+  nPC_hP: {fileID: 0}
 --- !u!1 &829508125
 GameObject:
   m_ObjectHideFlags: 0
