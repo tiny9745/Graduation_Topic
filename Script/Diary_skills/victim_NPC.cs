@@ -30,7 +30,7 @@ public class victim_NPC : MonoBehaviour
                         //to_MC
                         break;
                     case 1:
-                        NPC_Hp -= Mathf.Pow(NPC_Atk, 2) / (NPC_Atk + NPC_Def)*0.2f;
+                        //to_Skill_outsourcing
                         break;
                     case 2:
                         //to_MC

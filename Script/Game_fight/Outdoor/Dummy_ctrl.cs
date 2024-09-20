@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +43,7 @@ public class Dummy_ctrl : MonoBehaviour
         {
             TargetObj = GameObject.Find("Player");
         }
+        Skill_outsourcing();
     }
 
     public float GetDummy_ATK()
@@ -77,6 +79,8 @@ public class Dummy_ctrl : MonoBehaviour
                         return;
                     }
                     nPC_hP.TakeDamage(static_parameters.MC_ATK, Dummy_DEF);
+                    Skill_public_funtion.Normal_blood_deduction_NPC = true;
+                    Skill_public_funtion.blood_deduction_NPC_count++;
                     MC_to_Att = false;
                     Invoke("wait_MC_att", 0.2f);
                     nextDamageTime = Time.time + damageCooldown;
@@ -92,6 +96,7 @@ public class Dummy_ctrl : MonoBehaviour
     void EnableHitbox()
     {
         hitbox_Dummy.SetActive(true);
+        Skill_public_funtion_1_close = true;
         hit = false;
         Invoke("closeHitbox", 0.3f);
     }
@@ -99,5 +104,21 @@ public class Dummy_ctrl : MonoBehaviour
     {
         hitbox_Dummy.SetActive(false);
         open_EnableHitbox = true;
+    }
+
+    bool Skill_public_funtion_1_close = false;
+    void Skill_outsourcing()
+    {
+        if (Skill_public_funtion.fight_instinct == true)
+        {
+            if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
+            {
+                if (Skill_public_funtion.feel_to_skill == 1 && Skill_public_funtion_1_close == true)
+                {
+                    Skill_public_funtion_1_close = false;
+                    nPC_hP.TakeDamage(Dummy_ATK, Dummy_DEF);
+                }
+            }
+        }
     }
 }

@@ -329,18 +329,21 @@ public class Text_content
         this.Name_number = Name_number;
         this.Name_Text = Name_Text;
         this.Feeling = Feeling;
-        if (Feeling == "happy") {
-            Skill_public_funtion.feel_to_skill = 0;
-        }
-        else if (Feeling == "angry"){
-            Skill_public_funtion.feel_to_skill = 1;
-        }
-        else if (Feeling == "sad"){
-            Skill_public_funtion.feel_to_skill = 2;
-        }
-        else if (Feeling == "wow"){
-            Skill_public_funtion.feel_to_skill = 3;
-        }
+        // if (Feeling == "happy") {
+        //     Skill_public_funtion.feel_to_skill = 0;
+        // }
+        // else if (Feeling == "angry"){
+        //     Skill_public_funtion.feel_to_skill = 1;
+        // }
+        // else if (Feeling == "sad"){
+        //     Skill_public_funtion.feel_to_skill = 2;
+        // }
+        // else if (Feeling == "wow"){
+        //     Skill_public_funtion.feel_to_skill = 3;
+        // }
+        // else{
+        //     Skill_public_funtion.feel_to_skill = -1;
+        // }
         this.HP = HP;
         this.Att_pow = Att_pow;
         this.Att_speed = Att_speed;
@@ -351,8 +354,8 @@ public class Text_content
         {
             static_parameters.MC_HP_Max += HP;
             static_parameters.MC_ATK += Att_pow; static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
-            static_parameters.MC_ATK_Speed += Att_speed;
-            static_parameters.MC_Wspeed += Walk_speed;
+            static_parameters.MC_ATK_Speed += Att_speed; static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
+            static_parameters.MC_Wspeed += Walk_speed; static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
         }
     }
 }

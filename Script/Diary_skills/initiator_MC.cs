@@ -7,10 +7,13 @@ public class initiator_MC : MonoBehaviour
 {
     float timer_f = 0;
     bool time_A_B = false;
+    public float NPC_DEF;
     // Start is called before the first frame update
     void Start()
     {
-
+        Skill_public_funtion.fight_instinct = true;
+        Skill_public_funtion.feel_to_skill = 1;
+        Debug.Log("feel_to_skill:" + Skill_public_funtion.feel_to_skill);
     }
 
     // Update is called once per frame
@@ -32,8 +35,10 @@ public class initiator_MC : MonoBehaviour
                         timer_f += Time.deltaTime;
                         if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
                         {
-                            timer_f = 0;
                             Skill_public_funtion.Normal_blood_deduction_NPC = false;
+                            timer_f = 0;
+                            static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC_DEF) * 0.1f;
+                            if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
                         }
                         else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
                         {
@@ -45,18 +50,22 @@ public class initiator_MC : MonoBehaviour
                         //to_NPC
                         break;
                     case 2:
-                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp) 
-                        { 
-                            static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2); 
+                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
+                        {
+                            static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
                         }
                         break;
                     case 3:
                         if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
                         {
+                            Debug.Log("MC_ATK(before):" + static_parameters.MC_ATK);
                             static_parameters.MC_ATK *= 1.5f;
+                            Debug.Log("MC_ATK(after):" + static_parameters.MC_ATK);
                         }
                         if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
                         {
+                            Skill_public_funtion.Normal_blood_deduction_NPC = false;
+                            Debug.Log("Normal_blood_deduction_NPC:" + Skill_public_funtion.Normal_blood_deduction_NPC);
                             static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + static_parameters.MC_DEF) * 0.1f;
                         }
                         break;
@@ -99,9 +108,9 @@ public class initiator_MC : MonoBehaviour
                     }
                     break;
                 case 1:
-                    if (Skill_public_funtion.blood_deduction_NPC_coumt >= 400)
+                    if (Skill_public_funtion.blood_deduction_NPC_count >= 400)
                     {
-                        Skill_public_funtion.blood_deduction_NPC_coumt = 0;
+                        Skill_public_funtion.blood_deduction_NPC_count = 0;
                         time_A_B = !time_A_B;
                         if (time_A_B)
                         {
