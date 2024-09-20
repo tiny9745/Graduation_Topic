@@ -31,6 +31,7 @@ public class Dummy_HP : MonoBehaviour
         if (minus < 5) minus = 5;
         control.NPC_HP -= minus;
         control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, MaxHealth);
+        Skill_public_funtion.blood_deduction_NPC_count += minus;//skill_add
         UpdateHealthBar();
     }
 

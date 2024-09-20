@@ -96,7 +96,7 @@ public class Dummy_ctrl : MonoBehaviour
     void EnableHitbox()
     {
         hitbox_Dummy.SetActive(true);
-        Skill_public_funtion_1_close = true;
+        Skill_public_funtion_1_close = true;//skill_add
         hit = false;
         Invoke("closeHitbox", 0.3f);
     }
@@ -106,8 +106,8 @@ public class Dummy_ctrl : MonoBehaviour
         open_EnableHitbox = true;
     }
 
-    bool Skill_public_funtion_1_close = false;
-    void Skill_outsourcing()
+    bool Skill_public_funtion_1_close = false;//skill_add
+    void Skill_outsourcing()//skill_add
     {
         if (Skill_public_funtion.fight_instinct == true)
         {
