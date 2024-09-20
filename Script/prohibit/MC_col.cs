@@ -11,9 +11,9 @@ public class MC_col : MonoBehaviour
     public Transform spriteTransform;
     public Material Deduct_Blood;
     private Material originalMaterial;
-    public string targetSceneName = "Game_fight";
-    public string PrepareSceneName = "magic_house";
-    
+    public string Game_fight = "Game_fight";
+    public string magic_house = "magic_house";
+    public string house_outside="house_outside";
 
     void Start()
     {
@@ -126,20 +126,30 @@ public class MC_col : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)//Into Scene
     {
-        if (scene.name == targetSceneName)
+        if (scene.name == Game_fight)
         {
             if (Blood_Col != null) Blood_Col.FindHPImage();
         }
-        if (scene.name == PrepareSceneName)
+        if (scene.name == magic_house)
+        {
+            static_parameters.MC_HP = static_parameters.MC_HP_Max;
+        }
+    }
+
+    private void OnSceneUnloaded(Scene scene)//Leave Scene
+    {
+        if (scene.name == house_outside)
         {
             static_parameters.MC_HP = static_parameters.MC_HP_Max;
         }
@@ -156,7 +166,7 @@ public class MC_col : MonoBehaviour
             case 2:
                 SetRotation(0, 225, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
-                break;    
+                break;
             case 3:
                 SetRotation(0, 180, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
@@ -164,7 +174,7 @@ public class MC_col : MonoBehaviour
             case 4:
                 SetRotation(0, 135, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
-                break;    
+                break;
             case 5:
                 SetRotation(0, 90, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
@@ -172,7 +182,7 @@ public class MC_col : MonoBehaviour
             case 6:
                 SetRotation(0, 45, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
-                break;    
+                break;
             case 7:
                 SetRotation(0, 0, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
@@ -180,7 +190,7 @@ public class MC_col : MonoBehaviour
             case 8:
                 SetRotation(0, 315, 0);
                 spriteTransform.rotation = Quaternion.Euler(0, 0, 0);
-                break;    
+                break;
         }
     }
 
@@ -193,7 +203,7 @@ public class MC_col : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
-        if (other.CompareTag("NPC_Att")&&!static_parameters.invincible)
+        if (other.CompareTag("NPC_Att") && !static_parameters.invincible)
         {
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
