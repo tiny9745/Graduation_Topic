@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
-    short Diarystatus = 0;
+    public short Diarystatus = 0;
     public GameObject Notebook; public GameObject BattleUI;
     public GameObject Menu; public GameObject MC; public GameObject Word; public GameObject Diary; public GameObject Yes;
     public GameObject BookMark1,BookMark2,BookMark3,BookMark4;

@@ -11,7 +11,6 @@ public class Puzzle : MonoBehaviour
     public Sprite Page_change; public Sprite Page_check;
     public GameObject Diary_text_Left, Diary_text_Right;
     public Text Diary_Left_Text;
-
     public Drag_End drag_end;
     //public GameObject Yes;
     public static bool OC = true;
