@@ -17,7 +17,7 @@ public class initiator_MC : MonoBehaviour
     void Start()
     {
         Skill_public_funtion.Accurate_calculation = true;
-        Skill_public_funtion.feel_to_skill = 3;
+        Skill_public_funtion.feel_to_skill = 3; // 0=happy,1=angry,2=sad,3=wow
         Debug.Log("feel_to_skill:" + Skill_public_funtion.feel_to_skill);
         previousPosition = transform.position;
     }
@@ -187,11 +187,11 @@ public class initiator_MC : MonoBehaviour
                         time_A_B = !time_A_B;
                         if (time_A_B)
                         {
-                            static_parameters.MC_DEF += static_parameters.MC_DEF * 1.25f;
+                            static_parameters.MC_DEF = static_parameters.MC_DEF * 1.25f;
                         }
                         else
                         {
-                            static_parameters.MC_DEF -= static_parameters.MC_DEF * 0.8f;
+                            static_parameters.MC_DEF = static_parameters.MC_DEF * 0.8f;
                         }
                         Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
                     }

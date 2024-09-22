@@ -49,19 +49,18 @@ public class victim_NPC : MonoBehaviour
             switch (Skill_public_funtion.feel_to_skill)
             {
                 case 0:
-
+                    //to_MC
                     break;
                 case 1:
-
+                    //to_MC
                     break;
                 case 2:
-
+                    //to_MC
                     break;
                 case 3:
-
+                    //to_MC
                     break;
             }
         }
     }
-
-    }
+}
