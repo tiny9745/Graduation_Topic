@@ -292,7 +292,7 @@ public class Text_Array : MonoBehaviour
                 if (selectedButton != null)
                 {
                     // 嘗試獲取 Button 組件
-                     Button buttonComponent = selectedButton.GetComponent<Button>();
+                    Button buttonComponent = selectedButton.GetComponent<Button>();
                     if (buttonComponent != null)
                     {
                         // 自訂禁用狀態的外觀，讓按鈕禁用時保持原樣

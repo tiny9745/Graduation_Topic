@@ -9,10 +9,10 @@ public class Ch3 : MonoBehaviour
     public GameObject Forward, Backward,Checkpage,Diarypage;
     public Image Background;
     public Sprite Page_word, Page_work;
-    public Text Diary_Left, Diary_Right;
+    public Text Diary_Left, Diary_Right,Read_text;
     int Max_page = 0;
 
-    public UI UI; public Text_Array text_Array;
+    public UI UI; public Drag_End D_text;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +44,7 @@ public class Ch3 : MonoBehaviour
 
     void Changepages()
     {
-        print(UI.Diarystatus);
+        //print(text_Array.Texts[UI.Diarystatus - 1, page]);
         if (page == 0)
         {
             Backward.SetActive(false);
@@ -64,5 +64,11 @@ public class Ch3 : MonoBehaviour
         }else{
             Forward.SetActive(true);
         }
+    }
+
+    public void Read()
+    {
+        Read_text.text = D_text.all_text;
+        print(Read_text.text);   
     }
 }
