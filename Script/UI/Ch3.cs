@@ -9,7 +9,7 @@ public class Ch3 : MonoBehaviour
     public GameObject Forward, Backward,Checkpage,Diarypage;
     public Image Background;
     public Sprite Page_word, Page_work;
-    public Text Diary_Left, Diary_Right,Read_text;
+    public Text Diary_Left, Diary_Right;string Read_text;
     int Max_page = 0;
 
     public UI UI; public Drag_End D_text;
@@ -68,7 +68,6 @@ public class Ch3 : MonoBehaviour
 
     public void Read()
     {
-        Read_text.text = D_text.all_text;
-        print(Read_text.text);   
+        Read_text = D_text.all_text;       
     }
 }
