@@ -13,4 +13,5 @@ public class Skill_public_funtion : MonoBehaviour
     //
     static public bool Normal_blood_deduction_NPC = false;
     static public float blood_deduction_NPC_count = 0;
+    static public int ATK_count = 0;
 }

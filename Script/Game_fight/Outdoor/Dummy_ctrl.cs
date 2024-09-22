@@ -80,7 +80,6 @@ public class Dummy_ctrl : MonoBehaviour
                     }
                     nPC_hP.TakeDamage(static_parameters.MC_ATK, Dummy_DEF);
                     Skill_public_funtion.Normal_blood_deduction_NPC = true;
-                    Skill_public_funtion.blood_deduction_NPC_count++;
                     MC_to_Att = false;
                     Invoke("wait_MC_att", 0.2f);
                     nextDamageTime = Time.time + damageCooldown;

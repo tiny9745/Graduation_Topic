@@ -8,12 +8,18 @@ public class initiator_MC : MonoBehaviour
     float timer_f = 0;
     bool time_A_B = false;
     public float NPC_DEF;
+
+    private Vector3 previousPosition;
+    float accumulatedDistance = 0;
+    bool timer_close = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        Skill_public_funtion.fight_instinct = true;
-        Skill_public_funtion.feel_to_skill = 1;
+        Skill_public_funtion.Accurate_calculation = true;
+        Skill_public_funtion.feel_to_skill = 3;
         Debug.Log("feel_to_skill:" + Skill_public_funtion.feel_to_skill);
+        previousPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -85,51 +91,110 @@ public class initiator_MC : MonoBehaviour
             {
                 case 0:
                     timer_f += Time.deltaTime;
-                    if (timer_f > 60)
+                    Debug.Log("timer_f:" + timer_f);
+                    if (timer_f > 20)
                     {
-                        time_A_B = !time_A_B;
                         timer_f = 0;
-                    }
-                    if (time_A_B)
-                    {
-                        if (static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
+                        time_A_B = !time_A_B;
+                        if (time_A_B)
                         {
                             static_parameters.MC_ATK *= 1.1f;
                             static_parameters.MC_DEF = static_parameters.MC_DEF_tmp;
                         }
-                    }
-                    else
-                    {
-                        if (static_parameters.MC_DEF_tmp == static_parameters.MC_DEF)
+                        else
                         {
                             static_parameters.MC_DEF *= 1.1f;
                             static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                         }
+                        Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+                        Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
                     }
+
                     break;
                 case 1:
                     if (Skill_public_funtion.blood_deduction_NPC_count >= 400)
                     {
                         Skill_public_funtion.blood_deduction_NPC_count = 0;
+                        static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                         time_A_B = !time_A_B;
                         if (time_A_B)
                         {
-                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                             static_parameters.MC_ATK *= 1.5f;
                         }
                         else
                         {
-                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                             static_parameters.MC_ATK *= 0.8f;
                         }
+                        Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                     }
 
                     break;
                 case 2:
-
+                    float distance = Vector3.Distance(previousPosition, transform.position);
+                    accumulatedDistance += distance;
+                    previousPosition = transform.position;
+                    Debug.Log("add_distance: " + accumulatedDistance);
+                    if (accumulatedDistance >= 40)
+                    {
+                        time_A_B = !time_A_B;
+                        accumulatedDistance = 0;
+                        timer_f = 0;
+                        timer_close = true;
+                    }
+                    if (time_A_B)
+                    {
+                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && timer_f < 2)
+                        {
+                            static_parameters.MC_ATK *= 2f;
+                            Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+                        }
+                        else
+                        {
+                            timer_f += Time.deltaTime;
+                            if (timer_f > 5 && timer_close)
+                            {
+                                timer_close = false;
+                                static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                                Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (static_parameters.MC_Wspeed == static_parameters.MC_Wspeed_tmp && timer_f < 2)
+                        {
+                            static_parameters.MC_Wspeed *= 2f;
+                            Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
+                        }
+                        else
+                        {
+                            timer_f += Time.deltaTime;
+                            if (timer_f > 5 && timer_close)
+                            {
+                                timer_close = false;
+                                static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp;
+                                Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
+                            }
+                        }
+                    }
                     break;
                 case 3:
 
+                    if (Skill_public_funtion.ATK_count >= 25)
+                    {
+                        Skill_public_funtion.ATK_count = 0;
+                        static_parameters.MC_DEF = static_parameters.MC_DEF_tmp;
+                        time_A_B = !time_A_B;
+                        if (time_A_B)
+                        {
+                            static_parameters.MC_DEF += static_parameters.MC_DEF * 1.25f;
+                        }
+                        else
+                        {
+                            static_parameters.MC_DEF -= static_parameters.MC_DEF * 0.8f;
+                        }
+                        Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
+                    }
                     break;
             }
         }
