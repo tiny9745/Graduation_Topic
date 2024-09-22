@@ -9,10 +9,10 @@ public class Ch3 : MonoBehaviour
     public GameObject Forward, Backward,Checkpage,Diarypage;
     public Image Background;
     public Sprite Page_word, Page_work;
-    public Text Diary_text;
+    public Text Diary_Left, Diary_Right;
     int Max_page = 0;
 
-    public UI UI;
+    public UI UI; public Text_Array text_Array;
     // Start is called before the first frame update
     void Start()
     {

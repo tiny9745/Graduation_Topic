@@ -2955,7 +2955,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 264383307}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.96435624
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4373,6 +4373,10 @@ MonoBehaviour:
   Background: {fileID: 68111852}
   Page_word: {fileID: 21300000, guid: 41caf916d11720e4a8149f19da22f9a6, type: 3}
   Page_work: {fileID: 21300000, guid: 07cb95e2174e7ca42b096151d36e2d1f, type: 3}
+  Diary_Left: {fileID: 0}
+  Diary_Right: {fileID: 0}
+  UI: {fileID: 1086909996}
+  text_Array: {fileID: 0}
 --- !u!1 &895991331
 GameObject:
   m_ObjectHideFlags: 0
@@ -5166,6 +5170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b5ae31697d0ea4da2be134a705457f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Diarystatus: 0
   Notebook: {fileID: 2047872722}
   BattleUI: {fileID: 1717207085}
   Menu: {fileID: 2058653959}
@@ -8891,7 +8896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00025807778}
+  m_AnchoredPosition: {x: 0, y: 0.00034538194}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1887275790
@@ -10198,11 +10203,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -2.6645353e-15
+      value: -8.881784e-16
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.3322676e-15
+      value: 4.440892e-16
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10226,11 +10231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008328527
+      value: -0.000000008328531
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000021564979
+      value: 0.0000000021564988
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10330,6 +10335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af729279a3e6161488a12c857d0e2aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPC_DEF: 0
 --- !u!114 &8830870452476947111
 MonoBehaviour:
   m_ObjectHideFlags: 0
