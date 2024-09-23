@@ -74,16 +74,19 @@ public class Ch3 : MonoBehaviour
     }
     void Write()
     {
-        if (UI.Diarystatus<3)
+        if (static_parameters.pickdiary<3)
         {
-            if(UI.Diarystatus==1){
+            if(static_parameters.pickdiary==1){
                 Diary_Left.text = Read_text;
             }else{
                 Diary_Right.text = Read_text;
             }
         }else{
-            Diary_Left.text = Read_text;
-            Diary_Right.text = Read_text;
+            if(static_parameters.pickdiary==3){
+                Diary_Left.text = Read_text;
+            }else{
+                Diary_Right.text = Read_text;
+            }
         }
 
     }
