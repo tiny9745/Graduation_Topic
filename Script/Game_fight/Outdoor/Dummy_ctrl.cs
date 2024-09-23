@@ -116,6 +116,7 @@ public class Dummy_ctrl : MonoBehaviour
                 {
                     Skill_public_funtion_1_close = false;
                     nPC_hP.TakeDamage(Dummy_ATK, Dummy_DEF);
+                    Debug.Log("NPC_HP:"+NPC_HP);
                 }
             }
         }

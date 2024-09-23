@@ -16,8 +16,8 @@ public class initiator_MC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Skill_public_funtion.Accurate_calculation = true;
-        Skill_public_funtion.feel_to_skill = 3; // 0=happy,1=angry,2=sad,3=wow
+        Skill_public_funtion.fight_instinct = true;
+        Skill_public_funtion.feel_to_skill = 0; // 0=happy,1=angry,2=sad,3=wow
         Debug.Log("feel_to_skill:" + Skill_public_funtion.feel_to_skill);
         previousPosition = transform.position;
     }
@@ -25,8 +25,8 @@ public class initiator_MC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fight_instinct();
         Accurate_calculation();
+        Invoke("fight_instinct", 0.5f);
     }
 
     void fight_instinct()
@@ -45,20 +45,24 @@ public class initiator_MC : MonoBehaviour
                             timer_f = 0;
                             static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC_DEF) * 0.1f;
                             if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                            Debug.Log("MC_HP" + static_parameters.MC_HP);
                         }
                         else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
                         {
                             static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
                             timer_f = 0;
+                            Debug.Log("MC_HP" + static_parameters.MC_HP);
                         }
                         break;
                     case 1:
-                        //to_NPC
+                        //to_Skill_outsourcing
                         break;
                     case 2:
-                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
+                        if (Skill_public_funtion.MC_HP_tmp != static_parameters.MC_HP)
                         {
+                            Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
                             static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
+                            Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                         }
                         break;
                     case 3:
@@ -71,7 +75,6 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
                         {
                             Skill_public_funtion.Normal_blood_deduction_NPC = false;
-                            Debug.Log("Normal_blood_deduction_NPC:" + Skill_public_funtion.Normal_blood_deduction_NPC);
                             static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + static_parameters.MC_DEF) * 0.1f;
                         }
                         break;
@@ -91,8 +94,7 @@ public class initiator_MC : MonoBehaviour
             {
                 case 0:
                     timer_f += Time.deltaTime;
-                    Debug.Log("timer_f:" + timer_f);
-                    if (timer_f > 20)
+                    if (timer_f > 15)
                     {
                         timer_f = 0;
                         time_A_B = !time_A_B;
@@ -125,7 +127,7 @@ public class initiator_MC : MonoBehaviour
                         {
                             static_parameters.MC_ATK *= 0.8f;
                         }
-                        Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+                        Debug.LogWarningFormat("MC_ATK:" + static_parameters.MC_ATK);
                     }
 
                     break;
@@ -179,7 +181,6 @@ public class initiator_MC : MonoBehaviour
                     }
                     break;
                 case 3:
-
                     if (Skill_public_funtion.ATK_count >= 25)
                     {
                         Skill_public_funtion.ATK_count = 0;
