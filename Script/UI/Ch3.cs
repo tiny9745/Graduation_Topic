@@ -74,7 +74,6 @@ public class Ch3 : MonoBehaviour
     }
     void Write()
     {
-        print(UI.Diarystatus);
         if (UI.Diarystatus<3)
         {
             if(UI.Diarystatus==1){
