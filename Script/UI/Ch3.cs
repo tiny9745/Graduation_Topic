@@ -16,6 +16,17 @@ public class Ch3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Open();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    public void Open()
+    {
+        Max_page = 0;
         for (int i = 0; i < 4; i++)
         {
             if (static_parameters.Text_box_state[i] != 0)
@@ -24,13 +35,6 @@ public class Ch3 : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Forwards()
     {
         page++;
@@ -44,9 +48,7 @@ public class Ch3 : MonoBehaviour
 
     void Changepages()
     {
-        //print(text_Array.Texts[UI.Diarystatus - 1, page]);
-        if (page == 0)
-        {
+        if (page == 0){
             Backward.SetActive(false);
             Background.sprite = Page_work;
             Checkpage.SetActive(true);
@@ -58,16 +60,34 @@ public class Ch3 : MonoBehaviour
             Diarypage.SetActive(true);
         }
 
-        if (page == Max_page)
-        {
+        if (page == (Max_page/2)){
             Forward.SetActive(false);
         }else{
             Forward.SetActive(true);
         }
+        Write();
     }
 
     public void Read()
     {
         Read_text = D_text.all_text;       
+    }
+    void Write()
+    {
+        if (static_parameters.pickdiary<3)
+        {
+            if(static_parameters.pickdiary==1){
+                Diary_Left.text = Read_text;
+            }else{
+                Diary_Right.text = Read_text;
+            }
+        }else{
+            if(static_parameters.pickdiary==3){
+                Diary_Left.text = Read_text;
+            }else{
+                Diary_Right.text = Read_text;
+            }
+        }
+
     }
 }
