@@ -16,17 +16,18 @@ public class initiator_MC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Skill_public_funtion.fight_instinct = true;
-        Skill_public_funtion.feel_to_skill = 0; // 0=happy,1=angry,2=sad,3=wow
+        Skill_public_funtion.Accurate_calculation = true;
+        Skill_public_funtion.feel_to_skill = 2; // 0=happy,1=angry,2=sad,3=wow
         Debug.Log("feel_to_skill:" + Skill_public_funtion.feel_to_skill);
         previousPosition = transform.position;
+        Skill_public_funtion.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Accurate_calculation();
         Invoke("fight_instinct", 0.5f);
+        Accurate_calculation();
     }
 
     void fight_instinct()
@@ -135,10 +136,12 @@ public class initiator_MC : MonoBehaviour
                     float distance = Vector3.Distance(previousPosition, transform.position);
                     accumulatedDistance += distance;
                     previousPosition = transform.position;
-                    Debug.Log("add_distance: " + accumulatedDistance);
+                    //Debug.Log("add_distance: " + accumulatedDistance);
                     if (accumulatedDistance >= 40)
                     {
                         time_A_B = !time_A_B;
+                        static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                        static_parameters.MC_Wspeed = Skill_public_funtion.MC_Wspeed_tmp;
                         accumulatedDistance = 0;
                         timer_f = 0;
                         timer_close = true;
@@ -163,7 +166,7 @@ public class initiator_MC : MonoBehaviour
                     }
                     else
                     {
-                        if (static_parameters.MC_Wspeed == static_parameters.MC_Wspeed_tmp && timer_f < 2)
+                        if (static_parameters.MC_Wspeed == Skill_public_funtion.MC_Wspeed_tmp && timer_f < 2)
                         {
                             static_parameters.MC_Wspeed *= 2f;
                             Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
@@ -174,7 +177,7 @@ public class initiator_MC : MonoBehaviour
                             if (timer_f > 5 && timer_close)
                             {
                                 timer_close = false;
-                                static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp;
+                                static_parameters.MC_Wspeed = Skill_public_funtion.MC_Wspeed_tmp;
                                 Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
                             }
                         }
