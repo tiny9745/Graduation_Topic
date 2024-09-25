@@ -19,7 +19,7 @@ public class Drag_End : MonoBehaviour, IDropHandler
             Text_Array.diary_step[Text_Array.diary_number]++;
 
             // Concatenate the dragged text to the existing text and assign to left text
-            string fullText = Diary_text_Left.GetComponent<Text>().text + dragText.text;
+            string fullText = Diary_text_Left.GetComponent<Text>().text;
 
             if (int.TryParse(dragText.name, out int itemNameInt))
             {

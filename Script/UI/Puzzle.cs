@@ -10,13 +10,13 @@ public class Puzzle : MonoBehaviour
     public Image Page_now;
     public Sprite Page_change; public Sprite Page_check;
     public GameObject Diary_text_Left, Diary_text_Right;
-    public Text Diary_Left_Text;
+    public Text Diary_Left_Text, Diary_Right_Text;
     public Drag_End drag_end;
     //public GameObject Yes;
     public static bool OC = true;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,18 +25,22 @@ public class Puzzle : MonoBehaviour
         // MoveDiary();
 
     }
-    public void ChangePage(){
+    public void ChangePage()
+    {
         Page_now.sprite = Page_change;
-        if (drag_end.all_text == "")
-        {
-            Diary_Left_Text.text = "我今天讀了一本書，";
-        }
+        // if (drag_end.all_text == "")
+        // {
+        //     Diary_Left_Text.text = "我今天讀了一本書，";
+        // }
     }
-    public void CheckPage(){
+    public void CheckPage()
+    {
         Page_now.sprite = Page_check;
     }
-    public void MoveDiarytoleft(){
-        if (OC){
+    public void MoveDiarytoleft()
+    {
+        if (OC)
+        {
             Diary_text_Left.SetActive(true);
             Diary_text_Right.SetActive(true);
             Vector3 targetPosition1 = new Vector3(-300, Book.transform.localPosition.y, Book.transform.localPosition.z);
@@ -49,8 +53,10 @@ public class Puzzle : MonoBehaviour
             OC = false;
         }
     }
-    public void MoveDiarytoright(){
-        if(!OC){
+    public void MoveDiarytoright()
+    {
+        if (!OC)
+        {
             Diary_text_Left.SetActive(false);
             Diary_text_Right.SetActive(false);
             Vector3 targetPosition1 = new Vector3(0, Book.transform.localPosition.y, Book.transform.localPosition.z);
@@ -64,13 +70,20 @@ public class Puzzle : MonoBehaviour
         }
     }
 
-    public void comfirm(){
+    public void comfirm()
+    {
         Extra2.SetActive(false);
         MoveDiarytoright();
         CheckPage();
     }
-    public void cancel(){
+    public void cancel()
+    {
         Extra2.SetActive(false);
         ChangePage();
+    }
+    public void Yes_clear_dairy_text()
+    {
+        Diary_Left_Text.text = "";
+        Diary_Right_Text.text = "";
     }
 }
