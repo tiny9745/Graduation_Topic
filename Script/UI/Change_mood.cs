@@ -30,27 +30,16 @@ public class Change_mood : MonoBehaviour
     }
 
     void MoodChange(int WOW, int SAD, int HAPPY, int ANGRY, int NORMAL){
-        if(WOW>SAD){
-            if(HAPPY>ANGRY){
-                if(WOW>HAPPY) Mood.sprite = wow;
-                else if(WOW<HAPPY) Mood.sprite = happy;
-                else Mood.sprite = normal;
-            }else{
-                if(WOW>ANGRY) Mood.sprite = wow;
-                else if(WOW<ANGRY) Mood.sprite = angry;
-                else Mood.sprite = normal;
-            }
+        if(WOW > SAD && WOW > HAPPY && WOW > ANGRY){
+            Mood.sprite = wow;
+        }else if(SAD > WOW && SAD > HAPPY && SAD > ANGRY){
+            Mood.sprite = sad;
+        }else if(HAPPY > WOW && HAPPY > SAD && HAPPY > ANGRY){
+            Mood.sprite = happy;
+        }else if(ANGRY > WOW && ANGRY > SAD && ANGRY > HAPPY){
+            Mood.sprite = angry;
         }else{
-            if(HAPPY>ANGRY){
-                if(SAD>HAPPY) Mood.sprite = sad;
-                else if(SAD<HAPPY) Mood.sprite = happy;
-                else Mood.sprite = normal;
-            }else{
-                if(SAD>ANGRY) Mood.sprite = sad;
-                else if(SAD<ANGRY) Mood.sprite = angry;
-                else Mood.sprite = normal;
-            }
+            Mood.sprite = normal;
         }
-        
     }
 }
