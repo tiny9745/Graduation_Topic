@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,17 +26,26 @@ public class Change_mood : MonoBehaviour
         HAPPY = mood.Split('H').Length - 1;
         ANGRY = mood.Split('A').Length - 1;
         NORMAL = mood.Split('N').Length - 1;
-        if(mood=="wow") Mood.sprite = wow;
-        if(mood=="sad") Mood.sprite = sad;
-        if(mood=="happy") Mood.sprite = happy;
-        if(mood=="angry") Mood.sprite = angry;
-        if(mood=="normal") Mood.sprite = normal;
+        MoodChange(WOW, SAD, HAPPY, ANGRY, NORMAL);
     }
 
-    public void Change(int mood){
-        if(mood==0) Mood.sprite = happy;
-        if(mood==1) Mood.sprite = angry;
-        if(mood==2) Mood.sprite = sad;
-        if(mood==3) Mood.sprite = wow;
+    void MoodChange(int WOW, int SAD, int HAPPY, int ANGRY, int NORMAL){
+        if(WOW>SAD){
+            if(HAPPY>ANGRY){
+                if(WOW>HAPPY) Mood.sprite = wow;
+                else Mood.sprite = happy;
+            }else{
+                if(WOW>ANGRY) Mood.sprite = wow;
+                else Mood.sprite = angry;
+            }
+        }else{
+            if(HAPPY>ANGRY){
+                if(SAD>HAPPY) Mood.sprite = sad;
+                else Mood.sprite = happy;
+            }else{
+                if(SAD>ANGRY) Mood.sprite = sad;
+                else Mood.sprite = angry;
+            }
+        }
     }
 }
