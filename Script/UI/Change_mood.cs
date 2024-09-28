@@ -33,19 +33,24 @@ public class Change_mood : MonoBehaviour
         if(WOW>SAD){
             if(HAPPY>ANGRY){
                 if(WOW>HAPPY) Mood.sprite = wow;
-                else Mood.sprite = happy;
+                else if(WOW<HAPPY) Mood.sprite = happy;
+                else Mood.sprite = normal;
             }else{
                 if(WOW>ANGRY) Mood.sprite = wow;
-                else Mood.sprite = angry;
+                else if(WOW<ANGRY) Mood.sprite = angry;
+                else Mood.sprite = normal;
             }
         }else{
             if(HAPPY>ANGRY){
                 if(SAD>HAPPY) Mood.sprite = sad;
-                else Mood.sprite = happy;
+                else if(SAD<HAPPY) Mood.sprite = happy;
+                else Mood.sprite = normal;
             }else{
                 if(SAD>ANGRY) Mood.sprite = sad;
-                else Mood.sprite = angry;
+                else if(SAD<ANGRY) Mood.sprite = angry;
+                else Mood.sprite = normal;
             }
         }
+        
     }
 }
