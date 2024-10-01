@@ -94,7 +94,7 @@ public class Auto_text_paper : MonoBehaviour
                 {
                     if (item == 11)
                     {
-                        if (content.Text_exist && content.Name_number < 1200 && content.Name_number > 1100)
+                        if (content.Name_number < 1200 && content.Name_number > 1100)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
@@ -110,7 +110,7 @@ public class Auto_text_paper : MonoBehaviour
                     }
                     else if (item == 12)
                     {
-                        if (content.Text_exist && content.Name_number < 1300 && content.Name_number > 1200)
+                        if (content.Name_number < 1300 && content.Name_number > 1200)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
@@ -124,7 +124,7 @@ public class Auto_text_paper : MonoBehaviour
                     }
                     else if (item == 13)
                     {
-                        if (content.Text_exist && content.Name_number < 1400 && content.Name_number > 1300)
+                        if (content.Name_number < 1400 && content.Name_number > 1300)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
@@ -136,7 +136,7 @@ public class Auto_text_paper : MonoBehaviour
                     }
                     else if (item == 1310)
                     {
-                        if (content.Text_exist && content.Name_number < 13200 && content.Name_number > 13100)
+                        if (content.Name_number < 13200 && content.Name_number > 13100)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
@@ -148,7 +148,7 @@ public class Auto_text_paper : MonoBehaviour
                     }
                     else if (item == 1320)
                     {
-                        if (content.Text_exist && content.Name_number < 13300 && content.Name_number > 13200)
+                        if (content.Name_number < 13300 && content.Name_number > 13200)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
@@ -160,7 +160,7 @@ public class Auto_text_paper : MonoBehaviour
                     }
                     else if (item == 1330)
                     {
-                        if (content.Text_exist && content.Name_number < 13400 && content.Name_number > 13300)
+                        if (content.Name_number < 13400 && content.Name_number > 13300)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
@@ -178,12 +178,8 @@ public class Auto_text_paper : MonoBehaviour
                         diary_buff_check[0][1] += content.Att_pow;
                         diary_buff_check[0][2] += content.Att_speed;
                         diary_buff_check[0][3] += content.Walk_speed;
-                        if (Text_Array.diary_step[0] == 2 && item > 1000 && item < 1300)
-                        {
-                            change_mood.Change(content.Feeling);
-                            extraPage2_open_check();
-                        }
-                        else if (Text_Array.diary_step[0] == 3 && item > 13000 && item < 14000)
+                        print(content.Feeling);
+                        if (content.Feeling!="None")
                         {
                             change_mood.Change(content.Feeling);
                             extraPage2_open_check();
