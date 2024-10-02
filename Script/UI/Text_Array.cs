@@ -333,21 +333,7 @@ public class Text_content
         this.Name_number = Name_number;
         this.Name_Text = Name_Text;
         this.Feeling = Feeling;
-        // if (Feeling == "Happy") {
-        //     Skill_public_funtion.feel_to_skill = 0;
-        // }
-        // else if (Feeling == "Angry"){
-        //     Skill_public_funtion.feel_to_skill = 1;
-        // }
-        // else if (Feeling == "Sad"){
-        //     Skill_public_funtion.feel_to_skill = 2;
-        // }
-        // else if (Feeling == "Wow"){
-        //     Skill_public_funtion.feel_to_skill = 3;
-        // }
-        // else{
-        //     Skill_public_funtion.feel_to_skill = -1;
-        // }
+
         this.HP = HP;
         this.Att_pow = Att_pow;
         this.Att_speed = Att_speed;
