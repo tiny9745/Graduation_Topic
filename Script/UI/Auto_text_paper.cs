@@ -7,12 +7,12 @@ using static UnityEditor.Progress;
 
 public class Auto_text_paper : MonoBehaviour
 {
-    public string mood ; // Preset child elements
-    public GameObject itemPrefab,itemPanel,ExtraPage2;
+    public string mood; // Preset child elements
+    public GameObject itemPrefab, itemPanel, ExtraPage2;
     public Text ExtraPage2_text;
     public float[][] diary_buff_check;
     string[] diary_buff_name;
-    public Text Pick_Text,ALLB;
+    public Text Pick_Text, ALLB;
     public Text[] diary_name;
     public Drag_End drag_end;
     public Change_mood change_mood;
@@ -97,71 +97,71 @@ public class Auto_text_paper : MonoBehaviour
                         case 11:
                             if (content.Name_number < 1200 && content.Name_number > 1100)
                             {
-                            GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;                        
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            SetCanvasSortingOrder(item2);                           
+                                GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                SetCanvasSortingOrder(item2);
                             }
-                        break;
+                            break;
                         case 12:
-                        if (content.Name_number < 1300 && content.Name_number > 1200)
-                        {
-                            GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            SetCanvasSortingOrder(item2);
-                        }
-                        break;
+                            if (content.Name_number < 1300 && content.Name_number > 1200)
+                            {
+                                GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                SetCanvasSortingOrder(item2);
+                            }
+                            break;
                         case 13:
-                        if (content.Name_number < 1400 && content.Name_number > 1300)
-                        {
-                            GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            SetCanvasSortingOrder(item2);
-                        }
-                        break;
+                            if (content.Name_number < 1400 && content.Name_number > 1300)
+                            {
+                                GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                SetCanvasSortingOrder(item2);
+                            }
+                            break;
                         case 1310:
-                        if (content.Name_number < 13200 && content.Name_number > 13100)
-                        {
-                            GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            SetCanvasSortingOrder(item2);
-                        }
-                        break;
+                            if (content.Name_number < 13200 && content.Name_number > 13100)
+                            {
+                                GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                SetCanvasSortingOrder(item2);
+                            }
+                            break;
                         case 1320:
-                        if (content.Name_number < 13300 && content.Name_number > 13200)
-                        {
-                            GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            SetCanvasSortingOrder(item2);
-                        }
-                        break;
+                            if (content.Name_number < 13300 && content.Name_number > 13200)
+                            {
+                                GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                SetCanvasSortingOrder(item2);
+                            }
+                            break;
                         case 1330:
-                        if (content.Name_number < 13400 && content.Name_number > 13300)
-                        {
-                            GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            item2.name = content.Name_number.ToString();
-                            item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            SetCanvasSortingOrder(item2);
-                        }
-                        break;
+                            if (content.Name_number < 13400 && content.Name_number > 13300)
+                            {
+                                GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                item2.name = content.Name_number.ToString();
+                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
+                                SetCanvasSortingOrder(item2);
+                            }
+                            break;
                     }
                     if (item == content.Name_number)
                     {
@@ -169,7 +169,7 @@ public class Auto_text_paper : MonoBehaviour
                         diary_buff_check[0][1] += content.Att_pow;
                         diary_buff_check[0][2] += content.Att_speed;
                         diary_buff_check[0][3] += content.Walk_speed;
-                        if (content.Feeling!="None")
+                        if (content.Feeling != "None")
                         {
                             mood = content.Feeling;
                             Diary_serial_number = item;
@@ -256,6 +256,21 @@ public class Auto_text_paper : MonoBehaviour
     public void Confirm()
     {
         change_mood.Change(mood);
+        if (mood == "Happy") {
+            Skill_public_funtion.feel_to_skill = 0;
+        }
+        else if (mood == "Angry"){
+            Skill_public_funtion.feel_to_skill = 1;
+        }
+        else if (mood == "Sad"){
+            Skill_public_funtion.feel_to_skill = 2;
+        }
+        else if (mood == "Wow"){
+            Skill_public_funtion.feel_to_skill = 3;
+        }
+        else{
+            Skill_public_funtion.feel_to_skill = -1;
+        }
     }
 }
 

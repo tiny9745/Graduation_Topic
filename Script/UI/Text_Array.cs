@@ -333,7 +333,6 @@ public class Text_content
         this.Name_number = Name_number;
         this.Name_Text = Name_Text;
         this.Feeling = Feeling;
-
         this.HP = HP;
         this.Att_pow = Att_pow;
         this.Att_speed = Att_speed;
