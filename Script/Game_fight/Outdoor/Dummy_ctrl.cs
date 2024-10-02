@@ -43,7 +43,7 @@ public class Dummy_ctrl : MonoBehaviour
         {
             TargetObj = GameObject.Find("Player");
         }
-        Skill_outsourcing();
+        Skill_outsourcing_updata();
     }
 
     public float GetDummy_ATK()
@@ -81,6 +81,7 @@ public class Dummy_ctrl : MonoBehaviour
                     nPC_hP.TakeDamage(static_parameters.MC_ATK, Dummy_DEF);
                     Skill_public_funtion.Normal_blood_deduction_NPC = true;
                     MC_to_Att = false;
+                    Skill_outsourcing_DeBlood();//skill_add
                     Invoke("wait_MC_att", 0.2f);
                     nextDamageTime = Time.time + damageCooldown;
                 }
@@ -106,7 +107,7 @@ public class Dummy_ctrl : MonoBehaviour
     }
 
     bool Skill_public_funtion_1_close = false;//skill_add
-    void Skill_outsourcing()//skill_add
+    void Skill_outsourcing_updata()//skill_add
     {
         if (Skill_public_funtion.fight_instinct == true)
         {
@@ -116,8 +117,61 @@ public class Dummy_ctrl : MonoBehaviour
                 {
                     Skill_public_funtion_1_close = false;
                     nPC_hP.TakeDamage(Dummy_ATK, Dummy_DEF);
-                    Debug.Log("NPC_HP:"+NPC_HP);
+                    Debug.Log("NPC_HP:" + NPC_HP);
                 }
+            }
+        }
+    }
+    Byte play_piano_atk = 0;
+    public GameObject bomb_piano;
+    void Skill_outsourcing_DeBlood()//skill_add
+    {
+        if (Skill_public_funtion.play_piano == true)
+        {
+            switch (Skill_public_funtion.feel_to_skill)
+            {
+                case 0:
+                    if (play_piano_atk <= 3)
+                    {
+                        play_piano_atk++;
+                    }
+                    else
+                    {
+                        NPC_HP -= 225;
+                        Instantiate(bomb_piano, transform.position, Quaternion.identity);
+                        play_piano_atk = 0;
+                    }
+                    break;
+                case 1:
+                    if (play_piano_atk <= 6)
+                    {
+                        play_piano_atk++;
+                    }
+                    else
+                    {
+                        play_piano_atk = 0;
+                    }
+                    break;
+                case 2:
+                    if (play_piano_atk <= 12)
+                    {
+                        play_piano_atk++;
+                    }
+                    else
+                    {
+                        play_piano_atk = 0;
+                    }
+                    break;
+                case 3:
+                    if (play_piano_atk <= 15)
+                    {
+                        play_piano_atk++;
+                    }
+                    else
+                    {
+                        play_piano_atk = 0;
+                    }
+                    break;
             }
         }
     }
