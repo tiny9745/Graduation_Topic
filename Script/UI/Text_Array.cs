@@ -244,6 +244,10 @@ public class Text_Array : MonoBehaviour
         click_button_Y();
         pickplace();
     }
+    public void Confirm(){
+        auto_Text_Paper.Confirm();
+        //print(auto_Text_Paper.Diary_serial_number+" "+auto_Text_Paper.mood);
+    }
 
     private void click_button_Y()
     {
