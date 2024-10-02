@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,17 +7,16 @@ using static UnityEditor.Progress;
 
 public class Auto_text_paper : MonoBehaviour
 {
-    public GameObject itemPrefab; // Preset child elements
-    public GameObject itemPanel;
-    public GameObject ExtraPage2;
+    public string mood ; // Preset child elements
+    public GameObject itemPrefab,itemPanel,ExtraPage2;
     public Text ExtraPage2_text;
     public float[][] diary_buff_check;
     string[] diary_buff_name;
-    public Text Pick_Text;
+    public Text Pick_Text,ALLB;
     public Text[] diary_name;
-    public Text ALLB;
     public Drag_End drag_end;
     public Change_mood change_mood;
+    public int Diary_serial_number;
     int temp = 0;
 
     void Start()
@@ -178,10 +178,10 @@ public class Auto_text_paper : MonoBehaviour
                         diary_buff_check[0][1] += content.Att_pow;
                         diary_buff_check[0][2] += content.Att_speed;
                         diary_buff_check[0][3] += content.Walk_speed;
-                        print(content.Feeling);
                         if (content.Feeling!="None")
                         {
-                            change_mood.Change(content.Feeling);
+                            mood = content.Feeling;
+                            Diary_serial_number = item;
                             extraPage2_open_check();
                         }
                     }
@@ -261,6 +261,10 @@ public class Auto_text_paper : MonoBehaviour
         ExtraPage2.SetActive(false);
         Text_Array.diary_step[temp] = 0;
         GenerateItems();
+    }
+    public void Confirm()
+    {
+        change_mood.Change(mood);
     }
 }
 
