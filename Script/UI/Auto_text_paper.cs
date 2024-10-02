@@ -92,24 +92,20 @@ public class Auto_text_paper : MonoBehaviour
             {
                 if (content.Text_exist)
                 {
-                    if (item == 11)
+                    switch (item)
                     {
-                        if (content.Name_number < 1200 && content.Name_number > 1100)
-                        {
+                        case 11:
+                            if (content.Name_number < 1200 && content.Name_number > 1100)
+                            {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
                             item2.name = content.Name_number.ToString();
+                            item2.GetComponentInChildren<Text>().text = content.Name_Text;                        
+                            item2.name = content.Name_number.ToString();
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
-                            if (item != null)
-                            {
-                                item2.name = content.Name_number.ToString();
-                                item2.GetComponentInChildren<Text>().text = content.Name_Text;
-
-                                SetCanvasSortingOrder(item2);
+                            SetCanvasSortingOrder(item2);                           
                             }
-                        }
-                    }
-                    else if (item == 12)
-                    {
+                        break;
+                        case 12:
                         if (content.Name_number < 1300 && content.Name_number > 1200)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
@@ -121,9 +117,8 @@ public class Auto_text_paper : MonoBehaviour
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
                             SetCanvasSortingOrder(item2);
                         }
-                    }
-                    else if (item == 13)
-                    {
+                        break;
+                        case 13:
                         if (content.Name_number < 1400 && content.Name_number > 1300)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
@@ -133,9 +128,8 @@ public class Auto_text_paper : MonoBehaviour
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
                             SetCanvasSortingOrder(item2);
                         }
-                    }
-                    else if (item == 1310)
-                    {
+                        break;
+                        case 1310:
                         if (content.Name_number < 13200 && content.Name_number > 13100)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
@@ -145,9 +139,8 @@ public class Auto_text_paper : MonoBehaviour
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
                             SetCanvasSortingOrder(item2);
                         }
-                    }
-                    else if (item == 1320)
-                    {
+                        break;
+                        case 1320:
                         if (content.Name_number < 13300 && content.Name_number > 13200)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
@@ -157,9 +150,8 @@ public class Auto_text_paper : MonoBehaviour
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
                             SetCanvasSortingOrder(item2);
                         }
-                    }
-                    else if (item == 1330)
-                    {
+                        break;
+                        case 1330:
                         if (content.Name_number < 13400 && content.Name_number > 13300)
                         {
                             GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
@@ -167,11 +159,10 @@ public class Auto_text_paper : MonoBehaviour
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
                             item2.name = content.Name_number.ToString();
                             item2.GetComponentInChildren<Text>().text = content.Name_Text;
-
                             SetCanvasSortingOrder(item2);
                         }
+                        break;
                     }
-
                     if (item == content.Name_number)
                     {
                         diary_buff_check[0][0] += content.HP;
