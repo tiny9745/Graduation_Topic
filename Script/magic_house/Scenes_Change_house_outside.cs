@@ -16,7 +16,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Game_fight");
+                SceneManager.LoadScene("Fight_resource_12x12");
             }
         }
     }
