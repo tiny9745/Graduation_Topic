@@ -26,14 +26,12 @@ public class initiator_MC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Invoke("fight_instinct", 0.5f);
-        Accurate_calculation();
+        if (Skill_public_funtion.fight_instinct == true) Invoke("fight_instinct", 0.5f);
+        if (Skill_public_funtion.Accurate_calculation == true) Invoke("Accurate_calculation",0.25f);
     }
 
     void fight_instinct()
-    {
-        if (Skill_public_funtion.fight_instinct == true)
-        {
+    {     
             if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
             {
                 switch (Skill_public_funtion.feel_to_skill)
@@ -85,12 +83,11 @@ public class initiator_MC : MonoBehaviour
             {
                 static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
             }
-        }
+        
     }
     void Accurate_calculation()
     {
-        if (Skill_public_funtion.Accurate_calculation == true)
-        {
+        
             switch (Skill_public_funtion.feel_to_skill)
             {
                 case 0:
@@ -200,7 +197,7 @@ public class initiator_MC : MonoBehaviour
                         Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
                     }
                     break;
-            }
+            
         }
     }
 }

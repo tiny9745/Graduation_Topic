@@ -17,8 +17,7 @@ public class AI_Baking_obstacle : MonoBehaviour
 
     public RandomTileGround randomTileGround;
 
-    float obstach_postion_minX, obstach_postion_maxX;
-    float obstach_postion_minZ, obstach_postion_maxZ;
+    float obstach_postion_minX, obstach_postion_maxX, obstach_postion_minZ, obstach_postion_maxZ;
 
     bool randomTileGround_found = false;
 

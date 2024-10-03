@@ -7,55 +7,40 @@ public class Prefabs_start : MonoBehaviour
 {
     // Prefab to generate
     public GameObject prefabNPC01_1;
-    public GameObject prefabNPC01;
-    public GameObject prefabNPC02;
-    public GameObject prefabNPC03;
-    public GameObject prefabNPC04;
-    public GameObject prefabNPC05;
-    float NPC_postion_minX = -50f;
-    float NPC_postion_maxX = 50f;
-    float NPC_postion_minZ = -50f;
-    float NPC_postion_maxZ = 50f;
+    public GameObject prefabNPC01,prefabNPC02,prefabNPC03,prefabNPC04,prefabNPC05;
+    float NPC_postion_minX = -50f, NPC_postion_maxX = 50f;
+    float NPC_postion_minZ = -50f, NPC_postion_maxZ = 50f;
     float randomX;
     float randomZ;
-    int Number_NPC01;
-    int Number_NPC02;
-    int Number_NPC03;
-    int Number_NPC04;
-    int Number_NPC05;
+    int Number_NPC01, Number_NPC02, Number_NPC03, Number_NPC04, Number_NPC05;
 
     void Start()
     {
         // Randomly generate positions within range
-        if (static_parameters.stage_number == 1)
+        switch (static_parameters.stage_number)
         {
-            Number_NPC05 = 2;
-            Number_NPC04 = 2;
-            Number_NPC03 = 2;
-            Number_NPC02 = 2;
-            Number_NPC01 = 2;
-            NPC_into();
+            case 1:
+                Number_NPC01 = 2;
+                Number_NPC02 = 2;
+                Number_NPC03 = 2;
+                Number_NPC04 = 2;
+                Number_NPC05 = 2;
+                break;
+            case 2:
+                Number_NPC01 = 4;
+                Number_NPC02 = 3;
+                break;
+            case 3:
+                Number_NPC01 = 8;
+                Number_NPC02 = 4;
+                break;
+            case 4:
+                break;
+            default:
+                break;
         }
-        else if (static_parameters.stage_number == 2)
-        {
-            Number_NPC01 = 4;
-            Number_NPC02 = 3;
-            NPC_into();
-        }
-        else if (static_parameters.stage_number == 3)
-        {
-            Number_NPC01 = 8;
-            Number_NPC02 = 4;
-            NPC_into();
-        }
-        else if (static_parameters.stage_number == 4)
-        {
-
-        }
-        else
-        {
-            NPC_into();
-        }
+        
+        NPC_into();
     }
 
     void NPC_into()
