@@ -24,7 +24,7 @@ public class Ani_MC : MonoBehaviour
     {
         this.transform.position = new Vector3(Play_s.transform.position.x, transform.position.y, Play_s.transform.position.z);
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J)||Input.GetKeyDown(KeyCode.L))
         {
             startTime = 0;
         }
@@ -82,6 +82,20 @@ public class Ani_MC : MonoBehaviour
             {
                 startTime = 0;
                 static_parameters.Ani_state = 0;
+            }
+        }else if(Input.GetKey(KeyCode.L))
+        {
+            if (startTime <= 0)
+            {
+                startTime = Time.time;
+                static_parameters.Ani_state = 0;
+            }
+            elapsedTime = Time.time - startTime;
+            if (elapsedTime <= 0.63f){
+                static_parameters.Ani_state = 5;
+            }else{
+                static_parameters.Ani_state = 0;
+                startTime = 0;
             }
         }
         else
@@ -244,7 +258,33 @@ public class Ani_MC : MonoBehaviour
                 }
                 break;
             case 5:
-
+                    switch (Angle_sum)
+                {
+                    case 0:
+                        animator.Play("MC_Att_FR03");
+                        break;
+                    case 45:
+                        animator.Play("MC_Dash_B");
+                        break;
+                    case 90:
+                        animator.Play("MC_Dash_B");
+                        break;
+                    case 135:
+                        animator.Play("MC_Att_BL03");
+                        break;
+                    case 180:
+                        animator.Play("MC_Att_FL03");
+                        break;
+                    case 225:
+                        animator.Play("MC_Att_FL03");
+                        break;
+                    case 270:
+                        animator.Play("MC_Att_FR03");
+                        break;
+                    case 315:
+                        animator.Play("MC_Att_FR03");
+                        break;
+                }
                 break;
         }
     }
