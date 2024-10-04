@@ -14,6 +14,7 @@ public class Play_move : MonoBehaviour
     void Start()
     {
         //MC range limiter in the RandomTileGround.cs
+        agent = GameObject.Find("NavMesh Surface").GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -114,7 +115,6 @@ public class Play_move : MonoBehaviour
         if (direction.magnitude >= 0.1f)
         {
             targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
-
             if (IsPositionOnNavMesh(targetPosition))
             {
                 agent.Move(direction * static_parameters.MC_Wspeed * Time.deltaTime);
