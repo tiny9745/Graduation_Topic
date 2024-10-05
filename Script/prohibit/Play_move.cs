@@ -98,7 +98,7 @@ public class Play_move : MonoBehaviour
         {
             DashCD = true;
             static_parameters.invincible = true;
-            Invoke("DogeCooldown", 0.2f);
+            Invoke("DogeCooldown", 0.3f);
         }
     }
     void DogeCooldown()
