@@ -19,6 +19,7 @@ public class Play_move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        navMeshAvailable = NavMeshHasBakedData();
         if (Input.GetKey(KeyCode.J))
         {
             horizontalInput = Input.GetAxis("Horizontal") * 0.1f;
