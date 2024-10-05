@@ -94,19 +94,20 @@ public class Ani_MC : MonoBehaviour
             if (elapsedTime <= 0.63f){
                 static_parameters.Ani_state = 5;
             }else{
-                static_parameters.Ani_state = 0;
-                startTime = 0;
+                Defult_Check();
             }
         }
-        else
-        {
-            if (static_parameters.face == 0){
+        else Defult_Check();
+            
+        
+        MC_ani_state();
+    }
+    void Defult_Check(){
+        if (static_parameters.face == 0){
                 static_parameters.Ani_state = 0;
             }else{
                 static_parameters.Ani_state = 1;
             }
-        }
-        MC_ani_state();
     }
     void MC_ani_state()
     {
@@ -261,7 +262,7 @@ public class Ani_MC : MonoBehaviour
                     switch (Angle_sum)
                 {
                     case 0:
-                        animator.Play("MC_Att_FR03");
+                        animator.Play("MC_Dash_R");
                         break;
                     case 45:
                         animator.Play("MC_Dash_B");
@@ -270,19 +271,19 @@ public class Ani_MC : MonoBehaviour
                         animator.Play("MC_Dash_B");
                         break;
                     case 135:
-                        animator.Play("MC_Att_BL03");
+                        animator.Play("MC_Dash_L");
                         break;
                     case 180:
-                        animator.Play("MC_Att_FL03");
+                        animator.Play("MC_Dash_L");
                         break;
                     case 225:
-                        animator.Play("MC_Att_FL03");
+                        animator.Play("MC_Dash_F");
                         break;
                     case 270:
-                        animator.Play("MC_Att_FR03");
+                        animator.Play("MC_Dash_F");
                         break;
                     case 315:
-                        animator.Play("MC_Att_FR03");
+                        animator.Play("MC_Dash_R");
                         break;
                 }
                 break;
