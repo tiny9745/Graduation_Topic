@@ -14,7 +14,6 @@ public class Play_move : MonoBehaviour
     void Start()
     {
         //MC range limiter in the RandomTileGround.cs
-        agent = GameObject.Find("NavMesh Surface").GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -24,13 +23,13 @@ public class Play_move : MonoBehaviour
         {
             horizontalInput = Input.GetAxis("Horizontal") * 0.1f;
             verticalInput = Input.GetAxis("Vertical") * 0.1f;
-            // if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
+            if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
         }
         else
         {
             horizontalInput = Input.GetAxis("Horizontal");
             verticalInput = Input.GetAxis("Vertical");
-            // if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
+            if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
         }
         walkSpeed = static_parameters.MC_Wspeed;
         dashSpeed = walkSpeed * 3;
@@ -110,8 +109,8 @@ public class Play_move : MonoBehaviour
 
     void MC_Nav_Baking_range(float h, float v)
     {
+        // agent = GameObject.Find("NavMesh Surface").GetComponent<NavMeshAgent>();
         Vector3 direction = new Vector3(h, 0, v).normalized;
-
         if (direction.magnitude >= 0.1f)
         {
             targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;

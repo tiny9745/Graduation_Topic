@@ -12,8 +12,8 @@ public class NPC04_control : MonoBehaviour
     public float NPC_HP_Max = 150; public float npcSpeed = 6f;
     public float NPC_HP;
     float dist;
-    private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
-    bool hit_Ani,hit = false;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
+    bool hit_Ani, hit = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC04;
@@ -60,7 +60,7 @@ public class NPC04_control : MonoBehaviour
 
     void Update()
     {
-        if (npcNavi == null) return;
+        if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null)
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);

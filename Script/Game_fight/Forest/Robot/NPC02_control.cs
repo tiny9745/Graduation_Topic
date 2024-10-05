@@ -12,7 +12,7 @@ public class NPC02_control : MonoBehaviour
     public int DetectDistance = 20; public float NPC02_ATK = 60; public float NPC02_DEF = 10;
     public float NPC_HP_Max = 80; public float npcSpeed = 5f;
     public float NPC_HP;
-    private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     float dist;
     bool hit_Ani = false;
     bool hit = false;
@@ -63,7 +63,7 @@ public class NPC02_control : MonoBehaviour
 
     void Update()
     {
-        if (npcNavi == null) return;
+        if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null)
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);
@@ -71,7 +71,7 @@ public class NPC02_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
-            hitbox_Robot.SetActive (false);
+            hitbox_Robot.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             dead();

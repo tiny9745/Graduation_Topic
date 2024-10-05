@@ -9,11 +9,11 @@ public class NPC01_control : MonoBehaviour
     public Animator animator;
     public GameObject TargetObj;
     public bool NPC01_hit = false;
-    public int DetectDistance = 18,Pcounter = 0;
-    public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100,npcSpeed = 3f,NPC_HP;
+    public int DetectDistance = 18, Pcounter = 0;
+    public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100, npcSpeed = 3f, NPC_HP;
     float dist;
-    private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
-    bool hit_Ani = false,hit = false;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
+    bool hit_Ani = false, hit = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC01; public GameObject NPC01_1;
@@ -59,7 +59,7 @@ public class NPC01_control : MonoBehaviour
 
     void Update()
     {
-        if (npcNavi == null) return;
+        if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null)
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);
@@ -302,7 +302,7 @@ public class NPC01_control : MonoBehaviour
                     }
                 }
                 if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-                {   
+                {
                     NPC01_hit = true;
                     print("NPC01_hit");
                     if (nPC_hP == null)
@@ -314,7 +314,9 @@ public class NPC01_control : MonoBehaviour
                     MC_to_Att = false;
                     Invoke("wait_MC_att", 0.2f);
                     nextDamageTime = Time.time + damageCooldown;
-                }else{
+                }
+                else
+                {
                     NPC01_hit = false;
                     print("NPC01_not_hit");
                 }

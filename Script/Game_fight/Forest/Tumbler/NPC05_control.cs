@@ -61,7 +61,7 @@ public class NPC05_control : MonoBehaviour
 
     void Update()
     {
-        if (npcNavi == null) return;
+        if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null)
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);

@@ -12,8 +12,8 @@ public class NPC03_control : MonoBehaviour
     public float NPC_HP_Max = 70; public float npcSpeed = 4f;
     public float NPC_HP;
     float dist;
-    private float damageCooldown = 1.0f,nextDamageTime = 0.0f;
-    bool hit_Ani = false,hit = false;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
+    bool hit_Ani = false, hit = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC03;
@@ -60,7 +60,7 @@ public class NPC03_control : MonoBehaviour
 
     void Update()
     {
-        if (npcNavi == null) return;
+        if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null)
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);
@@ -68,7 +68,7 @@ public class NPC03_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
-            hitbox_Brick_Monster.SetActive (false);
+            hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             dead();
@@ -88,7 +88,7 @@ public class NPC03_control : MonoBehaviour
         {
             PlayAttackAnimation();
         }
-        if (dist >= DetectDistance*3/5)
+        if (dist >= DetectDistance * 3 / 5)
         {
             hit_Ani = false;
         }
@@ -245,7 +245,7 @@ public class NPC03_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-       if (NPC_HP > 0 && Time.time >= nextDamageTime)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
             if (NPC_HP > 0)
             {
