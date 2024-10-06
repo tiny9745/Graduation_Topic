@@ -28,7 +28,7 @@ public class Scene_Change_Forest : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0)
         {
             static_parameters.stage_number++;
-            if (static_parameters.stage_number%4 == 0)
+            if (static_parameters.stage_number % 4 == 0)
             {
                 //SceneManager.LoadScene("Game_fight_Boss");
                 SceneManager.LoadScene("magic_house");
@@ -36,7 +36,7 @@ public class Scene_Change_Forest : MonoBehaviour
             }
             else
             {
-                                switch (Random.Range(0, 32))
+                switch (Random.Range(0, 1))
                 {
                     case 0:
                         SceneManager.LoadScene("Fight_FA01");
