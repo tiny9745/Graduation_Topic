@@ -36,7 +36,7 @@ public class Scene_Change_Forest : MonoBehaviour
             }
             else
             {
-                switch (Random.Range(0, 1))
+                switch (Random.Range(0, 8))
                 {
                     case 0:
                         SceneManager.LoadScene("Fight_FA01");

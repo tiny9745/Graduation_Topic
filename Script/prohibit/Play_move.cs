@@ -115,6 +115,7 @@ public class Play_move : MonoBehaviour
         if (direction.magnitude >= 0.1f)
         {
             targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
+            targetPosition.z += 10f;
             if (IsPositionOnNavMesh(targetPosition))
             {
                 agent.Move(direction * static_parameters.MC_Wspeed * Time.deltaTime);

@@ -81,12 +81,10 @@ public class Prefabs_start : MonoBehaviour
         // Generate the prefab and place it at the generated location
         GameObject npc = Instantiate(prefabNPC01, position, Quaternion.identity);
     }
-
     void GenerateNPC02(Vector3 position)
     {
         GameObject npc = Instantiate(prefabNPC02, position, Quaternion.identity);
     }
-
     void GenerateNPC03(Vector3 position)
     {
         GameObject npc = Instantiate(prefabNPC03, position, Quaternion.identity);
