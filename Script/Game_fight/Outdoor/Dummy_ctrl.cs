@@ -107,6 +107,7 @@ public class Dummy_ctrl : MonoBehaviour
     }
 
     bool Skill_public_funtion_1_close = false;//skill_add
+    float NPC_back = 10;//Knockback value of skill effect
     void Skill_outsourcing_updata()//skill_add
     {
         if (Skill_public_funtion.fight_instinct == true)
@@ -169,6 +170,12 @@ public class Dummy_ctrl : MonoBehaviour
                     }
                     else
                     {
+                        if (NPC_HP < NPC_back) NPC_HP = 0;
+                        else
+                        {
+                            Vector3 currentPosition = transform.position;
+                            transform.position = currentPosition - NPC_back * Vector3.back;
+                        }
                         play_piano_atk = 0;
                     }
                     break;
