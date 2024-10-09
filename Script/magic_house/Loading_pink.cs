@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Loading_magic_new : MonoBehaviour
+public class Loading_pink : MonoBehaviour
 {
     public string targetSceneName = "magic_house";
     public GameObject loadingScreen;
@@ -18,10 +18,10 @@ public class Loading_magic_new : MonoBehaviour
             Debug.Log("LoadingScreen or LoadingBar not found in the current scene.");
             return;
         }
-        if (!StaticParameters_magic_new.isSceneLoading_magic)
+        if (!StaticParameters_pink.isSceneLoading_magic)
         {
             Time.timeScale = 0;
-            StaticParameters_magic_new.isSceneLoading_magic = true;
+            StaticParameters_pink.isSceneLoading_magic = true;
             StartCoroutine(LoadSceneAsync(targetSceneName));
         }
     }
@@ -61,11 +61,11 @@ public class Loading_magic_new : MonoBehaviour
         }
         loadingScreen.SetActive(false);
         Time.timeScale = 1;
-        StaticParameters_magic_new.isSceneLoading_magic = false;
+        StaticParameters_pink.isSceneLoading_magic = false;
     }
 }
 
-public static class StaticParameters_magic_new
+public static class StaticParameters_pink
 {
     public static bool isSceneLoading_magic = false;
 }
