@@ -18,10 +18,10 @@ public class Loading_magic_new : MonoBehaviour
             Debug.Log("LoadingScreen or LoadingBar not found in the current scene.");
             return;
         }
-        if (!StaticParameters_magic.isSceneLoading_magic)
+        if (!StaticParameters_magic_new.isSceneLoading_magic)
         {
             Time.timeScale = 0;
-            StaticParameters_magic.isSceneLoading_magic = true;
+            StaticParameters_magic_new.isSceneLoading_magic = true;
             StartCoroutine(LoadSceneAsync(targetSceneName));
         }
     }
