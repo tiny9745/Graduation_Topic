@@ -588,8 +588,8 @@ GameObject:
   m_Component:
   - component: {fileID: 614255651}
   - component: {fileID: 614255652}
-  - component: {fileID: 614255653}
   - component: {fileID: 614255654}
+  - component: {fileID: 614255653}
   m_Layer: 0
   m_Name: Bubbles_0
   m_TagString: Untagged
@@ -606,7 +606,7 @@ Transform:
   m_GameObject: {fileID: 614255650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 0.27, z: 0}
+  m_LocalPosition: {x: -0.31, y: 0.27, z: 0}
   m_LocalScale: {x: 1.0476191, y: 1.0476191, z: 1.0476191}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2399,6 +2399,7 @@ GameObject:
   - component: {fileID: 1875171808}
   - component: {fileID: 1875171809}
   - component: {fileID: 1875171810}
+  - component: {fileID: 1875171811}
   m_Layer: 0
   m_Name: MH_script
   m_TagString: Untagged
@@ -2454,6 +2455,19 @@ MonoBehaviour:
   minBoundary: {x: 0, y: 0, z: 0}
   maxBoundary: {x: 0, y: 0, z: 0}
   startPos: {x: 0, y: 0, z: 0}
+--- !u!114 &1875171811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875171807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4875263d793b2249abf0a3cf45e1df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneName: magic_house
 --- !u!1 &1906102018
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,7 +2483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1906102019
 RectTransform:
   m_ObjectHideFlags: 0
