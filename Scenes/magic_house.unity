@@ -520,8 +520,8 @@ Transform:
   m_GameObject: {fileID: 573320018}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.954091, y: -2.97, z: 0}
-  m_LocalScale: {x: 0.11818182, y: 0.11818182, z: 0.11818182}
+  m_LocalPosition: {x: 7.45, y: -2.75, z: 0}
+  m_LocalScale: {x: 0.115, y: 0.115, z: 0.115}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 614255651}
@@ -606,8 +606,8 @@ Transform:
   m_GameObject: {fileID: 614255650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.31, y: 0.27, z: 0}
-  m_LocalScale: {x: 1.0476191, y: 1.0476191, z: 1.0476191}
+  m_LocalPosition: {x: -0.5, y: -2.5, z: 0}
+  m_LocalScale: {x: 1.0625, y: 1.0625, z: 1.0625}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 573320019}
@@ -1631,6 +1631,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1417579833}
   - component: {fileID: 1417579834}
+  - component: {fileID: 1417579836}
+  - component: {fileID: 1417579837}
   m_Layer: 0
   m_Name: p_text_0
   m_TagString: Untagged
@@ -1705,6 +1707,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1417579836
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417579832}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5669ea362597a4408bef18c8ff610e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &1417579837
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417579832}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 53c9f68fa251c574d837deb5ee300c6e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 53c9f68fa251c574d837deb5ee300c6e, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1488708881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,7 +2468,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875171807}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a7986fa9c466984380812182dac3391, type: 3}
   m_Name: 
@@ -2468,6 +2507,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneName: magic_house
+  loadingScreen: {fileID: 1906102018}
+  loadingBar: {fileID: 614255650}
+  loadingSpeed: 0.3
 --- !u!1 &1906102018
 GameObject:
   m_ObjectHideFlags: 0
