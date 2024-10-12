@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Loading_pink : MonoBehaviour
+public class Loading_241010 : MonoBehaviour
 {
     public string targetSceneName = "magic_house";
     public GameObject loadingScreen;
