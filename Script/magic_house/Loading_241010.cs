@@ -10,11 +10,13 @@ public class Loading_241010 : MonoBehaviour
     public Image loadingBar;
     public float loadingSpeed = 100f; // 控制進度條速度
     public float maxFillAmount = 275f; // 用於控制 Y 軸的最大值
-    public float wave_bar_range = 20f;
+    public float wave_bar_range = 50f;
     private float targetFillAmount = 0f; // 目標進度
     private float minimumLoadingTime = 2f; // 最少顯示 x 秒
     private float loadingTimeElapsed = 0f; // 計時器
-    Vector3 newPosition_start;
+    public Vector3 newPosition_start;
+
+    bool wave_return = true;
 
     private bool screen_close = true;
 
@@ -56,14 +58,22 @@ public class Loading_241010 : MonoBehaviour
     void Loading_bar_wave()
     {
         Vector3 newPosition_horizontal = loadingBar.transform.position;
-        if (newPosition_horizontal.x > newPosition_start.x + wave_bar_range)
-        {
-            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, loadingSpeed * Time.deltaTime);
-            loadingBar.transform.position = newPosition_horizontal;
-        }
         if (newPosition_horizontal.x < newPosition_start.x - wave_bar_range)
         {
-            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, loadingSpeed * Time.deltaTime);
+            wave_return = false;
+        }
+        else if (newPosition_horizontal.x > newPosition_start.x + wave_bar_range)
+        {
+            wave_return = true;
+        }
+        if (wave_return)
+        {
+            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, loadingSpeed * Time.deltaTime/3);
+            loadingBar.transform.position = newPosition_horizontal;
+        }
+        else
+        {
+            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, -loadingSpeed * Time.deltaTime/3);
             loadingBar.transform.position = newPosition_horizontal;
         }
     }
