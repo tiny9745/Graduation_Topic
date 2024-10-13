@@ -31,10 +31,10 @@ public class Loading_241010 : MonoBehaviour
             loadingScreen.SetActive(false);
             Debug.Log("close");
         }
-        else if(screen_close)
+        else if (screen_close)
         {
-            // 根據場景加載進度逐漸提升 Y 軸座標
-            Screen_Loading();
+            Screen_Loading(); // 根據場景加載進度逐漸提升 Y 軸座標
+            Loading_bar_wave();
         }
 
         // 累積已經經過的加載時間
@@ -46,6 +46,13 @@ public class Loading_241010 : MonoBehaviour
         Vector3 newPosition = loadingBar.transform.position;
 
         // 更新 targetFillAmount，這裡使用 loadingSpeed 控制進度條速度
+        newPosition.y = Mathf.MoveTowards(newPosition.y, targetFillAmount, loadingSpeed * Time.deltaTime);
+        loadingBar.transform.position = newPosition;
+    }
+
+    void Loading_bar_wave()
+    {
+        Vector3 newPosition = loadingBar.transform.position;
         newPosition.y = Mathf.MoveTowards(newPosition.y, targetFillAmount, loadingSpeed * Time.deltaTime);
         loadingBar.transform.position = newPosition;
     }
