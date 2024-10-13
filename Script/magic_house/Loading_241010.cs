@@ -10,14 +10,17 @@ public class Loading_241010 : MonoBehaviour
     public Image loadingBar;
     public float loadingSpeed = 100f; // 控制進度條速度
     public float maxFillAmount = 275f; // 用於控制 Y 軸的最大值
+    public float wave_bar_range = 20f;
     private float targetFillAmount = 0f; // 目標進度
     private float minimumLoadingTime = 2f; // 最少顯示 x 秒
     private float loadingTimeElapsed = 0f; // 計時器
+    Vector3 newPosition_start;
 
     private bool screen_close = true;
 
     void Start()
     {
+        newPosition_start = loadingBar.transform.position;
         loadingScreen.SetActive(true);
         StartCoroutine(LoadSceneAsync(targetSceneName));
     }
@@ -43,18 +46,26 @@ public class Loading_241010 : MonoBehaviour
 
     void Screen_Loading()
     {
-        Vector3 newPosition = loadingBar.transform.position;
+        Vector3 newPosition_vertical = loadingBar.transform.position;
 
         // 更新 targetFillAmount，這裡使用 loadingSpeed 控制進度條速度
-        newPosition.y = Mathf.MoveTowards(newPosition.y, targetFillAmount, loadingSpeed * Time.deltaTime);
-        loadingBar.transform.position = newPosition;
+        newPosition_vertical.y = Mathf.MoveTowards(newPosition_vertical.y, targetFillAmount, loadingSpeed * Time.deltaTime);
+        loadingBar.transform.position = newPosition_vertical;
     }
 
     void Loading_bar_wave()
     {
-        Vector3 newPosition = loadingBar.transform.position;
-        newPosition.y = Mathf.MoveTowards(newPosition.y, targetFillAmount, loadingSpeed * Time.deltaTime);
-        loadingBar.transform.position = newPosition;
+        Vector3 newPosition_horizontal = loadingBar.transform.position;
+        if (newPosition_horizontal.x > newPosition_start.x + wave_bar_range)
+        {
+            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, loadingSpeed * Time.deltaTime);
+            loadingBar.transform.position = newPosition_horizontal;
+        }
+        if (newPosition_horizontal.x < newPosition_start.x - wave_bar_range)
+        {
+            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, loadingSpeed * Time.deltaTime);
+            loadingBar.transform.position = newPosition_horizontal;
+        }
     }
 
     IEnumerator LoadSceneAsync(string sceneName)
