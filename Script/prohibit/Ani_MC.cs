@@ -175,28 +175,28 @@ public class Ani_MC : MonoBehaviour
                 switch (Angle_sum)
                 {
                     case 0:
-                        animator.Play("MC_Att_FR01");
+                        animator.Play("MC_FR_Atk_01");
                         break;
                     case 45:
-                        animator.Play("MC_Att_BR01");
+                        animator.Play("MC_BR_Atk_01");
                         break;
                     case 90:
-                        animator.Play("MC_Att_BR01");
+                        animator.Play("MC_BR_Atk_01");
                         break;
                     case 135:
-                        animator.Play("MC_Att_BL01");
+                        animator.Play("MC_BL_Atk_01");
                         break;
                     case 180:
-                        animator.Play("MC_Att_FL01");
+                        animator.Play("MC_FL_Atk_01");
                         break;
                     case 225:
-                        animator.Play("MC_Att_FL01");
+                        animator.Play("MC_FL_Atk_01");
                         break;
                     case 270:
-                        animator.Play("MC_Att_FR01");
+                        animator.Play("MC_FR_Atk_01");
                         break;
                     case 315:
-                        animator.Play("MC_Att_FR01");
+                        animator.Play("MC_FR_Atk_01");
                         break;
                 }
                 break;
@@ -204,28 +204,28 @@ public class Ani_MC : MonoBehaviour
                 switch (Angle_sum)
                 {
                     case 0:
-                        animator.Play("MC_Att_FR02");
+                        animator.Play("MC_FR_Atk_02");
                         break;
                     case 45:
-                        animator.Play("MC_Att_BR02");
+                        animator.Play("MC_BR_Atk_02");
                         break;
                     case 90:
-                        animator.Play("MC_Att_BR02");
+                        animator.Play("MC_BR_Atk_02");
                         break;
                     case 135:
-                        animator.Play("MC_Att_BL02");
+                        animator.Play("MC_BL_Atk_02");
                         break;
                     case 180:
-                        animator.Play("MC_Att_FL02");
+                        animator.Play("MC_FL_Atk_02");
                         break;
                     case 225:
-                        animator.Play("MC_Att_FL02");
+                        animator.Play("MC_FL_Atk_02");
                         break;
                     case 270:
-                        animator.Play("MC_Att_FR02");
+                        animator.Play("MC_FR_Atk_02");
                         break;
                     case 315:
-                        animator.Play("MC_Att_FR02");
+                        animator.Play("MC_FR_Atk_02");
                         break;
                 }
                 break;
@@ -233,28 +233,28 @@ public class Ani_MC : MonoBehaviour
                 switch (Angle_sum)
                 {
                     case 0:
-                        animator.Play("MC_Att_FR03");
+                        animator.Play("MC_FR_Atk_03");
                         break;
                     case 45:
-                        animator.Play("MC_Att_BR03");
+                        animator.Play("MC_BR_Atk_03");
                         break;
                     case 90:
-                        animator.Play("MC_Att_BR03");
+                        animator.Play("MC_BR_Atk_03");
                         break;
                     case 135:
-                        animator.Play("MC_Att_BL03");
+                        animator.Play("MC_BL_Atk_03");
                         break;
                     case 180:
-                        animator.Play("MC_Att_FL03");
+                        animator.Play("MC_FL_Atk_03");
                         break;
                     case 225:
-                        animator.Play("MC_Att_FL03");
+                        animator.Play("MC_FL_Atk_03");
                         break;
                     case 270:
-                        animator.Play("MC_Att_FR03");
+                        animator.Play("MC_FR_Atk_03");
                         break;
                     case 315:
-                        animator.Play("MC_Att_FR03");
+                        animator.Play("MC_FR_Atk_03");
                         break;
                 }
                 break;
