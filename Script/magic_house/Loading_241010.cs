@@ -10,7 +10,7 @@ public class Loading_241010 : MonoBehaviour
     public Image loadingBar;
     public float loadingSpeed = 100f; // 控制進度條速度
     public float maxFillAmount = 275f; // 用於控制 Y 軸的最大值
-    public float wave_bar_range = 50f;
+    public float wave_bar_range = 30f;
     private float targetFillAmount = 0f; // 目標進度
     private float minimumLoadingTime = 2f; // 最少顯示 x 秒
     private float loadingTimeElapsed = 0f; // 計時器
