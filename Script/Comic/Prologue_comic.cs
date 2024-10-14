@@ -49,9 +49,19 @@ public class Prologue_comic : MonoBehaviour
         // 檢查是否成功載入
         if (newSprite != null)
         {
+            // 在 Canvas 底下找到或創建名為 Comic 的物件
+            Transform comicTransform = canvas.transform.Find("Comic");
+            if (comicTransform == null)
+            {
+                // 如果不存在 Comic 物件，創建一個新的 GameObject 作為容器
+                GameObject comicObject = new GameObject("Comic");
+                comicObject.transform.SetParent(canvas.transform); // 設置父物件為 Canvas
+                comicTransform = comicObject.transform;
+            }
+
             // 動態建立新的 Image 物件
             GameObject newImageObject = new GameObject("Comic_Image" + comic_step.ToString());
-            newImageObject.transform.SetParent(canvas.transform); // 設置父物件為 Canvas
+            newImageObject.transform.SetParent(comicTransform); // 設置父物件為 Comic
 
             // 新增 Image 組件
             Image newImage = newImageObject.AddComponent<Image>();
@@ -63,7 +73,8 @@ public class Prologue_comic : MonoBehaviour
             RectTransform rectTransform = newImage.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(1920, 1080); // 設定大小
             rectTransform.anchoredPosition = new Vector2(0, -300); // 設定位置（相對於 Canvas 中心）
-            // HideImage(newImage);
+
+            // 呼叫淡入效果
             StartCoroutine(FadeInImage(newImage, 1.2f, 300f));
         }
         else
@@ -110,7 +121,11 @@ public class Prologue_comic : MonoBehaviour
     {
         foreach (Transform child in Image_box.transform)
         {
-            Destroy(child.gameObject); // 刪除每個子物件
+            Image image = child.GetComponent<Image>();
+            if (image != null)
+            {
+                Destroy(child.gameObject); // 刪除包含 Image 的 GameObject
+            }
         }
     }
 
@@ -132,10 +147,12 @@ public class Prologue_comic : MonoBehaviour
                 break;
             case 5:
                 imagePath = "Sprites/Comic/Prologue/01/comics_1-4";
+                break;
+            case 6:
                 comic_step = 1;
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
-                break;
+                return;
         }
         comic_image_add();
     }
