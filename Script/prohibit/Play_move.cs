@@ -22,8 +22,8 @@ public class Play_move : MonoBehaviour
         navMeshAvailable = NavMeshHasBakedData();
         if (Input.GetKey(KeyCode.J))
         {
-            horizontalInput = Input.GetAxis("Horizontal") * 0.1f;
-            verticalInput = Input.GetAxis("Vertical") * 0.1f;
+            horizontalInput = Input.GetAxis("Horizontal") * 0;
+            verticalInput = Input.GetAxis("Vertical") * 0;
             if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
         }
         else
