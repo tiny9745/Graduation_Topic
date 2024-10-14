@@ -66,15 +66,15 @@ public class Ani_MC : MonoBehaviour
                 static_parameters.Ani_state = 0;
             }
             elapsedTime = Time.time - startTime;
-            if (elapsedTime <= 1f / static_parameters.MC_ATK_Speed)
+            if (elapsedTime <= 0.7f / static_parameters.MC_ATK_Speed)
             {
                 static_parameters.Ani_state = 2;
             }
-            else if (elapsedTime > 1f / static_parameters.MC_ATK_Speed && elapsedTime <= 2f / static_parameters.MC_ATK_Speed)
+            else if (elapsedTime > 0.7f / static_parameters.MC_ATK_Speed && elapsedTime <= 1.5f / static_parameters.MC_ATK_Speed)
             {
                 static_parameters.Ani_state = 3;
             }
-            if (elapsedTime > 2f / static_parameters.MC_ATK_Speed && elapsedTime <= 3f / static_parameters.MC_ATK_Speed)
+            if (elapsedTime > 1.5f / static_parameters.MC_ATK_Speed && elapsedTime <= 2.4f / static_parameters.MC_ATK_Speed)
             {
                 static_parameters.Ani_state = 4;
             }
