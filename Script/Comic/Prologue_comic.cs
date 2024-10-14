@@ -8,10 +8,10 @@ public class Prologue_comic : MonoBehaviour
     uint comic_step = 0;
     uint comic_step_tmp;
     float comic_time_sum = 0;
-
-
     string imagePath = "Sprites/Comic/Prologue/01/comics_1-1"; // 圖檔在 Resources 中的路徑
     public Canvas canvas; // 需要將新建的 Image 放到的 Canvas
+    public GameObject Image_box;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class Prologue_comic : MonoBehaviour
     void Update()
     {
         comic_time_sum += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Return) && comic_time_sum > 2.5f)
+        if (Input.GetKeyDown(KeyCode.Return) && comic_time_sum > 1.5f)
         {
             comic_time_sum = 0;
             comic_step++;
@@ -35,29 +35,22 @@ public class Prologue_comic : MonoBehaviour
                 case 0:
                     comic_image_Prologue01();
                     break;
+                case 1:
+                    comic_image_Prologue02();
+                    break;
             }
         }
     }
 
-    private void comic_image_Prologue01()
+    private void comic_image_add()
     {
-        switch (comic_step)
-        {
-            case 1:
-                imagePath = "Sprites/Comic/Prologue/01/comics_1-1";
-                break;
-        }
-        comic_image_add();
-    }
-
-    private void comic_image_add(){
         Sprite newSprite = Resources.Load<Sprite>(imagePath);
 
         // 檢查是否成功載入
         if (newSprite != null)
         {
             // 動態建立新的 Image 物件
-            GameObject newImageObject = new GameObject(imagePath);
+            GameObject newImageObject = new GameObject("Comic_Image" + comic_step.ToString());
             newImageObject.transform.SetParent(canvas.transform); // 設置父物件為 Canvas
 
             // 新增 Image 組件
@@ -69,11 +62,112 @@ public class Prologue_comic : MonoBehaviour
             // 設定 Image 的位置和大小
             RectTransform rectTransform = newImage.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(1920, 1080); // 設定大小
-            rectTransform.anchoredPosition = new Vector2(0, 0); // 設定位置（相對於 Canvas 中心）
+            rectTransform.anchoredPosition = new Vector2(0, -300); // 設定位置（相對於 Canvas 中心）
+            // HideImage(newImage);
+            StartCoroutine(FadeInImage(newImage, 1.2f, 300f));
         }
         else
         {
             Debug.LogError("Failed to load image from Resources: " + imagePath);
         }
+    }
+
+    IEnumerator FadeInImage(Image image, float duration, float moveDistance)
+    {
+        float elapsedTime = 0f;
+        Color newColor = image.color;
+        Vector3 originalPosition = image.transform.position; // 儲存初始位置
+
+        // 初始化 alpha 為 0（完全透明）
+        newColor.a = 0f;
+        image.color = newColor;
+
+        // 持續時間內逐步增加 alpha 並移動 X 軸位置
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            // 更新透明度
+            newColor.a = Mathf.Clamp01(elapsedTime / duration);
+            image.color = newColor;
+
+            // 更新 Y 軸位置，逐步增加至 moveDistance
+            float newXPosition = Mathf.Lerp(originalPosition.y, originalPosition.y + moveDistance, elapsedTime / duration);
+            image.transform.position = new Vector3(originalPosition.x, newXPosition, originalPosition.z);
+
+            yield return null; // 等待下一幀
+        }
+
+        // 確保最後完全顯示
+        newColor.a = 1f;
+        image.color = newColor;
+
+        // 確保 X 軸移動到最終位置
+        image.transform.position = new Vector3(originalPosition.x, originalPosition.y + moveDistance, originalPosition.z);
+    }
+
+    void DeleteAllImagesUnderCanvas()
+    {
+        foreach (Transform child in Image_box.transform)
+        {
+            Destroy(child.gameObject); // 刪除每個子物件
+        }
+    }
+
+    private void comic_image_Prologue01()
+    {
+        switch (comic_step)
+        {
+            case 1:
+                imagePath = "Sprites/Comic/Prologue/01/comics_1-1";
+                break;
+            case 2:
+                imagePath = "Sprites/Comic/Prologue/01/comics_1-2";
+                break;
+            case 3:
+                imagePath = "Sprites/Comic/Prologue/01/comics_1-3";
+                break;
+            case 4:
+                imagePath = "Sprites/Comic/Prologue/01/dialogbox_1-1";
+                break;
+            case 5:
+                imagePath = "Sprites/Comic/Prologue/01/comics_1-4";
+                comic_step = 1;
+                static_parameters.Comic_scene_sort++;
+                DeleteAllImagesUnderCanvas();
+                break;
+        }
+        comic_image_add();
+    }
+
+    private void comic_image_Prologue02()
+    {
+        switch (comic_step)
+        {
+            case 1:
+                imagePath = "Sprites/Comic/Prologue/02/comics_2-1";
+                break;
+            case 2:
+                imagePath = "Sprites/Comic/Prologue/02/comics_2-2";
+                break;
+            case 3:
+                imagePath = "Sprites/Comic/Prologue/02/comics_2-3";
+                break;
+            case 4:
+                imagePath = "Sprites/Comic/Prologue/02/comics_2-4";
+                break;
+            case 5:
+                imagePath = "Sprites/Comic/Prologue/02/comics_2-5";
+                break;
+            case 6:
+                imagePath = "Sprites/Comic/Prologue/02/dialogbox_2-";
+                break;
+            case 7:
+                imagePath = "Sprites/Comic/Prologue/02/comics_2-6";
+                comic_step = 1;
+                static_parameters.Comic_scene_sort++;
+                break;
+        }
+        comic_image_add();
     }
 }
