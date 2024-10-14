@@ -62,17 +62,13 @@ public class MC_atk : MonoBehaviour
     }
     void melee1()
     {
-        Skill_public_funtion.ATK_count++;//skill
-        // Debug.Log("ATK_count:" + Skill_public_funtion.ATK_count);
-        // Debug.Log("blood_deduction_NPC_count" + Skill_public_funtion.blood_deduction_NPC_count);
+        Skill_public_funtion.ATK_count++;
         OpenCollider();
-        Invoke("CloseCollider", 0.6f);
+        Invoke("CloseCollider", 0.5f);
     }
     void melee2()
     {
-        Skill_public_funtion.ATK_count++;//skill
-        // Debug.Log("ATK_count:" + Skill_public_funtion.ATK_count);
-        // Debug.Log("blood_deduction_NPC_count" + Skill_public_funtion.blood_deduction_NPC_count);
+        Skill_public_funtion.ATK_count++;
         CloseCollider();
         Invoke("OpenCollider", 0.3f);
         Invoke("CloseCollider", 0.7f);
