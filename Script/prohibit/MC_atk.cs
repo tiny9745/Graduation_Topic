@@ -74,7 +74,7 @@ public class MC_atk : MonoBehaviour
         // Debug.Log("ATK_count:" + Skill_public_funtion.ATK_count);
         // Debug.Log("blood_deduction_NPC_count" + Skill_public_funtion.blood_deduction_NPC_count);
         CloseCollider();
-        Invoke("OpenCollider", 0.2f);
+        Invoke("OpenCollider", 0.3f);
         Invoke("CloseCollider", 0.7f);
     }
     public void OpenCollider()
