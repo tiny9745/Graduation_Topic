@@ -12,6 +12,8 @@ public class Prologue_comic : MonoBehaviour
     public Canvas canvas; // 需要將新建的 Image 放到的 Canvas
     public GameObject Image_box;
 
+    float auto_comic_time;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,9 @@ public class Prologue_comic : MonoBehaviour
     void Update()
     {
         comic_time_sum += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Return) && comic_time_sum > 1.5f)
+        if (Input.GetKeyDown(KeyCode.Return) && comic_time_sum > 0.8f)
         {
+            auto_comic_time = 0;
             comic_time_sum = 0;
             comic_step++;
         }
@@ -36,13 +39,73 @@ public class Prologue_comic : MonoBehaviour
                     comic_image_Prologue01();
                     break;
                 case 1:
-                    change_comic_BG("Sprites/Comic/Prologue/03/background_c2");
                     comic_image_Prologue02();
                     break;
                 case 2:
-                    change_comic_BG("Sprites/Comic/Prologue/03/background_c3");
                     comic_image_Prologue03();
                     break;
+                case 3:
+                    comic_image_Prologue04();
+                    break;
+            }
+        }
+        else
+        {
+            if (static_parameters.Comic_scene_sort == 0 && comic_step == 5 || static_parameters.Comic_scene_sort == 1 && comic_step == 7)
+            {
+                auto_comic(6f);
+            }
+            else if (static_parameters.Comic_scene_sort == 0 && comic_step == 16 || static_parameters.Comic_scene_sort == 1 && comic_step == 21)
+            {
+                auto_comic(8f);
+            }
+            else if (static_parameters.Comic_scene_sort == 1 && comic_step >= 5 && comic_step < 7)
+            {
+                auto_comic(0.6f);
+            }
+            else if (static_parameters.Comic_scene_sort == 2 && (comic_step == 1 || comic_step == 3 || comic_step == 5))
+            {
+                auto_comic(0.65f);
+            }
+            else if (static_parameters.Comic_scene_sort == 2 && comic_step == 2)
+            {
+                auto_comic(0.5f);
+            }
+            else if (static_parameters.Comic_scene_sort == 2 && comic_step >= 8 && comic_step < 10)
+            {
+                auto_comic(0.65f);
+            }
+            else if (static_parameters.Comic_scene_sort == 2 && (comic_step == 11 || comic_step == 13 || comic_step == 15))
+            {
+                auto_comic(0.6f);
+            }
+            else if (static_parameters.Comic_scene_sort == 3 && comic_step >= 1 && comic_step < 3)
+            {
+                auto_comic(0.55f);
+            }
+            else if (static_parameters.Comic_scene_sort == 3 && comic_step == 3)
+            {
+                auto_comic(0.35f);
+            }
+            else if (static_parameters.Comic_scene_sort == 3 && comic_step == 5)
+            {
+                auto_comic(0.6f);
+            }
+            else if (static_parameters.Comic_scene_sort == 3 && comic_step >= 6 && comic_step < 8)
+            {
+                auto_comic(0.55f);
+            }
+            else if (static_parameters.Comic_scene_sort == 3 && comic_step == 10)
+            {
+                auto_comic(0.45f);
+            }
+            else if (static_parameters.Comic_scene_sort == 3 && comic_step >= 17 && comic_step < 21)
+            {
+                auto_comic(0.65f);
+            }
+            else
+            {
+                auto_comic(3.5f);
             }
         }
     }
@@ -51,10 +114,8 @@ public class Prologue_comic : MonoBehaviour
     {
         Sprite newSprite = Resources.Load<Sprite>(imagePath);
 
-        // 檢查是否成功載入
         if (newSprite != null)
         {
-            // 在 Canvas 底下找到或創建名為 Comic 的物件
             Transform comicTransform = canvas.transform.Find("Comic");
             if (comicTransform == null)
             {
@@ -80,7 +141,7 @@ public class Prologue_comic : MonoBehaviour
             rectTransform.anchoredPosition = new Vector2(0, -300); // 設定位置（相對於 Canvas 中心）
 
             // 呼叫淡入效果
-            StartCoroutine(FadeInImage(newImage, 1.2f, 300f));
+            StartCoroutine(FadeInImage(newImage, 0.4f, 300f));
         }
         else
         {
@@ -137,7 +198,6 @@ public class Prologue_comic : MonoBehaviour
     void change_comic_BG(string BG_Path)
     {
         GameObject BG_Image = GameObject.Find("BG");
-        // 確認 BG_Image 上有 Image 組件
         if (BG_Image != null)
         {
             Image bgImageComponent = BG_Image.GetComponent<Image>();
@@ -165,6 +225,17 @@ public class Prologue_comic : MonoBehaviour
         }
     }
 
+    private void auto_comic(float time_T)
+    {
+        auto_comic_time += Time.deltaTime;
+        if (auto_comic_time >= time_T)
+        {
+            comic_time_sum = 0;
+            comic_step++;
+            auto_comic_time = 0;
+        }
+    }
+
     private void comic_image_Prologue01()
     {
         switch (comic_step)
@@ -185,9 +256,9 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Prologue/01/comics_1-4";
                 break;
             case 6:
-                comic_step = 1;
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
+                comic_step = 1;
                 return;
         }
         comic_image_add();
@@ -198,6 +269,7 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
+                change_comic_BG("Sprites/Comic/Prologue/02/background_c2");
                 imagePath = "Sprites/Comic/Prologue/02/comics_2-1";
                 break;
             case 2:
@@ -217,9 +289,11 @@ public class Prologue_comic : MonoBehaviour
                 break;
             case 7:
                 imagePath = "Sprites/Comic/Prologue/02/comics_2-6";
-                comic_step = 1;
+                break;
+            case 8:
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
+                comic_step = 1;
                 return;
         }
         comic_image_add();
@@ -230,6 +304,7 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
+                change_comic_BG("Sprites/Comic/Prologue/03/background_c3");
                 imagePath = "Sprites/Comic/Prologue/03/comics_3-1";
                 break;
             case 2:
@@ -276,9 +351,87 @@ public class Prologue_comic : MonoBehaviour
                 break;
             case 16:
                 imagePath = "Sprites/Comic/Prologue/03/dialogbox_3-10";
-                comic_step = 1;
+                break;
+            case 17:
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
+                comic_step = 1;
+                return;
+        }
+        comic_image_add();
+    }
+    private void comic_image_Prologue04()
+    {
+        switch (comic_step)
+        {
+            case 1:
+                change_comic_BG("Sprites/Comic/Prologue/04/background_c4");
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-1";
+                break;
+            case 2:
+                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-1";
+                break;
+            case 3:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-2";
+                break;
+            case 4:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-3";
+                break;
+            case 5:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-4";
+                break;
+            case 6:
+                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-3";
+                break;
+            case 7:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-5";
+                break;
+            case 8:
+                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-4";
+                break;
+            case 9:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-6";
+                break;
+            case 10:
+                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-5";
+                break;
+            case 11:
+                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-6";
+                break;
+            case 12:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-7";
+                break;
+            case 13:
+                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-7";
+                break;
+            case 14:
+                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-8";
+                break;
+            case 15:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-8";
+                break;
+            case 16:
+                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-9";
+                break;
+            case 17:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-9";
+                break;
+            case 18:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-10";
+                break;
+            case 19:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-11";
+                break;
+            case 20:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-12";
+                break;
+            case 21:
+                imagePath = "Sprites/Comic/Prologue/04/comics_4-13";
+                break;
+            case 22:
+                static_parameters.Comic_scene_sort++;
+                DeleteAllImagesUnderCanvas();
+                comic_step = 1;
                 return;
         }
         comic_image_add();
