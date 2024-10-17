@@ -127,7 +127,7 @@ public class Dummy_ctrl : MonoBehaviour
     public GameObject bomb_piano;
     void Skill_outsourcing_DeBlood()//skill_add
     {
-        if (Skill_public_funtion.play_piano == true)
+        if (Skill_public_funtion.play_piano)
         {
             switch (Skill_public_funtion.feel_to_skill)
             {
