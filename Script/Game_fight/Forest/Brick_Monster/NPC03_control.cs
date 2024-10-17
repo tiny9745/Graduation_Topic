@@ -19,8 +19,7 @@ public class NPC03_control : MonoBehaviour
     public GameObject NPC03;
     public GameObject hitbox_Brick_Monster;
     public GameObject Drop;
-    bool dead_open = true;
-    bool MC_to_Att = true;
+    bool dead_open = true, MC_to_Att = true;
     public NPC_HP_03 nPC_hP;
     int NPC_angle = 0;
     private bool isFacingRight = true;
@@ -72,9 +71,7 @@ public class NPC03_control : MonoBehaviour
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             dead();
-        }
-        else if (!hit_Ani)
-        {
+        }else if (!hit_Ani){
             if (transform.position == lastPosition)
             {
                 PlayStandAnimation();
@@ -83,9 +80,7 @@ public class NPC03_control : MonoBehaviour
             {
                 PlayWalkAnimation();
             }
-        }
-        else
-        {
+        }else{
             PlayAttackAnimation();
         }
         if (dist >= DetectDistance * 3 / 5)
