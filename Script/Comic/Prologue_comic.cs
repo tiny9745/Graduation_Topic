@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Prologue_comic : MonoBehaviour
 {
@@ -18,13 +19,14 @@ public class Prologue_comic : MonoBehaviour
     void Start()
     {
         comic_step_tmp = comic_step;
+        DeleteAllImagesUnderCanvas();
     }
 
     // Update is called once per frame
     void Update()
     {
         comic_time_sum += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Return) && comic_time_sum > 0.8f)
+        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && comic_time_sum > 0.8f)
         {
             auto_comic_time = 0;
             comic_time_sum = 0;
@@ -47,6 +49,9 @@ public class Prologue_comic : MonoBehaviour
                 case 3:
                     comic_image_Prologue04();
                     break;
+                case 4:
+                    comic_image_Prologue05();
+                    break;
             }
         }
         else
@@ -55,7 +60,7 @@ public class Prologue_comic : MonoBehaviour
             {
                 auto_comic(6f);
             }
-            else if (static_parameters.Comic_scene_sort == 0 && comic_step == 16 || static_parameters.Comic_scene_sort == 1 && comic_step == 21)
+            else if (static_parameters.Comic_scene_sort == 2 && comic_step == 16 || static_parameters.Comic_scene_sort == 3 && comic_step == 21 || static_parameters.Comic_scene_sort == 4 && comic_step == 9)
             {
                 auto_comic(8f);
             }
@@ -432,6 +437,46 @@ public class Prologue_comic : MonoBehaviour
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
                 comic_step = 1;
+                return;
+        }
+        comic_image_add();
+    }
+    private void comic_image_Prologue05()
+    {
+        switch (comic_step)
+        {
+            case 1:
+                change_comic_BG("Sprites/Comic/Prologue/05/background_c5");
+                imagePath = "Sprites/Comic/Prologue/05/comics_5-1";
+                break;
+            case 2:
+                imagePath = "Sprites/Comic/Prologue/05/dialogbox_5-1";
+                break;
+            case 3:
+                imagePath = "Sprites/Comic/Prologue/05/comics_5-2";
+                break;
+            case 4:
+                imagePath = "Sprites/Comic/Prologue/05/dialogbox_5-2";
+                break;
+            case 5:
+                imagePath = "Sprites/Comic/Prologue/05/comics_5-3";
+                break;
+            case 6:
+                imagePath = "Sprites/Comic/Prologue/05/comics_5-4";
+                break;
+            case 7:
+                imagePath = "Sprites/Comic/Prologue/05/comics_5-5";
+                break;
+            case 8:
+                imagePath = "Sprites/Comic/Prologue/05/comics_5-6";
+                break;
+            case 9:
+                imagePath = "Sprites/Comic/Prologue/05/comics_5-7";
+                break;
+            case 10:
+                static_parameters.Comic_scene_sort = -1;
+                comic_step = 1;
+                SceneManager.LoadScene("prohibit");
                 return;
         }
         comic_image_add();

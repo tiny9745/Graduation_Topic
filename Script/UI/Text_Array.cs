@@ -9,7 +9,7 @@ public class Text_Array : MonoBehaviour
     static public short[] diary_step; short pickdiary = 1;
     static public uint diary_number = 0;
     static public bool Add_array = true;
-    public GameObject diarypointer,Rightpage,Dspace;
+    public GameObject diarypointer, Rightpage, Dspace;
     public Auto_text_paper auto_Text_Paper;
     short[] pick_tmp;
     void Awake()
@@ -244,7 +244,8 @@ public class Text_Array : MonoBehaviour
         click_button_Y();
         pickplace();
     }
-    public void Confirm(){
+    public void Confirm()
+    {
         auto_Text_Paper.Confirm();
         //print(auto_Text_Paper.Diary_serial_number+" "+auto_Text_Paper.mood);
     }
@@ -286,33 +287,38 @@ public class Text_Array : MonoBehaviour
                 static_parameters.pickdiary = 4;
                 break;
         }
-        for (int i = 0; i < 3; i++) if (pick_tmp[i] == 2){
-            pick_tmp[i] = 3;
-            // 確保 EventSystem 存在
-            if (EventSystem.current != null)
+        for (int i = 0; i < 3; i++) if (pick_tmp[i] == 2)
             {
-                // 獲取當前選中的按鈕，確保有選中的按鈕
-                GameObject selectedButton = EventSystem.current.currentSelectedGameObject;
-                if (selectedButton != null)
+                pick_tmp[i] = 3;
+                auto_Text_Paper.diary_buff_check[i+1][0] = auto_Text_Paper.diary_buff_check[0][0];
+                auto_Text_Paper.diary_buff_check[i+1][1] = auto_Text_Paper.diary_buff_check[0][1];
+                auto_Text_Paper.diary_buff_check[i+1][2] = auto_Text_Paper.diary_buff_check[0][2];
+                auto_Text_Paper.diary_buff_check[i+1][3] = auto_Text_Paper.diary_buff_check[0][3];
+                // 確保 EventSystem 存在
+                if (EventSystem.current != null)
                 {
-                    // 嘗試獲取 Button 組件
-                    Button buttonComponent = selectedButton.GetComponent<Button>();
-                    if (buttonComponent != null)
+                    // 獲取當前選中的按鈕，確保有選中的按鈕
+                    GameObject selectedButton = EventSystem.current.currentSelectedGameObject;
+                    if (selectedButton != null)
                     {
-                        // 自訂禁用狀態的外觀，讓按鈕禁用時保持原樣
-                        ColorBlock colors = buttonComponent.colors;
-                        colors.disabledColor = colors.normalColor;
-                        buttonComponent.colors = colors;
-                        // 將按鈕設置為不可互動
-                        buttonComponent.interactable = false;
+                        // 嘗試獲取 Button 組件
+                        Button buttonComponent = selectedButton.GetComponent<Button>();
+                        if (buttonComponent != null)
+                        {
+                            // 自訂禁用狀態的外觀，讓按鈕禁用時保持原樣
+                            ColorBlock colors = buttonComponent.colors;
+                            colors.disabledColor = colors.normalColor;
+                            buttonComponent.colors = colors;
+                            // 將按鈕設置為不可互動
+                            buttonComponent.interactable = false;
+                        }
                     }
                 }
+                auto_Text_Paper.diary_name[i].text = auto_Text_Paper.Pick_Text.text;
+                auto_Text_Paper.Pick_Text.text = "";
+                Rightpage.SetActive(true);
+                Dspace.SetActive(false);
             }
-            auto_Text_Paper.diary_name[i].text = auto_Text_Paper.Pick_Text.text;
-            auto_Text_Paper.Pick_Text.text = "";
-            Rightpage.SetActive(true);
-            Dspace.SetActive(false);
-        }
     }
 }
 

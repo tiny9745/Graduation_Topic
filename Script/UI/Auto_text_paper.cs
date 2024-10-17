@@ -165,10 +165,10 @@ public class Auto_text_paper : MonoBehaviour
                     }
                     if (item == content.Name_number)
                     {
-                        diary_buff_check[0][0] += content.HP;
-                        diary_buff_check[0][1] += content.Att_pow;
-                        diary_buff_check[0][2] += content.Att_speed;
-                        diary_buff_check[0][3] += content.Walk_speed;
+                        diary_buff_check[0][0] = content.HP;
+                        diary_buff_check[0][1] = content.Att_pow;
+                        diary_buff_check[0][2] = content.Att_speed;
+                        diary_buff_check[0][3] = content.Walk_speed;
                         if (content.Feeling != "None")
                         {
                             mood = content.Feeling;
