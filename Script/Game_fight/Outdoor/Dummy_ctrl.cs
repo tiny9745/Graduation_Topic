@@ -61,30 +61,27 @@ public class Dummy_ctrl : MonoBehaviour
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
-            if (NPC_HP > 0)
+            if (other.gameObject.tag == "Player")
             {
-                if (other.gameObject.tag == "Player")
+                if (open_EnableHitbox)
                 {
-                    if (open_EnableHitbox)
-                    {
-                        Invoke("EnableHitbox", 0.1f);
-                        open_EnableHitbox = false;
-                    }
+                    Invoke("EnableHitbox", 0.1f);
+                    open_EnableHitbox = false;
                 }
-                if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            }
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            {
+                if (nPC_hP == null)
                 {
-                    if (nPC_hP == null)
-                    {
-                        Debug.LogError("nPC_hP is not assigned.");
-                        return;
-                    }
-                    nPC_hP.TakeDamage(static_parameters.MC_ATK, Dummy_DEF);
-                    Skill_public_funtion.Normal_blood_deduction_NPC = true;
-                    MC_to_Att = false;
-                    Skill_outsourcing_DeBlood();//skill_add
-                    Invoke("wait_MC_att", 0.2f);
-                    nextDamageTime = Time.time + damageCooldown;
+                    Debug.LogError("nPC_hP is not assigned.");
+                    return;
                 }
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, Dummy_DEF);
+                Skill_public_funtion.Normal_blood_deduction_NPC = true;
+                MC_to_Att = false;
+                Skill_outsourcing_DeBlood();//skill_add
+                Invoke("wait_MC_att", 0.2f);
+                nextDamageTime = Time.time + damageCooldown;
             }
         }
     }
