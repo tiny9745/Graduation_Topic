@@ -10,7 +10,7 @@ public class Dummy_ctrl : MonoBehaviour
     public float NPC_HP_Max = 850;
     public float NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit = false;
+    bool hit,stun = false;
     public GameObject hitbox_Dummy;
     bool MC_to_Att = true;
     public Dummy_HP nPC_hP;
@@ -59,7 +59,7 @@ public class Dummy_ctrl : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -147,7 +147,9 @@ public class Dummy_ctrl : MonoBehaviour
                     }
                     else
                     {
-                        play_piano_atk = 0;
+                        play_piano_atk = 0; Debug.Log("stun");
+                        stun = true;
+                        Invoke("Stun_end",1);
                     }
                     break;
                 case 2:
@@ -178,5 +180,9 @@ public class Dummy_ctrl : MonoBehaviour
                     break;
             }
         }
+    }
+
+    void Stun_end(){
+        stun = false;
     }
 }
