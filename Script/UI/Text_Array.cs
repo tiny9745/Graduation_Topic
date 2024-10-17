@@ -290,10 +290,20 @@ public class Text_Array : MonoBehaviour
         for (int i = 0; i < 3; i++) if (pick_tmp[i] == 2)
             {
                 pick_tmp[i] = 3;
-                auto_Text_Paper.diary_buff_check[i+1][0] = auto_Text_Paper.diary_buff_check[0][0];
-                auto_Text_Paper.diary_buff_check[i+1][1] = auto_Text_Paper.diary_buff_check[0][1];
-                auto_Text_Paper.diary_buff_check[i+1][2] = auto_Text_Paper.diary_buff_check[0][2];
-                auto_Text_Paper.diary_buff_check[i+1][3] = auto_Text_Paper.diary_buff_check[0][3];
+                auto_Text_Paper.diary_buff_check[i + 1][0] = auto_Text_Paper.diary_buff_check[0][0];
+                auto_Text_Paper.diary_buff_check[i + 1][1] = auto_Text_Paper.diary_buff_check[0][1];
+                auto_Text_Paper.diary_buff_check[i + 1][2] = auto_Text_Paper.diary_buff_check[0][2];
+                auto_Text_Paper.diary_buff_check[i + 1][3] = auto_Text_Paper.diary_buff_check[0][3];
+                auto_Text_Paper.diary_buff_name[i] = "";
+                auto_Text_Paper.diary_buff_name[i] += "HP:+";
+                auto_Text_Paper.diary_buff_name[i] += auto_Text_Paper.diary_buff_check[i + 1][0].ToString() + "\r\n";
+                auto_Text_Paper.diary_buff_name[i] += "ATK_Pow:+";
+                auto_Text_Paper.diary_buff_name[i] += auto_Text_Paper.diary_buff_check[i + 1][1].ToString() + "\r\n";
+                auto_Text_Paper.diary_buff_name[i] += "ATK_Speed:+";
+                auto_Text_Paper.diary_buff_name[i] += auto_Text_Paper.diary_buff_check[i + 1][2].ToString() + "\r\n";
+                auto_Text_Paper.diary_buff_name[i] += "Walk_Speed:+";
+                auto_Text_Paper.diary_buff_name[i] += auto_Text_Paper.diary_buff_check[i + 1][3].ToString() + "\r\n";
+
                 // 確保 EventSystem 存在
                 if (EventSystem.current != null)
                 {
