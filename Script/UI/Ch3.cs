@@ -60,7 +60,7 @@ public class Ch3 : MonoBehaviour
             Diarypage.SetActive(true);
         }
 
-        if (page == (Max_page - 1)){
+        if (page == Max_page){
             Forward.SetActive(false);
         }else{
             Forward.SetActive(true);
