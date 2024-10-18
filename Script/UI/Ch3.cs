@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class Ch3 : MonoBehaviour
 {
     static public int page = 0;
-    public GameObject Forward, Backward,Checkpage,Diarypage;
+    public GameObject Forward, Backward, Checkpage, Diarypage;
     public Image Background;
     public Sprite Page_word, Page_work;
-    public Text Diary_Left, Diary_Right;string Read_text;
+    public Text Diary_Left, Diary_Right; string Read_text;
     int Max_page = 0;
 
-    public UI UI; public Drag_End D_text;
+    public UI UI; public Drag_End Drag_End;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class Ch3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Open()
     {
@@ -43,26 +43,32 @@ public class Ch3 : MonoBehaviour
     public void Backwards()
     {
         page--;
-        Changepages();    
+        Changepages();
     }
 
     void Changepages()
     {
-        if (page == 0){
+        if (page == 0)
+        {
             Backward.SetActive(false);
             Background.sprite = Page_work;
             Checkpage.SetActive(true);
             Diarypage.SetActive(false);
-        }else{
+        }
+        else
+        {
             Backward.SetActive(true);
             Background.sprite = Page_word;
             Checkpage.SetActive(false);
             Diarypage.SetActive(true);
         }
 
-        if (page == Max_page){
+        if (page == Max_page)
+        {
             Forward.SetActive(false);
-        }else{
+        }
+        else
+        {
             Forward.SetActive(true);
         }
         Write();
@@ -70,21 +76,29 @@ public class Ch3 : MonoBehaviour
 
     public void Read()
     {
-        Read_text = D_text.all_text;       
+        Read_text = Drag_End.all_text;
     }
     void Write()
     {
-        if (static_parameters.pickdiary<3)
+        if (static_parameters.pickdiary < 3)
         {
-            if(static_parameters.pickdiary==1){
+            if (static_parameters.pickdiary == 1)
+            {
                 Diary_Left.text = Read_text;
-            }else{
+            }
+            else
+            {
                 Diary_Right.text = Read_text;
             }
-        }else{
-            if(static_parameters.pickdiary==3){
+        }
+        else
+        {
+            if (static_parameters.pickdiary == 3)
+            {
                 Diary_Left.text = Read_text;
-            }else{
+            }
+            else
+            {
                 Diary_Right.text = Read_text;
             }
         }
