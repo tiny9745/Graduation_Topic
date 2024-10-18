@@ -11,7 +11,7 @@ public class Auto_text_paper : MonoBehaviour
     public GameObject itemPrefab, itemPanel, ExtraPage2;
     public Text ExtraPage2_text;
     public float[][] diary_buff_check;
-    string[] diary_buff_name;
+    public string[] diary_buff_name;
     public Text Pick_Text, ALLB;
     public Text[] diary_name;
     public Drag_End drag_end;
@@ -165,10 +165,10 @@ public class Auto_text_paper : MonoBehaviour
                     }
                     if (item == content.Name_number)
                     {
-                        diary_buff_check[0][0] += content.HP;
-                        diary_buff_check[0][1] += content.Att_pow;
-                        diary_buff_check[0][2] += content.Att_speed;
-                        diary_buff_check[0][3] += content.Walk_speed;
+                        diary_buff_check[0][0] = content.HP;
+                        diary_buff_check[0][1] = content.Att_pow;
+                        diary_buff_check[0][2] = content.Att_speed;
+                        diary_buff_check[0][3] = content.Walk_speed;
                         if (content.Feeling != "None")
                         {
                             mood = content.Feeling;
@@ -227,7 +227,7 @@ public class Auto_text_paper : MonoBehaviour
 
     public void ExtraPage2_Yes()
     {
-        diary_buff_name[0] = ExtraPage2_text.text;
+        // diary_buff_name[0] = ExtraPage2_text.text;
         if (Text_Array.diary_number == 0)
         {
             Pick_Text.text = "新讀的小說";

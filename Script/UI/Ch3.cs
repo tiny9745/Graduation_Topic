@@ -88,6 +88,5 @@ public class Ch3 : MonoBehaviour
                 Diary_Right.text = Read_text;
             }
         }
-
     }
 }
