@@ -9,7 +9,7 @@ public class Ch3 : MonoBehaviour
     public GameObject Forward, Backward, Checkpage, Diarypage;
     public Image Background;
     public Sprite Page_word, Page_work;
-    public Text Diary_Left, Diary_Right; 
+    public Text Diary_Left, Diary_Right;
     public string[] Read_text;
     int Max_page = 0;
 
@@ -83,23 +83,23 @@ public class Ch3 : MonoBehaviour
     public void Read()
     {
         // Read_text = Drag_End.all_text;
-
     }
     void Write()
     {
         switch (page)
         {
             case 1:
-                Diary_Left.text = Read_text[0];
+                overflow_text(Read_text[0]);
+                // Diary_Left.text = Read_text[0];
                 break;
             case 2:
-                Diary_Left.text = Read_text[1];
+                overflow_text(Read_text[1]);
                 break;
             case 3:
-                Diary_Left.text = Read_text[2];
+                overflow_text(Read_text[2]);
                 break;
             case 4:
-                Diary_Left.text = Read_text[3];
+                overflow_text(Read_text[3]);
                 break;
         }
     }
@@ -126,4 +126,40 @@ public class Ch3 : MonoBehaviour
     //         }
     //     }
     // }
+
+    private void overflow_text(string Read_text)
+    {
+        TextGenerator textGen = new TextGenerator();
+        TextGenerationSettings settings = Diary_Left.GetGenerationSettings(Diary_Left.rectTransform.rect.size);
+
+        int charIndex = 0;
+        int overflowIndex = 0;
+        bool isLeftFull = false;
+
+        // Find the point at which the text overflows
+        while (charIndex < Read_text.Length)
+        {
+            string tempText = Read_text.Substring(0, charIndex + 1);
+            textGen.Populate(tempText, settings);
+            if (textGen.characterCountVisible < tempText.Length)
+            {
+                isLeftFull = true;
+                overflowIndex = charIndex;
+                break;
+            }
+            charIndex++;
+        }
+
+        // Assign text to left and right texts
+        if (isLeftFull)
+        {
+            Diary_Left.text = Read_text.Substring(0, overflowIndex);
+            Diary_Right.text = Read_text.Substring(overflowIndex);
+        }
+        else
+        {
+            Diary_Left.text = Read_text;
+            Diary_Right.text = "";
+        }
+    }
 }
