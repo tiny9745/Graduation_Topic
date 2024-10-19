@@ -87,7 +87,7 @@ public class Ch3 : MonoBehaviour
     }
     void Write()
     {
-        switch (static_parameters.pickdiary)
+        switch (page)
         {
             case 1:
                 Diary_Left.text = Read_text[0];
