@@ -10,8 +10,8 @@ public class Text_Array : MonoBehaviour
     static public uint diary_number = 0;
     static public bool Add_array = true;
     public GameObject diarypointer, Rightpage, Dspace;
-    public Auto_text_paper auto_Text_Paper;
-    short[] pick_tmp;
+    public Auto_text_paper auto_Text_Paper; public Ch3 ch3; public Drag_End drag_End;
+    public short[] pick_tmp;
     void Awake()
     {
         if (Add_array)
@@ -287,7 +287,9 @@ public class Text_Array : MonoBehaviour
                 static_parameters.pickdiary = 4;
                 break;
         }
-        for (int i = 0; i < 3; i++) if (pick_tmp[i] == 2)
+        for (int i = 0; i < 4; i++)
+        {
+            if (pick_tmp[i] == 2)
             {
                 pick_tmp[i] = 3;
                 auto_Text_Paper.diary_buff_check[i + 1][0] = auto_Text_Paper.diary_buff_check[0][0];
@@ -303,7 +305,7 @@ public class Text_Array : MonoBehaviour
                 auto_Text_Paper.diary_buff_name[i] += auto_Text_Paper.diary_buff_check[i + 1][2].ToString() + "\r\n";
                 auto_Text_Paper.diary_buff_name[i] += "Walk_Speed:+";
                 auto_Text_Paper.diary_buff_name[i] += auto_Text_Paper.diary_buff_check[i + 1][3].ToString() + "\r\n";
-
+                ch3.Read_text[i] = drag_End.all_text;
                 // 確保 EventSystem 存在
                 if (EventSystem.current != null)
                 {
@@ -329,6 +331,8 @@ public class Text_Array : MonoBehaviour
                 Rightpage.SetActive(true);
                 Dspace.SetActive(false);
             }
+            Debug.Log("ch3.Read_text[i]:" + i + ",text:" + ch3.Read_text[i]+"\r\n");
+        }
     }
 }
 
