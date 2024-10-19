@@ -9,13 +9,19 @@ public class Ch3 : MonoBehaviour
     public GameObject Forward, Backward, Checkpage, Diarypage;
     public Image Background;
     public Sprite Page_word, Page_work;
-    public Text Diary_Left, Diary_Right; string Read_text;
+    public Text Diary_Left, Diary_Right; 
+    public string[] Read_text;
     int Max_page = 0;
 
     public UI UI; public Drag_End Drag_End;
     // Start is called before the first frame update
     void Start()
     {
+        Read_text = new string[4];
+        for (int i = 0; i < 4; i++)
+        {
+            Read_text[i] = "";
+        }
         Open();
     }
 
@@ -76,31 +82,48 @@ public class Ch3 : MonoBehaviour
 
     public void Read()
     {
-        Read_text = Drag_End.all_text;
+        // Read_text = Drag_End.all_text;
+
     }
     void Write()
     {
-        if (static_parameters.pickdiary < 3)
+        switch (static_parameters.pickdiary)
         {
-            if (static_parameters.pickdiary == 1)
-            {
-                Diary_Left.text = Read_text;
-            }
-            else
-            {
-                Diary_Right.text = Read_text;
-            }
-        }
-        else
-        {
-            if (static_parameters.pickdiary == 3)
-            {
-                Diary_Left.text = Read_text;
-            }
-            else
-            {
-                Diary_Right.text = Read_text;
-            }
+            case 1:
+                Diary_Left.text = Read_text[0];
+                break;
+            case 2:
+                Diary_Left.text = Read_text[1];
+                break;
+            case 3:
+                Diary_Left.text = Read_text[2];
+                break;
+            case 4:
+                Diary_Left.text = Read_text[3];
+                break;
         }
     }
+    //     if (static_parameters.pickdiary < 3)
+    //     {
+    //         if (static_parameters.pickdiary == 1)
+    //         {
+    //             Diary_Left.text = Read_text;
+    //         }
+    //         else
+    //         {
+    //             Diary_Right.text = Read_text;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         if (static_parameters.pickdiary == 3)
+    //         {
+    //             Diary_Left.text = Read_text;
+    //         }
+    //         else
+    //         {
+    //             Diary_Right.text = Read_text;
+    //         }
+    //     }
+    // }
 }
