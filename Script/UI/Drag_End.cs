@@ -65,7 +65,7 @@ public class Drag_End : MonoBehaviour, IDropHandler
         {
             string tempText = fullText.Substring(0, charIndex + 1);
             textGen.Populate(tempText, settings);
-            if (textGen.characterCountVisible < tempText.Length)
+            if (textGen.characterCountVisible < tempText.Length - 2)
             {
                 isLeftFull = true;
                 overflowIndex = charIndex;
