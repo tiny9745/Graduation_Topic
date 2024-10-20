@@ -16,8 +16,6 @@ public class Drag_End : MonoBehaviour, IDropHandler
         Text dragText = eventData.pointerDrag.GetComponent<Text>(); // Get the Text component on the dragged object
         if (dragText != null)
         {
-            Text_Array.diary_step[Text_Array.diary_number]++;
-
             // Concatenate the dragged text to the existing text and assign to left text
             string fullText = Diary_text_Left.GetComponent<Text>().text;
 
@@ -29,6 +27,8 @@ public class Drag_End : MonoBehaviour, IDropHandler
                     {
                         if (itemNameInt == content.Name_number)
                         {
+                            static_parameters.diary_memory[static_parameters.diary_step] = content.Name_number;
+                            static_parameters.diary_step++;
                             fullText += content.Text_text;
                             all_text = fullText;
                         }
