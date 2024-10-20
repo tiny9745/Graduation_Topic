@@ -6,15 +6,13 @@ using UnityEngine;
 public class Dummy_ctrl : MonoBehaviour
 {
     public GameObject TargetObj;
-    public float Dummy_ATK = 15; public float Dummy_DEF = 15;
-    public float NPC_HP_Max = 850;
-    public float NPC_HP;
+    public float Dummy_ATK = 15, Dummy_DEF = 15;
+    public float NPC_HP_Max = 850, NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit,stun = false;
+    bool hit, stun = false;  Byte play_piano_atk = 0;
     public GameObject hitbox_Dummy;
     bool MC_to_Att = true;
     public Dummy_HP nPC_hP;
-
 
     void Start()
     {
@@ -46,15 +44,7 @@ public class Dummy_ctrl : MonoBehaviour
         Skill_outsourcing_updata();
     }
 
-    public float GetDummy_ATK()
-    {
-        return Dummy_ATK;
-    }
 
-    public bool GetDummy_hit()
-    {
-        return hit;
-    }
 
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
@@ -82,6 +72,35 @@ public class Dummy_ctrl : MonoBehaviour
                 Skill_outsourcing_DeBlood();//skill_add
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
+            }
+            if (other.gameObject.CompareTag("MC_bomb"))
+            {
+                switch (Skill_public_funtion.feel_to_skill)
+                {
+                    case 0:
+                        NPC_HP -= 225;Debug.Log("boom");
+                        break;
+                    case 1:
+                        Debug.Log("stun");
+                        stun = true;
+                        Invoke("Stun_end", 1);
+                        break;
+                    case 2:
+                        Debug.Log("play_piano_atk:" + play_piano_atk);
+                        play_piano_atk++;
+                        Debug.Log("play_piano_atk:" + play_piano_atk);
+                        break;
+                    case 3:
+                        if (NPC_HP < NPC_back) NPC_HP = 0;
+                        else
+                        {
+                            Vector3 currentPosition = transform.position;
+                            transform.position = currentPosition - NPC_back * Vector3.back;
+                        }
+                        play_piano_atk = 0; Debug.Log("knockback");
+                        break;
+                }
+
             }
         }
     }
@@ -115,74 +134,37 @@ public class Dummy_ctrl : MonoBehaviour
                 {
                     Skill_public_funtion_1_close = false;
                     nPC_hP.TakeDamage(Dummy_ATK, Dummy_DEF);
-                    Debug.Log("NPC_HP:" + NPC_HP);
+                    //Debug.Log("NPC_HP:" + NPC_HP);
                 }
             }
         }
     }
-    Byte play_piano_atk = 0;
+
     public GameObject bomb_piano;
     void Skill_outsourcing_DeBlood()//skill_add
     {
         if (Skill_public_funtion.play_piano)
         {
-            switch (Skill_public_funtion.feel_to_skill)
+            if (play_piano_atk <= 3)play_piano_atk++;
+            else
             {
-                case 0:
-                    if (play_piano_atk <= 3)
-                    {
-                        play_piano_atk++;
-                    }
-                    else
-                    {
-                        NPC_HP -= 225;
-                        Instantiate(bomb_piano, transform.position, Quaternion.identity);
-                        play_piano_atk = 0;
-                    }
-                    break;
-                case 1:
-                    if (play_piano_atk <= 6)
-                    {
-                        play_piano_atk++;
-                    }
-                    else
-                    {
-                        play_piano_atk = 0; Debug.Log("stun");
-                        stun = true;
-                        Invoke("Stun_end",1);
-                    }
-                    break;
-                case 2:
-                    if (play_piano_atk <= 12)
-                    {
-                        play_piano_atk++;
-                    }
-                    else
-                    {
-                        play_piano_atk = 0;
-                    }
-                    break;
-                case 3:
-                    if (play_piano_atk <= 15)
-                    {
-                        play_piano_atk++;
-                    }
-                    else
-                    {
-                        if (NPC_HP < NPC_back) NPC_HP = 0;
-                        else
-                        {
-                            Vector3 currentPosition = transform.position;
-                            transform.position = currentPosition - NPC_back * Vector3.back;
-                        }
-                        play_piano_atk = 0;
-                    }
-                    break;
+                Instantiate(bomb_piano, transform.position, Quaternion.identity);
+                play_piano_atk = 0;
             }
         }
     }
 
-    void Stun_end(){
+    void Stun_end()
+    {
         stun = false;
+    }
+    public float GetDummy_ATK()
+    {
+        return Dummy_ATK;
+    }
+
+    public bool GetDummy_hit()
+    {
+        return hit;
     }
 }
