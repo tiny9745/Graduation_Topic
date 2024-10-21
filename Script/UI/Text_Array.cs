@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class Text_Array : MonoBehaviour
 {
     static public List<Text_content> Text_contents = new List<Text_content>();
-     short pickdiary = 1;
+    short pickdiary = 1;
     static public bool Add_array = true;
     public GameObject diarypointer, Rightpage, Dspace;
     public Auto_text_paper auto_Text_Paper; public Ch3 ch3; public Drag_End drag_End;
@@ -203,40 +203,40 @@ public class Text_Array : MonoBehaviour
 
     public void pick1()
     {
-        pick_tmp[0]++;
-        pick_tmp[1] = 0;
-        pick_tmp[2] = 0;
-        pick_tmp[3] = 0;
+        if (pick_tmp[0] < 2) pick_tmp[0]++;
+        if (pick_tmp[1] < 2) pick_tmp[1] = 0;
+        if (pick_tmp[2] < 2) pick_tmp[2] = 0;
+        if (pick_tmp[3] < 2) pick_tmp[3] = 0;
         pickdiary = 1;
         click_button_Y();
         pickplace();
     }
     public void pick2()
     {
-        pick_tmp[0] = 0;
-        pick_tmp[1]++;
-        pick_tmp[2] = 0;
-        pick_tmp[3] = 0;
+        if (pick_tmp[0] < 2) pick_tmp[0] = 0;
+        if (pick_tmp[1] < 2) pick_tmp[1]++;
+        if (pick_tmp[2] < 2) pick_tmp[2] = 0;
+        if (pick_tmp[3] < 2) pick_tmp[3] = 0;
         pickdiary = 2;
         click_button_Y();
         pickplace();
     }
     public void pick3()
     {
-        pick_tmp[0] = 0;
-        pick_tmp[1] = 0;
-        pick_tmp[2]++;
-        pick_tmp[3] = 0;
+        if (pick_tmp[0] < 2) pick_tmp[0] = 0;
+        if (pick_tmp[1] < 2) pick_tmp[1] = 0;
+        if (pick_tmp[2] < 2) pick_tmp[2]++;
+        if (pick_tmp[3] < 2) pick_tmp[3] = 0;
         pickdiary = 3;
         click_button_Y();
         pickplace();
     }
     public void pick4()
     {
-        pick_tmp[0] = 0;
-        pick_tmp[1] = 0;
-        pick_tmp[2] = 0;
-        pick_tmp[3]++;
+        if (pick_tmp[0] < 2) pick_tmp[0] = 0;
+        if (pick_tmp[1] < 2) pick_tmp[1] = 0;
+        if (pick_tmp[2] < 2) pick_tmp[2] = 0;
+        if (pick_tmp[3] < 2) pick_tmp[3]++;
         pickdiary = 4;
         click_button_Y();
         pickplace();
@@ -323,12 +323,13 @@ public class Text_Array : MonoBehaviour
                         }
                     }
                 }
+                Debug.Log("auto_Text_Paper.diary_name[" + i + "]=" + auto_Text_Paper.diary_name[i].text);
                 auto_Text_Paper.diary_name[i].text = auto_Text_Paper.Pick_Text.text;
                 auto_Text_Paper.Pick_Text.text = "";
                 Rightpage.SetActive(true);
                 Dspace.SetActive(false);
             }
-            Debug.Log("ch3.Read_text[i]:" + i + ",text:" + ch3.Read_text[i]+"\r\n");
+            Debug.Log("ch3.Read_text[i]:" + i + ",text:" + ch3.Read_text[i] + "\r\n");
         }
     }
 }

@@ -96,6 +96,12 @@ public class Auto_text_paper : MonoBehaviour
             {
                 if (content.Text_exist)
                 {
+                    if (content.Name_number == item && item < 100)
+                    {
+                        static_parameters.diary_number = Mathf.FloorToInt(content.Name_number / 10);
+                        Debug.Log("content.Name_number:" + content.Name_number);
+                        Debug.Log("Diary_number:" + static_parameters.diary_number);
+                    }
                     if (content.Name_number <= item * 10 + 10 && content.Name_number > item * 10)
                     {
                         GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
@@ -170,11 +176,11 @@ public class Auto_text_paper : MonoBehaviour
 
     public void ExtraPage2_Yes()
     {
-        if (static_parameters.diary_number == 0)
+        if (static_parameters.diary_number == 1)
         {
             Pick_Text.text = "新讀的小說";
         }
-        else if (static_parameters.diary_number >= 1)
+        else if (static_parameters.diary_number >= 2)
         {
             Pick_Text.text = "其他的小說";
         }
