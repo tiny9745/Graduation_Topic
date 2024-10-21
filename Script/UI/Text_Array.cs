@@ -325,6 +325,7 @@ public class Text_Array : MonoBehaviour
                 }
                 Debug.Log("auto_Text_Paper.diary_name[" + i + "]=" + auto_Text_Paper.diary_name[i].text);
                 auto_Text_Paper.diary_name[i].text = auto_Text_Paper.Pick_Text.text;
+                auto_Text_Paper.diary_name_tmp[i].text = auto_Text_Paper.diary_name[i].text;
                 auto_Text_Paper.Pick_Text.text = "";
                 Rightpage.SetActive(true);
                 Dspace.SetActive(false);

@@ -13,7 +13,7 @@ public class Auto_text_paper : MonoBehaviour
     public float[][] diary_buff_check;
     public string[] diary_buff_name;
     public Text Pick_Text, ALLB;
-    public Text[] diary_name;
+    public Text[] diary_name; public Text[] diary_name_tmp;
     public Drag_End drag_end;
     public Change_mood change_mood;
     public int Diary_serial_number;
