@@ -9,9 +9,10 @@ public class Dummy_ctrl : MonoBehaviour
     public float Dummy_ATK = 15, Dummy_DEF = 15;
     public float NPC_HP_Max = 850, NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit, stun = false;  Byte play_piano_atk = 0;
-    public GameObject hitbox_Dummy;
-    bool MC_to_Att = true;
+    bool hit, stun = false; Byte play_piano_atk = 0;
+    public GameObject hitbox_Dummy,bomb_piano; 
+    float NPC_back = 10;
+    bool MC_to_Att,open_EnableHitbox = true, Skill_public_funtion_1_close = false;//skill_add
     public Dummy_HP nPC_hP;
 
     void Start()
@@ -43,10 +44,6 @@ public class Dummy_ctrl : MonoBehaviour
         }
         Skill_outsourcing_updata();
     }
-
-
-
-    bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
@@ -69,7 +66,7 @@ public class Dummy_ctrl : MonoBehaviour
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, Dummy_DEF);
                 Skill_public_funtion.Normal_blood_deduction_NPC = true;
                 MC_to_Att = false;
-                Skill_outsourcing_DeBlood();//skill_add
+                Skill();//skill_add
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
@@ -100,7 +97,6 @@ public class Dummy_ctrl : MonoBehaviour
                         play_piano_atk = 0; Debug.Log("knockback");
                         break;
                 }
-
             }
         }
     }
@@ -121,9 +117,7 @@ public class Dummy_ctrl : MonoBehaviour
         hitbox_Dummy.SetActive(false);
         open_EnableHitbox = true;
     }
-
-    bool Skill_public_funtion_1_close = false;//skill_add
-    float NPC_back = 10;//Knockback value of skill effect
+//Knockback value of skill effect
     void Skill_outsourcing_updata()//skill_add
     {
         if (Skill_public_funtion.fight_instinct == true)
@@ -139,9 +133,7 @@ public class Dummy_ctrl : MonoBehaviour
             }
         }
     }
-
-    public GameObject bomb_piano;
-    void Skill_outsourcing_DeBlood()//skill_add
+    void Skill()//skill_add
     {
         if (Skill_public_funtion.play_piano)
         {
