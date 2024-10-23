@@ -82,8 +82,6 @@ public class Auto_text_paper : MonoBehaviour
                     if (content.Name_number == item && item < 100)
                     {
                         static_parameters.diary_number = Mathf.FloorToInt(content.Name_number / 10);
-                        Debug.Log("content.Name_number:" + content.Name_number);
-                        Debug.Log("Diary_number:" + static_parameters.diary_number);
                     }
                     if (content.Name_number <= item * 10 + 10 && content.Name_number > item * 10)
                     {
@@ -178,6 +176,35 @@ public class Auto_text_paper : MonoBehaviour
                 }
             }
         }
+
+        //測試進行中
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+        Debug.Log("A");
+        foreach (GameObject obj in allObjects)
+        {
+            Debug.Log("B");
+            for (int i = 1; i < 5; i++)
+            {
+                Debug.Log("C");
+                // 嘗試將 obj.name 轉換為 int
+                int objectNameAsInt;
+                if (int.TryParse(obj.name, out objectNameAsInt))
+                {
+                    Debug.Log("D");
+                    // 檢查轉換後的名稱是否與 diary_memory 中的值匹配
+                    Debug.Log("objectNameAsInt=" + objectNameAsInt);
+                    Debug.Log("i=" + i);
+                    Debug.Log("Range=" + Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10 + "~" + (Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10 + 10));
+                    if (objectNameAsInt < Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10 + 10 && objectNameAsInt > Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10)
+                    {
+                        Debug.Log("E");
+                        Destroy(obj); // 刪除物件
+                    }
+                }
+            }
+        }
+        //測試進行中
+
         static_parameters.diary_step = 0;
         GenerateItems();
     }

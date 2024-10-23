@@ -34,26 +34,6 @@ public class Drag_End : MonoBehaviour, IDropHandler
                             all_text = fullText;
                         }
                     }
-                    //測試進行中
-                    GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
-
-                    foreach (GameObject obj in allObjects)
-                    {
-                        for (int i = 0; i < 4; i++)
-                        {
-                            // 嘗試將 obj.name 轉換為 int
-                            int objectNameAsInt;
-                            if (int.TryParse(obj.name, out objectNameAsInt))
-                            {
-                                // 檢查轉換後的名稱是否與 diary_memory 中的值匹配
-                                if (objectNameAsInt < Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10 + 10 && objectNameAsInt > Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10)
-                                {
-                                    Destroy(obj); // 刪除物件
-                                }
-                            }
-                        }
-                    }
-                    //測試進行中
                 }
                 Diary_Auto.diary_text_chose(itemNameInt);
             }

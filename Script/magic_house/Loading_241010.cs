@@ -34,7 +34,6 @@ public class Loading_241010 : MonoBehaviour
         {
             screen_close = false;
             loadingScreen.SetActive(false);
-            Debug.Log("close");
         }
         else if (screen_close)
         {
