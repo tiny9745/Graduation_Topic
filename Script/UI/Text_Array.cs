@@ -303,6 +303,19 @@ public class Text_Array : MonoBehaviour
                 auto_Text_Paper.diary_buff_name[i] += "Walk_Speed:+";
                 auto_Text_Paper.diary_buff_name[i] += auto_Text_Paper.diary_buff_check[i + 1][3].ToString() + "\r\n";
                 ch3.Read_text[i] = drag_End.all_text;
+                foreach (Text_content content in Text_Array.Text_contents)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (content.Name_number == static_parameters.diary_memory[0][j])
+                        {
+                            content.Text_exist = false;
+                            static_parameters.diary_memory[i + 1][j] = static_parameters.diary_memory[0][j];
+                            Debug.Log("static_parameters.diary_memory[" + (i + 1) + "][" + j + "]:" + static_parameters.diary_memory[i + 1][j]);
+                            static_parameters.diary_memory[0][j] = 0;
+                        }
+                    }
+                }
                 // 確保 EventSystem 存在
                 if (EventSystem.current != null)
                 {
@@ -323,7 +336,6 @@ public class Text_Array : MonoBehaviour
                         }
                     }
                 }
-                Debug.Log("auto_Text_Paper.diary_name[" + i + "]=" + auto_Text_Paper.diary_name[i].text);
                 auto_Text_Paper.diary_name[i].text = auto_Text_Paper.Pick_Text.text;
                 auto_Text_Paper.diary_name_tmp[i].text = auto_Text_Paper.diary_name[i].text;
                 auto_Text_Paper.Pick_Text.text = "";

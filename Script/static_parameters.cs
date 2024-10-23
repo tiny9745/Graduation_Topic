@@ -19,5 +19,13 @@ public class static_parameters : MonoBehaviour
 
     static public int Comic_scene_sort = 0;
     static public int diary_number = 0;
-    static public uint[] diary_memory = { 0, 0, 0, 0 }; static public uint diary_step;
+    static public uint[][] diary_memory = new uint[][]
+{
+    new uint[] { 0, 0, 0, 0 },//暫存
+    new uint[] { 0, 0, 0, 0 },//以下定存
+    new uint[] { 0, 0, 0, 0 },
+    new uint[] { 0, 0, 0, 0 },
+    new uint[] { 0, 0, 0, 0 }
+};
+ static public uint diary_step;
 }

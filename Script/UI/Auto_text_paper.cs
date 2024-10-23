@@ -55,23 +55,6 @@ public class Auto_text_paper : MonoBehaviour
                     {
                         item = Instantiate(itemPrefab, itemPanel.transform);
                     }
-                    // else if (Text_Array.diary_step[0] == 1 && content.Name_number >= 100 && content.Name_number < 1000)
-                    // {
-                    //     item = Instantiate(itemPrefab, itemPanel.transform);
-                    // }
-                    // else if (Text_Array.diary_step[0] == 2 && content.Name_number >= 1000  && content.Name_number < 10000)
-                    // {
-                    //     item = Instantiate(itemPrefab, itemPanel.transform);
-                    // }
-                    // else if (Text_Array.diary_step[0] == 3 && content.Name_number >= 10000)
-                    // {
-                    //     item = Instantiate(itemPrefab, itemPanel.transform);
-                    // }
-                    // else if (Text_Array.diary_step[0] == -1)
-                    // {
-                    //     item = Instantiate(itemPrefab, itemPanel.transform);
-                    // }
-
                     if (item != null)
                     {
                         item.name = content.Name_number.ToString();
@@ -188,10 +171,10 @@ public class Auto_text_paper : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                if (content.Name_number == static_parameters.diary_memory[i])
+                if (content.Name_number == static_parameters.diary_memory[0][i])
                 {
                     content.Text_exist = false;
-                    static_parameters.diary_memory[i] = 0;
+                    // static_parameters.diary_memory[0][i] = 0;
                 }
             }
         }
@@ -201,7 +184,8 @@ public class Auto_text_paper : MonoBehaviour
     public void ExtraPage2_No()
     {
         ExtraPage2.SetActive(false);
-        for (int i = 0; i < 4; i++) static_parameters.diary_memory[i] = 0;
+        static_parameters.diary_step = 0;
+        for (int i = 0; i < 4; i++) static_parameters.diary_memory[0][i] = 0;
         GenerateItems();
     }
     public void click_D1()
@@ -212,7 +196,14 @@ public class Auto_text_paper : MonoBehaviour
     {
         ALLB.text = diary_buff_name[1];
     }
-
+    public void click_D3()
+    {
+        ALLB.text = diary_buff_name[2];
+    }
+    public void click_D4()
+    {
+        ALLB.text = diary_buff_name[3];
+    }
 
     public void Confirm()
     {
