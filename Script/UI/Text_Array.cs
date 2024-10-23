@@ -370,13 +370,13 @@ public class Text_content
         this.Walk_speed = Walk_speed;
         this.Text_exist = Text_exist;
         this.Text_text = Text_text;
-        if (Text_exist)
-        {
-            static_parameters.MC_HP_Max += HP;
-            static_parameters.MC_ATK += Att_pow; static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
-            static_parameters.MC_ATK_Speed += Att_speed; static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
-            static_parameters.MC_Wspeed += Walk_speed; static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
-        }
+        // if (Text_exist)
+        // {
+        //     static_parameters.MC_HP_Max += HP;
+        //     static_parameters.MC_ATK += Att_pow; static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
+        //     static_parameters.MC_ATK_Speed += Att_speed; static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
+        //     static_parameters.MC_Wspeed += Walk_speed; static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
+        // }
     }
 }
 
