@@ -7,23 +7,19 @@ public class NPC03_control : MonoBehaviour
 {
     NavMeshAgent npcNavi;
     public Animator animator;
-    public GameObject TargetObj;
-    public int DetectDistance = 22; public float NPC03_ATK = 25; public float NPC03_DEF = 5;
-    public float NPC_HP_Max = 70; public float npcSpeed = 4f;
-    public float NPC_HP;
-    float dist;
+    public GameObject TargetObj, Drop;
+    public int DetectDistance = 22, NPC03_ATK = 25, NPC03_DEF = 5;
+    public float NPC_HP_Max = 70, npcSpeed = 4f, NPC_HP, dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani = false, hit = false;
+    bool hit_Ani,stun,hit = false; float NPC_back = 10;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC03;
-    public GameObject hitbox_Brick_Monster;
-    public GameObject Drop;
-    bool dead_open = true, MC_to_Att = true;
+    public GameObject NPC03, hitbox_Brick_Monster;
+    bool dead_open,MC_to_Att = true;
     public NPC_HP_03 nPC_hP;
-    int NPC_angle = 0;
+    int NPC_angle, play_piano_atk = 0;
     private bool isFacingRight = true;
-    public GameObject Img_npc;
+    public GameObject Img_npc,bomb_piano;
 
     void Start()
     {
@@ -71,7 +67,9 @@ public class NPC03_control : MonoBehaviour
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             dead();
-        }else if (!hit_Ani){
+        }
+        else if (!hit_Ani)
+        {
             if (transform.position == lastPosition)
             {
                 PlayStandAnimation();
@@ -80,7 +78,9 @@ public class NPC03_control : MonoBehaviour
             {
                 PlayWalkAnimation();
             }
-        }else{
+        }
+        else
+        {
             PlayAttackAnimation();
         }
         if (dist >= DetectDistance * 3 / 5)
@@ -227,6 +227,64 @@ public class NPC03_control : MonoBehaviour
         }
     }
 
+
+    bool open_EnableHitbox = true;
+    private void OnTriggerStay(Collider other)
+    {
+        if (NPC_HP > 0 && Time.time >= nextDamageTime)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                if (open_EnableHitbox)
+                {
+                    hit_Ani = true;
+                    Invoke("EnableHitbox", 1.1f);
+                    open_EnableHitbox = false;
+                }
+            }
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            {
+                if (nPC_hP == null)
+                {
+                    Debug.LogError("nPC_hP is not assigned.");
+                    return;
+                }
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.2f);
+                nextDamageTime = Time.time + damageCooldown;
+            }
+            if (other.gameObject.CompareTag("MC_bomb"))
+            {
+                switch (Skill_public_funtion.feel_to_skill)
+                {
+                    case 0:
+                        NPC_HP -= 225;Debug.Log("boom");
+                        break;
+                    case 1:
+                        Debug.Log("stun");
+                        stun = true;
+                        Invoke("Stun_end", 1);
+                        break;
+                    case 2:
+                        Debug.Log("play_piano_atk:" + play_piano_atk);
+                        play_piano_atk++;
+                        Debug.Log("play_piano_atk:" + play_piano_atk);
+                        break;
+                    case 3:
+                        if (NPC_HP < NPC_back) NPC_HP = 0;
+                        else
+                        {
+                            Vector3 currentPosition = transform.position;
+                            transform.position = currentPosition - NPC_back * Vector3.back;
+                        }
+                        play_piano_atk = 0; Debug.Log("knockback");
+                        break;
+                }
+
+            }
+        }
+    }
     public float GetNPC03_ATK()
     {
         return NPC03_ATK;
@@ -235,38 +293,6 @@ public class NPC03_control : MonoBehaviour
     public bool GetNPC03_hit()
     {
         return hit;
-    }
-
-    bool open_EnableHitbox = true;
-    private void OnTriggerStay(Collider other)
-    {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime)
-        {
-            if (NPC_HP > 0)
-            {
-                if (other.gameObject.tag == "Player")
-                {
-                    if (open_EnableHitbox)
-                    {
-                        hit_Ani = true;
-                        Invoke("EnableHitbox", 1.1f);
-                        open_EnableHitbox = false;
-                    }
-                }
-                if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-                {
-                    if (nPC_hP == null)
-                    {
-                        Debug.LogError("nPC_hP is not assigned.");
-                        return;
-                    }
-                    nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
-                    MC_to_Att = false;
-                    Invoke("wait_MC_att", 0.2f);
-                    nextDamageTime = Time.time + damageCooldown;
-                }
-            }
-        }
     }
 
     void wait_MC_att()
@@ -323,6 +349,18 @@ public class NPC03_control : MonoBehaviour
     {
         Vector3 currentPosition = transform.position;
         transform.position = currentPosition + 5f * Vector3.back;
+    }
+    void Skill()//skill_add
+    {
+        if (Skill_public_funtion.play_piano)
+        {
+            if (play_piano_atk <= 1)play_piano_atk++;
+            else
+            {
+                Instantiate(bomb_piano, transform.position, Quaternion.identity);
+                play_piano_atk = 0;
+            }
+        }
     }
     void dead_after()
     {
