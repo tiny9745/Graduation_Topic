@@ -244,11 +244,7 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                if (nPC_hP == null)
-                {
-                    Debug.LogError("nPC_hP is not assigned.");
-                    return;
-                }
+                Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
@@ -352,11 +348,17 @@ public class NPC03_control : MonoBehaviour
     }
     void Skill()//skill_add
     {
+        Debug.Log("1");
         if (Skill_public_funtion.play_piano)
         {
-            if (play_piano_atk <= 1)play_piano_atk++;
+            Debug.Log("2"+play_piano_atk);
+            if (play_piano_atk <= -1){
+                play_piano_atk++;
+                Debug.Log("2.5"+play_piano_atk);
+            }       
             else
             {
+            Debug.Log("3");
                 Instantiate(bomb_piano, transform.position, Quaternion.identity);
                 play_piano_atk = 0;
             }
