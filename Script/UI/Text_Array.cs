@@ -192,10 +192,10 @@ public class Text_Array : MonoBehaviour
         {
             int randomIndex = Random.Range(0, falseTextContents.Count);
             falseTextContents[randomIndex].Text_exist = Text_content.Diary_Exist.exist;
-            static_parameters.MC_HP_Max += falseTextContents[randomIndex].HP;
-            static_parameters.MC_ATK += falseTextContents[randomIndex].Att_pow;
-            static_parameters.MC_ATK_Speed += falseTextContents[randomIndex].Att_speed;
-            static_parameters.MC_Wspeed += falseTextContents[randomIndex].Walk_speed;
+            // static_parameters.MC_HP_Max += falseTextContents[randomIndex].HP;
+            // static_parameters.MC_ATK += falseTextContents[randomIndex].Att_pow;
+            // static_parameters.MC_ATK_Speed += falseTextContents[randomIndex].Att_speed;
+            // static_parameters.MC_Wspeed += falseTextContents[randomIndex].Walk_speed;
             // 打印已修改的对象
             Debug.Log($"Modified Text_content: Name_number: {falseTextContents[randomIndex].Name_number}, Name_Text: {falseTextContents[randomIndex].Name_Text}, MC_HP_Max: {static_parameters.MC_HP_Max}, MC_ATK: {static_parameters.MC_ATK}, MC_ATK_Speed: {static_parameters.MC_ATK_Speed}, MC_speed: {static_parameters.MC_Wspeed}, Text_exist: {falseTextContents[randomIndex].Text_exist}");
         }

@@ -165,10 +165,6 @@ public class Auto_text_paper : MonoBehaviour
         }
         foreach (Text_content content in Text_Array.Text_contents)
         {
-            Debug.Log("content.Name_number:" + content.Name_number);
-            Debug.Log("static_parameters.diary_memory[0][0]:" + static_parameters.diary_memory[0][0]);
-            Debug.Log("Floor(static_parameters.diary_memory[0][0]):" + Mathf.Floor(static_parameters.diary_memory[0][0] / 10) * 10);
-            Debug.Log("Floor(static_parameters.diary_memory[0][0])+10:" + (Mathf.Floor(static_parameters.diary_memory[0][0] / 10) * 10 + 10));
             if ((content.Name_number < Mathf.Floor(static_parameters.diary_memory[0][0] / 10) * 10 + 10) && (content.Name_number >= Mathf.Floor(static_parameters.diary_memory[0][0] / 10) * 10))
             {
                 Debug.Log("content.Name_number:" + content.Name_number);
@@ -178,13 +174,13 @@ public class Auto_text_paper : MonoBehaviour
             {
                 if (content.Name_number == static_parameters.diary_memory[0][i])
                 {
+                    static_parameters.MC_HP_Max += content.HP;
+                    static_parameters.MC_ATK += content.Att_pow; static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
+                    static_parameters.MC_ATK_Speed += content.Att_speed; static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
+                    static_parameters.MC_Wspeed += content.Walk_speed; static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
                     content.Text_exist = Text_content.Diary_Exist.ignore;
                 }
             }
-        }
-        for (int i = 0; i < 4; i++)//Do not merge upwards, errors may occur due to timing issues.
-        {
-            static_parameters.diary_memory[0][i] = 0;
         }
         static_parameters.diary_step = 0;
         GenerateItems();
