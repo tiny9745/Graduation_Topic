@@ -48,7 +48,7 @@ public class Auto_text_paper : MonoBehaviour
         {
             foreach (Text_content content in Text_Array.Text_contents)
             {
-                if (content.Text_exist)
+                if (content.Text_exist == Text_content.Diary_Exist.exist)
                 {
                     GameObject item = null;
                     if (content.Name_number < 100)
@@ -77,7 +77,7 @@ public class Auto_text_paper : MonoBehaviour
         {
             foreach (Text_content content in Text_Array.Text_contents)
             {
-                if (content.Text_exist)
+                if (content.Text_exist == Text_content.Diary_Exist.exist)
                 {
                     if (content.Name_number == item && item < 100)
                     {
@@ -86,8 +86,6 @@ public class Auto_text_paper : MonoBehaviour
                     if (content.Name_number <= item * 10 + 10 && content.Name_number > item * 10)
                     {
                         GameObject item2 = Instantiate(itemPrefab, itemPanel.transform);
-                        item2.name = content.Name_number.ToString();
-                        item2.GetComponentInChildren<Text>().text = content.Name_Text;
                         item2.name = content.Name_number.ToString();
                         item2.GetComponentInChildren<Text>().text = content.Name_Text;
                         SetCanvasSortingOrder(item2);
@@ -167,44 +165,27 @@ public class Auto_text_paper : MonoBehaviour
         }
         foreach (Text_content content in Text_Array.Text_contents)
         {
+            Debug.Log("content.Name_number:" + content.Name_number);
+            Debug.Log("static_parameters.diary_memory[0][0]:" + static_parameters.diary_memory[0][0]);
+            Debug.Log("Floor(static_parameters.diary_memory[0][0]):" + Mathf.Floor(static_parameters.diary_memory[0][0] / 10) * 10);
+            Debug.Log("Floor(static_parameters.diary_memory[0][0])+10:" + (Mathf.Floor(static_parameters.diary_memory[0][0] / 10) * 10 + 10));
+            if ((content.Name_number < Mathf.Floor(static_parameters.diary_memory[0][0] / 10) * 10 + 10) && (content.Name_number >= Mathf.Floor(static_parameters.diary_memory[0][0] / 10) * 10))
+            {
+                Debug.Log("content.Name_number:" + content.Name_number);
+                content.Text_exist = Text_content.Diary_Exist.hide;
+            }
             for (int i = 0; i < 4; i++)
             {
                 if (content.Name_number == static_parameters.diary_memory[0][i])
                 {
-                    content.Text_exist = false;
-                    // static_parameters.diary_memory[0][i] = 0;
+                    content.Text_exist = Text_content.Diary_Exist.ignore;
                 }
             }
         }
-
-        //測試進行中
-        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
-        Debug.Log("A");
-        foreach (GameObject obj in allObjects)
+        for (int i = 0; i < 4; i++)//Do not merge upwards, errors may occur due to timing issues.
         {
-            Debug.Log("B");
-            for (int i = 1; i < 5; i++)
-            {
-                Debug.Log("C");
-                // 嘗試將 obj.name 轉換為 int
-                int objectNameAsInt;
-                if (int.TryParse(obj.name, out objectNameAsInt))
-                {
-                    Debug.Log("D");
-                    // 檢查轉換後的名稱是否與 diary_memory 中的值匹配
-                    Debug.Log("objectNameAsInt=" + objectNameAsInt);
-                    Debug.Log("i=" + i);
-                    Debug.Log("Range=" + Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10 + "~" + (Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10 + 10));
-                    if (objectNameAsInt < Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10 + 10 && objectNameAsInt > Mathf.Floor(static_parameters.diary_memory[i][0] / 10) * 10)
-                    {
-                        Debug.Log("E");
-                        Destroy(obj); // 刪除物件
-                    }
-                }
-            }
+            static_parameters.diary_memory[0][i] = 0;
         }
-        //測試進行中
-
         static_parameters.diary_step = 0;
         GenerateItems();
     }

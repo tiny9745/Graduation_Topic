@@ -29,6 +29,7 @@ public class Drag_End : MonoBehaviour, IDropHandler
                         {
                             static_parameters.diary_memory[0][static_parameters.diary_step] = content.Name_number;
                             Debug.Log("static_parameters.diary_step:" + static_parameters.diary_step);
+                            Debug.Log("diary_memory[0][diary_step]:" + static_parameters.diary_memory[0][static_parameters.diary_step]);
                             static_parameters.diary_step++;
                             fullText += content.Text_text;
                             all_text = fullText;
