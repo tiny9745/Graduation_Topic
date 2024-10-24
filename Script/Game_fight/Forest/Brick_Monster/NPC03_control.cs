@@ -252,6 +252,7 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_bomb"))
             {
+                Debug.Log("bomb");
                 switch (Skill_public_funtion.feel_to_skill)
                 {
                     case 0:
