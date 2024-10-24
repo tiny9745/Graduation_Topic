@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,12 +15,11 @@ public class NPC03_control : MonoBehaviour
     bool hit_Ani,stun,hit = false; float NPC_back = 10;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC03, hitbox_Brick_Monster;
+    public GameObject NPC03, hitbox_Brick_Monster ,Img_npc ,bomb_piano ,bomb_point;
     bool dead_open,MC_to_Att = true;
     public NPC_HP_03 nPC_hP;
     int NPC_angle, play_piano_atk = 0;
     private bool isFacingRight = true;
-    public GameObject Img_npc,bomb_piano;
 
     void Start()
     {
@@ -359,7 +359,7 @@ public class NPC03_control : MonoBehaviour
             else
             {
             Debug.Log("3");
-                Instantiate(bomb_piano, transform.position, Quaternion.identity);
+                Instantiate(bomb_piano, bomb_point.transform.position, Quaternion.identity);
                 play_piano_atk = 0;
             }
         }
