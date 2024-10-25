@@ -29,9 +29,9 @@ public class bomb : MonoBehaviour
             {
                 sphereCollider.radius += 0.1f;
             }
-            else if (transform.parent != null)
+            if (transform.parent != null) // 確保有父物件
             {
-                Destroy(transform.parent.gameObject);
+                Destroy(transform.parent.gameObject, 1f); // 延遲 1 秒後刪除父物件
             }
         }
     }
