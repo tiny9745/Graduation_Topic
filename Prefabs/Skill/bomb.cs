@@ -29,8 +29,9 @@ public class bomb : MonoBehaviour
             {
                 sphereCollider.radius += 0.1f;
             }
-            else{
-                Destroy(this);
+            else if (transform.parent != null)
+            {
+                Destroy(transform.parent.gameObject);
             }
         }
     }
