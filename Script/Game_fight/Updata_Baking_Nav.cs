@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
+using UnityEngine.SceneManagement;
 
 public class Updata_Baking_Nav : MonoBehaviour
 {
@@ -12,8 +13,7 @@ public class Updata_Baking_Nav : MonoBehaviour
     void Start()
     {
         player_S = GameObject.Find("Player_S");
-        Vector3 startPos = new Vector3(0, 0, -65);
-        player_S.transform.position = startPos;
+        MC_Start_position();
     }
 
     // Update is called once per frame
@@ -29,5 +29,23 @@ public class Updata_Baking_Nav : MonoBehaviour
     void BuildNavMesh()
     {
         surface.BuildNavMesh();
+    }
+
+    private void MC_Start_position()
+    {
+        Vector3 startPos = new Vector3(0, 0, -65);
+        if (SceneManager.GetActiveScene().name == "Fight_FA02")
+        {
+            startPos = new Vector3(52, 0, -65);
+        }
+        else if (SceneManager.GetActiveScene().name == "Fight_FA04")
+        {
+            startPos = new Vector3(-55, 0, -65);
+        }
+        else if (SceneManager.GetActiveScene().name == "Fight_FA05")
+        {
+            startPos = new Vector3(-44, 0, -65);
+        }
+        player_S.transform.position = startPos;
     }
 }
