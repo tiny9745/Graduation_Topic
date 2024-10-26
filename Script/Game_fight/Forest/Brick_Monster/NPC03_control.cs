@@ -252,7 +252,6 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_bomb"))
             {
-                Debug.Log("bomb");
                 switch (Skill_public_funtion.feel_to_skill)
                 {
                     case 0:
@@ -349,17 +348,13 @@ public class NPC03_control : MonoBehaviour
     }
     void Skill()//skill_add
     {
-        Debug.Log("1");
         if (Skill_public_funtion.play_piano)
         {
-            Debug.Log("2"+play_piano_atk);
-            if (play_piano_atk <= -1){
+            if (play_piano_atk <= Skill_public_funtion.P_time){
                 play_piano_atk++;
-                Debug.Log("2.5"+play_piano_atk);
-            }       
+            }
             else
             {
-            Debug.Log("3");
                 Instantiate(bomb_piano, bomb_point.transform.position, Quaternion.identity);
                 play_piano_atk = 0;
             }
