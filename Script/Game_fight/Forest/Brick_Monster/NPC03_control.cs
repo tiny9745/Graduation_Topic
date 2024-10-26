@@ -56,10 +56,7 @@ public class NPC03_control : MonoBehaviour
     void Update()
     {
         if (npcNavi == null || !npcNavi.isOnNavMesh) return;
-        if (TargetObj != null)
-        {
-            dist = Vector3.Distance(transform.position, TargetObj.transform.position);
-        }
+        if (TargetObj != null)dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
@@ -231,7 +228,7 @@ public class NPC03_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -254,20 +251,15 @@ public class NPC03_control : MonoBehaviour
             {
                 switch (Skill_public_funtion.feel_to_skill)
                 {
-                    case 0:
-                        NPC_HP -= 225;Debug.Log("boom");
-                        break;
-                    case 1:
-                        Debug.Log("stun");
-                        stun = true;
-                        Invoke("Stun_end", 1);
-                        break;
-                    case 2:
+                    case 0://happy
                         Debug.Log("play_piano_atk:" + play_piano_atk);
                         play_piano_atk++;
                         Debug.Log("play_piano_atk:" + play_piano_atk);
                         break;
-                    case 3:
+                    case 1://anger
+                        NPC_HP -= 225;Debug.Log("boom");
+                        break;
+                    case 2://sad
                         if (NPC_HP < NPC_back) NPC_HP = 0;
                         else
                         {
@@ -275,6 +267,11 @@ public class NPC03_control : MonoBehaviour
                             transform.position = currentPosition - NPC_back * Vector3.back;
                         }
                         play_piano_atk = 0; Debug.Log("knockback");
+                        break;
+                    case 3://wow
+                        Debug.Log("stun");
+                        stun = true;
+                        Invoke("Stun_end", 1);
                         break;
                 }
 
