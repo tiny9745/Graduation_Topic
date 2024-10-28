@@ -73,7 +73,6 @@ public class Scenes_Change_house_outside : MonoBehaviour
                 case 19:
                     SceneManager.LoadScene("Fight_FC05");
                     break;
-
             }
         }
     }
