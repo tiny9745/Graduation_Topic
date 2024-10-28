@@ -7,7 +7,7 @@ public class Prefabs_start : MonoBehaviour
 {
     // Prefab to generate
     public GameObject prefabNPC01_1;
-    public GameObject prefabNPC01,prefabNPC02,prefabNPC03,prefabNPC04,prefabNPC05;
+    public GameObject prefabNPC01, prefabNPC02, prefabNPC03, prefabNPC04, prefabNPC05;
     float NPC_postion_minX = -50f, NPC_postion_maxX = 50f;
     float NPC_postion_minZ = -50f, NPC_postion_maxZ = 50f;
     float randomX;
@@ -35,11 +35,48 @@ public class Prefabs_start : MonoBehaviour
                 Number_NPC02 = 4;
                 break;
             case 4:
+                Number_NPC01 = 3;
+                Number_NPC03 = 4;
+                Number_NPC05 = 3;
+                break;
+            case 5:
+                Number_NPC01 = 6;
+                Number_NPC02 = 4;
+                Number_NPC03 = 4;
+                break;
+            case 6:
+                Number_NPC01 = 4;
+                Number_NPC02 = 6;
+                Number_NPC03 = 5;
+                Number_NPC05 = 5;
+                break;
+            case 7:
+                Number_NPC02 = 5;
+                Number_NPC04 = 10;
+                break;
+            case 8:
+                Number_NPC01 = 8;
+                Number_NPC02 = 6;
+                Number_NPC05 = 6;
+                break;
+            case 9:
+                Number_NPC01 = 4;
+                Number_NPC02 = 4;
+                Number_NPC03 = 4;
+                Number_NPC04 = 4;
+                Number_NPC05 = 4;
+                break;
+            case 10:
+                Number_NPC01 = 10;
+                Number_NPC02 = 6;
+                Number_NPC03 = 6;
+                Number_NPC04 = 6;
+                Number_NPC05 = 6;
                 break;
             default:
                 break;
         }
-        
+
         NPC_into();
     }
 
