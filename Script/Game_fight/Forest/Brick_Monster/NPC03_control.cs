@@ -271,7 +271,7 @@ public class NPC03_control : MonoBehaviour
                     case 3://wow
                         Debug.Log("stun");
                         stun = true;
-                        Invoke("Stun_end", 1);
+                        Invoke("Stun_end", 3);
                         break;
                 }
 
