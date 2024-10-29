@@ -357,6 +357,10 @@ public class NPC03_control : MonoBehaviour
             }
         }
     }
+    void Stun_end()
+    {
+        stun = false;
+    }
     void dead_after()
     {
         Destroy(gameObject);
