@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8381651067146237199}
   - component: {fileID: 2270882162831714583}
   - component: {fileID: 6727195001551388036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hit_box
   m_TagString: NPC_Att
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 6090090505951339337}
   - component: {fileID: 3288603195253947653}
   - component: {fileID: 9196724584692877750}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPC_HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 8932678650194305499}
   - component: {fileID: 2970550427832215894}
   - component: {fileID: 1840519291462866230}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NPC01
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -239,7 +239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 5040306042332483355}
   TargetObj: {fileID: 0}
+  NPC01_hit: 0
   DetectDistance: 18
+  Pcounter: 0
   NPC01_ATK: 8
   NPC01_DEF: 5
   NPC_HP_Max: 100
@@ -248,6 +250,7 @@ MonoBehaviour:
   NPC01: {fileID: 0}
   NPC01_1: {fileID: 654828963857941581, guid: 05a2eab05e77bdf49bcc8d85d00c09bc, type: 3}
   hitbox_Crystal_baby: {fileID: 683040738566736164}
+  Drop: {fileID: 0}
   nPC_hP: {fileID: 1840519291462866230}
   Img_npc: {fileID: 8529658835100848863}
 --- !u!195 &8932678650194305499
@@ -318,7 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8206177045879998684}
   - component: {fileID: 1129568673037730311}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: monster_HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +408,7 @@ GameObject:
   - component: {fileID: 6287311602524964618}
   - component: {fileID: 4152350498227262274}
   - component: {fileID: 5040306042332483355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dabaoLF_stb_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

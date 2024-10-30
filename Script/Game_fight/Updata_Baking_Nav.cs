@@ -10,6 +10,7 @@ public class Updata_Baking_Nav : MonoBehaviour
     bool BuildNavMesh_open = true;
     public GameObject player_S;
     // Start is called before the first frame update
+
     void Start()
     {
         player_S = GameObject.Find("Player_S");

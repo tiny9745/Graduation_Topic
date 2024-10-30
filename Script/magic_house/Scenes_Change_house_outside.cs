@@ -11,7 +11,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
         {
             static_parameters.stage_number = 1;
 
-            switch (Random.Range(0, 20))
+            switch (Random.Range(0, 1))
             {
                 case 0:
                     SceneManager.LoadScene("Fight_FA01");

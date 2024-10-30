@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 624174167629694148}
   - component: {fileID: 3192938207778560710}
   - component: {fileID: 5107359610330103078}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -113,6 +113,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInput: 0
   verticalInput: 0
+  dashSpeed: 0
+  walkSpeed: 0
+  DashCD: 0
+  agent: {fileID: 0}
+  navMeshCheckRadius: 1
 --- !u!1 &3428443558140354762
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +131,7 @@ GameObject:
   - component: {fileID: 7844015169390388608}
   - component: {fileID: 4044528890447612566}
   - component: {fileID: 628167333766034086}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: F S0100
   m_TagString: NPC_Att
   m_Icon: {fileID: 0}
@@ -260,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3576146907232105594}
   - component: {fileID: 5712235355810928506}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +324,7 @@ GameObject:
   - component: {fileID: 2030485392509707046}
   - component: {fileID: 4902923040371260440}
   - component: {fileID: 2337589354163945504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -453,12 +458,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MC: {fileID: 2274165221566979942}
+  Blood_Col: {fileID: 0}
   animator: {fileID: 4044528890447612566}
   spriteTransform: {fileID: 4588038875668808818}
   Deduct_Blood: {fileID: 2100000, guid: fc21eb091654df0448671c299dccd1cc, type: 2}
-  targetSceneName: Game_fight
-  PrepareSceneName: magic_house
-  MC_move: {fileID: 0}
+  Game_fight: Game_fight
+  magic_house: magic_house
+  house_outside: house_outside
 --- !u!114 &4902923040371260440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,4 +489,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992c960c791380f4d86c95c0ba34544a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPChit: {fileID: 0}
