@@ -12,11 +12,11 @@ public class NPC03_control : MonoBehaviour
     public int DetectDistance = 22, NPC03_ATK = 25, NPC03_DEF = 5;
     public float NPC_HP_Max = 70, npcSpeed = 4f, NPC_HP, dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani,stun,hit = false; float NPC_back = 10;
+    bool hit_Ani, stun, hit = false; float NPC_back = 10;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC03, hitbox_Brick_Monster ,Img_npc ,bomb_piano ,bomb_point;
-    bool dead_open,MC_to_Att = true;
+    public GameObject NPC03, hitbox_Brick_Monster, Img_npc, bomb_piano, bomb_point;
+    bool dead_open = true, MC_to_Att = true;
     public NPC_HP_03 nPC_hP;
     int NPC_angle, play_piano_atk = 0;
     private bool isFacingRight = true;
@@ -56,7 +56,7 @@ public class NPC03_control : MonoBehaviour
     void Update()
     {
         if (npcNavi == null || !npcNavi.isOnNavMesh) return;
-        if (TargetObj != null)dist = Vector3.Distance(transform.position, TargetObj.transform.position);
+        if (TargetObj != null) dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
@@ -257,7 +257,7 @@ public class NPC03_control : MonoBehaviour
                         Debug.Log("play_piano_atk:" + play_piano_atk);
                         break;
                     case 1://anger
-                        NPC_HP -= 225;Debug.Log("boom");
+                        NPC_HP -= 225; Debug.Log("boom");
                         break;
                     case 2://sad
                         if (NPC_HP < NPC_back) NPC_HP = 0;
@@ -274,7 +274,6 @@ public class NPC03_control : MonoBehaviour
                         Invoke("Stun_end", 3);
                         break;
                 }
-
             }
         }
     }
@@ -312,7 +311,6 @@ public class NPC03_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
-
     void dead()
     {
         if (dead_open)
@@ -347,7 +345,8 @@ public class NPC03_control : MonoBehaviour
     {
         if (Skill_public_funtion.play_piano)
         {
-            if (play_piano_atk <= Skill_public_funtion.P_time){
+            if (play_piano_atk <= Skill_public_funtion.P_time)
+            {
                 play_piano_atk++;
             }
             else
@@ -363,6 +362,7 @@ public class NPC03_control : MonoBehaviour
     }
     void dead_after()
     {
+        Debug.Log("Dead03");
         Destroy(gameObject);
     }
 }
