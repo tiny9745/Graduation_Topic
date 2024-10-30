@@ -76,8 +76,7 @@ public class Prefabs_start : MonoBehaviour
             default:
                 break;
         }
-
-        NPC_into();
+        Invoke("NPC_into",0.18f);
     }
 
     void NPC_into()
