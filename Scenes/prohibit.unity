@@ -1452,6 +1452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 191840722}
+  - component: {fileID: 191840724}
   - component: {fileID: 191840723}
   m_Layer: 5
   m_Name: Audio_BGM
@@ -1493,7 +1494,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1575,6 +1576,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &191840724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191840721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8f6b434a628484eb590ef2d0c99e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGM_sound: {fileID: 191840723}
+  SE_sound: {fileID: 0}
+  BGM_clip:
+  - {fileID: 8300000, guid: 027b7ea3b88c2ed4088c2b7aa535473b, type: 3}
+  - {fileID: 8300000, guid: 2dbaeebc53fc4d74c88ac94e85a5afdb, type: 3}
+  - {fileID: 8300000, guid: 9699f1cda00ecfe4a9324b12adffb7d2, type: 3}
+  SE_clip: []
 --- !u!1 &196983667
 GameObject:
   m_ObjectHideFlags: 0
@@ -10788,11 +10808,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008328529
+      value: -0.00000000832853
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000021564983
+      value: 0.0000000021564985
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
