@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MC_col : MonoBehaviour
 {
     public GameObject MC;
+    public GameObject MC_S;
     public Blood_col Blood_Col;
     public Animator animator;
     public Transform spriteTransform;
@@ -13,11 +14,12 @@ public class MC_col : MonoBehaviour
     private Material originalMaterial;
     public string Game_fight = "Game_fight";
     public string magic_house = "magic_house";
-    public string house_outside="house_outside";
+    public string house_outside = "house_outside";
 
     void Start()
     {
         MC = GameObject.Find("Player");
+        MC_S = GameObject.Find("Player_S");
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         if (renderer1 != null)
         {
@@ -35,6 +37,7 @@ public class MC_col : MonoBehaviour
         {
             static_parameters.stage_number--;
             SceneManager.LoadScene("magic_house");
+            MC_S.transform.position = new Vector3(0, 0, 0);
         }
         SetLookDirection(static_parameters.face);
         // Check and update the attack speed
