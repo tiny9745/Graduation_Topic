@@ -21,4 +21,12 @@ public class Setting_menu : MonoBehaviour
     {
         _Setting_menu.SetActive(false);
     }
+
+    public void Setting_SE(){
+
+    }
+
+    public void Setting_BGM(){
+        
+    }
 }
