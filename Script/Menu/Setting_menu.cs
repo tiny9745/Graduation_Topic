@@ -29,11 +29,13 @@ public class Setting_menu : MonoBehaviour
 
     public void Setting_SE()
     {
-
+        SE_sound.volume = SE_control.value;
+        static_parameters._SE_volue = SE_sound.volume;
     }
 
     public void Setting_BGM()
     {
         BGM_sound.volume = BGM_control.value;
+        static_parameters._BGM_volue = BGM_sound.volume;
     }
 }
