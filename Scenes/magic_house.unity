@@ -280,7 +280,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 41654244}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1800524204}
+        m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
+        m_MethodName: DEF
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &41654244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,7 +732,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 216401697}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1800524204}
+        m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
+        m_MethodName: Knockback
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &216401697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,7 +1019,6 @@ GameObject:
   - component: {fileID: 292865499}
   - component: {fileID: 292865501}
   - component: {fileID: 292865500}
-  - component: {fileID: 292865502}
   m_Layer: 5
   m_Name: DEF_bars
   m_TagString: Untagged
@@ -1066,31 +1089,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292865498}
   m_CullTransparentMesh: 1
---- !u!114 &292865502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 292865498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede4f35303a1aec45a6066d0b2e60001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ATK_plus: {fileID: 0}
-  DEF_plus: {fileID: 0}
-  HP_plus: {fileID: 0}
-  Speed_plus: {fileID: 0}
-  Knockback_plus: {fileID: 0}
-  comfirm: {fileID: 0}
-  cancel: {fileID: 0}
-  B1: {fileID: 0}
-  B2: {fileID: 0}
-  B3: {fileID: 0}
-  B4: {fileID: 0}
-  B5: {fileID: 0}
-  textbox: {fileID: 0}
 --- !u!1 &305388160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,7 +2004,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 925713871}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1800524204}
+        m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
+        m_MethodName: Speed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &925713871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,7 +3082,6 @@ GameObject:
   - component: {fileID: 1254390455}
   - component: {fileID: 1254390457}
   - component: {fileID: 1254390456}
-  - component: {fileID: 1254390458}
   m_Layer: 5
   m_Name: ATK_bars
   m_TagString: Untagged
@@ -3143,31 +3152,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254390454}
   m_CullTransparentMesh: 1
---- !u!114 &1254390458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254390454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede4f35303a1aec45a6066d0b2e60001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ATK_plus: {fileID: 1516419921}
-  DEF_plus: {fileID: 0}
-  HP_plus: {fileID: 0}
-  Speed_plus: {fileID: 0}
-  Knockback_plus: {fileID: 0}
-  comfirm: {fileID: 0}
-  cancel: {fileID: 0}
-  B1: {fileID: 133439322}
-  B2: {fileID: 1407444812}
-  B3: {fileID: 1687073810}
-  B4: {fileID: 62507146}
-  B5: {fileID: 41510610}
-  textbox: {fileID: 1527336288}
 --- !u!1 &1301860902
 GameObject:
   m_ObjectHideFlags: 0
@@ -3432,7 +3416,6 @@ GameObject:
   - component: {fileID: 1406795439}
   - component: {fileID: 1406795441}
   - component: {fileID: 1406795440}
-  - component: {fileID: 1406795442}
   m_Layer: 5
   m_Name: Knock_bars
   m_TagString: Untagged
@@ -3503,31 +3486,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406795438}
   m_CullTransparentMesh: 1
---- !u!114 &1406795442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406795438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede4f35303a1aec45a6066d0b2e60001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ATK_plus: {fileID: 0}
-  DEF_plus: {fileID: 0}
-  HP_plus: {fileID: 0}
-  Speed_plus: {fileID: 0}
-  Knockback_plus: {fileID: 0}
-  comfirm: {fileID: 0}
-  cancel: {fileID: 0}
-  B1: {fileID: 0}
-  B2: {fileID: 0}
-  B3: {fileID: 0}
-  B4: {fileID: 0}
-  B5: {fileID: 0}
-  textbox: {fileID: 0}
 --- !u!1 &1407444812
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3644,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1254390458}
+      - m_Target: {fileID: 1800524204}
         m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
         m_MethodName: Pay
         m_Mode: 1
@@ -3981,7 +3939,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1254390458}
+      - m_Target: {fileID: 1800524204}
         m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
         m_MethodName: ATK
         m_Mode: 1
@@ -4460,7 +4418,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1646029917}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1800524204}
+        m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
+        m_MethodName: HP
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1646029917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4966,7 +4936,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1689400062}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1800524204}
+        m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
+        m_MethodName: Cancel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1689400062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5309,6 +5291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1800524203}
+  - component: {fileID: 1800524204}
   m_Layer: 0
   m_Name: Upgrade
   m_TagString: Untagged
@@ -5334,6 +5317,51 @@ Transform:
   - {fileID: 2006348631}
   m_Father: {fileID: 910823675}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1800524204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800524202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede4f35303a1aec45a6066d0b2e60001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ATK_plus: {fileID: 1516419921}
+  DEF_plus: {fileID: 41654241}
+  HP_plus: {fileID: 1646029914}
+  Speed_plus: {fileID: 925713868}
+  Knockback_plus: {fileID: 216401694}
+  comfirm: {fileID: 1471619148}
+  cancel: {fileID: 1689400059}
+  AB1: {fileID: 133439322}
+  AB2: {fileID: 1407444812}
+  AB3: {fileID: 1687073810}
+  AB4: {fileID: 62507146}
+  AB5: {fileID: 41510610}
+  DB1: {fileID: 1218729510}
+  DB2: {fileID: 1601225671}
+  DB3: {fileID: 2060712738}
+  DB4: {fileID: 1141393451}
+  DB5: {fileID: 1562991938}
+  HB1: {fileID: 234951945}
+  HB2: {fileID: 416023367}
+  HB3: {fileID: 1915977281}
+  HB4: {fileID: 721743389}
+  HB5: {fileID: 1324029449}
+  SB1: {fileID: 1997160846}
+  SB2: {fileID: 563343062}
+  SB3: {fileID: 1653569258}
+  SB4: {fileID: 257211302}
+  SB5: {fileID: 720339998}
+  KB1: {fileID: 1879472934}
+  KB2: {fileID: 1767938780}
+  KB3: {fileID: 1090300993}
+  KB4: {fileID: 2116322026}
+  KB5: {fileID: 270613445}
+  textbox: {fileID: 1527336288}
 --- !u!1 &1833667251
 GameObject:
   m_ObjectHideFlags: 0
@@ -5687,7 +5715,6 @@ GameObject:
   - component: {fileID: 1920119876}
   - component: {fileID: 1920119878}
   - component: {fileID: 1920119877}
-  - component: {fileID: 1920119879}
   m_Layer: 5
   m_Name: Speed_bars
   m_TagString: Untagged
@@ -5758,31 +5785,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920119875}
   m_CullTransparentMesh: 1
---- !u!114 &1920119879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920119875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede4f35303a1aec45a6066d0b2e60001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ATK_plus: {fileID: 0}
-  DEF_plus: {fileID: 0}
-  HP_plus: {fileID: 0}
-  Speed_plus: {fileID: 0}
-  Knockback_plus: {fileID: 0}
-  comfirm: {fileID: 0}
-  cancel: {fileID: 0}
-  B1: {fileID: 0}
-  B2: {fileID: 0}
-  B3: {fileID: 0}
-  B4: {fileID: 0}
-  B5: {fileID: 0}
-  textbox: {fileID: 0}
 --- !u!1 &1997160846
 GameObject:
   m_ObjectHideFlags: 0
