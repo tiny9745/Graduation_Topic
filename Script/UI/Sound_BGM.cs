@@ -38,6 +38,7 @@ public class Sound_BGM : MonoBehaviour
 
     private void BGM_Play_change()
     {
+        BGM_sound.volume=static_parameters._BGM_volue;
         if (SceneManager.GetActiveScene().name == "magic_house")
         {
             BGM_sound.clip = BGM_clip[0];
@@ -46,5 +47,6 @@ public class Sound_BGM : MonoBehaviour
         {
             BGM_sound.clip = BGM_clip[1];
         }
+        BGM_sound.Play();
     }
 }
