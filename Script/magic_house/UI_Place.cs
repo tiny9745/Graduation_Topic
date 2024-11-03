@@ -6,7 +6,7 @@ public class UI_Place : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Upgrade;
-    bool isUpgrade,P1 = true;
+    bool isUpgrade,P1 = false;
     void Start()
     {
         
@@ -16,8 +16,7 @@ public class UI_Place : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F)&&P1){
-            UI1();
-            isUpgrade = !isUpgrade;
+            isUpgrade = !isUpgrade; UI1();
         }
     }
     private void OnTriggerEnter(Collider other) {
