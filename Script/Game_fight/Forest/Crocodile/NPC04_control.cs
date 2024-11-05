@@ -8,23 +8,18 @@ public class NPC04_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 15; public float NPC04_ATK = 15; public float NPC04_DEF = 15;
-    public float NPC_HP_Max = 150; public float npcSpeed = 6f;
-    public float NPC_HP;
+    public int DetectDistance = 15;
+    public float NPC04_ATK = 15, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 6f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani, hit = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC04;
-    public GameObject hitbox_Brick_Monster;
-    public GameObject Drop;
-    bool dead_open = true;
-    bool MC_to_Att = true;
+    public GameObject NPC04, hitbox_Brick_Monster, Drop,Img_npc;
+    bool dead_open,MC_to_Att = true;
     public NPC_HP_04 nPC_hP;
     int NPC_angle = 0;
     private bool isFacingRight = true;
-    public GameObject Img_npc;
 
     void Start()
     {
