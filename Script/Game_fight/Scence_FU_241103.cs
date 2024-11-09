@@ -67,9 +67,11 @@ public class Scence_FU_241103 : MonoBehaviour
         if (j > 0 && scence_exist[i][j - 1] == 1) count++;
         if (j < 8 && scence_exist[i][j + 1] == 1) count++;
 
-        if (count < 4)
-        {
-            if (!(i > 0 && scence_exist[i - 1][j] == 1 && i < 8 && scence_exist[i + 1][j] == 1 && j > 0 && scence_exist[i][j - 1] == 1 && j < 8 && scence_exist[i][j + 1] == 1))
+        // if (count == 4)
+        // {
+        //     scene_type = 3;
+        // }
+        if (!(i > 0 && scence_exist[i - 1][j] == 1 && i < 8 && scence_exist[i + 1][j] == 1 && j > 0 && scence_exist[i][j - 1] == 1 && j < 8 && scence_exist[i][j + 1] == 1))
             {
                 if (scene_type == 1)
                 {
@@ -82,7 +84,6 @@ public class Scence_FU_241103 : MonoBehaviour
                     scence_exist[i][j] = 0;
                 }
             }
-        }
     }
     void Generatescence(GameObject scence, Vector3 position)
     {
