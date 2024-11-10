@@ -5,16 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MC_col : MonoBehaviour
 {
-    public GameObject MC;
-    public GameObject MC_S;
+    public GameObject MC, MC_S;
     public Blood_col Blood_Col;
     public Animator animator;
     public Transform spriteTransform;
     public Material Deduct_Blood;
     private Material originalMaterial;
-    public string Game_fight = "Game_fight";
-    public string magic_house = "magic_house";
-    public string house_outside = "house_outside";
+    public string Game_fight = "Game_fight", magic_house = "magic_house", house_outside = "house_outside";
 
     void Start()
     {
@@ -43,36 +40,13 @@ public class MC_col : MonoBehaviour
         // Check and update the attack speed
         if (static_parameters.MC_ATK_Speed_tmp != static_parameters.MC_ATK_Speed)
         {
-            static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
-            SetAnimationSpeed_ATK("MC_Att_BR01", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_FR01", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_FL01", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_BL01", static_parameters.MC_ATK_Speed);
-
-            SetAnimationSpeed_ATK("MC_Att_BR02", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_FR02", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_FL02", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_BL02", static_parameters.MC_ATK_Speed);
-
-            SetAnimationSpeed_ATK("MC_Att_BR03", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_FR03", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_FL03", static_parameters.MC_ATK_Speed);
-            SetAnimationSpeed_ATK("MC_Att_BL03", static_parameters.MC_ATK_Speed);
+            ATK_speedupdate();
         }
 
         // Check and update the walk speed
         if (static_parameters.MC_Wspeed != static_parameters.MC_Wspeed_tmp)
         {
-            static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
-            SetAnimationSpeed_Walk("MC_Walk_Back", static_parameters.MC_Wspeed);
-            SetAnimationSpeed_Walk("MC_Walk_Left", static_parameters.MC_Wspeed);
-            SetAnimationSpeed_Walk("MC_Walk_Front", static_parameters.MC_Wspeed);
-            SetAnimationSpeed_Walk("MC_Walk_Right", static_parameters.MC_Wspeed);
-
-            SetAnimationSpeed_Walk("MC_Stand_Front", static_parameters.MC_Wspeed);
-            SetAnimationSpeed_Walk("MC_Stand_Right", static_parameters.MC_Wspeed);
-            SetAnimationSpeed_Walk("MC_Stand_Back", static_parameters.MC_Wspeed);
-            SetAnimationSpeed_Walk("MC_Stand_Left", static_parameters.MC_Wspeed);
+            Walk_speedupdate();
         }
     }
 
@@ -83,7 +57,6 @@ public class MC_col : MonoBehaviour
         {
             // Create parameter name
             string paramName = animName + "Speed";
-
             // Check if the parameter exists
             if (AnimatorHasParameter(animator, paramName))
             {
@@ -102,7 +75,6 @@ public class MC_col : MonoBehaviour
         if (animator != null)
         {
             string paramName = animName + "Speed";
-
             if (AnimatorHasParameter(animator, paramName))
             {
                 animator.SetFloat(paramName, animSpeed);
@@ -211,6 +183,37 @@ public class MC_col : MonoBehaviour
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
         }
+    }
+    void ATK_speedupdate()
+    {
+        static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
+        SetAnimationSpeed_ATK("MC_Att_BR01", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_FR01", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_FL01", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_BL01", static_parameters.MC_ATK_Speed);
+
+        SetAnimationSpeed_ATK("MC_Att_BR02", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_FR02", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_FL02", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_BL02", static_parameters.MC_ATK_Speed);
+
+        SetAnimationSpeed_ATK("MC_Att_BR03", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_FR03", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_FL03", static_parameters.MC_ATK_Speed);
+        SetAnimationSpeed_ATK("MC_Att_BL03", static_parameters.MC_ATK_Speed);
+    }
+    void Walk_speedupdate()
+    {
+        static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
+        SetAnimationSpeed_Walk("MC_Walk_Back", static_parameters.MC_Wspeed);
+        SetAnimationSpeed_Walk("MC_Walk_Left", static_parameters.MC_Wspeed);
+        SetAnimationSpeed_Walk("MC_Walk_Front", static_parameters.MC_Wspeed);
+        SetAnimationSpeed_Walk("MC_Walk_Right", static_parameters.MC_Wspeed);
+
+        SetAnimationSpeed_Walk("MC_Stand_Front", static_parameters.MC_Wspeed);
+        SetAnimationSpeed_Walk("MC_Stand_Right", static_parameters.MC_Wspeed);
+        SetAnimationSpeed_Walk("MC_Stand_Back", static_parameters.MC_Wspeed);
+        SetAnimationSpeed_Walk("MC_Stand_Left", static_parameters.MC_Wspeed);
     }
 
     private IEnumerator ResetMaterialAfterDelay(Renderer renderer1, float delay)
