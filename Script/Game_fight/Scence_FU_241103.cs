@@ -5,67 +5,63 @@ using UnityEngine.SceneManagement;
 
 public class Scence_FU_241103 : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject[] FU;
+    int max_index = 4; // 須為偶數
     int[][] scence_exist = new int[][]
-{
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-};
+    {
+        new int[] { 0, 0, 0, 0, 0 },
+        new int[] { 0, 0, 0, 0, 0 },
+        new int[] { 0, 0, 0, 0, 0 },
+        new int[] { 0, 0, 0, 0, 0 },
+        new int[] { 0, 0, 0, 0, 0 },
+    };
     int i, j, sum = 0;
     int scence_random;
     int scene_type;
+
     void Start()
     {
         Fight_FU();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void Fight_FU()
     {
         scence_random = Random.Range(0, 8);
-        Generatescence(FU[scence_random], new Vector3(0, -33, 0 + 4 * 120.75f));
-        scence_exist[0][4] = 1;
-        while (scence_exist[8][4] != 1)
+        Generatescence(FU[scence_random], new Vector3(max_index / 2 * 120.5f, -33, 0));
+        scence_exist[max_index / 2][0] = 1;
+
+        while (scence_exist[max_index / 2][max_index] != 1)
         {
-            for (i = 0; i < 9; i++)
+            for (i = 0; i < max_index + 1; i++)
             {
-                for (j = 4; j < 9; j++)
+                for (j = max_index / 2; j < max_index + 1; j++)
                 {
-                    Scenario_authentication();
+                    Scenario_authentication(i, j);
                 }
-                for (j = 4; j >= 0; j--)
+                for (j = max_index / 2; j >= 0; j--)
                 {
-                    Scenario_authentication();
+                    Scenario_authentication(i, j);
                 }
             }
             sum++;
         }
-        if (scence_exist[8][4] == 1) Debug.Log("AAAAAAA");
+        if (scence_exist[max_index][max_index / 2] == 1) Debug.Log("AAAAAAA");
     }
 
-    void Scenario_authentication()
+    void Scenario_authentication(int i, int j)
     {
-        if ((i > 0 && scence_exist[i - 1][j] == 1 || i < 8 && scence_exist[i + 1][j] == 1 || j > 0 && scence_exist[i][j - 1] == 1 || j < 8 && scence_exist[i][j + 1] == 1) && condition(i, j))
+        if ((i > 0 && scence_exist[i - 1][j] == 1 || i < max_index && scence_exist[i + 1][j] == 1 || j > 0 && scence_exist[i][j - 1] == 1 || j < max_index && scence_exist[i][j + 1] == 1) && condition(i, j))
         {
             scene_type = Random.Range(0, 2);
             if (scene_type == 1)
             {
-                scence_random = Random.Range(0, 8);
-                Generatescence(FU[scence_random], new Vector3(i * 120.75f, -33, j * 120.75f));
-                scence_exist[i][j] = 1;
+                // 檢查該位置是否已經存在物件
+                if (scence_exist[i][j] == 0) // 若該位置沒有場景物件，則生成
+                {
+                    scence_random = Random.Range(0, 8);
+                    Generatescence(FU[scence_random], new Vector3(i * 120.75f, -33, j * 120.5f));
+                    scence_exist[i][j] = 1;
+                }
             }
         }
     }
@@ -74,17 +70,18 @@ public class Scence_FU_241103 : MonoBehaviour
     {
         int count = 0;
         bool safe = false;
-        if (b == 4)
+        if (b == max_index / 2)
         {
             safe = true;
         }
         if (a > 0 && scence_exist[a - 1][b] == 1) count++;
-        if (a < 8 && scence_exist[a + 1][b] == 1) count++;
+        if (a < max_index && scence_exist[a + 1][b] == 1) count++;
         if (b > 0 && scence_exist[a][b - 1] == 1) count++;
-        if (b < 8 && scence_exist[a][b + 1] == 1) count++;
+        if (b < max_index && scence_exist[a][b + 1] == 1) count++;
 
-        return count == 1|| count == 2 || safe == true;
+        return count == 1 || count == 2 || safe == true;
     }
+
     void Generatescence(GameObject scence, Vector3 position)
     {
         GameObject fight_scence = Instantiate(scence, position, Quaternion.identity);

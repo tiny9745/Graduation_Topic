@@ -31,38 +31,39 @@ public class Updata_Baking_Nav : MonoBehaviour
     {
         surface.BuildNavMesh();
     }
+    
 
     private void MC_Start_position()
     {
-        Vector3 startPos = new Vector3(0, 0, -65);
-        if (SceneManager.GetActiveScene().name == "Fight_FA02")
-        {
-            startPos = new Vector3(55, 0, -65);
-        }
-        else if (SceneManager.GetActiveScene().name == "Fight_FA04")
-        {
-            startPos = new Vector3(-55, 0, -65);
-        }
-        else if (SceneManager.GetActiveScene().name == "Fight_FA05")
-        {
-            startPos = new Vector3(-44, 0, -65);
-        }
-        else if (SceneManager.GetActiveScene().name == "Fight_FB03")
-        {
-            startPos = new Vector3(-55, 0, -65);
-        }
-        else if (SceneManager.GetActiveScene().name == "Fight_FB04")
-        {
-            startPos = new Vector3(55, 0, -65);
-        }
-        else if (SceneManager.GetActiveScene().name == "Fight_FC01")
-        {
-            startPos = new Vector3(-36, 0, -65);
-        }
-        else if (SceneManager.GetActiveScene().name == "Fight_FC04")
-        {
-            startPos = new Vector3(21, 0, -65);
-        }
-        player_S.transform.position = startPos;
+        // Vector3 startPos = new Vector3(0, 0, -65);
+        // if (SceneManager.GetActiveScene().name == "Fight_FA02")
+        // {
+        //     startPos = new Vector3(55, 0, -65);
+        // }
+        // else if (SceneManager.GetActiveScene().name == "Fight_FA04")
+        // {
+        //     startPos = new Vector3(-55, 0, -65);
+        // }
+        // else if (SceneManager.GetActiveScene().name == "Fight_FA05")
+        // {
+        //     startPos = new Vector3(-44, 0, -65);
+        // }
+        // else if (SceneManager.GetActiveScene().name == "Fight_FB03")
+        // {
+        //     startPos = new Vector3(-55, 0, -65);
+        // }
+        // else if (SceneManager.GetActiveScene().name == "Fight_FB04")
+        // {
+        //     startPos = new Vector3(55, 0, -65);
+        // }
+        // else if (SceneManager.GetActiveScene().name == "Fight_FC01")
+        // {
+        //     startPos = new Vector3(-36, 0, -65);
+        // }
+        // else if (SceneManager.GetActiveScene().name == "Fight_FC04")
+        // {
+        //     startPos = new Vector3(21, 0, -65);
+        // }
+        // player_S.transform.position = startPos;
     }
 }

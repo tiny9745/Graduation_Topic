@@ -7,34 +7,64 @@ public class SpriteToQuad : MonoBehaviour
     public SpriteRenderer spriteRenderer;  // 把你的 SpriteRenderer 拖放到此處
 
     private GameObject quad;
+    private Material quadMaterial;  // 儲存材質以避免重複創建
 
     void Start()
     {
         // 取得 Sprite 的尺寸
         Vector2 spriteSize = spriteRenderer.sprite.bounds.size;
 
-        // 創建一個新的 Quad
-        quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        Vector3 adjustedPosition = transform.position;
-        adjustedPosition.y += 0.1f;
-        quad.transform.position = adjustedPosition;
-        quad.transform.rotation = transform.rotation;  // 設置與 Sprite 一致的旋轉
+        // 創建一個新的 Quad 物件（只在第一次啟動時創建一次）
+        if (quad == null)
+        {
+            CreateQuad(spriteSize);
+        }
 
-        // 確保 Quad 的大小不受父物件縮放的影響
+        // 調整 Quad 的位置和旋轉
+        UpdateQuadPosition();
+
+        // 刪除原始的物件，確保 Quad 保持存在
+        Destroy(gameObject);  // 刪除當前物件（SpriteRenderer 所在的物件）
+    }
+
+    // 創建 Quad 物件並設定其屬性
+    void CreateQuad(Vector2 spriteSize)
+    {
+        // 創建 Quad 物件
+        quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        
+        // 確保材質只有一次創建
+        if (quadMaterial == null)
+        {
+            quadMaterial = new Material(Shader.Find("Standard"));
+            quadMaterial.mainTexture = spriteRenderer.sprite.texture;
+        }
+
+        // 設置 Quad 的初始屬性
+        quad.GetComponent<Renderer>().material = quadMaterial;
+
+        // 設置 Quad 的大小與 Sprite 相同，並確保不受父物件的縮放影響
         Vector3 lossyScale = transform.lossyScale;
         quad.transform.localScale = new Vector3(spriteSize.x * lossyScale.x, spriteSize.y * lossyScale.y, 1);
 
-        // 取得 Quad 的材質並設定與 Sprite 相同的材質
-        Material material = new Material(Shader.Find("Standard"));
-        material.mainTexture = spriteRenderer.sprite.texture;
-        quad.GetComponent<Renderer>().material = material;
-
-        // 設置 Quad 以支援光線和陰影
+        // 啟用陰影投射和接收
         MeshRenderer quadRenderer = quad.GetComponent<MeshRenderer>();
-        quadRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On; // 開啟投射陰影
-        quadRenderer.receiveShadows = true; // 開啟接收陰影
+        quadRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        quadRenderer.receiveShadows = true;
 
-        // 將 Quad 設置為 Sprite 的子物件，但保持與父物件無關的縮放
-        quad.transform.parent = transform;
+        // 把 Quad 移到場景根層級，確保不被刪除
+        quad.transform.parent = null;
+    }
+
+    // 更新 Quad 物件的位置與旋轉
+    void UpdateQuadPosition()
+    {
+        // 調整位置以確保 Quad 不會與其他物體重疊
+        Vector3 adjustedPosition = transform.position;
+        adjustedPosition.y += 0.1f; // 讓 Quad 稍微浮在 Sprite 上方
+        quad.transform.position = adjustedPosition;
+
+        // 設置 Quad 與 Sprite 相同的旋轉角度
+        quad.transform.rotation = transform.rotation;
     }
 }
