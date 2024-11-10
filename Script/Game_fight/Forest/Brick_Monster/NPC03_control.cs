@@ -9,8 +9,8 @@ public class NPC03_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj, Drop;
-    public int DetectDistance = 22, NPC03_ATK = 25, NPC03_DEF = 5;
-    public float NPC_HP_Max = 70, npcSpeed = 4f, NPC_HP, dist;
+    public int DetectDistance = 22;
+    public float NPC_HP_Max = 70, npcSpeed = 4f, NPC_HP, dist, NPC03_ATK = 25, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani, stun, hit = false; float NPC_back = 10;
     private Vector3 lastPosition;
