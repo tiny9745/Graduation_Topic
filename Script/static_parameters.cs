@@ -18,7 +18,7 @@ public class static_parameters : MonoBehaviour
     static public int Change_enemy = 0;
 
     static public int Comic_scene_sort = 0;
-    static public int diary_number = 0,money = 999999;
+    static public int diary_number = 0, money = 999999;
     static public uint[][] diary_memory = new uint[][]
 {
     new uint[] { 0, 0, 0, 0 },//暫存
@@ -27,8 +27,9 @@ public class static_parameters : MonoBehaviour
     new uint[] { 0, 0, 0, 0 },
     new uint[] { 0, 0, 0, 0 }
 };
- static public uint diary_step;
+    static public uint diary_step;
 
- static public float _BGM_volue;
- static public float _SE_volue; 
+    static public float _BGM_volue;
+    static public float _SE_volue;
+    static public int Map_start = 0;
 }

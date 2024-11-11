@@ -258,7 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e3c68a0f8b0524d9b126428855e4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabNPC01_1: {fileID: 654828963857941581, guid: 05a2eab05e77bdf49bcc8d85d00c09bc, type: 3}
   prefabNPC01: {fileID: 5642523929771483394, guid: 6e871a4ae30ddba4a9ef73497a257407, type: 3}
   prefabNPC02: {fileID: 3321726118843967734, guid: 03f42a7a501200246badafa7bf4d0b41, type: 3}
   prefabNPC03: {fileID: 7984589684211309320, guid: 9eeed140b9c640c4c8e18d598b186606, type: 3}
@@ -318,9 +317,7 @@ MonoBehaviour:
   - {fileID: 4122519975109998006, guid: 19fb7f69a6655e34f93eb76ae622ffad, type: 3}
   - {fileID: 5520366017768413166, guid: 33f46b2431e961647896c6c8e457250c, type: 3}
   - {fileID: 5976259018761855286, guid: 9a1e2fff8349b6c45b45bcf185d364ca, type: 3}
-  player: {fileID: 6923101670970959703, guid: 42d86bd19f7f423448eafbcb44ee7930, type: 3}
-  activationDistance: 150
-  deactivationDistance: 200
+  Door: {fileID: 4148343624649294445, guid: 050d93ee60b541d48bb28964de2bf63d, type: 3}
 --- !u!1 &1124389366
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +408,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.016666668
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 76fce3c4d48e8124d9dc6577ee80f342, type: 2}
   m_BuildHeightMesh: 0

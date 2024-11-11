@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Scence_FU_241103 : MonoBehaviour
 {
     public GameObject[] FU;
+    public GameObject Door;
     int max_index = 4; // 須為偶數
     int[][] scence_exist = new int[][]
     {
@@ -15,7 +16,7 @@ public class Scence_FU_241103 : MonoBehaviour
         new int[] { 0, 0, 0, 0, 0 },
         new int[] { 0, 0, 0, 0, 0 },
     };
-    int i, j, sum = 0;
+    int i, j;
     int scence_random;
     int scene_type;
 
@@ -27,6 +28,7 @@ public class Scence_FU_241103 : MonoBehaviour
     public void Fight_FU()
     {
         scence_random = Random.Range(0, 8);
+        static_parameters.Map_start = scence_random;
         Generatescence(FU[scence_random], new Vector3(max_index / 2 * 120.5f, -33, 0));
         scence_exist[max_index / 2][0] = 1;
 
@@ -43,9 +45,8 @@ public class Scence_FU_241103 : MonoBehaviour
                     Scenario_authentication(i, j);
                 }
             }
-            sum++;
         }
-        if (scence_exist[max_index][max_index / 2] == 1) Debug.Log("AAAAAAA");
+
     }
 
     void Scenario_authentication(int i, int j)
@@ -58,9 +59,13 @@ public class Scence_FU_241103 : MonoBehaviour
                 // 檢查該位置是否已經存在物件
                 if (scence_exist[i][j] == 0) // 若該位置沒有場景物件，則生成
                 {
-                    scence_random = Random.Range(0, 8);
+                    scence_random = Random.Range(0, 1);
                     Generatescence(FU[scence_random], new Vector3(i * 120.75f, -33, j * 120.5f));
                     scence_exist[i][j] = 1;
+                    if (j == max_index)
+                    {
+                        end_Door(scence_random, i, j);
+                    }
                 }
             }
         }
@@ -82,9 +87,41 @@ public class Scence_FU_241103 : MonoBehaviour
         return count == 1 || count == 2 || safe == true;
     }
 
+    void end_Door(int scence_number, int a, int b)
+    {
+        switch (scence_number)
+        {
+            case 0:
+                GenerateDoor(Door, new Vector3(a * 120.75f, 2.5f, (b - 1) * 152.5f + 80f));
+                break;
+            case 1:
+                GenerateDoor(Door, new Vector3(a * 120.75f + 36f, 2.5f, (b - 1) * 152.5f + 80f));
+                break;
+            case 2:
+                GenerateDoor(Door, new Vector3(a * 120.75f - 8f, 2.5f, (b - 1) * 152.5f + 80f));
+                break;
+            case 3:
+                GenerateDoor(Door, new Vector3(a * 120.75f - 8f, 2.5f, (b - 1) * 152.5f + 80f));
+                break;
+            case 4:
+                GenerateDoor(Door, new Vector3(a * 120.75f + 20f, 2.5f, (b - 1) * 152.5f + 80f));
+                GenerateDoor(Door, new Vector3(a * 120.75f - 20f, 2.5f, (b - 1) * 152.5f + 80f));
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+        }
+    }
+
     void Generatescence(GameObject scence, Vector3 position)
     {
         GameObject fight_scence = Instantiate(scence, position, Quaternion.identity);
-        fight_scence.name = $"Scene_{scence_random}_{i}_{j}"; // 命名
+    }
+    void GenerateDoor(GameObject scence, Vector3 position)
+    {
+        GameObject fight_Door = Instantiate(scence, position, Quaternion.identity);
     }
 }
