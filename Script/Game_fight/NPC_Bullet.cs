@@ -6,18 +6,18 @@ public class NPC_Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
     float NPC_ATK = 0, minus;
+    public float speed,lifetime = 3f;
+    public int damage = 10;
     public Rigidbody rb;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        NPC_ATK = GetComponentInParent<NPC03_control>().GetNPC03_ATK();
-        rb.velocity = transform.forward * 10;
+        Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
     private void OnTriggerEnter(Collider Hit)
     {
