@@ -1,71 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.AI; // 為了使用 NavMesh
 
 public class Prefabs_start : MonoBehaviour
 {
-    // Prefab to generate
-    public GameObject prefabNPC01_1;
     public GameObject prefabNPC01, prefabNPC02, prefabNPC03, prefabNPC04, prefabNPC05;
-    float NPC_postion_minX = -50f, NPC_postion_maxX = 50f;
-    float NPC_postion_minZ = -50f, NPC_postion_maxZ = 50f;
-    float randomX;
-    float randomZ;
-    int Number_NPC01, Number_NPC02, Number_NPC03, Number_NPC04, Number_NPC05;
+
+    private Bounds navMeshBounds;
+    private float randomX, randomZ;
+    private int Number_NPC01, Number_NPC02, Number_NPC03, Number_NPC04, Number_NPC05;
 
     void Start()
     {
-        // Randomly generate positions within range
+        // 計算初始 NavMesh 範圍
+        UpdateNavMeshBounds();
+
+        // 設定 NPC 數量
+        SetNPCNumbers();
+
+        // 在 NavMesh 更新後重新計算範圍
+        NavMesh.onPreUpdate += UpdateNavMeshBounds;
+
+        // 延遲生成 NPC，確保範圍正確
+        Invoke("NPC_into", 0.18f);
+    }
+
+    void OnDestroy()
+    {
+        // 移除 NavMesh 更新的監聽
+        NavMesh.onPreUpdate -= UpdateNavMeshBounds;
+    }
+
+    void SetNPCNumbers()
+    {
         switch (static_parameters.stage_number)
         {
             case 1:
-                Number_NPC01 = 2;
-                Number_NPC02 = 2;
-                Number_NPC03 = 2;
-                Number_NPC04 = 2;
-                Number_NPC05 = 2;
+                Number_NPC01 = 8;
+                Number_NPC02 = 8;
+                Number_NPC03 = 8;
+                Number_NPC04 = 8;
+                Number_NPC05 = 8;
                 break;
             case 2:
                 Number_NPC01 = 4;
                 Number_NPC02 = 3;
                 break;
-            case 3:
-                Number_NPC01 = 8;
-                Number_NPC02 = 4;
-                break;
-            case 4:
-                Number_NPC01 = 3;
-                Number_NPC03 = 4;
-                Number_NPC05 = 3;
-                break;
-            case 5:
-                Number_NPC01 = 6;
-                Number_NPC02 = 4;
-                Number_NPC03 = 4;
-                break;
-            case 6:
-                Number_NPC01 = 4;
-                Number_NPC02 = 6;
-                Number_NPC03 = 5;
-                Number_NPC05 = 5;
-                break;
-            case 7:
-                Number_NPC02 = 5;
-                Number_NPC04 = 10;
-                break;
-            case 8:
-                Number_NPC01 = 8;
-                Number_NPC02 = 6;
-                Number_NPC05 = 6;
-                break;
-            case 9:
-                Number_NPC01 = 4;
-                Number_NPC02 = 4;
-                Number_NPC03 = 4;
-                Number_NPC04 = 4;
-                Number_NPC05 = 4;
-                break;
+            // 其他 stage 設定...
             case 10:
                 Number_NPC01 = 10;
                 Number_NPC02 = 6;
@@ -76,61 +58,64 @@ public class Prefabs_start : MonoBehaviour
             default:
                 break;
         }
-        Invoke("NPC_into",0.18f);
+    }
+
+    void UpdateNavMeshBounds()
+    {
+        NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
+        if (triangulation.vertices.Length > 0)
+        {
+            Vector3 min = triangulation.vertices[0];
+            Vector3 max = triangulation.vertices[0];
+
+            foreach (Vector3 vertex in triangulation.vertices)
+            {
+                min = Vector3.Min(min, vertex);
+                max = Vector3.Max(max, vertex);
+            }
+
+            navMeshBounds = new Bounds();
+            navMeshBounds.SetMinMax(min, max);
+        }
     }
 
     void NPC_into()
     {
         for (int i = 0; i < Number_NPC01; i++)
         {
-            randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
-            randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
-            GenerateNPC01(new Vector3(randomX, transform.position.y, randomZ));
+            GenerateNPC(prefabNPC01);
         }
         for (int i = 0; i < Number_NPC02; i++)
         {
-            randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
-            randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
-            GenerateNPC02(new Vector3(randomX, transform.position.y, randomZ));
+            GenerateNPC(prefabNPC02);
         }
         for (int i = 0; i < Number_NPC03; i++)
         {
-            randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
-            randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
-            GenerateNPC03(new Vector3(randomX, transform.position.y, randomZ));
+            GenerateNPC(prefabNPC03);
         }
         for (int i = 0; i < Number_NPC04; i++)
         {
-            randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
-            randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
-            GenerateNPC04(new Vector3(randomX, transform.position.y, randomZ));
+            GenerateNPC(prefabNPC04);
         }
         for (int i = 0; i < Number_NPC05; i++)
         {
-            randomX = Random.Range(NPC_postion_minX, NPC_postion_maxX);
-            randomZ = Random.Range(NPC_postion_minZ, NPC_postion_maxZ);
-            GenerateNPC05(new Vector3(randomX, transform.position.y, randomZ));
+            GenerateNPC(prefabNPC05);
         }
     }
-    void GenerateNPC01(Vector3 position)
+
+    void GenerateNPC(GameObject prefab)
     {
-        // Generate the prefab and place it at the generated location
-        GameObject npc = Instantiate(prefabNPC01, position, Quaternion.identity);
-    }
-    void GenerateNPC02(Vector3 position)
-    {
-        GameObject npc = Instantiate(prefabNPC02, position, Quaternion.identity);
-    }
-    void GenerateNPC03(Vector3 position)
-    {
-        GameObject npc = Instantiate(prefabNPC03, position, Quaternion.identity);
-    }
-    void GenerateNPC04(Vector3 position)
-    {
-        GameObject npc = Instantiate(prefabNPC04, position, Quaternion.identity);
-    }
-    void GenerateNPC05(Vector3 position)
-    {
-        GameObject npc = Instantiate(prefabNPC05, position, Quaternion.identity);
+        randomX = Random.Range(navMeshBounds.min.x, navMeshBounds.max.x);
+        randomZ = Random.Range(navMeshBounds.min.z, navMeshBounds.max.z);
+        Vector3 position = new Vector3(randomX, transform.position.y, randomZ);
+
+        if (NavMesh.SamplePosition(position, out NavMeshHit hit, 2.0f, NavMesh.AllAreas))
+        {
+            Instantiate(prefab, hit.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning($"無法在範圍內找到有效 NavMesh 位置，跳過此生成 {prefab.name}。");
+        }
     }
 }
