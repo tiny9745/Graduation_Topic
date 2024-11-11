@@ -23,7 +23,7 @@ public class Prefabs_start : MonoBehaviour
         NavMesh.onPreUpdate += UpdateNavMeshBounds;
 
         // 延遲生成 NPC，確保範圍正確
-        Invoke("NPC_into", 0.18f);
+        Invoke("NPC_into", 0.8f);
     }
 
     void OnDestroy()
@@ -37,23 +37,58 @@ public class Prefabs_start : MonoBehaviour
         switch (static_parameters.stage_number)
         {
             case 1:
-                Number_NPC01 = 8;
-                Number_NPC02 = 8;
-                Number_NPC03 = 8;
-                Number_NPC04 = 8;
-                Number_NPC05 = 8;
-                break;
-            case 2:
-                Number_NPC01 = 4;
-                Number_NPC02 = 3;
-                break;
-            // 其他 stage 設定...
-            case 10:
-                Number_NPC01 = 10;
+                Number_NPC01 = 6;
                 Number_NPC02 = 6;
                 Number_NPC03 = 6;
                 Number_NPC04 = 6;
                 Number_NPC05 = 6;
+                break;
+            case 2:
+                Number_NPC01 = 20;
+                Number_NPC02 = 12;
+                break;
+            case 3:
+                Number_NPC01 = 32;
+                Number_NPC02 = 16;
+                break;
+            case 4:
+                Number_NPC01 = 15;
+                Number_NPC03 = 20;
+                Number_NPC05 = 12;
+                break;
+            case 5:
+                Number_NPC01 = 30;
+                Number_NPC02 = 24;
+                Number_NPC03 = 24;
+                break;
+            case 6:
+                Number_NPC01 = 20;
+                Number_NPC02 = 27;
+                Number_NPC03 = 22;
+                Number_NPC05 = 22;
+                break;
+            case 7:
+                Number_NPC02 = 32;
+                Number_NPC04 = 60;
+                break;
+            case 8:
+                Number_NPC01 = 48;
+                Number_NPC02 = 36;
+                Number_NPC05 = 36;
+                break;
+            case 9:
+                Number_NPC01 = 24;
+                Number_NPC02 = 24;
+                Number_NPC03 = 24;
+                Number_NPC04 = 24;
+                Number_NPC05 = 24;
+                break;
+            case 10:
+                Number_NPC01 = 50;
+                Number_NPC02 = 38;
+                Number_NPC03 = 38;
+                Number_NPC04 = 36;
+                Number_NPC05 = 36;
                 break;
             default:
                 break;
