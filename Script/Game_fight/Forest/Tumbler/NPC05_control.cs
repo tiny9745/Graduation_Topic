@@ -8,14 +8,14 @@ public class NPC05_control : MonoBehaviour
 {
     NavMeshAgent npcNavi;
     public Animator animator;
-    public GameObject TargetObj,Img_npc,bulletPrefab,NPC05, Drop;
+    public GameObject TargetObj, Img_npc, bulletPrefab, NPC05, Drop;
     public int DetectDistance = 12;
-    public float NPC05_ATK = 35, NPC05_DEF = 15,NPC_HP_Max = 160, npcSpeed = 0f, NPC_HP, fireRate = 1f,bulletSpeed = 20f;
+    public float NPC05_ATK = 35, NPC05_DEF = 15, NPC_HP_Max = 160, npcSpeed = 0f, NPC_HP, fireRate = 1f, bulletSpeed = 20f;
     float dist, nextFireTime = 0f;
     bool hit_Ani, hit = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    bool dead_open,MC_to_Att = true;
+    bool dead_open, MC_to_Att = true;
     public NPC_HP_05 nPC_hP;
     int NPC_angle = 0;
     private bool isFacingRight = true;
@@ -54,7 +54,9 @@ public class NPC05_control : MonoBehaviour
         if (TargetObj == null)
         {
             TargetObj = GameObject.Find("Player");
-        }else {
+        }
+        else
+        {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         }
 
@@ -84,7 +86,7 @@ public class NPC05_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-        
+
 
         if (TargetObj != null && Vector3.Distance(transform.position, TargetObj.transform.position) <= DetectDistance)
         {
@@ -105,11 +107,18 @@ public class NPC05_control : MonoBehaviour
             Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
 
             NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
-
+            if (directionOnXZ != Vector3.zero)
+                {
+                // Rotate the firePoint to face the direction
+                firePoint.rotation = Quaternion.LookRotation(directionOnXZ);
+                }
             if (NPC_angle < 0)
             {
                 NPC_angle += 360;
             }
+
+            direction.y = 0;
+            
         }
     }
 
