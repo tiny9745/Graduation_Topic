@@ -6,11 +6,11 @@ public class NPC_Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
     float NPC_ATK = 0, minus;
-    public float speed,lifetime = 1f;
+    public float speed,lifetime = 3f;
     public int damage = 10;
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        Invoke("Des", lifetime);
     }
 
     // Update is called once per frame
@@ -32,5 +32,9 @@ public class NPC_Bullet : MonoBehaviour
                 Debug.Log("MC_HP: " + static_parameters.MC_HP);
             }
         }
+    }
+    void Des()
+    {
+        Destroy(gameObject);
     }
 }
