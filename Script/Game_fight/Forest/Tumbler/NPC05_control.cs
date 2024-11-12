@@ -116,9 +116,6 @@ public class NPC05_control : MonoBehaviour
             {
                 NPC_angle += 360;
             }
-
-            direction.y = 0;
-            
         }
     }
 
