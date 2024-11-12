@@ -50,10 +50,6 @@ public class NPC01_control : MonoBehaviour
         if (nPC_hP == null)
         {
             nPC_hP = GetComponent<NPC_HP_01>();
-            if (nPC_hP == null)
-            {
-                Debug.LogError("NPC_HP_01 component not found on " + gameObject.name);
-            }
         }
     }
 
@@ -64,13 +60,13 @@ public class NPC01_control : MonoBehaviour
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         }
+
         if (NPC_HP <= 0)
         {
             PlayBombAnimation();
         }
         else if (!hit_Ani)
         {
-            //npcNavi.speed = npcSpeed;
             if (transform.position == lastPosition)
             {
                 PlayStandAnimation();
@@ -91,22 +87,9 @@ public class NPC01_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-        if (TargetObj == null)
-        {
+        if (TargetObj == null){
             TargetObj = GameObject.Find("Player");
         }
-        /*else
-        {
-            float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
-            if (dist < DetectDistance && NPC_HP > 0)
-            {
-                npcNavi.destination = TargetObj.transform.position;
-            }
-            else // Track your location 
-            {
-                npcNavi.destination = transform.position;
-            }
-        }*/
 
         if (TargetObj != null && npcNavi != null)
         {
@@ -304,10 +287,8 @@ public class NPC01_control : MonoBehaviour
                 if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
                 {
                     NPC01_hit = true;
-                    print("NPC01_hit");
                     if (nPC_hP == null)
                     {
-                        Debug.LogError("nPC_hP is not assigned.");
                         return;
                     }
                     nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
@@ -318,7 +299,6 @@ public class NPC01_control : MonoBehaviour
                 else
                 {
                     NPC01_hit = false;
-                    print("NPC01_not_hit");
                 }
             }
         }
