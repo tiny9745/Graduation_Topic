@@ -59,7 +59,7 @@ public class Scence_FU_241103 : MonoBehaviour
                 // 檢查該位置是否已經存在物件
                 if (scence_exist[i][j] == 0) // 若該位置沒有場景物件，則生成
                 {
-                    scence_random = Random.Range(0, 1);
+                    scence_random = Random.Range(4, 5);
                     Generatescence(FU[scence_random], new Vector3(i * 120.75f, -33, j * 120.5f));
                     scence_exist[i][j] = 1;
                     if (j == max_index)
@@ -92,20 +92,20 @@ public class Scence_FU_241103 : MonoBehaviour
         switch (scence_number)
         {
             case 0:
-                GenerateDoor(Door, new Vector3(a * 120.75f, 2.5f, (b - 1) * 152.5f + 80f));
+                GenerateDoor(Door, new Vector3(a * 120.75f + 15f, 2.5f, b * 120.5f + 44f));
                 break;
             case 1:
-                GenerateDoor(Door, new Vector3(a * 120.75f + 36f, 2.5f, (b - 1) * 152.5f + 80f));
+                GenerateDoor(Door, new Vector3(a * 120.75f + 42f, 2.5f, b * 120.5f + 44f));
                 break;
             case 2:
-                GenerateDoor(Door, new Vector3(a * 120.75f - 8f, 2.5f, (b - 1) * 152.5f + 80f));
+                GenerateDoor(Door, new Vector3(a * 120.75f - 8f, 2.5f, b * 120.5f + 44f));
                 break;
             case 3:
-                GenerateDoor(Door, new Vector3(a * 120.75f - 8f, 2.5f, (b - 1) * 152.5f + 80f));
+                GenerateDoor(Door, new Vector3(a * 120.75f - 30f, 2.5f, b * 120.5f + 44f));
                 break;
             case 4:
-                GenerateDoor(Door, new Vector3(a * 120.75f + 20f, 2.5f, (b - 1) * 152.5f + 80f));
-                GenerateDoor(Door, new Vector3(a * 120.75f - 20f, 2.5f, (b - 1) * 152.5f + 80f));
+                GenerateDoor(Door, new Vector3(a * 120.75f + 20f, 2.5f, b * 120.5f + 44f));
+                GenerateDoor(Door, new Vector3(a * 120.75f - 20f, 2.5f, b * 120.5f + 44f));
                 break;
             case 5:
                 break;
