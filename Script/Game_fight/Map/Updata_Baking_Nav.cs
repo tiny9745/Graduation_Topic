@@ -31,11 +31,36 @@ public class Updata_Baking_Nav : MonoBehaviour
     {
         surface.BuildNavMesh();
     }
-    
+
 
     private void MC_Start_position()
     {
-        // Vector3 startPos = new Vector3(0, 0, -65);
+        Vector3 startPos = new Vector3(255, 0, -65);
+        switch (static_parameters.Map_start)
+        {
+            case 0:   
+                break;
+            case 1:
+            startPos = new Vector3(310, 0, -65);
+                break;
+            case 2:
+                break;
+            case 3:
+            startPos = new Vector3(200, 0, -65);
+                break;
+            case 4:
+            startPos = new Vector3(211, 0, -65);
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+        }
+        // Vector3 startPos1 = new Vector3(0, 0, -65);
         // if (SceneManager.GetActiveScene().name == "Fight_FA02")
         // {
         //     startPos = new Vector3(55, 0, -65);
@@ -64,6 +89,6 @@ public class Updata_Baking_Nav : MonoBehaviour
         // {
         //     startPos = new Vector3(21, 0, -65);
         // }
-        // player_S.transform.position = startPos;
+        player_S.transform.position = startPos;
     }
 }

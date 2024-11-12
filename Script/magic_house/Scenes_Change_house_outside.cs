@@ -16,27 +16,6 @@ public class Scenes_Change_house_outside : MonoBehaviour
                 case 0:
                     SceneManager.LoadScene("Fight_FU01");
                     break;
-                case 1:
-                    SceneManager.LoadScene("Fight_FU02");
-                    break;
-                case 2:
-                    SceneManager.LoadScene("Fight_FU03");
-                    break;
-                case 3:
-                    SceneManager.LoadScene("Fight_FU04");
-                    break;
-                case 4:
-                    SceneManager.LoadScene("Fight_FU05");
-                    break;
-                case 5:
-                    SceneManager.LoadScene("Fight_FU06");
-                    break;
-                case 6:
-                    SceneManager.LoadScene("Fight_FU07");
-                    break;
-                case 7:
-                    SceneManager.LoadScene("Fight_FU08");
-                    break;
             }
         }
     }
