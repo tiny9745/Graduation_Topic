@@ -7,7 +7,7 @@ public class Scence_FU_241103 : MonoBehaviour
 {
     public GameObject[] FU;
     public GameObject Door;
-    int max_index = 4; // 須為偶數
+    int max_index = 2; // 須為偶數
     int[][] scence_exist = new int[][]
     {
         new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -28,6 +28,15 @@ public class Scence_FU_241103 : MonoBehaviour
 
     void Start()
     {
+        switch (static_parameters.stage_number_Boss)
+        {
+            case 1:
+                max_index = 4;
+                break;
+            case 2:
+                max_index = 6;
+                break;
+        }
         Fight_FU();
     }
 
@@ -40,7 +49,6 @@ public class Scence_FU_241103 : MonoBehaviour
 
         while (scence_exist[max_index / 2][max_index] != 1)
         {
-            Debug.Log("A1");
             for (i = 0; i < max_index + 1; i++)
             {
                 for (j = max_index / 2; j < max_index + 1; j++)
@@ -57,12 +65,11 @@ public class Scence_FU_241103 : MonoBehaviour
 
     void Scenario_authentication(int i, int j)
     {
-        if (i > 0 && scence_exist[i - 1][j] == 1 || i < max_index && scence_exist[i + 1][j] == 1 || j > 0 && scence_exist[i][j - 1] == 1 || j < max_index && scence_exist[i][j + 1] == 1)
+        if (i > 0 && scence_exist[i - 1][j] == 1 || i < max_index && scence_exist[i + 1][j] == 1 || j > 0 && scence_exist[i][j - 1] == 1 || j < max_index && scence_exist[i][j + 1] == 1 && condition(i, j))
         {
             scene_type = Random.Range(0, 2);
             if (scene_type == 1 && scence_exist[i][j] == 0)
             {
-                Debug.Log("A2-Yes");
                 scence_random = Random.Range(0, 5);
                 Generatescence(FU[scence_random], new Vector3(i * distance_scence, -33, j * distance_scence));
                 scence_exist[i][j] = 1;
@@ -86,15 +93,12 @@ public class Scence_FU_241103 : MonoBehaviour
         if (a < max_index && scence_exist[a + 1][b] == 1) count++;
         if (b > 0 && scence_exist[a][b - 1] == 1) count++;
         if (b < max_index && scence_exist[a][b + 1] == 1) count++;
-        Debug.Log("count:" + count);
         if (safe || count == 1 || count == 2)
         {
-            Debug.Log("true");
             return true;
         }
         else
         {
-            Debug.Log("false");
             return false;
         }
     }

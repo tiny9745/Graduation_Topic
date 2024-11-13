@@ -23,7 +23,7 @@ public class Loading_fight : MonoBehaviour
         {
             Time.timeScale = 0;
             StaticParameters_fight.isSceneLoading_fight = true;
-            if (static_parameters.stage_number % 3 == 0)
+            if (static_parameters.stage_number % 5 == 0)
             {
                 StartCoroutine(LoadSceneAsync(targetSceneName_Boss));
             }
