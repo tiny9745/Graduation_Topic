@@ -29,17 +29,17 @@ public class Scene_Change_Forest : MonoBehaviour
         {
             static_parameters.stage_number++;
 
-            if (static_parameters.stage_number < 5)
+            if (static_parameters.stage_number < 3)
             {
-                i = 5;
+                i = 3;
             }
-            else if (static_parameters.stage_number < 11)
+            else if (static_parameters.stage_number < 6)
             {
                 i = static_parameters.stage_number;
             }
             else
             {
-                i = 10;
+                i = 5;
             }
             if (static_parameters.stage_number >= i)
             {
