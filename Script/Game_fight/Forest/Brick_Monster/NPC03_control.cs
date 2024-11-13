@@ -332,6 +332,7 @@ public class NPC03_control : MonoBehaviour
                 Vector3 currentPosition = transform.position;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
+            static_parameters.money += 7;
             Invoke("dead_after", 5);
             dead_open = false;
         }

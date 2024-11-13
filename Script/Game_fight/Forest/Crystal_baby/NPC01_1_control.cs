@@ -13,11 +13,11 @@ public class NPC01_1_control : MonoBehaviour
     float dist;
     private float damageCooldown = 1.0f; // Time in seconds between damage instances
     private float nextDamageTime = 0.0f;
-    bool hit_Ani = false, hit = false,dead_open = true, MC_to_Att = true;
+    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC01_1;
-    public GameObject hitbox_Crystal_baby_small,Drop;
+    public GameObject hitbox_Crystal_baby_small, Drop;
     public NPC_HP_01_1 nPC_hP;
     int NPC_angle = 0;
     private bool isFacingRight = true;
@@ -61,22 +61,22 @@ public class NPC01_1_control : MonoBehaviour
             switch (color_change)
             {
                 case 0:
-                    spriterenderer.color = new Color(155/255f, 255/255f, 155/255f, 1f);
+                    spriterenderer.color = new Color(155 / 255f, 255 / 255f, 155 / 255f, 1f);
                     break;
                 case 1:
-                    spriterenderer.color = new Color(0f, 190f/255f, 255f/255f, 1f);
+                    spriterenderer.color = new Color(0f, 190f / 255f, 255f / 255f, 1f);
                     break;
                 case 2:
-                    spriterenderer.color = new Color(230/255f, 230/255f, 0f, 1f);
+                    spriterenderer.color = new Color(230 / 255f, 230 / 255f, 0f, 1f);
                     break;
                 case 3:
-                    spriterenderer.color = new Color(230/255f, 125/255f, 230/255f, 1f);
+                    spriterenderer.color = new Color(230 / 255f, 125 / 255f, 230 / 255f, 1f);
                     break;
                 case 4:
-                    spriterenderer.color = new Color(140/255f, 110/255f, 210/255f, 1f);
+                    spriterenderer.color = new Color(140 / 255f, 110 / 255f, 210 / 255f, 1f);
                     break;
                 case 5:
-                    spriterenderer.color = new Color(255/255f, 105/255f, 70/255f, 1f);
+                    spriterenderer.color = new Color(255 / 255f, 105 / 255f, 70 / 255f, 1f);
                     break;
             }
         }
@@ -91,7 +91,7 @@ public class NPC01_1_control : MonoBehaviour
             PlayBombAnimation();
         }
         else if (!hit_Ani)
-        {         
+        {
             if (transform.position == lastPosition)
             {
                 PlayStandAnimation();
@@ -153,7 +153,7 @@ public class NPC01_1_control : MonoBehaviour
         }
     }
 
-    private void PlayStandAnimation() 
+    private void PlayStandAnimation()
     {
         if (NPC_angle >= 0 && NPC_angle < 90)
         {
@@ -373,6 +373,7 @@ public class NPC01_1_control : MonoBehaviour
                 Vector3 currentPosition = transform.position;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
+            static_parameters.money += 3;
             Destroy(gameObject);
             dead_open = false;
         }
