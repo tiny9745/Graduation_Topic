@@ -41,12 +41,13 @@ public class Scene_Change_Forest : MonoBehaviour
             {
                 i = 5;
             }
+            static_parameters.money += i * 10;
             if (static_parameters.stage_number >= i)
             {
                 //SceneManager.LoadScene("Game_fight_Boss");
                 SceneManager.LoadScene("magic_house");
                 static_parameters.stage_number = 0;
-                static_parameters.stage_number_Boss ++;
+                static_parameters.stage_number_Boss++;
             }
             else
             {
