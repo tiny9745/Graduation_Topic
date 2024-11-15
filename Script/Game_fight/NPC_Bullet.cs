@@ -10,7 +10,7 @@ public class NPC_Bullet : MonoBehaviour
     public int damage = 10;
     void Start()
     {
-        Invoke("Des", lifetime);
+        Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
@@ -20,21 +20,17 @@ public class NPC_Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider Hit)
     {
+        Debug.Log("B");
         if (Hit.gameObject.CompareTag("Player"))
         {
             if (!static_parameters.invincible)
             {
-                Debug.Log("Player Hit");
+                Debug.Log(static_parameters.MC_HP);
                 minus = (float)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
                 if (minus < 5) minus = 5.0f;
                 static_parameters.MC_HP -= minus;
-                this.enabled = false;
                 Debug.Log("MC_HP: " + static_parameters.MC_HP);
             }
         }
-    }
-    void Des()
-    {
-        Destroy(gameObject);
     }
 }
