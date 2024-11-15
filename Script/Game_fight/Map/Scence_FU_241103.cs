@@ -23,7 +23,7 @@ public class Scence_FU_241103 : MonoBehaviour
     int scence_random;
     int scene_type;
     int max_Re = 0;
-    float distance_scence = 120.5f;
+    float distance_scence = 120f;
 
     void Start()
     {
@@ -41,7 +41,7 @@ public class Scence_FU_241103 : MonoBehaviour
 
     public void Fight_FU()
     {
-        scence_random = Random.Range(0, 8);
+        scence_random = Random.Range(8, 15);
         static_parameters.Map_start = scence_random;
         Generatescence(FU[scence_random], new Vector3(max_index / 2 * distance_scence, -33, 0));
         scence_exist[max_index / 2][0] = 1;
@@ -71,7 +71,13 @@ public class Scence_FU_241103 : MonoBehaviour
             scene_type = Random.Range(0, 2);
             if (scene_type == 1 && scence_exist[i][j] == 0)
             {
-                scence_random = Random.Range(0, 5);
+                if (i == max_index / 2 || j == max_index / 2){
+                    scence_random = Random.Range(8, 19);
+                }
+                else{
+                    scence_random = Random.Range(0, 8);
+                }
+                
                 Generatescence(
                     FU[scence_random],
                     new Vector3(i * distance_scence, -33, j * distance_scence)
@@ -150,6 +156,28 @@ public class Scence_FU_241103 : MonoBehaviour
             case 7:
                 break;
             case 8:
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            case 11:
+                break;
+            case 12:
+                break;
+            case 13:
+                break;
+            case 14:
+                break;
+            case 15:
+                break;
+            case 16:
+                break;
+            case 17:
+                break;
+            case 18:
+                break;
+            case 19:
                 break;
         }
     }
