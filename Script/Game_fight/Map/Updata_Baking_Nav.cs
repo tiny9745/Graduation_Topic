@@ -35,21 +35,21 @@ public class Updata_Baking_Nav : MonoBehaviour
 
     private void MC_Start_position()
     {
-        Vector3 startPos = new Vector3(255, 0, -65);
+        Vector3 startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120, 0, -65);
         switch (static_parameters.Map_start)
         {
             case 0:   
                 break;
             case 1:
-            startPos = new Vector3(310, 0, -65);
+            startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120 + 55, 0, -65);
                 break;
             case 2:
                 break;
             case 3:
-            startPos = new Vector3(200, 0, -65);
+            startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120 - 55, 0, -65);
                 break;
             case 4:
-            startPos = new Vector3(211, 0, -65);
+            startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120 - 44, 0, -65);
                 break;
             case 5:
                 break;
@@ -58,6 +58,34 @@ public class Updata_Baking_Nav : MonoBehaviour
             case 7:
                 break;
             case 8:
+                break;
+            case 9:
+                break;
+            case 10:  
+            startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120 - 55, 0, -65); 
+                break;
+            case 11:
+            startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120 + 55, 0, -65);
+                break;
+            case 12:
+                break;
+            case 13:
+
+                break;
+            case 14:
+
+                break;
+            case 15:
+            startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120 - 36, 0, -65);
+                break;
+            case 16:
+                break;
+            case 17:
+                break;
+            case 18:
+            startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120 + 21, 0, -65);
+                break;
+            case 19:
                 break;
         }
         // Vector3 startPos1 = new Vector3(0, 0, -65);

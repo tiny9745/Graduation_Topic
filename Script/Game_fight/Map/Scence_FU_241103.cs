@@ -29,6 +29,9 @@ public class Scence_FU_241103 : MonoBehaviour
     {
         switch (static_parameters.stage_number_Boss)
         {
+            case 0:
+                max_index = 2;
+                break;
             case 1:
                 max_index = 4;
                 break;
@@ -43,7 +46,7 @@ public class Scence_FU_241103 : MonoBehaviour
     {
         scence_random = Random.Range(8, 15);
         static_parameters.Map_start = scence_random;
-        Generatescence(FU[scence_random], new Vector3(max_index / 2 * distance_scence, -33, 0));
+        Generatescence(FU[scence_random], new Vector3(max_index / 2 * distance_scence, 0, 0));
         scence_exist[max_index / 2][0] = 1;
 
         while (scence_exist[max_index / 2][max_index] != 1 && scence_exist[0][max_index] != 1 && scence_exist[max_index][max_index] != 1)
@@ -80,7 +83,7 @@ public class Scence_FU_241103 : MonoBehaviour
                 
                 Generatescence(
                     FU[scence_random],
-                    new Vector3(i * distance_scence, -33, j * distance_scence)
+                    new Vector3(i * distance_scence, 0, j * distance_scence)
                 );
                 scence_exist[i][j] = 1;
                 if (j == max_index && (i == 0 || i == max_index / 2 || i == max_index))
