@@ -22,16 +22,11 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // MoveDiary();
 
     }
     public void ChangePage()
     {
         Page_now.sprite = Page_change;
-        // if (drag_end.all_text == "")
-        // {
-        //     Diary_Left_Text.text = "我今天讀了一本書，";
-        // }
     }
     public void CheckPage()
     {
