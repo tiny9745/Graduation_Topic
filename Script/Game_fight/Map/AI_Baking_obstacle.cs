@@ -10,7 +10,7 @@ public class AI_Baking_obstacle : MonoBehaviour
     public GameObject[] Scenes_object_obstacle;  // 障礙物物體數組
     public GameObject[] Scenes_object_decorate;  // 裝飾物物體數組
     public NavMeshSurface navMeshSurface;  // 參考NavMeshSurface物體
-
+    float distance_scence = 120f;
     // 障礙物範圍
     private float obstach_postion_minX, obstach_postion_maxX, obstach_postion_minZ, obstach_postion_maxZ;
 
@@ -23,10 +23,10 @@ public class AI_Baking_obstacle : MonoBehaviour
     void Start()
     {
         // 初始化隨機範圍
-        obstach_postion_minX = -100f;
-        obstach_postion_maxX = 100f;
-        obstach_postion_minZ = -100f;
-        obstach_postion_maxZ = 100f;
+        obstach_postion_minX = -distance_scence/2;
+        obstach_postion_maxX = (static_parameters.stage_number_Boss * 2 + 3) * distance_scence - distance_scence/2;
+        obstach_postion_minZ = -distance_scence/2;
+        obstach_postion_maxZ = (static_parameters.stage_number_Boss * 2 + 3) * distance_scence - distance_scence/2;
 
         // 初始化障礙物範圍
         Invoke("InitializeObstacleRanges",1.5f);
@@ -115,8 +115,6 @@ public class AI_Baking_obstacle : MonoBehaviour
         float randomY = obj.transform.position.y;  // 確保Y軸位置可以根據物體的實際位置設定
 
         Vector3 newPosition = new Vector3(randomX, randomY, randomZ);
-
-        Debug.Log($"Attempting to generate object at position: {newPosition}");
         return newPosition; // 返回生成的隨機位置
     }
 

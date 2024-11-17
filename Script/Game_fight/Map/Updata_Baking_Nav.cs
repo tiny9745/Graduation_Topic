@@ -20,11 +20,11 @@ public class Updata_Baking_Nav : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BuildNavMesh_open)
-        {
-            BuildNavMesh_open = false;
-            Invoke("BuildNavMesh", 0.15f);
-        }
+        // if (BuildNavMesh_open)
+        // {
+        //     BuildNavMesh_open = false;
+        //     Invoke("BuildNavMesh", 0.15f);
+        // }
     }
 
     void BuildNavMesh()
@@ -70,10 +70,8 @@ public class Updata_Baking_Nav : MonoBehaviour
             case 12:
                 break;
             case 13:
-
                 break;
             case 14:
-
                 break;
             case 15:
             startPos = new Vector3((static_parameters.stage_number_Boss + 1) * 120 - 36, 0, -65);
@@ -88,35 +86,6 @@ public class Updata_Baking_Nav : MonoBehaviour
             case 19:
                 break;
         }
-        // Vector3 startPos1 = new Vector3(0, 0, -65);
-        // if (SceneManager.GetActiveScene().name == "Fight_FA02")
-        // {
-        //     startPos = new Vector3(55, 0, -65);
-        // }
-        // else if (SceneManager.GetActiveScene().name == "Fight_FA04")
-        // {
-        //     startPos = new Vector3(-55, 0, -65);
-        // }
-        // else if (SceneManager.GetActiveScene().name == "Fight_FA05")
-        // {
-        //     startPos = new Vector3(-44, 0, -65);
-        // }
-        // else if (SceneManager.GetActiveScene().name == "Fight_FB03")
-        // {
-        //     startPos = new Vector3(-55, 0, -65);
-        // }
-        // else if (SceneManager.GetActiveScene().name == "Fight_FB04")
-        // {
-        //     startPos = new Vector3(55, 0, -65);
-        // }
-        // else if (SceneManager.GetActiveScene().name == "Fight_FC01")
-        // {
-        //     startPos = new Vector3(-36, 0, -65);
-        // }
-        // else if (SceneManager.GetActiveScene().name == "Fight_FC04")
-        // {
-        //     startPos = new Vector3(21, 0, -65);
-        // }
         player_S.transform.position = startPos;
     }
 }
