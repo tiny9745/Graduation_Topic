@@ -15,10 +15,10 @@ public class NPC04_control : MonoBehaviour
     bool hit_Ani, hit = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC04, hitbox_Brick_Monster, Drop,Img_npc;
-    bool dead_open,MC_to_Att = true;
+    public GameObject NPC04, hitbox_Brick_Monster, Drop, Img_npc;
+    bool dead_open, MC_to_Att = true;
     public NPC_HP_04 nPC_hP;
-    int NPC_angle = 0;
+    int NPC_angle = 0;bool open_EnableHitbox = true;
     private bool isFacingRight = true;
 
     void Start()
@@ -234,35 +234,36 @@ public class NPC04_control : MonoBehaviour
         return hit;
     }
 
-    bool open_EnableHitbox = true;
+    
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
-            if (NPC_HP > 0)
+            Debug.Log("ATKcheck");
+            if (other.gameObject.tag == "Player")
             {
-                if (other.gameObject.tag == "Player")
+                Debug.Log("ATKcheck2");
+                if (open_EnableHitbox)
                 {
-                    if (open_EnableHitbox)
-                    {
-                        hit_Ani = true;
-                        Invoke("EnableHitbox", 1.1f);
-                        open_EnableHitbox = false;
-                    }
-                }
-                if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
-                {
-                    if (nPC_hP == null)
-                    {
-                        Debug.LogError("nPC_hP is not assigned.");
-                        return;
-                    }
-                    nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
-                    MC_to_Att = false;
-                    Invoke("wait_MC_att", 0.2f);
-                    nextDamageTime = Time.time + damageCooldown;
+                    Debug.Log("ATKcheck3");
+                    hit_Ani = true;
+                    Invoke("EnableHitbox", 1.1f);
+                    open_EnableHitbox = false;
                 }
             }
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            {
+                if (nPC_hP == null)
+                {
+                    Debug.LogError("nPC_hP is not assigned.");
+                    return;
+                }
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.2f);
+                nextDamageTime = Time.time + damageCooldown;
+            }
+
         }
     }
 

@@ -251,12 +251,15 @@ public class NPC02_control : MonoBehaviour
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
+            Debug.Log("ATKcheck");
             if (NPC_HP > 0)
             {
                 if (other.gameObject.tag == "Player")
                 {
+                    Debug.Log("ATKcheck2");
                     if (open_EnableHitbox)
                     {
+                        Debug.Log("ATKcheck3");
                         hit_Ani = true;
                         Invoke("EnableHitbox", 1.1f);
                         open_EnableHitbox = false;
