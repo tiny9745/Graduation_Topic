@@ -74,16 +74,12 @@ public class Scence_FU_241103 : MonoBehaviour
             if (scene_type == 1 && scence_exist[i][j] == 0)
             {
                 if (i == max_index / 2 || j == max_index / 2){
-                    scence_random = Random.Range(8, 19);
+                    scence_random = Random.Range(13, 19);
                 }
                 else{
-                    scence_random = Random.Range(0, 8);
+                    scence_random = Random.Range(0, 13);
                 }
-                
-                Generatescence(
-                    FU[scence_random],
-                    new Vector3(i * distance_scence, 0, j * distance_scence)
-                );
+                Generatescence(FU[scence_random], new Vector3(i * distance_scence, 0, j * distance_scence));
                 scence_exist[i][j] = 1;
                 if (j == max_index && (i == 0 || i == max_index / 2 || i == max_index))
                 {
@@ -185,7 +181,7 @@ public class Scence_FU_241103 : MonoBehaviour
 
     void Generatescence(GameObject scence, Vector3 position)
     {
-        GameObject fight_scence = Instantiate(scence, position, Quaternion.identity);
+        GameObject fight_scence = Instantiate(scence, position, Quaternion.identity, transform); 
     }
 
     void GenerateDoor(GameObject scence, Vector3 position)
