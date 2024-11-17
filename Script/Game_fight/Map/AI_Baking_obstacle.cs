@@ -1,94 +1,97 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class AI_Baking_obstacle : MonoBehaviour
 {
     [SerializeField]
-    public NavMeshSurface surface;
-    public GameObject[] Scenes_object_obstacle;
-    public GameObject[] Scenes_object_decorate;
-    public GameObject[] Scenes_object_obstacle_outside_small;
-    public GameObject[] Scenes_object_obstacle_outside_big;
+    public GameObject[] Scenes_object_obstacle;  // 障礙物物體數組
+    public GameObject[] Scenes_object_decorate;  // 裝飾物物體數組
+    public NavMeshSurface navMeshSurface;  // 參考NavMeshSurface物體
 
-    public GameObject block_fog;
+    // 障礙物範圍
+    private float obstach_postion_minX, obstach_postion_maxX, obstach_postion_minZ, obstach_postion_maxZ;
 
-    public RandomTileGround randomTileGround;
+    // 隨機數量範圍
+    private int MinInsideDecorate = 160, MaxInsideDecorate = 250;
+    private int MinInsideObstacle = 60, MaxInsideObstacle = 130;
 
-    float obstach_postion_minX, obstach_postion_maxX, obstach_postion_minZ, obstach_postion_maxZ;
+    private bool obstaclesGenerated = false;  // 用來確保障礙物只生成一次
 
-    bool randomTileGround_found = false;
-
-    int MinInsideDecorate = 16, MaxInsideDecorate = 25;
-    int MinInsideObstacle = 6, MaxInsideObstacle = 13;
-    int MinOutsideSmall = 90, MaxOutsideSmall = 115;
-    int MinOutsideBig = 60, MaxOutsideBig = 85;
-
-    void Update()
+    void Start()
     {
-        if (!randomTileGround_found)
-        {
-            InitializeObstacleRanges();
-        }
+        // 初始化隨機範圍
+        obstach_postion_minX = -100f;
+        obstach_postion_maxX = 100f;
+        obstach_postion_minZ = -100f;
+        obstach_postion_maxZ = 100f;
+
+        // 初始化障礙物範圍
+        Invoke("InitializeObstacleRanges",1.5f);
     }
 
     void InitializeObstacleRanges()
     {
-        if (randomTileGround != null)
+        // 只有在障礙物尚未生成時才會生成
+        if (!obstaclesGenerated)
         {
-            obstach_postion_minX = randomTileGround.minBoundary.x + randomTileGround.padding_X_min;
-            obstach_postion_maxX = randomTileGround.maxBoundary.x - randomTileGround.padding_X_max;
-            obstach_postion_minZ = randomTileGround.minBoundary.z + randomTileGround.padding_Z_min;
-            obstach_postion_maxZ = randomTileGround.maxBoundary.z - randomTileGround.padding_Z_max;
-            randomTileGround_found = true;
-
+            Debug.Log("Generating obstacles and decorations...");
             obstach_random_inside();
-            obstach_random_outside();
+            obstaclesGenerated = true;  // 標記障礙物已經生成
+        }
 
-            GenerateShaderAppliedObjects();
-            GenerateShaderAppliedObjects2();
-            GenerateShaderAppliedObjects3();
-        }
-        else
-        {
-            Debug.LogError("RandomTileGround reference is not assigned.");
-        }
+        // 每次NavMeshSurface變化後都重新bake
+        BakeNavMesh();
     }
 
     void obstach_random_inside()
     {
+        // 隨機生成障礙物和裝飾物
         GenerateRandomObjects(Scenes_object_obstacle, MinInsideObstacle, MaxInsideObstacle, true);
         GenerateRandomObjects(Scenes_object_decorate, MinInsideDecorate, MaxInsideDecorate, true);
-        Invoke("BuildNavMesh", 0.2f);
-    }
-
-    void obstach_random_outside()
-    {
-        GenerateRandomObjects(Scenes_object_obstacle_outside_small, MinOutsideSmall, MaxOutsideSmall, false);
-        GenerateRandomObjects(Scenes_object_obstacle_outside_big, MinOutsideBig, MaxOutsideBig, false);
     }
 
     void GenerateRandomObjects(GameObject[] objects, int minCount, int maxCount, bool isInside)
     {
-        int count = Random.Range(minCount, maxCount);
-        List<Vector3> usedPositions = new List<Vector3>(); // Record used location
+        int count = Random.Range(minCount, maxCount); // 隨機數量
+        List<Vector3> usedPositions = new List<Vector3>(); // 用來記錄已經使用過的位置
+
+        Debug.Log($"Generating {count} objects...");
 
         for (int i = 0; i < count; i++)
         {
-            int typeIndex = Random.Range(0, objects.Length);
-            Vector3 position;
+            int typeIndex = Random.Range(0, objects.Length); // 隨機選擇物體類型
+            GameObject selectedObject = objects[typeIndex];
 
-            // Try generating locations until you find a non-overlapping location
-            do
+            Vector3 randomPosition = Vector3.zero;  // 初始化位置，避免未賦值錯誤
+
+            // 嘗試隨機生成不重疊的有效位置
+            bool validPositionFound = false;
+            for (int attempt = 0; attempt < 100; attempt++) // 嘗試最大次數
             {
-                position = isInside ? GenerateInsidePosition(objects[typeIndex]) : GenerateOutsidePosition(objects[typeIndex]);
-            }
-            while (IsPositionUsed(position, usedPositions));
+                randomPosition = GenerateInsidePosition(selectedObject); // 生成隨機位置
 
-            usedPositions.Add(position);
-            Instantiate(objects[typeIndex], position, Quaternion.identity);
+                if (!IsPositionUsed(randomPosition, usedPositions)) // 檢查位置是否有效
+                {
+                    usedPositions.Add(randomPosition); // 如果有效，則記錄位置
+                    validPositionFound = true;
+                    break; // 成功找到有效位置，跳出循環
+                }
+            }
+
+            if (validPositionFound)
+            {
+                // 在有效位置生成物體
+                Instantiate(selectedObject, randomPosition, Quaternion.identity);
+                Debug.Log($"Generated object at position: {randomPosition}");
+            }
+            else
+            {
+                // 如果找不到有效位置，這裡可以進行處理，比如跳過該物體的生成或重試
+                Debug.LogWarning("Failed to find valid position for object after 100 attempts");
+            }
         }
     }
 
@@ -98,105 +101,36 @@ public class AI_Baking_obstacle : MonoBehaviour
         {
             if (Vector3.Distance(position, usedPosition) < minDistance)
             {
-                return true;
+                return true; // 位置已經使用過
             }
         }
-        return false;
+        return false; // 位置未被使用過
     }
-
 
     Vector3 GenerateInsidePosition(GameObject obj)
     {
+        // 隨機生成位置
         float randomX = Random.Range(obstach_postion_minX, obstach_postion_maxX);
         float randomZ = Random.Range(obstach_postion_minZ, obstach_postion_maxZ);
-        return new Vector3(randomX, obj.transform.position.y, randomZ);
+        float randomY = obj.transform.position.y;  // 確保Y軸位置可以根據物體的實際位置設定
+
+        Vector3 newPosition = new Vector3(randomX, randomY, randomZ);
+
+        Debug.Log($"Attempting to generate object at position: {newPosition}");
+        return newPosition; // 返回生成的隨機位置
     }
 
-    Vector3 GenerateOutsidePosition(GameObject obj)
+    // 重新計算（bake）NavMesh
+    void BakeNavMesh()
     {
-        float randomX = 0;
-        float randomZ = 0;
-        int region = Random.Range(0, 3);
-
-        switch (region)
+        if (navMeshSurface != null)
         {
-            case 0:
-                randomX = Random.Range(randomTileGround.minBoundary.x, obstach_postion_minX);
-                randomZ = Random.Range(randomTileGround.minBoundary.z, randomTileGround.maxBoundary.z);
-                break;
-            case 1:
-                randomX = Random.Range(obstach_postion_maxX, randomTileGround.maxBoundary.x);
-                randomZ = Random.Range(randomTileGround.minBoundary.z, randomTileGround.maxBoundary.z);
-                break;
-            case 2:
-                randomX = Random.Range(obstach_postion_minX, obstach_postion_maxX);
-                randomZ = Random.Range(obstach_postion_maxZ, randomTileGround.maxBoundary.z);
-                break;
+            navMeshSurface.BuildNavMesh();  // 重新建構NavMesh
+            Debug.Log("NavMesh baked.");
         }
-
-        return new Vector3(randomX, obj.transform.position.y, randomZ);
-    }
-    
-void GenerateShaderAppliedObjects()
-{
-    float lengthX = obstach_postion_maxX - obstach_postion_minX;
-    float lengthZ = randomTileGround.maxBoundary.z - obstach_postion_maxZ;
-
-    Vector3 scale = block_fog.transform.localScale;
-
-    scale.x = lengthX;
-    scale.z = lengthZ;
-
-    block_fog.transform.localScale = scale;
-
-    float centerX = obstach_postion_minX + (lengthX / 2);
-
-    GameObject blockFogInstance = Instantiate(
-        block_fog, 
-        new Vector3(centerX, 25, randomTileGround.maxBoundary.z - lengthZ / 2), 
-        Quaternion.identity
-    );
-}
-void GenerateShaderAppliedObjects2()
-{
-    float lengthX = obstach_postion_maxX - randomTileGround.maxBoundary.x;
-    float lengthZ = randomTileGround.maxBoundary.z - obstach_postion_minZ; 
-
-    Vector3 scale = block_fog.transform.localScale;
-    scale.x = lengthX;
-    scale.z = lengthZ;
-    block_fog.transform.localScale = scale;
-
-    float centerZ = randomTileGround.maxBoundary.z - (lengthZ - randomTileGround.minBoundary.z) / 2 - 10f;
-
-    GameObject blockFogInstance = Instantiate(
-        block_fog, 
-        new Vector3(randomTileGround.maxBoundary.x + (lengthX / 2), 25, centerZ), 
-        Quaternion.identity
-    );
-}
-
-void GenerateShaderAppliedObjects3()
-{
-    float lengthX = randomTileGround.maxBoundary.x + obstach_postion_minX;
-    float lengthZ = randomTileGround.maxBoundary.z - obstach_postion_minZ; 
-
-    Vector3 scale = block_fog.transform.localScale;
-    scale.x = lengthX;
-    scale.z = lengthZ;
-    block_fog.transform.localScale = scale;
-
-    float centerZ = randomTileGround.maxBoundary.z - (lengthZ - randomTileGround.minBoundary.z) / 2 - 10f;
-
-    GameObject blockFogInstance = Instantiate(
-        block_fog, 
-        new Vector3(randomTileGround.minBoundary.x + (lengthX / 2), 25, centerZ), 
-        Quaternion.identity
-    );
-}
-
-    void BuildNavMesh()
-    {
-        surface.BuildNavMesh();
+        else
+        {
+            Debug.LogWarning("NavMeshSurface is not assigned.");
+        }
     }
 }

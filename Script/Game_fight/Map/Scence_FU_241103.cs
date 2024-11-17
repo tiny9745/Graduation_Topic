@@ -63,7 +63,6 @@ public class Scence_FU_241103 : MonoBehaviour
                 }
             }
             max_Re++;
-            Debug.Log("max_re:"+max_Re);
         }
     }
 
@@ -107,7 +106,6 @@ public class Scence_FU_241103 : MonoBehaviour
             count++;
         if (b < max_index && scence_exist[a][b + 1] == 1)
             count++;
-        Debug.Log("count:" + count);
         if (count > 0 && count < 5)
         {
             return true;
@@ -187,7 +185,6 @@ public class Scence_FU_241103 : MonoBehaviour
 
     void Generatescence(GameObject scence, Vector3 position)
     {
-        Debug.Log("A3");
         GameObject fight_scence = Instantiate(scence, position, Quaternion.identity);
     }
 

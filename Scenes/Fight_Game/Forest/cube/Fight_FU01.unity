@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 708759940}
   - component: {fileID: 708759943}
   - component: {fileID: 708759944}
+  - component: {fileID: 708759945}
   m_Layer: 0
   m_Name: GF_script
   m_TagString: Untagged
@@ -330,6 +331,57 @@ MonoBehaviour:
   - {fileID: 6603490909670482900, guid: 0ece9028e59f34b428d5c9d54bf5c8f5, type: 3}
   - {fileID: 3877779442717713350, guid: 9ef01eaea0bafbe429e2d58f9ac6db9f, type: 3}
   Door: {fileID: 4148343624649294445, guid: 050d93ee60b541d48bb28964de2bf63d, type: 3}
+--- !u!114 &708759945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708759935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4949d03c70a01a4989d92f6b11e21c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scenes_object_obstacle:
+  - {fileID: 2526488091403990228, guid: a7e426a7bd9654046be6d97d981d5680, type: 3}
+  - {fileID: 884914828940546148, guid: ac635c53af1912d49b176e211811ec82, type: 3}
+  - {fileID: 3525074517108747967, guid: df07e73799d612c43b9b55bc5357f2b1, type: 3}
+  - {fileID: 5943936247861258934, guid: 193a6d39d9b5b2844ba7ff082d9d524e, type: 3}
+  - {fileID: 2916462123352366144, guid: fb8aa6f72b6467143a442a1747b0d6fb, type: 3}
+  - {fileID: 2523311724744806504, guid: 8d26ce3e7209f194c9c03582306a478b, type: 3}
+  - {fileID: 3861685028529657127, guid: e7dc9141fd2a6c54e94bc0d76b60d52c, type: 3}
+  - {fileID: 6578565930985479534, guid: 671db69d0aa87114f9bf84190df17da1, type: 3}
+  - {fileID: 1252936795168567495, guid: 751374cedc497c24782555deb47fe2b3, type: 3}
+  - {fileID: 8293963352012782479, guid: b5e9a8abe5c288749a5ceb0f8338821b, type: 3}
+  Scenes_object_decorate:
+  - {fileID: 7276267708724499305, guid: 35e6ba4c97713744e96d9177577dcc38, type: 3}
+  - {fileID: 4388603591350439958, guid: a2390d56b9a06204597cb0d720d3f839, type: 3}
+  - {fileID: 4514444297537960752, guid: 6cd480aa56a0d28469f21998af6163af, type: 3}
+  - {fileID: 8622352898152091823, guid: a69490347041401438782170ad5e0c21, type: 3}
+  - {fileID: 5336167650654495233, guid: bfc86ed7dfdc9e2429727ec6ccefe791, type: 3}
+  - {fileID: 1367112194009753192, guid: 250671fa0f77ab3439d451a39c153a7e, type: 3}
+  - {fileID: 3738656569607862073, guid: 4b566dd8c961aed40b48ecf62920b272, type: 3}
+  - {fileID: 8945670264001533422, guid: 33f9af65b303ce445bfba62fe4a09aea, type: 3}
+  - {fileID: 7795898564450407660, guid: b5b64bd2cf97c8b4684dc206f02ca688, type: 3}
+  - {fileID: 4222279173574603927, guid: f76df80d6960c1f4b91defaf8a63e2d1, type: 3}
+  - {fileID: 6578476565912849534, guid: d972541fb49e0b04288278e5c47159a7, type: 3}
+  - {fileID: 6508652626626296361, guid: b35c62ac1ceeccd489683b95d1190b81, type: 3}
+  - {fileID: 4906129678241455078, guid: 95e6744526caf6548adebbc76852b7e2, type: 3}
+  - {fileID: 2942544608666814600, guid: c21192f217d2e5b4d9b0f5aa0d7a2429, type: 3}
+  - {fileID: 533185323005083603, guid: e36405e251c118f42b13bf3435efee10, type: 3}
+  - {fileID: 791862308356128549, guid: 4e501f5331cebe444908234cc1484062, type: 3}
+  - {fileID: 1174564608464784175, guid: b119a679c92b5554691cd42f2c04b013, type: 3}
+  - {fileID: 3058926528013147865, guid: 055474bd8fd11464ea632848740014f4, type: 3}
+  - {fileID: 1986946452714683056, guid: 3d73e934d32b1af4b8299525b530a5b1, type: 3}
+  - {fileID: 8865882377606395094, guid: 1839c96e70f2da14995c5a3a383664de, type: 3}
+  - {fileID: 5887655240179453705, guid: f789c69e64793cc45ac8f39f6e7bda37, type: 3}
+  - {fileID: 690914327425738109, guid: eb680c26ed2a09848956ec0861d8a8df, type: 3}
+  - {fileID: 3313683382341343523, guid: 53fd406cf28a1bc4d80894881f5731aa, type: 3}
+  - {fileID: 677666755353993314, guid: eb229bb2e72645b4d89a956b2333991a, type: 3}
+  - {fileID: 2532637600621994896, guid: ae00d3b5f64cbdf43baf74c0fc1c06b1, type: 3}
+  - {fileID: 2783644724443681544, guid: d447fdf8148d7b445af99acd6601d84b, type: 3}
+  navMeshSurface: {fileID: 1322086228}
 --- !u!1 &1124389366
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +474,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 76fce3c4d48e8124d9dc6577ee80f342, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6ca78e6e2433eba4a9c5acc22768fea6, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1789274556
 GameObject:
