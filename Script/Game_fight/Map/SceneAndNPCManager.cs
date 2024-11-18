@@ -58,7 +58,7 @@ public class SceneAndNPCManager : MonoBehaviour
         NavMesh.onPreUpdate += UpdateNavMeshBounds;
 
         SetNPCNumbers();  // 設定 NPC 數量
-        yield return new WaitForSeconds(1.8f);  // 確保範圍正確後延遲生成 NPC
+        yield return new WaitForSeconds(1.5f);  // 確保範圍正確後延遲生成 NPC
 
         NPC_into();  // 生成 NPC
     }
@@ -162,8 +162,6 @@ public class SceneAndNPCManager : MonoBehaviour
 
     void NPC_into()
     {
-        Debug.Log("static_parameters.stage_number: " + static_parameters.stage_number);
-        Debug.Log("NPC01: " + Number_NPC01 + " NPC02: " + Number_NPC02 + " NPC03: " + Number_NPC03 + " NPC04: " + Number_NPC04 + " NPC05: " + Number_NPC05);
         for (int i = 0; i < Number_NPC01; i++) GenerateNPC(prefabNPC01);
         for (int i = 0; i < Number_NPC02; i++) GenerateNPC(prefabNPC02);
         for (int i = 0; i < Number_NPC03; i++) GenerateNPC(prefabNPC03);

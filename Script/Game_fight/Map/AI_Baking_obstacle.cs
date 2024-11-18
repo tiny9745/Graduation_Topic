@@ -31,6 +31,7 @@ public class AI_Baking_obstacle : MonoBehaviour
         // 初始化障礙物範圍
         Invoke("InitializeObstacleRanges",1.5f);
     }
+    
 
     void InitializeObstacleRanges()
     {
