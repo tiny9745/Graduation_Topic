@@ -37,7 +37,6 @@ public class AI_Baking_obstacle : MonoBehaviour
         // 只有在障礙物尚未生成時才會生成
         if (!obstaclesGenerated)
         {
-            Debug.Log("Generating obstacles and decorations...");
             obstach_random_inside();
             obstaclesGenerated = true;  // 標記障礙物已經生成
         }
@@ -57,8 +56,6 @@ public class AI_Baking_obstacle : MonoBehaviour
     {
         int count = Random.Range(minCount, maxCount); // 隨機數量
         List<Vector3> usedPositions = new List<Vector3>(); // 用來記錄已經使用過的位置
-
-        Debug.Log($"Generating {count} objects...");
 
         for (int i = 0; i < count; i++)
         {
@@ -85,11 +82,9 @@ public class AI_Baking_obstacle : MonoBehaviour
             {
                 // 在有效位置生成物體
                 Instantiate(selectedObject, randomPosition, Quaternion.identity);
-                Debug.Log($"Generated object at position: {randomPosition}");
             }
             else
             {
-                // 如果找不到有效位置，這裡可以進行處理，比如跳過該物體的生成或重試
                 Debug.LogWarning("Failed to find valid position for object after 100 attempts");
             }
         }
@@ -124,7 +119,6 @@ public class AI_Baking_obstacle : MonoBehaviour
         if (navMeshSurface != null)
         {
             navMeshSurface.BuildNavMesh();  // 重新建構NavMesh
-            Debug.Log("NavMesh baked.");
         }
         else
         {

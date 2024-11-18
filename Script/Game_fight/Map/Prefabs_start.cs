@@ -23,7 +23,7 @@ public class Prefabs_start : MonoBehaviour
         NavMesh.onPreUpdate += UpdateNavMeshBounds;
 
         // 延遲生成 NPC，確保範圍正確
-        Invoke("NPC_into", 0.8f);
+        Invoke("NPC_into", 1.8f);
     }
 
     void OnDestroy()
