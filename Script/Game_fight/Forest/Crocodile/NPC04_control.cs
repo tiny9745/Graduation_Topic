@@ -35,6 +35,11 @@ public class NPC04_control : MonoBehaviour
                 renderer.enabled = false;
             }
         }
+        
+        if (TargetObj == null)
+        {
+            TargetObj = GameObject.Find("Player");
+        }
         hitbox_Brick_Monster.SetActive(false);
 
         npcNavi = GetComponent<NavMeshAgent>();
@@ -46,10 +51,6 @@ public class NPC04_control : MonoBehaviour
         if (nPC_hP == null)
         {
             nPC_hP = GetComponent<NPC_HP_04>();
-            if (nPC_hP == null)
-            {
-                Debug.LogError("NPC_HP_04 component not found on " + gameObject.name);
-            }
         }
     }
 
@@ -84,13 +85,14 @@ public class NPC04_control : MonoBehaviour
             PlayAttackAnimation();
         }
 
+        if (dist >= DetectDistance * 3 / 5)
+        {
+            hit_Ani = false;
+        }
+
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-        if (TargetObj == null)
-        {
-            TargetObj = GameObject.Find("Player");
-        }
 
         if (TargetObj != null && npcNavi != null)
         {
@@ -239,13 +241,10 @@ public class NPC04_control : MonoBehaviour
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
-            Debug.Log("ATKcheck");
             if (other.gameObject.tag == "Player")
             {
-                Debug.Log("ATKcheck2");
                 if (open_EnableHitbox)
                 {
-                    Debug.Log("ATKcheck3");
                     hit_Ani = true;
                     Invoke("EnableHitbox", 1.1f);
                     open_EnableHitbox = false;
@@ -253,11 +252,6 @@ public class NPC04_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                if (nPC_hP == null)
-                {
-                    Debug.LogError("nPC_hP is not assigned.");
-                    return;
-                }
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);

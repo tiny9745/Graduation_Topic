@@ -41,6 +41,9 @@ public class NPC01_control : MonoBehaviour
         }
         hitbox_Crystal_baby.SetActive(false);
 
+        if (TargetObj == null){
+            TargetObj = GameObject.Find("Player");
+        }
         npcNavi = GetComponent<NavMeshAgent>();
         if (npcNavi != null)
         {
@@ -86,10 +89,6 @@ public class NPC01_control : MonoBehaviour
         }
         lastPosition = transform.position;
         transform.rotation = initialRotation;
-
-        if (TargetObj == null){
-            TargetObj = GameObject.Find("Player");
-        }
 
         if (TargetObj != null && npcNavi != null)
         {

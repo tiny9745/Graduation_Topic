@@ -47,13 +47,14 @@ public class NPC01_1_control : MonoBehaviour
             npcNavi.speed = npcSpeed;
         }
 
+        if (TargetObj == null)
+        {
+            TargetObj = GameObject.Find("Player");
+        }        
+
         if (nPC_hP == null)
         {
             nPC_hP = GetComponent<NPC_HP_01_1>();
-            if (nPC_hP == null)
-            {
-                Debug.LogError("NPC_HP_01_1 component not found on " + gameObject.name);
-            }
         }
         if (spriterenderer != null)
         {
@@ -111,23 +112,6 @@ public class NPC01_1_control : MonoBehaviour
         }
         lastPosition = transform.position;
         transform.rotation = initialRotation;
-
-        if (TargetObj == null)
-        {
-            TargetObj = GameObject.Find("Player");
-        }
-        /*else
-        {
-            float dist = Vector3.Distance(transform.position, TargetObj.transform.position);
-            if (dist < DetectDistance && NPC_HP > 0)
-            {
-                npcNavi.destination = TargetObj.transform.position;
-            }
-            else // Track your location 
-            {
-                npcNavi.destination = transform.position;
-            }
-        }*/
 
         if (TargetObj != null && npcNavi != null)
         {

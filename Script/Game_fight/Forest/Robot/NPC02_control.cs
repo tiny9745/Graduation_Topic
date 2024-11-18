@@ -44,6 +44,10 @@ public class NPC02_control : MonoBehaviour
         }
         hitbox_Robot.SetActive(false);
 
+        if (TargetObj == null)
+        {
+            TargetObj = GameObject.Find("Player");
+        }
         // 初始化 npcNavi
         npcNavi = GetComponent<NavMeshAgent>();
         if (npcNavi != null)
@@ -54,10 +58,6 @@ public class NPC02_control : MonoBehaviour
         if (nPC_hP == null)
         {
             nPC_hP = GetComponent<NPC_HP_02>();
-            if (nPC_hP == null)
-            {
-                Debug.LogError("NPC_HP_02 component not found on " + gameObject.name);
-            }
         }
     }
 
@@ -97,11 +97,6 @@ public class NPC02_control : MonoBehaviour
         }
         lastPosition = transform.position;
         transform.rotation = initialRotation;
-
-        if (TargetObj == null)
-        {
-            TargetObj = GameObject.Find("Player");
-        }
 
         if (TargetObj != null && npcNavi != null)
         {
