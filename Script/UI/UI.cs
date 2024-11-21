@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public short Diarystatus = 0;
-    public GameObject Notebook; public GameObject BattleUI;
-    public GameObject Menu; public GameObject MC; public GameObject Word; public GameObject Diary; public GameObject Yes;
+    public GameObject Notebook,BattleUI;
+    public GameObject Menu,CH1,CH2,CH3,CH4;
     public GameObject BookMark1,BookMark2,BookMark3,BookMark4;
     public GameObject LeftMark1,LeftMark2,LeftMark3,LeftMark4;
 
@@ -66,22 +66,22 @@ public class UI : MonoBehaviour
         switch(Diarystatus)
         {
             case 1:
-                Menu.SetActive(false);MC.SetActive(true);Word.SetActive(false);Diary.SetActive(false);Yes.SetActive(false);
+                Menu.SetActive(false);CH1.SetActive(true);CH2.SetActive(false);CH3.SetActive(false);CH4.SetActive(false);
                 BookMark1.SetActive(false);BookMark2.SetActive(true); BookMark3.SetActive(true);BookMark4.SetActive(true);
                 LeftMark1.SetActive(false); LeftMark2.SetActive(false); LeftMark3.SetActive(false); LeftMark4.SetActive(false);            
                 break;
             case 2:
-                Menu.SetActive(false);MC.SetActive(false);Word.SetActive(true);Diary.SetActive(false);Yes.SetActive(false);
+                Menu.SetActive(false);CH1.SetActive(false);CH2.SetActive(true);CH3.SetActive(false);CH4.SetActive(false);
                 BookMark1.SetActive(false);BookMark2.SetActive(false); BookMark3.SetActive(true);BookMark4.SetActive(true);
                 LeftMark1.SetActive(true); LeftMark2.SetActive(false); LeftMark3.SetActive(false); LeftMark4.SetActive(false);
                 break;
             case 3:
-                Menu.SetActive(false);MC.SetActive(false);Word.SetActive(false);Diary.SetActive(true);Yes.SetActive(false);
+                Menu.SetActive(false);CH1.SetActive(false);CH2.SetActive(false);CH3.SetActive(true);CH4.SetActive(false);
                 BookMark1.SetActive(false);BookMark2.SetActive(false); BookMark3.SetActive(false);BookMark4.SetActive(true);
                 LeftMark1.SetActive(true); LeftMark2.SetActive(true); LeftMark3.SetActive(false); LeftMark4.SetActive(false);
                 break;
             case 4:
-                Menu.SetActive(false);MC.SetActive(false);Word.SetActive(false);Diary.SetActive(false);Yes.SetActive(true);
+                Menu.SetActive(false);CH1.SetActive(false);CH2.SetActive(false);CH3.SetActive(false);CH4.SetActive(true);
                 BookMark1.SetActive(false);BookMark2.SetActive(false); BookMark3.SetActive(false);BookMark4.SetActive(false);
                 LeftMark1.SetActive(true); LeftMark2.SetActive(true); LeftMark3.SetActive(true); LeftMark4.SetActive(false);
                 break;

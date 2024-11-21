@@ -103,29 +103,6 @@ public class Ch3 : MonoBehaviour
                 break;
         }
     }
-    //     if (static_parameters.pickdiary < 3)
-    //     {
-    //         if (static_parameters.pickdiary == 1)
-    //         {
-    //             Diary_Left.text = Read_text;
-    //         }
-    //         else
-    //         {
-    //             Diary_Right.text = Read_text;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         if (static_parameters.pickdiary == 3)
-    //         {
-    //             Diary_Left.text = Read_text;
-    //         }
-    //         else
-    //         {
-    //             Diary_Right.text = Read_text;
-    //         }
-    //     }
-    // }
 
     private void overflow_text(string Read_text)
     {
