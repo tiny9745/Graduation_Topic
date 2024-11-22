@@ -20,7 +20,6 @@ public class NPC_Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider Hit)
     {
-        Debug.Log("B");
         if (Hit.gameObject.CompareTag("Player"))
         {
             if (!static_parameters.invincible)
