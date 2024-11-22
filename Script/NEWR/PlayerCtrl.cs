@@ -137,7 +137,6 @@ public class PlayerCtrl : MonoBehaviour
             bullet_quantity--;
             _slot.UseItem();
         }
-
     }
     public void Sward()
     {
