@@ -8,8 +8,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
 
     int bullet_quantity = 0;
-    public GameObject bullet;
-    public GameObject Button_bullet;
+    public GameObject[] bullet;
     public Transform Firepoint;
     public ItemSlot _slot;
 
@@ -29,35 +28,16 @@ public class InventoryManager : MonoBehaviour
     public List<Item> ItemList;
     public delegate void onInventoryChange();
     public onInventoryChange onInventoryCallBack;
-    int tmp;
 
     private void Update()
     {
-        Button buttonComponent = Button_bullet.GetComponent<Button>();
-        Image buttonImage = buttonComponent.GetComponent<Image>();
-        if(bullet_quantity != tmp)
-        {
-            
-        }
         if (bullet_quantity == 0)
         {
-            buttonComponent.enabled = false;
-            if (buttonImage != null)
-            {
-                Color color = buttonImage.color;
-                color.a = 0.5f;
-                buttonImage.color = color;
-            }
+
         }
         else if (bullet_quantity > 0)
         {
-            buttonComponent.enabled = true;
-            if (buttonImage != null)
-            {
-                Color color = buttonImage.color;
-                color.a = 1;
-                buttonImage.color = color;
-            }
+            
         }
     }
     public void Add(Item newItem)
@@ -74,7 +54,7 @@ public class InventoryManager : MonoBehaviour
     {
         if(static_parameters.MC_HP>0)
         {
-            Instantiate(bullet, Firepoint.position, Firepoint.rotation);
+            Instantiate(bullet[0], Firepoint.position, Firepoint.rotation);
             bullet_quantity--;
             _slot.UseItem();
         }
