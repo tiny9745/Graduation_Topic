@@ -273,6 +273,10 @@ public class NPC03_control : MonoBehaviour
                         break;
                 }
             }
+            if (other.gameObject.CompareTag("MC_bullet"))
+            {
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
+            }
         }
     }
     public float GetNPC03_ATK()

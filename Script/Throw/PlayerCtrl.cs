@@ -22,6 +22,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public GameObject bullet;
     public Transform Firepoint;
+    int bulletSpeed = 3;
 
     public ItemSlot _slot;
     public GameObject Button_bullet;
@@ -133,6 +134,11 @@ public class PlayerCtrl : MonoBehaviour
     {
         if(Player_HP>0)
         {
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = Firepoint.forward * bulletSpeed;
+        }
             Instantiate(bullet, Firepoint.position, Firepoint.rotation);
             bullet_quantity--;
             _slot.UseItem();

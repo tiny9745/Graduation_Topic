@@ -31,14 +31,9 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (bullet_quantity == 0)
-        {
-            Debug.Log("bullet_quantity0000");
-        }
         if (bullet_quantity > 0)
         {
-            Debug.Log("bullet_quantity1111");
-            if (Input.GetKey(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.B))
             {
                 bullet_fire();
             }
