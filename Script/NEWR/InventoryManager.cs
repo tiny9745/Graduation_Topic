@@ -8,7 +8,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
 
     int bullet_quantity = 0;
-    public GameObject[] bullet;
+    public GameObject bullet;
     public Transform Firepoint;
     public ItemSlot _slot;
 
@@ -33,11 +33,12 @@ public class InventoryManager : MonoBehaviour
     {
         if (bullet_quantity == 0)
         {
-
+            Debug.Log("bullet_quantity0000");
         }
-        else if (bullet_quantity > 0)
+        if (bullet_quantity > 0)
         {
-            if (Input.GetKey(KeyCode.Space))
+            Debug.Log("bullet_quantity1111");
+            if (Input.GetKey(KeyCode.B))
             {
                 bullet_fire();
             }
@@ -57,7 +58,7 @@ public class InventoryManager : MonoBehaviour
     {
         if(static_parameters.MC_HP > 0)
         {
-            Instantiate(bullet[0], Firepoint.position, Firepoint.rotation);
+            Instantiate(bullet, Firepoint.position, Firepoint.rotation);
             bullet_quantity--;
             _slot.UseItem();
         }
