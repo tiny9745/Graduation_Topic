@@ -37,7 +37,10 @@ public class InventoryManager : MonoBehaviour
         }
         else if (bullet_quantity > 0)
         {
-            
+            if (Input.GetKey(KeyCode.Space))
+            {
+                bullet_fire();
+            }
         }
     }
     public void Add(Item newItem)
@@ -50,9 +53,9 @@ public class InventoryManager : MonoBehaviour
         ItemList.Remove(oldItem);
     }
 
-        public void bullet_fire()
+    public void bullet_fire()
     {
-        if(static_parameters.MC_HP>0)
+        if(static_parameters.MC_HP > 0)
         {
             Instantiate(bullet[0], Firepoint.position, Firepoint.rotation);
             bullet_quantity--;
