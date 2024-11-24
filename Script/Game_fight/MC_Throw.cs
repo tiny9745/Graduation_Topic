@@ -36,7 +36,6 @@ public class MC_Throw : MonoBehaviour
                     targetObject = nearestNPC;
                 }
             }
-
             transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
         }
     }

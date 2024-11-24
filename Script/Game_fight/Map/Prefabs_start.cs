@@ -27,8 +27,8 @@ public class Prefabs_start : MonoBehaviour
 
         // 延遲生成確保範圍正確
         Invoke("BakeNavMesh", 1.5f);
-        Invoke("obstach_into", 1.8f);
-        Invoke("NPC_into", 1.8f);
+        Invoke("obstach_into", 2.8f);
+        Invoke("NPC_into", 2.8f);
     }
 
     void OnDestroy()
