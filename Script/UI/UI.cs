@@ -86,5 +86,6 @@ public class UI : MonoBehaviour
                 LeftMark1.SetActive(true); LeftMark2.SetActive(true); LeftMark3.SetActive(true); LeftMark4.SetActive(false);
                 break;
         }
-    }   
+    }
+  
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Puzzle : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Book,Extra2;
+    public GameObject Book,Ppage,Check;
     public GameObject Diary_text_Left, Diary_text_Right;
     public Text Diary_Left_Text, Diary_Right_Text;
     public Drag_End drag_end;
@@ -22,41 +22,19 @@ public class Puzzle : MonoBehaviour
     {
 
     }
-    public void MoveDiarytoleft()
+    public void FinishDiary()
     {
-        if (OC)
-        {
-            /*Diary_text_Left.SetActive(true);
-            Diary_text_Right.SetActive(true);*/
-            Vector3 targetPosition1 = new Vector3(-300, Book.transform.localPosition.y, Book.transform.localPosition.z);
-            Book.transform.localPosition = targetPosition1;
-            Vector3 targetPosition3 = new Vector3(Extra2.transform.localPosition.x - 250, Extra2.transform.localPosition.y, Extra2.transform.localPosition.z);
-            Extra2.transform.localPosition = targetPosition3;
-            OC = false;
-        }
-    }
-    public void MoveDiarytoright()
-    {
-        if (!OC)
-        {
-            /*Diary_text_Left.SetActive(false);
-            Diary_text_Right.SetActive(false);*/
-            Vector3 targetPosition1 = new Vector3(0, Book.transform.localPosition.y, Book.transform.localPosition.z);
-            Book.transform.localPosition = targetPosition1;
-            Vector3 targetPosition3 = new Vector3(1408, Extra2.transform.localPosition.y, Extra2.transform.localPosition.z);
-            Extra2.transform.localPosition = targetPosition3;
-            OC = true;
-        }
+        Ppage.SetActive(false);
+        Check.SetActive(true);
     }
 
     public void comfirm()
     {
-        Extra2.SetActive(false);
-        MoveDiarytoright();
+        Check.SetActive(false);
     }
     public void cancel()
     {
-        Extra2.SetActive(false);
+        Check.SetActive(false);
     }
     public void Yes_clear_dairy_text()
     {
