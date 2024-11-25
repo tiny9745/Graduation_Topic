@@ -6,20 +6,20 @@ public class MC_Throw : MonoBehaviour
 {
     // Start is called before the first frame update
     float speed = 15f, lifetime = 3f;
-    public int damage = 10, R = 1;
+    public int damage = 10;
     public GameObject targetObject;
     Vector3 moveDirection;
     Transform targetTransform;
     void Start()
     {
-        targetObject = GameObject.Find("Hitbox");
+        targetObject = GameObject.Find("Player_S");
         if (targetObject != null)
         {
             float angle_NPC = FindNearestNPCAngle();
             targetTransform = targetObject.transform;
-            // moveDirection = -angle_NPC * Vector3.forward;
-            moveDirection = -targetTransform.forward;
-            // Debug.Log($"發射子彈，角度為: {angle_NPC} 度");
+            // moveDirection = -targetTransform.forward;
+            float radians = angle_NPC * Mathf.Deg2Rad; // 將角度轉為弧度
+            moveDirection = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)); // 計算絕對方向向量
         }
         Destroy(gameObject, lifetime);
     }
@@ -32,22 +32,6 @@ public class MC_Throw : MonoBehaviour
             transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
         }
     }
-    GameObject FindNearestNPC()
-    {
-        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC"); // 獲取所有 Tag 為 "NPC" 的物件
-        GameObject nearestNPC = null;
-        float shortestDistance = Mathf.Infinity;
-        foreach (GameObject npc in npcs)
-        {
-            float distance = Vector3.Distance(transform.position, npc.transform.position);
-            if (distance < shortestDistance)
-            {
-                shortestDistance = distance;
-                nearestNPC = npc;
-            }
-        }
-        return nearestNPC;
-    }
 
     public float FindNearestNPCAngle()
     {
@@ -57,7 +41,7 @@ public class MC_Throw : MonoBehaviour
 
         foreach (GameObject npc in npcs)
         {
-            float distance = Vector3.Distance(transform.position, npc.transform.position);
+            float distance = Vector3.Distance(targetObject.transform.position, npc.transform.position);
             if (distance < shortestDistance)
             {
                 shortestDistance = distance;
