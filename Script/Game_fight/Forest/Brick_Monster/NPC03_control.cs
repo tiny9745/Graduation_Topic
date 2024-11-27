@@ -275,7 +275,7 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_bullet"))
             {
-                switch(static_parameters.bullet_quantity){
+                switch(static_parameters._ItemID){
                     case 1:
                         nPC_hP.TakeDamage(4, NPC03_DEF);
                         break;

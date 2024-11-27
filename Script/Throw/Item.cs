@@ -11,7 +11,7 @@ public class Item : ScriptableObject
     public Sprite ItemImage;
     public virtual void UseItem()
     {
-        static_parameters.bullet_quantity = ItemID;
+        static_parameters._ItemID = ItemID;
         Debug.Log("item.ItemID:" + ItemID);
     }
 }

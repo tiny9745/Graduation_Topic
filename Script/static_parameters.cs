@@ -20,7 +20,6 @@ public class static_parameters : MonoBehaviour
 
     static public int Comic_scene_sort = 0;
     static public int diary_number = 0, money = 999999;
-    static public int _ItemID = 0;
     static public uint[][] diary_memory = new uint[][]
 {
     new uint[] { 0, 0, 0, 0 },//暫存
@@ -34,4 +33,5 @@ public class static_parameters : MonoBehaviour
     static public float _SE_volue;
     static public int Map_start = 0;
     static public int bullet_quantity = 0;
+    static public int _ItemID = 0;
 }
