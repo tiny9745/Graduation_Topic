@@ -61,4 +61,12 @@ public class MC_Throw : MonoBehaviour
         Debug.LogWarning("未找到任何 NPC");
         return -1;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("NPC"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
