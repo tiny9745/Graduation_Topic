@@ -6,14 +6,15 @@ public class Drag_Text : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 {
     private RectTransform _rectTransform;
     private Vector2 _originalPosition;
-    private Vector2 _dragStartPosition; // Record the starting position of dragging
     private CanvasGroup _canvasGroup;
+    private Transform _parentTransform;
 
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
         _originalPosition = _rectTransform.anchoredPosition;
         _canvasGroup = GetComponent<CanvasGroup>();
+        _parentTransform = transform.parent; // Parent should be the Grid Layout
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -22,13 +23,11 @@ public class Drag_Text : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             _canvasGroup.blocksRaycasts = false;
         }
-
-        // Record the starting position of dragging
-        _dragStartPosition = _rectTransform.anchoredPosition;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        // Move the object along with the cursor
         _rectTransform.position = eventData.position;
     }
 
@@ -38,7 +37,10 @@ public class Drag_Text : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             _canvasGroup.blocksRaycasts = true;
         }
-        //Reset the object's position to the position when dragging started
-        _rectTransform.anchoredPosition = _dragStartPosition;
+    }
+
+    private void SnapToGrid()
+    {
+        
     }
 }
