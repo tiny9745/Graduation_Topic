@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
@@ -88,7 +88,7 @@ public class NPC03_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
- 
+
 
         if (TargetObj != null && npcNavi != null)
         {
@@ -275,7 +275,21 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_bullet"))
             {
-                NPC_function.atk_To_MC_Throw(NPC_HP, NPC03_DEF);
+                switch (static_parameters._ItemID)
+                {
+                    case 1:
+                        nPC_hP.TakeDamage(4, NPC03_DEF);
+                        break;
+                    case 2:
+                        nPC_hP.TakeDamage(3, NPC03_DEF);
+                        break;
+                    case 3:
+                        nPC_hP.TakeDamage(5, NPC03_DEF);
+                        break;
+                    case 4:
+                        nPC_hP.TakeDamage(1, NPC03_DEF);
+                        break;
+                }
             }
         }
     }
