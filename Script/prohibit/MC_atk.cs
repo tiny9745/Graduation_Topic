@@ -7,10 +7,13 @@ public class MC_atk : MonoBehaviour
     private Collider MC_Collider;
     short T1, T2 = -9;
     float attackDamage;
+    private AudioSource audioSource; // 音效播放元件
+    public AudioClip[] meleeSwingSounds; // 揮擊音效陣列
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         Transform hitboxTransform = transform.Find("Hitbox");
         if (hitboxTransform != null)
         {
@@ -63,6 +66,7 @@ public class MC_atk : MonoBehaviour
     void melee1()
     {
         Skill_public_funtion.ATK_count++;
+        PlaySoundAtIndex(0);
         OpenCollider();
         Invoke("CloseCollider", 0.5f);
     }
@@ -80,6 +84,17 @@ public class MC_atk : MonoBehaviour
     public void CloseCollider()
     {
         MC_Collider.enabled = false;
+    }
+    private void PlaySoundAtIndex(int index)
+    {
+        if (meleeSwingSounds.Length > index && audioSource != null)
+        {
+            audioSource.PlayOneShot(meleeSwingSounds[index]);
+        }
+        else
+        {
+            Debug.LogWarning($"音效序號 {index} 超出範圍或 AudioSource 未指定");
+        }
     }
 
 }
