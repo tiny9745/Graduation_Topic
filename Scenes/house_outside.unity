@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -841,8 +841,8 @@ MonoBehaviour:
   NPC_HP_Max: 850
   NPC_HP: 0
   hitbox_Dummy: {fileID: 2006640223}
-  nPC_hP: {fileID: 828858709}
   bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
+  nPC_hP: {fileID: 828858709}
 --- !u!65 &828858713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1686,6 +1686,8 @@ MonoBehaviour:
   loadingBar: {fileID: 7257496601944108336}
   loadingSpeed: 100
   maxFillAmount: 285
+  wave_bar_range: 30
+  newPosition_start: {x: 0, y: 0, z: 0}
 --- !u!1 &2006640223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3006,17 +3008,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6401608031227152225}
   TargetObj: {fileID: 0}
+  Img_npc: {fileID: 8816806259801086227}
+  bulletPrefab: {fileID: 0}
+  NPC05: {fileID: 0}
+  Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
   DetectDistance: 12
   NPC05_ATK: 35
   NPC05_DEF: 15
   NPC_HP_Max: 160
   npcSpeed: 0
   NPC_HP: 0
-  NPC05: {fileID: 0}
-  hitbox_Brick_Monster: {fileID: 2635648809016550453}
-  Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
+  fireRate: 1
+  bulletSpeed: 20
   nPC_hP: {fileID: 1994917774850726261}
-  Img_npc: {fileID: 8816806259801086227}
+  firePoint: {fileID: 0}
 --- !u!4 &1567925219930735410
 Transform:
   m_ObjectHideFlags: 0
