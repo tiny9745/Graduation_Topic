@@ -20,6 +20,8 @@ public class NPC05_control : MonoBehaviour
     int NPC_angle = 0;
     private bool isFacingRight = true;
     public Transform firePoint;
+    public AudioSource audioSource;
+    public AudioClip[] meleeSwingSounds; // 0=NPC_ATK, 1=MC_ATK_To_NPC
 
     void Start()
     {
@@ -35,7 +37,8 @@ public class NPC05_control : MonoBehaviour
                 renderer.enabled = false;
             }
         }
-
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume=static_parameters._SE_volue;
         npcNavi = GetComponent<NavMeshAgent>();
         if (npcNavi != null)
         {
@@ -221,6 +224,7 @@ public class NPC05_control : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
+            PlaySoundAtIndex(0);
             rb.velocity = firePoint.forward * bulletSpeed;
         }
     }
@@ -264,7 +268,17 @@ public class NPC05_control : MonoBehaviour
             dead_open = false;
         }
     }
-
+    private void PlaySoundAtIndex(int index)
+    {
+        if (meleeSwingSounds.Length > index && audioSource != null)
+        {
+            audioSource.PlayOneShot(meleeSwingSounds[index]);
+        }
+        else
+        {
+            Debug.LogWarning($"音效序號 {index} 超出範圍或 AudioSource 未指定");
+        }
+    }
     void dead_after()
     {
         Destroy(gameObject);
