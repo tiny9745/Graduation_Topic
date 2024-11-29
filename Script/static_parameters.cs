@@ -29,9 +29,7 @@ public class static_parameters : MonoBehaviour
     new uint[] { 0, 0, 0, 0 }
 };
     static public uint diary_step;
-    static public float _BGM_volue;
-    static public float _SE_volue;
-    static public int Map_start = 0;
-    static public int bullet_quantity = 0;
-    static public int _ItemID = 0;
+    static public float _BGM_volue,_SE_volue;
+    static public int Map_start = 0,bullet_quantity = 0;
+    static public int _ItemID,Piece_ID = 0;
 }
