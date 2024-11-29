@@ -30,7 +30,7 @@ public class static_parameters : MonoBehaviour
 };
     static public uint diary_step;
     static public float _BGM_volue;
-    static public float _SE_volue;
+    static public float _SE_volue = 1;
     static public int Map_start = 0;
     static public int bullet_quantity = 0;
     static public int _ItemID = 0;
