@@ -14,6 +14,7 @@ public class MC_atk : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume=static_parameters._SE_volue;
         Transform hitboxTransform = transform.Find("Hitbox");
         if (hitboxTransform != null)
         {
@@ -45,15 +46,17 @@ public class MC_atk : MonoBehaviour
             {
                 case 2:
                     MC_Collider.enabled = true;
+                    PlaySoundAtIndex(0);
                     melee1();
                     break;
                 case 3:
                     MC_Collider.enabled = true;
+                    PlaySoundAtIndex(1);
                     melee1();
                     break;
                 case 4:
-                    ;
                     MC_Collider.enabled = true;
+                    PlaySoundAtIndex(2);
                     melee2();
                     break;
             }
@@ -66,7 +69,6 @@ public class MC_atk : MonoBehaviour
     void melee1()
     {
         Skill_public_funtion.ATK_count++;
-        PlaySoundAtIndex(0);
         OpenCollider();
         Invoke("CloseCollider", 0.5f);
     }

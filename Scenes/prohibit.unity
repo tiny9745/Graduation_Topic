@@ -13344,11 +13344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -8.881784e-16
+      value: 8.881784e-16
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 4.440892e-16
+      value: -4.440892e-16
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13372,11 +13372,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008328531
+      value: 0.000000008328528
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021564988
+      value: -0.000000002156498
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13599,6 +13599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992c960c791380f4d86c95c0ba34544a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeSwingSounds:
+  - {fileID: 8300000, guid: 94e254aab458a3d419fe9e227e8dba63, type: 3}
+  - {fileID: 8300000, guid: ec7743c5704bc29418a6f0ec61264310, type: 3}
+  - {fileID: 8300000, guid: 6229b3d0dbbc50f4a875b91a424010a7, type: 3}
 --- !u!1 &8344659154193044496
 GameObject:
   m_ObjectHideFlags: 0
