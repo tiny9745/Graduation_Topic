@@ -98,5 +98,4 @@ public class MC_atk : MonoBehaviour
             Debug.LogWarning($"音效序號 {index} 超出範圍或 AudioSource 未指定");
         }
     }
-
 }
