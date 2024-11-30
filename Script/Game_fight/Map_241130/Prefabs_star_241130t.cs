@@ -125,7 +125,7 @@ public class Prefabs_start_241130 : MonoBehaviour
             int typeIndex = Random.Range(0, Scenes_object_obstacle.Length);
             GenerateDecorate(Scenes_object_obstacle[typeIndex]);
         }
-                for (int i = 0; i < MaxInsideDecorate; i++)
+        for (int i = 0; i < MaxInsideDecorate; i++)
         {
             int typeIndex = Random.Range(0, Scenes_object_decorate.Length);
             GenerateDecorate(Scenes_object_decorate[typeIndex]);
@@ -138,7 +138,7 @@ public class Prefabs_start_241130 : MonoBehaviour
         randomZ = Random.Range(navMeshBounds.min.z, navMeshBounds.max.z);
         Vector3 position = new Vector3(randomX, transform.position.y, randomZ);
 
-        if (NavMesh.SamplePosition(position, out NavMeshHit hit, 2.0f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(position, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
         {
             Instantiate(prefab, hit.position, Quaternion.identity);
         }

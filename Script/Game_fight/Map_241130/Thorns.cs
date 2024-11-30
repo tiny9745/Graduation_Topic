@@ -15,4 +15,16 @@ public class Thorns : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            static_parameters.MC_HP -= 1;
+        }
+        if (other.name == "請改成在NPC方面程式碼_Thorns")
+        {
+            
+        }
+    }
 }

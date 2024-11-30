@@ -15,4 +15,26 @@ public class Pool : MonoBehaviour
     {
         
     }
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            static_parameters.MC_Wspeed /= 2;
+        }
+        if (other.name == "請改成在NPC方面程式碼_Pool")
+        {
+            
+        }
+    }
+        private void OnTriggerExit (Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            static_parameters.MC_Wspeed *= 2;
+        }
+        if (other.name == "請改成在NPC方面程式碼_Pool")
+        {
+            
+        }
+    }
 }
