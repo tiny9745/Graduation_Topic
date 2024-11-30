@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "ItemSystem/Item")]
-public class Diary_piece : MonoBehaviour
+[CreateAssetMenu(menuName = "PieceSystem/Piece")]
+public class Diary_piece : ScriptableObject
 {
     public int PieceID;
     public string PieceName;
@@ -10,6 +10,6 @@ public class Diary_piece : MonoBehaviour
     public virtual void UseItem()
     {
         static_parameters.Piece_ID = PieceID;
-        Debug.Log("item.ItemID:" + PieceID);
+        Debug.Log(PieceID);
     }
 }
