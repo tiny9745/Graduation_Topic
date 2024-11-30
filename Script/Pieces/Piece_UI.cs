@@ -9,13 +9,24 @@ public class Piece_UI : MonoBehaviour
     public Transform PieceslotPoint;
     void Start()
     {
-        
+        PieceManager.Instance.PieceInventoryCallBack += UpdatePiece;
+        Pieceslot = PieceslotPoint.GetComponentsInChildren<Pieceslot>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdatePiece()
     {
-        
+        for (int i = 0; i < Pieceslot.Length; i++)
+        {
+            if (i < PieceManager.Instance.PieceList.Count)
+            {
+                Pieceslot[i].AddPiece(PieceManager.Instance.PieceList[i]);
+            }
+            else
+            {
+                Pieceslot[i].Clean();
+            }
+        }
     }
 }
 

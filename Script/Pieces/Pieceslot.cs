@@ -12,6 +12,11 @@ public class Pieceslot : MonoBehaviour
         piece = thisItem;
         PieceImage.sprite = piece.PieceImage;
     }
+    public void RemoveItem()
+    {
+        PieceManager.Instance.Remove(piece);
+        PieceManager.Instance.PieceInventoryCallBack();
+    }
     public void Clean()
     {
         piece = null;

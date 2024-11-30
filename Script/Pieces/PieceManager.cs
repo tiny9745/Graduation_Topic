@@ -5,14 +5,38 @@ using UnityEngine;
 public class PieceManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static PieceManager Instance;
+    public GameObject Pieces;
+    public Pieceslot Slot;
+    public List<Diary_piece> PieceList;
+    public delegate void PieceInventoryChange();
+    public PieceInventoryChange PieceInventoryCallBack;
+    
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(this);
+    }
     void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+     public void Add(Diary_piece newPiece)
+    { 
+        PieceList.Add(newPiece);    
+    }
+
+    public void Remove(Diary_piece oldPiece)
     {
-        
+        PieceList.Remove(oldPiece);
     }
 }
