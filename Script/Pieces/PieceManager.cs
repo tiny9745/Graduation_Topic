@@ -6,7 +6,6 @@ public class PieceManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static PieceManager Instance;
-    public GameObject Pieces;
     public Pieceslot Slot;
     public List<Diary_piece> PieceList;
     public delegate void PieceInventoryChange();
@@ -32,7 +31,8 @@ public class PieceManager : MonoBehaviour
     // Update is called once per frame
      public void Add(Diary_piece newPiece)
     { 
-        PieceList.Add(newPiece);    
+        PieceList.Add(newPiece);
+        Debug.Log(newPiece); 
     }
 
     public void Remove(Diary_piece oldPiece)
