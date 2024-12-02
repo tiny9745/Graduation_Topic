@@ -29,7 +29,6 @@ public class ItemSlot : MonoBehaviour
         if (item != null)
         {
             item.UseItem();
-            // Clean();
             RemoveItem();
         }
         else

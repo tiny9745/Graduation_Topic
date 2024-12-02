@@ -32,11 +32,13 @@ public class PieceManager : MonoBehaviour
      public void Add(Diary_piece newPiece)
     { 
         PieceList.Add(newPiece);
+        PieceInventoryCallBack?.Invoke();
         Debug.Log(newPiece); 
     }
 
     public void Remove(Diary_piece oldPiece)
     {
         PieceList.Remove(oldPiece);
+        PieceInventoryCallBack?.Invoke();
     }
 }

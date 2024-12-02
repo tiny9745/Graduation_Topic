@@ -12,6 +12,7 @@ public class InventroyUI : MonoBehaviour
     }
     public void UpdateUI()
     {
+        Debug.Log("UpdateUI");
         for (int i = 0; i < ItemSlots.Length; i++)
         {
             if (i < InventoryManager.Instance.ItemList.Count)
