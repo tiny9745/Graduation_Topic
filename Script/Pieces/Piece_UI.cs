@@ -16,7 +16,6 @@ public class Piece_UI : MonoBehaviour
     // Update is called once per frame
     public void UpdatePiece()
     {
-        Debug.Log("UpdatePiece");
         for (int i = 0; i < Pieceslot.Length; i++)
         {
             if (i < PieceManager.Instance.PieceList.Count)
