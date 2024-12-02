@@ -33,7 +33,6 @@ public class PieceManager : MonoBehaviour
     { 
         PieceList.Add(newPiece);
         PieceInventoryCallBack?.Invoke();
-        Debug.Log(newPiece); 
     }
 
     public void Remove(Diary_piece oldPiece)

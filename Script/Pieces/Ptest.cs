@@ -16,12 +16,10 @@ public class Ptest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("P key was pressed.");
             addp();
         }
     }
     void addp(){
-        Debug.Log("addp function was called.");
         PieceManager.Instance.Add(thisItem);
     }
 }
