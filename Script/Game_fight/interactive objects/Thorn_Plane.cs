@@ -4,22 +4,20 @@ using UnityEngine;
 
 public class ThornsController : MonoBehaviour
 {
-    public GameObject[] thorns; // 刺的陣列
+    public GameObject thorn; // 單一刺的物件
     public float targetHeight = 5f; // 上升的目標高度
-    public float riseTime = 1f; // 上升所需的時間
-    public float fallTime = 1f; // 下降所需的時間
-
-    private Vector3[] originalPositions; // 記錄刺的原始位置
+    public float rise_fall_Time = 0.15f;
+    public float delayBeforeRise = 0.5f; // 上升前的延遲時間
+    public float delayBeforeFall = 0.5f; // 下降前的延遲時間
+    private Vector3 originalPosition; // 刺的原始位置
     private HashSet<Collider> collidersInRange = new HashSet<Collider>(); // 記錄範圍內的碰撞體
+    private bool isRaising = false; // 判斷是否正在上升
+    private bool isLowering = false; // 判斷是否正在下降
 
     void Start()
     {
-        // 記錄每個刺的初始位置
-        originalPositions = new Vector3[thorns.Length];
-        for (int i = 0; i < thorns.Length; i++)
-        {
-            originalPositions[i] = thorns[i].transform.position;
-        }
+        // 記錄刺的初始位置
+        originalPosition = thorn.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,9 +26,9 @@ public class ThornsController : MonoBehaviour
         {
             collidersInRange.Add(other); // 將物件加入集合
         }
-        if (collidersInRange.Count == 1)
+        if (collidersInRange.Count == 1 && !isRaising) // 只有一個物件進入且未在上升
         {
-            StartCoroutine(RaiseThorns()); // 如果範圍內只有一個符合條件的物件，執行上升
+            StartCoroutine(RaiseThorn());
         }
     }
 
@@ -39,47 +37,50 @@ public class ThornsController : MonoBehaviour
         if (other.CompareTag("Player") || other.CompareTag("NPC"))
         {
             collidersInRange.Remove(other); // 從集合中移除物件
-            if (collidersInRange.Count == 0)
+            if (collidersInRange.Count == 0 && !isLowering) // 沒有物件在範圍內且未在下降
             {
-                StartCoroutine(LowerThorns()); // 如果範圍內已無符合條件的物件，執行下降
+                StartCoroutine(LowerThorn());
             }
         }
     }
 
-    IEnumerator RaiseThorns()
+    IEnumerator RaiseThorn()
     {
-        foreach (var thorn in thorns)
+        isRaising = true;
+        yield return new WaitForSeconds(delayBeforeRise);
+
+        Vector3 start = thorn.transform.position; // 確保從當前位置開始
+        Vector3 target = originalPosition + Vector3.up * targetHeight;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < rise_fall_Time)
         {
-            Vector3 originalPosition = thorn.transform.position;
-            Vector3 targetPosition = originalPosition + Vector3.up * targetHeight;
-
-            float elapsedTime = 0f;
-            while (elapsedTime < riseTime)
-            {
-                elapsedTime += Time.deltaTime;
-                thorn.transform.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / riseTime);
-                yield return null;
-            }
-
-            thorn.transform.position = targetPosition; // 確保最終位置精準
+            elapsedTime += Time.deltaTime;
+            thorn.transform.position = Vector3.Lerp(start, target, elapsedTime / rise_fall_Time);
+            yield return null;
         }
+
+        thorn.transform.position = target;
+        isRaising = false;
     }
 
-    IEnumerator LowerThorns()
+    IEnumerator LowerThorn()
     {
-        foreach (var thorn in thorns)
-        {
-            Vector3 targetPosition = thorn.transform.position - Vector3.up * targetHeight;
-            Vector3 originalPosition = thorn.transform.position;
+        isLowering = true;
+        yield return new WaitForSeconds(delayBeforeFall);
 
-            float elapsedTime = 0f;
-            while (elapsedTime < fallTime)
-            {
-                elapsedTime += Time.deltaTime;
-                thorn.transform.position = Vector3.Lerp(originalPosition, targetPosition, elapsedTime / fallTime);
-                yield return null;
-            }
-            thorn.transform.position = targetPosition; // 確保最終位置精準
+        Vector3 start = thorn.transform.position; // 確保從當前位置開始
+        Vector3 target = originalPosition;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < rise_fall_Time)
+        {
+            elapsedTime += Time.deltaTime;
+            thorn.transform.position = Vector3.Lerp(start, target, elapsedTime / rise_fall_Time);
+            yield return null;
         }
+
+        thorn.transform.position = target;
+        isLowering = false;
     }
 }

@@ -20,6 +20,7 @@ public class NPC03_control : MonoBehaviour
     public NPC_HP_03 nPC_hP;
     int NPC_angle, play_piano_atk = 0;
     private bool isFacingRight = true;
+    public NPC_interactive npc_interactive;
 
     void Start()
     {
@@ -292,6 +293,7 @@ public class NPC03_control : MonoBehaviour
                 }
             }
         }
+        npc_interactive.NPC_Thorns(other, NPC_HP);
     }
     public float GetNPC03_ATK()
     {
