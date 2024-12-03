@@ -33,7 +33,6 @@ public class PieceManager : MonoBehaviour
     { 
         Debug.Log(newPiece);
         PieceList.Add(newPiece);
-
         PieceInventoryCallBack?.Invoke();
     }
 
