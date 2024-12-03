@@ -20,6 +20,14 @@ public class Ptest : MonoBehaviour
         }
     }
     void addp(){
+        thisItem = GetRandomPiece();
+        Debug.Log(thisItem);
         PieceManager.Instance.Add(thisItem);
     }
+    Diary_piece GetRandomPiece()
+{
+    // Assume you have a list of pre-created Diary_piece instances
+    var allPieces = Resources.LoadAll<Diary_piece>("Piece");
+    return allPieces[Random.Range(0, allPieces.Length)];
+}
 }
