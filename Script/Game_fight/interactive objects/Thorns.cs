@@ -5,7 +5,7 @@ using UnityEngine;
 public class Thorns : MonoBehaviour
 {
     float timmer = 0;
-    float damage_time = 1;
+    static public float damage_time = 1;
     // Start is called before the first frame update
     void Start()
     {
