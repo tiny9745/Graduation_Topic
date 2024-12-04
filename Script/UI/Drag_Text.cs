@@ -37,10 +37,12 @@ public class Drag_Text : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             _canvasGroup.blocksRaycasts = true;
         }
+        SnapBack();
     }
 
-    private void SnapToGrid()
+    private void SnapBack()
     {
-        
+        _rectTransform.anchoredPosition = _originalPosition;
+
     }
 }
