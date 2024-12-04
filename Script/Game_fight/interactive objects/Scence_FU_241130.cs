@@ -7,7 +7,7 @@ public class Scence_FU_241130 : MonoBehaviour
 {
     public GameObject[] FU;
     private GameObject player_S;
-    private Vector3 startPos = new Vector3(0, 0, -8);
+    private Vector3 startPos = new Vector3(0, 138, -8);
     int scence_random;
 
     void Start()
@@ -20,29 +20,10 @@ public class Scence_FU_241130 : MonoBehaviour
 
     public void Fight_FU()
     {
-        scence_random = Random.Range(0, 1);
+        scence_random = Random.Range(3, 4);
         // static_parameters.Map_start = scence_random;
         Generatescence(FU[scence_random], new Vector3(0, 0, 0));
-        switch (scence_random)
-        {
-            case 0:
-                startPos.z = -138;
-                break;
-            case 1:
-                startPos.z = -138;
-                break;
-            case 2:
-                startPos.z = -138;
-                break;
-            case 3:
-                startPos.z = -138;
-                break;
-            case 4:
-                startPos.z = -138;
-                break;
-            default:
-                break;
-        }
+        startPos.z = -138;
         player_S.transform.position = startPos;
     }
 

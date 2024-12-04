@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThornsController : MonoBehaviour
 {
     public GameObject thorn; // 單一刺的物件
-    public float targetHeight = 5f; // 上升的目標高度
+    public float targetHeight = 100f; // 上升的目標高度
     public float rise_fall_Time = 0.15f;
     public float delayBeforeRise = 0.5f; // 上升前的延遲時間
     public float delayBeforeFall = 0.5f; // 下降前的延遲時間
