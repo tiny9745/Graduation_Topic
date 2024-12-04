@@ -293,7 +293,7 @@ public class NPC03_control : MonoBehaviour
                 }
             }
         }
-        npc_interactive.NPC_Thorns(other, NPC_HP);
+        // npc_interactive.NPC_Thorns(other, NPC_HP);
     }
     public float GetNPC03_ATK()
     {
