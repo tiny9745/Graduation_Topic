@@ -6,12 +6,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 {
     // Start is called before the first frame update
     private RectTransform _rectTransform;
-    private Vector2 _originalPosition;
     private CanvasGroup _canvasGroup;
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
-        _originalPosition = _rectTransform.anchoredPosition;
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
