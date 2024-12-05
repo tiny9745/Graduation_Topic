@@ -29,9 +29,5 @@ public class Thorns : MonoBehaviour
                 static_parameters.MC_HP -= 1;
             }     
         }
-        if (other.name == "請改成在NPC方面程式碼_Thorns")
-        {
-
-        }
     }
 }

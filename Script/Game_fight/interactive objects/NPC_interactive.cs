@@ -5,6 +5,8 @@ using UnityEngine;
 public class NPC_interactive : MonoBehaviour
 {
     // Start is called before the first frame update
+    static public int berry = 3;
+
     void Start()
     {
         
@@ -16,7 +18,7 @@ public class NPC_interactive : MonoBehaviour
         
     }
 
-        float npc_timmer = 0;
+    float npc_timmer = 0;
     public void NPC_Thorns(Collider other ,float _NPC_HP)
     {
         if (other.tag == "Thorns")
@@ -25,8 +27,17 @@ public class NPC_interactive : MonoBehaviour
             if (npc_timmer >= Thorns.damage_time)
             {
                 npc_timmer = 0;
-                _NPC_HP -= 1;
+                _NPC_HP -= 10;
             }     
+        }
+    }
+    public void NPC_Bomb_Berry(Collider other ,float _NPC_HP)
+    {
+        Debug.Log("other.tag: " + other.tag);
+        if (other.tag == "Bomb_Fruit")
+        {
+            Debug.Log("NPC_HP-=: " + _NPC_HP);
+            _NPC_HP -= 50 * berry;
         }
     }
 }

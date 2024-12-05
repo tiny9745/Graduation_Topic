@@ -6,10 +6,11 @@ public class Bomb_Berry : MonoBehaviour
 {
     int berry = 3;
     bool isExplode = false;
-    float explode_time_max = 5, timmer = 0;
+    float explode_time_max = 3, timmer = 0;
     private int lastChildCount,startChildCount; // 上一次檢查時的子物件數量
     public SpriteRenderer[] spriteRenderer;
     private HashSet<GameObject> objectsInRange = new HashSet<GameObject>();
+    public BoxCollider bomb_hitbox;
     void Start()
     {
         // 紀錄初始子物件數量
@@ -23,7 +24,6 @@ public class Bomb_Berry : MonoBehaviour
         if (isExplode)
         {
             timmer += Time.deltaTime;
-            Debug.Log("timmer: " + timmer);
             if (berry == 0 && timmer < explode_time_max)
             {
                 for (int i = 0; i < lastChildCount ;i++)
@@ -58,7 +58,7 @@ public class Bomb_Berry : MonoBehaviour
             if (timmer < explode_time_max && objectsInRange.Count == 1)
             {
                 isExplode = true;
-                for (int i = 0; i < startChildCount ;i++)
+                for (int i = 0; i < 3 ;i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
@@ -93,12 +93,11 @@ public class Bomb_Berry : MonoBehaviour
         if (berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
         {
             objectsInRange.Remove(other.gameObject);
-            Debug.Log("objectsInRange.Count: " + objectsInRange.Count);
             if (objectsInRange.Count == 0) 
             {
                 isExplode = false;
                 timmer = 0;
-                for (int i = 0; i < startChildCount ;i++)
+                for (int i = 0; i < 3 ;i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
@@ -119,16 +118,18 @@ public class Bomb_Berry : MonoBehaviour
 
     private void Bomb_Berry_Explode(Collider other)
     {
-        if(berry!=0)
+        if ( berry != 0)
         {
-            if (other.tag == "Player")
+            NPC_interactive.berry = berry;
+            if (bomb_hitbox != null)
             {
-                static_parameters.MC_HP -= 10 * berry;
+                bomb_hitbox.enabled = true;
             }
-            if (other.name == "請改成在NPC方面程式碼_Bomb_Berry")
-            {
-                // NPC 相關處理
-            }
+            // NPC_interactive.berry_bomb = true;
+            // if (other.tag == "Player")
+            // {
+            //     static_parameters.MC_HP -= 10 * berry;
+            // }
             Destroy(gameObject, 0.1f);
         }
     }
