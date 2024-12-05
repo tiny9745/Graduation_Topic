@@ -5,19 +5,21 @@ using UnityEngine.UI;
 public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     // Start is called before the first frame update
-    private RectTransform _rectTransform;
+    private RectTransform _rectTransform;    
+    private Vector2 _originalPosition;
+
     private CanvasGroup _canvasGroup;
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvasGroup = GetComponent<CanvasGroup>();
+        _originalPosition = _rectTransform.anchoredPosition;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         _canvasGroup.alpha = .6f;
         _canvasGroup.blocksRaycasts = false;
-        Debug.Log("OnBeginDrag");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -30,6 +32,8 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         _canvasGroup.alpha = 1f;
         _canvasGroup.blocksRaycasts = true;
-        Debug.Log("OnEndDrag");
+        _rectTransform.anchoredPosition = _originalPosition;
     }
+
+
 }
