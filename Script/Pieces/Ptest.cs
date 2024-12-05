@@ -24,7 +24,6 @@ public class Ptest : MonoBehaviour
     }
     void addp(){
         thisItem = GetRandomPiece();
-        Debug.Log(thisItem);
         PieceManager.Instance.Add(thisItem);
     }
     Diary_piece GetRandomPiece()
