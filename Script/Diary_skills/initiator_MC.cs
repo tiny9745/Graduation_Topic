@@ -18,7 +18,6 @@ public class initiator_MC : MonoBehaviour
     {
         Skill_public_funtion.play_piano = true;
         Skill_public_funtion.feel_to_skill = 2; // 0=happy,1=angry,2=sad,3=wow
-        Debug.Log("feel_to_skill:" + Skill_public_funtion.feel_to_skill);
         previousPosition = transform.position;
         Skill_public_funtion.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
     }
@@ -44,13 +43,11 @@ public class initiator_MC : MonoBehaviour
                         timer_f = 0;
                         static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC_DEF) * 0.1f;
                         if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
-                        Debug.Log("MC_HP" + static_parameters.MC_HP);
                     }
                     else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
                     {
                         static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
                         timer_f = 0;
-                        Debug.Log("MC_HP" + static_parameters.MC_HP);
                     }
                     break;
                 case 1:
@@ -61,15 +58,12 @@ public class initiator_MC : MonoBehaviour
                     {
                         Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
                         static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
-                        Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                     }
                     break;
                 case 3:
                     if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
                     {
-                        Debug.Log("MC_ATK(before):" + static_parameters.MC_ATK);
                         static_parameters.MC_ATK *= 1.5f;
-                        Debug.Log("MC_ATK(after):" + static_parameters.MC_ATK);
                     }
                     if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
                     {
@@ -106,8 +100,6 @@ public class initiator_MC : MonoBehaviour
                         static_parameters.MC_DEF *= 1.1f;
                         static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                     }
-                    Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
-                    Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
                 }
 
                 break;
@@ -125,7 +117,6 @@ public class initiator_MC : MonoBehaviour
                     {
                         static_parameters.MC_ATK *= 0.8f;
                     }
-                    Debug.LogWarningFormat("MC_ATK:" + static_parameters.MC_ATK);
                 }
 
                 break;
@@ -148,7 +139,6 @@ public class initiator_MC : MonoBehaviour
                     if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && timer_f < 2)
                     {
                         static_parameters.MC_ATK *= 2f;
-                        Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                     }
                     else
                     {
@@ -157,7 +147,6 @@ public class initiator_MC : MonoBehaviour
                         {
                             timer_close = false;
                             static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
-                            Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                         }
                     }
                 }
@@ -166,7 +155,6 @@ public class initiator_MC : MonoBehaviour
                     if (static_parameters.MC_Wspeed == Skill_public_funtion.MC_Wspeed_tmp && timer_f < 2)
                     {
                         static_parameters.MC_Wspeed *= 2f;
-                        Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
                     }
                     else
                     {
@@ -175,7 +163,6 @@ public class initiator_MC : MonoBehaviour
                         {
                             timer_close = false;
                             static_parameters.MC_Wspeed = Skill_public_funtion.MC_Wspeed_tmp;
-                            Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
                         }
                     }
                 }
@@ -194,7 +181,6 @@ public class initiator_MC : MonoBehaviour
                     {
                         static_parameters.MC_DEF = static_parameters.MC_DEF * 0.8f;
                     }
-                    Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
                 }
                 break;
 
