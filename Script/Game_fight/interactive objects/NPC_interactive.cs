@@ -19,25 +19,20 @@ public class NPC_interactive : MonoBehaviour
     }
 
     float npc_timmer = 0;
-    public void NPC_Thorns(Collider other ,float _NPC_HP)
+    public void NPC_Thorns(ref float _NPC_HP)
     {
-        if (other.tag == "Thorns")
+        Debug.Log("NPC_HP-=: " + _NPC_HP);
+        npc_timmer += Time.deltaTime;
+        if (npc_timmer >= Thorns.damage_time)
         {
-            npc_timmer += Time.deltaTime;
-            if (npc_timmer >= Thorns.damage_time)
-            {
-                npc_timmer = 0;
-                _NPC_HP -= 10;
-            }     
+            npc_timmer = 0;
+            _NPC_HP -= 1;
+            Debug.Log("NPC_Thorns-=: " + _NPC_HP);
         }
     }
-    public void NPC_Bomb_Berry(Collider other ,float _NPC_HP)
+    public void NPC_Bomb_Berry(ref float _NPC_HP)
     {
-        Debug.Log("other.tag: " + other.tag);
-        if (other.tag == "Bomb_Fruit")
-        {
-            Debug.Log("NPC_HP-=: " + _NPC_HP);
-            _NPC_HP -= 50 * berry;
-        }
+        _NPC_HP -= 10 * berry;
+        Debug.Log("NPC_Bomb_Berry-=: " + _NPC_HP);
     }
 }
