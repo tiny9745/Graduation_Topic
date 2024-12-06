@@ -5,10 +5,10 @@ using UnityEngine;
 public class ThornsController : MonoBehaviour
 {
     public GameObject thorn; // 單一刺的物件
-    public float targetHeight = 100f; // 上升的目標高度
-    public float rise_fall_Time = 0.15f;
-    public float delayBeforeRise = 0.5f; // 上升前的延遲時間
-    public float delayBeforeFall = 0.5f; // 下降前的延遲時間
+    float targetHeight = 5; // 上升的目標高度
+    float rise_fall_Time = 0.15f;
+    float delayBeforeRise = 0.5f; // 上升前的延遲時間
+    float delayBeforeFall = 0.5f; // 下降前的延遲時間
     private Vector3 originalPosition; // 刺的原始位置
     private HashSet<Collider> collidersInRange = new HashSet<Collider>(); // 記錄範圍內的碰撞體
     private bool isRaising = false; // 判斷是否正在上升

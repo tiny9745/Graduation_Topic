@@ -306,7 +306,6 @@ public class NPC01_control : MonoBehaviour
             if (other.tag == "Thorns")
             {
                 npc_interactive.NPC_Thorns(ref NPC_HP);
-                
                 nPC_hP.UpdateHealthBar();
             }
             if (other.tag == "Bomb_Fruit" && bomb_Berry)

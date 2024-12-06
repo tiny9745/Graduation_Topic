@@ -770,7 +770,7 @@ Transform:
   m_GameObject: {fileID: 8475502909159839615}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 18, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.045, y: 1.045, z: 1.045}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -846,10 +846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thorn: {fileID: 1701922089257543469}
-  targetHeight: 5
-  rise_fall_Time: 0.15
-  delayBeforeRise: 0.5
-  delayBeforeFall: 0.5
 --- !u!65 &2191382954735269943
 BoxCollider:
   m_ObjectHideFlags: 0
