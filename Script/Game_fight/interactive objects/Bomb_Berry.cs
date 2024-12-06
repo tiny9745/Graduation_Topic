@@ -58,7 +58,7 @@ public class Bomb_Berry : MonoBehaviour
             if (timmer < explode_time_max && objectsInRange.Count == 1)
             {
                 isExplode = true;
-                for (int i = 0; i < 3 ;i++)
+                for (int i = 0; i < startChildCount-1 ;i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
@@ -97,7 +97,7 @@ public class Bomb_Berry : MonoBehaviour
             {
                 isExplode = false;
                 timmer = 0;
-                for (int i = 0; i < 3 ;i++)
+                for (int i = 0; i < startChildCount-1 ;i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
