@@ -13,7 +13,6 @@ public class Drag_End : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("OnDrop");
         Text dragText = eventData.pointerDrag.GetComponent<Text>(); // Get the Text component on the dragged object
         if (dragText != null)
         {
