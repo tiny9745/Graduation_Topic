@@ -23,6 +23,7 @@ public class NPC01_1_control : MonoBehaviour
     private bool isFacingRight = true;
     public GameObject Img_npc;
     SpriteRenderer spriterenderer;
+    public NPC_interactive npc_interactive; bool bomb_Berry = true;
     void Start()
     {
         static_parameters.Change_enemy++;
@@ -296,29 +297,43 @@ public class NPC01_1_control : MonoBehaviour
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime)
         {
-            if (NPC_HP > 0)
+            if (other.gameObject.tag == "Player")
             {
-                if (other.gameObject.tag == "Player")
+                if (open_EnableHitbox)
                 {
-                    if (open_EnableHitbox)
-                    {
-                        hit_Ani = true;
-                        Invoke("EnableHitbox", 1.1f);
-                        open_EnableHitbox = false;
-                    }
+                    hit_Ani = true;
+                    Invoke("EnableHitbox", 1.1f);
+                    open_EnableHitbox = false;
                 }
-                if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            }
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            {
+                if (nPC_hP == null)
                 {
-                    if (nPC_hP == null)
-                    {
-                        Debug.LogError("nPC_hP is not assigned.");
-                        return;
-                    }
-                    nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
-                    MC_to_Att = false;
-                    Invoke("wait_MC_att", 0.2f);
-                    nextDamageTime = Time.time + damageCooldown;
+                    Debug.LogError("nPC_hP is not assigned.");
+                    return;
                 }
+                nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.2f);
+                nextDamageTime = Time.time + damageCooldown;
+            }
+        }
+
+        // Omit the middle
+        if(NPC_HP > 0)
+        {
+            if (other.tag == "Thorns")
+            {
+                npc_interactive.NPC_Thorns(ref NPC_HP);
+                
+                nPC_hP.UpdateHealthBar();
+            }
+            if (other.tag == "Bomb_Fruit" && bomb_Berry)
+            {
+                bomb_Berry = false;
+                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
+                nPC_hP.UpdateHealthBar();
             }
         }
     }

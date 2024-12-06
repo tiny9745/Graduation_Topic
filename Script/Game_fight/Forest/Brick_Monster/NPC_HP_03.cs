@@ -18,7 +18,7 @@ public class NPC_HP_03 : MonoBehaviour
         UpdateHealthBar();
     }
 
-    void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         float fillAmount = control.NPC_HP / MaxHealth;
         Vector3 newScale = initialScale;

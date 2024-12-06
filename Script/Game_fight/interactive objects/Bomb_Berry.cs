@@ -44,7 +44,6 @@ public class Bomb_Berry : MonoBehaviour
                 isExplode = false;
             }
         }
-
         // 檢測子物件變化
         CheckChildObjects();
     }
@@ -125,11 +124,10 @@ public class Bomb_Berry : MonoBehaviour
             {
                 bomb_hitbox.enabled = true;
             }
-            // NPC_interactive.berry_bomb = true;
-            // if (other.tag == "Player")
-            // {
-            //     static_parameters.MC_HP -= 10 * berry;
-            // }
+            if (other.tag == "Player")
+            {
+                static_parameters.MC_HP -= 10 * berry;
+            }
             Destroy(gameObject, 0.1f);
         }
     }

@@ -20,7 +20,7 @@ public class NPC03_control : MonoBehaviour
     public NPC_HP_03 nPC_hP;
     int NPC_angle, play_piano_atk = 0;
     private bool isFacingRight = true;
-    public NPC_interactive npc_interactive;
+    public NPC_interactive npc_interactive; bool bomb_Berry = true;
 
     void Start()
     {
@@ -293,8 +293,21 @@ public class NPC03_control : MonoBehaviour
                 }
             }
         }
-        npc_interactive.NPC_Thorns(other, NPC_HP);
-        npc_interactive.NPC_Bomb_Berry(other, NPC_HP);
+        if(NPC_HP > 0)
+        {
+            if (other.tag == "Thorns")
+            {
+                npc_interactive.NPC_Thorns(ref NPC_HP);
+                
+                nPC_hP.UpdateHealthBar();
+            }
+            if (other.tag == "Bomb_Fruit" && bomb_Berry)
+            {
+                bomb_Berry = false;
+                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
+                nPC_hP.UpdateHealthBar();
+            }
+        }
     }
     public float GetNPC03_ATK()
     {
