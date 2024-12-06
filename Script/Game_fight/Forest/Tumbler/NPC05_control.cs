@@ -22,6 +22,7 @@ public class NPC05_control : MonoBehaviour
     public Transform firePoint;
     public AudioSource audioSource;
     public AudioClip[] meleeSwingSounds; // 0=NPC_ATK, 1=MC_ATK_To_NPC
+    public NPC_interactive npc_interactive; bool bomb_Berry = true;
 
     void Start()
     {
@@ -214,6 +215,23 @@ public class NPC05_control : MonoBehaviour
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.1f);
+            }
+        }
+
+        // Omit the middle
+        if(NPC_HP > 0)
+        {
+            if (other.tag == "Thorns")
+            {
+                npc_interactive.NPC_Thorns(ref NPC_HP);
+                
+                nPC_hP.UpdateHealthBar();
+            }
+            if (other.tag == "Bomb_Fruit" && bomb_Berry)
+            {
+                bomb_Berry = false;
+                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
+                nPC_hP.UpdateHealthBar();
             }
         }
     }

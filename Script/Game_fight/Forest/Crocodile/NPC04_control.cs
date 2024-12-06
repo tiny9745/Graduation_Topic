@@ -20,6 +20,7 @@ public class NPC04_control : MonoBehaviour
     public NPC_HP_04 nPC_hP;
     int NPC_angle = 0;bool open_EnableHitbox = true;
     private bool isFacingRight = true;
+    public NPC_interactive npc_interactive; bool bomb_Berry = true;
 
     void Start()
     {
@@ -257,7 +258,23 @@ public class NPC04_control : MonoBehaviour
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
+        }
 
+        // Omit the middle
+        if(NPC_HP > 0)
+        {
+            if (other.tag == "Thorns")
+            {
+                npc_interactive.NPC_Thorns(ref NPC_HP);
+                
+                nPC_hP.UpdateHealthBar();
+            }
+            if (other.tag == "Bomb_Fruit" && bomb_Berry)
+            {
+                bomb_Berry = false;
+                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
+                nPC_hP.UpdateHealthBar();
+            }
         }
     }
 
