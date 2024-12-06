@@ -300,6 +300,8 @@ GameObject:
   - component: {fileID: 5936887255690602063}
   - component: {fileID: 3243182351849722007}
   - component: {fileID: 6529399861343814723}
+  - component: {fileID: 706302328957079377}
+  - component: {fileID: 4808230128931327745}
   m_Layer: 8
   m_Name: NPC02
   m_TagString: NPC
@@ -430,6 +432,45 @@ MonoBehaviour:
   MaxHealth: 0
   minus: 0
   control: {fileID: 2187345878073490768}
+--- !u!114 &706302328957079377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321726118843967734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e728dfb102b08414fb459eb9040f736b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &4808230128931327745
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321726118843967734}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7057980913427867481
 GameObject:
   m_ObjectHideFlags: 0
