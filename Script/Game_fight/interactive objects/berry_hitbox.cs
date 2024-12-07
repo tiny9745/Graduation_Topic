@@ -20,7 +20,6 @@ public class berry_hitbox : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Player_blood-=: " + (static_parameters.MC_HP - 10 * NPC_interactive.berry));
             static_parameters.MC_HP -= 10 * NPC_interactive.berry;
         }
     }
