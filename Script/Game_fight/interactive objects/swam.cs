@@ -15,4 +15,21 @@ public class swam : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.Log("Player_Swam_enter");
+            static_parameters.MC_Wspeed/=2;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.Log("Player_Swam_exit");
+            static_parameters.MC_Wspeed*=2;
+        }
+    }
 }

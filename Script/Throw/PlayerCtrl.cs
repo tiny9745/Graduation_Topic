@@ -26,7 +26,6 @@ public class PlayerCtrl : MonoBehaviour
 
     public ItemSlot _slot;
     public GameObject Button_bullet;
-    public static int bullet_quantity = 0;
 
     public GameObject text_win;
 
@@ -40,7 +39,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         Button buttonComponent = Button_bullet.GetComponent<Button>();
         Image buttonImage = buttonComponent.GetComponent<Image>();
-        if (bullet_quantity == 0)
+        if (static_parameters.bullet_quantity == 0)
         {
             buttonComponent.enabled = false;
             if (buttonImage != null)
@@ -50,7 +49,7 @@ public class PlayerCtrl : MonoBehaviour
                 buttonImage.color = color;
             }
         }
-        else if (bullet_quantity > 0)
+        else if (static_parameters.bullet_quantity > 0)
         {
             buttonComponent.enabled = true;
             if (buttonImage != null)
@@ -130,20 +129,21 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    public void bullet_fire()
-    {
-        if(Player_HP>0)
-        {
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.velocity = Firepoint.forward * bulletSpeed;
-        }
-            Instantiate(bullet, Firepoint.position, Firepoint.rotation);
-            bullet_quantity--;
-            _slot.UseItem();
-        }
-    }
+    // public void bullet_fire()
+    // {
+    //     if(Player_HP>0)
+    //     {
+    //     Rigidbody rb = bullet.GetComponent<Rigidbody>();
+    //     if (rb != null)
+    //     {
+    //         rb.velocity = Firepoint.forward * bulletSpeed;
+    //     }
+    //         Instantiate(bullet, Firepoint.position, Firepoint.rotation);
+    //         static_parameters.bullet_quantity--;
+    //         _slot.UseItem();
+    //     }
+    // }
+    
     public void Sward()
     {
         if (Player_HP > 0)

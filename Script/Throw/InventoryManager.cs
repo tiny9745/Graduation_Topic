@@ -45,6 +45,7 @@ public class InventoryManager : MonoBehaviour
         {
             ItemList.Add(newItem);
             static_parameters.bullet_quantity++;
+            Debug.Log("bullet_quantity: " + static_parameters.bullet_quantity);
         }
     }
 
@@ -59,6 +60,7 @@ public class InventoryManager : MonoBehaviour
         {
             Instantiate(bullet, Firepoint.position, transform.rotation);
             static_parameters.bullet_quantity--;
+            Debug.Log("bullet_quantity: " + static_parameters.bullet_quantity);
             _slot.UseItem();
         }
     }

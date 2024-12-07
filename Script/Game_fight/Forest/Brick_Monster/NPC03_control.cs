@@ -309,6 +309,22 @@ public class NPC03_control : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Swam")
+        {
+            npc_interactive.NPC_Swam_enter(ref npcSpeed);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Swam")
+        {
+            npc_interactive.NPC_Swam_exit(ref npcSpeed);
+        }
+    }
+    
     public float GetNPC03_ATK()
     {
         return NPC03_ATK;
