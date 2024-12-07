@@ -53,7 +53,6 @@ public class Bomb_Berry : MonoBehaviour
         if (berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
         {
             objectsInRange.Add(other.gameObject);
-            Debug.Log("objectsInRange.Count: " + objectsInRange.Count);
             if (timmer < explode_time_max && objectsInRange.Count == 1)
             {
                 isExplode = true;

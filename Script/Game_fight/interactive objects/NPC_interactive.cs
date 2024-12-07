@@ -26,12 +26,20 @@ public class NPC_interactive : MonoBehaviour
         {
             npc_timmer = 0;
             _NPC_HP -= 1;
-            Debug.Log("NPC_Thorns-=: " + _NPC_HP);
         }
     }
     public void NPC_Bomb_Berry(ref float _NPC_HP)
     {
         _NPC_HP -= 10 * berry;
-        Debug.Log("NPC_Bomb_Berry-=: " + _NPC_HP);
+    }
+    public void NPC_Swam_enter(ref float _NPC_Speed)
+    {
+        Debug.Log("NPC_Swam_enter");
+        _NPC_Speed /= 2;
+    }
+    public void NPC_Swam_exit(ref float _NPC_Speed)
+    {
+        Debug.Log("NPC_Swam_exit");
+        _NPC_Speed *= 2;
     }
 }
