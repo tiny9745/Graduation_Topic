@@ -21,7 +21,6 @@ public class NPC_interactive : MonoBehaviour
     float npc_timmer = 0;
     public void NPC_Thorns(ref float _NPC_HP)
     {
-        Debug.Log("NPC_HP-=: " + _NPC_HP);
         npc_timmer += Time.deltaTime;
         if (npc_timmer >= Thorns.damage_time)
         {
