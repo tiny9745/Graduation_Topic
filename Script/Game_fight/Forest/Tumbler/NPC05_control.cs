@@ -216,9 +216,18 @@ public class NPC05_control : MonoBehaviour
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.1f);
             }
-        }
 
-        // Omit the middle
+            // Omit the middle
+            if (other.gameObject.CompareTag("MC_bullet"))
+            {
+                switch (static_parameters._ItemID)
+                {
+                    case 1:
+                        nPC_hP.TakeDamage(8, NPC05_DEF);
+                        break;
+                }
+            }
+        }
         if(NPC_HP > 0)
         {
             if (other.tag == "Thorns")
