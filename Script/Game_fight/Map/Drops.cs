@@ -24,4 +24,16 @@ public class Drops : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerEnter(Collider Hit)
+    {
+        if (Hit.gameObject.CompareTag("Player"))
+        {
+            if (text_array != null)
+            {
+                print("drop_eat");
+                //text_array.SetRandomTextExistToTrue();
+            }
+            Destroy(gameObject);
+        }
+    }
 }

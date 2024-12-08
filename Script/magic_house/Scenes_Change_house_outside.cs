@@ -19,4 +19,18 @@ public class Scenes_Change_house_outside : MonoBehaviour
             }
         }
     }
+        private void OnTriggerEnter(Collider Hit)
+    {
+        if (Hit.gameObject.CompareTag("Player"))
+        {
+            static_parameters.stage_number = 1;
+
+            switch (Random.Range(0, 1))
+            {
+                case 0:
+                    SceneManager.LoadScene("Fight_241130");
+                    break;
+            }
+        }
+    }
 }

@@ -55,4 +55,36 @@ public class Scene_Change_Forest : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider Hit)
+    {
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0)
+        {
+            static_parameters.stage_number++;
+
+            if (static_parameters.stage_number < 3)
+            {
+                i = 3;
+            }
+            else if (static_parameters.stage_number < 6)
+            {
+                i = static_parameters.stage_number;
+            }
+            else
+            {
+                i = 5;
+            }
+            static_parameters.money += i * 10;
+            if (static_parameters.stage_number >= i)
+            {
+                //SceneManager.LoadScene("Game_fight_Boss");
+                SceneManager.LoadScene("magic_house");
+                static_parameters.stage_number = 0;
+                static_parameters.stage_number_Boss++;
+            }
+            else
+            {
+                SceneManager.LoadScene("Fight_FU01");
+            }
+        }
+    }
 }
