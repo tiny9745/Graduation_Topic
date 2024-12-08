@@ -258,9 +258,17 @@ public class NPC04_control : MonoBehaviour
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
+            // Omit the middle
+            if (other.gameObject.CompareTag("MC_bullet"))
+            {
+                switch (static_parameters._ItemID)
+                {
+                    case 1:
+                        nPC_hP.TakeDamage(8, NPC04_DEF);
+                        break;
+                }
+            }
         }
-
-        // Omit the middle
         if(NPC_HP > 0)
         {
             if (other.tag == "Thorns")
