@@ -128,7 +128,32 @@ public class PlayerCtrl : MonoBehaviour
             Invoke("Win_Back", 3f);
         }
     }
-
+    private void OnTriggerEnter(Collider collision)
+    {
+        // Reset jump state when touching the ground
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            animator.SetInteger("NewInt",0);
+            isJumping = false;
+        }
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            Destroy(collision.gameObject);
+            moveSpeed += 0.1f;
+        }
+        if (collision.gameObject.CompareTag("Sword"))
+        {
+            ToggleShowHideObject();
+            Destroy(collision.gameObject);
+        }
+        print("into");
+        if (collision.gameObject.CompareTag("Win"))
+        {
+            print("Win");
+            text_win.SetActive(true);
+            Invoke("Win_Back", 3f);
+        }
+    }
     // public void bullet_fire()
     // {
     //     if(Player_HP>0)
