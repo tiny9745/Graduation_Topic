@@ -10,7 +10,7 @@ public class Bomb_Berry : MonoBehaviour
     private int lastChildCount,startChildCount; // 上一次檢查時的子物件數量
     public SpriteRenderer[] spriteRenderer;
     private HashSet<GameObject> objectsInRange = new HashSet<GameObject>();
-    public BoxCollider bomb_hitbox;
+    public SphereCollider bomb_hitbox;
     public Animator animator_ready;
     private Animator animator_bomb;
     private bool ani_bool_ready = false, ani_bool_bomb = false;
@@ -61,6 +61,7 @@ public class Bomb_Berry : MonoBehaviour
             if (timmer < explode_time_max && objectsInRange.Count == 1)
             {
                 ani_bool_ready = true;
+                Debug.Log("Berry ready to explode");
                 isExplode = true;
                 for (int i = 0; i < startChildCount-1 ;i++)
                 {
