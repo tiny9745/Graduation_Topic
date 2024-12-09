@@ -11,16 +11,22 @@ public class Bomb_Berry : MonoBehaviour
     public SpriteRenderer[] spriteRenderer;
     private HashSet<GameObject> objectsInRange = new HashSet<GameObject>();
     public BoxCollider bomb_hitbox;
+    public Animator animator_ready;
+    private Animator animator_bomb;
+    private bool ani_bool_ready = false, ani_bool_bomb = false;
     void Start()
     {
         // 紀錄初始子物件數量
         startChildCount = transform.childCount;
         lastChildCount = transform.childCount;
         berry = lastChildCount;
+        animator_bomb = GetComponent<Animator>();
     }
 
     void Update()
     {
+        animator_ready.SetBool("ani_bool_ready", true);
+        animator_bomb.SetBool("ani_bool_bomb", true);
         if (isExplode)
         {
             timmer += Time.deltaTime;
@@ -32,7 +38,6 @@ public class Bomb_Berry : MonoBehaviour
                     {
                         // 取得當前顏色
                         Color color = spriteRenderer[i].color;
-
                         // 修改透明度
                         color.r = 1;
                         color.g = 1;
@@ -55,6 +60,7 @@ public class Bomb_Berry : MonoBehaviour
             objectsInRange.Add(other.gameObject);
             if (timmer < explode_time_max && objectsInRange.Count == 1)
             {
+                ani_bool_ready = true;
                 isExplode = true;
                 for (int i = 0; i < startChildCount-1 ;i++)
                 {
@@ -93,6 +99,7 @@ public class Bomb_Berry : MonoBehaviour
             objectsInRange.Remove(other.gameObject);
             if (objectsInRange.Count == 0) 
             {
+                ani_bool_ready = false;
                 isExplode = false;
                 timmer = 0;
                 for (int i = 0; i < startChildCount-1 ;i++)
@@ -118,6 +125,7 @@ public class Bomb_Berry : MonoBehaviour
     {
         if ( berry != 0)
         {
+            ani_bool_bomb = true;
             NPC_interactive.berry = berry;
             if (bomb_hitbox != null)
             {
