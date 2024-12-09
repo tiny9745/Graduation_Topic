@@ -7,32 +7,29 @@ public class Bomb_Berry : MonoBehaviour
     int berry = 3;
     bool isExplode = false;
     float explode_time_max = 3, timmer = 0;
-    private int lastChildCount,startChildCount; // 上一次檢查時的子物件數量
+    private int lastChildCount, startChildCount; // 上一次檢查時的子物件數量
     public SpriteRenderer[] spriteRenderer;
     private HashSet<GameObject> objectsInRange = new HashSet<GameObject>();
     public SphereCollider bomb_hitbox;
     public Animator animator_ready;
-    private Animator animator_bomb;
-    private bool ani_bool_ready = false, ani_bool_bomb = false;
+    public Animator animator_bomb;
     void Start()
     {
         // 紀錄初始子物件數量
         startChildCount = transform.childCount;
         lastChildCount = transform.childCount;
         berry = lastChildCount;
-        animator_bomb = GetComponent<Animator>();
     }
 
     void Update()
     {
-        animator_ready.SetBool("ani_bool_ready", true);
-        animator_bomb.SetBool("ani_bool_bomb", true);
         if (isExplode)
         {
             timmer += Time.deltaTime;
             if (berry == 0 && timmer < explode_time_max)
             {
-                for (int i = 0; i < lastChildCount ;i++)
+                animator_ready.SetBool("ani_bool_ready", false);
+                for (int i = 0; i < lastChildCount; i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
@@ -60,10 +57,10 @@ public class Bomb_Berry : MonoBehaviour
             objectsInRange.Add(other.gameObject);
             if (timmer < explode_time_max && objectsInRange.Count == 1)
             {
-                ani_bool_ready = true;
+                animator_ready.SetBool("ani_bool_ready", true);
                 Debug.Log("Berry ready to explode");
                 isExplode = true;
-                for (int i = 0; i < startChildCount-1 ;i++)
+                for (int i = 0; i < startChildCount - 3; i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
@@ -85,7 +82,7 @@ public class Bomb_Berry : MonoBehaviour
     {
         if (berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
         {
-            if (timmer > explode_time_max && isExplode) 
+            if (timmer > explode_time_max && isExplode)
             {
                 isExplode = false;
                 Bomb_Berry_Explode(other);
@@ -98,12 +95,12 @@ public class Bomb_Berry : MonoBehaviour
         if (berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
         {
             objectsInRange.Remove(other.gameObject);
-            if (objectsInRange.Count == 0) 
+            if (objectsInRange.Count == 0)
             {
-                ani_bool_ready = false;
+                animator_ready.SetBool("ani_bool_ready", false);
                 isExplode = false;
                 timmer = 0;
-                for (int i = 0; i < startChildCount-1 ;i++)
+                for (int i = 0; i < startChildCount - 3; i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
@@ -124,9 +121,10 @@ public class Bomb_Berry : MonoBehaviour
 
     private void Bomb_Berry_Explode(Collider other)
     {
-        if ( berry != 0)
+        if (berry != 0)
         {
-            ani_bool_bomb = true;
+            animator_bomb.SetBool("berry_bomb_bool", true);
+            Debug.Log("Berry explode");
             NPC_interactive.berry = berry;
             if (bomb_hitbox != null)
             {
@@ -136,7 +134,7 @@ public class Bomb_Berry : MonoBehaviour
             {
                 static_parameters.MC_HP -= 10 * berry;
             }
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject, 2.1f);
         }
     }
 
