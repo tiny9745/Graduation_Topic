@@ -35,7 +35,7 @@ public class Ptest : MonoBehaviour
         }else{
             return;
         }
-        
+        Debug.Log("Picked Pieces: " + thisItem.PieceName);
     }
     Diary_piece GetRandomPiece()
     {
@@ -53,11 +53,10 @@ public class Ptest : MonoBehaviour
     void SortPiece(Diary_piece piece)
     {
         string key = piece.PieceName.Substring(0, 3);
-
         if (sortedPieces.ContainsKey(key))
         {
             sortedPieces[key].Add(piece);
-            //print(sortedPieces[key].Count);
+            print(sortedPieces[key].Count);
         }
         else
         {
