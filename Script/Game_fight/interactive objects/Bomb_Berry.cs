@@ -123,7 +123,7 @@ public class Bomb_Berry : MonoBehaviour
     {
         if (berry != 0)
         {
-            animator_bomb.SetBool("berry_bomb_bool", true);
+            animator_bomb.SetBool("BOOMFX_bomb", true);
             Debug.Log("Berry explode");
             NPC_interactive.berry = berry;
             if (bomb_hitbox != null)
@@ -134,7 +134,7 @@ public class Bomb_Berry : MonoBehaviour
             {
                 static_parameters.MC_HP -= 10 * berry;
             }
-            Destroy(gameObject, 2.1f);
+            Destroy(gameObject, 1.1f);
         }
     }
 
