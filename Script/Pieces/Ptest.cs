@@ -57,7 +57,7 @@ public class Ptest : MonoBehaviour
         if (sortedPieces.ContainsKey(key))
         {
             sortedPieces[key].Add(piece);
-            print(sortedPieces[key].Count);
+            //print(sortedPieces[key].Count);
         }
         else
         {

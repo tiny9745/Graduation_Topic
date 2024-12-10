@@ -6,6 +6,7 @@ public class Pieceslot : MonoBehaviour
 {
     Diary_piece piece;
     public Image PieceImage;
+    public Sprite emptySprite;
     
     public void AddPiece(Diary_piece thisItem)
     {
@@ -20,7 +21,7 @@ public class Pieceslot : MonoBehaviour
     public void Clean()
     {
         piece = null;
-        PieceImage.sprite = null;
+        PieceImage.sprite = emptySprite;
     }
     
 }
