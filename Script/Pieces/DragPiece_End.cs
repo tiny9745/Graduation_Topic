@@ -13,7 +13,6 @@ public class DragPiece_End : MonoBehaviour,IDropHandler
     // Update is called once per frame
     public void OnDrop (PointerEventData eventData){
         GameObject droppedObject = eventData.pointerDrag;
-        Debug.Log(droppedObject);
         if (droppedObject != null)
         {
            if (int.TryParse(droppedObject.name, out int itemNumber))
