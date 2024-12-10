@@ -33,8 +33,8 @@ public class MC_col : MonoBehaviour
         if (static_parameters.MC_HP <= 0)
         {
             static_parameters.stage_number--;
-            SceneManager.LoadScene("magic_house");
             MC_S.transform.position = new Vector3(0, 0, 0);
+            SceneManager.LoadScene("magic_house");
         }
         SetLookDirection(static_parameters.face);
         // Check and update the attack speed

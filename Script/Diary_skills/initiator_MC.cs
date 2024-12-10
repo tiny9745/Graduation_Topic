@@ -183,7 +183,6 @@ public class initiator_MC : MonoBehaviour
                     }
                 }
                 break;
-
         }
     }
 }
