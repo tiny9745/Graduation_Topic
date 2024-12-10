@@ -17,7 +17,6 @@ public class DragPiece_End : MonoBehaviour,IDropHandler
         {
            if (int.TryParse(droppedObject.name, out int itemNumber))
             {
-                Debug.Log(itemNumber);
                 Debug.Log(Ptest.pickedPieces[itemNumber-1]);
             }
         }
