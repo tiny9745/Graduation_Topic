@@ -18,6 +18,8 @@ public class Pieceslot : MonoBehaviour
     }
     public void RemoveItem()
     {
+        Color color = PieceImage.color;
+        color.a = 0f;
         PieceManager.Instance.Remove(piece);
         PieceManager.Instance.PieceInventoryCallBack();
     }
