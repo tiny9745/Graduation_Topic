@@ -42,6 +42,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 {
                     Debug.Log("Green");
                 }
+                Ptest.pickedPieces.RemoveAt(itemNumber - 1);
             }
         }
     }
