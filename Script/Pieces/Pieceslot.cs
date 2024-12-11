@@ -7,21 +7,28 @@ public class Pieceslot : MonoBehaviour
     Diary_piece piece;
     public Image PieceImage;
     public Sprite emptySprite;
-    
+
     public void AddPiece(Diary_piece thisItem)
     {
         piece = thisItem;
         PieceImage.sprite = piece.PieceImage;
+        Color color = PieceImage.color;
+        color.a = 1f;
+        PieceImage.color = color;
     }
     public void RemoveItem()
     {
         PieceManager.Instance.Remove(piece);
         PieceManager.Instance.PieceInventoryCallBack();
     }
+
     public void Clean()
     {
+        Color color = PieceImage.color;
+        color.a = 0f;
+        PieceImage.color = color;
         piece = null;
         PieceImage.sprite = emptySprite;
     }
-    
+
 }
