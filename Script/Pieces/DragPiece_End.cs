@@ -18,8 +18,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         {
             if (int.TryParse(droppedObject.name, out int itemNumber))
             {
-                Debug.Log("Dropped object is: " + itemNumber);
-                print(Ptest.pickedPieces[itemNumber - 1].PieceName);
                 PieceManager.Instance.Remove(Ptest.pickedPieces[itemNumber - 1]);
                 string key_color = Ptest.pickedPieces[itemNumber - 1].PieceName.Substring(0, 3);
                 if (key_color == "Red")
