@@ -31,7 +31,7 @@ public class Ptest : MonoBehaviour
         if (thisItem != null)
         {
             SortPiece(thisItem);
-            PieceManager.Instance.Add(thisItem);           
+            PieceManager.Instance.Add(thisItem);
         }else{
             return;
         }
