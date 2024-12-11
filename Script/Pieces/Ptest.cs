@@ -35,7 +35,6 @@ public class Ptest : MonoBehaviour
         }else{
             return;
         }
-        Debug.Log("Picked Pieces: " + thisItem.PieceName);
     }
     Diary_piece GetRandomPiece()
     {
