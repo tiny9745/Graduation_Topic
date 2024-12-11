@@ -43,7 +43,6 @@ public class PieceManager : MonoBehaviour
     }
     public void Refresh()
     {
-        Debug.Log("Refresh");
         PieceInventoryCallBack?.Invoke();
     }
 }
