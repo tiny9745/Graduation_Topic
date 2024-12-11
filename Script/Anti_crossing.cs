@@ -10,7 +10,7 @@ public class Anti_crossing : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.AddForce(Vector3.forward * 10);
+            rb.AddForce(Vector3.forward * 10); 
         }
     }
 }
