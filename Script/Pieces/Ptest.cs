@@ -5,12 +5,15 @@ using UnityEngine;
 public class Ptest : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Diary_piece thisItem;
+    Diary_piece thisItem;
     private List<Diary_piece> availablePieces = new List<Diary_piece>();
     private Dictionary<string, List<Diary_piece>> sortedPieces = new Dictionary<string, List<Diary_piece>>();
 
     private List<Diary_piece> Red, Blu, Prp, Grn, Yel = new List<Diary_piece>();
     static public List<Diary_piece> pickedPieces = new List<Diary_piece>();
+    static public List<Diary_piece> show = new List<Diary_piece>();
+
+    int page, way = 0;
     void Start()
     {
         Diary_piece[] allPieces = Resources.LoadAll<Diary_piece>("Piece");
@@ -32,7 +35,9 @@ public class Ptest : MonoBehaviour
         {
             SortPiece(thisItem);
             PieceManager.Instance.Add(thisItem);
-        }else{
+        }
+        else
+        {
             return;
         }
     }
@@ -55,7 +60,6 @@ public class Ptest : MonoBehaviour
         if (sortedPieces.ContainsKey(key))
         {
             sortedPieces[key].Add(piece);
-            print(sortedPieces[key].Count);
         }
         else
         {
@@ -69,5 +73,37 @@ public class Ptest : MonoBehaviour
         sortedPieces["Prp"] = new List<Diary_piece>();
         sortedPieces["Yel"] = new List<Diary_piece>();
         sortedPieces["Grn"] = new List<Diary_piece>();
+    }
+    void ShowPieces()
+    {
+        switch (way)
+        {
+            case 0:
+                for (int i = page * 16; i < (page + 1) * 16; i++)
+                {
+                    if (i < pickedPieces.Count)
+                    {
+                        show.Add(pickedPieces[i]);
+                    }
+                    else return;
+                }
+                break;
+            case 1:
+                show = Red;
+                break;
+            case 2:
+                show = Blu;
+                break;
+            case 3:
+                show = Prp;
+                break;
+            case 4:
+                show = Yel;
+                break;
+            case 5:
+                show = Grn;
+                break;
+        }
+
     }
 }
