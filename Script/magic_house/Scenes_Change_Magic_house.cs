@@ -12,7 +12,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
             SceneManager.LoadScene("house_outside");
         }
     }
-        private void OnTriggerEnter(Collider Hit)
+    private void OnTriggerEnter(Collider Hit)
     {
         if (Hit.gameObject.CompareTag("Player"))
         {

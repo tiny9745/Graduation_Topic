@@ -16,7 +16,6 @@ public class Scence_FU_241130 : MonoBehaviour
         startPos = player_S.transform.position;
         // switch (static_parameters.stage_number_Boss){}
         Fight_FU();
-        
     }
 
     public void Fight_FU()
