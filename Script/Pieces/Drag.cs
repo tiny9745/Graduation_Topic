@@ -23,7 +23,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         {
             _canvasGroup.alpha = 0.6f;
             _canvasGroup.blocksRaycasts = false;
-            
         }else  return;
     }
 
@@ -42,6 +41,4 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         _canvasGroup.blocksRaycasts = true;
         _rectTransform.anchoredPosition = _originalPosition;
     }
-
-
 }
