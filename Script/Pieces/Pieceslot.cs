@@ -24,5 +24,4 @@ public class Pieceslot : MonoBehaviour
         piece = null;
         PieceImage.sprite = emptySprite;
     }
-
 }
