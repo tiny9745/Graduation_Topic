@@ -7,6 +7,7 @@ public class Diary_piece : ScriptableObject
     public int PieceID;
     public string PieceName;
     public Sprite PieceImage;
+    public string survival_state = "Dead";
     public virtual void UseItem()
     {
         static_parameters.Piece_ID = PieceID;
