@@ -77,6 +77,7 @@ public class Ptest : MonoBehaviour
         string key = piece.PieceName.Substring(0, 3);
         if (sortedPieces.ContainsKey(key))sortedPieces[key].Add(piece);
         else Debug.LogWarning($"Piece '{piece.PieceName}' does not match any category!");
+        piece.survival_state = "Alive";
     }
     void InitializePieceSorting()
     {
