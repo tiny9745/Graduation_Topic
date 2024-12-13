@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class MC_col : MonoBehaviour
 {
@@ -11,12 +12,15 @@ public class MC_col : MonoBehaviour
     public Transform spriteTransform;
     public Material Deduct_Blood;
     private Material originalMaterial;
+    private NavMeshAgent playerAgent;
     public string Game_fight = "Game_fight", magic_house = "magic_house", house_outside = "house_outside";
 
     void Start()
     {
         MC = GameObject.Find("Player");
         MC_S = GameObject.Find("Player_S");
+        playerAgent = GameObject.Find("Player_S").GetComponent<NavMeshAgent>();
+        playerAgent.enabled = false;
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         if (renderer1 != null)
         {
@@ -33,6 +37,7 @@ public class MC_col : MonoBehaviour
         if (static_parameters.MC_HP <= 0)
         {
             static_parameters.stage_number--;
+            playerAgent.enabled = false;
             MC_S.transform.position = new Vector3(0, 0, 0);
             SceneManager.LoadScene("magic_house");
         }

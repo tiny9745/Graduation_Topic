@@ -12,9 +12,6 @@ public class Pieceslot : MonoBehaviour
     {
         piece = thisItem;
         PieceImage.sprite = piece.PieceImage;
-        Color color = PieceImage.color;
-        color.a = 1f;
-        PieceImage.color = color;
     }
     public void RemoveItem()
     {
@@ -24,9 +21,6 @@ public class Pieceslot : MonoBehaviour
 
     public void Clean()
     {
-        Color color = PieceImage.color;
-        color.a = 0f;
-        PieceImage.color = color;
         piece = null;
         PieceImage.sprite = emptySprite;
     }

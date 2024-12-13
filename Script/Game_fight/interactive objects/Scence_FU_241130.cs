@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class Scence_FU_241130 : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class Scence_FU_241130 : MonoBehaviour
     private GameObject player_S;
     private Vector3 startPos = new Vector3(0, 138, -8);
     int scence_random;
-
+    private NavMeshAgent playerAgent;
     void Start()
     {
         player_S = GameObject.Find("Player_S");
+        playerAgent = player_S.GetComponent<NavMeshAgent>();
         startPos = player_S.transform.position;
+        playerAgent.enabled = true;
         // switch (static_parameters.stage_number_Boss){}
         Fight_FU();
     }
