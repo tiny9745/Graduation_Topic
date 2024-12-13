@@ -8,7 +8,7 @@ public class Ptest : MonoBehaviour
     Diary_piece thisItem;
     private List<Diary_piece> availablePieces = new List<Diary_piece>();
     private Dictionary<string, List<Diary_piece>> sortedPieces = new Dictionary<string, List<Diary_piece>>();
-
+    private const int itemsPerPage = 16;
     private List<Diary_piece> Red, Blu, Prp, Grn, Yel = new List<Diary_piece>();
     static public List<Diary_piece> pickedPieces = new List<Diary_piece>();
     static public List<Diary_piece> show = new List<Diary_piece>();
@@ -28,6 +28,28 @@ public class Ptest : MonoBehaviour
             addp();
         }
     }
+    void UpdateInventoryUI()
+    {
+        // Logic to update the inventory UI
+        Debug.Log("Displaying page " + (page + 1) + " with " + show.Count + " items.");
+    }
+    public void NextPage()
+    {
+        // Check if the next page exists
+        if ((page + 1) * itemsPerPage < pickedPieces.Count)
+        {
+            page++;
+            ShowPieces();
+        }
+    }
+    public void PreviousPage()
+    {
+        if (page > 0)
+        {
+            page--;
+            ShowPieces();
+        }
+    }
     void addp()
     {
         thisItem = GetRandomPiece();
@@ -36,10 +58,7 @@ public class Ptest : MonoBehaviour
             SortPiece(thisItem);
             PieceManager.Instance.Add(thisItem);
         }
-        else
-        {
-            return;
-        }
+        else return;       
     }
     Diary_piece GetRandomPiece()
     {
@@ -51,20 +70,13 @@ public class Ptest : MonoBehaviour
         Diary_piece selectedPiece = availablePieces[randomIndex];
         pickedPieces.Add(selectedPiece);
         availablePieces.RemoveAt(randomIndex);
-
         return selectedPiece;
     }
     void SortPiece(Diary_piece piece)
     {
         string key = piece.PieceName.Substring(0, 3);
-        if (sortedPieces.ContainsKey(key))
-        {
-            sortedPieces[key].Add(piece);
-        }
-        else
-        {
-            Debug.LogWarning($"Piece '{piece.PieceName}' does not match any category!");
-        }
+        if (sortedPieces.ContainsKey(key))sortedPieces[key].Add(piece);
+        else Debug.LogWarning($"Piece '{piece.PieceName}' does not match any category!");
     }
     void InitializePieceSorting()
     {
@@ -76,16 +88,15 @@ public class Ptest : MonoBehaviour
     }
     void ShowPieces()
     {
+        int startIndex = page * itemsPerPage;
+        int endIndex = Mathf.Min(startIndex + itemsPerPage, pickedPieces.Count);
         switch (way)
         {
             case 0:
-                for (int i = page * 16; i < (page + 1) * 16; i++)
+                show.Clear();
+                for (int i = startIndex; i < endIndex; i++)
                 {
-                    if (i < pickedPieces.Count)
-                    {
-                        show.Add(pickedPieces[i]);
-                    }
-                    else return;
+                    show.Add(pickedPieces[i]);
                 }
                 break;
             case 1:
@@ -104,6 +115,6 @@ public class Ptest : MonoBehaviour
                 show = Grn;
                 break;
         }
-
+        UpdateInventoryUI();
     }
 }
