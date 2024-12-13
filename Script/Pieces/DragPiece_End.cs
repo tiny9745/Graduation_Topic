@@ -11,8 +11,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     {
 
     }
-    private List<Diary_piece> fragments_tmp = new List<Diary_piece>();
-
     // Update is called once per frame
     public void OnDrop(PointerEventData eventData)
     {
@@ -23,29 +21,18 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             {
                 PieceManager.Instance.Remove(Ptest.pickedPieces[itemNumber - 1]);
                 string key_color = Ptest.pickedPieces[itemNumber - 1].PieceName.Substring(0, 3);
-                Ptest.pickedPieces[itemNumber - 1].survival_state = "dead";
-                Debug.Log("survival_state:" + key_color + " is " + Ptest.pickedPieces[itemNumber - 1].survival_state);
-                if (key_color == "Red")
-                {
-                    Debug.Log("Red");
-                }
-                else if (key_color == "Blu")
-                {
-                    Debug.Log("Blue");
-                }
-                else if (key_color == "Prp")
-                {
-                    Debug.Log("Purple");
-                }
-                else if (key_color == "Yel")
-                {
-                    Debug.Log("Yellow");
-                }
-                else if (key_color == "Grn")
-                {
-                    Debug.Log("Green");
-                }
+                Ptest.pickedPieces[itemNumber - 1].survival_state = "Drag";
+
                 Ptest.pickedPieces.RemoveAt(itemNumber - 1);
+                for (int i = 0; i < Ptest.pickedPieces.Count; i++)
+                {
+                    if (key_color != Ptest.pickedPieces[i].PieceName.Substring(0, 3))
+                    {
+                        Ptest.pickedPieces[i].survival_state = "Remove";
+                        PieceManager.Instance.Remove(Ptest.pickedPieces[i]);
+                        Debug.Log("PieceName:" + Ptest.pickedPieces[i].PieceName + ",Survival_State:" + Ptest.pickedPieces[i].survival_state);
+                    }
+                }
             }
         }
     }
