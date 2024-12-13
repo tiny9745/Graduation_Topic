@@ -16,12 +16,11 @@ public class Scence_FU_241130 : MonoBehaviour
         startPos = player_S.transform.position;
         // switch (static_parameters.stage_number_Boss){}
         Fight_FU();
-        
     }
 
     public void Fight_FU()
     {
-        scence_random = Random.Range(0, 1);
+        scence_random = Random.Range(3, 4);
         // static_parameters.Map_start = scence_random;
         Generatescence(FU[scence_random], new Vector3(0, 0, 0));
         startPos.z = -138;
