@@ -21,7 +21,7 @@ public class PieceManager : MonoBehaviour
         {
             Instance = this;
         }
-        Refresh();
+        PieceInventoryCallBack?.Invoke();
         DontDestroyOnLoad(this);
     }
     void Start()
@@ -39,6 +39,11 @@ public class PieceManager : MonoBehaviour
     public void Remove(Diary_piece oldPiece)
     {
         PieceList.Remove(oldPiece);
+        PieceInventoryCallBack?.Invoke();
+    }
+    public void Clear()
+    {
+        PieceList.Clear();
         PieceInventoryCallBack?.Invoke();
     }
     public void Refresh()

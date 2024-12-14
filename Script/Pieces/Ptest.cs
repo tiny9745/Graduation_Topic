@@ -8,7 +8,7 @@ public class Ptest : MonoBehaviour
     Diary_piece thisItem;
     private List<Diary_piece> availablePieces = new List<Diary_piece>();
     private Dictionary<string, List<Diary_piece>> sortedPieces = new Dictionary<string, List<Diary_piece>>();
-    private const int itemsPerPage = 16;
+    private int itemsPerPage = 16;
     private List<Diary_piece> Red, Blu, Prp, Grn, Yel = new List<Diary_piece>();
     static public List<Diary_piece> pickedPieces = new List<Diary_piece>();
     static public List<Diary_piece> show = new List<Diary_piece>();
@@ -30,7 +30,6 @@ public class Ptest : MonoBehaviour
     }
     void UpdateInventoryUI()
     {
-        // Logic to update the inventory UI
         Debug.Log("Displaying page " + (page + 1) + " with " + show.Count + " items.");
     }
     public void NextPage()
@@ -95,9 +94,11 @@ public class Ptest : MonoBehaviour
         {
             case 0:
                 show.Clear();
+                PieceManager.Instance.PieceList.Clear();
                 for (int i = startIndex; i < endIndex; i++)
                 {
                     show.Add(pickedPieces[i]);
+                    PieceManager.Instance.Add(pickedPieces[i]);
                 }
                 break;
             case 1:
