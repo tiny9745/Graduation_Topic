@@ -13,7 +13,8 @@ public class Ptest : MonoBehaviour
     static public List<Diary_piece> pickedPieces = new List<Diary_piece>();
     static public List<Diary_piece> show = new List<Diary_piece>();
 
-    int page, way = 0;
+    int page=0;
+    public int way = 0;
     void Start()
     {
         Diary_piece[] allPieces = Resources.LoadAll<Diary_piece>("Piece");
@@ -91,15 +92,14 @@ public class Ptest : MonoBehaviour
         sortedPieces["Yel"] = new List<Diary_piece>();
         sortedPieces["Grn"] = new List<Diary_piece>();
     }
-    void ShowPieces()
+    public void ShowPieces()
     {
         int startIndex = page * itemsPerPage;
         int endIndex = Mathf.Min(startIndex + itemsPerPage, pickedPieces.Count);
         show.Clear();
         switch (way)
         {
-            case 0:
-                
+            case 0:             
                 for (int i = startIndex; i < endIndex; i++)
                 {
                     show.Add(pickedPieces[i]);
