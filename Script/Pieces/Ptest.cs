@@ -30,6 +30,11 @@ public class Ptest : MonoBehaviour
     }
     void UpdateInventoryUI()
     {
+        PieceManager.Instance.PieceList.Clear();
+        for(int i=0;i<show.Count;i++)
+        {
+            PieceManager.Instance.Add(show[i]);
+        }
         Debug.Log("Displaying page " + (page + 1) + " with " + show.Count + " items.");
     }
     public void NextPage()
@@ -90,15 +95,14 @@ public class Ptest : MonoBehaviour
     {
         int startIndex = page * itemsPerPage;
         int endIndex = Mathf.Min(startIndex + itemsPerPage, pickedPieces.Count);
+        show.Clear();
         switch (way)
         {
             case 0:
-                show.Clear();
-                PieceManager.Instance.PieceList.Clear();
+                
                 for (int i = startIndex; i < endIndex; i++)
                 {
                     show.Add(pickedPieces[i]);
-                    PieceManager.Instance.Add(pickedPieces[i]);
                 }
                 break;
             case 1:
