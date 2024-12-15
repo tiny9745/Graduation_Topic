@@ -8,19 +8,23 @@ public class Ptest : MonoBehaviour
     Diary_piece thisItem;
     private List<Diary_piece> availablePieces = new List<Diary_piece>();
     private Dictionary<string, List<Diary_piece>> sortedPieces = new Dictionary<string, List<Diary_piece>>();
-    private int itemsPerPage = 16;
     private List<Diary_piece> Red, Blu, Prp, Grn, Yel = new List<Diary_piece>();
     static public List<Diary_piece> pickedPieces = new List<Diary_piece>();
     static public List<Diary_piece> show = new List<Diary_piece>();
-
-    int page=0;
-    public int way = 0;
+    public int way,page= 0,itemsPerPage = 16;
     void Start()
     {
         Diary_piece[] allPieces = Resources.LoadAll<Diary_piece>("Piece");
         availablePieces.AddRange(allPieces); InitializePieceSorting();
     }
-
+    void InitializePieceSorting()
+    {
+        sortedPieces["Red"] = new List<Diary_piece>();
+        sortedPieces["Blu"] = new List<Diary_piece>();
+        sortedPieces["Prp"] = new List<Diary_piece>();
+        sortedPieces["Yel"] = new List<Diary_piece>();
+        sortedPieces["Grn"] = new List<Diary_piece>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -32,7 +36,7 @@ public class Ptest : MonoBehaviour
     void UpdateInventoryUI()
     {
         PieceManager.Instance.PieceList.Clear();
-        for(int i=0;i<show.Count;i++)
+        for (int i = 0; i < show.Count; i++)
         {
             PieceManager.Instance.Add(show[i]);
         }
@@ -63,7 +67,7 @@ public class Ptest : MonoBehaviour
             SortPiece(thisItem);
             PieceManager.Instance.Add(thisItem);
         }
-        else return;       
+        else return;
     }
     Diary_piece GetRandomPiece()
     {
@@ -80,18 +84,11 @@ public class Ptest : MonoBehaviour
     void SortPiece(Diary_piece piece)
     {
         string key = piece.PieceName.Substring(0, 3);
-        if (sortedPieces.ContainsKey(key))sortedPieces[key].Add(piece);
+        if (sortedPieces.ContainsKey(key)) sortedPieces[key].Add(piece);
         else Debug.LogWarning($"Piece '{piece.PieceName}' does not match any category!");
         piece.survival_state = "Alive";
     }
-    void InitializePieceSorting()
-    {
-        sortedPieces["Red"] = new List<Diary_piece>();
-        sortedPieces["Blu"] = new List<Diary_piece>();
-        sortedPieces["Prp"] = new List<Diary_piece>();
-        sortedPieces["Yel"] = new List<Diary_piece>();
-        sortedPieces["Grn"] = new List<Diary_piece>();
-    }
+
     public void ShowPieces()
     {
         int startIndex = page * itemsPerPage;
@@ -99,7 +96,7 @@ public class Ptest : MonoBehaviour
         show.Clear();
         switch (way)
         {
-            case 0:             
+            case 0:
                 for (int i = startIndex; i < endIndex; i++)
                 {
                     show.Add(pickedPieces[i]);

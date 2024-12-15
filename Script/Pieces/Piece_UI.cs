@@ -5,26 +5,38 @@ using UnityEngine;
 public class Piece_UI : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Pieceslot[] Pieceslot;
-    public Transform PieceslotPoint;
+    public Pieceslot[] Pieceslot1, Pieceslot2;
+    public Transform Pieceslot1Point, Pieceslot2Point;
     void Start()
     {
         PieceManager.Instance.PieceInventoryCallBack += UpdatePiece;
-        Pieceslot = PieceslotPoint.GetComponentsInChildren<Pieceslot>();
+        Pieceslot1 = Pieceslot1Point.GetComponentsInChildren<Pieceslot>();
+        Pieceslot2 = Pieceslot2Point.GetComponentsInChildren<Pieceslot>();
     }
 
     // Update is called once per frame
     public void UpdatePiece()
     {
-        for (int i = 0; i < Pieceslot.Length; i++)
+        for (int i = 0; i < Pieceslot1.Length; i++)
         {
             if (i < PieceManager.Instance.PieceList.Count)
             {
-                Pieceslot[i].AddPiece(PieceManager.Instance.PieceList[i]);
+                Pieceslot1[i].AddPiece(PieceManager.Instance.PieceList[i]);
             }
             else
             {
-                Pieceslot[i].Clean();
+                Pieceslot1[i].Clean();
+            }
+        }
+        for (int i = 0; i < Pieceslot2.Length; i++)
+        {
+            if (i < PieceManager.Instance.PieceList.Count)
+            {
+                Pieceslot2[i].AddPiece(PieceManager.Instance.PieceList[i]);
+            }
+            else
+            {
+                Pieceslot2[i].Clean();
             }
         }
     }

@@ -10,7 +10,7 @@ public class UI : MonoBehaviour
     public GameObject Menu,CH1,CH2,CH3,CH4;
     public GameObject BookMark1,BookMark2,BookMark3,BookMark4;
     public GameObject LeftMark1,LeftMark2,LeftMark3,LeftMark4;
-
+    public Ptest piece;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +32,7 @@ public class UI : MonoBehaviour
     public void Onclick2()
     {
         Diarystatus = 2;
+        piece.itemsPerPage = 16;
         changechapter();
     }
     public void Onclick3()
@@ -61,6 +62,12 @@ public class UI : MonoBehaviour
             BattleUI.SetActive(true);
         }
     }
+    void piecechange()
+    {
+        piece.way = 0;
+        piece.page = 0;
+        piece.ShowPieces();
+    }
     void changechapter()
     {
         switch(Diarystatus)
@@ -86,6 +93,6 @@ public class UI : MonoBehaviour
                 LeftMark1.SetActive(true); LeftMark2.SetActive(true); LeftMark3.SetActive(true); LeftMark4.SetActive(false);
                 break;
         }
+        piecechange();
     }
-  
 }

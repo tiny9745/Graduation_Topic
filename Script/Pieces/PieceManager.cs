@@ -6,7 +6,7 @@ public class PieceManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static PieceManager Instance;
-    public Pieceslot Slot;public Piece_UI Piece_UI;
+    public Piece_UI Piece_UI;
     public List<Diary_piece> PieceList;
     public delegate void PieceInventoryChange();
     public PieceInventoryChange PieceInventoryCallBack;
@@ -23,10 +23,6 @@ public class PieceManager : MonoBehaviour
         }
         PieceInventoryCallBack?.Invoke();
         DontDestroyOnLoad(this);
-    }
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

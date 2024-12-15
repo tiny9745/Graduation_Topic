@@ -6761,8 +6761,6 @@ GameObject:
   - component: {fileID: 1086910000}
   - component: {fileID: 1086910004}
   - component: {fileID: 1086910003}
-  - component: {fileID: 1086910002}
-  - component: {fileID: 1086910001}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -6905,6 +6903,7 @@ MonoBehaviour:
   LeftMark2: {fileID: 1657130835}
   LeftMark3: {fileID: 1108117394}
   LeftMark4: {fileID: 1218385050}
+  piece: {fileID: 1086910000}
 --- !u!114 &1086909997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6968,35 +6967,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e420c1c436b1cb24b82732072196284c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1086910001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086909989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82b0fe1948a40954d8f54b2dc941dfc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Slot: {fileID: 1212812117}
-  Piece_UI: {fileID: 1086910002}
-  PieceList: []
---- !u!114 &1086910002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086909989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d8f4422ea2c19644877ddf03e28080f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pieceslot: []
-  PieceslotPoint: {fileID: 1128714386}
+  way: 0
+  page: 0
+  itemsPerPage: 16
 --- !u!114 &1086910003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7009,7 +6982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b0fe1948a40954d8f54b2dc941dfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: {fileID: 1102433634}
   Piece_UI: {fileID: 1086910004}
   PieceList: []
 --- !u!114 &1086910004
@@ -7024,8 +6996,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8f4422ea2c19644877ddf03e28080f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pieceslot: []
-  PieceslotPoint: {fileID: 1355110927}
+  Pieceslot1: []
+  Pieceslot2: []
+  Pieceslot1Point: {fileID: 1355110927}
+  Pieceslot2Point: {fileID: 1128714386}
 --- !u!1 &1089758226
 GameObject:
   m_ObjectHideFlags: 0
@@ -14570,11 +14544,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -8.881784e-16
+      value: 4.3520743e-14
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 4.440892e-16
+      value: -2.4424907e-14
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14598,11 +14572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000000832853
+      value: 0.000000008328492
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000021564985
+      value: -0.0000000021564883
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
