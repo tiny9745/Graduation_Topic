@@ -33,15 +33,18 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         {
             if (int.TryParse(droppedObject.name, out int itemNumber))
             {
-                currentCombination.Add(Ptest.pickedPieces[itemNumber - 1].PieceID);
-                Debug.Log("List:" + CheckCombination(currentCombination));
-                ShowCombination(currentCombination);
-                if (CheckCombination(currentCombination) == false)
-                {
-                    Debug.Log("nono");
-                    return;
-                }
-                Debug.Log("gogo");
+                // currentCombination.Add(Ptest.pickedPieces[itemNumber - 1].PieceID);
+                // Debug.Log("PieceName:"+Ptest.pickedPieces[itemNumber - 1].PieceName+",PieceID:"+Ptest.pickedPieces[itemNumber - 1].PieceID);
+                // Debug.Log("List:" + CheckCombination(currentCombination));
+                // ShowCombination(currentCombination);
+                // if (CheckCombination(currentCombination) == false)
+                // {
+                //     Debug.Log("nono");
+                // }
+                // else
+                // {
+                //     Debug.Log("yesyes");
+                // }
 
                 PieceManager.Instance.Remove(Ptest.pickedPieces[itemNumber - 1]);
                 string key_color = Ptest.pickedPieces[itemNumber - 1].PieceName.Substring(0, 3);
@@ -53,7 +56,10 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     {
                         Ptest.pickedPieces[i].survival_state = "Remove";
                         PieceManager.Instance.Remove(Ptest.pickedPieces[i]);
-                        // Debug.Log("PieceName:" + Ptest.pickedPieces[i].PieceName + ",Survival_State:" + Ptest.pickedPieces[i].survival_state);
+                    }
+                    else
+                    {
+                        Debug.Log("PieceName is not the same color as " + Ptest.pickedPieces[i].PieceName + ",key_color:" + key_color);
                     }
                 }
             }
