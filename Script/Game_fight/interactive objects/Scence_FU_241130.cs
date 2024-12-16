@@ -23,7 +23,7 @@ public class Scence_FU_241130 : MonoBehaviour
 
     public void Fight_FU()
     {
-        scence_random = Random.Range(3, 4);
+        scence_random = Random.Range(1, 2);
         // static_parameters.Map_start = scence_random;
         Generatescence(FU[scence_random], new Vector3(0, 0, 0));
         startPos.z = -138;
