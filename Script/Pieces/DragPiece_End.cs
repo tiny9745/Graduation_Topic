@@ -11,14 +11,14 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     void Start()
     {
         // 初始化數列，使用 HashSet 存儲數列以忽略順序
-        validSequences = new List<HashSet<int>>()
-        {
-            new HashSet<int> { 11, 16, 17 },
-            new HashSet<int> { 11, 12, 17, 19 },
-            new HashSet<int> { 13, 16, 18 },
-            new HashSet<int> { 11, 14, 16 },
-            new HashSet<int> { 11, 15 }
-        };
+        // validSequences = new List<HashSet<int>>()
+        // {
+        //     new HashSet<int> { 11, 16, 17 },
+        //     new HashSet<int> { 11, 12, 17, 19 },
+        //     new HashSet<int> { 13, 16, 18 },
+        //     new HashSet<int> { 11, 14, 16 },
+        //     new HashSet<int> { 11, 15 }
+        // };
 
         // 測試組合
         // currentCombination.Add(16);
@@ -45,17 +45,20 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 // {
                 //     Debug.Log("yesyes");
                 // }
-
-                PieceManager.Instance.Remove(Ptest.pickedPieces[itemNumber - 1]);
+                
                 string key_color = Ptest.pickedPieces[itemNumber - 1].PieceName.Substring(0, 3);
                 Ptest.pickedPieces[itemNumber - 1].survival_state = "Drag";
+                PieceManager.Instance.Remove(Ptest.pickedPieces[itemNumber - 1]);
                 Ptest.pickedPieces.RemoveAt(itemNumber - 1);
+                Ptest.next_lock = true;
                 for (int i = 0; i < Ptest.pickedPieces.Count; i++)
                 {
                     if (key_color != Ptest.pickedPieces[i].PieceName.Substring(0, 3))
                     {
                         Ptest.pickedPieces[i].survival_state = "Remove";
                         PieceManager.Instance.Remove(Ptest.pickedPieces[i]);
+                        Ptest.pickedPieces.RemoveAt(i);
+                        i--;
                     }
                     else
                     {
