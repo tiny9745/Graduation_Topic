@@ -41,7 +41,6 @@ public class Ptest : MonoBehaviour
         {
             PieceManager.Instance.Add(show[i]);
         }
-        Debug.Log("Displaying page " + (page + 1) + " with " + show.Count + " items.");
     }
     public void NextPage()
     {

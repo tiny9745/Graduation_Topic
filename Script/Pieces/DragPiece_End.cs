@@ -1,70 +1,58 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using UnityEngine.UI;
-
+using Unity.Mathematics;
 
 public class DragPiece_End : MonoBehaviour, IDropHandler
 {
     private List<HashSet<int>> validSequences;
     List<int> currentCombination = new List<int> { };
+
     void Start()
     {
-        // 初始化數列，使用 HashSet 存儲數列以忽略順序
-        // validSequences = new List<HashSet<int>>()
-        // {
-        //     new HashSet<int> { 11, 16, 17 },
-        //     new HashSet<int> { 11, 12, 17, 19 },
-        //     new HashSet<int> { 13, 16, 18 },
-        //     new HashSet<int> { 11, 14, 16 },
-        //     new HashSet<int> { 11, 15 }
-        // };
-
-        // 測試組合
-        // currentCombination.Add(16);
-        // Debug.Log("List:" + CheckCombination(currentCombination));
-        // ShowCombination(currentCombination);
+        // 初始化測試用數列
+        validSequences = new List<HashSet<int>>()
+        {
+            new HashSet<int> { 11, 16, 17 },
+            new HashSet<int> { 11, 12, 17, 19 },
+            new HashSet<int> { 13, 16, 18 },
+            new HashSet<int> { 11, 14, 16 },
+            new HashSet<int> { 11, 15 }
+        };
     }
-    // Update is called once per frame
+
     public void OnDrop(PointerEventData eventData)
     {
         GameObject droppedObject = eventData.pointerDrag;
         if (droppedObject != null)
         {
-            if (int.TryParse(droppedObject.name, out int itemNumber))
+            // 嘗試將 droppedObject.name 轉換為數字
+            if (int.TryParse(droppedObject.name, out int itemNumber) && itemNumber > 0)
             {
-                // currentCombination.Add(Ptest.pickedPieces[itemNumber - 1].PieceID);
-                // Debug.Log("PieceName:"+Ptest.pickedPieces[itemNumber - 1].PieceName+",PieceID:"+Ptest.pickedPieces[itemNumber - 1].PieceID);
-                // Debug.Log("List:" + CheckCombination(currentCombination));
-                // ShowCombination(currentCombination);
-                // if (CheckCombination(currentCombination) == false)
-                // {
-                //     Debug.Log("nono");
-                // }
-                // else
-                // {
-                //     Debug.Log("yesyes");
-                // }
-                
-                string key_color = Ptest.pickedPieces[itemNumber - 1].PieceName.Substring(0, 3);
-                Ptest.pickedPieces[itemNumber - 1].survival_state = "Drag";
-                PieceManager.Instance.Remove(Ptest.pickedPieces[itemNumber - 1]);
-                Ptest.pickedPieces.RemoveAt(itemNumber - 1);
-                Ptest.next_lock = true;
-                for (int i = 0; i < Ptest.pickedPieces.Count; i++)
+                string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
+                string key_name = Ptest.show[itemNumber - 1].PieceName;
+                currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
+                Ptest.show.Clear();
+                PieceManager.Instance.Clear();
+
+                // currentCombination.Clear(); // 清空之前的組合
+
+                for (int i = Ptest.pickedPieces.Count - 1; i >= 0; i--)
                 {
-                    if (key_color != Ptest.pickedPieces[i].PieceName.Substring(0, 3))
+                    if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3) && key_name != Ptest.pickedPieces[i].PieceName)
                     {
-                        Ptest.pickedPieces[i].survival_state = "Remove";
-                        PieceManager.Instance.Remove(Ptest.pickedPieces[i]);
-                        Ptest.pickedPieces.RemoveAt(i);
-                        i--;
-                    }
-                    else
-                    {
-                        Debug.Log("PieceName is not the same color as " + Ptest.pickedPieces[i].PieceName + ",key_color:" + key_color);
+                        Ptest.show.Add(Ptest.pickedPieces[i]);
+                        PieceManager.Instance.Add(Ptest.pickedPieces[i]);
+
+                        // 添加到組合列表
+                        Debug.Log("PieceName matches color: " + Ptest.pickedPieces[i].PieceName + ", key_color: " + key_color);
                     }
                 }
+
+                // 檢查組合
+                bool result = CheckCombination(currentCombination);
+                Debug.Log("CheckCombination result: " + result);
+                ShowCombination(currentCombination); // 顯示當前組合
             }
         }
     }
@@ -75,10 +63,10 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         public Dictionary<int, TrieNode> children = new Dictionary<int, TrieNode>();
         public bool isCompleteSequence = false; // 是否為數列的結尾
     }
+
     // 檢查當前組合是否可能完成某數列
     private bool CheckCombination(List<int> combination)
     {
-        // 將當前組合轉為排序集合
         HashSet<int> combinationSet = new HashSet<int>(combination);
 
         foreach (HashSet<int> sequence in validSequences)
@@ -91,9 +79,10 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
         return false; // 若無法匹配任何數列，返回 false
     }
+
+    // 顯示目前組合
     private void ShowCombination(List<int> combination)
     {
-        // 使用 string.Join 將數列轉為文字
         string combinationString = string.Join(", ", combination);
         Debug.Log("Current Combination: [" + combinationString + "]");
     }
