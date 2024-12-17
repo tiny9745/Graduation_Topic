@@ -29,7 +29,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             // 嘗試將 droppedObject.name 轉換為數字
             if (int.TryParse(droppedObject.name, out int itemNumber) && itemNumber > 0)
             {
-                string key_color = Ptest.pickedPieces[itemNumber - 1].PieceName.Substring(0, 3);
+                string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
                 Ptest.show[itemNumber - 1].survival_state = "Drag";
                 Ptest.show.Clear();
                 PieceManager.Instance.Clear();
