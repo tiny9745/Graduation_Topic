@@ -11,14 +11,14 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     void Start()
     {
         // 初始化測試用數列
-        // validSequences = new List<HashSet<int>>()
-        // {
-        //     new HashSet<int> { 11, 16, 17 },
-        //     new HashSet<int> { 11, 12, 17, 19 },
-        //     new HashSet<int> { 13, 16, 18 },
-        //     new HashSet<int> { 11, 14, 16 },
-        //     new HashSet<int> { 11, 15 }
-        // };
+        validSequences = new List<HashSet<int>>()
+        {
+            new HashSet<int> { 11, 16, 17 },
+            new HashSet<int> { 11, 12, 17, 19 },
+            new HashSet<int> { 13, 16, 18 },
+            new HashSet<int> { 11, 14, 16 },
+            new HashSet<int> { 11, 15 }
+        };
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -30,23 +30,29 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             if (int.TryParse(droppedObject.name, out int itemNumber) && itemNumber > 0)
             {
                 string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
-                Ptest.show[itemNumber - 1].survival_state = "Drag";
+                string key_name = Ptest.show[itemNumber - 1].PieceName;
+                currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
                 Ptest.show.Clear();
                 PieceManager.Instance.Clear();
 
-                // 使用逆序迴圈安全移除不符合條件的物件
-                for (int i = Ptest.pickedPieces.Count - 1; i >= 0; i--) // 從最後一個元素開始
+                // currentCombination.Clear(); // 清空之前的組合
+
+                for (int i = Ptest.pickedPieces.Count - 1; i >= 0; i--)
                 {
-                    if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3))
+                    if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3) && key_name != Ptest.pickedPieces[i].PieceName)
                     {
-                        // Ptest.show[i].survival_state = "Remove";
-                        // PieceManager.Instance.Add(Ptest.show[i]);
                         Ptest.show.Add(Ptest.pickedPieces[i]);
                         PieceManager.Instance.Add(Ptest.pickedPieces[i]);
+
+                        // 添加到組合列表
                         Debug.Log("PieceName matches color: " + Ptest.pickedPieces[i].PieceName + ", key_color: " + key_color);
                     }
                 }
-                // Ptest.show.RemoveAt(itemNumber - 1);
+
+                // 檢查組合
+                bool result = CheckCombination(currentCombination);
+                Debug.Log("CheckCombination result: " + result);
+                ShowCombination(currentCombination); // 顯示當前組合
             }
         }
     }
