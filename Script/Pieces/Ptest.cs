@@ -11,6 +11,7 @@ public class Ptest : MonoBehaviour
     private List<Diary_piece> Red, Blu, Prp, Grn, Yel = new List<Diary_piece>();
     static public List<Diary_piece> pickedPieces = new List<Diary_piece>();
     static public List<Diary_piece> show = new List<Diary_piece>();
+    static public bool next_lock = false;
     public int way,page= 0,itemsPerPage = 16;
     void Start()
     {
