@@ -27,6 +27,7 @@ public class UI : MonoBehaviour
     public void Onclick1()
     {
         Diarystatus = 1;
+        piece.itemsPerPage = 16;
         changechapter();
     }
     public void Onclick2()
