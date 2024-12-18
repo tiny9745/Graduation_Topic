@@ -32,6 +32,7 @@ public class Ptest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             addp();
+            ShowPieces();
         }
     }
     void UpdateInventoryUI()

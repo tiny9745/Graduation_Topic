@@ -31,7 +31,9 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             {
                 string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
                 string key_name = Ptest.show[itemNumber - 1].PieceName;
+                
                 currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
+
                 Ptest.show.Clear();
                 PieceManager.Instance.Clear();
 
@@ -39,7 +41,11 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
                 for (int i = Ptest.pickedPieces.Count - 1; i >= 0; i--)
                 {
-                    if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3) && key_name != Ptest.pickedPieces[i].PieceName)
+                    if(key_name == Ptest.pickedPieces[i].PieceName)
+                    {
+                        Ptest.pickedPieces[i].survival_state = "Drag";
+                    }
+                    else if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3) && Ptest.pickedPieces[i].survival_state == "Alive")
                     {
                         Ptest.show.Add(Ptest.pickedPieces[i]);
                         PieceManager.Instance.Add(Ptest.pickedPieces[i]);
