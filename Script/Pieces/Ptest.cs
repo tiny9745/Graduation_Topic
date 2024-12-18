@@ -40,6 +40,7 @@ public class Ptest : MonoBehaviour
         PieceManager.Instance.PieceList.Clear();
         for (int i = 0; i < show.Count; i++)
         {
+            pickedPieces[i].survival_state = "Alive";
             PieceManager.Instance.Add(show[i]);
         }
     }
