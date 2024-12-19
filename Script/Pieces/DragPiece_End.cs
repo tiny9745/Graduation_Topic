@@ -2,15 +2,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEngine.UI;
+using Microsoft.Unity.VisualStudio.Editor;
 
 public class DragPiece_End : MonoBehaviour, IDropHandler
 {
     private List<HashSet<int>> validSequences;
     List<int> currentCombination = new List<int> { };
+    public UnityEngine.UI.Image[] images_effect = new UnityEngine.UI.Image[4];
+    public UnityEngine.UI.Image[] images_puzzle = new UnityEngine.UI.Image[4];
+    // public UnityEngine.UI.Image[] images_fragments = new UnityEngine.UI.Image[4];
 
     void Start()
     {
-        // 初始化測試用數列
+        // 碎片組合數列
         validSequences = new List<HashSet<int>>()
         {
             new HashSet<int> { 11, 16, 17 },
@@ -68,6 +73,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     if (key_name == Ptest.pickedPieces[i].PieceName)
                     {
                         Ptest.pickedPieces[i].survival_state = "Drag";
+                        images_puzzle[i].enabled = true;
                     }
                     else if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3) && Ptest.pickedPieces[i].survival_state == "Alive")
                     {
@@ -90,6 +96,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                             {
                                 Ptest.pickedPieces[j].survival_state = "Alive";
                                 Debug.Log("No.:" + i + ",PieceName:" + Ptest.pickedPieces[j].PieceName + ",survival_state:" + Ptest.pickedPieces[j].survival_state);
+                                images_puzzle[i].enabled = false;//max 4 time image hide
                             }
                         }
                         Ptest.show.Add(Ptest.pickedPieces[j]);
