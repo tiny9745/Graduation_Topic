@@ -12,7 +12,7 @@ public class Ptest : MonoBehaviour
     static public List<Diary_piece> pickedPieces = new List<Diary_piece>();
     static public List<Diary_piece> show = new List<Diary_piece>();
     static public bool next_lock = false;
-    public int way,page= 0,itemsPerPage = 16;
+    public int way, page = 0, itemsPerPage = 16;
     void Start()
     {
         Diary_piece[] allPieces = Resources.LoadAll<Diary_piece>("Piece");
@@ -54,6 +54,26 @@ public class Ptest : MonoBehaviour
         }
     }
     public void PreviousPage()
+    {
+        if (page > 0)
+        {
+            page--;
+            ShowPieces();
+        }
+    }
+    public void NextPage_1()
+    {
+        // Check if the next page exists
+        if(page == 0)itemsPerPage = 16;
+        else itemsPerPage = 72;
+        
+        if ((page + 1) * itemsPerPage < pickedPieces.Count)
+        {
+            page++;
+            ShowPieces();
+        }
+    }
+    public void PreviousPage_1()
     {
         if (page > 0)
         {
@@ -118,6 +138,22 @@ public class Ptest : MonoBehaviour
                 break;
             case 5:
                 show = Grn;
+                break;
+            case 6:
+                if (page == 0)
+                {
+                    for (int i = 0; i < 16; i++)
+                    {
+                        show.Add(pickedPieces[i]);
+                    }
+                }
+                else
+                {
+                    for (int i = 16; i < endIndex; i++)
+                    {
+                        show.Add(pickedPieces[i]);
+                    }
+                }
                 break;
         }
         UpdateInventoryUI();

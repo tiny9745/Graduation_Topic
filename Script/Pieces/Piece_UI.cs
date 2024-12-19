@@ -41,11 +41,12 @@ public class Piece_UI : MonoBehaviour
                 Pieceslot2[i].Clean();
             }
         }
-        for (int i = 16; i < Pieceslot3.Length; i++)
+        for (int i = 0; i < Pieceslot3.Length; i++)
         {
             if (i < PieceManager.Instance.PieceList.Count)
             {
                 Pieceslot3[i].AddPiece(PieceManager.Instance.PieceList[i]);
+                Debug.Log("PieceManager.Instance.PieceList.Count: " + PieceManager.Instance.PieceList.Count);
             }
             else
             {
