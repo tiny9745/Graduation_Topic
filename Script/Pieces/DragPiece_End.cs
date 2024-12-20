@@ -9,9 +9,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 {
     private List<HashSet<int>> validSequences;
     List<int> currentCombination = new List<int> { };
-    public UnityEngine.UI.Image[] images_effect = new UnityEngine.UI.Image[4];
     public UnityEngine.UI.Image[] images_puzzle = new UnityEngine.UI.Image[4];
-    // public UnityEngine.UI.Image[] images_fragments = new UnityEngine.UI.Image[4];
 
     void Start()
     {
