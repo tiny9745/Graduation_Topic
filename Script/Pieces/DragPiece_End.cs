@@ -1,70 +1,111 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine.UI;
-
+using Microsoft.Unity.VisualStudio.Editor;
 
 public class DragPiece_End : MonoBehaviour, IDropHandler
 {
     private List<HashSet<int>> validSequences;
     List<int> currentCombination = new List<int> { };
+    public UnityEngine.UI.Image[] images_effect = new UnityEngine.UI.Image[4];
+    public UnityEngine.UI.Image[] images_puzzle = new UnityEngine.UI.Image[4];
+    // public UnityEngine.UI.Image[] images_fragments = new UnityEngine.UI.Image[4];
+
     void Start()
     {
-        // 初始化數列，使用 HashSet 存儲數列以忽略順序
-        // validSequences = new List<HashSet<int>>()
-        // {
-        //     new HashSet<int> { 11, 16, 17 },
-        //     new HashSet<int> { 11, 12, 17, 19 },
-        //     new HashSet<int> { 13, 16, 18 },
-        //     new HashSet<int> { 11, 14, 16 },
-        //     new HashSet<int> { 11, 15 }
-        // };
+        // 碎片組合數列
+        validSequences = new List<HashSet<int>>()
+        {
+            new HashSet<int> { 11, 16, 17 },
+            new HashSet<int> { 11, 12, 17, 19 },
+            new HashSet<int> { 13, 16, 18 },
+            new HashSet<int> { 11, 14, 16 },
+            new HashSet<int> { 11, 15 },
 
-        // 測試組合
-        // currentCombination.Add(16);
-        // Debug.Log("List:" + CheckCombination(currentCombination));
-        // ShowCombination(currentCombination);
+            new HashSet<int> { 21, 22, 26 },
+            new HashSet<int> { 22, 26 },
+            new HashSet<int> { 22, 24 },
+            new HashSet<int> { 22, 23, 25, 26 },
+            new HashSet<int> { 22, 24, 25, 26 },
+
+            new HashSet<int> { 42, 44 },
+            new HashSet<int> { 42, 44, 45 },
+            new HashSet<int> { 41, 42, 44 },
+            new HashSet<int> { 43, 44 },
+            new HashSet<int> { 42, 44, 46 },
+
+            new HashSet<int> { 1, 4 ,5, 6 },
+            new HashSet<int> { 2, 4, 6 },
+            new HashSet<int> { 1, 3 },
+            new HashSet<int> { 2, 6 },
+            new HashSet<int> { 1, 2, 5, 6 },
+
+            new HashSet<int> { 32, 36 ,37 },
+            new HashSet<int> { 35, 36, 37 },
+            new HashSet<int> { 32, 34, 35, 39 },
+            new HashSet<int> { 35, 37, 38 },
+            new HashSet<int> { 31, 33 }
+        };
     }
-    // Update is called once per frame
+
     public void OnDrop(PointerEventData eventData)
     {
         GameObject droppedObject = eventData.pointerDrag;
         if (droppedObject != null)
         {
-            if (int.TryParse(droppedObject.name, out int itemNumber))
+            // 嘗試將 droppedObject.name 轉換為數字
+            if (int.TryParse(droppedObject.name, out int itemNumber) && itemNumber > 0)
             {
-                // currentCombination.Add(Ptest.pickedPieces[itemNumber - 1].PieceID);
-                // Debug.Log("PieceName:"+Ptest.pickedPieces[itemNumber - 1].PieceName+",PieceID:"+Ptest.pickedPieces[itemNumber - 1].PieceID);
-                // Debug.Log("List:" + CheckCombination(currentCombination));
-                // ShowCombination(currentCombination);
-                // if (CheckCombination(currentCombination) == false)
-                // {
-                //     Debug.Log("nono");
-                // }
-                // else
-                // {
-                //     Debug.Log("yesyes");
-                // }
-                
-                string key_color = Ptest.pickedPieces[itemNumber - 1].PieceName.Substring(0, 3);
-                Ptest.pickedPieces[itemNumber - 1].survival_state = "Drag";
-                PieceManager.Instance.Remove(Ptest.pickedPieces[itemNumber - 1]);
-                Ptest.pickedPieces.RemoveAt(itemNumber - 1);
-                Ptest.next_lock = true;
-                for (int i = 0; i < Ptest.pickedPieces.Count; i++)
+                string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
+                string key_name = Ptest.show[itemNumber - 1].PieceName;
+
+                currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
+
+                Ptest.show.Clear();
+                PieceManager.Instance.Clear();
+
+                // currentCombination.Clear(); // 清空之前的組合
+
+                for (int i = Ptest.pickedPieces.Count - 1; i >= 0; i--)
                 {
-                    if (key_color != Ptest.pickedPieces[i].PieceName.Substring(0, 3))
+                    if (key_name == Ptest.pickedPieces[i].PieceName)
                     {
-                        Ptest.pickedPieces[i].survival_state = "Remove";
-                        PieceManager.Instance.Remove(Ptest.pickedPieces[i]);
-                        Ptest.pickedPieces.RemoveAt(i);
-                        i--;
+                        Ptest.pickedPieces[i].survival_state = "Drag";
+                        images_puzzle[i].enabled = true;
                     }
-                    else
+                    else if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3) && Ptest.pickedPieces[i].survival_state == "Alive")
                     {
-                        Debug.Log("PieceName is not the same color as " + Ptest.pickedPieces[i].PieceName + ",key_color:" + key_color);
+                        Ptest.show.Add(Ptest.pickedPieces[i]);
+                        PieceManager.Instance.Add(Ptest.pickedPieces[i]);
+
+                        // 添加到組合列表
+                        Debug.Log("PieceName matches color: " + Ptest.pickedPieces[i].PieceName + ", key_color: " + key_color);
                     }
                 }
+
+                // 檢查組合是否可能完成某數列
+                if (CheckCombination(currentCombination) == -2)
+                {
+                    for (int j = 0; j < Ptest.pickedPieces.Count; j++)
+                    {
+                        for (int i = 0; i < currentCombination.Count; i++)
+                        {
+                            if (currentCombination[i] == Ptest.pickedPieces[j].PieceID)
+                            {
+                                Ptest.pickedPieces[j].survival_state = "Alive";
+                                Debug.Log("No.:" + i + ",PieceName:" + Ptest.pickedPieces[j].PieceName + ",survival_state:" + Ptest.pickedPieces[j].survival_state);
+                                images_puzzle[i].enabled = false;//max 4 time image hide
+                            }
+                        }
+                        Ptest.show.Add(Ptest.pickedPieces[j]);
+                        PieceManager.Instance.Add(Ptest.pickedPieces[j]);
+                    }
+                    currentCombination.Clear();
+                }
+                Debug.Log("CheckCombination result: " + CheckCombination(currentCombination));
+                ShowCombination(currentCombination); // 顯示當前組合
             }
         }
     }
@@ -75,25 +116,37 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         public Dictionary<int, TrieNode> children = new Dictionary<int, TrieNode>();
         public bool isCompleteSequence = false; // 是否為數列的結尾
     }
+
     // 檢查當前組合是否可能完成某數列
-    private bool CheckCombination(List<int> combination)
+    private int CheckCombination(List<int> combination)
     {
-        // 將當前組合轉為排序集合
         HashSet<int> combinationSet = new HashSet<int>(combination);
 
         foreach (HashSet<int> sequence in validSequences)
         {
             if (combinationSet.IsSubsetOf(sequence))
             {
-                return true; // 若組合為某數列的子集合，則可能完成
+                if (Ptest.show.Count == 0)
+                {
+                    return -2;
+                }
+                else
+                {
+                    return 1; // 若組合為某數列的子集合，則可能完成
+                }
+            }
+            if (combinationSet.SetEquals(sequence))
+            {
+                return 2; // 若完全匹配，返回 true
             }
         }
 
-        return false; // 若無法匹配任何數列，返回 false
+        return -2; // 若無法匹配任何數列，返回 false
     }
+
+    // 顯示目前組合
     private void ShowCombination(List<int> combination)
     {
-        // 使用 string.Join 將數列轉為文字
         string combinationString = string.Join(", ", combination);
         Debug.Log("Current Combination: [" + combinationString + "]");
     }

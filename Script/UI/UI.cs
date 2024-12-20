@@ -27,13 +27,12 @@ public class UI : MonoBehaviour
     public void Onclick1()
     {
         Diarystatus = 1;
-        changechapter();
+        changechapter();       
     }
     public void Onclick2()
     {
         Diarystatus = 2;
-        piece.itemsPerPage = 16;
-        changechapter();
+        changechapter();         
     }
     public void Onclick3()
     {
@@ -64,7 +63,15 @@ public class UI : MonoBehaviour
     }
     void piecechange()
     {
-        piece.way = 0;
+        switch(Diarystatus)
+        {
+            case 1:
+                piece.way = 6;
+                break;
+            default:
+                piece.way = 0;
+                break;
+        }
         piece.page = 0;
         piece.ShowPieces();
     }
