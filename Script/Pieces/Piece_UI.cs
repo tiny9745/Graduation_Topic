@@ -46,7 +46,7 @@ public class Piece_UI : MonoBehaviour
             if (i < PieceManager.Instance.PieceList.Count)
             {
                 Pieceslot3[i].AddPiece(PieceManager.Instance.PieceList[i]);
-                Debug.Log("PieceManager.Instance.PieceList.Count: " + PieceManager.Instance.PieceList.Count);
+                // Debug.Log("PieceManager.Instance.PieceList.Count: " + PieceManager.Instance.PieceList.Count);
             }
             else
             {

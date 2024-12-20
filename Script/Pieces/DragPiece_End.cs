@@ -9,7 +9,8 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 {
     private List<HashSet<int>> validSequences;
     List<int> currentCombination = new List<int> { };
-    public UnityEngine.UI.Image[] images_puzzle = new UnityEngine.UI.Image[4];
+    public GameObject[] images_puzzle = new GameObject[4];
+    int puzzle_count = 0;
 
     void Start()
     {
@@ -71,7 +72,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     if (key_name == Ptest.pickedPieces[i].PieceName)
                     {
                         Ptest.pickedPieces[i].survival_state = "Drag";
-                        images_puzzle[i].enabled = true;
                     }
                     else if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3) && Ptest.pickedPieces[i].survival_state == "Alive")
                     {
@@ -94,15 +94,23 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                             {
                                 Ptest.pickedPieces[j].survival_state = "Alive";
                                 Debug.Log("No.:" + i + ",PieceName:" + Ptest.pickedPieces[j].PieceName + ",survival_state:" + Ptest.pickedPieces[j].survival_state);
-                                images_puzzle[i].enabled = false;//max 4 time image hide
                             }
                         }
                         Ptest.show.Add(Ptest.pickedPieces[j]);
                         PieceManager.Instance.Add(Ptest.pickedPieces[j]);
                     }
                     currentCombination.Clear();
+                    for (int i = 0; i < images_puzzle.Length; i++)
+                    {
+                        images_puzzle[i].SetActive(false);
+                    }
+                    puzzle_count = 0;
                 }
-                Debug.Log("CheckCombination result: " + CheckCombination(currentCombination));
+                if (puzzle_count != 0)
+                {
+                    images_puzzle[puzzle_count - 1].SetActive(true);
+                    Debug.Log("puzzle_count: " + puzzle_count);
+                }
                 ShowCombination(currentCombination); // 顯示當前組合
             }
         }
@@ -126,10 +134,13 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             {
                 if (Ptest.show.Count == 0)
                 {
+                    Debug.Log("2344-RRRRRRRRRRRRRRRRR");
                     return -2;
                 }
                 else
                 {
+                     Debug.Log("2344-XXXXXXXXXXXXXXXXX");
+                    puzzle_count++;
                     return 1; // 若組合為某數列的子集合，則可能完成
                 }
             }
@@ -138,7 +149,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 return 2; // 若完全匹配，返回 true
             }
         }
-
+        Debug.Log("2344-RRRRRRRRRRRRRRRRR");
         return -2; // 若無法匹配任何數列，返回 false
     }
 
