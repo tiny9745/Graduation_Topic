@@ -46,12 +46,12 @@ public class Puzzle : MonoBehaviour
     public void Complet_piecing()
     {
         cpmplete_piece_object.SetActive(true);
-
+        complete_piece_animator.SetInteger("piece_complete_color", 1);
         Invoke("Complete_piece_after", 3.05f);
     }
     private void Complete_piece_after()
     {
         cpmplete_piece_object.SetActive(false);
-
+        complete_piece_animator.SetInteger("piece_complete_color", -1);
     }
 }
