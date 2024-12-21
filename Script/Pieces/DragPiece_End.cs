@@ -12,6 +12,8 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     public GameObject[] images_puzzle = new GameObject[4];
     int puzzle_count = 0;
 
+    public Animator animation_col;
+
     void Start()
     {
         // 碎片組合數列
@@ -84,7 +86,9 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 }
 
                 // 檢查組合是否可能完成某數列
-                if (CheckCombination(currentCombination) == -2)
+                int checkResult = CheckCombination(currentCombination);
+                animation_col.SetInteger("fragment_control", checkResult);
+                if (checkResult == -2)
                 {
                     for (int j = 0; j < Ptest.pickedPieces.Count; j++)
                     {
