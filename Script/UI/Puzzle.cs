@@ -14,6 +14,7 @@ public class Puzzle : MonoBehaviour
     public static bool OC = true;
     public GameObject cpmplete_piece_object;
     public Animator complete_piece_animator;
+    public Button composite_col;
     void Start()
     {
 
@@ -47,6 +48,7 @@ public class Puzzle : MonoBehaviour
     {
         cpmplete_piece_object.SetActive(true);
         complete_piece_animator.SetInteger("piece_complete_color", DragPiece_End.puzzle_color);
+        composite_col.enabled = false;
         Invoke("Complete_piece_after", 3.05f);
     }
     private void Complete_piece_after()

@@ -10,6 +10,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     private List<HashSet<int>> validSequences;
     List<int> currentCombination = new List<int> { };
     public GameObject[] images_puzzle = new GameObject[4];
+    public Button composite_col;
     int puzzle_count = 0;
     static public int puzzle_color = 2;
     public Animator animation_col;
@@ -110,13 +111,14 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     }
                     puzzle_count = 0;
                 }
-                else if (checkResult == 1)
+                else if (checkResult == 2)
                 {
                     if (key_color == "Blu") puzzle_color = 0;
                     else if(key_color=="Red")puzzle_color = 1;
                     else if(key_color=="Grn")puzzle_color = 2;
                     else if(key_color=="Prp")puzzle_color = 3;
                     else if(key_color=="Yel")puzzle_color = 4;
+                    composite_col.enabled = true;
                 }
                 if (puzzle_count != 0)
                 {
