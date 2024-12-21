@@ -134,12 +134,10 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             {
                 if (Ptest.show.Count == 0)
                 {
-                    Debug.Log("2344-RRRRRRRRRRRRRRRRR");
                     return -2;
                 }
                 else
                 {
-                     Debug.Log("2344-XXXXXXXXXXXXXXXXX");
                     puzzle_count++;
                     return 1; // 若組合為某數列的子集合，則可能完成
                 }
@@ -149,7 +147,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 return 2; // 若完全匹配，返回 true
             }
         }
-        Debug.Log("2344-RRRRRRRRRRRRRRRRR");
         return -2; // 若無法匹配任何數列，返回 false
     }
 
