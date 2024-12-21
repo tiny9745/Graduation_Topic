@@ -149,7 +149,7 @@ public class Ptest : MonoBehaviour
                 }
                 else
                 {
-                    for (int i = 16; i < endIndex; i++)
+                    for (int i = 16; i < pickedPieces.Count; i++)
                     {
                         show.Add(pickedPieces[i]);
                     }
