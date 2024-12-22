@@ -26,7 +26,7 @@ public class PieceManager : MonoBehaviour
     }
 
     // Update is called once per frame
-     public void Add(Diary_piece newPiece)
+    public void Add(Diary_piece newPiece)
     { 
         PieceList.Add(newPiece);
         PieceInventoryCallBack?.Invoke();
