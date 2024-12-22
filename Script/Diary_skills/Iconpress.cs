@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class Iconpress : MonoBehaviour
 {
-    public Diary_icon icon;
-    public Text TitleText, ContentText;
-    public string title, content;
+    public GameObject number;
+    public static int itemNumber;
     public void Press()
     {
-        TitleText.text = title;
-        ContentText.text = content;
+        int.TryParse(number.name, out itemNumber);
     }
 }

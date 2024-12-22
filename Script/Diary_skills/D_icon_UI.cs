@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class D_icon_UI : MonoBehaviour
 {
     public Icon_slot[] iconSlot;
     public Transform iconSlotPoint;
+    public Text skill_title, skill_content;
+    public string Skill_title, Skill_content;
+    int chooseIcon;
     void Start()
     {
         IconManager.Instance.IconInventoryCallBack += UpdateIcon;
@@ -26,5 +30,15 @@ public class D_icon_UI : MonoBehaviour
                 iconSlot[i].Clean();
             }
         }
+    }
+    public void ChooseIcon()
+    {
+        chooseIcon = Iconpress.itemNumber;
+        ShowSkill();
+    }
+     void ShowSkill()
+    {
+        skill_title.text = IconManager.Instance.IconList[chooseIcon].skill_title;
+        skill_content.text = IconManager.Instance.IconList[chooseIcon].skill_content;
     }
 }
