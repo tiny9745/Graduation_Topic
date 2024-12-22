@@ -6,8 +6,8 @@ using UnityEngine;
 public class Diary_icon : ScriptableObject
 {
     public int iconID;
-    public string iconName;
+    // public string iconName;
     public Sprite iconImage;
-    public string survival_state = "Dead";
-    public string title,content;
+    public string skill_title,skill_content;
+    public string diary_title,diary_content;
 }
