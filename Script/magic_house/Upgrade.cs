@@ -7,9 +7,11 @@ public class Upgrade : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject ATK_plus, DEF_plus, HP_plus, Speed_plus, Knockback_plus, comfirm, cancel ,ATK1, DEF2, HP3, Speed4, Knockback5;
-    public Image AB,DB,HB,SB,KB;
-    public Sprite AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5, SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;
+    public Image AB,DB,HB,SB,KB,cancel_img,comfirm_img;
+    public Sprite AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
+                  SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;//,comfirm_on,comfirm_off,cancel_on,cancel_off;
     public Text textbox;
+    bool clicks=false;
     short ATK_LV=1, DEF_LV=1, HP_LV=1, Speed_LV=1, Knockback_LV=1,Click;
     short[] ATK_price = { 100, 200, 300, 400, 500 },
     DEF_price = { 100, 200, 300, 400, 500 },
@@ -23,8 +25,11 @@ public class Upgrade : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
+    {/*
+        if(!clicks){
+            cancel_img.sprite = cancel_off;
+            comfirm_img.sprite = comfirm_off;
+        }*/
     }
 
     public void ATK()
