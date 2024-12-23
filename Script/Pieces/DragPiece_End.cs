@@ -111,23 +111,23 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                         images_puzzle[i].SetActive(false);
                     }
                     puzzle_count = 0;
-                    newColor.a=0.5f;
+                    newColor.a = 0.5f;
                 }
                 else if (checkResult == 2)
                 {
-                    newColor.a=1;
+                    newColor.a = 1;
                     if (key_color == "Blu") puzzle_color = 0;
-                    else if(key_color=="Red")puzzle_color = 1;
-                    else if(key_color=="Grn")puzzle_color = 2;
-                    else if(key_color=="Prp")puzzle_color = 3;
-                    else if(key_color=="Yel")puzzle_color = 4;
+                    else if (key_color == "Red") puzzle_color = 1;
+                    else if (key_color == "Grn") puzzle_color = 2;
+                    else if (key_color == "Prp") puzzle_color = 3;
+                    else if (key_color == "Yel") puzzle_color = 4;
                     composite_col.enabled = true;
                 }
-                if (puzzle_count != 0)
+                else if (puzzle_count == 1)
                 {
                     images_puzzle[puzzle_count - 1].SetActive(true);
                     Debug.Log("puzzle_count: " + puzzle_count);
-                    newColor.a=0.5f;
+                    newColor.a = 0.5f;
                 }
                 ShowCombination(currentCombination); // 顯示當前組合
             }
