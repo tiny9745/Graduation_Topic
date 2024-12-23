@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class D_icon_UI : MonoBehaviour
 {
-    public Icon_slot[] iconSlot;
+    static public Icon_slot[] iconSlot;
     public Transform iconSlotPoint;
     public Text skill_title, skill_content;
     public string Skill_title, Skill_content;

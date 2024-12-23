@@ -20,8 +20,6 @@ public class NPC03_control : MonoBehaviour
     public NPC_HP_03 nPC_hP;
     int NPC_angle, play_piano_atk = 0;
     private bool isFacingRight = true;
-    public NPC_interactive npc_interactive; bool bomb_Berry = true;
-
     void Start()
     {
         static_parameters.Change_enemy++;
@@ -248,17 +246,67 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_bomb"))
             {
+                // switch (Skill_public_funtion.feel_to_skill)
+                // {
+                //     case 41://happy
+                //         Debug.Log("play_piano_atk:" + play_piano_atk);
+                //         play_piano_atk++;
+                //         Debug.Log("play_piano_atk:" + play_piano_atk);
+                //         break;
+                //     case 11://anger
+                //         NPC_HP -= 225; Debug.Log("boom");
+                //         break;
+                //     case 21://sad
+                //         if (NPC_HP < NPC_back) NPC_HP = 0;
+                //         else
+                //         {
+                //             Vector3 currentPosition = transform.position;
+                //             transform.position = currentPosition - NPC_back * Vector3.back;
+                //         }
+                //         play_piano_atk = 0; Debug.Log("knockback");
+                //         break;
+                //     case 2://wow
+                //         Debug.Log("stun");
+                //         stun = true;
+                //         Invoke("Stun_end", 3);
+                //         break;
+                // }
+                for (int i = 0; i < D_icon_UI.iconSlot.Length; i++)
+                {
+                    if (IconManager.Instance.IconList[i].iconID == 22)
+                    {
+                        Skill_public_funtion.feel_to_skill = 41;
+                        break;
+                    }
+                    else if (IconManager.Instance.IconList[i].iconID == 12)
+                    {
+                        Skill_public_funtion.feel_to_skill = 11;
+                        break;
+                    }
+                    else if (IconManager.Instance.IconList[i].iconID == 32)
+                    {
+                        Skill_public_funtion.feel_to_skill = 21;
+                        break;
+                    }
+                    else if (IconManager.Instance.IconList[i].iconID == 2)
+                    {
+                        Skill_public_funtion.feel_to_skill = 2;
+                        break;
+                    }
+                }
+
+
                 switch (Skill_public_funtion.feel_to_skill)
                 {
-                    case 0://happy
+                    case 41://happy
                         Debug.Log("play_piano_atk:" + play_piano_atk);
                         play_piano_atk++;
                         Debug.Log("play_piano_atk:" + play_piano_atk);
                         break;
-                    case 1://anger
+                    case 11://anger
                         NPC_HP -= 225; Debug.Log("boom");
                         break;
-                    case 2://sad
+                    case 21://sad
                         if (NPC_HP < NPC_back) NPC_HP = 0;
                         else
                         {
@@ -267,7 +315,7 @@ public class NPC03_control : MonoBehaviour
                         }
                         play_piano_atk = 0; Debug.Log("knockback");
                         break;
-                    case 3://wow
+                    case 2://wow
                         Debug.Log("stun");
                         stun = true;
                         Invoke("Stun_end", 3);
@@ -279,43 +327,21 @@ public class NPC03_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        nPC_hP.TakeDamage(8, NPC03_DEF);
+                        nPC_hP.TakeDamage(4, NPC03_DEF);
+                        break;
+                    case 2:
+                        nPC_hP.TakeDamage(3, NPC03_DEF);
+                        break;
+                    case 3:
+                        nPC_hP.TakeDamage(5, NPC03_DEF);
+                        break;
+                    case 4:
+                        nPC_hP.TakeDamage(1, NPC03_DEF);
                         break;
                 }
             }
         }
-        if(NPC_HP > 0)
-        {
-            if (other.tag == "Thorns")
-            {
-                npc_interactive.NPC_Thorns(ref NPC_HP);
-                
-                nPC_hP.UpdateHealthBar();
-            }
-            if (other.tag == "Bomb_Fruit" && bomb_Berry)
-            {
-                bomb_Berry = false;
-                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
-                nPC_hP.UpdateHealthBar();
-            }
-        }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Swam")
-        {
-            npc_interactive.NPC_Swam_enter(ref npcSpeed);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Swam")
-        {
-            npc_interactive.NPC_Swam_exit(ref npcSpeed);
-        }
-    }
-    
     public float GetNPC03_ATK()
     {
         return NPC03_ATK;
