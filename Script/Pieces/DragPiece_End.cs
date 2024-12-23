@@ -10,7 +10,8 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     private List<HashSet<int>> validSequences;
     List<int> currentCombination = new List<int> { };
     public GameObject[] images_puzzle = new GameObject[4];
-    public Button composite_col;
+    public Button composite_col; Color newColor = new Color(1, 1, 1, 0.5f);
+    public UnityEngine.UI.Image button_image;
     int puzzle_count = 0;
     static public int puzzle_color = 2;
     public Animator animation_col;
@@ -110,9 +111,11 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                         images_puzzle[i].SetActive(false);
                     }
                     puzzle_count = 0;
+                    newColor.a=0.5f;
                 }
                 else if (checkResult == 2)
                 {
+                    newColor.a=1;
                     if (key_color == "Blu") puzzle_color = 0;
                     else if(key_color=="Red")puzzle_color = 1;
                     else if(key_color=="Grn")puzzle_color = 2;
@@ -124,10 +127,12 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 {
                     images_puzzle[puzzle_count - 1].SetActive(true);
                     Debug.Log("puzzle_count: " + puzzle_count);
+                    newColor.a=0.5f;
                 }
                 ShowCombination(currentCombination); // 顯示當前組合
             }
         }
+        button_image.color = newColor;
     }
 
     // 定義 Trie 節點結構
