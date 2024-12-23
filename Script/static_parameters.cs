@@ -34,4 +34,5 @@ public class static_parameters : MonoBehaviour
     static public int Map_start = 0;
     static public int bullet_quantity = 0;
     static public int _ItemID,Piece_ID = 0;
+    static public int _IconID = 0;
 }
