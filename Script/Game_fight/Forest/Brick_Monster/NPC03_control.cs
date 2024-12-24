@@ -271,7 +271,7 @@ public class NPC03_control : MonoBehaviour
                 //         Invoke("Stun_end", 3);
                 //         break;
                 // }
-                for (int i = 0; i < D_icon_UI.iconSlot.Length; i++)
+                for (int i = 0; i < IconManager.Instance.IconList.Count; i++)
                 {
                     if (IconManager.Instance.IconList[i].iconID == 22)
                     {

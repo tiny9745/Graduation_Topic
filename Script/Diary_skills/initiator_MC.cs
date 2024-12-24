@@ -26,18 +26,20 @@ public class initiator_MC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Skill_public_funtion.fight_instinct == true) Invoke("fight_instinct", 0.5f);
-        if (Skill_public_funtion.Accurate_calculation == true) Invoke("Accurate_calculation", 0.25f);
+        fight_instinct();
+        // if (Skill_public_funtion.fight_instinct == true) Invoke("fight_instinct", 0.5f);
+        // if (Skill_public_funtion.Accurate_calculation == true) Invoke("Accurate_calculation", 0.25f);
     }
 
     void fight_instinct()
     {
         if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
         {
-            for (int i = 0; i < D_icon_UI.iconSlot.Length; i++)
+            for (int i = 0; i < IconManager.Instance.IconList.Count; i++)
             {
                 if (IconManager.Instance.IconList[i].iconID == 22)
                 {
+                    Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                     timer_f += Time.deltaTime;
                     if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
                     {
