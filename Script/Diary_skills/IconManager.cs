@@ -51,7 +51,11 @@ public class IconManager : MonoBehaviour
         IconInventoryCallBack?.Invoke();
     }
     public void Addicon(int index)
-    {
+    { 
+        if (IconList.Count >= all_icon.Length)
+        {
+            return;
+        }
         switch (index)
         {
             case 0:
