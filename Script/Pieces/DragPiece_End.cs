@@ -8,51 +8,53 @@ using System.Linq;
 public class DragPiece_End : MonoBehaviour, IDropHandler
 {
     private List<HashSet<int>> validSequences; // 有效的組合數列
-    private List<int> currentCombination = new List<int>(); // 當前的組合
+    static public List<int> currentCombination = new List<int>(); // 當前的組合
     public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
-    public Button composite_col; 
+    public Button composite_col;
     private Color newColor = new Color(1, 1, 1, 0.5f); // 按鈕透明度顏色
     public UnityEngine.UI.Image button_image; // 按鈕圖像
     private int puzzle_count = 0; // 碎片數量計數
-    public static int puzzle_color = 2; // 碎片顏色（默認為 2）
+    static public int puzzle_color = 2; // 碎片顏色（默認為 2）
     public Animator animation_col; // 動畫控制器
+
+    static public int end_count = -1;
 
     void Start()
     {
         // 初始化有效的組合數列
         validSequences = new List<HashSet<int>>()
         {
+            new HashSet<int> { 11, 15 },
             new HashSet<int> { 11, 16, 17 },
-            new HashSet<int> { 11, 12, 17, 19 },
             new HashSet<int> { 13, 16, 18 },
             new HashSet<int> { 11, 14, 16 },
-            new HashSet<int> { 11, 15 },
-            new HashSet<int> { 21, 22, 26 },
+            new HashSet<int> { 11, 12, 17, 19 },
             new HashSet<int> { 22, 26 },
             new HashSet<int> { 22, 24 },
+            new HashSet<int> { 21, 22, 26 },
             new HashSet<int> { 22, 23, 25, 26 },
             new HashSet<int> { 22, 24, 25, 26 },
             new HashSet<int> { 42, 44 },
+            new HashSet<int> { 43, 44 },
             new HashSet<int> { 42, 44, 45 },
             new HashSet<int> { 41, 42, 44 },
-            new HashSet<int> { 43, 44 },
             new HashSet<int> { 42, 44, 46 },
-            new HashSet<int> { 1, 4, 5, 6 },
-            new HashSet<int> { 2, 4, 6 },
             new HashSet<int> { 1, 3 },
             new HashSet<int> { 2, 6 },
+            new HashSet<int> { 2, 4, 6 },
+            new HashSet<int> { 1, 4, 5, 6 },
             new HashSet<int> { 1, 2, 5, 6 },
+            new HashSet<int> { 31, 33 },
             new HashSet<int> { 32, 36, 37 },
             new HashSet<int> { 35, 36, 37 },
-            new HashSet<int> { 32, 34, 35, 39 },
             new HashSet<int> { 35, 37, 38 },
-            new HashSet<int> { 31, 33 }
+            new HashSet<int> { 32, 34, 35, 39 }
         };
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             ResetCombination();
         }
@@ -110,7 +112,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 }
             }
         }
-
         button_image.color = newColor;
     }
 
@@ -128,17 +129,20 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             sequenceList.Sort();
 
             Debug.Log($"Checking Combination: [{string.Join(", ", combinationList)}] with Sequence: [{string.Join(", ", sequenceList)}]");
-            if(Ptest.show.Count==0){
+            if (Ptest.show.Count == 0)
+            {
                 return -2;
             }
             if (combinationList.SequenceEqual(sequenceList))
             {
+                Debug.Log("Puzzle Complete!");
                 puzzle_count++;
                 return 2;
             }
 
             if (IsSubset(combinationList, sequenceList))
             {
+                Debug.Log("Partial Match!");
                 puzzle_count++;
                 return 1;
             }

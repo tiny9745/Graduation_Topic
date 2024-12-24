@@ -16,9 +16,10 @@ public class Puzzle : MonoBehaviour
     public Animator complete_piece_animator;
     public Button composite_col;
     public DragPiece_End dragPiece_end;
+    Diary_icon thisItem;
     void Start()
     {
-
+        Diary_icon[] all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
     }
 
     // Update is called once per frame
@@ -51,8 +52,40 @@ public class Puzzle : MonoBehaviour
         complete_piece_animator.SetInteger("piece_complete_color", DragPiece_End.puzzle_color);
         composite_col.enabled = false;
         dragPiece_end.Combination_End();
+        switch (DragPiece_End.puzzle_color)
+        {
+            case 0://Blue
+
+                break;
+            case 1://Red
+
+                break;
+            case 2://Green
+
+                break;
+            case 3://Purple
+
+                break;
+            case 4://Yellow
+
+                break;
+            default:
+                break;
+        }
+        thisItem = key_count();
+        IconManager.Instance.Add(thisItem);
         Invoke("Complete_piece_after", 3.05f);
     }
+
+    Diary_icon key_count()
+    {
+        
+        return null;
+    }
+
+
+
+
     private void Complete_piece_after()
     {
         cpmplete_piece_object.SetActive(false);
