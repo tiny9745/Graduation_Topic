@@ -27,7 +27,7 @@ public class IconManager : MonoBehaviour
 
     void Start()
     {
-        all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
+        all_icon = Resources.LoadAll<Diary_icon>("Piece/icon_skill");
     }
 
     public void Add(Diary_icon newIcon)
