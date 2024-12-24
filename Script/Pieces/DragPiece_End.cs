@@ -165,17 +165,14 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             {
                 piece.survival_state = "Alive";
             }
-
             Ptest.show.Add(piece);
             PieceManager.Instance.Add(piece);
         }
-
         currentCombination.Clear();
         foreach (var image in images_puzzle)
         {
             image.SetActive(false);
         }
-
         puzzle_count = 0;
         newColor.a = 0.5f;
     }
@@ -183,25 +180,21 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
     public void Combination_End()
     {
-        // 重置當前組合
         foreach (var piece in Ptest.pickedPieces)
         {
             if (currentCombination.Contains(piece.PieceID))//確定為List中數值
             {
+                PieceManager.Instance.Remove(piece);
                 piece.survival_state = "Dead";
-                //從pickedPieces陣列中移除
             }
-
             Ptest.show.Add(piece);
             PieceManager.Instance.Add(piece);
         }
-
         currentCombination.Clear();
         foreach (var image in images_puzzle)
         {
             image.SetActive(false);
         }
-
         puzzle_count = 0;
         newColor.a = 0.5f;
     }
