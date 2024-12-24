@@ -33,6 +33,7 @@ public class IconManager : MonoBehaviour
     public void Add(Diary_icon newIcon)
     {
         IconList.Add(newIcon);
+        Debug.Log("newIcon"+newIcon);
         IconInventoryCallBack?.Invoke();
     }
 
@@ -52,12 +53,15 @@ public class IconManager : MonoBehaviour
     }
     public void Addicon(int index)
     {
-        if (IconList.Count >= all_icon.Length)
+        Debug.Log("Addicon");
+        if (index >= all_icon.Length)
         {
+            Debug.Log("Inventory is full");
             return;
         }
         else
         {
+            Debug.Log("Addicon2");
             switch (index)
             {
                 case 0:
@@ -77,6 +81,7 @@ public class IconManager : MonoBehaviour
                     break;
                 case 5:
                     Add(all_icon[5]);
+                    Debug.Log("newIcon"+all_icon[5]);
                     break;
                 case 6:
                     Add(all_icon[6]);
