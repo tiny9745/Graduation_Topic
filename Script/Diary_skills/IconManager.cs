@@ -8,6 +8,7 @@ public class IconManager : MonoBehaviour
     public static IconManager Instance;
     public D_icon_UI Icon_UI;
     public List<Diary_icon> IconList;
+    Diary_icon[] all_icon;
     public delegate void IconInventoryChange();
     public IconInventoryChange IconInventoryCallBack;
     void Awake()
@@ -24,7 +25,11 @@ public class IconManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        all_icon =Resources.LoadAll<Diary_icon> ("icon_skill");
+    }
+
     public void Add(Diary_icon newIcon)
     { 
         IconList.Add(newIcon);
@@ -44,5 +49,18 @@ public class IconManager : MonoBehaviour
     public void Refresh()
     {
         IconInventoryCallBack?.Invoke();
+    }
+    public void Addicon(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                Add(all_icon[0]);
+                break;
+            case 1:
+                
+                break;
+        }
+
     }
 }
