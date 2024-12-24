@@ -53,7 +53,8 @@ public class Puzzle : MonoBehaviour
         composite_col.enabled = false;
         dragPiece_end.Combination_End();
         thisItem = key_count();
-        IconManager.Instance.Add(thisItem);
+        IconManager.Instance.Addicon(DragPiece_End.end_count);
+        // IconManager.Instance.Add(thisItem);
         Invoke("Complete_piece_after", 3.05f);
     }
 
@@ -77,30 +78,6 @@ public class Puzzle : MonoBehaviour
                 return Resources.Load<Diary_icon>("icon_skill/Red");
             case 7:
                 return Resources.Load<Diary_icon>("icon_skill/Green");
-            case 8:
-                return Resources.Load<Diary_icon>("icon_skill/Purple");
-            case 9:
-                return Resources.Load<Diary_icon>("icon_skill/Yellow");
-            case 10:
-                return Resources.Load<Diary_icon>("icon_skill/Blue");
-            case 11:
-                return Resources.Load<Diary_icon>("icon_skill/Red");
-            case 12:
-                return Resources.Load<Diary_icon>("icon_skill/Green");
-            case 13:
-                return Resources.Load<Diary_icon>("icon_skill/Purple");
-            case 14:
-                return Resources.Load<Diary_icon>("icon_skill/Yellow");
-            case 15:
-                return Resources.Load<Diary_icon>("icon_skill/Blue");
-            case 16:
-                return Resources.Load<Diary_icon>("icon_skill/Red");
-            case 17:
-                return Resources.Load<Diary_icon>("icon_skill/Green");
-            case 18:
-                return Resources.Load<Diary_icon>("icon_skill/Purple");
-            case 19:
-                return Resources.Load<Diary_icon>("icon_skill/Yellow");
             default:
                 break;
         }
