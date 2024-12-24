@@ -27,11 +27,11 @@ public class IconManager : MonoBehaviour
 
     void Start()
     {
-        all_icon =Resources.LoadAll<Diary_icon> ("icon_skill");
+        all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
     }
 
     public void Add(Diary_icon newIcon)
-    { 
+    {
         IconList.Add(newIcon);
         IconInventoryCallBack?.Invoke();
     }
@@ -51,41 +51,43 @@ public class IconManager : MonoBehaviour
         IconInventoryCallBack?.Invoke();
     }
     public void Addicon(int index)
-    { 
+    {
         if (IconList.Count >= all_icon.Length)
         {
             return;
         }
-        switch (index)
+        else
         {
-            case 0:
-                Add(all_icon[0]);
-                break;
-            case 1:
-                Add(all_icon[1]);
-                break;
-            case 2:
-                Add(all_icon[2]);
-                break;
-            case 3:
-                Add(all_icon[3]);
-                break; 
-            case 4:
-                Add(all_icon[4]);
-                break;
-            case 5:
-                Add(all_icon[5]);
-                break;
-            case 6:
-                Add(all_icon[6]);
-                break;
-            case 7:
-                Add(all_icon[7]);
-                break;
-            case 8:
-                Add(all_icon[8]);
-                break; 
+            switch (index)
+            {
+                case 0:
+                    Add(all_icon[0]);
+                    break;
+                case 1:
+                    Add(all_icon[1]);
+                    break;
+                case 2:
+                    Add(all_icon[2]);
+                    break;
+                case 3:
+                    Add(all_icon[3]);
+                    break;
+                case 4:
+                    Add(all_icon[4]);
+                    break;
+                case 5:
+                    Add(all_icon[5]);
+                    break;
+                case 6:
+                    Add(all_icon[6]);
+                    break;
+                case 7:
+                    Add(all_icon[7]);
+                    break;
+                case 8:
+                    Add(all_icon[8]);
+                    break;
+            }
         }
-
     }
 }
