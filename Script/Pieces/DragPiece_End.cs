@@ -92,7 +92,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 // 檢查組合並處理結果
                 int checkResult = CheckCombination(currentCombination);
                 animation_col.SetInteger("fragment_control", checkResult);
-                ShowCombination(currentCombination);
 
                 if (checkResult == -2)
                 {
@@ -130,8 +129,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             combinationList.Sort();
             sequenceList.Sort();
 
-            Debug.Log($"Checking Combination: [{string.Join(", ", combinationList)}] with Sequence: [{string.Join(", ", sequenceList)}]");
-
             if (Ptest.show.Count == 0)
             {
                 return -2;
@@ -139,7 +136,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
             if (combinationList.SequenceEqual(sequenceList))
             {
-                Debug.Log($"Puzzle Complete! Matched Sequence is at index: {i}");
                 end_count = i;
                 puzzle_count++;
                 return 2;
@@ -147,7 +143,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
             if (IsSubset(combinationList, sequenceList))
             {
-                Debug.Log("Partial Match!");
                 puzzle_count++;
                 return 1;
             }
@@ -209,11 +204,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             case "Prp": puzzle_color = 3; break;
             case "Yel": puzzle_color = 4; break;
         }
-    }
-
-    private void ShowCombination(List<int> combination)
-    {
-        Debug.Log($"Current Combination: [{string.Join(", ", combination)}]");
     }
 
     private bool IsSubset(List<int> subset, List<int> superset)
