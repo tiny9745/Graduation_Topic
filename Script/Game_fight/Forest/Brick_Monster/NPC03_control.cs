@@ -20,8 +20,14 @@ public class NPC03_control : MonoBehaviour
     public NPC_HP_03 nPC_hP;
     int NPC_angle, play_piano_atk = 0;
     private bool isFacingRight = true;
+
+    public Material Deduct_Blood; private Material originalMaterial;
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
     void Start()
     {
+        spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color; // 儲存原始顏色
+
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -221,7 +227,6 @@ public class NPC03_control : MonoBehaviour
         }
     }
 
-
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
@@ -238,6 +243,7 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                change_color_red();
                 Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
@@ -246,6 +252,7 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_bomb"))
             {
+                change_color_red();
                 // switch (Skill_public_funtion.feel_to_skill)
                 // {
                 //     case 41://happy
@@ -304,6 +311,7 @@ public class NPC03_control : MonoBehaviour
                         Debug.Log("play_piano_atk:" + play_piano_atk);
                         break;
                     case 11://anger
+                        change_color_red();
                         NPC_HP -= 225; Debug.Log("boom");
                         break;
                     case 21://sad
@@ -324,6 +332,7 @@ public class NPC03_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_bullet"))
             {
+                change_color_red();
                 switch (static_parameters._ItemID)
                 {
                     case 1:
@@ -430,5 +439,31 @@ public class NPC03_control : MonoBehaviour
     {
         Debug.Log("Dead03");
         Destroy(gameObject);
+    }
+    // private void change_color_to_ATK()
+    // {
+    //     Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
+
+    //     renderer1.material = Deduct_Blood;
+    //     StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
+    // }
+    private void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            Debug.Log("change color");
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            StartCoroutine(ResetColorAfterDelay(0.2f));
+        }
+    }
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        SpriteRenderer spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor; // 還原顏色
+        }
     }
 }

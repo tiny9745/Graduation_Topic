@@ -25,9 +25,12 @@ public class NPC01_control : MonoBehaviour
     private bool isFacingRight = true;
     public GameObject Img_npc;
     public NPC_interactive npc_interactive; bool bomb_Berry = true;
-
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
     void Start()
     {
+        spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color; // 儲存原始顏色
+        
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -42,7 +45,8 @@ public class NPC01_control : MonoBehaviour
         }
         hitbox_Crystal_baby.SetActive(false);
 
-        if (TargetObj == null){
+        if (TargetObj == null)
+        {
             TargetObj = GameObject.Find("Player");
         }
         npcNavi = GetComponent<NavMeshAgent>();
@@ -311,7 +315,7 @@ public class NPC01_control : MonoBehaviour
         }
 
         // Omit the middle
-        if(NPC_HP > 0)
+        if (NPC_HP > 0)
         {
             if (other.tag == "Thorns")
             {
@@ -369,5 +373,24 @@ public class NPC01_control : MonoBehaviour
     private void Des()
     {
         Destroy(gameObject);
+    }
+    private void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            Debug.Log("change color");
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            StartCoroutine(ResetColorAfterDelay(0.2f));
+        }
+    }
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        SpriteRenderer spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor; // 還原顏色
+        }
     }
 }
