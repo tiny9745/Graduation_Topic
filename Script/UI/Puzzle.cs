@@ -16,6 +16,7 @@ public class Puzzle : MonoBehaviour
     public Animator complete_piece_animator;
     public Button composite_col;
     public DragPiece_End dragPiece_end;
+    public UI UI;
     Diary_icon thisItem;
     void Start()
     {
@@ -54,7 +55,7 @@ public class Puzzle : MonoBehaviour
         thisItem = key_count();
         dragPiece_end.Combination_End();
         // IconManager.Instance.Add(thisItem);
-        Invoke("Complete_piece_after", 3.05f);
+        Invoke("Complete_piece_after", 3f);
     }
 
     Diary_icon key_count()
@@ -84,6 +85,7 @@ public class Puzzle : MonoBehaviour
     }
     private void Complete_piece_after()
     {
+        UI.Onclick3();
         Debug.Log("Complete_piece_after:" + DragPiece_End.end_count);
         IconManager.Instance.Addicon(DragPiece_End.end_count);
         cpmplete_piece_object.SetActive(false);
