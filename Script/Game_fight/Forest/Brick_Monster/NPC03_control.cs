@@ -350,6 +350,7 @@ public class NPC03_control : MonoBehaviour
                 }
             }
         }
+        //補互動物件
     }
     public float GetNPC03_ATK()
     {

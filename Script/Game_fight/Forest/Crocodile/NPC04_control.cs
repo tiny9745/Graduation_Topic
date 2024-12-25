@@ -256,6 +256,7 @@ public class NPC04_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                change_color_red();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
@@ -264,6 +265,7 @@ public class NPC04_control : MonoBehaviour
             // Omit the middle
             if (other.gameObject.CompareTag("MC_bullet"))
             {
+                change_color_red();
                 switch (static_parameters._ItemID)
                 {
                     case 1:
@@ -276,12 +278,14 @@ public class NPC04_control : MonoBehaviour
         {
             if (other.tag == "Thorns")
             {
+                change_color_red();
                 npc_interactive.NPC_Thorns(ref NPC_HP);
 
                 nPC_hP.UpdateHealthBar();
             }
             if (other.tag == "Bomb_Fruit" && bomb_Berry)
             {
+                change_color_red();
                 bomb_Berry = false;
                 npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();

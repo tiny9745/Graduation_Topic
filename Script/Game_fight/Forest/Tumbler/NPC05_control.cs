@@ -28,7 +28,7 @@ public class NPC05_control : MonoBehaviour
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
-        
+
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -215,6 +215,7 @@ public class NPC05_control : MonoBehaviour
         {
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                change_color_red();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.1f);
@@ -226,6 +227,7 @@ public class NPC05_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
+                        change_color_red();
                         nPC_hP.TakeDamage(8, NPC05_DEF);
                         break;
                 }
@@ -235,12 +237,13 @@ public class NPC05_control : MonoBehaviour
         {
             if (other.tag == "Thorns")
             {
+                change_color_red();
                 npc_interactive.NPC_Thorns(ref NPC_HP);
-
                 nPC_hP.UpdateHealthBar();
             }
             if (other.tag == "Bomb_Fruit" && bomb_Berry)
             {
+                change_color_red();
                 bomb_Berry = false;
                 npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
