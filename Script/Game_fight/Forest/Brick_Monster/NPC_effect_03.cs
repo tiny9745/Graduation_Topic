@@ -7,7 +7,7 @@ public class NPC_effect_03 : MonoBehaviour
     public NPC03_control control;
     public GameObject bomb_piano, bomb_point;
     int play_piano_atk = 0; float NPC_back = 10;
-    public bool stun;
+    
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class NPC_effect_03 : MonoBehaviour
             }
             else if (IconManager.Instance.IconList[i].iconID == 2)
             {
-                stun = true;
+                control.stun = true;
                 Invoke("Stun_end", 3);
                 break;
             }
@@ -66,6 +66,6 @@ public class NPC_effect_03 : MonoBehaviour
     }
     void Stun_end()
     {
-        stun = false;
+        control.stun = false;
     }
 }
