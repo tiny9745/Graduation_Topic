@@ -89,8 +89,6 @@ public class NPC03_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-
-
         if (TargetObj != null && npcNavi != null)
         {
             if (dist < DetectDistance && NPC_HP > 0 && !stun)
