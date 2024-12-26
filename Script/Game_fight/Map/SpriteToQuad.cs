@@ -43,7 +43,7 @@ public class SpriteToQuad : MonoBehaviour
             quadMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
             quadMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
             quadMaterial.SetInt("_ZWrite", 0); // 禁用深度寫入
-            quadMaterial.renderQueue = 1000;   // 設置為透明渲染隊列
+            quadMaterial.renderQueue = 1999;   // 設置為透明渲染隊列
         }
 
         // 設置 Quad 的初始屬性

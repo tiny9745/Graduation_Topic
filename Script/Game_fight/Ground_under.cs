@@ -28,7 +28,7 @@ public class Ground_under : MonoBehaviour
             material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
             material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
             material.SetInt("_ZWrite", 0); // 禁用深度寫入
-            material.renderQueue = 1000; // 設置為透明渲染隊列
+            material.renderQueue = 1999; // 設置為透明渲染隊列
 
             // 禁用深度測試，確保地面物件不會遮蔽其他物件
             material.SetOverrideTag("RenderType", "Transparent");
