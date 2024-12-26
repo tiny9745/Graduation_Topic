@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class NPC03_control : MonoBehaviour
 {
-    NavMeshAgent npcNavi; public NPC_effect_03 effect;
+    NavMeshAgent npcNavi; NPC_effect_03 effect;
     public Animator animator;
     public GameObject TargetObj, Drop,NPC03, hitbox_Brick_Monster, Img_npc;
     public int DetectDistance = 22;
@@ -18,7 +18,7 @@ public class NPC03_control : MonoBehaviour
     bool dead_open = true, MC_to_Att = true;
     public NPC_HP_03 nPC_hP;
     int NPC_angle;
-    private bool isFacingRight = true;
+    private bool isFacingRight = true; public bool stun;
 
     public Material Deduct_Blood; private Material originalMaterial;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
@@ -51,6 +51,7 @@ public class NPC03_control : MonoBehaviour
             npcNavi.speed = npcSpeed;
         }
         nPC_hP = GetComponent<NPC_HP_03>();
+        effect = GetComponent<NPC_effect_03>();
     }
 
     void Update()
@@ -92,7 +93,7 @@ public class NPC03_control : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null)
         {
-            if (dist < DetectDistance && NPC_HP > 0 && !effect.stun)
+            if (dist < DetectDistance && NPC_HP > 0 && !stun)
             {
                 npcNavi.destination = TargetObj.transform.position;
             }
@@ -225,7 +226,7 @@ public class NPC03_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime && !effect.stun)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
             if (other.gameObject.tag == "Player")
             {
