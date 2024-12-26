@@ -32,12 +32,18 @@ public class SpriteToQuad : MonoBehaviour
     {
         // 創建 Quad 物件
         quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        
+
         // 確保材質只有一次創建
         if (quadMaterial == null)
         {
             quadMaterial = new Material(Shader.Find("Standard"));
             quadMaterial.mainTexture = spriteRenderer.sprite.texture;
+
+            // 設置材質為透明渲染模式，並設置渲染順序和深度屬性
+            quadMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            quadMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            quadMaterial.SetInt("_ZWrite", 0); // 禁用深度寫入
+            quadMaterial.renderQueue = 3000;   // 設置為透明渲染隊列
         }
 
         // 設置 Quad 的初始屬性
@@ -47,10 +53,10 @@ public class SpriteToQuad : MonoBehaviour
         Vector3 lossyScale = transform.lossyScale;
         quad.transform.localScale = new Vector3(spriteSize.x * lossyScale.x, spriteSize.y * lossyScale.y, 1);
 
-        // 啟用陰影投射和接收
+        // 啟用陰影投射和接收（可選）
         MeshRenderer quadRenderer = quad.GetComponent<MeshRenderer>();
-        quadRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-        quadRenderer.receiveShadows = true;
+        quadRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        quadRenderer.receiveShadows = false;
 
         // 把 Quad 移到場景根層級，確保不被刪除
         quad.transform.parent = null;
@@ -59,9 +65,9 @@ public class SpriteToQuad : MonoBehaviour
     // 更新 Quad 物件的位置與旋轉
     void UpdateQuadPosition()
     {
-        // 調整位置以確保 Quad 不會與其他物體重疊
+        // 調整位置以確保 Quad 在最下層
         Vector3 adjustedPosition = transform.position;
-        adjustedPosition.y += 0.1f; // 讓 Quad 稍微浮在 Sprite 上方
+        adjustedPosition.z = Mathf.Min(adjustedPosition.z, -1000); // 確保 z 軸足夠遠
         quad.transform.position = adjustedPosition;
 
         // 設置 Quad 與 Sprite 相同的旋轉角度
