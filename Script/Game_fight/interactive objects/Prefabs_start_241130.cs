@@ -11,9 +11,6 @@ public class Prefabs_start_241130 : MonoBehaviour
     private Bounds navMeshBounds;
     private float randomX, randomZ;
     private int Number_NPC01, Number_NPC02, Number_NPC03, Number_NPC04, Number_NPC05;
-
-    public GameObject[] Scenes_object_obstacle; public GameObject[] Scenes_object_decorate;
-    private int MaxInsideDecorate = 80;
     void Start()
     {
         // 計算初始 NavMesh 範圍
@@ -27,8 +24,7 @@ public class Prefabs_start_241130 : MonoBehaviour
 
         // 延遲生成確保範圍正確
         Invoke("BakeNavMesh", 1.5f);
-        // Invoke("obstach_into", 2.8f);
-        Invoke("NPC_into", 2.8f);
+        Invoke("NPC_into", 3.1f);
     }
 
     void OnDestroy()
@@ -116,19 +112,6 @@ public class Prefabs_start_241130 : MonoBehaviour
         for (int i = 0; i < Number_NPC05; i++)
         {
             GenerateNPC(prefabNPC05);
-        }
-    }
-    void obstach_into()
-    {
-        for (int i = 0; i < MaxInsideDecorate; i++)
-        {
-            int typeIndex = Random.Range(0, Scenes_object_obstacle.Length);
-            GenerateDecorate(Scenes_object_obstacle[typeIndex]);
-        }
-        for (int i = 0; i < MaxInsideDecorate; i++)
-        {
-            int typeIndex = Random.Range(0, Scenes_object_decorate.Length);
-            GenerateDecorate(Scenes_object_decorate[typeIndex]);
         }
     }
 
