@@ -6,19 +6,18 @@ using UnityEngine.AI;
 
 public class NPC03_control : MonoBehaviour
 {
-    NavMeshAgent npcNavi;
+    NavMeshAgent npcNavi; public NPC_effect_03 effect;
     public Animator animator;
-    public GameObject TargetObj, Drop;
+    public GameObject TargetObj, Drop,NPC03, hitbox_Brick_Monster, Img_npc;
     public int DetectDistance = 22;
     public float NPC_HP_Max = 70, npcSpeed = 4f, NPC_HP, dist, NPC03_ATK = 25, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani, stun, hit = false; float NPC_back = 10;
+    bool hit_Ani, hit = false; 
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC03, hitbox_Brick_Monster, Img_npc, bomb_piano, bomb_point;
     bool dead_open = true, MC_to_Att = true;
     public NPC_HP_03 nPC_hP;
-    int NPC_angle, play_piano_atk = 0;
+    int NPC_angle;
     private bool isFacingRight = true;
 
     public Material Deduct_Blood; private Material originalMaterial;
@@ -51,11 +50,7 @@ public class NPC03_control : MonoBehaviour
         {
             npcNavi.speed = npcSpeed;
         }
-
-        if (nPC_hP == null)
-        {
-            nPC_hP = GetComponent<NPC_HP_03>();
-        }
+        nPC_hP = GetComponent<NPC_HP_03>();
     }
 
     void Update()
@@ -97,7 +92,7 @@ public class NPC03_control : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null)
         {
-            if (dist < DetectDistance && NPC_HP > 0 && !stun)
+            if (dist < DetectDistance && NPC_HP > 0 && !effect.stun)
             {
                 npcNavi.destination = TargetObj.transform.position;
             }
@@ -230,7 +225,7 @@ public class NPC03_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime && !effect.stun)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -244,92 +239,18 @@ public class NPC03_control : MonoBehaviour
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 change_color_red();
-                Skill();
+                effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
+
             if (other.gameObject.CompareTag("MC_bomb"))
             {
-                change_color_red();
-                // switch (Skill_public_funtion.feel_to_skill)
-                // {
-                //     case 41://happy
-                //         Debug.Log("play_piano_atk:" + play_piano_atk);
-                //         play_piano_atk++;
-                //         Debug.Log("play_piano_atk:" + play_piano_atk);
-                //         break;
-                //     case 11://anger
-                //         NPC_HP -= 225; Debug.Log("boom");
-                //         break;
-                //     case 21://sad
-                //         if (NPC_HP < NPC_back) NPC_HP = 0;
-                //         else
-                //         {
-                //             Vector3 currentPosition = transform.position;
-                //             transform.position = currentPosition - NPC_back * Vector3.back;
-                //         }
-                //         play_piano_atk = 0; Debug.Log("knockback");
-                //         break;
-                //     case 2://wow
-                //         Debug.Log("stun");
-                //         stun = true;
-                //         Invoke("Stun_end", 3);
-                //         break;
-                // }
-                for (int i = 0; i < IconManager.Instance.IconList.Count; i++)
-                {
-                    if (IconManager.Instance.IconList[i].iconID == 22)
-                    {
-                        Skill_public_funtion.feel_to_skill = 41;
-                        break;
-                    }
-                    else if (IconManager.Instance.IconList[i].iconID == 12)
-                    {
-                        Skill_public_funtion.feel_to_skill = 11;
-                        break;
-                    }
-                    else if (IconManager.Instance.IconList[i].iconID == 32)
-                    {
-                        Skill_public_funtion.feel_to_skill = 21;
-                        break;
-                    }
-                    else if (IconManager.Instance.IconList[i].iconID == 2)
-                    {
-                        Skill_public_funtion.feel_to_skill = 2;
-                        break;
-                    }
-                }
-
-
-                switch (Skill_public_funtion.feel_to_skill)
-                {
-                    case 41://happy
-                        Debug.Log("play_piano_atk:" + play_piano_atk);
-                        play_piano_atk++;
-                        Debug.Log("play_piano_atk:" + play_piano_atk);
-                        break;
-                    case 11://anger
-                        change_color_red();
-                        NPC_HP -= 225; Debug.Log("boom");
-                        break;
-                    case 21://sad
-                        if (NPC_HP < NPC_back) NPC_HP = 0;
-                        else
-                        {
-                            Vector3 currentPosition = transform.position;
-                            transform.position = currentPosition - NPC_back * Vector3.back;
-                        }
-                        play_piano_atk = 0; Debug.Log("knockback");
-                        break;
-                    case 2://wow
-                        Debug.Log("stun");
-                        stun = true;
-                        Invoke("Stun_end", 3);
-                        break;
-                }
+                effect.play_piano_effect();
             }
+
             if (other.gameObject.CompareTag("MC_bullet"))
             {
                 change_color_red();
@@ -351,20 +272,6 @@ public class NPC03_control : MonoBehaviour
             }
         }
         //補互動物件
-    }
-    public float GetNPC03_ATK()
-    {
-        return NPC03_ATK;
-    }
-
-    public bool GetNPC03_hit()
-    {
-        return hit;
-    }
-
-    void wait_MC_att()
-    {
-        MC_to_Att = true;
     }
 
     void EnableHitbox()
@@ -417,42 +324,15 @@ public class NPC03_control : MonoBehaviour
         Vector3 currentPosition = transform.position;
         transform.position = currentPosition + 5f * Vector3.back;
     }
-    void Skill()//skill_add
-    {
-        if (Skill_public_funtion.play_piano)
-        {
-            if (play_piano_atk <= Skill_public_funtion.P_time)
-            {
-                play_piano_atk++;
-            }
-            else
-            {
-                Instantiate(bomb_piano, bomb_point.transform.position, Quaternion.identity);
-                play_piano_atk = 0;
-            }
-        }
-    }
-    void Stun_end()
-    {
-        stun = false;
-    }
     void dead_after()
     {
         Debug.Log("Dead03");
         Destroy(gameObject);
     }
-    // private void change_color_to_ATK()
-    // {
-    //     Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
-
-    //     renderer1.material = Deduct_Blood;
-    //     StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
-    // }
-    private void change_color_red()
+    public void change_color_red()
     {
         if (spriteRenderer != null)
         {
-            Debug.Log("change color");
             spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
             StartCoroutine(ResetColorAfterDelay(0.2f));
         }
@@ -466,5 +346,19 @@ public class NPC03_control : MonoBehaviour
         {
             spriteRenderer.color = originalColor; // 還原顏色
         }
+    }
+    public float GetNPC03_ATK()
+    {
+        return NPC03_ATK;
+    }
+
+    public bool GetNPC03_hit()
+    {
+        return hit;
+    }
+
+    void wait_MC_att()
+    {
+        MC_to_Att = true;
     }
 }
