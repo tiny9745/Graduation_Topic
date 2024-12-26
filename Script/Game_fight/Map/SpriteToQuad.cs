@@ -32,12 +32,18 @@ public class SpriteToQuad : MonoBehaviour
     {
         // 創建 Quad 物件
         quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        
+
         // 確保材質只有一次創建
         if (quadMaterial == null)
         {
             quadMaterial = new Material(Shader.Find("Standard"));
             quadMaterial.mainTexture = spriteRenderer.sprite.texture;
+
+            // 設置材質為透明模式，禁用深度寫入，並設置渲染隊列
+            quadMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            quadMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            quadMaterial.SetInt("_ZWrite", 0); // 禁用深度寫入
+            quadMaterial.renderQueue = 1000;   // 設置為透明渲染隊列
         }
 
         // 設置 Quad 的初始屬性
@@ -47,7 +53,7 @@ public class SpriteToQuad : MonoBehaviour
         Vector3 lossyScale = transform.lossyScale;
         quad.transform.localScale = new Vector3(spriteSize.x * lossyScale.x, spriteSize.y * lossyScale.y, 1);
 
-        // 啟用陰影投射和接收
+        // 啟用陰影投射和接收（如果需要，否則可刪除）
         MeshRenderer quadRenderer = quad.GetComponent<MeshRenderer>();
         quadRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         quadRenderer.receiveShadows = true;
