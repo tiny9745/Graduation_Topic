@@ -21,7 +21,7 @@ public class NPC03_control : MonoBehaviour
     private bool isFacingRight = true; public bool stun;
 
     public Material Deduct_Blood; private Material originalMaterial;
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;private bool isCoroutineRunning = false;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -333,18 +333,18 @@ public class NPC03_control : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
-            StartCoroutine(ResetColorAfterDelay(0.2f));
+            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            {
+                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+            }
         }
     }
     IEnumerator ResetColorAfterDelay(float delay)
     {
-        yield return new WaitForSeconds(delay);
-
-        SpriteRenderer spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = originalColor; // 還原顏色
-        }
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
     public float GetNPC03_ATK()
     {

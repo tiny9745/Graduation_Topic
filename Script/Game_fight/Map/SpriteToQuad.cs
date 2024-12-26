@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class SpriteToQuad : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;  // 把你的 SpriteRenderer 拖放到此處
+    private SpriteRenderer spriteRenderer;  // 把你的 SpriteRenderer 拖放到此處
 
     private GameObject quad;
     private Material quadMaterial;  // 儲存材質以避免重複創建
 
     void Start()
     {
+        // 動態獲取當前物件上的 SpriteRenderer 組件
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer 組件未找到！請確保物件上有 SpriteRenderer。");
+            return;
+        }
         // 取得 Sprite 的尺寸
         Vector2 spriteSize = spriteRenderer.sprite.bounds.size;
 
@@ -36,7 +44,8 @@ public class SpriteToQuad : MonoBehaviour
         // 確保材質只有一次創建
         if (quadMaterial == null)
         {
-            quadMaterial = new Material(Shader.Find("Standard"));
+            // 使用 Sprites/Default 着色器
+            quadMaterial = new Material(Shader.Find("Sprites/Default"));//無法接收光影
             quadMaterial.mainTexture = spriteRenderer.sprite.texture;
 
             // 設置材質為透明模式，禁用深度寫入，並設置渲染隊列
