@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class NPC03_control : MonoBehaviour
 {
-    NavMeshAgent npcNavi; NPC_effect_03 effect;
+    NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj, Drop,NPC03, hitbox_Brick_Monster, Img_npc;
     public int DetectDistance = 22;
@@ -16,7 +16,7 @@ public class NPC03_control : MonoBehaviour
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     bool dead_open = true, MC_to_Att = true;
-    public NPC_HP_03 nPC_hP;
+    public NPC_HP_03 nPC_hP;public NPC_effect_03 effect;
     int NPC_angle;
     private bool isFacingRight = true; public bool stun;
 
@@ -235,12 +235,14 @@ public class NPC03_control : MonoBehaviour
                     open_EnableHitbox = false;
                 }
             }
+
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 change_color_red();
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
+                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }

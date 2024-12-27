@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 7916481744572787998}
   - component: {fileID: 2753665520669540544}
   - component: {fileID: 9174041880893343669}
+  - component: {fileID: 9094819117705494734}
   m_Layer: 8
   m_Name: NPC03
   m_TagString: NPC
@@ -459,6 +460,9 @@ MonoBehaviour:
   animator: {fileID: 1818161054931281942}
   TargetObj: {fileID: 0}
   Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
+  NPC03: {fileID: 0}
+  hitbox_Brick_Monster: {fileID: 18718823328826481}
+  Img_npc: {fileID: 1324081461190397856}
   DetectDistance: 26
   NPC_HP_Max: 70
   npcSpeed: 4
@@ -466,12 +470,9 @@ MonoBehaviour:
   dist: 0
   NPC03_ATK: 25
   NPC03_DEF: 5
-  NPC03: {fileID: 0}
-  hitbox_Brick_Monster: {fileID: 18718823328826481}
-  Img_npc: {fileID: 1324081461190397856}
-  bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
-  bomb_point: {fileID: 7440025053212357370}
-  nPC_hP: {fileID: 0}
+  nPC_hP: {fileID: 7916481744572787998}
+  effect: {fileID: 9094819117705494734}
+  stun: 0
   Deduct_Blood: {fileID: 2100000, guid: fc21eb091654df0448671c299dccd1cc, type: 2}
   spriteTransform: {fileID: 4032549033181439169}
 --- !u!65 &5616752522870603614
@@ -593,3 +594,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9094819117705494734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7984589684211309320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 184b5e3f9e0db5d43bc6571dea505c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  control: {fileID: 0}
+  bomb_piano: {fileID: 0}
+  bomb_point: {fileID: 0}
