@@ -15,6 +15,7 @@ public class Loading_241010 : MonoBehaviour
     private float minimumLoadingTime = 2f; // 最少顯示 x 秒
     private float loadingTimeElapsed = 0f; // 計時器
     public Vector3 newPosition_start;
+    private GameObject BlackScreen;
 
     bool wave_return = true;
 
@@ -22,6 +23,11 @@ public class Loading_241010 : MonoBehaviour
 
     void Start()
     {
+        BlackScreen = GameObject.Find("Black");
+        if (BlackScreen != null)
+        {
+            BlackScreen.SetActive(false);
+        }
         newPosition_start = loadingBar.transform.position;
         loadingScreen.SetActive(true);
         StartCoroutine(LoadSceneAsync(targetSceneName));
@@ -67,12 +73,12 @@ public class Loading_241010 : MonoBehaviour
         }
         if (wave_return)
         {
-            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, loadingSpeed * Time.deltaTime/3);
+            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, loadingSpeed * Time.deltaTime / 3);
             loadingBar.transform.position = newPosition_horizontal;
         }
         else
         {
-            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, -loadingSpeed * Time.deltaTime/3);
+            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, -loadingSpeed * Time.deltaTime / 3);
             loadingBar.transform.position = newPosition_horizontal;
         }
     }
