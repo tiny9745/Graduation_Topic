@@ -5,22 +5,21 @@ using UnityEngine.AI;
 
 public class NPC04_control : MonoBehaviour
 {
+    public NPC_HP_04 nPC_hP; public NPC_effect_04 effect;
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 15;
+    public int DetectDistance = 15; int NPC_angle = 0;
     public float NPC04_ATK = 15, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 6f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani, hit = false;
+    bool hit_Ani, hit = false; bool dead_open, MC_to_Att,open_EnableHitbox,bomb_Berry = true;
+    public bool stun = false; private bool isFacingRight = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC04, hitbox_Brick_Monster, Drop, Img_npc;
-    bool dead_open, MC_to_Att = true;
-    public NPC_HP_04 nPC_hP;
-    int NPC_angle = 0; bool open_EnableHitbox = true;
-    private bool isFacingRight = true;
-    public NPC_interactive npc_interactive; bool bomb_Berry = true;
+    
+    public NPC_interactive npc_interactive;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;private bool isCoroutineRunning = false;
     void Start()
     {
@@ -51,11 +50,7 @@ public class NPC04_control : MonoBehaviour
         {
             npcNavi.speed = npcSpeed;
         }
-
-        if (nPC_hP == null)
-        {
-            nPC_hP = GetComponent<NPC_HP_04>();
-        }
+        nPC_hP = GetComponent<NPC_HP_04>();
     }
 
     void Update()
@@ -230,20 +225,9 @@ public class NPC04_control : MonoBehaviour
         }
     }
 
-    public float GetNPC04_ATK()
-    {
-        return NPC04_ATK;
-    }
-
-    public bool GetNPC04_hit()
-    {
-        return hit;
-    }
-
-
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -254,33 +238,50 @@ public class NPC04_control : MonoBehaviour
                     open_EnableHitbox = false;
                 }
             }
+
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 change_color_red();
+                effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
                 MC_to_Att = false;
+                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
-            // Omit the middle
+
+            if (other.gameObject.CompareTag("MC_bomb"))
+            {
+                effect.play_piano_effect();
+            }
+
             if (other.gameObject.CompareTag("MC_bullet"))
             {
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        nPC_hP.TakeDamage(8, NPC04_DEF);
+                        nPC_hP.TakeDamage(4, NPC04_DEF);
+                        break;
+                    case 2:
+                        nPC_hP.TakeDamage(3, NPC04_DEF);
+                        break;
+                    case 3:
+                        nPC_hP.TakeDamage(5, NPC04_DEF);
+                        break;
+                    case 4:
+                        nPC_hP.TakeDamage(1, NPC04_DEF);
                         break;
                 }
             }
         }
+
         if (NPC_HP > 0)
         {
             if (other.tag == "Thorns")
             {
                 change_color_red();
                 npc_interactive.NPC_Thorns(ref NPC_HP);
-
                 nPC_hP.UpdateHealthBar();
             }
             if (other.tag == "Bomb_Fruit" && bomb_Berry)
@@ -293,11 +294,36 @@ public class NPC04_control : MonoBehaviour
         }
     }
 
+    public void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            {
+                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+            }
+        }
+    }
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
+    }
     void wait_MC_att()
     {
         MC_to_Att = true;
     }
-
+    public float GetNPC04_ATK()
+    {
+        return NPC04_ATK;
+    }
+    public bool GetNPC04_hit()
+    {
+        return hit;
+    }
     void EnableHitbox()
     {
         hitbox_Brick_Monster.SetActive(true);
@@ -344,23 +370,5 @@ public class NPC04_control : MonoBehaviour
     void dead_after()
     {
         Destroy(gameObject);
-    }
-    private void change_color_red()
-    {
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
-            if (!isCoroutineRunning)  // 檢查協程是否正在運行
-            {
-                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
-            }
-        }
-    }
-    IEnumerator ResetColorAfterDelay(float delay)
-    {
-        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
-        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
-        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
-        isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
 }
