@@ -61,10 +61,6 @@ public class MC_atk : MonoBehaviour
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-
-        }
     }
     void melee1()
     {
