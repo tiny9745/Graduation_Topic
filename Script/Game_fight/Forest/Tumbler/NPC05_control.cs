@@ -23,9 +23,12 @@ public class NPC05_control : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] meleeSwingSounds; // 0=NPC_ATK, 1=MC_ATK_To_NPC
     public NPC_interactive npc_interactive; bool bomb_Berry = true;
-
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
     void Start()
     {
+        spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color; // 儲存原始顏色
+
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -39,7 +42,7 @@ public class NPC05_control : MonoBehaviour
             }
         }
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume=static_parameters._SE_volue;
+        audioSource.volume = static_parameters._SE_volue;
         npcNavi = GetComponent<NavMeshAgent>();
         if (npcNavi != null)
         {
@@ -112,10 +115,10 @@ public class NPC05_control : MonoBehaviour
 
             NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
             if (directionOnXZ != Vector3.zero)
-                {
+            {
                 // Rotate the firePoint to face the direction
                 firePoint.rotation = Quaternion.LookRotation(directionOnXZ);
-                }
+            }
             if (NPC_angle < 0)
             {
                 NPC_angle += 360;
@@ -212,6 +215,7 @@ public class NPC05_control : MonoBehaviour
         {
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                change_color_red();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.1f);
@@ -223,21 +227,23 @@ public class NPC05_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
+                        change_color_red();
                         nPC_hP.TakeDamage(8, NPC05_DEF);
                         break;
                 }
             }
         }
-        if(NPC_HP > 0)
+        if (NPC_HP > 0)
         {
             if (other.tag == "Thorns")
             {
+                change_color_red();
                 npc_interactive.NPC_Thorns(ref NPC_HP);
-                
                 nPC_hP.UpdateHealthBar();
             }
             if (other.tag == "Bomb_Fruit" && bomb_Berry)
             {
+                change_color_red();
                 bomb_Berry = false;
                 npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
@@ -309,5 +315,23 @@ public class NPC05_control : MonoBehaviour
     void dead_after()
     {
         Destroy(gameObject);
+    }
+    private void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            {
+                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+            }
+        }
+    }
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
 }

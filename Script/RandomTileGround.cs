@@ -184,7 +184,7 @@ public class RandomTileGround : MonoBehaviour
 
     void ResetPlayerPosition()
     {
-        Vector3 startPos = new Vector3(0, 0, -tilesZ * tileSize / 2);
+        Vector3 startPos = new Vector3(0, -1, -tilesZ * tileSize / 2);
         player_S.transform.position = startPos;
         player.transform.position = startPos;
     }

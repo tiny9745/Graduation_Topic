@@ -8,20 +8,25 @@ public class NPC03_control : MonoBehaviour
 {
     NavMeshAgent npcNavi;
     public Animator animator;
-    public GameObject TargetObj, Drop;
+    public GameObject TargetObj, Drop,NPC03, hitbox_Brick_Monster, Img_npc;
     public int DetectDistance = 22;
     public float NPC_HP_Max = 70, npcSpeed = 4f, NPC_HP, dist, NPC03_ATK = 25, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani, stun, hit = false; float NPC_back = 10;
+    bool hit_Ani, hit = false; 
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC03, hitbox_Brick_Monster, Img_npc, bomb_piano, bomb_point;
     bool dead_open = true, MC_to_Att = true;
-    public NPC_HP_03 nPC_hP;
-    int NPC_angle, play_piano_atk = 0;
-    private bool isFacingRight = true;
+    public NPC_HP_03 nPC_hP;public NPC_effect_03 effect;
+    int NPC_angle;
+    private bool isFacingRight = true; public bool stun;
+
+    public Material Deduct_Blood; private Material originalMaterial;
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;private bool isCoroutineRunning = false;
     void Start()
     {
+        spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color; // 儲存原始顏色
+
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -45,11 +50,8 @@ public class NPC03_control : MonoBehaviour
         {
             npcNavi.speed = npcSpeed;
         }
-
-        if (nPC_hP == null)
-        {
-            nPC_hP = GetComponent<NPC_HP_03>();
-        }
+        nPC_hP = GetComponent<NPC_HP_03>();
+        effect = GetComponent<NPC_effect_03>();
     }
 
     void Update()
@@ -86,8 +88,6 @@ public class NPC03_control : MonoBehaviour
         }
         lastPosition = transform.position;
         transform.rotation = initialRotation;
-
-
 
         if (TargetObj != null && npcNavi != null)
         {
@@ -221,7 +221,6 @@ public class NPC03_control : MonoBehaviour
         }
     }
 
-
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
@@ -236,94 +235,26 @@ public class NPC03_control : MonoBehaviour
                     open_EnableHitbox = false;
                 }
             }
+
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                Skill();
+                change_color_red();
+                effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
+                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
+
             if (other.gameObject.CompareTag("MC_bomb"))
             {
-                // switch (Skill_public_funtion.feel_to_skill)
-                // {
-                //     case 41://happy
-                //         Debug.Log("play_piano_atk:" + play_piano_atk);
-                //         play_piano_atk++;
-                //         Debug.Log("play_piano_atk:" + play_piano_atk);
-                //         break;
-                //     case 11://anger
-                //         NPC_HP -= 225; Debug.Log("boom");
-                //         break;
-                //     case 21://sad
-                //         if (NPC_HP < NPC_back) NPC_HP = 0;
-                //         else
-                //         {
-                //             Vector3 currentPosition = transform.position;
-                //             transform.position = currentPosition - NPC_back * Vector3.back;
-                //         }
-                //         play_piano_atk = 0; Debug.Log("knockback");
-                //         break;
-                //     case 2://wow
-                //         Debug.Log("stun");
-                //         stun = true;
-                //         Invoke("Stun_end", 3);
-                //         break;
-                // }
-                for (int i = 0; i < IconManager.Instance.IconList.Count; i++)
-                {
-                    if (IconManager.Instance.IconList[i].iconID == 22)
-                    {
-                        Skill_public_funtion.feel_to_skill = 41;
-                        break;
-                    }
-                    else if (IconManager.Instance.IconList[i].iconID == 12)
-                    {
-                        Skill_public_funtion.feel_to_skill = 11;
-                        break;
-                    }
-                    else if (IconManager.Instance.IconList[i].iconID == 32)
-                    {
-                        Skill_public_funtion.feel_to_skill = 21;
-                        break;
-                    }
-                    else if (IconManager.Instance.IconList[i].iconID == 2)
-                    {
-                        Skill_public_funtion.feel_to_skill = 2;
-                        break;
-                    }
-                }
-
-
-                switch (Skill_public_funtion.feel_to_skill)
-                {
-                    case 41://happy
-                        Debug.Log("play_piano_atk:" + play_piano_atk);
-                        play_piano_atk++;
-                        Debug.Log("play_piano_atk:" + play_piano_atk);
-                        break;
-                    case 11://anger
-                        NPC_HP -= 225; Debug.Log("boom");
-                        break;
-                    case 21://sad
-                        if (NPC_HP < NPC_back) NPC_HP = 0;
-                        else
-                        {
-                            Vector3 currentPosition = transform.position;
-                            transform.position = currentPosition - NPC_back * Vector3.back;
-                        }
-                        play_piano_atk = 0; Debug.Log("knockback");
-                        break;
-                    case 2://wow
-                        Debug.Log("stun");
-                        stun = true;
-                        Invoke("Stun_end", 3);
-                        break;
-                }
+                effect.play_piano_effect();
             }
+
             if (other.gameObject.CompareTag("MC_bullet"))
             {
+                change_color_red();
                 switch (static_parameters._ItemID)
                 {
                     case 1:
@@ -341,20 +272,7 @@ public class NPC03_control : MonoBehaviour
                 }
             }
         }
-    }
-    public float GetNPC03_ATK()
-    {
-        return NPC03_ATK;
-    }
-
-    public bool GetNPC03_hit()
-    {
-        return hit;
-    }
-
-    void wait_MC_att()
-    {
-        MC_to_Att = true;
+        //補互動物件
     }
 
     void EnableHitbox()
@@ -407,28 +325,41 @@ public class NPC03_control : MonoBehaviour
         Vector3 currentPosition = transform.position;
         transform.position = currentPosition + 5f * Vector3.back;
     }
-    void Skill()//skill_add
-    {
-        if (Skill_public_funtion.play_piano)
-        {
-            if (play_piano_atk <= Skill_public_funtion.P_time)
-            {
-                play_piano_atk++;
-            }
-            else
-            {
-                Instantiate(bomb_piano, bomb_point.transform.position, Quaternion.identity);
-                play_piano_atk = 0;
-            }
-        }
-    }
-    void Stun_end()
-    {
-        stun = false;
-    }
     void dead_after()
     {
         Debug.Log("Dead03");
         Destroy(gameObject);
+    }
+    public void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            {
+                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+            }
+        }
+    }
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
+    }
+    public float GetNPC03_ATK()
+    {
+        return NPC03_ATK;
+    }
+
+    public bool GetNPC03_hit()
+    {
+        return hit;
+    }
+
+    void wait_MC_att()
+    {
+        MC_to_Att = true;
     }
 }

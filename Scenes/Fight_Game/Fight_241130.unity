@@ -134,8 +134,6 @@ GameObject:
   - component: {fileID: 708759938}
   - component: {fileID: 708759939}
   - component: {fileID: 708759943}
-  - component: {fileID: 708759940}
-  - component: {fileID: 708759944}
   - component: {fileID: 708759946}
   - component: {fileID: 708759945}
   m_Layer: 0
@@ -179,62 +177,6 @@ MonoBehaviour:
   ch3: {fileID: 0}
   drag_End: {fileID: 0}
   pick_tmp: 
---- !u!114 &708759940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708759935}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e3c68a0f8b0524d9b126428855e4bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabNPC01: {fileID: 5642523929771483394, guid: 6e871a4ae30ddba4a9ef73497a257407, type: 3}
-  prefabNPC02: {fileID: 3321726118843967734, guid: 03f42a7a501200246badafa7bf4d0b41, type: 3}
-  prefabNPC03: {fileID: 7984589684211309320, guid: 9eeed140b9c640c4c8e18d598b186606, type: 3}
-  prefabNPC04: {fileID: 1059627953628221374, guid: b9431ec825b6b2745b5ff9b58c406ae2, type: 3}
-  prefabNPC05: {fileID: 2695759851995036783, guid: 2b28e16f047b0594bad00a3f01c0e841, type: 3}
-  navMeshSurface: {fileID: 1322086228}
-  Scenes_object_obstacle:
-  - {fileID: 2526488091403990228, guid: a7e426a7bd9654046be6d97d981d5680, type: 3}
-  - {fileID: 884914828940546148, guid: ac635c53af1912d49b176e211811ec82, type: 3}
-  - {fileID: 3525074517108747967, guid: df07e73799d612c43b9b55bc5357f2b1, type: 3}
-  - {fileID: 5943936247861258934, guid: 193a6d39d9b5b2844ba7ff082d9d524e, type: 3}
-  - {fileID: 2916462123352366144, guid: fb8aa6f72b6467143a442a1747b0d6fb, type: 3}
-  - {fileID: 2523311724744806504, guid: 8d26ce3e7209f194c9c03582306a478b, type: 3}
-  - {fileID: 3861685028529657127, guid: e7dc9141fd2a6c54e94bc0d76b60d52c, type: 3}
-  - {fileID: 6578565930985479534, guid: 671db69d0aa87114f9bf84190df17da1, type: 3}
-  - {fileID: 1252936795168567495, guid: 751374cedc497c24782555deb47fe2b3, type: 3}
-  - {fileID: 8293963352012782479, guid: b5e9a8abe5c288749a5ceb0f8338821b, type: 3}
-  Scenes_object_decorate:
-  - {fileID: 7276267708724499305, guid: 35e6ba4c97713744e96d9177577dcc38, type: 3}
-  - {fileID: 4388603591350439958, guid: a2390d56b9a06204597cb0d720d3f839, type: 3}
-  - {fileID: 4514444297537960752, guid: 6cd480aa56a0d28469f21998af6163af, type: 3}
-  - {fileID: 8622352898152091823, guid: a69490347041401438782170ad5e0c21, type: 3}
-  - {fileID: 5336167650654495233, guid: bfc86ed7dfdc9e2429727ec6ccefe791, type: 3}
-  - {fileID: 1367112194009753192, guid: 250671fa0f77ab3439d451a39c153a7e, type: 3}
-  - {fileID: 3738656569607862073, guid: 4b566dd8c961aed40b48ecf62920b272, type: 3}
-  - {fileID: 8945670264001533422, guid: 33f9af65b303ce445bfba62fe4a09aea, type: 3}
-  - {fileID: 7795898564450407660, guid: b5b64bd2cf97c8b4684dc206f02ca688, type: 3}
-  - {fileID: 4222279173574603927, guid: f76df80d6960c1f4b91defaf8a63e2d1, type: 3}
-  - {fileID: 6578476565912849534, guid: d972541fb49e0b04288278e5c47159a7, type: 3}
-  - {fileID: 6508652626626296361, guid: b35c62ac1ceeccd489683b95d1190b81, type: 3}
-  - {fileID: 4906129678241455078, guid: 95e6744526caf6548adebbc76852b7e2, type: 3}
-  - {fileID: 2942544608666814600, guid: c21192f217d2e5b4d9b0f5aa0d7a2429, type: 3}
-  - {fileID: 533185323005083603, guid: e36405e251c118f42b13bf3435efee10, type: 3}
-  - {fileID: 791862308356128549, guid: 4e501f5331cebe444908234cc1484062, type: 3}
-  - {fileID: 1174564608464784175, guid: b119a679c92b5554691cd42f2c04b013, type: 3}
-  - {fileID: 3058926528013147865, guid: 055474bd8fd11464ea632848740014f4, type: 3}
-  - {fileID: 1986946452714683056, guid: 3d73e934d32b1af4b8299525b530a5b1, type: 3}
-  - {fileID: 8865882377606395094, guid: 1839c96e70f2da14995c5a3a383664de, type: 3}
-  - {fileID: 5887655240179453705, guid: f789c69e64793cc45ac8f39f6e7bda37, type: 3}
-  - {fileID: 690914327425738109, guid: eb680c26ed2a09848956ec0861d8a8df, type: 3}
-  - {fileID: 3313683382341343523, guid: 53fd406cf28a1bc4d80894881f5731aa, type: 3}
-  - {fileID: 677666755353993314, guid: eb229bb2e72645b4d89a956b2333991a, type: 3}
-  - {fileID: 2532637600621994896, guid: ae00d3b5f64cbdf43baf74c0fc1c06b1, type: 3}
-  - {fileID: 2783644724443681544, guid: d447fdf8148d7b445af99acd6601d84b, type: 3}
 --- !u!114 &708759943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,40 +196,6 @@ MonoBehaviour:
   maxFillAmount: 275
   wave_bar_range: 30
   newPosition_start: {x: 0, y: 0, z: 0}
---- !u!114 &708759944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708759935}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61d4514af4981924a98a9ae8c599fbeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FU:
-  - {fileID: 2419412015328970406, guid: e4d4e80bbba2c5348af803d012b1989b, type: 3}
-  - {fileID: 818737803094755820, guid: d627ebe9d5c4a2b49bc1e09527dd812e, type: 3}
-  - {fileID: 4851719583109950886, guid: 6c77ceb0d33ae6c4c9464b6e6921e88c, type: 3}
-  - {fileID: 5088492571822775340, guid: c358a74a3d3622f4181771cf9e6500f4, type: 3}
-  - {fileID: 7688172757733747532, guid: dedc88956f820ec4ba5fa866dd29c3a8, type: 3}
-  - {fileID: 4122519975109998006, guid: 19fb7f69a6655e34f93eb76ae622ffad, type: 3}
-  - {fileID: 5520366017768413166, guid: 33f46b2431e961647896c6c8e457250c, type: 3}
-  - {fileID: 5976259018761855286, guid: 9a1e2fff8349b6c45b45bcf185d364ca, type: 3}
-  - {fileID: 5949144070810218328, guid: 2a41b4e07dd60e44b973566e6f033f2e, type: 3}
-  - {fileID: 6677522112641515056, guid: 06783e92a6fe82545b18dc23094a8d4b, type: 3}
-  - {fileID: 8819143361240340735, guid: 7c56a4d1907147145a7dc7c1e1f42f8b, type: 3}
-  - {fileID: 5830668592555066434, guid: d2ace038f46678f429bbab9be453d2cf, type: 3}
-  - {fileID: 6603490909670482900, guid: 0ece9028e59f34b428d5c9d54bf5c8f5, type: 3}
-  - {fileID: 3877779442717713350, guid: 9ef01eaea0bafbe429e2d58f9ac6db9f, type: 3}
-  - {fileID: 6105170989157580879, guid: 2120220f0458a7f47bf60901afdec568, type: 3}
-  - {fileID: 3034588437193363748, guid: 2dcd7a9dfc7016b4aaa880cfdc398d5e, type: 3}
-  - {fileID: 3732231488801931478, guid: 5eefcdbcf922f2f4c92e81281567650f, type: 3}
-  - {fileID: 8568833836172445183, guid: ec29ca05b1b53e54badb5ce00fd12d8f, type: 3}
-  - {fileID: 7876496222325968852, guid: 622f8aee6e7eb714f9cb7c8615742713, type: 3}
-  - {fileID: 2564951563902930897, guid: f6258d184a2fa8d47a9247a114fd7eac, type: 3}
-  Door: {fileID: 0}
 --- !u!114 &708759945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,8 +232,6 @@ MonoBehaviour:
   prefabNPC04: {fileID: 1059627953628221374, guid: b9431ec825b6b2745b5ff9b58c406ae2, type: 3}
   prefabNPC05: {fileID: 2695759851995036783, guid: 2b28e16f047b0594bad00a3f01c0e841, type: 3}
   navMeshSurface: {fileID: 1322086228}
-  Scenes_object_obstacle: []
-  Scenes_object_decorate: []
 --- !u!1 &1124389366
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +322,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 6ca78e6e2433eba4a9c5acc22768fea6, type: 2}
   m_BuildHeightMesh: 0

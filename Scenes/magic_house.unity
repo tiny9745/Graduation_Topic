@@ -3372,6 +3372,8 @@ MonoBehaviour:
   HB: {fileID: 234951947}
   SB: {fileID: 1997160848}
   KB: {fileID: 1879472936}
+  cancel_img: {fileID: 0}
+  comfirm_img: {fileID: 0}
   AB1: {fileID: 21300000, guid: 48a9d1d24cee83348aec6faf27d1f887, type: 3}
   AB2: {fileID: 21300000, guid: cc6b7204d73a5354b8215861d3b2e048, type: 3}
   AB3: {fileID: 21300000, guid: 0c200bedd1c6f7c4397544c1285891e9, type: 3}
@@ -3517,6 +3519,7 @@ GameObject:
   - component: {fileID: 1875171811}
   - component: {fileID: 1875171812}
   - component: {fileID: 1875171813}
+  - component: {fileID: 1875171814}
   m_Layer: 0
   m_Name: MH_script
   m_TagString: Untagged
@@ -3615,10 +3618,24 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &1875171814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875171807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd341e4c0b1dcb64d90fdce1a6db786f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 1488708881}
+  combinedTexture: {fileID: 0}
 --- !u!1 &1879472934
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,10 +36,7 @@ public class MC_col : MonoBehaviour
     {
         if (static_parameters.MC_HP <= 0)
         {
-            static_parameters.stage_number--;
             playerAgent.enabled = false;
-            MC_S.transform.position = new Vector3(0, 0, 0);
-            SceneManager.LoadScene("magic_house");
         }
         SetLookDirection(static_parameters.face);
         // Check and update the attack speed
@@ -185,9 +182,11 @@ public class MC_col : MonoBehaviour
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         if (other.CompareTag("NPC_Att") && !static_parameters.invincible)
         {
+            Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
         }
+        
     }
     void ATK_speedupdate()
     {

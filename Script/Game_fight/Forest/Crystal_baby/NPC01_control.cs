@@ -25,9 +25,12 @@ public class NPC01_control : MonoBehaviour
     private bool isFacingRight = true;
     public GameObject Img_npc;
     public NPC_interactive npc_interactive; bool bomb_Berry = true;
-
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
     void Start()
     {
+        spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color; // 儲存原始顏色
+
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -42,7 +45,8 @@ public class NPC01_control : MonoBehaviour
         }
         hitbox_Crystal_baby.SetActive(false);
 
-        if (TargetObj == null){
+        if (TargetObj == null)
+        {
             TargetObj = GameObject.Find("Player");
         }
         npcNavi = GetComponent<NavMeshAgent>();
@@ -284,6 +288,7 @@ public class NPC01_control : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                change_color_red();
                 NPC01_hit = true;
                 if (nPC_hP == null)
                 {
@@ -300,6 +305,7 @@ public class NPC01_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
+                        change_color_red();
                         nPC_hP.TakeDamage(8, NPC01_DEF);
                         break;
                 }
@@ -311,15 +317,17 @@ public class NPC01_control : MonoBehaviour
         }
 
         // Omit the middle
-        if(NPC_HP > 0)
+        if (NPC_HP > 0)
         {
             if (other.tag == "Thorns")
             {
+                change_color_red();
                 npc_interactive.NPC_Thorns(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
             }
             if (other.tag == "Bomb_Fruit" && bomb_Berry)
             {
+                change_color_red();
                 bomb_Berry = false;
                 npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
@@ -369,5 +377,24 @@ public class NPC01_control : MonoBehaviour
     private void Des()
     {
         Destroy(gameObject);
+    }
+    private void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            {
+                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+            }
+        }
+    }
+
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
 }

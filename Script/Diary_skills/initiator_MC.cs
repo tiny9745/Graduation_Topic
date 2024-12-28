@@ -35,51 +35,55 @@ public class initiator_MC : MonoBehaviour
     {
         if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
         {
-            for (int i = 0; i < IconManager.Instance.IconList.Count; i++)
+            if (IconManager.Instance != null)
             {
-                if (IconManager.Instance.IconList[i].iconID == 22)
+                for (int i = 0; i < IconManager.Instance.IconList.Count; i++)
                 {
-                    Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
-                    timer_f += Time.deltaTime;
-                    if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
+                    if (IconManager.Instance.IconList[i].iconID == 22)
                     {
-                        Skill_public_funtion.Normal_blood_deduction_NPC = false;
-                        timer_f = 0;
-                        static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC_DEF) * 0.1f;
-                        if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
-                        Debug.Log("MC_HP" + static_parameters.MC_HP);
-                    }
-                    else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
-                    {
-                        static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
-                        timer_f = 0;
-                        Debug.Log("MC_HP" + static_parameters.MC_HP);
-                    }
-                }
-                if (IconManager.Instance.IconList[i].iconID == 1)
-                {
-                    if (Skill_public_funtion.MC_HP_tmp != static_parameters.MC_HP)
-                    {
-                        Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
-                        static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
                         Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+                        timer_f += Time.deltaTime;
+                        if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
+                        {
+                            Skill_public_funtion.Normal_blood_deduction_NPC = false;
+                            timer_f = 0;
+                            static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC_DEF) * 0.1f;
+                            if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                            Debug.Log("MC_HP" + static_parameters.MC_HP);
+                        }
+                        else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
+                        {
+                            static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
+                            timer_f = 0;
+                            Debug.Log("MC_HP" + static_parameters.MC_HP);
+                        }
                     }
-                }
-                if (IconManager.Instance.IconList[i].iconID == 12)
-                {
-                    if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
+                    if (IconManager.Instance.IconList[i].iconID == 1)
                     {
-                        Debug.Log("MC_ATK(before):" + static_parameters.MC_ATK);
-                        static_parameters.MC_ATK *= 1.5f;
-                        Debug.Log("MC_ATK(after):" + static_parameters.MC_ATK);
+                        if (Skill_public_funtion.MC_HP_tmp != static_parameters.MC_HP)
+                        {
+                            Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
+                            static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
+                            Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+                        }
                     }
-                    if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
+                    if (IconManager.Instance.IconList[i].iconID == 12)
                     {
-                        Skill_public_funtion.Normal_blood_deduction_NPC = false;
-                        static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + static_parameters.MC_DEF) * 0.1f;
+                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
+                        {
+                            Debug.Log("MC_ATK(before):" + static_parameters.MC_ATK);
+                            static_parameters.MC_ATK *= 1.5f;
+                            Debug.Log("MC_ATK(after):" + static_parameters.MC_ATK);
+                        }
+                        if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
+                        {
+                            Skill_public_funtion.Normal_blood_deduction_NPC = false;
+                            static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + static_parameters.MC_DEF) * 0.1f;
+                        }
                     }
                 }
             }
+
             // switch (Skill_public_funtion.feel_to_skill)
             // {
             //     case 22://反抗心理
