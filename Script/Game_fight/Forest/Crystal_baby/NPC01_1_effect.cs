@@ -42,7 +42,6 @@ public class NPC01_1_effect : MonoBehaviour
             }
             else if (IconManager.Instance.IconList[i].iconID == 12)
             {
-                control.change_color_red();
                 control.NPC_HP -= 225;
                 break;
             }
@@ -63,7 +62,6 @@ public class NPC01_1_effect : MonoBehaviour
                 break;
             }
         }
-        control.change_color_red();
     }
     void Stun_end()
     {
