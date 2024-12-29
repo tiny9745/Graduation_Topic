@@ -75,7 +75,7 @@ public class Ani_MC : MonoBehaviour
         }
 
         // Dash 邏輯
-        if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown)
+        if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
         {
             StartCoroutine(DashSequence());
         }
