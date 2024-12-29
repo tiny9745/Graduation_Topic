@@ -14,8 +14,10 @@ public class Ani_MC : MonoBehaviour
     private float startTime;
     private float elapsedTime;
     public GameObject Play_s;
-    float dashStartTime = 0;
-    private bool isDashCooldown = false;
+    static public bool isDashCooldown = false;
+    static public bool isDashCooldown_for_move = false;
+
+    static public float DashCD_time = 15f;
 
     void Start()
     {
@@ -115,8 +117,9 @@ public class Ani_MC : MonoBehaviour
 
         // 動畫結束後恢復到預設狀態
         Defult_Check();
-        yield return new WaitForSeconds(15f); // 冷卻 15 秒
+        yield return new WaitForSeconds(DashCD_time); // 冷卻 15 秒
         isDashCooldown = false; // 重置冷卻狀態
+        isDashCooldown_for_move = false;
     }
 
     void PlayDashAnimation()
