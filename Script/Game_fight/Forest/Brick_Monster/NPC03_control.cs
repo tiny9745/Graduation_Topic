@@ -270,7 +270,7 @@ public class NPC03_control : MonoBehaviour
                 }
             }
         }
-        //補互動物件
+        
         if (NPC_HP > 0)
         {
             if (other.tag == "Thorns")
