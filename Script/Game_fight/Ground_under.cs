@@ -42,7 +42,6 @@ public class Ground_under : MonoBehaviour
             else if (renderer.material != null && renderer.material.mainTexture != null)
             {
                 material.mainTexture = renderer.material.mainTexture;
-                Debug.Log($"從 {renderer.gameObject.name} 抓取貼圖：{material.mainTexture.name}");
             }
             else
             {
@@ -56,7 +55,5 @@ public class Ground_under : MonoBehaviour
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
             renderer.receiveShadows = true;
         }
-
-        Debug.Log($"已完成對 {obj.name} 及其子物件的材質設置");
     }
 }
