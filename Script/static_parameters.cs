@@ -15,7 +15,7 @@ public class static_parameters : MonoBehaviour
     static public bool isSceneLoading = false; //Used to track whether the scene is loading
     static public bool Bookstate = false; //Used to track whether the scene is changing
     static public bool filp = false, invincible = false; //to trigger the flip animation
-    static public short Ani_state = 0, face = 0, pickdiary = 1;
+    static public int Ani_state = 0, face = 0, pickdiary = 1;
     static public int Change_enemy = 0;
 
     static public int Comic_scene_sort = 0;
