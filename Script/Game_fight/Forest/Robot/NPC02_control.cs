@@ -5,30 +5,17 @@ using UnityEngine.AI;
 
 public class NPC02_control : MonoBehaviour
 {
-    //test;
+    public NPC_HP_02 nPC_hP;public NPC_interactive npc_interactive; public NPC_effect_02 effect;
     NavMeshAgent npcNavi;
     public Animator animator;
-    public GameObject TargetObj;
-    public int DetectDistance = 20; public float NPC02_ATK = 60; public float NPC02_DEF = 10;
-    public float NPC_HP_Max = 80; public float npcSpeed = 5f;
-    public float NPC_HP;
-    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    float dist;
-    bool hit_Ani = false;
-    bool hit = false;
-    private Vector3 lastPosition;
-    private Quaternion initialRotation;
-    public GameObject NPC02;
-    public GameObject hitbox_Robot;
-    public GameObject Drop;
-    bool dead_open = true;
-    bool MC_to_Att = true;
-    public NPC_HP_02 nPC_hP;
-    int NPC_angle = 0;
-    private bool isFacingRight = true;
-    public GameObject Img_npc;
-    public NPC_interactive npc_interactive; bool bomb_Berry = true;
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;private bool isCoroutineRunning = false;
+    public GameObject TargetObj,NPC02,Drop,hitbox_Robot,Img_npc;
+    public int DetectDistance = 20;int NPC_angle = 0;
+    public float NPC02_ATK = 50, NPC02_DEF = 10,NPC_HP_Max = 80, npcSpeed = 5f, NPC_HP;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;float dist;
+    bool hit_Ani,hit = false,bomb_Berry, dead_open, MC_to_Att= true;
+    private bool isFacingRight = true,isCoroutineRunning = false; public bool stun = false;
+    private Vector3 lastPosition;private Quaternion initialRotation;
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -234,21 +221,13 @@ public class NPC02_control : MonoBehaviour
         }
     }
 
-    public float GetNPC02_ATK()
-    {
-        return NPC02_ATK;
-    }
-
-    public bool GetNPC02_hit()
-    {
-        return hit;
-    }
+    
 
     bool open_EnableHitbox = true;
     bool tmp_to_atk = false;
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime)
+        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -259,32 +238,44 @@ public class NPC02_control : MonoBehaviour
                     open_EnableHitbox = false;
                 }
             }
+
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                if (nPC_hP == null)
-                {
-                    Debug.LogError("nPC_hP is not assigned.");
-                    return;
-                }
                 change_color_red();
+                effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
                 MC_to_Att = false;
+                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
 
-            // Omit the middle
+            if (other.gameObject.CompareTag("MC_bomb"))
+            {
+                effect.play_piano_effect();
+            }
+
             if (other.gameObject.CompareTag("MC_bullet"))
             {
+                change_color_red();
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        change_color_red();
-                        nPC_hP.TakeDamage(8, NPC02_DEF);
+                        nPC_hP.TakeDamage(4, NPC02_DEF);
+                        break;
+                    case 2:
+                        nPC_hP.TakeDamage(3, NPC02_DEF);
+                        break;
+                    case 3:
+                        nPC_hP.TakeDamage(5, NPC02_DEF);
+                        break;
+                    case 4:
+                        nPC_hP.TakeDamage(1, NPC02_DEF);
                         break;
                 }
             }
         }
+        
         if (NPC_HP > 0)
         {
             if (other.tag == "Thorns")
@@ -302,7 +293,15 @@ public class NPC02_control : MonoBehaviour
             }
         }
     }
+    public float GetNPC02_ATK()
+    {
+        return NPC02_ATK;
+    }
 
+    public bool GetNPC02_hit()
+    {
+        return hit;
+    }
     void wait_MC_att()
     {
         MC_to_Att = true;
@@ -326,6 +325,31 @@ public class NPC02_control : MonoBehaviour
         Vector3 theScale = Img_npc.transform.localScale;
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
+    }
+    
+    void knock_back()
+    {
+        Vector3 currentPosition = transform.position;
+        transform.position = currentPosition + 0.5f * Vector3.back;
+    }
+    
+    public void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            {
+                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+            }
+        }
+    }
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
     void dead()
     {
@@ -353,31 +377,8 @@ public class NPC02_control : MonoBehaviour
             dead_open = false;
         }
     }
-    void knock_back()
-    {
-        Vector3 currentPosition = transform.position;
-        transform.position = currentPosition + 0.5f * Vector3.back;
-    }
     void dead_after()
     {
         Destroy(gameObject);
-    }
-    private void change_color_red()
-    {
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
-            if (!isCoroutineRunning)  // 檢查協程是否正在運行
-            {
-                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
-            }
-        }
-    }
-    IEnumerator ResetColorAfterDelay(float delay)
-    {
-        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
-        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
-        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
-        isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
 }

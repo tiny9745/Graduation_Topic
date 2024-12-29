@@ -17,6 +17,7 @@ public class NPC01_effect : MonoBehaviour
     }
     public void Skill()//skill_add
     {
+        Debug.Log("NPC01 skill");
         if (Skill_public_funtion.play_piano)
         {
             if (play_piano_atk <= Skill_public_funtion.P_time)

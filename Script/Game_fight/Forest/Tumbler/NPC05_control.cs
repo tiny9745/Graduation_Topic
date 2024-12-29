@@ -6,24 +6,20 @@ using UnityEngine.AI;
 
 public class NPC05_control : MonoBehaviour
 {
+    public NPC_interactive npc_interactive; public NPC_HP_05 nPC_hP; public NPC_effect_05 effect;
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj, Img_npc, bulletPrefab, NPC05, Drop;
-    public int DetectDistance = 12;
+    public int DetectDistance = 12; int NPC_angle = 0;
     public float NPC05_ATK = 35, NPC05_DEF = 15, NPC_HP_Max = 160, npcSpeed = 0f, NPC_HP, fireRate = 1f, bulletSpeed = 20f;
     float dist, nextFireTime = 0f;
-    bool hit_Ani, hit = false;
+    bool hit_Ani, hit = false,dead_open, MC_to_Att, bomb_Berry = true;
+    private bool isCoroutineRunning = false, isFacingRight = true; public bool stun = false;
     private Vector3 lastPosition;
-    private Quaternion initialRotation;
-    bool dead_open, MC_to_Att = true;
-    public NPC_HP_05 nPC_hP;
-    int NPC_angle = 0;
-    private bool isFacingRight = true;
+    private Quaternion initialRotation;    
     public Transform firePoint;
-    public AudioSource audioSource;
-    public AudioClip[] meleeSwingSounds; // 0=NPC_ATK, 1=MC_ATK_To_NPC
-    public NPC_interactive npc_interactive; bool bomb_Berry = true;
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
+    public AudioSource audioSource;public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; 
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -198,14 +194,17 @@ public class NPC05_control : MonoBehaviour
         }
     }
 
-    public float GetNPC05_ATK()
+    
+    void Shoot()
     {
-        return NPC05_ATK;
-    }
-
-    public bool GetNPC05_hit()
-    {
-        return hit;
+        // Instantiate the bullet
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            PlaySoundAtIndex(0);
+            rb.velocity = firePoint.forward * bulletSpeed;
+        }
     }
 
 
@@ -217,24 +216,35 @@ public class NPC05_control : MonoBehaviour
             {
                 change_color_red();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
-                MC_to_Att = false;
+                MC_to_Att = false; effect.Skill();
                 Invoke("wait_MC_att", 0.1f);
             }
 
             // Omit the middle
             if (other.gameObject.CompareTag("MC_bullet"))
             {
+                change_color_red();
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        change_color_red();
-                        nPC_hP.TakeDamage(8, NPC05_DEF);
+                        nPC_hP.TakeDamage(4, NPC05_DEF);
+                        break;
+                    case 2:
+                        nPC_hP.TakeDamage(3, NPC05_DEF);
+                        break;
+                    case 3:
+                        nPC_hP.TakeDamage(5, NPC05_DEF);
+                        break;
+                    case 4:
+                        nPC_hP.TakeDamage(1, NPC05_DEF);
                         break;
                 }
             }
-        }
-        if (NPC_HP > 0)
-        {
+
+            if (other.gameObject.CompareTag("MC_bomb"))
+            {
+                effect.play_piano_effect();
+            }
             if (other.tag == "Thorns")
             {
                 change_color_red();
@@ -248,25 +258,23 @@ public class NPC05_control : MonoBehaviour
                 npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
             }
-        }
+        }else dead();
     }
-    void Shoot()
-    {
-        // Instantiate the bullet
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            PlaySoundAtIndex(0);
-            rb.velocity = firePoint.forward * bulletSpeed;
-        }
-    }
+    
 
     void wait_MC_att()
     {
         MC_to_Att = true;
     }
+    public float GetNPC05_ATK()
+    {
+        return NPC05_ATK;
+    }
 
+    public bool GetNPC05_hit()
+    {
+        return hit;
+    }
 
     void Flip()
     {
@@ -276,6 +284,37 @@ public class NPC05_control : MonoBehaviour
         Img_npc.transform.localScale = theScale;
     }
 
+    
+    private void PlaySoundAtIndex(int index)
+    {
+        if (meleeSwingSounds.Length > index && audioSource != null)
+        {
+            audioSource.PlayOneShot(meleeSwingSounds[index]);
+        }
+        else
+        {
+            Debug.LogWarning($"音效序號 {index} 超出範圍或 AudioSource 未指定");
+        }
+    }
+    
+    public void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            {
+                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+            }
+        }
+    }
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
+    }
     void dead()
     {
         if (dead_open)
@@ -301,37 +340,8 @@ public class NPC05_control : MonoBehaviour
             dead_open = false;
         }
     }
-    private void PlaySoundAtIndex(int index)
-    {
-        if (meleeSwingSounds.Length > index && audioSource != null)
-        {
-            audioSource.PlayOneShot(meleeSwingSounds[index]);
-        }
-        else
-        {
-            Debug.LogWarning($"音效序號 {index} 超出範圍或 AudioSource 未指定");
-        }
-    }
     void dead_after()
     {
         Destroy(gameObject);
-    }
-    private void change_color_red()
-    {
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
-            if (!isCoroutineRunning)  // 檢查協程是否正在運行
-            {
-                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
-            }
-        }
-    }
-    IEnumerator ResetColorAfterDelay(float delay)
-    {
-        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
-        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
-        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
-        isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
 }
