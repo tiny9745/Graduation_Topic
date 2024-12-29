@@ -135,7 +135,6 @@ public class Ani_MC : MonoBehaviour
         if (ATK_count != 0)
         {
             isAttack_combo = false;
-            Debug.Log("isAttack_combo: " + isAttack_combo);
         }
     }
 
@@ -143,7 +142,6 @@ public class Ani_MC : MonoBehaviour
     {
         isAttackPlaying = true;
         isAttack_combo = true;
-        Debug.Log("isAttack_combo: " + isAttack_combo);
         // 播放攻擊動畫
         MC_ani_state();
         switch (static_parameters.Ani_state)
@@ -200,13 +198,44 @@ public class Ani_MC : MonoBehaviour
                 PlayWalkAnimation();
                 break;
             case 2: // Attack
-                PlayAttackAnimation("MC_FR_Atk_01");
+                Atk_step_number();
                 break;
             case 3: // Attack 2
-                PlayAttackAnimation("MC_FR_Atk_02");
+                Atk_step_number();
                 break;
             case 4: // Attack 3
-                PlayAttackAnimation("MC_FR_Atk_03");
+                Atk_step_number();
+                break;
+        }
+    }
+
+    private void Atk_step_number()
+    {
+        switch (Angle_sum)
+        {
+            case 0:
+                PlayAttackAnimation($"MC_FR_Atk_0{static_parameters.Ani_state - 1}");
+                break;
+            case 45:
+                PlayAttackAnimation($"MC_BR_Atk_0{static_parameters.Ani_state - 1}");
+                break;
+            case 90:
+                PlayAttackAnimation($"MC_BR_Atk_0{static_parameters.Ani_state - 1}");
+                break;
+            case 135:
+                PlayAttackAnimation($"MC_BL_Atk_0{static_parameters.Ani_state - 1}");
+                break;
+            case 180:
+                PlayAttackAnimation($"MC_FL_Atk_0{static_parameters.Ani_state - 1}");
+                break;
+            case 225:
+                PlayAttackAnimation($"MC_FL_Atk_0{static_parameters.Ani_state - 1}");
+                break;
+            case 270:
+                PlayAttackAnimation($"MC_FR_Atk_0{static_parameters.Ani_state - 1}");
+                break;
+            case 315:
+                PlayAttackAnimation($"MC_FR_Atk_0{static_parameters.Ani_state - 1}");
                 break;
         }
     }
