@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ptest : MonoBehaviour
@@ -161,15 +162,19 @@ public class Ptest : MonoBehaviour
     }
     void Test()
     {
+        List<int> k = new List<int>();
         for(int i = 0; i < availablePieces.Count; i++)
         {
             if (availablePieces[i].PieceName.Substring(0, 3) == "Blu"){
                 pickedPieces.Add(availablePieces[i]);
                 SortPiece(availablePieces[i]);
                 show.Add(availablePieces[i]);
-                Debug.Log(availablePieces[i].PieceName);
-                availablePieces.RemoveAt(i);             
+                k.Add(i);        
             }   
+        }
+        for(int i = 0; i < k.Count; i++)
+        {
+            availablePieces.RemoveAt(k[i]);
         }
         UpdateInventoryUI();
     }

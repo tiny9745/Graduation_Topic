@@ -224,7 +224,6 @@ public class NPC02_control : MonoBehaviour
     
 
     bool open_EnableHitbox = true;
-    bool tmp_to_atk = false;
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
