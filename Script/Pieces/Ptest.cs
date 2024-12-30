@@ -17,6 +17,7 @@ public class Ptest : MonoBehaviour
     {
         Diary_piece[] allPieces = Resources.LoadAll<Diary_piece>("Piece");
         availablePieces.AddRange(allPieces); InitializePieceSorting();
+        Test();
     }
     void InitializePieceSorting()
     {
@@ -155,6 +156,20 @@ public class Ptest : MonoBehaviour
                     }
                 }
                 break;
+        }
+        UpdateInventoryUI();
+    }
+    void Test()
+    {
+        for(int i = 0; i < availablePieces.Count; i++)
+        {
+            if (availablePieces[i].PieceName.Substring(0, 3) == "Blu"){
+                pickedPieces.Add(availablePieces[i]);
+                SortPiece(availablePieces[i]);
+                show.Add(availablePieces[i]);
+                Debug.Log(availablePieces[i].PieceName);
+                availablePieces.RemoveAt(i);             
+            }   
         }
         UpdateInventoryUI();
     }
