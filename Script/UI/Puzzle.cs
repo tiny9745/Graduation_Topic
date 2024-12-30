@@ -50,12 +50,18 @@ public class Puzzle : MonoBehaviour
     public void Complet_piecing()
     {
         cpmplete_piece_object.SetActive(true);
+        Debug.Log("cpmplete_piece_object open");
         complete_piece_animator.SetInteger("piece_complete_color", DragPiece_End.puzzle_color);
+        Debug.Log("Complet_piecing:" + DragPiece_End.puzzle_color);
         composite_col.enabled = false;
+        Debug.Log("2");
         thisItem = key_count();
+        Debug.Log("thisItem:" + thisItem);
         dragPiece_end.Combination_End();
+        Debug.Log("3");
         // IconManager.Instance.Add(thisItem);
         Invoke("Complete_piece_after", 3f);
+        Debug.Log("4");
     }
 
     Diary_icon key_count()
@@ -85,10 +91,12 @@ public class Puzzle : MonoBehaviour
     }
     private void Complete_piece_after()
     {
+        Debug.Log("Complete_piece_after open");
         UI.Onclick3();
         Debug.Log("Complete_piece_after:" + DragPiece_End.end_count);
         IconManager.Instance.Addicon(DragPiece_End.end_count);
         cpmplete_piece_object.SetActive(false);
         complete_piece_animator.SetInteger("piece_complete_color", -1);
+        Debug.Log("Complet_piecing:" + DragPiece_End.puzzle_color);
     }
 }
