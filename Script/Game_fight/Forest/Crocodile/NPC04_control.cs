@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class NPC04_control : MonoBehaviour
 {
-    public NPC_HP_04 nPC_hP; public NPC_effect_04 effect;
+    public NPC_HP_04 nPC_hP; public NPC_effect_04 effect;public NPC_interactive npc_interactive;
     NavMeshAgent npcNavi;
     public Animator animator;
-    public GameObject TargetObj;
+    public GameObject TargetObj,NPC04, hitbox_Brick_Monster, Drop, Img_npc;
     public int DetectDistance = 15; int NPC_angle = 0;
     public float NPC04_ATK = 15, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
     float dist;
@@ -17,9 +17,6 @@ public class NPC04_control : MonoBehaviour
     public bool stun = false; private bool isFacingRight = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC04, hitbox_Brick_Monster, Drop, Img_npc;
-    
-    public NPC_interactive npc_interactive;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;private bool isCoroutineRunning = false;
     void Start()
     {
