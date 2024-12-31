@@ -33,7 +33,5 @@ public class TransparentMask2DExample : MonoBehaviour
 
         Renderer renderer = mask.GetComponent<Renderer>();
         renderer.material = MaskMaterial;
-
-        Destroy(mask.GetComponent<Collider>()); // 移除多餘的碰撞器
     }
 }
