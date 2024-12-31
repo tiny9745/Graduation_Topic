@@ -14,7 +14,7 @@ public class NPC01_1_control : MonoBehaviour
     float dist;
     private float damageCooldown = 1.0f; // Time in seconds between damage instances
     private float nextDamageTime = 0.0f;
-    bool hit_Ani = false, hit = false, dead_open , MC_to_Att, bomb_Berry = true;
+    bool hit_Ani = false, hit = false, dead_open= true , MC_to_Att= true, bomb_Berry = true;
     private bool isFacingRight = true; public bool stun=false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
@@ -28,7 +28,7 @@ public class NPC01_1_control : MonoBehaviour
     void Start()
     {
         static_parameters.Change_enemy++;
-        NPC_HP = NPC_HP_Max;MC_to_Att = true;
+        NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         NPC01_1 = GameObject.Find("NPC01_1");
         spriterenderer = Img_npc.GetComponent<SpriteRenderer>();

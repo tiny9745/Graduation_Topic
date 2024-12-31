@@ -12,7 +12,7 @@ public class NPC02_control : MonoBehaviour
     public int DetectDistance = 20;int NPC_angle = 0;
     public float NPC02_ATK = 20, NPC02_DEF = 10,NPC_HP_Max = 80, npcSpeed = 7f, NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;float dist;
-    bool hit_Ani,hit = false,bomb_Berry, dead_open, MC_to_Att= true;
+    bool hit_Ani= false,hit = false,bomb_Berry= true, dead_open= true, MC_to_Att= true;
     private bool isFacingRight = true,isCoroutineRunning = false; public bool stun = false;
     private Vector3 lastPosition;private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
@@ -22,7 +22,7 @@ public class NPC02_control : MonoBehaviour
         originalColor = spriteRenderer.color; // 儲存原始顏色
 
         static_parameters.Change_enemy++;
-        NPC_HP = NPC_HP_Max;MC_to_Att = true;
+        NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         NPC02 = GameObject.Find("NPC02");
         if (NPC02 != null)

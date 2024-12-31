@@ -13,7 +13,7 @@ public class NPC05_control : MonoBehaviour
     public int DetectDistance = 12; int NPC_angle = 0;
     public float NPC05_ATK = 35, NPC05_DEF = 15, NPC_HP_Max = 160, npcSpeed = 0f, NPC_HP, fireRate = 1f, bulletSpeed = 20f;
     float dist, nextFireTime = 0f;
-    bool hit_Ani, hit = false,dead_open, MC_to_Att, bomb_Berry = true;
+    bool hit_Ani= false, hit = false, dead_open= true, MC_to_Att= true, bomb_Berry = true;
     private bool isCoroutineRunning = false, isFacingRight = true; public bool stun = false;
     private Vector3 lastPosition;
     private Quaternion initialRotation;    
@@ -26,7 +26,7 @@ public class NPC05_control : MonoBehaviour
         originalColor = spriteRenderer.color; // 儲存原始顏色
 
         static_parameters.Change_enemy++;
-        NPC_HP = NPC_HP_Max;MC_to_Att = true;
+        NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         NPC05 = GameObject.Find("NPC05");
         if (NPC05 != null)

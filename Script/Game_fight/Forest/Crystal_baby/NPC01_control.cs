@@ -13,7 +13,7 @@ public class NPC01_control : MonoBehaviour
     public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100, npcSpeed = 5f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani, hit = false;bool bomb_Berry,dead_open, MC_to_Att= true;
+    bool hit_Ani= false, hit = false, bomb_Berry= true,dead_open= true, MC_to_Att= true;
     public bool NPC01_hit = false,stun = true; private bool isFacingRight = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
