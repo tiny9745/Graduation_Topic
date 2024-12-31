@@ -24,7 +24,7 @@ public class NPC04_control : MonoBehaviour
         originalColor = spriteRenderer.color; // 儲存原始顏色
 
         static_parameters.Change_enemy++;
-        NPC_HP = NPC_HP_Max;
+        NPC_HP = NPC_HP_Max;MC_to_Att = true;
         initialRotation = transform.rotation;
         NPC04 = GameObject.Find("NPC04");
         if (NPC04 != null)
@@ -242,7 +242,6 @@ public class NPC04_control : MonoBehaviour
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
                 MC_to_Att = false;
-                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }

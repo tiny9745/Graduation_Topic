@@ -26,7 +26,7 @@ public class NPC05_control : MonoBehaviour
         originalColor = spriteRenderer.color; // 儲存原始顏色
 
         static_parameters.Change_enemy++;
-        NPC_HP = NPC_HP_Max;
+        NPC_HP = NPC_HP_Max;MC_to_Att = true;
         initialRotation = transform.rotation;
         NPC05 = GameObject.Find("NPC05");
         if (NPC05 != null)

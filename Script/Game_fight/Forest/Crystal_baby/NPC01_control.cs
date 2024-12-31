@@ -280,7 +280,6 @@ public class NPC01_control : MonoBehaviour
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;
-                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }

@@ -11,9 +11,9 @@ public class NPC03_control : MonoBehaviour
     public Animator animator;
     public GameObject TargetObj, Drop,NPC03, hitbox_Brick_Monster, Img_npc;
     public int DetectDistance = 22; int NPC_angle;
-    public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, dist, NPC03_ATK = 25, NPC03_DEF = 5;
+    public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, dist, NPC03_ATK = 15, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani, hit = false;bool dead_open, MC_to_Att,bomb_Berry = true;
+    bool hit_Ani, hit = false;bool dead_open, MC_to_Att, bomb_Berry = true;
     public bool stun; private bool isFacingRight = true; 
     private Vector3 lastPosition;
     private Quaternion initialRotation;
@@ -26,7 +26,7 @@ public class NPC03_control : MonoBehaviour
         originalColor = spriteRenderer.color; // 儲存原始顏色
 
         static_parameters.Change_enemy++;
-        NPC_HP = NPC_HP_Max;
+        NPC_HP = NPC_HP_Max;MC_to_Att = true;
         initialRotation = transform.rotation;
         NPC03 = GameObject.Find("NPC03");
         if (NPC03 != null)
@@ -236,11 +236,11 @@ public class NPC03_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                Debug.Log("MC_Att");
                 change_color_red();
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
-                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }

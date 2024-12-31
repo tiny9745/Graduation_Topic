@@ -38,13 +38,11 @@ public class NPC_effect_02 : MonoBehaviour
             if (IconManager.Instance.IconList[i].iconID == 22)
             {
                 play_piano_atk++;
-                break;
             }
             else if (IconManager.Instance.IconList[i].iconID == 12)
             {
                 control.change_color_red();
                 control.NPC_HP -= 225;
-                break;
             }
             else if (IconManager.Instance.IconList[i].iconID == 32)
             {
@@ -54,13 +52,11 @@ public class NPC_effect_02 : MonoBehaviour
                     transform.position = currentPosition - NPC_back * Vector3.back;
                 }
                 play_piano_atk = 0;
-                break;
             }
             else if (IconManager.Instance.IconList[i].iconID == 2)
             {
                 control.stun = true;
                 Invoke("Stun_end", 3);
-                break;
             }
         }
         control.change_color_red();

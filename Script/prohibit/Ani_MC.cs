@@ -292,7 +292,6 @@ public class Ani_MC : MonoBehaviour
 
     void PlayAttackAnimation(string animationName)
     {
-        Debug.Log($"MC_ani_state: {static_parameters.Ani_state}");
         animator.CrossFade(animationName, 0.1f);
     }
 }

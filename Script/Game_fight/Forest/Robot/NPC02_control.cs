@@ -10,7 +10,7 @@ public class NPC02_control : MonoBehaviour
     public Animator animator;
     public GameObject TargetObj,NPC02,Drop,hitbox_Robot,Img_npc;
     public int DetectDistance = 20;int NPC_angle = 0;
-    public float NPC02_ATK = 50, NPC02_DEF = 10,NPC_HP_Max = 80, npcSpeed = 7f, NPC_HP;
+    public float NPC02_ATK = 20, NPC02_DEF = 10,NPC_HP_Max = 80, npcSpeed = 7f, NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;float dist;
     bool hit_Ani,hit = false,bomb_Berry, dead_open, MC_to_Att= true;
     private bool isFacingRight = true,isCoroutineRunning = false; public bool stun = false;
@@ -22,7 +22,7 @@ public class NPC02_control : MonoBehaviour
         originalColor = spriteRenderer.color; // 儲存原始顏色
 
         static_parameters.Change_enemy++;
-        NPC_HP = NPC_HP_Max;
+        NPC_HP = NPC_HP_Max;MC_to_Att = true;
         initialRotation = transform.rotation;
         NPC02 = GameObject.Find("NPC02");
         if (NPC02 != null)
@@ -221,8 +221,6 @@ public class NPC02_control : MonoBehaviour
         }
     }
 
-    
-
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
@@ -244,7 +242,6 @@ public class NPC02_control : MonoBehaviour
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
                 MC_to_Att = false;
-                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
