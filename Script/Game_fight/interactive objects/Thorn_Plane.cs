@@ -13,6 +13,9 @@ public class ThornsController : MonoBehaviour
     private HashSet<Collider> collidersInRange = new HashSet<Collider>(); // 記錄範圍內的碰撞體
     private bool isRaising = false; // 判斷是否正在上升
     private bool isLowering = false; // 判斷是否正在下降
+    
+    public Material maskedMaterial; // MaskedObject2D 的材質
+    public GameObject maskPlane;    // TransparentMask2D 物件
 
     void Start()
     {
@@ -22,7 +25,7 @@ public class ThornsController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("NPC"))
+        if (other.CompareTag("Player"))
         {
             collidersInRange.Add(other); // 將物件加入集合
         }

@@ -7,6 +7,7 @@ Shader "Custom/TransparentMask2D"
     SubShader
     {
         Tags { "Queue"="Overlay" }
+
         Stencil
         {
             Ref 1
@@ -15,7 +16,7 @@ Shader "Custom/TransparentMask2D"
         }
 
         Blend SrcAlpha OneMinusSrcAlpha
-        ColorMask 0 // 遮罩不會繪製顏色
+        ColorMask 0 // 不繪製顏色，只是用來標記
 
         Pass {}
     }
