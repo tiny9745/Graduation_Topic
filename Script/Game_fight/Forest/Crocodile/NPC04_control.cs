@@ -10,7 +10,7 @@ public class NPC04_control : MonoBehaviour
     public Animator animator;
     public GameObject TargetObj;
     public int DetectDistance = 15; int NPC_angle = 0;
-    public float NPC04_ATK = 15, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 6f, NPC_HP;
+    public float NPC04_ATK = 15, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani, hit = false; bool dead_open, MC_to_Att,open_EnableHitbox,bomb_Berry = true;
