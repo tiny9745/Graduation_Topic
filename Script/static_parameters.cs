@@ -6,7 +6,7 @@ public class static_parameters : MonoBehaviour
 {
     //Need save
     static public float MC_HP_Max = 100, MC_HP = MC_HP_Max, MC_HP_tmp = MC_HP, MC_HP_Max_tmp = MC_HP_Max;
-    static public float MC_ATK = 10, MC_ATK_tmp = MC_ATK, MC_DEF = 10, MC_DEF_tmp = MC_DEF, MC_Wspeed = 8, MC_Wspeed_tmp = MC_Wspeed, knockback_force = 3, MC_ATK_Speed = 1, MC_ATK_Speed_tmp = MC_ATK_Speed;
+    static public float MC_ATK = 10, MC_ATK_tmp = MC_ATK, MC_DEF = 10, MC_DEF_tmp = MC_DEF, MC_Wspeed = 8.5f, MC_Wspeed_tmp = MC_Wspeed, knockback_force = 3, MC_ATK_Speed = 1, MC_ATK_Speed_tmp = MC_ATK_Speed;
     static public int stage_number = 1, stage_number_Boss = 0;
     static public int stage_number_Store = 0, stage_number_Award = 0;
     public static int[] Text_box_state = { 1, 1, 0, 0 };

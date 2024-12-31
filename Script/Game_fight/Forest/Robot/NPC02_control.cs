@@ -10,7 +10,7 @@ public class NPC02_control : MonoBehaviour
     public Animator animator;
     public GameObject TargetObj,NPC02,Drop,hitbox_Robot,Img_npc;
     public int DetectDistance = 20;int NPC_angle = 0;
-    public float NPC02_ATK = 50, NPC02_DEF = 10,NPC_HP_Max = 80, npcSpeed = 5f, NPC_HP;
+    public float NPC02_ATK = 50, NPC02_DEF = 10,NPC_HP_Max = 80, npcSpeed = 7f, NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;float dist;
     bool hit_Ani,hit = false,bomb_Berry, dead_open, MC_to_Att= true;
     private bool isFacingRight = true,isCoroutineRunning = false; public bool stun = false;
