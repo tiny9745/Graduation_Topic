@@ -21,6 +21,7 @@ public class Puzzle : MonoBehaviour
     void Start()
     {
         Diary_icon[] all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
+        complete_piece_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
 
     // Update is called once per frame
@@ -50,18 +51,17 @@ public class Puzzle : MonoBehaviour
     public void Complet_piecing()
     {
         cpmplete_piece_object.SetActive(true);
-        Debug.Log("cpmplete_piece_object open");
         complete_piece_animator.SetInteger("piece_complete_color", DragPiece_End.puzzle_color);
-        Debug.Log("Complet_piecing:" + DragPiece_End.puzzle_color);
         composite_col.enabled = false;
-        Debug.Log("2");
         thisItem = key_count();
-        Debug.Log("thisItem:" + thisItem);
         dragPiece_end.Combination_End();
-        Debug.Log("3");
         // IconManager.Instance.Add(thisItem);
-        Invoke("Complete_piece_after", 3f);
-        Debug.Log("4");
+        StartCoroutine(DelayedAction(3f));
+    }
+    IEnumerator DelayedAction(float delayInSeconds)
+    {
+        yield return new WaitForSecondsRealtime(delayInSeconds);
+        Complete_piece_after();
     }
 
     Diary_icon key_count()

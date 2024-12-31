@@ -71,6 +71,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
                 string key_name = Ptest.show[itemNumber - 1].PieceName;
                 currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
+                Debug.Log("Ptest.show[itemNumber - 1].PieceID"+Ptest.show[itemNumber - 1].PieceID);
 
                 // 清除並重新整理顯示的碎片
                 Ptest.show.Clear();
