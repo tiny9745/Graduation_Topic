@@ -15,7 +15,8 @@ public class NPC01_control : MonoBehaviour
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani= false, hit = false, bomb_Berry= true,dead_open= true, MC_to_Att= true;
-    public bool NPC01_hit = false,stun = false; private bool isFacingRight = true;
+    public bool NPC01_hit = false,stun = false;
+    private bool isFacingRight = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC01, NPC01_1;
@@ -25,7 +26,6 @@ public class NPC01_control : MonoBehaviour
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
-
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -39,21 +39,12 @@ public class NPC01_control : MonoBehaviour
             };
         }
         hitbox_Crystal_baby.SetActive(false);
-
-        if (TargetObj == null)
-        {
-            TargetObj = GameObject.Find("Player");
-        }
+        TargetObj = GameObject.Find("Player");
+        
         npcNavi = GetComponent<NavMeshAgent>();
-        if (npcNavi != null)
-        {
-            npcNavi.speed = npcSpeed;
-        }
-
-        if (nPC_hP == null)
-        {
-            nPC_hP = GetComponent<NPC_HP_01>();
-        }
+        npcNavi.speed = npcSpeed;     
+        nPC_hP = GetComponent<NPC_HP_01>();
+        
     }
 
     void Update()
@@ -70,11 +61,6 @@ public class NPC01_control : MonoBehaviour
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             dead();
-        }
-
-        if (NPC_HP <= 0)
-        {
-            PlayBombAnimation();
         }
         else if (!hit_Ani)
         {
@@ -108,6 +94,7 @@ public class NPC01_control : MonoBehaviour
             {
                 npcNavi.destination = transform.position;
             }
+
             Vector3 direction = TargetObj.transform.position - transform.position;
             Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
             Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
@@ -270,10 +257,10 @@ public class NPC01_control : MonoBehaviour
 
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
-    {
-        
+    { 
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
+            UnityEngine.Debug.Log("NPC01_control:"+other.gameObject.tag);
             if (other.gameObject.tag == "Player")
             {
                 if (open_EnableHitbox)
