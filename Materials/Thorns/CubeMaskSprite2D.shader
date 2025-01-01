@@ -2,51 +2,51 @@ Shader "Custom/CubeMaskSprite2D"
 {
     Properties
     {
-        _MainTex ("Main Texture", 2D) = "white" {} // 貼圖
-        _Color ("Tint Color", Color) = (1, 1, 1, 1) // 顏色
-        _CubeCenter ("Cube Center", Vector) = (0, 0, 0, 0) // Cube 中心
-        _CubeSize ("Cube Size", Vector) = (1, 1, 1, 0) // Cube 尺寸
+        _MainTex ("Main Texture", 2D) = "white" {}
+        _Color ("Tint Color", Color) = (1, 1, 1, 1)
+        _CubeCenter ("Cube Center", Vector) = (0, 0, 0, 0)  // Cube 的中心位置
+        _CubeSize ("Cube Size", Vector) = (1, 1, 1, 0)      // Cube 的大小 (寬, 高, 深)
     }
-
     SubShader
     {
-        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
-        Blend SrcAlpha OneMinusSrcAlpha
-        ZWrite Off
+        Tags { "Queue"="Transparent" }
 
         Pass
         {
+            Tags { "LightMode"="Always" }
+
+            // 如果像素位於 Cube 內部，則不顯示
             Stencil
             {
                 Ref 1
-                Comp Always
-                Pass Replace
+                Comp NotEqual
+                Pass Keep
             }
 
+            Blend SrcAlpha OneMinusSrcAlpha
+            ZWrite Off
+
             CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
             #include "UnityCG.cginc"
 
-            sampler2D _MainTex;      // 主貼圖
-            float4 _Color;          // Tint 顏色
-            float4 _CubeCenter;     // Cube 中心點
-            float4 _CubeSize;       // Cube 尺寸
+            sampler2D _MainTex;       // 主貼圖
+            float4 _Color;           // Tint 顏色
+            float4 _CubeCenter;      // Cube 的中心點
+            float4 _CubeSize;        // Cube 的大小
 
             struct appdata
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0; // UV 坐標
+                float2 uv : TEXCOORD1;
             };
 
             struct v2f
             {
-                float4 pos : SV_POSITION;
-                float2 uv : TEXCOORD0;
-                float3 worldPos : TEXCOORD1; // 世界空間位置
+                float4 pos : POSITION;
+                float2 uv : TEXCOORD1;
+                float3 worldPos : TEXCOORD0; // 世界空間位置
             };
 
-            // 頂點著色器
             v2f vert(appdata v)
             {
                 v2f o;
@@ -56,7 +56,6 @@ Shader "Custom/CubeMaskSprite2D"
                 return o;
             }
 
-            // 片段著色器
             half4 frag(v2f i) : SV_Target
             {
                 half4 c = tex2D(_MainTex, i.uv); // 從貼圖讀取顏色
@@ -67,14 +66,14 @@ Shader "Custom/CubeMaskSprite2D"
 
                 // 判斷像素是否在 Cube 內
                 bool isInsideCube = 
-                    i.worldPos.x >= (_CubeCenter.x - cubeHalfSize.x) &&
-                    i.worldPos.x <= (_CubeCenter.x + cubeHalfSize.x) &&
-                    i.worldPos.y >= (_CubeCenter.y - cubeHalfSize.y) &&
-                    i.worldPos.y <= (_CubeCenter.y + cubeHalfSize.y) &&
-                    i.worldPos.z >= (_CubeCenter.z - cubeHalfSize.z) &&
-                    i.worldPos.z <= (_CubeCenter.z + cubeHalfSize.z);
+                    i.worldPos.x >= _CubeCenter.x - cubeHalfSize.x &&
+                    i.worldPos.x <= _CubeCenter.x + cubeHalfSize.x &&
+                    i.worldPos.y >= _CubeCenter.y - cubeHalfSize.y &&
+                    i.worldPos.y <= _CubeCenter.y + cubeHalfSize.y &&
+                    i.worldPos.z >= _CubeCenter.z - cubeHalfSize.z &&
+                    i.worldPos.z <= _CubeCenter.z + cubeHalfSize.z;
 
-                // 如果在 Cube 內部，設置透明
+                // 如果像素在 Cube 內部，設置透明
                 if (isInsideCube)
                 {
                     c.a = 0.0; // 隱藏

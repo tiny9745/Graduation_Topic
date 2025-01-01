@@ -2,19 +2,35 @@ using UnityEngine;
 
 public class MaskUpdater : MonoBehaviour
 {
-    public GameObject cubeMask; // Cube 遮罩物件
-    public Material maskedMaterial; // MaskedObject 的材質
+    public GameObject cube; // 指定 Cube 的物件
+    public GameObject sprite; // 指定 Sprite 的物件
+    public Vector3 cubeSize; // 手動指定 Cube 的大小（如 Cube 的 scale）
+
+    private Material spriteMaterial;
+
+    void Start()
+    {
+        if (sprite != null)
+        {
+            // 獲取 Sprite 的材質
+            SpriteRenderer spriteRenderer = sprite.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteMaterial = spriteRenderer.material;
+            }
+        }
+    }
 
     void Update()
     {
-        if (cubeMask != null && maskedMaterial != null)
+        if (cube != null && spriteMaterial != null)
         {
-            // 傳遞 Cube 中心與大小
-            Vector3 cubeCenter = cubeMask.transform.position;
-            Vector3 cubeSize = cubeMask.transform.localScale;
+            // 獲取 Cube 的世界中心點
+            Vector3 cubeCenter = cube.transform.position;
 
-            maskedMaterial.SetVector("_CubeCenter", new Vector4(cubeCenter.x, cubeCenter.y, cubeCenter.z, 0));
-            maskedMaterial.SetVector("_CubeSize", new Vector4(cubeSize.x, cubeSize.y, cubeSize.z, 0));
+            // 更新材質的 Cube 中心和大小
+            spriteMaterial.SetVector("_CubeCenter", cubeCenter);
+            spriteMaterial.SetVector("_CubeSize", cubeSize);
         }
     }
 }
