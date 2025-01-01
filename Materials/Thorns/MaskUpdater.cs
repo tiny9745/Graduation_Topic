@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class MaskUpdater : MonoBehaviour
+public class CubeMaskController : MonoBehaviour
 {
-    public GameObject cube; // 指定 Cube 的物件
+    public GameObject cube;   // 指定 Cube 的物件
     public GameObject sprite; // 指定 Sprite 的物件
-    public Vector3 cubeSize; // 手動指定 Cube 的大小（如 Cube 的 scale）
 
     private Material spriteMaterial;
 
@@ -27,6 +26,9 @@ public class MaskUpdater : MonoBehaviour
         {
             // 獲取 Cube 的世界中心點
             Vector3 cubeCenter = cube.transform.position;
+
+            // 獲取 Cube 的世界大小 (依賴 lossyScale)
+            Vector3 cubeSize = cube.transform.lossyScale;
 
             // 更新材質的 Cube 中心和大小
             spriteMaterial.SetVector("_CubeCenter", cubeCenter);
