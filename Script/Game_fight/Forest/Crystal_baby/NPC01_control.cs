@@ -62,6 +62,14 @@ public class NPC01_control : MonoBehaviour
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         }
+        if (NPC_HP <= 0)
+        {
+            NPC_HP = 0;
+            hitbox_Crystal_baby.SetActive(false);
+            Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
+            npcNavi.speed = 0;
+            dead();
+        }
 
         if (NPC_HP <= 0)
         {
