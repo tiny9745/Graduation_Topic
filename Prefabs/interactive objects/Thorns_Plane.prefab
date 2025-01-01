@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7924492205485554999
 Transform:
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1ec473e839454646b9a1ec8f60e6233, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6860503911247677926
 Transform:
   m_ObjectHideFlags: 0
@@ -304,7 +304,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1ec473e839454646b9a1ec8f60e6233, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -647,7 +647,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1ec473e839454646b9a1ec8f60e6233, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -695,7 +695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3678294738663535181
 Transform:
   m_ObjectHideFlags: 0
@@ -731,7 +731,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1ec473e839454646b9a1ec8f60e6233, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -953,8 +953,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thorn: {fileID: 1701922089257543469}
-  maskedMaterial: {fileID: 2100000, guid: e1ec473e839454646b9a1ec8f60e6233, type: 2}
-  maskPlane: {fileID: 2298779661485104235}
 --- !u!65 &2191382954735269943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -983,11 +981,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8475502909159839615}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e048255feb0dd418d931d449cb4118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaskMaterial: {fileID: 2100000, guid: dd109a926de041043ba2e8ade543a1b3, type: 2}
-  MaskedMaterial: {fileID: 2100000, guid: 309ab12e410da6d41a83662e18049551, type: 2}
-  MaskedSprite: {fileID: 21300000, guid: c8abf22468bb2d74a8f1a706405deec8, type: 3}
+  cube: {fileID: 2298779661485104235}
+  sprite: {fileID: 2391674606392258671}
+  cubeSize: {x: 0, y: 0, z: 0}
