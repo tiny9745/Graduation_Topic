@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,7 +15,7 @@ public class NPC01_control : MonoBehaviour
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani= false, hit = false, bomb_Berry= true,dead_open= true, MC_to_Att= true;
-    public bool NPC01_hit = false,stun = true; private bool isFacingRight = true;
+    public bool NPC01_hit = false,stun = false; private bool isFacingRight = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC01, NPC01_1;
@@ -270,6 +271,7 @@ public class NPC01_control : MonoBehaviour
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
     {
+        
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
             if (other.gameObject.tag == "Player")
@@ -281,7 +283,6 @@ public class NPC01_control : MonoBehaviour
                     open_EnableHitbox = false;
                 }
             }
-
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 change_color_red();
