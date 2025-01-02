@@ -9,7 +9,7 @@ public class NPC01_1_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 20;
+    public int DetectDistance = 25;
     public float NPC01_ATK = 4, NPC01_DEF = 2, NPC_HP_Max = 40, npcSpeed = 4f, NPC_HP, minus;
     float dist;
     private float damageCooldown = 1.0f; // Time in seconds between damage instances
