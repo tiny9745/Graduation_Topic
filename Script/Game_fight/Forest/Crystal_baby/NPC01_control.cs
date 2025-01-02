@@ -10,7 +10,7 @@ public class NPC01_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj,hitbox_Crystal_baby,Drop,Img_npc;
-    public int DetectDistance = 18, Pcounter = 0;int NPC_angle = 0;
+    public int DetectDistance = 27, Pcounter = 0;int NPC_angle = 0;
     public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100, npcSpeed = 5f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;

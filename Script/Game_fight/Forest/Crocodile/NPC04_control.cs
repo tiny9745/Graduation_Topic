@@ -9,8 +9,8 @@ public class NPC04_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj,NPC04, hitbox_Brick_Monster, Drop, Img_npc;
-    public int DetectDistance = 15; int NPC_angle = 0;
-    public float NPC04_ATK = 15, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
+    public int DetectDistance = 25; int NPC_angle = 0;
+    public float NPC04_ATK = 13, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani= false, hit = false, dead_open= true, MC_to_Att= true,open_EnableHitbox= true,bomb_Berry = true;
