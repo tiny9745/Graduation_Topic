@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7385513011938334316}
   - component: {fileID: 3629732259917842451}
-  - component: {fileID: 6347335956851014930}
+  - component: {fileID: 3236261249683033496}
   m_Layer: 0
   m_Name: thorns-2
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6347335956851014930
+--- !u!95 &3236261249683033496
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 864173246443673260}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c03bc1e68b141b94aaff0e01a78497ce, type: 2}
+  m_Controller: {fileID: 9100000, guid: b46849f5a47fe9b40976c8745eda953c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -381,7 +381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3280081917618686419}
   - component: {fileID: 7075448449168647552}
-  - component: {fileID: 7690841075355281875}
+  - component: {fileID: 5308356357742974455}
   m_Layer: 0
   m_Name: thorns-1
   m_TagString: Untagged
@@ -456,7 +456,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7690841075355281875
+--- !u!95 &5308356357742974455
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ Animator:
   m_GameObject: {fileID: 5523214275878925968}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c03bc1e68b141b94aaff0e01a78497ce, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7460ffd2ee9dd9941b0eaa1503044640, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -585,6 +585,8 @@ MonoBehaviour:
   anim:
   - {fileID: 3457448003627178356}
   - {fileID: 8848054562566952639}
+  - {fileID: 3236261249683033496}
+  - {fileID: 5308356357742974455}
 --- !u!65 &2191382954735269943
 BoxCollider:
   m_ObjectHideFlags: 0
