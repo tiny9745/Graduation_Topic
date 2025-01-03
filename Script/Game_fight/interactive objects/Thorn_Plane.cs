@@ -4,83 +4,120 @@ using UnityEngine;
 
 public class ThornsController : MonoBehaviour
 {
-    public GameObject thorn; // 單一刺的物件
-    float targetHeight = 5; // 上升的目標高度
-    float rise_fall_Time = 0.15f;
-    float delayBeforeRise = 0.5f; // 上升前的延遲時間
-    float delayBeforeFall = 0.5f; // 下降前的延遲時間
-    private Vector3 originalPosition; // 刺的原始位置
     private HashSet<Collider> collidersInRange = new HashSet<Collider>(); // 記錄範圍內的碰撞體
-    private bool isRaising = false; // 判斷是否正在上升
-    private bool isLowering = false; // 判斷是否正在下降
+    private int colliderCount = 0; // 手動管理的碰撞體數量
+
+    public Animator[] anim;
 
     void Start()
     {
-        // 記錄刺的初始位置
-        originalPosition = thorn.transform.position;
+        StartCoroutine(CheckCollidersRoutine());
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            collidersInRange.Add(other); // 將物件加入集合
+            if (collidersInRange.Add(other)) // 確保不重複添加
+            {
+                colliderCount++;
+                Debug.Log("Collider entered: " + other.name + ". Current count: " + colliderCount);
+            }
         }
-        if (collidersInRange.Count == 1 && !isRaising) // 只有一個物件進入且未在上升
+
+        if (colliderCount == 1) // 只有一個物件進入時觸發
         {
-            StartCoroutine(RaiseThorn());
+            Rise_Animation();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("NPC"))
+        if (other.CompareTag("Player"))
         {
-            collidersInRange.Remove(other); // 從集合中移除物件
-            if (collidersInRange.Count == 0 && !isLowering) // 沒有物件在範圍內且未在下降
+            if (collidersInRange.Remove(other)) // 確保只移除存在於集合中的物件
             {
-                StartCoroutine(LowerThorn());
+                colliderCount--;
+                Debug.Log("Collider exited: " + other.name + ". Current count: " + colliderCount);
             }
         }
+
+        if (colliderCount == 0) // 沒有物件時觸發
+        {
+            Lower_Animation();
+        }
     }
 
-    IEnumerator RaiseThorn()
+    private IEnumerator CheckCollidersRoutine()
     {
-        isRaising = true;
-        yield return new WaitForSeconds(delayBeforeRise);
-
-        Vector3 start = thorn.transform.position; // 確保從當前位置開始
-        Vector3 target = originalPosition + Vector3.up * targetHeight;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < rise_fall_Time)
+        while (true)
         {
-            elapsedTime += Time.deltaTime;
-            thorn.transform.position = Vector3.Lerp(start, target, elapsedTime / rise_fall_Time);
-            yield return null;
+            yield return new WaitForSeconds(0.1f); // 調整檢查頻率
+            CheckColliders();
         }
-
-        thorn.transform.position = target;
-        isRaising = false;
     }
 
-    IEnumerator LowerThorn()
+    private void CheckColliders()
     {
-        isLowering = true;
-        yield return new WaitForSeconds(delayBeforeFall);
+        List<Collider> toRemove = new List<Collider>();
 
-        Vector3 start = thorn.transform.position; // 確保從當前位置開始
-        Vector3 target = originalPosition;
-        float elapsedTime = 0f;
-
-        while (elapsedTime < rise_fall_Time)
+        // 找出已被刪除的物件
+        foreach (var collider in collidersInRange)
         {
-            elapsedTime += Time.deltaTime;
-            thorn.transform.position = Vector3.Lerp(start, target, elapsedTime / rise_fall_Time);
-            yield return null;
+            if (collider == null)
+            {
+                toRemove.Add(collider);
+                colliderCount--; // 減少計數
+            }
         }
 
-        thorn.transform.position = target;
-        isLowering = false;
+        // 從集合中移除已刪除的物件
+        foreach (var collider in toRemove)
+        {
+            collidersInRange.Remove(collider);
+        }
+
+        if (colliderCount == 0) // 檢查是否需要觸發動畫
+        {
+            Lower_Animation();
+        }
+
+        Debug.Log("Checked colliders. Current count: " + colliderCount);
+    }
+
+    private void Rise_Animation()
+    {
+        Debug.Log("Rise");
+        foreach (var animator in anim)
+        {
+            animator.SetBool("Rise", true);
+        }
+        Invoke("Rise_wait", 0.05f);
+    }
+
+    private void Rise_wait()
+    {
+        foreach (var animator in anim)
+        {
+            animator.SetBool("Rise", false);
+        }
+    }
+
+    private void Lower_Animation()
+    {
+        Debug.Log("Lower");
+        foreach (var animator in anim)
+        {
+            animator.SetBool("Lower", true);
+        }
+        Invoke("Lower_wait", 0.05f);
+    }
+
+    private void Lower_wait()
+    {
+        foreach (var animator in anim)
+        {
+            animator.SetBool("Lower", false);
+        }
     }
 }
