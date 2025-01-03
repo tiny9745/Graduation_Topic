@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; // 引入事件系統
 
-public class Setting_menu : MonoBehaviour, IPointerEnterHandler
+public class Setting_menu : MonoBehaviour
 {
     public GameObject _Setting_menu;
     public Slider BGM_control;
@@ -17,15 +17,67 @@ public class Setting_menu : MonoBehaviour, IPointerEnterHandler
     public Image BGM_image_off, SE_image_off;
     public Image Music_icon_on, Teach_icon_on, Back_icon_on;
     public Image Music_icon_off, Teach_icon_off, Back_icon_off;
+    int key_count = 1, key_count_max = 3;
 
     void Start()
     {
+        Debug.Log("Setting_menu");
         BGM_control.onValueChanged.AddListener(delegate { Setting_BGM(); });
         SE_control.onValueChanged.AddListener(delegate { Setting_SE(); });
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (key_count == 1)
+            {
+                key_count = key_count_max;
+            }
+            else
+            {
+                key_count--;
+            }
+            key_change();
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (key_count == key_count_max)
+            {
+                key_count = 1;
+            }
+            else
+            {
+                key_count++;
+            }
+            key_change();
+        }
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            switch (key_count)
+            {
+                case 3:
+                    Setting_back();
+                    break;
+            }
+        }
+    }
+
+    private void key_change()
+    {
+        if (key_count == 1)
+        {
+            Music_icon_on_click();
+        }
+        else if (key_count == 2)
+        {
+            Teach_icon_on_click();
+        }
+        else if (key_count == 3)
+        {
+            Back_icon_on_click();
+        }
     }
 
     public void Setting_back()
@@ -68,6 +120,7 @@ public class Setting_menu : MonoBehaviour, IPointerEnterHandler
 
     public void Music_icon_on_click()
     {
+        key_count = 1;
         Music_icon_on.gameObject.SetActive(true);
         Music_icon_off.gameObject.SetActive(false);
         Teach_icon_on.gameObject.SetActive(false);
@@ -78,6 +131,7 @@ public class Setting_menu : MonoBehaviour, IPointerEnterHandler
 
     public void Teach_icon_on_click()
     {
+        key_count = 2;
         Music_icon_on.gameObject.SetActive(false);
         Music_icon_off.gameObject.SetActive(true);
         Teach_icon_on.gameObject.SetActive(true);
@@ -88,29 +142,12 @@ public class Setting_menu : MonoBehaviour, IPointerEnterHandler
 
     public void Back_icon_on_click()
     {
+        key_count = 3;
         Music_icon_on.gameObject.SetActive(false);
         Music_icon_off.gameObject.SetActive(true);
         Teach_icon_on.gameObject.SetActive(false);
         Teach_icon_off.gameObject.SetActive(true);
         Back_icon_on.gameObject.SetActive(true);
         Back_icon_off.gameObject.SetActive(false);
-    }
-
-    // 懸浮游標觸發的功能
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        // 根據當前懸浮的物件執行對應方法
-        if (eventData.pointerEnter == Music_icon_on.gameObject || eventData.pointerEnter == Music_icon_off.gameObject)
-        {
-            Music_icon_on_click();
-        }
-        else if (eventData.pointerEnter == Teach_icon_on.gameObject || eventData.pointerEnter == Teach_icon_off.gameObject)
-        {
-            Teach_icon_on_click();
-        }
-        else if (eventData.pointerEnter == Back_icon_on.gameObject || eventData.pointerEnter == Back_icon_off.gameObject)
-        {
-            Back_icon_on_click();
-        }
     }
 }

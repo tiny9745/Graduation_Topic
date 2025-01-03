@@ -87,7 +87,7 @@ public class ThornsController : MonoBehaviour
 
     private void Rise_Animation()
     {
-        Debug.Log("Rise");
+        // Debug.Log("Rise");
         foreach (var animator in anim)
         {
             animator.SetBool("Rise", true);
@@ -105,7 +105,7 @@ public class ThornsController : MonoBehaviour
 
     private void Lower_Animation()
     {
-        Debug.Log("Lower");
+        // Debug.Log("Lower");
         foreach (var animator in anim)
         {
             animator.SetBool("Lower", true);
