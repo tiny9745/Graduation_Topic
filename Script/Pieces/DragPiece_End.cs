@@ -183,8 +183,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 PieceManager.Instance.Remove(piece);
                 piece.survival_state = "Dead";
             }
-            /*Ptest.show.Add(piece);
-            PieceManager.Instance.Add(piece);*/
             Ptest.show.Clear();
             PieceManager.Instance.Clear();
         }
