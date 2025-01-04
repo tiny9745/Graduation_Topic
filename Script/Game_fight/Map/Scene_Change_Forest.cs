@@ -7,9 +7,14 @@ public class Scene_Change_Forest : MonoBehaviour
 {
     public GameObject CloseDoor01;
     public GameObject CloseDoor02;
+    public GameObject player_S;
     int i;
     // Update is called once per frame
 
+    void Start()
+    {
+        player_S = GameObject.Find("Player_S");
+    }
     private void Update()
     {
         if (static_parameters.Change_enemy == 0)
@@ -76,6 +81,8 @@ public class Scene_Change_Forest : MonoBehaviour
             static_parameters.money += i * 10;
             if (static_parameters.stage_number >= i)
             {
+                Debug.Log("Go Back");
+                player_S.transform.position = new Vector3(0, 0, -15);
                 //SceneManager.LoadScene("Game_fight_Boss");
                 SceneManager.LoadScene("magic_house");
                 static_parameters.stage_number = 0;
@@ -83,7 +90,9 @@ public class Scene_Change_Forest : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Fight_FU01");
+                Debug.Log("Go Next");
+                player_S.transform.position = new Vector3(0, 0, -15);
+                SceneManager.LoadScene("Fight_241130");
             }
         }
     }

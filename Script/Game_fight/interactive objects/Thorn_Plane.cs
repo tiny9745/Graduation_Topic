@@ -81,8 +81,6 @@ public class ThornsController : MonoBehaviour
         {
             Lower_Animation();
         }
-
-        Debug.Log("Checked colliders. Current count: " + colliderCount);
     }
 
     private void Rise_Animation()

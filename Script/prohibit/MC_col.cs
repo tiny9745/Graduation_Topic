@@ -50,7 +50,7 @@ public class MC_col : MonoBehaviour
         {
             Walk_speedupdate();
         }
-        Debug.Log("static_parameters.Change_enemy: " + static_parameters.Change_enemy);
+        // Debug.Log("static_parameters.Change_enemy: " + static_parameters.Change_enemy);
     }
 
     void SetAnimationSpeed_ATK(string animName, float animSpeed)
