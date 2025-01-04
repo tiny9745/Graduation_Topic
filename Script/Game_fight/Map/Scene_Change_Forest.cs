@@ -92,6 +92,7 @@ public class Scene_Change_Forest : MonoBehaviour
             {
                 Debug.Log("Go Next");
                 player_S.transform.position = new Vector3(0, 0, -15);
+                Debug.Log("player_S" + player_S.transform.position);
                 SceneManager.LoadScene("Fight_241130");
             }
         }
