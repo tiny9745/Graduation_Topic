@@ -25,8 +25,11 @@ public class Play_move : MonoBehaviour
         navMeshAvailable = NavMeshHasBakedData();
 
         // 讀取輸入
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        if (static_parameters.MC_HP > 0)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+        }
 
         // 計算行走速度與衝刺速度
         walkSpeed = static_parameters.MC_Wspeed;

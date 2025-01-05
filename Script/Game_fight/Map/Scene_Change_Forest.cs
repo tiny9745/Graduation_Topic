@@ -79,10 +79,10 @@ public class Scene_Change_Forest : MonoBehaviour
                 i = 5;
             }
             static_parameters.money += i * 10;
+            player_S.transform.localPosition = new Vector3(0, 0, -15);
             if (static_parameters.stage_number >= i)
             {
                 Debug.Log("Go Back");
-                player_S.transform.position = new Vector3(0, 0, -15);
                 //SceneManager.LoadScene("Game_fight_Boss");
                 SceneManager.LoadScene("magic_house");
                 static_parameters.stage_number = 0;
@@ -91,7 +91,6 @@ public class Scene_Change_Forest : MonoBehaviour
             else
             {
                 Debug.Log("Go Next");
-                player_S.transform.position = new Vector3(0, 0, -15);
                 Debug.Log("player_S" + player_S.transform.position);
                 SceneManager.LoadScene("Fight_241130");
             }
