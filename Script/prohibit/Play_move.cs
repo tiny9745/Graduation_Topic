@@ -14,16 +14,17 @@ public class Play_move : MonoBehaviour
     public NavMeshAgent agent;
     public float navMeshCheckRadius = 1.0f;
 
-    public Transform Player;
+    public Transform Player; public Rigidbody rb;
 
     void Start()
     {
         // Initialization if needed
         Player.transform.position = new Vector3(0, 2, 0);
     }
-
+    
     void Update()
     {
+        rb.MovePosition(transform.position);
         // 檢查是否可以移動 (生命大於 0 且角色未死亡)
         if (static_parameters.MC_HP > 0 && Death_MC.isDead)
         {
