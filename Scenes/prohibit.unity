@@ -10660,14 +10660,13 @@ GameObject:
   - component: {fileID: 784943134}
   - component: {fileID: 784943133}
   - component: {fileID: 784943132}
-  - component: {fileID: 784943135}
   m_Layer: 0
   m_Name: Death000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &784943131
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10746,21 +10745,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784943130}
   m_CullTransparentMesh: 1
---- !u!114 &784943135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784943130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d963d3d8667f44e47a69cfecb15aacf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Blood_Screen: {fileID: 880867859}
-  Blood_Screen_Img: {fileID: 880867861}
-  animator: {fileID: 784943132}
 --- !u!1 &790527229
 GameObject:
   m_ObjectHideFlags: 0
@@ -15676,6 +15660,7 @@ GameObject:
   - component: {fileID: 1086910000}
   - component: {fileID: 1086910004}
   - component: {fileID: 1086910003}
+  - component: {fileID: 1086910005}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -15929,6 +15914,25 @@ MonoBehaviour:
   Pieceslot3Point: {fileID: 753161113}
   Pieceslot4Point: {fileID: 2125992500}
   UI: {fileID: 1086909996}
+--- !u!114 &1086910005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086909989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d963d3d8667f44e47a69cfecb15aacf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Blood_Screen: {fileID: 880867859}
+  Death: {fileID: 784943130}
+  Blood_Screen_Img: {fileID: 880867861}
+  animator: {fileID: 784943132}
+  reborn: {fileID: 21300000, guid: e2f39ff60fd199e44ae243834c63edba, type: 3}
+  death_alpha: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
+  Ani_: {fileID: 784943133}
 --- !u!1 &1089758226
 GameObject:
   m_ObjectHideFlags: 0
@@ -29725,11 +29729,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -2.7799985e-12
+      value: -8.881784e-16
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.543432e-12
+      value: 4.440892e-16
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29753,11 +29757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008326106
+      value: -0.000000008328531
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000002155871
+      value: 0.0000000021564988
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
