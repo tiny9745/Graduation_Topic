@@ -79,6 +79,8 @@ public class Scene_Change_Forest : MonoBehaviour
                 i = 5;
             }
             static_parameters.money += i * 10;
+            Debug.Log("static_parameters.stage_number:" + static_parameters.stage_number);
+                Debug.Log("i:" + i);
             if (static_parameters.stage_number >= i)
             {
                 Debug.Log("Go Back");
@@ -91,7 +93,7 @@ public class Scene_Change_Forest : MonoBehaviour
             else
             {
                 Debug.Log("Go Next");
-                // player_S.transform.localPosition = new Vector3(0, 0, -138);
+                player_S.transform.localPosition = new Vector3(0, 0, -138);
                 Debug.Log("player_S" + player_S.transform.position);
                 SceneManager.LoadScene("Fight_241130");
             }
