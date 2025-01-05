@@ -8,14 +8,13 @@ public class Scence_FU_241130 : MonoBehaviour
 {
     public GameObject[] FU;
     private GameObject player_S;
-    // private Vector3 startPos = new Vector3(0, 138, -8);
     int scence_random;
     private NavMeshAgent playerAgent;
     void Start()
     {
         player_S = GameObject.Find("Player_S");
         playerAgent = player_S.GetComponent<NavMeshAgent>();
-        // startPos = player_S.transform.localPosition;
+        player_S.transform.localPosition = new Vector3(0, 0, -138);
         playerAgent.enabled = true;
         // switch (static_parameters.stage_number_Boss){}
         Fight_FU();
@@ -26,8 +25,6 @@ public class Scence_FU_241130 : MonoBehaviour
         scence_random = Random.Range(0, 5);
         // static_parameters.Map_start = scence_random;
         Generatescence(FU[scence_random], new Vector3(0, 0, 0));
-        // startPos.z = -138;
-        // player_S.transform.localPosition = startPos;
     }
 
     void Generatescence(GameObject scence, Vector3 position)
