@@ -10,8 +10,8 @@ public class magic_postion : MonoBehaviour
     public Vector3 minBoundary; // Define the minimum boundary
     public Vector3 maxBoundary; // Define the maximum boundary
     public Vector3 startPos = new Vector3(0, 0, -8);
-    float padding_X_min = -29f, padding_X_max = 29f;
-    float padding_Z_min = 0f, padding_Z_max = 49f;
+    public float padding_X_min = -29f, padding_X_max = 29f;
+    public float padding_Z_min = 0f, padding_Z_max = 49f;
 
     void Start()
     {
