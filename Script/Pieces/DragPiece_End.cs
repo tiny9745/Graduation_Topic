@@ -10,6 +10,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     private List<HashSet<int>> validSequences; // 有效的組合數列
     static public List<int> currentCombination = new List<int>(); // 當前的組合
     public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
+    public Image[]images_puzzle_col = new Image[4]; // 圖片顏色陣列
     public Button composite_col;
     private Color newColor = new Color(1, 1, 1, 0.5f); // 按鈕透明度顏色
     public UnityEngine.UI.Image button_image; // 按鈕圖像
