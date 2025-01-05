@@ -87,7 +87,6 @@ public class Death_MC : MonoBehaviour
 
         // 確保動畫結束後延遲7.5秒再繼續執行後續程式碼
         yield return new WaitForSeconds(7.5f);
-
         Death.transform.localPosition = new Vector3(0, -50, -42);
         Death.transform.localScale /= 5;
         Death.SetActive(false);
@@ -95,6 +94,7 @@ public class Death_MC : MonoBehaviour
         Blood_Screen.SetActive(false);
         Blood_Screen_Img.color = targetColor;
         Death_Img.sprite = Death_Img_Sprite;
+        isDead = true;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -20,20 +20,20 @@ public class Play_move : MonoBehaviour
     }
 
     void Update()
+{
+    // 檢查是否可以移動 (生命大於 0 且角色未死亡)
+    if (static_parameters.MC_HP > 0 && Death_MC.isDead)
     {
-        // 檢查 NavMesh 是否有 Baking 資料
-        navMeshAvailable = NavMeshHasBakedData();
-
         // 讀取輸入
-        if (static_parameters.MC_HP > 0)
-        {
-            horizontalInput = Input.GetAxis("Horizontal");
-            verticalInput = Input.GetAxis("Vertical");
-        }
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
         // 計算行走速度與衝刺速度
         walkSpeed = static_parameters.MC_Wspeed;
         dashSpeed = walkSpeed * 3;
+
+        // 檢查 NavMesh 是否有 Baking 資料
+        navMeshAvailable = NavMeshHasBakedData();
 
         // 更新 NavMesh 範圍內的移動
         if (navMeshAvailable)
@@ -63,7 +63,6 @@ public class Play_move : MonoBehaviour
         UpdateFaceDirection(movement);
 
         // 監聽衝刺鍵
-
         if (Input.GetKeyDown(KeyCode.L) && !DashCD && Ani_MC.isDashCooldown_for_move == false && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
         {
             Ani_MC.isDashCooldown_for_move = true;
@@ -73,6 +72,8 @@ public class Play_move : MonoBehaviour
             Invoke("DogeCooldown", 0.67f); // 衝刺冷卻時間
         }
     }
+}
+
 
     void DogeCooldown()
     {
