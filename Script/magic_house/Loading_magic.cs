@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Loading_magic : MonoBehaviour
 {
+
     public string targetSceneName = "magic_house";
     public GameObject loadingScreen;
     public Image loadingBar;
@@ -24,6 +25,7 @@ public class Loading_magic : MonoBehaviour
             StaticParameters_magic.isSceneLoading_magic = true;
             StartCoroutine(LoadSceneAsync(targetSceneName));
         }
+
     }
 
     IEnumerator LoadSceneAsync(string sceneName)

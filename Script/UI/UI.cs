@@ -10,6 +10,7 @@ public class UI : MonoBehaviour
     public GameObject Menu,CH1,CH2,CH3,CH4;
     public GameObject BookMark1,BookMark2,BookMark3,BookMark4;
     public GameObject LeftMark1,LeftMark2,LeftMark3,LeftMark4;
+    public Text money;
     public Ptest piece;
     // Start is called before the first frame update
     void Start()
@@ -101,5 +102,9 @@ public class UI : MonoBehaviour
                 break;
         }
         piecechange();
+    }
+    public void Loadmoney()
+    {
+        money.text = static_parameters.money.ToString();
     }
 }
