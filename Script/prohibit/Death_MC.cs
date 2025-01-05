@@ -4,6 +4,7 @@ using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor.Purchasing;
 
 public class Death_MC : MonoBehaviour
 {
@@ -11,17 +12,18 @@ public class Death_MC : MonoBehaviour
     private GameObject MC_S, MC_Img;
     public GameObject Blood_Screen, Death;
     public UnityEngine.UI.Image Blood_Screen_Img;
-    private float fadeDuration = 3.5f;
+    private float fadeDuration = 3.2f;
     public Animator animator;
     static public bool isDead = true;
-    private Transform DeathTransform;
     private bool sceneLoaded = false;
+
+    public Sprite Death_Img_Sprite;
+    public UnityEngine.UI.Image Death_Img;
 
     void Start()
     {
         MC_S = GameObject.Find("Player_S");
         MC_Img = GameObject.Find("F S0100");
-        DeathTransform = Death.transform;
 
         // 訂閱場景加載完成的事件
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -71,6 +73,7 @@ public class Death_MC : MonoBehaviour
         sceneLoaded = false; // 重置場景加載標記
 
         // 加載場景
+        Death_Img.sprite = Death_Img_Sprite;
         SceneManager.LoadScene("magic_house");
 
         // 等待場景加載完成
@@ -85,12 +88,13 @@ public class Death_MC : MonoBehaviour
         // 確保動畫結束後延遲7.5秒再繼續執行後續程式碼
         yield return new WaitForSeconds(7.5f);
 
-        Death.transform.localPosition = DeathTransform.localPosition;
+        Death.transform.localPosition = new Vector3(0, -50, -42);
         Death.transform.localScale /= 5;
         Death.SetActive(false);
         MC_Img.SetActive(true);
         Blood_Screen.SetActive(false);
         Blood_Screen_Img.color = targetColor;
+        Death_Img.sprite = Death_Img_Sprite;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
