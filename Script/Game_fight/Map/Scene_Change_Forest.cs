@@ -74,13 +74,13 @@ public class Scene_Change_Forest : MonoBehaviour
         {
             static_parameters.stage_number++;
 
-            if (static_parameters.stage_number < 3)
+            if (static_parameters.stage_number < 4)
             {
-                i = 3;
+                i = 4;
             }
             else//測試用
             {
-                i = 3;
+                i = 4;
             }
             // else if (static_parameters.stage_number < 6)
             // {
