@@ -12,11 +12,11 @@ public class Scene_Change_Forest : MonoBehaviour
     int i;
     bool open = false;
     // Update is called once per frame
-    private Image image_complete;
+    private GameObject image_complete;
     void Start()
     {
         player_S = GameObject.Find("Player_S");
-        image_complete = GameObject.Find("Complete").GetComponent<Image>();
+        image_complete = GameObject.Find("Complete");
         Invoke("OpenDoor", 4f);
     }
     private void Update()
@@ -97,7 +97,7 @@ public class Scene_Change_Forest : MonoBehaviour
             Debug.Log("i:" + i);
             if (static_parameters.stage_number >= i)
             {
-                //通關畫面
+                image_complete.SetActive(true);//通關畫面
 
                 // Debug.Log("Go Back");
                 // player_S.transform.localPosition = new Vector3(0, 0, -15);
