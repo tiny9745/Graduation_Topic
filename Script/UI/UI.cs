@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public short Diarystatus = 0;
-    public GameObject Notebook,BattleUI;
-    public GameObject Menu,CH1,CH2,CH3,CH4;
-    public GameObject BookMark1,BookMark2,BookMark3,BookMark4;
-    public GameObject LeftMark1,LeftMark2,LeftMark3,LeftMark4;
+    public GameObject Notebook, BattleUI;
+    public GameObject Menu, CH1, CH2, CH3, CH4;
+    public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
+    public GameObject LeftMark1, LeftMark2, LeftMark3, LeftMark4;
     private Color newColor = new Color(1, 1, 1, 0.5f);
     public Text money;
     public Image button_image;
-    public Ptest piece;
+    public Ptest piece; public DragPiece_End dragPiece_End;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,19 +23,20 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z)){
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
             openclose();
         }
     }
     public void Onclick1()
     {
         Diarystatus = 1;
-        changechapter();       
+        changechapter();
     }
     public void Onclick2()
     {
         Diarystatus = 2;
-        changechapter();         
+        changechapter();
     }
     public void Onclick3()
     {
@@ -66,7 +67,7 @@ public class UI : MonoBehaviour
     }
     void piecechange()
     {
-        switch(Diarystatus)
+        switch (Diarystatus)
         {
             case 1:
                 piece.way = 6;
@@ -80,26 +81,29 @@ public class UI : MonoBehaviour
     }
     void changechapter()
     {
-        switch(Diarystatus)
+        switch (Diarystatus)
         {
             case 1:
-                Menu.SetActive(false);CH1.SetActive(true);CH2.SetActive(false);CH3.SetActive(false);CH4.SetActive(false);
-                BookMark1.SetActive(false);BookMark2.SetActive(true); BookMark3.SetActive(true);BookMark4.SetActive(true);
-                LeftMark1.SetActive(false); LeftMark2.SetActive(false); LeftMark3.SetActive(false); LeftMark4.SetActive(false);            
+                dragPiece_End.ResetCombination();
+                Menu.SetActive(false); CH1.SetActive(true); CH2.SetActive(false); CH3.SetActive(false); CH4.SetActive(false);
+                BookMark1.SetActive(false); BookMark2.SetActive(true); BookMark3.SetActive(true); BookMark4.SetActive(true);
+                LeftMark1.SetActive(false); LeftMark2.SetActive(false); LeftMark3.SetActive(false); LeftMark4.SetActive(false);
                 break;
             case 2:
-                Menu.SetActive(false);CH1.SetActive(false);CH2.SetActive(true);CH3.SetActive(false);CH4.SetActive(false);
-                BookMark1.SetActive(false);BookMark2.SetActive(false); BookMark3.SetActive(true);BookMark4.SetActive(true);
+                Menu.SetActive(false); CH1.SetActive(false); CH2.SetActive(true); CH3.SetActive(false); CH4.SetActive(false);
+                BookMark1.SetActive(false); BookMark2.SetActive(false); BookMark3.SetActive(true); BookMark4.SetActive(true);
                 LeftMark1.SetActive(true); LeftMark2.SetActive(false); LeftMark3.SetActive(false); LeftMark4.SetActive(false);
                 break;
             case 3:
-                Menu.SetActive(false);CH1.SetActive(false);CH2.SetActive(false);CH3.SetActive(true);CH4.SetActive(false);
-                BookMark1.SetActive(false);BookMark2.SetActive(false); BookMark3.SetActive(false);BookMark4.SetActive(true);
+                dragPiece_End.ResetCombination();
+                Menu.SetActive(false); CH1.SetActive(false); CH2.SetActive(false); CH3.SetActive(true); CH4.SetActive(false);
+                BookMark1.SetActive(false); BookMark2.SetActive(false); BookMark3.SetActive(false); BookMark4.SetActive(true);
                 LeftMark1.SetActive(true); LeftMark2.SetActive(true); LeftMark3.SetActive(false); LeftMark4.SetActive(false);
                 break;
             case 4:
-                Menu.SetActive(false);CH1.SetActive(false);CH2.SetActive(false);CH3.SetActive(false);CH4.SetActive(true);
-                BookMark1.SetActive(false);BookMark2.SetActive(false); BookMark3.SetActive(false);BookMark4.SetActive(false);
+                dragPiece_End.ResetCombination();
+                Menu.SetActive(false); CH1.SetActive(false); CH2.SetActive(false); CH3.SetActive(false); CH4.SetActive(true);
+                BookMark1.SetActive(false); BookMark2.SetActive(false); BookMark3.SetActive(false); BookMark4.SetActive(false);
                 LeftMark1.SetActive(true); LeftMark2.SetActive(true); LeftMark3.SetActive(true); LeftMark4.SetActive(false);
                 break;
         }

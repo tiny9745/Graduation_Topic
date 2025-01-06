@@ -13,7 +13,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     public Image[] images_puzzle_col = new Image[4]; // 圖片顏色陣列
     public Button composite_col;
     private Color newColor = new Color(1, 1, 1, 0.5f); // 按鈕透明度顏色
-    public Image button_image; // 按鈕圖像
+    public UnityEngine.UI.Image button_image; // 按鈕圖像
     private int puzzle_count = 0; // 碎片數量計數
     static public int puzzle_color = 2; // 碎片顏色（默認為 2）
     public Animator animation_col; // 動畫控制器
@@ -158,8 +158,10 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     }
 
 
-    private void ResetCombination()
+    public void ResetCombination()
     {
+        Ptest.show.Clear();
+        PieceManager.Instance.Clear();
         // 重置當前組合
         foreach (var piece in Ptest.pickedPieces)
         {
@@ -167,7 +169,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             {
                 piece.survival_state = "Alive";
             }
-            //Ptest.show.Add(piece);
+            Ptest.show.Add(piece);
             PieceManager.Instance.Add(piece);
         }
         currentCombination.Clear();
@@ -207,7 +209,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             if (currentCombination.Contains(piece.PieceID)) // 確定為 List 中數值
             {
                 PieceManager.Instance.Remove(piece);
-                piece.survival_state = "Dead";
+                piece.survival_state = "Alive";
             }
             Ptest.show.Clear();
             PieceManager.Instance.Clear();
