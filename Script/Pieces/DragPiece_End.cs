@@ -167,7 +167,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             {
                 piece.survival_state = "Alive";
             }
-            Ptest.show.Add(piece);
+            //Ptest.show.Add(piece);
             PieceManager.Instance.Add(piece);
         }
         currentCombination.Clear();
