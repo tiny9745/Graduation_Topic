@@ -37,6 +37,12 @@ public class Ptest : MonoBehaviour
             ShowPieces();
         }
     }
+    public void _to_Drop()
+    {
+        addp();
+        ShowPieces();
+    }
+
     void UpdateInventoryUI()
     {
         PieceManager.Instance.PieceList.Clear();
@@ -66,9 +72,9 @@ public class Ptest : MonoBehaviour
     public void NextPage_1()
     {
         // Check if the next page exists
-        if(page == 0)itemsPerPage = 16;
+        if (page == 0) itemsPerPage = 16;
         else itemsPerPage = 72;
-        
+
         if ((page + 1) * itemsPerPage < pickedPieces.Count)
         {
             page++;
@@ -83,7 +89,7 @@ public class Ptest : MonoBehaviour
             ShowPieces();
         }
     }
-    void addp()
+    public void addp()
     {
         thisItem = GetRandomPiece();
         if (thisItem != null)
@@ -163,16 +169,17 @@ public class Ptest : MonoBehaviour
     void Test()
     {
         List<int> k = new List<int>();
-        for(int i = 0; i < availablePieces.Count; i++)
+        for (int i = 0; i < availablePieces.Count; i++)
         {
-            if (availablePieces[i].PieceName.Substring(0, 3) == "Blu"){
+            if (availablePieces[i].PieceName.Substring(0, 3) == "Blu")
+            {
                 pickedPieces.Add(availablePieces[i]);
                 SortPiece(availablePieces[i]);
                 show.Add(availablePieces[i]);
-                k.Add(i);        
-            }   
+                k.Add(i);
+            }
         }
-        for(int i = 0; i < k.Count; i++)
+        for (int i = 0; i < k.Count; i++)
         {
             availablePieces.RemoveAt(k[i]);
         }

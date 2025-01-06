@@ -36,7 +36,7 @@ public class Ani_MC : MonoBehaviour
         {
             return;
         }
-
+        if(isDashCooldown)Debug.Log("isDashCooldown");
         // 處理輸入
         if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving())
         {

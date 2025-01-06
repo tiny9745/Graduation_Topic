@@ -94,7 +94,7 @@ public class NPC05_control : MonoBehaviour
         if (TargetObj != null && Vector3.Distance(transform.position, TargetObj.transform.position) <= DetectDistance)
         {
             // Shoot at the player
-            if (Time.time >= nextFireTime)
+            if (Time.time >= nextFireTime && NPC_HP > 0)
             {
                 Shoot();
                 nextFireTime = Time.time + 1f / fireRate;
@@ -333,6 +333,7 @@ public class NPC05_control : MonoBehaviour
             if (static_parameters.Change_enemy == 0)
             {
                 Vector3 currentPosition = transform.position;
+                currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             static_parameters.money += 6;

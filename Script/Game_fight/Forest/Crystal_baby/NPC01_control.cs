@@ -260,7 +260,7 @@ public class NPC01_control : MonoBehaviour
     { 
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
-            UnityEngine.Debug.Log("NPC01_control:"+other.gameObject.tag);
+            // UnityEngine.Debug.Log("NPC01_control:"+other.gameObject.tag);
             if (other.gameObject.tag == "Player")
             {
                 if (open_EnableHitbox)
