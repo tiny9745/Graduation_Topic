@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,10 +12,11 @@ public class Scene_Change_Forest : MonoBehaviour
     int i;
     bool open = false;
     // Update is called once per frame
-
+    private Image image_complete;
     void Start()
     {
         player_S = GameObject.Find("Player_S");
+        image_complete = GameObject.Find("Complete").GetComponent<Image>();
         Invoke("OpenDoor", 4f);
     }
     private void Update()
@@ -95,12 +97,14 @@ public class Scene_Change_Forest : MonoBehaviour
             Debug.Log("i:" + i);
             if (static_parameters.stage_number >= i)
             {
-                Debug.Log("Go Back");
-                player_S.transform.localPosition = new Vector3(0, 0, -15);
-                //SceneManager.LoadScene("Game_fight_Boss");
-                SceneManager.LoadScene("magic_house");
-                static_parameters.stage_number = 0;
-                static_parameters.stage_number_Boss++;
+                //通關畫面
+
+                // Debug.Log("Go Back");
+                // player_S.transform.localPosition = new Vector3(0, 0, -15);
+                // //SceneManager.LoadScene("Game_fight_Boss");
+                // SceneManager.LoadScene("magic_house");
+                // static_parameters.stage_number = 0;
+                // static_parameters.stage_number_Boss++;
             }
             else
             {
