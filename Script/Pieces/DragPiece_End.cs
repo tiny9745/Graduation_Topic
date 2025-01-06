@@ -181,25 +181,49 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
 
     public void Combination_End()
+{
+    // 儲存要移除的組合
+    List<HashSet<int>> removedSequences = new List<HashSet<int>>();
+
+    foreach (var sequence in validSequences)
     {
-        foreach (var piece in Ptest.pickedPieces)
+        // 檢查 currentCombination 是否等於 validSequences 的某一項
+        if (new HashSet<int>(currentCombination).SetEquals(sequence))
         {
-            if (currentCombination.Contains(piece.PieceID))//確定為List中數值
-            {
-                PieceManager.Instance.Remove(piece);
-                piece.survival_state = "Dead";
-            }
-            Ptest.show.Clear();
-            PieceManager.Instance.Clear();
+            removedSequences.Add(sequence);
         }
-        currentCombination.Clear();
-        foreach (var image in images_puzzle)
-        {
-            image.SetActive(false);
-        }
-        puzzle_count = 0;
-        newColor.a = 0.5f;
     }
+
+    // 從 validSequences 中移除符合條件的組合
+    foreach (var sequence in removedSequences)
+    {
+        validSequences.Remove(sequence);
+        Debug.Log("移除的組合: " + string.Join(", ", sequence));
+    }
+
+    // 清空 currentCombination 並重置碎片顯示
+    foreach (var piece in Ptest.pickedPieces)
+    {
+        if (currentCombination.Contains(piece.PieceID)) // 確定為 List 中數值
+        {
+            PieceManager.Instance.Remove(piece);
+            piece.survival_state = "Dead";
+        }
+        Ptest.show.Clear();
+        PieceManager.Instance.Clear();
+    }
+
+    currentCombination.Clear();
+
+    foreach (var image in images_puzzle)
+    {
+        image.SetActive(false);
+    }
+
+    puzzle_count = 0;
+    newColor.a = 0.5f;
+}
+
 
     private void SetPuzzleColor(string key_color)
     {
