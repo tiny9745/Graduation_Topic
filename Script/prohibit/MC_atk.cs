@@ -5,7 +5,7 @@ using UnityEngine;
 public class MC_atk : MonoBehaviour
 {
     private Collider MC_Collider;
-    short T1, T2 = -9;
+    int T1, T2 = -9;
     float attackDamage;
     public AudioSource audioSource; // 音效播放元件
     public AudioClip[] meleeSwingSounds; // 揮擊音效陣列
@@ -60,10 +60,6 @@ public class MC_atk : MonoBehaviour
                     melee2();
                     break;
             }
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-
         }
     }
     void melee1()

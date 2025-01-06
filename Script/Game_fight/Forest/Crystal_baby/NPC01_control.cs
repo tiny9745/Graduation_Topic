@@ -1,36 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class NPC01_control : MonoBehaviour
 {
+    public NPC_HP_01 nPC_hP; public NPC_interactive npc_interactive;  public NPC01_effect effect;
     NavMeshAgent npcNavi;
     public Animator animator;
-    public GameObject TargetObj;
-    public bool NPC01_hit = false;
-    public int DetectDistance = 18, Pcounter = 0;
-    public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100, npcSpeed = 3f, NPC_HP;
+    public GameObject TargetObj,hitbox_Crystal_baby,Drop,Img_npc;
+    public int DetectDistance = 27, Pcounter = 0;int NPC_angle = 0;
+    public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100, npcSpeed = 5f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani = false, hit = false;
+    bool hit_Ani= false, hit = false, bomb_Berry= true,dead_open= true, MC_to_Att= true;
+    public bool NPC01_hit = false,stun = false;
+    private bool isFacingRight = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    public GameObject NPC01; public GameObject NPC01_1;
-    public GameObject hitbox_Crystal_baby;
-    public GameObject Drop;
-    bool dead_open = true, MC_to_Att = true;
-    public NPC_HP_01 nPC_hP;
-    int NPC_angle = 0;
-    private bool isFacingRight = true;
-    public GameObject Img_npc;
-    public NPC_interactive npc_interactive; bool bomb_Berry = true;
+    public GameObject NPC01, NPC01_1;
+    
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
-
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -44,21 +39,12 @@ public class NPC01_control : MonoBehaviour
             };
         }
         hitbox_Crystal_baby.SetActive(false);
-
-        if (TargetObj == null)
-        {
-            TargetObj = GameObject.Find("Player");
-        }
+        TargetObj = GameObject.Find("Player");
+        
         npcNavi = GetComponent<NavMeshAgent>();
-        if (npcNavi != null)
-        {
-            npcNavi.speed = npcSpeed;
-        }
-
-        if (nPC_hP == null)
-        {
-            nPC_hP = GetComponent<NPC_HP_01>();
-        }
+        npcNavi.speed = npcSpeed;     
+        nPC_hP = GetComponent<NPC_HP_01>();
+        
     }
 
     void Update()
@@ -68,10 +54,13 @@ public class NPC01_control : MonoBehaviour
         {
             dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         }
-
         if (NPC_HP <= 0)
         {
-            PlayBombAnimation();
+            NPC_HP = 0;
+            hitbox_Crystal_baby.SetActive(false);
+            Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
+            npcNavi.speed = 0;
+            dead();
         }
         else if (!hit_Ani)
         {
@@ -105,6 +94,7 @@ public class NPC01_control : MonoBehaviour
             {
                 npcNavi.destination = transform.position;
             }
+
             Vector3 direction = TargetObj.transform.position - transform.position;
             Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
             Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
@@ -263,20 +253,14 @@ public class NPC01_control : MonoBehaviour
         }
         Invoke("dead", 1.6f);
     }
-    public float GetNPC01_ATK()
-    {
-        return NPC01_ATK;
-    }
-    public bool GetNPC01_hit()
-    {
-        return hit;
-    }
+    
 
     bool open_EnableHitbox = true;
     private void OnTriggerStay(Collider other)
-    {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime)
+    { 
+        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
+            UnityEngine.Debug.Log("NPC01_control:"+other.gameObject.tag);
             if (other.gameObject.tag == "Player")
             {
                 if (open_EnableHitbox)
@@ -289,34 +273,39 @@ public class NPC01_control : MonoBehaviour
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 change_color_red();
-                NPC01_hit = true;
-                if (nPC_hP == null)
-                {
-                    return;
-                }
+                effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
-            // Omit the middle
+
+            if (other.gameObject.CompareTag("MC_bomb"))
+            {
+                effect.play_piano_effect();
+            }
+
             if (other.gameObject.CompareTag("MC_bullet"))
             {
+                change_color_red();
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        change_color_red();
-                        nPC_hP.TakeDamage(8, NPC01_DEF);
+                        nPC_hP.TakeDamage(4, NPC01_DEF);
+                        break;
+                    case 2:
+                        nPC_hP.TakeDamage(3, NPC01_DEF);
+                        break;
+                    case 3:
+                        nPC_hP.TakeDamage(5, NPC01_DEF);
+                        break;
+                    case 4:
+                        nPC_hP.TakeDamage(1, NPC01_DEF);
                         break;
                 }
             }
-            else
-            {
-                NPC01_hit = false;
-            }
         }
-
-        // Omit the middle
+        
         if (NPC_HP > 0)
         {
             if (other.tag == "Thorns")
@@ -359,6 +348,34 @@ public class NPC01_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
+    
+    public float GetNPC01_ATK()
+    {
+        return NPC01_ATK;
+    }
+    public bool GetNPC01_hit()
+    {
+        return hit;
+    }
+    public void change_color_red()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
+            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            {
+                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+            }
+        }
+    }
+
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
+    }
     void dead()
     {
         if (dead_open)
@@ -377,24 +394,5 @@ public class NPC01_control : MonoBehaviour
     private void Des()
     {
         Destroy(gameObject);
-    }
-    private void change_color_red()
-    {
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
-            if (!isCoroutineRunning)  // 檢查協程是否正在運行
-            {
-                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
-            }
-        }
-    }
-
-    IEnumerator ResetColorAfterDelay(float delay)
-    {
-        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
-        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
-        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
-        isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
 }

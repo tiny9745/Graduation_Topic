@@ -165,6 +165,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480025157622982257}
   m_CullTransparentMesh: 1
+--- !u!1 &3917230693631719018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5432047218045682790}
+  m_Layer: 8
+  m_Name: Bombpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5432047218045682790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917230693631719018}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7467593094685646681}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5642523929771483394
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +212,7 @@ GameObject:
   - component: {fileID: 1840519291462866230}
   - component: {fileID: 7891580912511692219}
   - component: {fileID: 1912572351394191432}
+  - component: {fileID: 598687366289779674}
   m_Layer: 8
   m_Name: NPC01
   m_TagString: NPC
@@ -201,6 +233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5432047218045682790}
   - {fileID: 8381651067146237199}
   - {fileID: 4621781570363028225}
   - {fileID: 8206177045879998684}
@@ -239,9 +272,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f98f067b5d858448cf88372a392864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nPC_hP: {fileID: 1840519291462866230}
+  npc_interactive: {fileID: 7891580912511692219}
+  effect: {fileID: 598687366289779674}
   animator: {fileID: 5040306042332483355}
   TargetObj: {fileID: 0}
-  NPC01_hit: 0
+  hitbox_Crystal_baby: {fileID: 683040738566736164}
+  Drop: {fileID: 0}
+  Img_npc: {fileID: 8529658835100848863}
   DetectDistance: 18
   Pcounter: 0
   NPC01_ATK: 8
@@ -249,13 +287,10 @@ MonoBehaviour:
   NPC_HP_Max: 100
   npcSpeed: 3
   NPC_HP: 100
+  NPC01_hit: 0
+  stun: 0
   NPC01: {fileID: 0}
   NPC01_1: {fileID: 654828963857941581, guid: 05a2eab05e77bdf49bcc8d85d00c09bc, type: 3}
-  hitbox_Crystal_baby: {fileID: 683040738566736164}
-  Drop: {fileID: 0}
-  nPC_hP: {fileID: 1840519291462866230}
-  Img_npc: {fileID: 8529658835100848863}
-  npc_interactive: {fileID: 7891580912511692219}
   spriteTransform: {fileID: 4621781570363028225}
 --- !u!195 &8932678650194305499
 NavMeshAgent:
@@ -349,11 +384,26 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &598687366289779674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642523929771483394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a282bd4aaef3a1949b4971f006274e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  control: {fileID: 4507803500508676976}
+  bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
+  bomb_point: {fileID: 3917230693631719018}
 --- !u!1 &6200279387000505025
 GameObject:
   m_ObjectHideFlags: 0

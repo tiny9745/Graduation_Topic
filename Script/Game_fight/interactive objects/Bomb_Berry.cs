@@ -124,7 +124,6 @@ public class Bomb_Berry : MonoBehaviour
         if (berry != 0)
         {
             animator_bomb.SetBool("BOOMFX_bomb", true);
-            Debug.Log("Berry explode");
             NPC_interactive.berry = berry;
             if (bomb_hitbox != null)
             {

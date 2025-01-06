@@ -22,7 +22,7 @@ public class ThornsController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("NPC"))
+        if (other.CompareTag("Player"))
         {
             collidersInRange.Add(other); // 將物件加入集合
         }

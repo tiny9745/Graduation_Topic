@@ -6,19 +6,17 @@ using UnityEngine.AI;
 
 public class NPC03_control : MonoBehaviour
 {
+    public NPC_interactive npc_interactive; public NPC_HP_03 nPC_hP;public NPC_effect_03 effect;
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj, Drop,NPC03, hitbox_Brick_Monster, Img_npc;
-    public int DetectDistance = 22;
-    public float NPC_HP_Max = 70, npcSpeed = 4f, NPC_HP, dist, NPC03_ATK = 25, NPC03_DEF = 5;
+    public int DetectDistance = 33; int NPC_angle;
+    public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, dist, NPC03_ATK = 10, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani, hit = false; 
+    bool hit_Ani= false, hit = false, dead_open= true, MC_to_Att= true, bomb_Berry = true;
+    public bool stun; private bool isFacingRight = true; 
     private Vector3 lastPosition;
     private Quaternion initialRotation;
-    bool dead_open = true, MC_to_Att = true;
-    public NPC_HP_03 nPC_hP;public NPC_effect_03 effect;
-    int NPC_angle;
-    private bool isFacingRight = true; public bool stun;
 
     public Material Deduct_Blood; private Material originalMaterial;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;private bool isCoroutineRunning = false;
@@ -238,11 +236,11 @@ public class NPC03_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                Debug.Log("MC_Att");
                 change_color_red();
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
-                effect.Skill();
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
@@ -272,7 +270,23 @@ public class NPC03_control : MonoBehaviour
                 }
             }
         }
-        //補互動物件
+        
+        if (NPC_HP > 0)
+        {
+            if (other.tag == "Thorns")
+            {
+                change_color_red();
+                npc_interactive.NPC_Thorns(ref NPC_HP);
+                nPC_hP.UpdateHealthBar();
+            }
+            if (other.tag == "Bomb_Fruit" && bomb_Berry)
+            {
+                change_color_red();
+                bomb_Berry = false;
+                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
+                nPC_hP.UpdateHealthBar();
+            }
+        }
     }
 
     void EnableHitbox()
