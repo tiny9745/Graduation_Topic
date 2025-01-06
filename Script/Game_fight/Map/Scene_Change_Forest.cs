@@ -78,14 +78,18 @@ public class Scene_Change_Forest : MonoBehaviour
             {
                 i = 3;
             }
-            else if (static_parameters.stage_number < 6)
+            else//測試用
             {
-                i = static_parameters.stage_number;
+                i = 3;
             }
-            else
-            {
-                i = 5;
-            }
+            // else if (static_parameters.stage_number < 6)
+            // {
+            //     i = static_parameters.stage_number;
+            // }
+            // else
+            // {
+            //     i = 5;
+            // }
             static_parameters.money += i * 10;
             Debug.Log("static_parameters.stage_number:" + static_parameters.stage_number);
             Debug.Log("i:" + i);

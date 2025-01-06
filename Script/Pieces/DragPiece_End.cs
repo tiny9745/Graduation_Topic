@@ -109,6 +109,11 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 if (puzzle_count != 0)
                 {
                     images_puzzle[puzzle_count - 1].SetActive(true);
+                    if(key_color == "Blu") images_puzzle_col[puzzle_count - 1].color = new Color(0, 0, 255f/255f, 0.6f);
+                    if(key_color == "Red") images_puzzle_col[puzzle_count - 1].color = new Color(255f/255f, 0, 0, 0.6f);
+                    if(key_color == "Grn") images_puzzle_col[puzzle_count - 1].color = new Color(0, 255f/255f, 0, 0.6f);
+                    if(key_color == "Prp") images_puzzle_col[puzzle_count - 1].color = new Color(255f/255f, 0f, 255f/255f, 0.6f);
+                    if(key_color == "Yel") images_puzzle_col[puzzle_count - 1].color = new Color(255f/255f, 255f/255f, 0, 0.6f);
                     if (checkResult != 2) newColor.a = 0.5f;
                 }
             }
