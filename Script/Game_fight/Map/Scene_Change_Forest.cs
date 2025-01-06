@@ -12,11 +12,10 @@ public class Scene_Change_Forest : MonoBehaviour
     int i;
     bool open = false;
     // Update is called once per frame
-    private GameObject image_complete;
+    public GameObject image_complete;
     void Start()
     {
         player_S = GameObject.Find("Player_S");
-        image_complete = GameObject.Find("Complete");
         Invoke("OpenDoor", 4f);
     }
     private void Update()

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Puzzle : MonoBehaviour
 {
@@ -19,7 +18,6 @@ public class Puzzle : MonoBehaviour
     public DragPiece_End dragPiece_end;
     public UI UI;
     Diary_icon thisItem;
-    public GameObject image_complete;
     void Start()
     {
         Diary_icon[] all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
@@ -100,11 +98,5 @@ public class Puzzle : MonoBehaviour
         cpmplete_piece_object.SetActive(false);
         complete_piece_animator.SetInteger("piece_complete_color", -1);
         Debug.Log("Complet_piecing:" + DragPiece_End.puzzle_color);
-    }
-
-    public void End_Back_menu()
-    {
-        SceneManager.LoadScene("menu");
-        image_complete.SetActive(false);
     }
 }
