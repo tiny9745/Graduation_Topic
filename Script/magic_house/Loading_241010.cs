@@ -24,6 +24,7 @@ public class Loading_241010 : MonoBehaviour
     void Start()
     {
         BlackScreen = GameObject.Find("Black");
+        UI.Loadmoney();
         if (BlackScreen != null && Death_MC.isDead)
         {
             BlackScreen.SetActive(false);
