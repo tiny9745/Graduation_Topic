@@ -40,10 +40,12 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         // 移動物件至滑鼠指標位置
         if (GetComponent<Image>().sprite != nullsprite)
         {
+            Debug.Log("OnDrag triggered");
             _rectTransform.position = eventData.position;
         }
         else
         {
+            Debug.Log("OnDrag triggered but no sprite");
             return;
         }
     }
@@ -62,5 +64,11 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
             Debug.Log($"RectTransform position: {_rectTransform.anchoredPosition}");
         else
             Debug.Log("RectTransform is null");
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        // 如果 OnEndDrag 未觸發，可以在這裡進行備援處理
+        Debug.Log("OnPointerUp triggered as fallback");
+        OnEndDrag(eventData);
     }
 }
