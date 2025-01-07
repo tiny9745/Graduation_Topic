@@ -12,7 +12,8 @@ public class UI : MonoBehaviour
     public GameObject LeftMark1, LeftMark2, LeftMark3, LeftMark4;
     private Color newColor = new Color(1, 1, 1, 0.5f);
     public Text money;
-    public Image button_image;
+    public Image button_image,craft_image;
+    public Sprite craft_sprite;
     public Ptest piece; public DragPiece_End dragPiece_End;
     // Start is called before the first frame update
     void Start()
@@ -110,6 +111,7 @@ public class UI : MonoBehaviour
         }
         piecechange();
         button_image.color = newColor;
+        craft_image.sprite = craft_sprite;
     }
     public void Loadmoney()
     {
