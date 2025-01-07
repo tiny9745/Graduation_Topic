@@ -93,6 +93,8 @@ public class Death_MC : MonoBehaviour
         Blood_Screen_Img.color = targetColor;
         Death_Img.sprite = Death_Img_Sprite;
         isDead = true;
+        static_parameters.Ani_state = 0;
+        Ani_MC.isAttackPlaying = false;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

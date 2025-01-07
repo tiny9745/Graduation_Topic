@@ -25,6 +25,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         // 初始化有效的組合數列
         validSequences = new List<HashSet<int>>()
         {
+            //拼湊完會將陣列改成999
             new HashSet<int> { 11, 15 },
             // new HashSet<int> { 11, 16, 17 },
             // new HashSet<int> { 13, 16, 18 },
@@ -186,7 +187,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     {
         // 儲存要移除的組合
         List<HashSet<int>> removedSequences = new List<HashSet<int>>();
-
         foreach (var sequence in validSequences)
         {
             // 檢查 currentCombination 是否等於 validSequences 的某一項
@@ -199,7 +199,9 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         // 從 validSequences 中移除符合條件的組合
         foreach (var sequence in removedSequences)
         {
-            validSequences.Remove(sequence);
+            // validSequences.Remove(sequence);
+            sequence.Clear(); // 清空原有內容
+            sequence.Add(999); // 添加 999
             Debug.Log("移除的組合: " + string.Join(", ", sequence));
         }
 

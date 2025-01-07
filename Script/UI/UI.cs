@@ -52,14 +52,14 @@ public class UI : MonoBehaviour
     {
         if (!static_parameters.Bookstate)
         {
-            Time.timeScale = 0;
+            // Time.timeScale = 0;
             static_parameters.Bookstate = true;
             Notebook.SetActive(true);
             BattleUI.SetActive(false);
         }
         else
         {
-            Time.timeScale = 1;
+            // Time.timeScale = 1;
             static_parameters.Bookstate = false;
             Notebook.SetActive(false);
             BattleUI.SetActive(true);
