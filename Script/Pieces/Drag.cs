@@ -52,18 +52,11 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag triggered");
-        //Debug.Log("OnEndDrag");
         _canvasGroup.alpha = 1f;
         _canvasGroup.blocksRaycasts = true;
 
         // 回到原本的父物件層級（若需要重設位置）
         _rectTransform.anchoredPosition = _originalPosition;
-
-        if (_rectTransform != null)
-            Debug.Log($"RectTransform position: {_rectTransform.anchoredPosition}");
-        else
-            Debug.Log("RectTransform is null");
     }
     public void OnPointerUp(PointerEventData eventData)
     {
