@@ -27,6 +27,7 @@ public class UI : MonoBehaviour
         {
             openclose();
         }
+        if(static_parameters.isSceneLoading)Loadmoney();
     }
     public void Onclick1()
     {
@@ -110,7 +111,7 @@ public class UI : MonoBehaviour
         piecechange();
         button_image.color = newColor;
     }
-    public void Loadmoney()
+    void Loadmoney()
     {
         money.text = static_parameters.money.ToString();
     }
