@@ -9,6 +9,7 @@ public class NPC05_control : MonoBehaviour
     public NPC_interactive npc_interactive; public NPC_HP_05 nPC_hP; public NPC_effect_05 effect;
     NavMeshAgent npcNavi;
     public Animator animator;
+    public Animator animator_to_atk;
     public GameObject TargetObj, Img_npc, bulletPrefab, NPC05, Drop;
     public int DetectDistance = 12; int NPC_angle = 0;
     public float NPC05_ATK = 35, NPC05_DEF = 15, NPC_HP_Max = 160, npcSpeed = 0f, NPC_HP, fireRate = 1f, bulletSpeed = 20f;
@@ -214,6 +215,7 @@ public class NPC05_control : MonoBehaviour
         {
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                animator_to_atk.SetTrigger("MC_Atk_N01");
                 change_color_red();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
                 MC_to_Att = false; effect.Skill();
