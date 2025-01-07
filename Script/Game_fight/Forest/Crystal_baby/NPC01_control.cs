@@ -314,13 +314,13 @@ public class NPC01_control : MonoBehaviour
                 npc_interactive.NPC_Thorns(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
             }
-            if (other.tag == "Bomb_Fruit" && bomb_Berry)
-            {
-                change_color_red();
-                bomb_Berry = false;
-                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
-                nPC_hP.UpdateHealthBar();
-            }
+            // if (other.tag == "Bomb_Fruit" && bomb_Berry)
+            // {
+            //     change_color_red();
+            //     bomb_Berry = false;
+            //     npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
+            //     nPC_hP.UpdateHealthBar();
+            // }
         }
     }
 
