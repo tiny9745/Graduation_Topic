@@ -8,6 +8,7 @@ public class NPC02_control : MonoBehaviour
     public NPC_HP_02 nPC_hP;public NPC_interactive npc_interactive; public NPC_effect_02 effect;
     NavMeshAgent npcNavi;
     public Animator animator;
+    public Animator animator_to_atk;
     public GameObject TargetObj,NPC02,Drop,hitbox_Robot,Img_npc;
     public int DetectDistance = 30;int NPC_angle = 0;
     public float NPC02_ATK = 13, NPC02_DEF = 10,NPC_HP_Max = 80, npcSpeed = 7f, NPC_HP;
@@ -238,6 +239,7 @@ public class NPC02_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                animator_to_atk.SetTrigger("MC_Atk_N01");
                 change_color_red();
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);

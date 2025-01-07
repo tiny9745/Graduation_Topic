@@ -8,6 +8,7 @@ public class NPC01_1_control : MonoBehaviour
     public NPC_HP_01_1 nPC_hP;public NPC_interactive npc_interactive; public NPC01_1_effect effect;
     NavMeshAgent npcNavi;
     public Animator animator;
+    public Animator animator_to_atk;
     public GameObject TargetObj;
     public int DetectDistance = 25;
     public float NPC01_ATK = 4, NPC01_DEF = 2, NPC_HP_Max = 40, npcSpeed = 4f, NPC_HP, minus;
@@ -311,6 +312,7 @@ public class NPC01_1_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                animator_to_atk.SetTrigger("MC_Atk_N01");
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;

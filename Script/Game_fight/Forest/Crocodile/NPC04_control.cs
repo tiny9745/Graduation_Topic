@@ -8,6 +8,7 @@ public class NPC04_control : MonoBehaviour
     public NPC_HP_04 nPC_hP; public NPC_effect_04 effect;public NPC_interactive npc_interactive;
     NavMeshAgent npcNavi;
     public Animator animator;
+    public Animator animator_to_atk;
     public GameObject TargetObj,NPC04, hitbox_Brick_Monster, Drop, Img_npc;
     public int DetectDistance = 25; int NPC_angle = 0;
     public float NPC04_ATK = 13, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
@@ -238,6 +239,7 @@ public class NPC04_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
+                animator_to_atk.SetTrigger("MC_Atk_N01");
                 change_color_red();
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
