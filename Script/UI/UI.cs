@@ -27,7 +27,7 @@ public class UI : MonoBehaviour
         {
             openclose();
         }
-        if(static_parameters.isSceneLoading)Loadmoney();
+        if(StaticParameters_magic.isSceneLoading_magic||StaticParameters_fight.isSceneLoading_fight)Loadmoney();
     }
     public void Onclick1()
     {
@@ -113,6 +113,7 @@ public class UI : MonoBehaviour
     }
     void Loadmoney()
     {
+        Debug.Log("Loadmoney");
         money.text = static_parameters.money.ToString();
     }
 }
