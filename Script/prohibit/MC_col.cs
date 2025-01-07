@@ -36,6 +36,7 @@ public class MC_col : MonoBehaviour
     {
         if (static_parameters.MC_HP <= 0)
         {
+            static_parameters.Change_enemy=0;
             playerAgent.enabled = false;
         }
         SetLookDirection(static_parameters.face);
