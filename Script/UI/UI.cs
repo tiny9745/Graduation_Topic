@@ -11,7 +11,7 @@ public class UI : MonoBehaviour
     public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
     public GameObject LeftMark1, LeftMark2, LeftMark3, LeftMark4;
     private Color newColor = new Color(1, 1, 1, 0.5f);
-    static public Text money;
+    public Text money;
     public Image button_image;
     public Ptest piece; public DragPiece_End dragPiece_End;
     // Start is called before the first frame update
@@ -111,7 +111,7 @@ public class UI : MonoBehaviour
         piecechange();
         button_image.color = newColor;
     }
-    static public void Loadmoney()
+    void Loadmoney()
     {
         Debug.Log("Loadmoney");
         money.text = static_parameters.money.ToString();
