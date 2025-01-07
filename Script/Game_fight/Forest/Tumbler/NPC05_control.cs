@@ -245,12 +245,12 @@ public class NPC05_control : MonoBehaviour
             {
                 effect.play_piano_effect();
             }
-            if (other.tag == "Thorns")
-            {
-                change_color_red();
-                npc_interactive.NPC_Thorns(ref NPC_HP);
-                nPC_hP.UpdateHealthBar();
-            }
+            // if (other.tag == "Thorns")
+            // {
+            //     change_color_red();
+            //     npc_interactive.NPC_Thorns(ref NPC_HP);
+            //     nPC_hP.UpdateHealthBar();
+            // }
             if (other.tag == "Bomb_Fruit" && bomb_Berry)
             {
                 change_color_red();
