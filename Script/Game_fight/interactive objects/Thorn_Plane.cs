@@ -16,7 +16,7 @@ public class ThornsController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("NPC"))
         {
             if (collidersInRange.Add(other)) // 確保不重複添加
             {
