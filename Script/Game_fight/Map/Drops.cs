@@ -5,32 +5,34 @@ using UnityEngine;
 public class Drops : MonoBehaviour
 {
     public Text_Array text_array;
-
+    public Ptest ptest;
+    GameObject targetObject;
     void Start()
     {
-        text_array = FindObjectOfType<Text_Array>();
-        print("drop_exist:"+transform.position);
-    }
+        // text_array = FindObjectOfType<Text_Array>();
+        targetObject = GameObject.Find("UI");
 
-    private void OnCollisionEnter(Collision Hit)
-    {
-        if (Hit.gameObject.CompareTag("Player"))
+        if (targetObject != null)
         {
-            if (text_array != null)
+            ptest = targetObject.GetComponent<Ptest>();
+            if (ptest == null)
             {
-                print("drop_eat");
-                //text_array.SetRandomTextExistToTrue();
+                Debug.LogWarning("Ptest component not found on UI!");
             }
-            Destroy(gameObject);
         }
+        else
+        {
+            Debug.LogWarning("UI not found in the scene!");
+        }
+        print("drop_exist:" + transform.position);
     }
     private void OnTriggerEnter(Collider Hit)
     {
         if (Hit.gameObject.CompareTag("Player"))
         {
-            if (text_array != null)
+            if (targetObject != null)
             {
-                print("drop_eat");
+                ptest._to_Drop();
                 //text_array.SetRandomTextExistToTrue();
             }
             Destroy(gameObject);

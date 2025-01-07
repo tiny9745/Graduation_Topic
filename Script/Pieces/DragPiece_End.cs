@@ -10,6 +10,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     private List<HashSet<int>> validSequences; // 有效的組合數列
     static public List<int> currentCombination = new List<int>(); // 當前的組合
     public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
+    public Image[] images_puzzle_col = new Image[4]; // 圖片顏色陣列
     public Button composite_col;
     private Color newColor = new Color(1, 1, 1, 0.5f); // 按鈕透明度顏色
     public UnityEngine.UI.Image button_image; // 按鈕圖像
@@ -24,6 +25,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         // 初始化有效的組合數列
         validSequences = new List<HashSet<int>>()
         {
+            //拼湊完會將陣列改成999
             new HashSet<int> { 11, 15 },
             // new HashSet<int> { 11, 16, 17 },
             // new HashSet<int> { 13, 16, 18 },
@@ -71,7 +73,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
                 string key_name = Ptest.show[itemNumber - 1].PieceName;
                 currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
-                Debug.Log("Ptest.show[itemNumber - 1].PieceID"+Ptest.show[itemNumber - 1].PieceID);
+                Debug.Log("Ptest.show[itemNumber - 1].PieceID" + Ptest.show[itemNumber - 1].PieceID);
 
                 // 清除並重新整理顯示的碎片
                 Ptest.show.Clear();
@@ -108,6 +110,11 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 if (puzzle_count != 0)
                 {
                     images_puzzle[puzzle_count - 1].SetActive(true);
+                    if (key_color == "Blu") images_puzzle_col[puzzle_count - 1].color = new Color(0, 0, 255f / 255f, 0.6f);
+                    if (key_color == "Red") images_puzzle_col[puzzle_count - 1].color = new Color(255f / 255f, 0, 0, 0.6f);
+                    if (key_color == "Grn") images_puzzle_col[puzzle_count - 1].color = new Color(0, 255f / 255f, 0, 0.6f);
+                    if (key_color == "Prp") images_puzzle_col[puzzle_count - 1].color = new Color(255f / 255f, 0f, 255f / 255f, 0.6f);
+                    if (key_color == "Yel") images_puzzle_col[puzzle_count - 1].color = new Color(255f / 255f, 255f / 255f, 0, 0.6f);
                     if (checkResult != 2) newColor.a = 0.5f;
                 }
             }
@@ -152,8 +159,10 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     }
 
 
-    private void ResetCombination()
+    public void ResetCombination()
     {
+        Ptest.show.Clear();
+        PieceManager.Instance.Clear();
         // 重置當前組合
         foreach (var piece in Ptest.pickedPieces)
         {
@@ -176,24 +185,49 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
     public void Combination_End()
     {
+        // 儲存要移除的組合
+        List<HashSet<int>> removedSequences = new List<HashSet<int>>();
+        foreach (var sequence in validSequences)
+        {
+            // 檢查 currentCombination 是否等於 validSequences 的某一項
+            if (new HashSet<int>(currentCombination).SetEquals(sequence))
+            {
+                removedSequences.Add(sequence);
+            }
+        }
+
+        // 從 validSequences 中移除符合條件的組合
+        foreach (var sequence in removedSequences)
+        {
+            // validSequences.Remove(sequence);
+            sequence.Clear(); // 清空原有內容
+            sequence.Add(999); // 添加 999
+            Debug.Log("移除的組合: " + string.Join(", ", sequence));
+        }
+
+        // 清空 currentCombination 並重置碎片顯示
         foreach (var piece in Ptest.pickedPieces)
         {
-            if (currentCombination.Contains(piece.PieceID))//確定為List中數值
+            if (currentCombination.Contains(piece.PieceID)) // 確定為 List 中數值
             {
                 PieceManager.Instance.Remove(piece);
-                piece.survival_state = "Dead";
+                piece.survival_state = "Alive";
             }
-            Ptest.show.Add(piece);
-            PieceManager.Instance.Add(piece);
+            Ptest.show.Clear();
+            PieceManager.Instance.Clear();
         }
+
         currentCombination.Clear();
+
         foreach (var image in images_puzzle)
         {
             image.SetActive(false);
         }
+
         puzzle_count = 0;
         newColor.a = 0.5f;
     }
+
 
     private void SetPuzzleColor(string key_color)
     {

@@ -9,7 +9,7 @@ public class NPC01_1_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj;
-    public int DetectDistance = 20;
+    public int DetectDistance = 25;
     public float NPC01_ATK = 4, NPC01_DEF = 2, NPC_HP_Max = 40, npcSpeed = 4f, NPC_HP, minus;
     float dist;
     private float damageCooldown = 1.0f; // Time in seconds between damage instances
@@ -89,6 +89,14 @@ public class NPC01_1_control : MonoBehaviour
     {
         TargetObj = GameObject.Find("Player");
         npcNavi = GetComponent<NavMeshAgent>();
+        if (NPC_HP <= 0)
+        {
+            NPC_HP = 0;
+            hitbox_Crystal_baby_small.SetActive(false);
+            Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
+            npcNavi.speed = 0;
+            dead();
+        }
         if (NPC_HP <= 0)
         {
             PlayBombAnimation();
@@ -391,6 +399,7 @@ public class NPC01_1_control : MonoBehaviour
             if (static_parameters.Change_enemy == 0)
             {
                 Vector3 currentPosition = transform.position;
+                currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             static_parameters.money += 3;

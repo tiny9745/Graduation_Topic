@@ -10,8 +10,8 @@ public class NPC03_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public GameObject TargetObj, Drop,NPC03, hitbox_Brick_Monster, Img_npc;
-    public int DetectDistance = 22; int NPC_angle;
-    public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, dist, NPC03_ATK = 15, NPC03_DEF = 5;
+    public int DetectDistance = 33; int NPC_angle;
+    public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, dist, NPC03_ATK = 10, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani= false, hit = false, dead_open= true, MC_to_Att= true, bomb_Berry = true;
     public bool stun; private bool isFacingRight = true; 
@@ -327,6 +327,7 @@ public class NPC03_control : MonoBehaviour
             if (static_parameters.Change_enemy == 0)
             {
                 Vector3 currentPosition = transform.position;
+                currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             static_parameters.money += 7;

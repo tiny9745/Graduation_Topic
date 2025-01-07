@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Loading_fight : MonoBehaviour
 {
+
     public string targetSceneName = "Game_fight";
     public string targetSceneName_Boss = "Game_fight_Boss";
     public GameObject loadingScreen;
@@ -14,6 +15,7 @@ public class Loading_fight : MonoBehaviour
 
     void Start()
     {
+
         if (loadingScreen == null || loadingBar == null)
         {
             Debug.Log("LoadingScreen or LoadingBar not found in the current scene.");

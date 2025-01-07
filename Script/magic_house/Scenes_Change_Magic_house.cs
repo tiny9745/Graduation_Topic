@@ -9,7 +9,6 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player"))
         {
-            Death_MC.isDead = true;
             SceneManager.LoadScene("house_outside");
         }
     }
@@ -17,7 +16,6 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player"))
         {
-            Death_MC.isDead = true;
             SceneManager.LoadScene("house_outside");
         }
     }

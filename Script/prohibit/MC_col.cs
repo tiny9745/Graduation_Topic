@@ -36,6 +36,7 @@ public class MC_col : MonoBehaviour
     {
         if (static_parameters.MC_HP <= 0)
         {
+            static_parameters.Change_enemy=0;
             playerAgent.enabled = false;
         }
         SetLookDirection(static_parameters.face);
@@ -50,6 +51,7 @@ public class MC_col : MonoBehaviour
         {
             Walk_speedupdate();
         }
+        // Debug.Log("static_parameters.Change_enemy: " + static_parameters.Change_enemy);
     }
 
     void SetAnimationSpeed_ATK(string animName, float animSpeed)
@@ -186,7 +188,29 @@ public class MC_col : MonoBehaviour
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
         }
-        
+        if (other.CompareTag("Bomb_Fruit"))
+        {
+            Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
+            renderer1.material = Deduct_Blood;
+            StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
+        }
+    }
+    bool Throns_wait = false;
+    private void OnTriggerStay(Collider other)
+    {
+        Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
+        if (other.CompareTag("Thorns") && !Throns_wait)
+        {
+            Throns_wait = true;
+            Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
+            renderer1.material = Deduct_Blood;
+            StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
+            Invoke("Throns_wait_false", 0.8f);
+        }
+    }
+    void Throns_wait_false()
+    {
+        Throns_wait = false;
     }
     void ATK_speedupdate()
     {

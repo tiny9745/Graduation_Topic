@@ -11,7 +11,6 @@ public class Upgrade : MonoBehaviour
     public Sprite AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
                   SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;//,comfirm_on,comfirm_off,cancel_on,cancel_off;
     public Text textbox;
-    bool clicks=false;
     short ATK_LV=1, DEF_LV=1, HP_LV=1, Speed_LV=1, Knockback_LV=1,Click;
     short[] ATK_price = { 100, 200, 300, 400, 500 },
     DEF_price = { 100, 200, 300, 400, 500 },
