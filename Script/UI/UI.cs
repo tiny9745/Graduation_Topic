@@ -111,7 +111,7 @@ public class UI : MonoBehaviour
         piecechange();
         button_image.color = newColor;
     }
-    void Loadmoney()
+    public void Loadmoney()
     {
         Debug.Log("Loadmoney");
         money.text = static_parameters.money.ToString();
