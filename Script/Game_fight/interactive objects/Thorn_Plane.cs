@@ -38,7 +38,7 @@ public class ThornsController : MonoBehaviour
             if (collidersInRange.Remove(other)) // 確保只移除存在於集合中的物件
             {
                 colliderCount--;
-                Debug.Log("Collider exited: " + other.name + ". Current count: " + colliderCount);
+                // Debug.Log("Collider exited: " + other.name + ". Current count: " + colliderCount);
             }
         }
 
