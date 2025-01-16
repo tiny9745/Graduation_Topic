@@ -10,4 +10,5 @@ public class Diary_icon : ScriptableObject
     public Sprite iconImage;
     public string skill_title,skill_content;
     public string diary_title,diary_content;
+    public string date;
 }
