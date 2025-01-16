@@ -583,6 +583,7 @@ MonoBehaviour:
   NPC03_ATK: 25
   NPC03_DEF: 5
   stun: 0
+  navMeshAgentController: {fileID: 6611956024801287363}
   Deduct_Blood: {fileID: 2100000, guid: fc21eb091654df0448671c299dccd1cc, type: 2}
   spriteTransform: {fileID: 4032549033181439169}
 --- !u!65 &5616752522870603614
@@ -731,3 +732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547d124c32f4c3e4fa23e52d7d6a7a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dangerTag: Thorns
+  retreatDistance: 5
+  into_thorns: 0

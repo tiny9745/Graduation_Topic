@@ -6,21 +6,31 @@ using UnityEngine.AI;
 
 public class NPC03_control : MonoBehaviour
 {
-    public NPC_interactive npc_interactive; public NPC_HP_03 nPC_hP;public NPC_effect_03 effect;
+    public NPC_interactive npc_interactive; public NPC_HP_03 nPC_hP; public NPC_effect_03 effect;
     NavMeshAgent npcNavi;
     public Animator animator;
     public Animator animator_to_atk;
-    public GameObject TargetObj, Drop,NPC03, hitbox_Brick_Monster, Img_npc;
+    public GameObject TargetObj, Drop, NPC03, hitbox_Brick_Monster, Img_npc;
     public int DetectDistance = 33; int NPC_angle;
     public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, dist, NPC03_ATK = 10, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani= false, hit = false, dead_open= true, MC_to_Att= true, bomb_Berry = true;
-    public bool stun; private bool isFacingRight = true; 
+    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
+    public bool stun; private bool isFacingRight = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
 
+    public NavMeshAgentController navMeshAgentController;
+
     public Material Deduct_Blood; private Material originalMaterial;
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;private bool isCoroutineRunning = false;
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false, into_thorns = false;
+
+
+
+    string dangerTag = "Thorns"; // 區域的 Tag
+    float retreatDistance = 5f; // 移動距離
+    float boundaryCheckDistance = 0.5f; // 邊界檢查距離
+    private bool isInDangerZone = false; // 是否在危險區域內
+    private Vector3 currentDirection; // 當前移動方向
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -88,7 +98,7 @@ public class NPC03_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-        if (TargetObj != null && npcNavi != null)
+        if (TargetObj != null && npcNavi != null && !into_thorns)
         {
             if (dist < DetectDistance && NPC_HP > 0 && !stun)
             {
@@ -272,9 +282,29 @@ public class NPC03_control : MonoBehaviour
                 }
             }
         }
-        
+
         if (NPC_HP > 0)
         {
+            // 如果進入危險區域且標記匹配
+            if (other.CompareTag(dangerTag))
+            {
+                into_thorns = true;
+                if (!isInDangerZone)
+                {
+                    isInDangerZone = true;
+                    Debug.Log($"{gameObject.name} entered a danger zone: {other.name}");
+                }
+
+                // 計算新的目標位置
+                Vector3 retreatTarget = transform.position + (currentDirection.normalized * retreatDistance);
+
+                // 設置 NavMeshAgent 的目標位置
+                if (npcNavi != null)
+                {
+                    npcNavi.SetDestination(retreatTarget);
+                    Debug.Log($"{gameObject.name} is moving to {retreatTarget}");
+                }
+            }
             if (other.tag == "Thorns")
             {
                 change_color_red();
@@ -288,6 +318,17 @@ public class NPC03_control : MonoBehaviour
                 npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // 當離開危險區域時，重置狀態
+        if (other.CompareTag(dangerTag))
+        {
+            into_thorns = false;
+            isInDangerZone = false;
+            Debug.Log($"{gameObject.name} exited the danger zone: {other.name}");
         }
     }
 
