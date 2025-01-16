@@ -525,7 +525,6 @@ GameObject:
   - component: {fileID: 2753665520669540544}
   - component: {fileID: 9174041880893343669}
   - component: {fileID: 9094819117705494734}
-  - component: {fileID: 6611956024801287363}
   m_Layer: 8
   m_Name: NPC03
   m_TagString: NPC
@@ -583,7 +582,7 @@ MonoBehaviour:
   NPC03_ATK: 25
   NPC03_DEF: 5
   stun: 0
-  navMeshAgentController: {fileID: 6611956024801287363}
+  navMeshAgentController: {fileID: 0}
   Deduct_Blood: {fileID: 2100000, guid: fc21eb091654df0448671c299dccd1cc, type: 2}
   spriteTransform: {fileID: 4032549033181439169}
 --- !u!65 &5616752522870603614
@@ -720,18 +719,3 @@ MonoBehaviour:
   control: {fileID: 7230315417705204069}
   bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
   bomb_point: {fileID: 7440025053212357370}
---- !u!114 &6611956024801287363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7984589684211309320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547d124c32f4c3e4fa23e52d7d6a7a1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dangerTag: Thorns
-  retreatDistance: 5
-  into_thorns: 0

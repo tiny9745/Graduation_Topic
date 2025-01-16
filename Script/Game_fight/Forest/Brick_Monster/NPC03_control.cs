@@ -19,18 +19,14 @@ public class NPC03_control : MonoBehaviour
     private Vector3 lastPosition;
     private Quaternion initialRotation;
 
-    public NavMeshAgentController navMeshAgentController;
-
     public Material Deduct_Blood; private Material originalMaterial;
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false, into_thorns = false;
-
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
 
 
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
-    float boundaryCheckDistance = 0.5f; // 邊界檢查距離
     private bool isInDangerZone = false; // 是否在危險區域內
-    private Vector3 currentDirection; // 當前移動方向
+    private Vector3 lastEnteredDirection; // 記錄進入方向
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -98,7 +94,7 @@ public class NPC03_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-        if (TargetObj != null && npcNavi != null && !into_thorns)
+        if (TargetObj != null && npcNavi != null && !isInDangerZone)
         {
             if (dist < DetectDistance && NPC_HP > 0 && !stun)
             {
@@ -231,6 +227,15 @@ public class NPC03_control : MonoBehaviour
     }
 
     bool open_EnableHitbox = true;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(dangerTag))
+        {
+            lastEnteredDirection = (transform.position - other.transform.position).normalized;
+            isInDangerZone = true;
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
@@ -288,21 +293,13 @@ public class NPC03_control : MonoBehaviour
             // 如果進入危險區域且標記匹配
             if (other.CompareTag(dangerTag))
             {
-                into_thorns = true;
-                if (!isInDangerZone)
-                {
-                    isInDangerZone = true;
-                    Debug.Log($"{gameObject.name} entered a danger zone: {other.name}");
-                }
-
                 // 計算新的目標位置
-                Vector3 retreatTarget = transform.position + (currentDirection.normalized * retreatDistance);
-
-                // 設置 NavMeshAgent 的目標位置
+                Vector3 retreatDirection = lastEnteredDirection; // 原路折返
+                // 計算目標位置
+                Vector3 retreatTarget = transform.position + retreatDirection ;
                 if (npcNavi != null)
                 {
                     npcNavi.SetDestination(retreatTarget);
-                    Debug.Log($"{gameObject.name} is moving to {retreatTarget}");
                 }
             }
             if (other.tag == "Thorns")
@@ -326,9 +323,12 @@ public class NPC03_control : MonoBehaviour
         // 當離開危險區域時，重置狀態
         if (other.CompareTag(dangerTag))
         {
-            into_thorns = false;
             isInDangerZone = false;
-            Debug.Log($"{gameObject.name} exited the danger zone: {other.name}");
+            if (npcNavi != null)
+            {
+                npcNavi.ResetPath(); // 停止導航，清除路徑
+                Debug.Log($"{gameObject.name} stopped moving after leaving danger zone: {other.name}");
+            }
         }
     }
 

@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3022684543267666010}
   - component: {fileID: 5875802387398517728}
+  - component: {fileID: 8323319991475517992}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Thorns
@@ -238,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 1701922089257543469}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2.8000002, z: 4}
+  m_LocalPosition: {x: 0, y: 2.8, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -263,8 +264,20 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18, y: 5, z: 18}
+  m_Size: {x: 14, y: 1, z: 14}
   m_Center: {x: 0, y: 0, z: -3}
+--- !u!114 &8323319991475517992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701922089257543469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25c4571d1ce3a7428650aeb81e8ab98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1743049587999078584
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +503,6 @@ GameObject:
   - component: {fileID: 4242209190758686311}
   - component: {fileID: 2191382954735269943}
   - component: {fileID: 5051320639353239865}
-  - component: {fileID: 8383236037509310199}
   m_Layer: 0
   m_Name: Thorns_Plane
   m_TagString: Thorns
@@ -622,15 +634,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cube: {fileID: 0}
   sprite: {fileID: 0}
---- !u!114 &8383236037509310199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475502909159839615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c25c4571d1ce3a7428650aeb81e8ab98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
