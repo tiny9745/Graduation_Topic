@@ -491,6 +491,7 @@ GameObject:
   - component: {fileID: 2191382954735269943}
   - component: {fileID: 5051320639353239865}
   - component: {fileID: 8383236037509310199}
+  - component: {fileID: 4085646609998863091}
   m_Layer: 0
   m_Name: Thorns_Plane
   m_TagString: Thorns
@@ -634,3 +635,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25c4571d1ce3a7428650aeb81e8ab98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4085646609998863091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8475502909159839615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eec35bc8d167444b9fb7f8c032623e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentTag: NPC
+  escapeDirection: {x: 1, y: 0, z: 1}
+  pushForce: 5
