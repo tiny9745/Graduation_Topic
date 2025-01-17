@@ -31,6 +31,7 @@ public class NPC03_control : MonoBehaviour
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
+        lastEnteredDirection = transform.position.normalized;
 
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
@@ -234,7 +235,13 @@ public class NPC03_control : MonoBehaviour
         {
             lastEnteredDirection = (transform.position - other.transform.position).normalized;
             isInDangerZone = true;
+            Invoke("wait_safe_to_walk", 1.5f);
         }
+    }
+
+    private void wait_safe_to_walk()
+    {
+        isInDangerZone = false;
     }
     private void OnTriggerStay(Collider other)
     {
@@ -296,13 +303,13 @@ public class NPC03_control : MonoBehaviour
                 // 計算新的目標位置
                 Vector3 retreatDirection = lastEnteredDirection; // 原路折返
                 // 計算目標位置
-                Vector3 retreatTarget = transform.position + retreatDirection ;
+                Vector3 retreatTarget = transform.position + retreatDirection;
                 if (npcNavi != null)
                 {
                     npcNavi.SetDestination(retreatTarget);
                 }
             }
-            if (other.tag == "Thorns")
+            if (other.tag == "Thorns_atk")
             {
                 change_color_red();
                 npc_interactive.NPC_Thorns(ref NPC_HP);

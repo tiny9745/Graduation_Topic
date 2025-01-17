@@ -33,7 +33,7 @@ public class ThornsController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("NPC"))
         {
             if (collidersInRange.Remove(other)) // 確保只移除存在於集合中的物件
             {
