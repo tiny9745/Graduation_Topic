@@ -16,7 +16,7 @@ public class NPC03_control : MonoBehaviour
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     public bool stun; private bool isFacingRight = true;
-    private Vector3 lastPosition;
+    private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
 
     public Material Deduct_Blood; private Material originalMaterial;
@@ -58,6 +58,8 @@ public class NPC03_control : MonoBehaviour
         }
         nPC_hP = GetComponent<NPC_HP_03>();
         effect = GetComponent<NPC_effect_03>();
+
+        presentPosition = Vector3.forward;
     }
 
     void Update()
@@ -235,6 +237,15 @@ public class NPC03_control : MonoBehaviour
         {
             lastEnteredDirection = (transform.position - other.transform.position).normalized;
             isInDangerZone = true;
+
+            // 計算新的目標位置
+            Vector3 retreatDirection = lastEnteredDirection; // 原路折返
+            // 計算目標位置
+            Vector3 retreatTarget = transform.position + retreatDirection;
+            if (npcNavi != null)
+            {
+                npcNavi.SetDestination(retreatTarget);
+            }
             Invoke("wait_safe_to_walk", 1.5f);
         }
     }
@@ -300,15 +311,21 @@ public class NPC03_control : MonoBehaviour
             // 如果進入危險區域且標記匹配
             if (other.CompareTag(dangerTag))
             {
+                if (!isInDangerZone)
+                {
+                    isInDangerZone = true;
+                }
+
                 // 計算新的目標位置
-                Vector3 retreatDirection = lastEnteredDirection; // 原路折返
-                // 計算目標位置
-                Vector3 retreatTarget = transform.position + retreatDirection;
+                Vector3 retreatTarget = TargetObj.transform.position + retreatDistance * lastEnteredDirection;
+
+                // 設置 NavMeshAgent 的目標位置
                 if (npcNavi != null)
                 {
                     npcNavi.SetDestination(retreatTarget);
                 }
             }
+
             if (other.tag == "Thorns_atk")
             {
                 change_color_red();
