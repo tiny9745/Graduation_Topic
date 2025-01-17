@@ -123,7 +123,27 @@ public class Prefabs_start_241130 : MonoBehaviour
 
         if (NavMesh.SamplePosition(position, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
         {
-            Instantiate(prefab, hit.position, Quaternion.identity);
+            // 檢查是否落在 tag 為 "Thorns" 的區域內
+            Collider[] colliders = Physics.OverlapSphere(hit.position, 0.5f); // 0.5f 可調整為半徑大小
+            bool isInThorns = false;
+
+            foreach (Collider collider in colliders)
+            {
+                // 確認是否為 Trigger 並且 tag 為 "Thorns"
+                if (collider.CompareTag("Thorns"))
+                {
+                    isInThorns = true;
+                    Debug.LogWarning($"位置 {hit.position} 位於 'Thorns' (Trigger) 區域內，跳過生成 {prefab.name}。");
+                    break;
+                }
+            }
+
+            // 如果不在 "Thorns" 區域內，生成物件
+            if (!isInThorns)
+            {
+                Instantiate(prefab, hit.position, Quaternion.identity);
+                Debug.Log($"成功生成 {prefab.name} 在位置 {hit.position}。");
+            }
         }
         else
         {
