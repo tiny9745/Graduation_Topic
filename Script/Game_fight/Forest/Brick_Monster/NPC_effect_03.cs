@@ -91,5 +91,6 @@ public class NPC_effect_03 : MonoBehaviour
         minus = (float)(ATK * ATK / (control.NPC03_DEF + ATK));
         if (minus < 5) minus = 5.0f;
         control.NPC_HP -= minus;
+        Skill_public_funtion.B_damage=0;
     }
 }
