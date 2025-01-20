@@ -24,7 +24,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         if (GetComponent<Image>().sprite != nullsprite)
         {
             // 確保物件在拖曳時位於最上層
-            // _rectTransform.SetAsLastSibling();
+            _rectTransform.SetAsLastSibling();
 
             _canvasGroup.alpha = 0.6f;
             _canvasGroup.blocksRaycasts = false;

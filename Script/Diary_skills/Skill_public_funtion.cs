@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Collections.AllocatorManager;
 
 public class Skill_public_funtion : MonoBehaviour
 {
@@ -16,4 +15,9 @@ public class Skill_public_funtion : MonoBehaviour
     static public int ATK_count = 0;
     static public float MC_HP_tmp = static_parameters.MC_HP;
     static public float MC_Wspeed_tmp = static_parameters.MC_Wspeed;
+
+
+
+
+    
 }
