@@ -5,21 +5,21 @@ using UnityEngine.AI;
 
 public class NPC04_control : MonoBehaviour
 {
-    public NPC_HP_04 nPC_hP; public NPC_effect_04 effect;public NPC_interactive npc_interactive;
+    public NPC_HP_04 nPC_hP; public NPC_effect_04 effect; public NPC_interactive npc_interactive;
     NavMeshAgent npcNavi;
     public Animator animator;
     public Animator animator_to_atk;
-    public GameObject TargetObj,NPC04, hitbox_Brick_Monster, Drop, Img_npc;
+    public GameObject TargetObj, NPC04, hitbox_Brick_Monster, Drop, Img_npc;
     public int DetectDistance = 25; int NPC_angle = 0;
     public float NPC04_ATK = 13, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani= false, hit = false, dead_open= true, MC_to_Att= true,open_EnableHitbox= true,bomb_Berry = true;
+    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, open_EnableHitbox = true, bomb_Berry = true;
     public bool stun = false; private bool isFacingRight = true;
-    private Vector3 lastPosition;
+    private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;private bool isCoroutineRunning = false;
-    
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
+
 
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
@@ -29,6 +29,8 @@ public class NPC04_control : MonoBehaviour
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
+        lastEnteredDirection = transform.position.normalized;
+        presentPosition = Vector3.forward;
 
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
@@ -97,7 +99,7 @@ public class NPC04_control : MonoBehaviour
         transform.rotation = initialRotation;
 
 
-        if (TargetObj != null && npcNavi != null)
+        if (TargetObj != null && npcNavi != null && !isInDangerZone)
         {
             if (dist < DetectDistance && NPC_HP > 0)
             {
@@ -229,7 +231,7 @@ public class NPC04_control : MonoBehaviour
         }
     }
 
-        private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(dangerTag))
         {

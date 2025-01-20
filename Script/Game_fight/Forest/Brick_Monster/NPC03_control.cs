@@ -18,7 +18,7 @@ public class NPC03_control : MonoBehaviour
     public bool stun; private bool isFacingRight = true;
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
-    
+
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
 
 
@@ -31,6 +31,7 @@ public class NPC03_control : MonoBehaviour
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
         lastEnteredDirection = transform.position.normalized;
+        presentPosition = Vector3.forward;
 
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
@@ -57,8 +58,6 @@ public class NPC03_control : MonoBehaviour
         }
         nPC_hP = GetComponent<NPC_HP_03>();
         effect = GetComponent<NPC_effect_03>();
-
-        presentPosition = Vector3.forward;
     }
 
     void Update()

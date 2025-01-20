@@ -18,7 +18,7 @@ public class NPC01_control : MonoBehaviour
     bool hit_Ani = false, hit = false, bomb_Berry = true, dead_open = true, MC_to_Att = true;
     public bool NPC01_hit = false, stun = false;
     private bool isFacingRight = true;
-    private Vector3 lastPosition;
+    private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
     public GameObject NPC01, NPC01_1;
 
@@ -32,6 +32,9 @@ public class NPC01_control : MonoBehaviour
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
+        lastEnteredDirection = transform.position.normalized;
+        presentPosition = Vector3.forward;
+
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -91,7 +94,7 @@ public class NPC01_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-        if (TargetObj != null && npcNavi != null)
+        if (TargetObj != null && npcNavi != null && !isInDangerZone)
         {
             if (dist < DetectDistance && NPC_HP > 0)
             {

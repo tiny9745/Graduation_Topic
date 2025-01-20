@@ -5,24 +5,19 @@ using UnityEngine.AI;
 
 public class NPC02_control : MonoBehaviour
 {
-    public NPC_HP_02 nPC_hP;public NPC_interactive npc_interactive; public NPC_effect_02 effect;
+    public NPC_HP_02 nPC_hP; public NPC_interactive npc_interactive; public NPC_effect_02 effect;
     NavMeshAgent npcNavi;
     public Animator animator;
     public Animator animator_to_atk;
-    public GameObject TargetObj,NPC02,Drop,hitbox_Robot,Img_npc;
-    public int DetectDistance = 30;int NPC_angle = 0;
-    public float NPC02_ATK = 13, NPC02_DEF = 10,NPC_HP_Max = 80, npcSpeed = 7f, NPC_HP;
-    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;float dist;
-    bool hit_Ani= false,hit = false,bomb_Berry= true, dead_open= true, MC_to_Att= true;
-    private bool isFacingRight = true,isCoroutineRunning = false; public bool stun = false;
-    private Vector3 lastPosition;private Quaternion initialRotation;
+    public GameObject TargetObj, NPC02, Drop, hitbox_Robot, Img_npc;
+    public int DetectDistance = 30; int NPC_angle = 0;
+    public float NPC02_ATK = 13, NPC02_DEF = 10, NPC_HP_Max = 80, npcSpeed = 7f, NPC_HP;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f; float dist;
+    bool hit_Ani = false, hit = false, bomb_Berry = true, dead_open = true, MC_to_Att = true;
+    private bool isFacingRight = true, isCoroutineRunning = false; public bool stun = false;
+    private Vector3 lastPosition; 
+    private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
-    
-
-    string dangerTag = "Thorns"; // 區域的 Tag
-    float retreatDistance = 5f; // 移動距離
-    private bool isInDangerZone = false; // 是否在危險區域內
-    private Vector3 lastEnteredDirection; // 記錄進入方向
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -229,29 +224,7 @@ public class NPC02_control : MonoBehaviour
     }
 
     bool open_EnableHitbox = true;
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(dangerTag))
-        {
-            lastEnteredDirection = (transform.position - other.transform.position).normalized;
-            isInDangerZone = true;
-
-            // 計算新的目標位置
-            Vector3 retreatDirection = lastEnteredDirection; // 原路折返
-            // 計算目標位置
-            Vector3 retreatTarget = transform.position + retreatDirection;
-            if (npcNavi != null)
-            {
-                npcNavi.SetDestination(retreatTarget);
-            }
-            Invoke("wait_safe_to_walk", 1.5f);
-        }
-    }
-
-    private void wait_safe_to_walk()
-    {
-        isInDangerZone = false;
-    }
+    
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
@@ -306,24 +279,6 @@ public class NPC02_control : MonoBehaviour
 
         if (NPC_HP > 0)
         {
-            // 如果進入危險區域且標記匹配
-            if (other.CompareTag(dangerTag))
-            {
-                if (!isInDangerZone)
-                {
-                    isInDangerZone = true;
-                }
-
-                // 計算新的目標位置
-                Vector3 retreatTarget = TargetObj.transform.position + retreatDistance * lastEnteredDirection;
-
-                // 設置 NavMeshAgent 的目標位置
-                if (npcNavi != null)
-                {
-                    npcNavi.SetDestination(retreatTarget);
-                }
-            }
-
             if (other.tag == "Thorns_atk")
             {
                 change_color_red();
@@ -340,19 +295,6 @@ public class NPC02_control : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        // 當離開危險區域時，重置狀態
-        if (other.CompareTag(dangerTag))
-        {
-            isInDangerZone = false;
-            if (npcNavi != null)
-            {
-                npcNavi.ResetPath(); // 停止導航，清除路徑
-                Debug.Log($"{gameObject.name} stopped moving after leaving danger zone: {other.name}");
-            }
-        }
-    }
     public float GetNPC02_ATK()
     {
         return NPC02_ATK;
@@ -386,13 +328,13 @@ public class NPC02_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
-    
+
     void knock_back()
     {
         Vector3 currentPosition = transform.position;
         transform.position = currentPosition + 0.5f * Vector3.back;
     }
-    
+
     public void change_color_red()
     {
         if (spriteRenderer != null)

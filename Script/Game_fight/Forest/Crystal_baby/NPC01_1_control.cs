@@ -17,7 +17,7 @@ public class NPC01_1_control : MonoBehaviour
     private float nextDamageTime = 0.0f;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     private bool isFacingRight = true; public bool stun = false;
-    private Vector3 lastPosition;
+    private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
     public GameObject NPC01_1;
     public GameObject hitbox_Crystal_baby_small, Drop;
@@ -35,6 +35,11 @@ public class NPC01_1_control : MonoBehaviour
     private Vector3 lastEnteredDirection; // 記錄進入方向
     void Start()
     {
+        spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color; // 儲存原始顏色
+        lastEnteredDirection = transform.position.normalized;
+        presentPosition = Vector3.forward;
+
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
@@ -131,7 +136,7 @@ public class NPC01_1_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-        if (TargetObj != null && npcNavi != null)
+        if (TargetObj != null && npcNavi != null && !isInDangerZone)
         {
             if (dist < DetectDistance && NPC_HP > 0)
             {
