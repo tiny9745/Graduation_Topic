@@ -65,7 +65,7 @@ public class NPC_effect_03 : MonoBehaviour
                     continue;
 
                 case 25: // Smoke Bomb
-                    Skill_public_funtion.B_damage += 20;
+                    Skill_public_funtion.B_damage += 20;//spawn smoke not done
                     continue;
                 default:
                     continue;
