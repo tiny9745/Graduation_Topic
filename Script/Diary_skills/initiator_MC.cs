@@ -27,8 +27,6 @@ public class initiator_MC : MonoBehaviour
     void Update()
     {
         fight_instinct();
-        // if (Skill_public_funtion.fight_instinct == true) Invoke("fight_instinct", 0.5f);
-        // if (Skill_public_funtion.Accurate_calculation == true) Invoke("Accurate_calculation", 0.25f);
     }
 
     void fight_instinct()
@@ -83,57 +81,11 @@ public class initiator_MC : MonoBehaviour
                     }
                 }
             }
-
-            // switch (Skill_public_funtion.feel_to_skill)
-            // {
-            //     case 22://反抗心理
-            //         timer_f += Time.deltaTime;
-            //         if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
-            //         {
-            //             Skill_public_funtion.Normal_blood_deduction_NPC = false;
-            //             timer_f = 0;
-            //             static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC_DEF) * 0.1f;
-            //             if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
-            //             Debug.Log("MC_HP" + static_parameters.MC_HP);
-            //         }
-            //         else if (Skill_public_funtion.Normal_blood_deduction_NPC == false && timer_f > 10f)
-            //         {
-            //             static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
-            //             timer_f = 0;
-            //             Debug.Log("MC_HP" + static_parameters.MC_HP);
-            //         }
-            //         break;
-            //     case 0:
-            //         //to_Skill_outsourcing
-            //         break;
-            //     case 1://生存警報
-            //         if (Skill_public_funtion.MC_HP_tmp != static_parameters.MC_HP)
-            //         {
-            //             Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
-            //             static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
-            //             Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
-            //         }
-            //         break;
-            //     case 12://違心論
-            //         if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
-            //         {
-            //             Debug.Log("MC_ATK(before):" + static_parameters.MC_ATK);
-            //             static_parameters.MC_ATK *= 1.5f;
-            //             Debug.Log("MC_ATK(after):" + static_parameters.MC_ATK);
-            //         }
-            //         if (Skill_public_funtion.Normal_blood_deduction_NPC == true)
-            //         {
-            //             Skill_public_funtion.Normal_blood_deduction_NPC = false;
-            //             static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + static_parameters.MC_DEF) * 0.1f;
-            //         }
-            //         break;
-            // }
         }
         else //reduction
         {
             static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
         }
-
     }
     void Accurate_calculation()
     {

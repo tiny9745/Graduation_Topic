@@ -18,8 +18,7 @@ public class NPC03_control : MonoBehaviour
     public bool stun; private bool isFacingRight = true;
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
-
-    public Material Deduct_Blood; private Material originalMaterial;
+    
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
 
 

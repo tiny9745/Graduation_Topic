@@ -14,53 +14,6 @@ public class victim_NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fight_instinct();
-        Accurate_calculation();
-    }
-
-    void fight_instinct()
-    {
-        if (Skill_public_funtion.fight_instinct == true)
-        {
-            if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
-            {
-                switch (Skill_public_funtion.feel_to_skill)
-                {
-                    case 0:
-                        //to_MC
-                        break;
-                    case 1:
-                        //to_Skill_outsourcing
-                        break;
-                    case 2:
-                        //to_MC
-                        break;
-                    case 3:
-                        //to_MC
-                        break;
-                }
-            }
-        }
-    }
-    void Accurate_calculation()
-    {
-        if (Skill_public_funtion.Accurate_calculation == true)
-        {
-            switch (Skill_public_funtion.feel_to_skill)
-            {
-                case 0:
-                    //to_MC
-                    break;
-                case 1:
-                    //to_MC
-                    break;
-                case 2:
-                    //to_MC
-                    break;
-                case 3:
-                    //to_MC
-                    break;
-            }
-        }
+       
     }
 }

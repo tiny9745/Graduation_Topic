@@ -10,9 +10,9 @@ public class Dummy_ctrl : MonoBehaviour
     public float NPC_HP_Max = 850, NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit, stun = false; Byte play_piano_atk = 0;
-    public GameObject hitbox_Dummy,bomb_piano; 
+    public GameObject hitbox_Dummy, bomb_piano;
     float NPC_back = 10;
-    bool MC_to_Att,open_EnableHitbox = true, Skill_public_funtion_1_close = false;//skill_add
+    bool MC_to_Att, open_EnableHitbox = true, Skill_public_funtion_1_close = false;//skill_add
     public Dummy_HP nPC_hP;
 
     void Start()
@@ -42,7 +42,6 @@ public class Dummy_ctrl : MonoBehaviour
         {
             TargetObj = GameObject.Find("Player");
         }
-        Skill_outsourcing_updata();
     }
     private void OnTriggerStay(Collider other)
     {
@@ -75,7 +74,7 @@ public class Dummy_ctrl : MonoBehaviour
                 switch (Skill_public_funtion.feel_to_skill)
                 {
                     case 0:
-                        NPC_HP -= 225;Debug.Log("boom");
+                        NPC_HP -= 225; Debug.Log("boom");
                         break;
                     case 1:
                         Debug.Log("stun");
@@ -117,27 +116,12 @@ public class Dummy_ctrl : MonoBehaviour
         hitbox_Dummy.SetActive(false);
         open_EnableHitbox = true;
     }
-//Knockback value of skill effect
-    void Skill_outsourcing_updata()//skill_add
-    {
-        if (Skill_public_funtion.fight_instinct == true)
-        {
-            if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
-            {
-                if (Skill_public_funtion.feel_to_skill == 1 && Skill_public_funtion_1_close == true)
-                {
-                    Skill_public_funtion_1_close = false;
-                    nPC_hP.TakeDamage(Dummy_ATK, Dummy_DEF);
-                    //Debug.Log("NPC_HP:" + NPC_HP);
-                }
-            }
-        }
-    }
+    //Knockback value of skill effect
     void Skill()//skill_add
     {
         if (Skill_public_funtion.play_piano)
         {
-            if (play_piano_atk <= 3)play_piano_atk++;
+            if (play_piano_atk <= 3) play_piano_atk++;
             else
             {
                 Instantiate(bomb_piano, transform.position, Quaternion.identity);

@@ -6,7 +6,8 @@ public class NPC_effect_04 : MonoBehaviour
 {
     public NPC04_control control;
     public GameObject bomb_piano, bomb_point;
-    int play_piano_atk = 0; float NPC_back = 10;
+    int play_piano_atk = 0; float NPC_back = 10, minus;
+    bool piano_flag = true;
     
     // Start is called before the first frame update
 
@@ -33,40 +34,63 @@ public class NPC_effect_04 : MonoBehaviour
     }
     public void play_piano_effect()
     {
-        for (int i = 0; i < IconManager.Instance.IconList.Count; i++)
+        piano_flag = true;
+        foreach (var icon in IconManager.Instance.IconList)
         {
-            if (IconManager.Instance.IconList[i].iconID == 22)
+            switch (icon.iconID)
             {
-                play_piano_atk++;
-                break;
-            }
-            else if (IconManager.Instance.IconList[i].iconID == 12)
-            {
-                control.change_color_red();
-                control.NPC_HP -= 225;
-                break;
-            }
-            else if (IconManager.Instance.IconList[i].iconID == 32)
-            {
-                if (control.NPC_HP < NPC_back) control.NPC_HP = 0;
-                else{
-                    Vector3 currentPosition = transform.position;
-                    transform.position = currentPosition - NPC_back * Vector3.back;
-                }
-                play_piano_atk = 0;
-                break;
-            }
-            else if (IconManager.Instance.IconList[i].iconID == 2)
-            {
-                control.stun = true;
-                Invoke("Stun_end", 3);
-                break;
+                case 21: // Bomb
+                    play_piano_atk = 0;
+                    Skill_public_funtion.B_damage += 10;
+                    continue;
+
+                case 22: // Flash
+                    Skill_public_funtion.B_damage += 15;
+                    control.stun = true;
+                    Invoke(nameof(Stun_end), 3);
+                    continue;
+
+                case 23: // Ricochet
+                    Skill_public_funtion.B_damage += 20;
+                    piano_flag = false;
+                    play_piano_atk++;
+                    continue;
+
+                case 24: // Air Bullet
+                    Skill_public_funtion.B_damage += 15;
+                    if (control.NPC_HP < NPC_back)
+                        control.NPC_HP = 0;
+                    else
+                        transform.position -= NPC_back * Vector3.back;
+                    continue;
+
+                case 25: // Smoke Bomb
+                    Skill_public_funtion.B_damage += 20;
+                    continue;
+                default:
+                    continue;
             }
         }
+        damage(Skill_public_funtion.B_damage);
+        Reset_flag();
         control.change_color_red();
     }
     void Stun_end()
     {
         control.stun = false;
+    }
+    void Reset_flag()
+    {
+        if (piano_flag)
+        {
+            play_piano_atk = 0;
+        }
+    }
+    void damage(float ATK)
+    {
+        minus = (float)(ATK * ATK / (control.NPC04_DEF + ATK));
+        if (minus < 5) minus = 5.0f;
+        control.NPC_HP -= minus;
+        Skill_public_funtion.B_damage=0;
     }
 }

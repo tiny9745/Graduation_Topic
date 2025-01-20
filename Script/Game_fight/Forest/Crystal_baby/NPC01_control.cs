@@ -6,23 +6,28 @@ using UnityEngine.AI;
 
 public class NPC01_control : MonoBehaviour
 {
-    public NPC_HP_01 nPC_hP; public NPC_interactive npc_interactive;  public NPC01_effect effect;
+    public NPC_HP_01 nPC_hP; public NPC_interactive npc_interactive; public NPC01_effect effect;
     NavMeshAgent npcNavi;
     public Animator animator;
     public Animator animator_to_atk;
-    public GameObject TargetObj,hitbox_Crystal_baby,Drop,Img_npc;
-    public int DetectDistance = 27, Pcounter = 0;int NPC_angle = 0;
+    public GameObject TargetObj, hitbox_Crystal_baby, Drop, Img_npc;
+    public int DetectDistance = 27, Pcounter = 0; int NPC_angle = 0;
     public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100, npcSpeed = 5f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani= false, hit = false, bomb_Berry= true,dead_open= true, MC_to_Att= true;
-    public bool NPC01_hit = false,stun = false;
+    bool hit_Ani = false, hit = false, bomb_Berry = true, dead_open = true, MC_to_Att = true;
+    public bool NPC01_hit = false, stun = false;
     private bool isFacingRight = true;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public GameObject NPC01, NPC01_1;
-    
+
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
+
+    string dangerTag = "Thorns"; // 區域的 Tag
+    float retreatDistance = 5f; // 移動距離
+    private bool isInDangerZone = false; // 是否在危險區域內
+    private Vector3 lastEnteredDirection; // 記錄進入方向
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -37,15 +42,16 @@ public class NPC01_control : MonoBehaviour
             if (renderer != null)
             {
                 renderer.enabled = false;
-            };
+            }
+            ;
         }
         hitbox_Crystal_baby.SetActive(false);
         TargetObj = GameObject.Find("Player");
-        
+
         npcNavi = GetComponent<NavMeshAgent>();
-        npcNavi.speed = npcSpeed;     
+        npcNavi.speed = npcSpeed;
         nPC_hP = GetComponent<NPC_HP_01>();
-        
+
     }
 
     void Update()
@@ -254,14 +260,36 @@ public class NPC01_control : MonoBehaviour
         }
         Invoke("dead", 1.6f);
     }
-    
+
 
     bool open_EnableHitbox = true;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(dangerTag))
+        {
+            lastEnteredDirection = (transform.position - other.transform.position).normalized;
+            isInDangerZone = true;
+
+            // 計算新的目標位置
+            Vector3 retreatDirection = lastEnteredDirection; // 原路折返
+            // 計算目標位置
+            Vector3 retreatTarget = transform.position + retreatDirection;
+            if (npcNavi != null)
+            {
+                npcNavi.SetDestination(retreatTarget);
+            }
+            Invoke("wait_safe_to_walk", 1.5f);
+        }
+    }
+
+    private void wait_safe_to_walk()
+    {
+        isInDangerZone = false;
+    }
     private void OnTriggerStay(Collider other)
-    { 
+    {
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
-            // UnityEngine.Debug.Log("NPC01_control:"+other.gameObject.tag);
             if (other.gameObject.tag == "Player")
             {
                 if (open_EnableHitbox)
@@ -271,9 +299,11 @@ public class NPC01_control : MonoBehaviour
                     open_EnableHitbox = false;
                 }
             }
+
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 animator_to_atk.SetTrigger("MC_Atk_N01");
+                UnityEngine.Debug.Log("MC_Att");
                 change_color_red();
                 effect.Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
@@ -307,22 +337,54 @@ public class NPC01_control : MonoBehaviour
                 }
             }
         }
-        
+
         if (NPC_HP > 0)
         {
-            if (other.tag == "Thorns")
+            // 如果進入危險區域且標記匹配
+            if (other.CompareTag(dangerTag))
+            {
+                if (!isInDangerZone)
+                {
+                    isInDangerZone = true;
+                }
+
+                // 計算新的目標位置
+                Vector3 retreatTarget = TargetObj.transform.position + retreatDistance * lastEnteredDirection;
+
+                // 設置 NavMeshAgent 的目標位置
+                if (npcNavi != null)
+                {
+                    npcNavi.SetDestination(retreatTarget);
+                }
+            }
+
+            if (other.tag == "Thorns_atk")
             {
                 change_color_red();
                 npc_interactive.NPC_Thorns(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
             }
-            // if (other.tag == "Bomb_Fruit" && bomb_Berry)
-            // {
-            //     change_color_red();
-            //     bomb_Berry = false;
-            //     npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
-            //     nPC_hP.UpdateHealthBar();
-            // }
+            if (other.tag == "Bomb_Fruit" && bomb_Berry)
+            {
+                change_color_red();
+                bomb_Berry = false;
+                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
+                nPC_hP.UpdateHealthBar();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // 當離開危險區域時，重置狀態
+        if (other.CompareTag(dangerTag))
+        {
+            isInDangerZone = false;
+            if (npcNavi != null)
+            {
+                npcNavi.ResetPath(); // 停止導航，清除路徑
+                UnityEngine.Debug.Log($"{gameObject.name} stopped moving after leaving danger zone: {other.name}");
+            }
         }
     }
 
@@ -350,7 +412,7 @@ public class NPC01_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
-    
+
     public float GetNPC01_ATK()
     {
         return NPC01_ATK;
