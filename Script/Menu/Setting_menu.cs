@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class Setting_menu : MonoBehaviour
 {
     public GameObject _Setting_menu;
+
+    public Slider All_sound_control;
     public Slider BGM_control;
     public Slider SE_control;
 
@@ -16,6 +18,7 @@ public class Setting_menu : MonoBehaviour
     public Image Music_icon_on, Teach_icon_on, Back_icon_on;
     public Image Music_icon_off, Teach_icon_off, Back_icon_off;
 
+    public Image All_image_on, All_image_off;
     public Image BGM_image_on, SE_image_on;
     public Image BGM_image_off, SE_image_off;
 
@@ -25,6 +28,7 @@ public class Setting_menu : MonoBehaviour
     void Start()
     {
         OnPointerEnter_Music(); // 預設選擇第一個選項
+        All_sound_control.onValueChanged.AddListener(delegate { Setting_All_sound(); });
         BGM_control.onValueChanged.AddListener(delegate { Setting_BGM(); });
         SE_control.onValueChanged.AddListener(delegate { Setting_SE(); });
     }
@@ -68,11 +72,53 @@ public class Setting_menu : MonoBehaviour
         key_count = 1;
         _Setting_menu.SetActive(false);
     }
+    public void Setting_All_sound()
+    {
+        AudioListener.volume = All_sound_control.value;
+        static_parameters._SE_volue = SE_sound.volume * All_sound_control.value;
+        static_parameters._BGM_volue = BGM_sound.volume * All_sound_control.value;
+        Image fillImage_SE = SE_control.GetComponentsInChildren<Image>()[1];
+        Image fillImage_BGM = BGM_control.GetComponentsInChildren<Image>()[1];
+
+
+        if (All_sound_control.value == 0)
+        {
+            All_image_off.gameObject.SetActive(true);
+            All_image_on.gameObject.SetActive(false);
+            SE_image_off.gameObject.SetActive(true);
+            SE_image_on.gameObject.SetActive(false);
+            BGM_image_off.gameObject.SetActive(true);
+            BGM_image_on.gameObject.SetActive(false);
+            fillImage_SE.color = new Color(252 / 255f, 178 / 255f, 197 / 255f, 0.5f);
+            fillImage_BGM.color = new Color(252 / 255f, 178 / 255f, 197 / 255f, 0.5f);
+            BGM_control.interactable = false;
+            SE_control.interactable = false;
+        }
+        else
+        {
+            All_image_off.gameObject.SetActive(false);
+            All_image_on.gameObject.SetActive(true);
+            fillImage_SE.color = new Color(252 / 255f, 178 / 255f, 197 / 255f, 1);
+            fillImage_BGM.color = new Color(252 / 255f, 178 / 255f, 197 / 255f, 1);
+            BGM_control.interactable = true;
+            SE_control.interactable = true;
+            if (SE_control.value > 0)
+            {
+                SE_image_off.gameObject.SetActive(false);
+                SE_image_on.gameObject.SetActive(true);
+            }
+            if (BGM_control.value > 0)
+            {
+                BGM_image_off.gameObject.SetActive(false);
+                BGM_image_on.gameObject.SetActive(true);
+            }
+        }
+    }
 
     public void Setting_SE()
     {
-        SE_sound.volume = SE_control.value;
-        static_parameters._SE_volue = SE_sound.volume;
+        SE_sound.volume = SE_control.value * All_sound_control.value;
+        static_parameters._SE_volue = SE_sound.volume * All_sound_control.value;
 
         SE_image_off.gameObject.SetActive(SE_control.value == 0);
         SE_image_on.gameObject.SetActive(SE_control.value > 0);
@@ -80,8 +126,8 @@ public class Setting_menu : MonoBehaviour
 
     public void Setting_BGM()
     {
-        BGM_sound.volume = BGM_control.value;
-        static_parameters._BGM_volue = BGM_sound.volume;
+        BGM_sound.volume = BGM_control.value * All_sound_control.value;
+        static_parameters._BGM_volue = BGM_sound.volume * All_sound_control.value;
 
         BGM_image_off.gameObject.SetActive(BGM_control.value == 0);
         BGM_image_on.gameObject.SetActive(BGM_control.value > 0);
