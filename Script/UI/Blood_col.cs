@@ -23,8 +23,9 @@ public class Blood_col : MonoBehaviour
             previous_MC_HP_Max = static_parameters.MC_HP_Max;
         }
 
-        if (static_parameters.MC_HP_tmp != static_parameters.MC_HP)
+        if (static_parameters.MC_HP_tmp != static_parameters.MC_HP && Skill_public_funtion.skill_05_atk == -1)
         {
+            Skill_public_funtion.skill_05_atk = 0;
             if (HPimg_Green != null)
             {
                 HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Green.sizeDelta.y);

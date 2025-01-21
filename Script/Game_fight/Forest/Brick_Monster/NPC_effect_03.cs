@@ -75,6 +75,54 @@ public class NPC_effect_03 : MonoBehaviour
         Reset_flag();
         control.change_color_red();
     }
+    public void fight_instinct_npc()//被攻擊時作用
+    {
+        foreach (var icon in IconManager.Instance.IconList)
+        {
+            switch (icon.iconID)
+            {
+                case 1:
+                    Skill_public_funtion.skill_01_time = 0;
+                    static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
+                    if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                    break;
+                case 2:
+                    control.NPC_HP -= Mathf.Pow(control.NPC03_ATK, 2) / (control.NPC03_ATK + static_parameters.MC_DEF) * 0.2f;
+                    break;
+                case 4:
+                    static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
+                    break;
+                case 5:
+                    if (Skill_public_funtion.skill_05_atk == 1)
+                    {
+                        Skill_public_funtion.skill_05_atk = -1;
+                        static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                    }
+                    break;
+            }
+        }
+    }
+    public void sprint_Bonus_NPC()
+    {
+        foreach (var icon in IconManager.Instance.IconList)
+        {
+            switch (icon.iconID)
+            {
+                case 1://updata
+                    if (Skill_public_funtion.skill_xx1_trigger_enter) control.NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.5f;
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            }
+        }
+    }
+
     void Stun_end()
     {
         control.stun = false;
@@ -91,6 +139,6 @@ public class NPC_effect_03 : MonoBehaviour
         minus = (float)(ATK * ATK / (control.NPC03_DEF + ATK));
         if (minus < 5) minus = 5.0f;
         control.NPC_HP -= minus;
-        Skill_public_funtion.B_damage=0;
+        Skill_public_funtion.B_damage = 0;
     }
 }

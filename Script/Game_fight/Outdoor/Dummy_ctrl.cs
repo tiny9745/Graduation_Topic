@@ -63,40 +63,39 @@ public class Dummy_ctrl : MonoBehaviour
                     return;
                 }
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, Dummy_DEF);
-                Skill_public_funtion.Normal_blood_deduction_NPC = true;
                 MC_to_Att = false;
                 Skill();//skill_add
                 Invoke("wait_MC_att", 0.2f);
                 nextDamageTime = Time.time + damageCooldown;
             }
-            if (other.gameObject.CompareTag("MC_bomb"))
-            {
-                switch (Skill_public_funtion.feel_to_skill)
-                {
-                    case 0:
-                        NPC_HP -= 225; Debug.Log("boom");
-                        break;
-                    case 1:
-                        Debug.Log("stun");
-                        stun = true;
-                        Invoke("Stun_end", 1);
-                        break;
-                    case 2:
-                        Debug.Log("play_piano_atk:" + play_piano_atk);
-                        play_piano_atk++;
-                        Debug.Log("play_piano_atk:" + play_piano_atk);
-                        break;
-                    case 3:
-                        if (NPC_HP < NPC_back) NPC_HP = 0;
-                        else
-                        {
-                            Vector3 currentPosition = transform.position;
-                            transform.position = currentPosition - NPC_back * Vector3.back;
-                        }
-                        play_piano_atk = 0; Debug.Log("knockback");
-                        break;
-                }
-            }
+            // if (other.gameObject.CompareTag("MC_bomb"))
+            // {
+            //     switch (Skill_public_funtion.feel_to_skill)
+            //     {
+            //         case 0:
+            //             NPC_HP -= 225; Debug.Log("boom");
+            //             break;
+            //         case 1:
+            //             Debug.Log("stun");
+            //             stun = true;
+            //             Invoke("Stun_end", 1);
+            //             break;
+            //         case 2:
+            //             Debug.Log("play_piano_atk:" + play_piano_atk);
+            //             play_piano_atk++;
+            //             Debug.Log("play_piano_atk:" + play_piano_atk);
+            //             break;
+            //         case 3:
+            //             if (NPC_HP < NPC_back) NPC_HP = 0;
+            //             else
+            //             {
+            //                 Vector3 currentPosition = transform.position;
+            //                 transform.position = currentPosition - NPC_back * Vector3.back;
+            //             }
+            //             play_piano_atk = 0; Debug.Log("knockback");
+            //             break;
+            //     }
+            // }
         }
     }
 
