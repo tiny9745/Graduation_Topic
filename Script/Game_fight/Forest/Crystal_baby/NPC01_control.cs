@@ -70,7 +70,7 @@ public class NPC01_control : MonoBehaviour
             hitbox_Crystal_baby.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
-            dead();
+            PlayBombAnimation();
         }
         else if (!hit_Ani)
         {
@@ -386,7 +386,6 @@ public class NPC01_control : MonoBehaviour
             if (npcNavi != null)
             {
                 npcNavi.ResetPath(); // 停止導航，清除路徑
-                UnityEngine.Debug.Log($"{gameObject.name} stopped moving after leaving danger zone: {other.name}");
             }
         }
     }

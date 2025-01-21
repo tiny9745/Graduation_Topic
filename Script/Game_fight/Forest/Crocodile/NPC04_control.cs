@@ -234,21 +234,21 @@ public class NPC04_control : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // if (other.CompareTag(dangerTag))
-        // {
-        //     lastEnteredDirection = (transform.position - other.transform.position).normalized;
-        //     isInDangerZone = true;
+        if (other.CompareTag(dangerTag))
+        {
+            lastEnteredDirection = (transform.position - other.transform.position).normalized;
+            isInDangerZone = true;
 
-        //     // 計算新的目標位置
-        //     Vector3 retreatDirection = lastEnteredDirection; // 原路折返
-        //     // 計算目標位置
-        //     Vector3 retreatTarget = transform.position + retreatDirection;
-        //     if (npcNavi != null)
-        //     {
-        //         npcNavi.SetDestination(retreatTarget);
-        //     }
-        //     Invoke("wait_safe_to_walk", 1.5f);
-        // }
+            // 計算新的目標位置
+            Vector3 retreatDirection = lastEnteredDirection; // 原路折返
+            // 計算目標位置
+            Vector3 retreatTarget = transform.position + retreatDirection;
+            if (npcNavi != null)
+            {
+                npcNavi.SetDestination(retreatTarget);
+            }
+            Invoke("wait_safe_to_walk", 1.5f);
+        }
     }
 
     private void wait_safe_to_walk()
@@ -345,16 +345,15 @@ public class NPC04_control : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // // 當離開危險區域時，重置狀態
-        // if (other.CompareTag(dangerTag))
-        // {
-        //     isInDangerZone = false;
-        //     if (npcNavi != null)
-        //     {
-        //         npcNavi.ResetPath(); // 停止導航，清除路徑
-        //         Debug.Log($"{gameObject.name} stopped moving after leaving danger zone: {other.name}");
-        //     }
-        // }
+        // 當離開危險區域時，重置狀態
+        if (other.CompareTag(dangerTag))
+        {
+            isInDangerZone = false;
+            if (npcNavi != null)
+            {
+                npcNavi.ResetPath(); // 停止導航，清除路徑
+            }
+        }
     }
     public void change_color_red()
     {

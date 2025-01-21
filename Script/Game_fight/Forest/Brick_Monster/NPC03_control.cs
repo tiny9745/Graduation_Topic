@@ -349,7 +349,6 @@ public class NPC03_control : MonoBehaviour
             if (npcNavi != null)
             {
                 npcNavi.ResetPath(); // 停止導航，清除路徑
-                Debug.Log($"{gameObject.name} stopped moving after leaving danger zone: {other.name}");
             }
         }
     }
