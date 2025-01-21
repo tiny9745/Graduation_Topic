@@ -22,7 +22,7 @@ public class NPC04_control : MonoBehaviour
 
 
     string dangerTag = "Thorns"; // 區域的 Tag
-    float retreatDistance = 5f; // 移動距離
+    float retreatDistance = 115f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
     private Vector3 lastEnteredDirection; // 記錄進入方向
     void Start()
@@ -76,7 +76,9 @@ public class NPC04_control : MonoBehaviour
         }
         else if (!hit_Ani)
         {
-            if (transform.position == lastPosition)
+            float movementThreshold = 0.01f; // 設定允許的移動範圍
+
+            if (npcNavi != null && npcNavi.velocity.magnitude < movementThreshold)
             {
                 PlayStandAnimation();
             }
@@ -97,7 +99,6 @@ public class NPC04_control : MonoBehaviour
 
         lastPosition = transform.position;
         transform.rotation = initialRotation;
-
 
         if (TargetObj != null && npcNavi != null && !isInDangerZone)
         {
@@ -233,21 +234,21 @@ public class NPC04_control : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(dangerTag))
-        {
-            lastEnteredDirection = (transform.position - other.transform.position).normalized;
-            isInDangerZone = true;
+        // if (other.CompareTag(dangerTag))
+        // {
+        //     lastEnteredDirection = (transform.position - other.transform.position).normalized;
+        //     isInDangerZone = true;
 
-            // 計算新的目標位置
-            Vector3 retreatDirection = lastEnteredDirection; // 原路折返
-            // 計算目標位置
-            Vector3 retreatTarget = transform.position + retreatDirection;
-            if (npcNavi != null)
-            {
-                npcNavi.SetDestination(retreatTarget);
-            }
-            Invoke("wait_safe_to_walk", 1.5f);
-        }
+        //     // 計算新的目標位置
+        //     Vector3 retreatDirection = lastEnteredDirection; // 原路折返
+        //     // 計算目標位置
+        //     Vector3 retreatTarget = transform.position + retreatDirection;
+        //     if (npcNavi != null)
+        //     {
+        //         npcNavi.SetDestination(retreatTarget);
+        //     }
+        //     Invoke("wait_safe_to_walk", 1.5f);
+        // }
     }
 
     private void wait_safe_to_walk()
@@ -344,16 +345,16 @@ public class NPC04_control : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // 當離開危險區域時，重置狀態
-        if (other.CompareTag(dangerTag))
-        {
-            isInDangerZone = false;
-            if (npcNavi != null)
-            {
-                npcNavi.ResetPath(); // 停止導航，清除路徑
-                Debug.Log($"{gameObject.name} stopped moving after leaving danger zone: {other.name}");
-            }
-        }
+        // // 當離開危險區域時，重置狀態
+        // if (other.CompareTag(dangerTag))
+        // {
+        //     isInDangerZone = false;
+        //     if (npcNavi != null)
+        //     {
+        //         npcNavi.ResetPath(); // 停止導航，清除路徑
+        //         Debug.Log($"{gameObject.name} stopped moving after leaving danger zone: {other.name}");
+        //     }
+        // }
     }
     public void change_color_red()
     {
