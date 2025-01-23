@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6050160156960491637}
-  - component: {fileID: 4012134510657342464}
   - component: {fileID: 6354764557137383320}
   - component: {fileID: 8046484801250225074}
+  - component: {fileID: 4012134510657342464}
   - component: {fileID: 1879722841461864958}
   - component: {fileID: 3014055151402225431}
   - component: {fileID: 3029195971957438140}
@@ -44,27 +44,6 @@ Transform:
   - {fileID: 6216566415653828448}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4012134510657342464
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654828963857941581}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.5, y: 3, z: 2.5}
-  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &6354764557137383320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +74,7 @@ MonoBehaviour:
   hitbox_Crystal_baby_small: {fileID: 2939803849758536278}
   Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
   Img_npc: {fileID: 2288497789995992781}
+  spriteTransform: {fileID: 224236896702524408}
 --- !u!195 &8046484801250225074
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -117,6 +97,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &4012134510657342464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654828963857941581}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 3, z: 2.5}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!65 &1879722841461864958
 BoxCollider:
   m_ObjectHideFlags: 0

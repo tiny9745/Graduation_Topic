@@ -326,9 +326,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4866722859840298804}
-  - component: {fileID: 7850375568005960742}
   - component: {fileID: 2187345878073490768}
   - component: {fileID: 5936887255690602063}
+  - component: {fileID: 7850375568005960742}
   - component: {fileID: 3243182351849722007}
   - component: {fileID: 6529399861343814723}
   - component: {fileID: 706302328957079377}
@@ -361,27 +361,6 @@ Transform:
   - {fileID: 3963505298459844342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7850375568005960742
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3321726118843967734}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5, y: 10, z: 5}
-  m_Center: {x: 0, y: 4.68, z: 0}
 --- !u!114 &2187345878073490768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +413,27 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &7850375568005960742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321726118843967734}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 10, z: 5}
+  m_Center: {x: 0, y: 4.68, z: 0}
 --- !u!65 &3243182351849722007
 BoxCollider:
   m_ObjectHideFlags: 0
