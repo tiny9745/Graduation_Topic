@@ -102,18 +102,6 @@ public class NPC_effect_03 : MonoBehaviour
             }
         }
     }
-    public void sprint_Bonus_NPC()
-    {
-        foreach (var icon in IconManager.Instance.IconList)
-        {
-            switch (icon.iconID)
-            {
-                case 51://updata
-                    if (Skill_public_funtion.skill_51_trigger_enter) control.NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.5f;
-                    break;
-            }
-        }
-    }
 
     void Stun_end()
     {

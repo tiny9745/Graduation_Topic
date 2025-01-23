@@ -116,6 +116,8 @@ public class NPC03_control : MonoBehaviour
                 NPC_angle += 360;
             }
         }
+
+        skill();
     }
 
     private void PlayStandAnimation()
@@ -244,6 +246,10 @@ public class NPC03_control : MonoBehaviour
                 npcNavi.SetDestination(retreatTarget);
             }
             Invoke("wait_safe_to_walk", 1.5f);
+        }
+        if (other.gameObject.tag == "Player")
+        {
+            Skill_public_funtion.skill_51_trigger_enter = true;
         }
     }
 
@@ -439,5 +445,28 @@ public class NPC03_control : MonoBehaviour
     void wait_MC_att()
     {
         MC_to_Att = true;
+    }
+    private void skill()
+    {
+        foreach (var icon in IconManager.Instance.IconList)
+        {
+            switch (icon.iconID)
+            {
+                case 51://updata
+                    if (Skill_public_funtion.skill_51_trigger_enter) NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC03_DEF) * 0.5f;
+                    break;
+                case 15:
+                    if (Skill_public_funtion.skill_15_stop_time < 1.5f)
+                    {
+                        npcNavi.speed = 0;
+                        Skill_public_funtion.skill_15_stop_time += Time.deltaTime;
+                    }
+                    else
+                    {
+                        npcNavi.speed = npcSpeed;
+                    }
+                    break;
+            }
+        }
     }
 }
