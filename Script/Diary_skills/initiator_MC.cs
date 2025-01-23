@@ -81,121 +81,121 @@ public class initiator_MC : MonoBehaviour
             static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
         }
     }
-    void Accurate_calculation()
+    void Accurate_calculation()//不用
     {
-        foreach (var icon in IconManager.Instance.IconList)
-        {
-            switch (icon.iconID)
-            {
-                case 0://攻守兼備
-                    timer_f += Time.deltaTime;
-                    if (timer_f > 15)
-                    {
-                        timer_f = 0;
-                        time_A_B = !time_A_B;
-                        if (time_A_B)
-                        {
-                            static_parameters.MC_ATK *= 1.1f;
-                            static_parameters.MC_DEF = static_parameters.MC_DEF_tmp;
-                        }
-                        else
-                        {
-                            static_parameters.MC_DEF *= 1.1f;
-                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
-                        }
-                        Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
-                        Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
-                    }
+        // foreach (var icon in IconManager.Instance.IconList)
+        // {
+        //     switch (icon.iconID)
+        //     {
+        //         case 0://攻守兼備
+        //             timer_f += Time.deltaTime;
+        //             if (timer_f > 15)
+        //             {
+        //                 timer_f = 0;
+        //                 time_A_B = !time_A_B;
+        //                 if (time_A_B)
+        //                 {
+        //                     static_parameters.MC_ATK *= 1.1f;
+        //                     static_parameters.MC_DEF = static_parameters.MC_DEF_tmp;
+        //                 }
+        //                 else
+        //                 {
+        //                     static_parameters.MC_DEF *= 1.1f;
+        //                     static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+        //                 }
+        //                 Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+        //                 Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
+        //             }
 
-                    break;
-                case 1:
-                    if (Skill_public_funtion.blood_deduction_NPC_count >= 400)
-                    {
-                        Skill_public_funtion.blood_deduction_NPC_count = 0;
-                        static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
-                        time_A_B = !time_A_B;
-                        if (time_A_B)
-                        {
-                            static_parameters.MC_ATK *= 1.5f;
-                        }
-                        else
-                        {
-                            static_parameters.MC_ATK *= 0.8f;
-                        }
-                        Debug.LogWarningFormat("MC_ATK:" + static_parameters.MC_ATK);
-                    }
+        //             break;
+        //         case 1:
+        //             if (Skill_public_funtion.blood_deduction_NPC_count >= 400)
+        //             {
+        //                 Skill_public_funtion.blood_deduction_NPC_count = 0;
+        //                 static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+        //                 time_A_B = !time_A_B;
+        //                 if (time_A_B)
+        //                 {
+        //                     static_parameters.MC_ATK *= 1.5f;
+        //                 }
+        //                 else
+        //                 {
+        //                     static_parameters.MC_ATK *= 0.8f;
+        //                 }
+        //                 Debug.LogWarningFormat("MC_ATK:" + static_parameters.MC_ATK);
+        //             }
 
-                    break;
-                case 2:
-                    float distance = Vector3.Distance(previousPosition, transform.position);
-                    accumulatedDistance += distance;
-                    previousPosition = transform.position;
-                    //Debug.Log("add_distance: " + accumulatedDistance);
-                    if (accumulatedDistance >= 40)
-                    {
-                        time_A_B = !time_A_B;
-                        static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
-                        static_parameters.MC_Wspeed = Skill_public_funtion.MC_Wspeed_tmp;
-                        accumulatedDistance = 0;
-                        timer_f = 0;
-                        timer_close = true;
-                    }
-                    if (time_A_B)
-                    {
-                        if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && timer_f < 2)
-                        {
-                            static_parameters.MC_ATK *= 2f;
-                            Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
-                        }
-                        else
-                        {
-                            timer_f += Time.deltaTime;
-                            if (timer_f > 5 && timer_close)
-                            {
-                                timer_close = false;
-                                static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
-                                Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (static_parameters.MC_Wspeed == Skill_public_funtion.MC_Wspeed_tmp && timer_f < 2)
-                        {
-                            static_parameters.MC_Wspeed *= 2f;
-                            Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
-                        }
-                        else
-                        {
-                            timer_f += Time.deltaTime;
-                            if (timer_f > 5 && timer_close)
-                            {
-                                timer_close = false;
-                                static_parameters.MC_Wspeed = Skill_public_funtion.MC_Wspeed_tmp;
-                                Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
-                            }
-                        }
-                    }
-                    break;
-                case 3:
-                    if (Skill_public_funtion.ATK_count >= 25)
-                    {
-                        Skill_public_funtion.ATK_count = 0;
-                        static_parameters.MC_DEF = static_parameters.MC_DEF_tmp;
-                        time_A_B = !time_A_B;
-                        if (time_A_B)
-                        {
-                            static_parameters.MC_DEF = static_parameters.MC_DEF * 1.25f;
-                        }
-                        else
-                        {
-                            static_parameters.MC_DEF = static_parameters.MC_DEF * 0.8f;
-                        }
-                        Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
-                    }
-                    break;
-            }
-        }
+        //             break;
+        //         case 2:
+        //             float distance = Vector3.Distance(previousPosition, transform.position);
+        //             accumulatedDistance += distance;
+        //             previousPosition = transform.position;
+        //             //Debug.Log("add_distance: " + accumulatedDistance);
+        //             if (accumulatedDistance >= 40)
+        //             {
+        //                 time_A_B = !time_A_B;
+        //                 static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+        //                 static_parameters.MC_Wspeed = Skill_public_funtion.MC_Wspeed_tmp;
+        //                 accumulatedDistance = 0;
+        //                 timer_f = 0;
+        //                 timer_close = true;
+        //             }
+        //             if (time_A_B)
+        //             {
+        //                 if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && timer_f < 2)
+        //                 {
+        //                     static_parameters.MC_ATK *= 2f;
+        //                     Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+        //                 }
+        //                 else
+        //                 {
+        //                     timer_f += Time.deltaTime;
+        //                     if (timer_f > 5 && timer_close)
+        //                     {
+        //                         timer_close = false;
+        //                         static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+        //                         Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
+        //                     }
+        //                 }
+        //             }
+        //             else
+        //             {
+        //                 if (static_parameters.MC_Wspeed == Skill_public_funtion.MC_Wspeed_tmp && timer_f < 2)
+        //                 {
+        //                     static_parameters.MC_Wspeed *= 2f;
+        //                     Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
+        //                 }
+        //                 else
+        //                 {
+        //                     timer_f += Time.deltaTime;
+        //                     if (timer_f > 5 && timer_close)
+        //                     {
+        //                         timer_close = false;
+        //                         static_parameters.MC_Wspeed = Skill_public_funtion.MC_Wspeed_tmp;
+        //                         Debug.Log("MC_speed:" + static_parameters.MC_Wspeed);
+        //                     }
+        //                 }
+        //             }
+        //             break;
+        //         case 3:
+        //             if (Skill_public_funtion.ATK_count >= 25)
+        //             {
+        //                 Skill_public_funtion.ATK_count = 0;
+        //                 static_parameters.MC_DEF = static_parameters.MC_DEF_tmp;
+        //                 time_A_B = !time_A_B;
+        //                 if (time_A_B)
+        //                 {
+        //                     static_parameters.MC_DEF = static_parameters.MC_DEF * 1.25f;
+        //                 }
+        //                 else
+        //                 {
+        //                     static_parameters.MC_DEF = static_parameters.MC_DEF * 0.8f;
+        //                 }
+        //                 Debug.Log("MC_DEF:" + static_parameters.MC_DEF);
+        //             }
+        //             break;
+        //     }
+        // }
     }
     public void sprint_Bonus()//觸發衝刺時作用
     {
@@ -205,7 +205,7 @@ public class initiator_MC : MonoBehaviour
             {
                 switch (icon.iconID)
                 {
-                    case 2:
+                    case 52:
                         if (Skill_public_funtion.skill_xx2_Dash_end)
                         {
                             if (Skill_public_funtion.skill_xx2_Dash_time < 2f)
@@ -222,32 +222,21 @@ public class initiator_MC : MonoBehaviour
                             }
                         }
                         break;
-                    case 3:
+                    case 53:
                         if (Skill_public_funtion.skill_xx3_Dash)
                         {
                             Skill_public_funtion.skill_xx3_Dash = false;
                             Instantiate(bullet, Firepoint.position, transform.rotation);
                         }
-
                         break;
-                    case 4:
+                    case 54:
                         if (Skill_public_funtion.skill_xx4_Dash)
                         {
-                            if (Skill_public_funtion.skill_xx4_Dash_time < 5f)
-                            {
-                                Skill_public_funtion.skill_xx4_Dash_time += Time.deltaTime;
-                                static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
-                                Instantiate(Ward, transform.position, transform.rotation);
-                            }
-                            else //建議撰寫在另外的function
-                            {
-                                Skill_public_funtion.skill_xx4_Dash = false;
-                                Skill_public_funtion.skill_xx4_Dash_time = 0;
-                                Destroy(Ward);
-                            }
+                            Skill_public_funtion.skill_xx4_Dash = false;
+                            Instantiate(Ward, transform.position, transform.rotation);
                         }
                         break;
-                    case 5:
+                    case 55:
                         Ani_MC.DashCD_time = 2f;
                         Skill_public_funtion.skill_xx5_Dash_Magnification = 0.9f;
                         break;
