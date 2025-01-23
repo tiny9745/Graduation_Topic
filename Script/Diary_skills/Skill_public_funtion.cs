@@ -24,4 +24,5 @@ public class Skill_public_funtion : MonoBehaviour
     static public float skill_55_Dash_Magnification = 1f;
     static public float skill_11_throw_time = 0;
     static public bool skill_12_bullet = false;
+    static public float skill_13_bullet_atk = 1f;
 }

@@ -11,8 +11,8 @@ public class initiator_MC : MonoBehaviour
     private Vector3 previousPosition;
     float accumulatedDistance = 0;
     bool timer_close = true;
-    public GameObject bullet53,throw11; public Transform Firepoint;
-    public GameObject Ward;
+    public GameObject bullet53, Ward54, throw11, Ward12; public Transform Firepoint;
+    public InventoryManager inventoryManager;
 
     // Start is called before the first frame update
     void Start()
@@ -234,7 +234,7 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_54_Dash)
                         {
                             Skill_public_funtion.skill_54_Dash = false;
-                            Instantiate(Ward, transform.position, transform.rotation);
+                            Instantiate(Ward54, transform.position, transform.rotation);
                         }
                         break;
                     case 55:
@@ -268,8 +268,19 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_12_bullet)
                         {
                             Skill_public_funtion.skill_12_bullet = false;
-                            Instantiate(bullet53, Firepoint.position, transform.rotation);
+                            Instantiate(Ward12, transform.position, transform.rotation);
                         }
+                        break;
+                    case 13:
+                        Skill_public_funtion.skill_13_bullet_atk = 2f;
+                        break;
+                    case 14:
+                        if (Input.GetKeyDown(KeyCode.B) && static_parameters.Ani_state < 3)
+                        {
+                            Invoke("inventoryManager.bullet_fire", 0.5f);
+                        }
+                        break;
+                    case 15:
                         break;
                 }
             }
