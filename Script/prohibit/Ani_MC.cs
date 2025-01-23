@@ -17,6 +17,8 @@ public class Ani_MC : MonoBehaviour
     static public float DashCD_time = 3f;
     short ATK_count = 0; float ATK_time = 0;
     float attackTime = 0; bool isAttack_combo = false;
+
+    static public float dashDuration = 0.63f;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -113,10 +115,11 @@ public class Ani_MC : MonoBehaviour
     {
         isDashCooldown = true;
         static_parameters.Ani_state = 5; // 設置為 Dash 狀態
-        PlayDashAnimation();
 
-        float dashDuration = 0.63f;
         float dashStartTime = Time.time;
+        dashDuration = 0.63f / Skill_public_funtion.skill_xx5_Dash_Magnification;
+        animator.speed = Skill_public_funtion.skill_xx5_Dash_Magnification;
+        PlayDashAnimation();
 
         // 確保動畫完整播放
         while (Time.time - dashStartTime < dashDuration)
