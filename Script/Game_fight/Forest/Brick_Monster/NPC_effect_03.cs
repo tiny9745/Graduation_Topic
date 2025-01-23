@@ -108,16 +108,8 @@ public class NPC_effect_03 : MonoBehaviour
         {
             switch (icon.iconID)
             {
-                case 1://updata
-                    if (Skill_public_funtion.skill_xx1_trigger_enter) control.NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.5f;
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
+                case 51://updata
+                    if (Skill_public_funtion.skill_51_trigger_enter) control.NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.5f;
                     break;
             }
         }

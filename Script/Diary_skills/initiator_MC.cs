@@ -11,7 +11,7 @@ public class initiator_MC : MonoBehaviour
     private Vector3 previousPosition;
     float accumulatedDistance = 0;
     bool timer_close = true;
-    public GameObject bullet; public Transform Firepoint;
+    public GameObject bullet53,throw11; public Transform Firepoint;
     public GameObject Ward;
 
     // Start is called before the first frame update
@@ -28,9 +28,10 @@ public class initiator_MC : MonoBehaviour
     void Update()
     {
         fight_instinct();
+        sprint_Bonus();
     }
 
-    void fight_instinct()
+    private void fight_instinct()
     {
         if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
         {
@@ -197,7 +198,7 @@ public class initiator_MC : MonoBehaviour
         //     }
         // }
     }
-    public void sprint_Bonus()//觸發衝刺時作用
+    private void sprint_Bonus()//觸發衝刺時作用
     {
         if (IconManager.Instance != null)
         {
@@ -206,42 +207,69 @@ public class initiator_MC : MonoBehaviour
                 switch (icon.iconID)
                 {
                     case 52:
-                        if (Skill_public_funtion.skill_xx2_Dash_end)
+                        if (Skill_public_funtion.skill_52_Dash_end)
                         {
-                            if (Skill_public_funtion.skill_xx2_Dash_time < 2f)
-                            {
-                                Skill_public_funtion.skill_xx2_Dash_time += Time.deltaTime;
-                                static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
-                                static_parameters.MC_Wspeed = static_parameters.MC_Wspeed * 1.2f;
-                            }
-                            else
-                            {
-                                Skill_public_funtion.skill_xx2_Dash_end = false;
-                                Skill_public_funtion.skill_xx2_Dash_time = 0;
-                                static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp;
-                            }
+                            Skill_public_funtion.skill_52_Dash_end = false;
+                            static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
+                            static_parameters.MC_Wspeed = static_parameters.MC_Wspeed * 1.2f;
+                        }
+                        if (Skill_public_funtion.skill_52_Dash_time < 2f)
+                        {
+                            Skill_public_funtion.skill_52_Dash_time += Time.deltaTime;
+                        }
+                        else
+                        {
+                            Skill_public_funtion.skill_52_Dash_time = 0;
+                            static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp;
                         }
                         break;
                     case 53:
-                        if (Skill_public_funtion.skill_xx3_Dash)
+                        if (Skill_public_funtion.skill_53_Dash)
                         {
-                            Skill_public_funtion.skill_xx3_Dash = false;
-                            Instantiate(bullet, Firepoint.position, transform.rotation);
+                            Skill_public_funtion.skill_53_Dash = false;
+                            Instantiate(bullet53, Firepoint.position, transform.rotation);
                         }
                         break;
                     case 54:
-                        if (Skill_public_funtion.skill_xx4_Dash)
+                        if (Skill_public_funtion.skill_54_Dash)
                         {
-                            Skill_public_funtion.skill_xx4_Dash = false;
+                            Skill_public_funtion.skill_54_Dash = false;
                             Instantiate(Ward, transform.position, transform.rotation);
                         }
                         break;
                     case 55:
                         Ani_MC.DashCD_time = 2f;
-                        Skill_public_funtion.skill_xx5_Dash_Magnification = 0.9f;
+                        Skill_public_funtion.skill_55_Dash_Magnification = 0.9f;
                         break;
                 }
             }
         }
     }
+    private void Book_throwing()
+    {
+        if (IconManager.Instance != null)
+        {
+            foreach (var icon in IconManager.Instance.IconList)
+            {
+                switch (icon.iconID)
+                {
+                    case 11:
+                        if (Skill_public_funtion.skill_11_throw_time < 10f)
+                        {
+                            Skill_public_funtion.skill_11_throw_time += Time.deltaTime;
+                        }
+                        else
+                        {
+                            Skill_public_funtion.skill_11_throw_time = 0;
+                            Instantiate(throw11, Firepoint.position, transform.rotation);
+                        }
+                        break;
+                    case 12:
+                        break;
+
+                }
+            }
+        }
+    }
+
 }
