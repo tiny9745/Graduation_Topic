@@ -265,8 +265,12 @@ public class initiator_MC : MonoBehaviour
                         }
                         break;
                     case 12:
+                        if (Skill_public_funtion.skill_12_bullet)
+                        {
+                            Skill_public_funtion.skill_12_bullet = false;
+                            Instantiate(bullet53, Firepoint.position, transform.rotation);
+                        }
                         break;
-
                 }
             }
         }
