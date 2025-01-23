@@ -8,10 +8,11 @@ public class initiator_MC : MonoBehaviour
 {
     float timer_f = 0;
     bool time_A_B = false;
-
     private Vector3 previousPosition;
     float accumulatedDistance = 0;
     bool timer_close = true;
+    public GameObject bullet; public Transform Firepoint;
+    public GameObject Ward;
 
     // Start is called before the first frame update
     void Start()
@@ -198,8 +199,6 @@ public class initiator_MC : MonoBehaviour
     }
     public void sprint_Bonus()//觸發衝刺時作用
     {
-        Ani_MC.DashCD_time = 2f;
-
         if (IconManager.Instance != null)
         {
             foreach (var icon in IconManager.Instance.IconList)
@@ -227,15 +226,30 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_xx3_Dash)
                         {
                             Skill_public_funtion.skill_xx3_Dash = false;
-                            //隨機投擲物
+                            Instantiate(bullet, Firepoint.position, transform.rotation);
                         }
 
                         break;
                     case 4:
-                        static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp * 1.2f;
+                        if (Skill_public_funtion.skill_xx4_Dash)
+                        {
+                            if (Skill_public_funtion.skill_xx4_Dash_time < 5f)
+                            {
+                                Skill_public_funtion.skill_xx4_Dash_time += Time.deltaTime;
+                                static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
+                                Instantiate(Ward, transform.position, transform.rotation);
+                            }
+                            else //建議撰寫在另外的function
+                            {
+                                Skill_public_funtion.skill_xx4_Dash = false;
+                                Skill_public_funtion.skill_xx4_Dash_time = 0;
+                                Destroy(Ward);
+                            }
+                        }
                         break;
                     case 5:
-                        static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp * 1.3f;
+                        Ani_MC.DashCD_time = 2f;
+                        Skill_public_funtion.skill_xx5_Dash_Magnification = 0.9f;
                         break;
                 }
             }
