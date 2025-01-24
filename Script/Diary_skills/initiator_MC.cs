@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 public class initiator_MC : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class initiator_MC : MonoBehaviour
     private Vector3 previousPosition;
     float accumulatedDistance = 0;
     bool timer_close = true;
-    public GameObject bullet53, Ward54, throw11, Ward12; public Transform Firepoint;
+    public GameObject bullet53, Ward54, throw11, Ward12, Guardian41, Guardian42, Guardian43, Guardian44; public Transform Firepoint;
     public InventoryManager inventoryManager;
 
     // Start is called before the first frame update
@@ -280,11 +281,50 @@ public class initiator_MC : MonoBehaviour
                             Invoke("inventoryManager.bullet_fire", 0.5f);
                         }
                         break;
-                    case 15:
+                }
+            }
+        }
+    }
+    private void Guardian()
+    {
+        if (IconManager.Instance != null)
+        {
+            foreach (var icon in IconManager.Instance.IconList)
+            {
+                switch (icon.iconID)
+                {
+                    case 41:
+                        if (Skill_public_funtion.skill_41_enter)
+                        {
+                            Skill_public_funtion.skill_41_enter = false;
+                        }
+                        break;
+                    case 42:
+                        if (Skill_public_funtion.skill_42_enter)
+                        {
+                            Skill_public_funtion.skill_42_enter = false;
+                        }
+                        break;
+                    case 43:
+                        if (Skill_public_funtion.skill_43_enter)
+                        {
+                            Skill_public_funtion.skill_43_enter = false;
+                        }
+                        break;
+                    case 44:
+                        if (Skill_public_funtion.skill_44_enter)
+                        {
+                            Skill_public_funtion.skill_44_enter = false;
+                        }
+                        break;
+                    case 45:
+                        if (Skill_public_funtion.skill_45_enter)
+                        {
+                            Skill_public_funtion.skill_45_enter = false;
+                        }
                         break;
                 }
             }
         }
     }
-
 }

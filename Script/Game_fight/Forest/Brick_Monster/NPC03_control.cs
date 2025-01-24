@@ -25,6 +25,9 @@ public class NPC03_control : MonoBehaviour
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
     private Vector3 lastEnteredDirection; // 記錄進入方向
+
+    private bool skill_15_stop_time_trigger = true;
+    private float skill_15_stop_time = 0;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -455,15 +458,20 @@ public class NPC03_control : MonoBehaviour
                 case 51://updata
                     if (Skill_public_funtion.skill_51_trigger_enter) NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC03_DEF) * 0.5f;
                     break;
-                case 15:
-                    if (Skill_public_funtion.skill_15_stop_time < 1.5f)
+                case 15://trigger Enter tag = "MC_bullet"
+                    if (skill_15_stop_time_trigger)
                     {
-                        npcNavi.speed = 0;
-                        Skill_public_funtion.skill_15_stop_time += Time.deltaTime;
-                    }
-                    else
-                    {
-                        npcNavi.speed = npcSpeed;
+                        if (skill_15_stop_time < 1.5f)
+                        {
+                            npcNavi.speed = 0;
+                            skill_15_stop_time += Time.deltaTime;
+                        }
+                        else
+                        {
+                            skill_15_stop_time_trigger = false;
+                            skill_15_stop_time = 0;
+                            npcNavi.speed = npcSpeed;
+                        }
                     }
                     break;
             }
