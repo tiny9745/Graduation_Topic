@@ -15,6 +15,8 @@ public class initiator_MC : MonoBehaviour
     public GameObject bullet53, Ward54, throw11, Ward12, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
     public InventoryManager inventoryManager;
 
+    private Transform Guardian4x_point;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -290,6 +292,8 @@ public class initiator_MC : MonoBehaviour
     {
         if (IconManager.Instance != null)
         {
+            Guardian4x_point.position = new Vector3(transform.position.x, 5, transform.position.z + Skill_public_funtion.skill_4x_Sorting * 5);
+
             foreach (var icon in IconManager.Instance.IconList)
             {
                 switch (icon.iconID)
@@ -297,36 +301,41 @@ public class initiator_MC : MonoBehaviour
                     case 41:
                         if (Skill_public_funtion.skill_41_enter)
                         {
-                            Instantiate(Guardian41, transform.position, transform.rotation);
                             Skill_public_funtion.skill_41_enter = false;
+                            Instantiate(Guardian41, Guardian4x_point.position, transform.rotation);
+                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                     case 42:
                         if (Skill_public_funtion.skill_42_enter)
                         {
-                            Instantiate(Guardian42, transform.position, transform.rotation);
                             Skill_public_funtion.skill_42_enter = false;
+                            Instantiate(Guardian42, Guardian4x_point.position, transform.rotation);
+                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                     case 43:
                         if (Skill_public_funtion.skill_43_enter)
                         {
-                            Instantiate(Guardian43, transform.position, transform.rotation);
                             Skill_public_funtion.skill_43_enter = false;
+                            Instantiate(Guardian43, Guardian4x_point.position, transform.rotation);
+                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                     case 44:
                         if (Skill_public_funtion.skill_44_enter)
                         {
-                            Instantiate(Guardian44, transform.position, transform.rotation);
                             Skill_public_funtion.skill_44_enter = false;
+                            Instantiate(Guardian44, Guardian4x_point.position, transform.rotation);
+                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                     case 45:
                         if (Skill_public_funtion.skill_45_enter)
                         {
-                            Instantiate(Guardian45, transform.position, transform.rotation);
                             Skill_public_funtion.skill_45_enter = false;
+                            Instantiate(Guardian45, Guardian4x_point.position, transform.rotation);
+                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                 }
