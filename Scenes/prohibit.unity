@@ -28515,6 +28515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemImage: {fileID: 1538296698086646590}
   ItemName: {fileID: 2713348619047630232}
+  emptySprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
 --- !u!114 &2482688568452668342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29578,6 +29579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemImage: {fileID: 7758773204127119730}
   ItemName: {fileID: 3016366898273313317}
+  emptySprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
 --- !u!1 &7473863357783155474
 GameObject:
   m_ObjectHideFlags: 0
@@ -29718,11 +29720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -8.881784e-16
+      value: 8.881784e-16
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 4.440892e-16
+      value: -4.440892e-16
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29746,11 +29748,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008328529
+      value: 0.000000008328528
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021564983
+      value: -0.000000002156498
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -29911,6 +29913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemImage: {fileID: 3994475673567822014}
   ItemName: {fileID: 2482688568452668342}
+  emptySprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
 --- !u!224 &8088372993401658900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30126,6 +30129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemImage: {fileID: 3030329121442898060}
   ItemName: {fileID: 7063928266210603820}
+  emptySprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
 --- !u!114 &8676149383117319065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30197,6 +30201,10 @@ MonoBehaviour:
   Ward54: {fileID: 1857851186878094322, guid: 3cf01556078455047ad6ad19952668a2, type: 3}
   throw11: {fileID: 2674179045406656197, guid: 5bf85973acb2d5a44b4709131b6c39be, type: 3}
   Ward12: {fileID: 7035810975034627314, guid: cedb763a9d8468b4c880394512cb93db, type: 3}
+  Guardian41: {fileID: 0}
+  Guardian42: {fileID: 0}
+  Guardian43: {fileID: 0}
+  Guardian44: {fileID: 0}
   Firepoint: {fileID: 190346402}
   inventoryManager: {fileID: 3341608546117133715}
 --- !u!1 &9116625666514442407
