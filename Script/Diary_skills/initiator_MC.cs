@@ -30,6 +30,7 @@ public class initiator_MC : MonoBehaviour
     {
         fight_instinct();
         sprint_Bonus();
+        Guardian();
     }
 
     private void fight_instinct()
