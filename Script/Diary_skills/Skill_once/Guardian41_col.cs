@@ -7,7 +7,7 @@ public class Guardian41_col : MonoBehaviour
     public GameObject bullet, Img_Guardian;
     public Transform Firepoint;
     private GameObject player;
-    public Animator bullet_41;
+    public Animator Guardian_41;
 
     float bullet_time = 0;
     float bullet_time_max = 8f;
@@ -29,7 +29,7 @@ public class Guardian41_col : MonoBehaviour
         }
         else
         {
-            bullet_41.SetTrigger("Plant_guard01_ATK");
+            Guardian_41.SetTrigger("Plant_guard01_ATK");
             bullet_time_max = Random.Range(5f, 8f);
             bullet_time = 0;
             bullet_fire();
@@ -38,35 +38,35 @@ public class Guardian41_col : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        // if (collision.tag == "NPC")
-        // {
-        //     GameObject closestNPC = FindClosestNPCWithinCollider();
-        //     if (closestNPC != null)
-        //     {
-        //         if (closestNPC.transform.position.x > transform.position.x && !isFacingRight)
-        //         {
-        //             Flip();
-        //         }
-        //         else if (closestNPC.transform.position.x < transform.position.x && isFacingRight)
-        //         {
-        //             Flip();
-        //         }
-        //     }
-        // }
-        // else
-        // {
-        //     if (player != null)
-        //     {
-        //         if (player.transform.position.x > transform.position.x && !isFacingRight)
-        //         {
-        //             Flip();
-        //         }
-        //         else if (player.transform.position.x < transform.position.x && isFacingRight)
-        //         {
-        //             Flip();
-        //         }
-        //     }
-        // }
+        if (collision.tag == "NPC")
+        {
+            GameObject closestNPC = FindClosestNPCWithinCollider();
+            if (closestNPC != null)
+            {
+                if (closestNPC.transform.position.x > transform.position.x && !isFacingRight)
+                {
+                    Flip();
+                }
+                else if (closestNPC.transform.position.x < transform.position.x && isFacingRight)
+                {
+                    Flip();
+                }
+            }
+        }
+        else
+        {
+            if (player != null)
+            {
+                if (player.transform.position.x > transform.position.x && !isFacingRight)
+                {
+                    Flip();
+                }
+                else if (player.transform.position.x < transform.position.x && isFacingRight)
+                {
+                    Flip();
+                }
+            }
+        }
     }
 
     private GameObject FindClosestNPCWithinCollider()
