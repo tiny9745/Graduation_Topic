@@ -58,7 +58,7 @@ public class Play_move : MonoBehaviour
             {
                 transform.position += movement * dashSpeed * Time.deltaTime; // 衝刺速度
             }
-            else if(static_parameters.Ani_state>=2||static_parameters.Ani_state<=4)
+            else if(static_parameters.Ani_state>=2)
             {
                 transform.position += movement * 0.5f * Time.deltaTime;
             }else{
