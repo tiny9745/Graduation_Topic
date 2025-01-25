@@ -254,6 +254,7 @@ public class NPC03_control : MonoBehaviour
         {
             Skill_public_funtion.skill_51_trigger_enter = true;
         }
+        skill_atk(other);
     }
 
     private void wait_safe_to_walk()
@@ -475,6 +476,22 @@ public class NPC03_control : MonoBehaviour
                     }
                     break;
             }
+        }
+    }
+
+    private void skill_atk(Collider atk)
+    {
+        if (atk.gameObject.tag == "skill_41_bullet")
+        {
+            NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_41_Atk, 2) / (Skill_public_funtion.skill_41_Atk + NPC03_DEF);
+        }
+        if (atk.gameObject.tag == "skill_42_bullet")
+        {
+            NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_42_Atk, 2) / (Skill_public_funtion.skill_42_Atk + NPC03_DEF);
+        }
+        if (atk.gameObject.tag == "skill_45_bullet")
+        {
+            NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_45_Atk, 2) / (Skill_public_funtion.skill_45_Atk + NPC03_DEF);
         }
     }
 }

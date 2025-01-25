@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5251395580854765251}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -6, z: -40.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -134,6 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8935025198326051032}
   - component: {fileID: 3019510844572638556}
+  - component: {fileID: 874413949640813930}
   m_Layer: 0
   m_Name: Plant_Guard01
   m_TagString: Untagged
@@ -150,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 6763576973372417893}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -169,3 +170,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f92fd43f3d47a49bc7623e1e196bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 7873853926431974189, guid: 17d5cb6e33dd64346ae94491013d0c8b, type: 3}
+  Img_Guardian: {fileID: 5251395580854765251}
+  Firepoint: {fileID: 0}
+--- !u!135 &874413949640813930
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763576973372417893}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4.5
+  m_Center: {x: 0, y: 0, z: 0}

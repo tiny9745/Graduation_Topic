@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Guardian41_col : MonoBehaviour
 {
-    public GameObject bullet;
+    public GameObject bullet, Img_Guardian;
     public Transform Firepoint;
     private GameObject player;
 
     float bullet_time = 0;
     float bullet_time_max = 8f;
     float Guardian41_to_player_distance = 0;
+    private bool isFacingRight = true;
 
     void Start()
     {
@@ -21,7 +22,6 @@ public class Guardian41_col : MonoBehaviour
     void Update()
     {
         FollowPlayer();
-
         if (bullet_time < bullet_time_max)
         {
             bullet_time += Time.deltaTime;
@@ -32,6 +32,71 @@ public class Guardian41_col : MonoBehaviour
             bullet_time = 0;
             bullet_fire();
         }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.tag == "NPC")
+        {
+            GameObject closestNPC = FindClosestNPCWithinCollider();
+            if (closestNPC != null)
+            {
+                if (closestNPC.transform.position.x > transform.position.x && !isFacingRight)
+                {
+                    Flip();
+                }
+                else if (closestNPC.transform.position.x < transform.position.x && isFacingRight)
+                {
+                    Flip();
+                }
+            }
+        }
+        else
+        {
+            if (player != null)
+            {
+                if (player.transform.position.x > transform.position.x && !isFacingRight)
+                {
+                    Flip();
+                }
+                else if (player.transform.position.x < transform.position.x && isFacingRight)
+                {
+                    Flip();
+                }
+            }
+        }
+    }
+
+    private GameObject FindClosestNPCWithinCollider()
+    {
+        Collider selfCollider = GetComponent<Collider>();
+        if (selfCollider == null) return null;
+
+        Collider[] hitColliders = Physics.OverlapBox(selfCollider.bounds.center, selfCollider.bounds.extents / 2, Quaternion.identity);
+        GameObject closestNPC = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (Collider hitCollider in hitColliders)
+        {
+            if (hitCollider.CompareTag("NPC"))
+            {
+                float distance = (hitCollider.transform.position - transform.position).sqrMagnitude;
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestNPC = hitCollider.gameObject;
+                }
+            }
+        }
+        return closestNPC;
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = Img_Guardian.transform.localScale;
+        theScale.x *= -1;
+        Img_Guardian.transform.localScale = theScale;
     }
 
     private void bullet_fire()
@@ -48,7 +113,7 @@ public class Guardian41_col : MonoBehaviour
         {
             Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
             Vector3 targetPosition = player.transform.position - directionToPlayer * Guardian41_to_player_distance;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f); 
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
         }
     }
 }
