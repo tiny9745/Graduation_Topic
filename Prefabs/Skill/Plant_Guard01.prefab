@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3183977463859151439}
   - component: {fileID: 550235628581981130}
-  - component: {fileID: 4795332731562933586}
   - component: {fileID: 9010714867094684638}
   m_Layer: 0
   m_Name: 2A-00
@@ -86,23 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &4795332731562933586
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5251395580854765251}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 495e214596872d3418d931c51bb719b4, type: 2}
-  - {fileID: 7400000, guid: 7fde21caf55c44d43b88deffa120dca3, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &9010714867094684638
 Animator:
   serializedVersion: 5
@@ -173,6 +155,7 @@ MonoBehaviour:
   bullet: {fileID: 7873853926431974189, guid: 17d5cb6e33dd64346ae94491013d0c8b, type: 3}
   Img_Guardian: {fileID: 5251395580854765251}
   Firepoint: {fileID: 0}
+  bullet_41: {fileID: 9010714867094684638}
 --- !u!135 &874413949640813930
 SphereCollider:
   m_ObjectHideFlags: 0
