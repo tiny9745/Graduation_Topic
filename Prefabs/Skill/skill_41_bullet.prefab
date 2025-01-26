@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1677339038122970997}
   - component: {fileID: -6215882541232606622}
   - component: {fileID: -6713673276393284394}
+  - component: {fileID: 8556661710399300773}
   m_Layer: 0
   m_Name: skill_41_bullet
   m_TagString: skill_41_bullet
@@ -144,3 +145,18 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &8556661710399300773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873853926431974189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd863dd775912b45907dfeb9de626aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  targetObject: {fileID: 0}
+  Guardian_41_bullet: {fileID: -6215882541232606622}

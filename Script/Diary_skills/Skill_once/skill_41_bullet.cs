@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class skill_41_bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Animator bullet_41;
+   // Start is called before the first frame update
+    float speed = 15f, lifetime = 10f;
+    public int damage = 10;
     public GameObject targetObject;
     Vector3 moveDirection;
     Transform targetTransform;
-    float lifetime = 10f;
+    public Animator Guardian_41_bullet;
     void Start()
     {
         targetObject = GameObject.Find("Player_S");
@@ -18,12 +19,21 @@ public class skill_41_bullet : MonoBehaviour
         {
             float angle_NPC = FindNearestNPCAngle();
             targetTransform = targetObject.transform;
-            // moveDirection = -targetTransform.forward;
             float radians = angle_NPC * Mathf.Deg2Rad; // 將角度轉為弧度
             moveDirection = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)); // 計算絕對方向向量
         }
-        Destroy(gameObject, lifetime);
+        // Destroy(gameObject, lifetime);
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (targetObject != null)
+        {
+            transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+        }
+    }
+
     public float FindNearestNPCAngle()
     {
         GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
@@ -49,23 +59,13 @@ public class skill_41_bullet : MonoBehaviour
         return -1;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    void OnTriggerEnter(Collider collision)
-    {
-        if (collision.tag == "NPC")
+        if (other.gameObject.CompareTag("NPC"))
         {
-            bullet_41.SetTrigger("bullet_41_atk");
-           Invoke("Destroy", 0.11f);
+            Debug.Log("skill_41_bullet:OnTriggerEnter");
+            Guardian_41_bullet.SetTrigger("Guardian_41_bullet");
+            Destroy(gameObject, 0.11f);
         }
-    }
-
-    private void Destroy()
-    {
-        Destroy(gameObject);
     }
 }

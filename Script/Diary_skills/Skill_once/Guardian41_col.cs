@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +15,12 @@ public class Guardian41_col : MonoBehaviour
     float Guardian41_to_player_distance = 0;
     private bool isFacingRight = true;
 
+    private bool Ready = false;
+
     void Start()
     {
         Guardian41_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject player = GameObject.Find("Player_S");
     }
 
     void Update()
@@ -29,14 +32,13 @@ public class Guardian41_col : MonoBehaviour
         }
         else
         {
-            Guardian_41.SetTrigger("Plant_guard01_ATK");
-            bullet_time_max = Random.Range(5f, 8f);
+            bullet_time_max = UnityEngine.Random.Range(5f, 8f);
             bullet_time = 0;
-            bullet_fire();
+            Ready = true;
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.tag == "NPC")
         {
@@ -45,12 +47,20 @@ public class Guardian41_col : MonoBehaviour
             {
                 if (closestNPC.transform.position.x > transform.position.x && !isFacingRight)
                 {
+                    Debug.Log("Guardian41_col:Flip_n");
                     Flip();
                 }
                 else if (closestNPC.transform.position.x < transform.position.x && isFacingRight)
                 {
+                    Debug.Log("Guardian41_col:Flip_n!");
                     Flip();
                 }
+            }
+            if (Ready)
+            {
+                Invoke("bullet_fire", 0.5f);
+                Guardian_41.SetTrigger("Plant_guard01_ATK");
+                Ready = false;
             }
         }
         else
@@ -59,10 +69,12 @@ public class Guardian41_col : MonoBehaviour
             {
                 if (player.transform.position.x > transform.position.x && !isFacingRight)
                 {
+                    Debug.Log("Guardian41_col:Flip_p");
                     Flip();
                 }
                 else if (player.transform.position.x < transform.position.x && isFacingRight)
                 {
+                    Debug.Log("Guardian41_col:Flip_p!");
                     Flip();
                 }
             }
@@ -105,6 +117,7 @@ public class Guardian41_col : MonoBehaviour
     {
         if (static_parameters.MC_HP > 0)
         {
+            Debug.Log("Guardian41_col:"+bullet);
             Instantiate(bullet, Firepoint.position, transform.rotation);
         }
     }
