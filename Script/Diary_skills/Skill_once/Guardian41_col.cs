@@ -7,20 +7,27 @@ public class Guardian41_col : MonoBehaviour
 {
     public GameObject bullet, Img_Guardian;
     public Transform Firepoint;
-    private GameObject player;
+    public GameObject player;
     public Animator Guardian_41;
 
     float bullet_time = 0;
     float bullet_time_max = 8f;
     float Guardian41_to_player_distance = 0;
     private bool isFacingRight = true;
-
-    private bool Ready = false;
+    private bool Ready = false, npc_distance = false;
 
     void Start()
     {
         Guardian41_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
         GameObject player = GameObject.Find("Player_S");
+        if (player != null)
+        {
+            Debug.Log("player_exist");
+        }
+        else
+        {
+            Debug.Log("player_exist_not");
+        }
     }
 
     void Update()
@@ -36,12 +43,17 @@ public class Guardian41_col : MonoBehaviour
             bullet_time = 0;
             Ready = true;
         }
+        if (!npc_distance)
+        {
+            NPC_distance_out();
+        }
     }
 
-    private void OnTriggerStay(Collider collision)
+    private void OnTriggerE(Collider collision)
     {
         if (collision.tag == "NPC")
         {
+            npc_distance = true;
             GameObject closestNPC = FindClosestNPCWithinCollider();
             if (closestNPC != null)
             {
@@ -63,21 +75,29 @@ public class Guardian41_col : MonoBehaviour
                 Ready = false;
             }
         }
-        else
+    }
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.tag == "NPC")
         {
-            if (player != null)
+            npc_distance = false;
+        }
+    }
+
+    private void NPC_distance_out()
+    {
+        if (player != null)
+        {
+            Debug.Log("Guardian41_col:player");
+            if (player.transform.position.x > transform.position.x && !isFacingRight)
             {
-                Debug.Log("Guardian41_col:player");
-                if (player.transform.position.x > transform.position.x && !isFacingRight)
-                {
-                    Debug.Log("Guardian41_col:Flip_p");
-                    Flip();
-                }
-                else if (player.transform.position.x < transform.position.x && isFacingRight)
-                {
-                    Debug.Log("Guardian41_col:Flip_p!");
-                    Flip();
-                }
+                Debug.Log("Guardian41_col:Flip_p");
+                Flip();
+            }
+            else if (player.transform.position.x < transform.position.x && isFacingRight)
+            {
+                Debug.Log("Guardian41_col:Flip_p!");
+                Flip();
             }
         }
     }
@@ -118,7 +138,7 @@ public class Guardian41_col : MonoBehaviour
     {
         if (static_parameters.MC_HP > 0)
         {
-            Debug.Log("Guardian41_col:"+bullet);
+            Debug.Log("Guardian41_col:" + bullet);
             Instantiate(bullet, Firepoint.position, transform.rotation);
         }
     }
