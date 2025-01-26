@@ -67,6 +67,7 @@ public class Guardian41_col : MonoBehaviour
         {
             if (player != null)
             {
+                Debug.Log("Guardian41_col:player");
                 if (player.transform.position.x > transform.position.x && !isFacingRight)
                 {
                     Debug.Log("Guardian41_col:Flip_p");

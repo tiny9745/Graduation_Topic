@@ -6,12 +6,12 @@ using UnityEngine;
 public class skill_41_bullet : MonoBehaviour
 {
    // Start is called before the first frame update
-    float speed = 15f, lifetime = 10f;
-    public int damage = 10;
-    public GameObject targetObject;
+    float speed = 10f;
+    private GameObject targetObject;
     Vector3 moveDirection;
     Transform targetTransform;
     public Animator Guardian_41_bullet;
+    private bool isFacingRight = true;
     void Start()
     {
         targetObject = GameObject.Find("Player_S");
@@ -22,7 +22,6 @@ public class skill_41_bullet : MonoBehaviour
             float radians = angle_NPC * Mathf.Deg2Rad; // 將角度轉為弧度
             moveDirection = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)); // 計算絕對方向向量
         }
-        // Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
@@ -47,6 +46,14 @@ public class skill_41_bullet : MonoBehaviour
             {
                 shortestDistance = distance;
                 nearestNPC = npc;
+                if (npc.transform.position.x > transform.position.x && !isFacingRight)
+                {
+                    Flip();
+                }
+                else if (npc.transform.position.x < transform.position.x && isFacingRight)
+                {
+                    Flip();
+                }
             }
         }
 
@@ -67,5 +74,13 @@ public class skill_41_bullet : MonoBehaviour
             Guardian_41_bullet.SetTrigger("Guardian_41_bullet");
             Destroy(gameObject, 0.11f);
         }
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = this.transform.localScale;
+        theScale.x *= -1;
+        this.transform.localScale = theScale;
     }
 }
