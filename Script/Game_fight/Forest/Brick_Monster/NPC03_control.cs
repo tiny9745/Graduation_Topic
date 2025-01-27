@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class NPC03_control : MonoBehaviour
 {
     public NPC_interactive npc_interactive; public NPC_HP_03 nPC_hP; public NPC_effect_03 effect;
-    NavMeshAgent npcNavi;
+    public NavMeshAgent npcNavi;
     public Animator animator;
     public Animator animator_to_atk;
     public GameObject TargetObj, Drop, NPC03, hitbox_Brick_Monster, Img_npc;
@@ -26,8 +26,7 @@ public class NPC03_control : MonoBehaviour
     private bool isInDangerZone = false; // 是否在危險區域內
     private Vector3 lastEnteredDirection; // 記錄進入方向
 
-    private bool skill_15_stop_time_trigger = true;
-    private float skill_15_stop_time = 0;
+
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -119,8 +118,7 @@ public class NPC03_control : MonoBehaviour
                 NPC_angle += 360;
             }
         }
-
-        skill();
+        effect.skill_updata();
     }
 
     private void PlayStandAnimation()
@@ -280,7 +278,7 @@ public class NPC03_control : MonoBehaviour
                 animator_to_atk.SetTrigger("MC_Atk_N01");
                 Debug.Log("MC_Att");
                 change_color_red();
-                effect.Skill();
+                effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
@@ -450,34 +448,7 @@ public class NPC03_control : MonoBehaviour
     {
         MC_to_Att = true;
     }
-    private void skill()
-    {
-        foreach (var icon in IconManager.Instance.IconList)
-        {
-            switch (icon.iconID)
-            {
-                case 51://updata
-                    if (Skill_public_funtion.skill_51_trigger_enter) NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + NPC03_DEF) * 0.5f;
-                    break;
-                case 15://trigger Enter tag = "MC_bullet"
-                    if (skill_15_stop_time_trigger)
-                    {
-                        if (skill_15_stop_time < 1.5f)
-                        {
-                            npcNavi.speed = 0;
-                            skill_15_stop_time += Time.deltaTime;
-                        }
-                        else
-                        {
-                            skill_15_stop_time_trigger = false;
-                            skill_15_stop_time = 0;
-                            npcNavi.speed = npcSpeed;
-                        }
-                    }
-                    break;
-            }
-        }
-    }
+    
 
     private void skill_atk(Collider atk)
     {

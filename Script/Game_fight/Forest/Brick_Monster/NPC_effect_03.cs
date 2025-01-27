@@ -9,14 +9,14 @@ public class NPC_effect_03 : MonoBehaviour
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
 
-    // Start is called before the first frame update
+    private bool skill_15_stop_time_trigger = true; private float skill_15_stop_time = 0;
 
     // Update is called once per frame
     void Update()
     {
 
     }
-    public void Skill()//skill_add
+    public void piano_Skill()//skill_add
     {
         Debug.Log("NPC03 skill");
         if (Skill_public_funtion.play_piano)
@@ -120,5 +120,44 @@ public class NPC_effect_03 : MonoBehaviour
         if (minus < 5) minus = 5.0f;
         control.NPC_HP -= minus;
         Skill_public_funtion.B_damage = 0;
+    }
+
+    public void skill_updata()
+    {
+        foreach (var icon in IconManager.Instance.IconList)
+        {
+            switch (icon.iconID)
+            {
+                case 51://updata
+                    if (Skill_public_funtion.skill_51_trigger_enter) control.NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.5f;
+                    break;
+            }
+        }
+    }
+
+    public void skill_TriggerEnter(Collider other)
+    {
+        foreach (var icon in IconManager.Instance.IconList)
+        {
+            switch (icon.iconID)
+            {
+                case 15://trigger Enter tag = "MC_bullet"
+                    if (skill_15_stop_time_trigger)
+                    {
+                        if (skill_15_stop_time < 1.5f)
+                        {
+                            control.npcNavi.speed = 0;
+                            skill_15_stop_time += Time.deltaTime;
+                        }
+                        else
+                        {
+                            skill_15_stop_time_trigger = false;
+                            skill_15_stop_time = 0;
+                            control.npcNavi.speed = control.npcSpeed;
+                        }
+                    }
+                    break;
+            }
+        }
     }
 }
