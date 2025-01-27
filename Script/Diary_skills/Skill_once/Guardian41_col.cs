@@ -126,7 +126,6 @@ public class Guardian41_col : MonoBehaviour
     {
         if (static_parameters.MC_HP > 0)
         {
-            Debug.Log("Guardian41_col:" + bullet);
             Instantiate(bullet, Firepoint.position, transform.rotation);
         }
     }
