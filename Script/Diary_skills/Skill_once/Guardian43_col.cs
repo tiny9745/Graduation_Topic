@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Guardian43_col : MonoBehaviour
 {
-    
     public GameObject _throw, Img_Guardian;
     public GameObject player;
     public Animator Guardian_43;
@@ -51,30 +50,6 @@ public class Guardian43_col : MonoBehaviour
                 Flip();
             }
         }
-    }
-
-    private GameObject FindClosestNPCWithinCollider()
-    {
-        Collider selfCollider = GetComponent<Collider>();
-        if (selfCollider == null) return null;
-
-        Collider[] hitColliders = Physics.OverlapBox(selfCollider.bounds.center, selfCollider.bounds.extents / 2, Quaternion.identity);
-        GameObject closestNPC = null;
-        float closestDistance = float.MaxValue;
-
-        foreach (Collider hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("NPC"))
-            {
-                float distance = (hitCollider.transform.position - transform.position).sqrMagnitude;
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestNPC = hitCollider.gameObject;
-                }
-            }
-        }
-        return closestNPC;
     }
 
     void Flip()
