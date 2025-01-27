@@ -2341,6 +2341,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CloseDoor01: {fileID: 0}
   CloseDoor02: {fileID: 0}
+  player_S: {fileID: 0}
+  image_complete: {fileID: 0}
 --- !u!1 &481081030
 GameObject:
   m_ObjectHideFlags: 0
@@ -3212,9 +3214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4949d03c70a01a4989d92f6b11e21c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  surface: {fileID: 1322086226}
   Scenes_object_obstacle: []
   Scenes_object_decorate: []
+  navMeshSurface: {fileID: 0}
 --- !u!114 &708759937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3259,6 +3261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36237d7df9553e41b26dfad6185b16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diarypointer: {fileID: 0}
+  Rightpage: {fileID: 0}
+  Dspace: {fileID: 0}
+  auto_Text_Paper: {fileID: 0}
+  ch3: {fileID: 0}
+  drag_End: {fileID: 0}
+  pick_tmp: 
 --- !u!114 &708759940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5275,7 +5284,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
@@ -7148,8 +7157,14 @@ MonoBehaviour:
   tilesX: 10
   tilesZ: 10
   tileSize: 7
-  Player: {fileID: 0}
-  Player_S: {fileID: 0}
+  player: {fileID: 0}
+  player_S: {fileID: 0}
+  minBoundary: {x: 0, y: 0, z: 0}
+  maxBoundary: {x: 0, y: 0, z: 0}
+  padding_X_min: 10
+  padding_X_max: 10
+  padding_Z_min: 10
+  padding_Z_max: 10
 --- !u!1 &1684201492
 GameObject:
   m_ObjectHideFlags: 0

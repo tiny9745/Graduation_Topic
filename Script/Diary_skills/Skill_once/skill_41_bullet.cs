@@ -68,7 +68,6 @@ public class skill_41_bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("NPC"))
         {
-            Guardian_41_bullet.SetTrigger("Guardian_41_bullet");
             Destroy(gameObject, 0.11f);
         }
     }

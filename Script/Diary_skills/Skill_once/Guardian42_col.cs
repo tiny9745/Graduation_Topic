@@ -11,14 +11,14 @@ public class Guardian42_col : MonoBehaviour
 
     float bullet_time = 0;
     float bullet_time_max = 3f;
-    float Guardian41_to_player_distance = 0;
+    float Guardian42_to_player_distance = 0;
     private bool isFacingRight = true;
     private bool Ready = false, npc_distance = false;
     private bool bullet_fire_flag = false;
     void Start()
     {
         DontDestroyOnLoad(this);
-        Guardian41_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
+        Guardian42_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
         player = GameObject.Find("Player_S");
     }
 
@@ -149,7 +149,7 @@ public class Guardian42_col : MonoBehaviour
         if (player != null)
         {
             Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-            Vector3 targetPosition = player.transform.position - directionToPlayer * Guardian41_to_player_distance;
+            Vector3 targetPosition = player.transform.position - directionToPlayer * Guardian42_to_player_distance;
             targetPosition.y = transform.position.y;
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
         }
