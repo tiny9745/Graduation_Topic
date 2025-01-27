@@ -18,6 +18,7 @@ public class Guardian41_col : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this);
         Guardian41_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
         player = GameObject.Find("Player_S");
     }
