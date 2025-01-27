@@ -454,15 +454,18 @@ public class NPC03_control : MonoBehaviour
     {
         if (atk.gameObject.tag == "skill_41_bullet")
         {
+            change_color_red();
             Debug.Log("skill_41_bullet_NPC03");
             NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_41_Atk, 2) / (Skill_public_funtion.skill_41_Atk + NPC03_DEF);
         }
         if (atk.gameObject.tag == "skill_42_bullet")
         {
+            change_color_red();
             NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_42_Atk, 2) / (Skill_public_funtion.skill_42_Atk + NPC03_DEF);
         }
         if (atk.gameObject.tag == "skill_45_bullet")
         {
+            change_color_red();
             NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_45_Atk, 2) / (Skill_public_funtion.skill_45_Atk + NPC03_DEF);
         }
     }

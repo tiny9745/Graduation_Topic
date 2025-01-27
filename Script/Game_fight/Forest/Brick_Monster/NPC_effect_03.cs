@@ -35,70 +35,76 @@ public class NPC_effect_03 : MonoBehaviour
     public void play_piano_effect()
     {
         piano_flag = true;
-        foreach (var icon in IconManager.Instance.IconList)
+        if (IconManager.Instance != null)
         {
-            switch (icon.iconID)
+            foreach (var icon in IconManager.Instance.IconList)
             {
-                case 21: // Bomb
-                    play_piano_atk = 0;
-                    Skill_public_funtion.B_damage += 10;
-                    continue;
+                switch (icon.iconID)
+                {
+                    case 21: // Bomb
+                        play_piano_atk = 0;
+                        Skill_public_funtion.B_damage += 10;
+                        continue;
 
-                case 22: // Flash
-                    Skill_public_funtion.B_damage += 15;
-                    control.stun = true;
-                    Invoke(nameof(Stun_end), 3);
-                    continue;
+                    case 22: // Flash
+                        Skill_public_funtion.B_damage += 15;
+                        control.stun = true;
+                        Invoke(nameof(Stun_end), 3);
+                        continue;
 
-                case 23: // Ricochet
-                    Skill_public_funtion.B_damage += 20;
-                    piano_flag = false;
-                    play_piano_atk++;
-                    continue;
+                    case 23: // Ricochet
+                        Skill_public_funtion.B_damage += 20;
+                        piano_flag = false;
+                        play_piano_atk++;
+                        continue;
 
-                case 24: // Air Bullet
-                    Skill_public_funtion.B_damage += 15;
-                    if (control.NPC_HP < NPC_back)
-                        control.NPC_HP = 0;
-                    else
-                        transform.position -= NPC_back * Vector3.back;
-                    continue;
+                    case 24: // Air Bullet
+                        Skill_public_funtion.B_damage += 15;
+                        if (control.NPC_HP < NPC_back)
+                            control.NPC_HP = 0;
+                        else
+                            transform.position -= NPC_back * Vector3.back;
+                        continue;
 
-                case 25: // Smoke Bomb
-                    Skill_public_funtion.B_damage += 20;//spawn smoke not done
-                    continue;
-                default:
-                    continue;
+                    case 25: // Smoke Bomb
+                        Skill_public_funtion.B_damage += 20;//spawn smoke not done
+                        continue;
+                    default:
+                        continue;
+                }
             }
+            damage(Skill_public_funtion.B_damage);
+            Reset_flag();
+            control.change_color_red();
         }
-        damage(Skill_public_funtion.B_damage);
-        Reset_flag();
-        control.change_color_red();
     }
     public void fight_instinct_npc()//被攻擊時作用
     {
-        foreach (var icon in IconManager.Instance.IconList)
+        if (IconManager.Instance != null)
         {
-            switch (icon.iconID)
+            foreach (var icon in IconManager.Instance.IconList)
             {
-                case 1:
-                    Skill_public_funtion.skill_01_time = 0;
-                    static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
-                    if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
-                    break;
-                case 2:
-                    control.NPC_HP -= Mathf.Pow(control.NPC03_ATK, 2) / (control.NPC03_ATK + static_parameters.MC_DEF) * 0.2f;
-                    break;
-                case 4:
-                    static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
-                    break;
-                case 5:
-                    if (Skill_public_funtion.skill_05_atk == 1)
-                    {
-                        Skill_public_funtion.skill_05_atk = -1;
-                        static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
-                    }
-                    break;
+                switch (icon.iconID)
+                {
+                    case 1:
+                        Skill_public_funtion.skill_01_time = 0;
+                        static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
+                        if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                        break;
+                    case 2:
+                        control.NPC_HP -= Mathf.Pow(control.NPC03_ATK, 2) / (control.NPC03_ATK + static_parameters.MC_DEF) * 0.2f;
+                        break;
+                    case 4:
+                        static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
+                        break;
+                    case 5:
+                        if (Skill_public_funtion.skill_05_atk == 1)
+                        {
+                            Skill_public_funtion.skill_05_atk = -1;
+                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                        }
+                        break;
+                }
             }
         }
     }
@@ -124,39 +130,45 @@ public class NPC_effect_03 : MonoBehaviour
 
     public void skill_updata()
     {
-        foreach (var icon in IconManager.Instance.IconList)
+        if (IconManager.Instance != null)
         {
-            switch (icon.iconID)
+            foreach (var icon in IconManager.Instance.IconList)
             {
-                case 51://updata
-                    if (Skill_public_funtion.skill_51_trigger_enter) control.NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.5f;
-                    break;
+                switch (icon.iconID)
+                {
+                    case 51://updata
+                        if (Skill_public_funtion.skill_51_trigger_enter) control.NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.5f;
+                        break;
+                }
             }
         }
     }
 
     public void skill_TriggerEnter(Collider other)
     {
-        foreach (var icon in IconManager.Instance.IconList)
+        if (IconManager.Instance != null)
         {
-            switch (icon.iconID)
+            foreach (var icon in IconManager.Instance.IconList)
             {
-                case 15://trigger Enter tag = "MC_bullet"
-                    if (skill_15_stop_time_trigger)
-                    {
-                        if (skill_15_stop_time < 1.5f)
+                switch (icon.iconID)
+                {
+                    case 15://trigger Enter tag = "MC_bullet"
+                        if (skill_15_stop_time_trigger)
                         {
-                            control.npcNavi.speed = 0;
-                            skill_15_stop_time += Time.deltaTime;
+                            if (skill_15_stop_time < 1.5f)
+                            {
+                                control.npcNavi.speed = 0;
+                                skill_15_stop_time += Time.deltaTime;
+                            }
+                            else
+                            {
+                                skill_15_stop_time_trigger = false;
+                                skill_15_stop_time = 0;
+                                control.npcNavi.speed = control.npcSpeed;
+                            }
                         }
-                        else
-                        {
-                            skill_15_stop_time_trigger = false;
-                            skill_15_stop_time = 0;
-                            control.npcNavi.speed = control.npcSpeed;
-                        }
-                    }
-                    break;
+                        break;
+                }
             }
         }
     }
