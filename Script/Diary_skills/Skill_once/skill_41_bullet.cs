@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class skill_41_bullet : MonoBehaviour
 {
-   // Start is called before the first frame update
     float speed = 10f;
     private GameObject targetObject;
     Vector3 moveDirection;
@@ -24,7 +23,6 @@ public class skill_41_bullet : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (targetObject != null)
@@ -70,8 +68,6 @@ public class skill_41_bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("NPC"))
         {
-            Debug.Log("skill_41_bullet:OnTriggerEnter");
-            Guardian_41_bullet.SetTrigger("Guardian_41_bullet");
             Destroy(gameObject, 0.11f);
         }
     }

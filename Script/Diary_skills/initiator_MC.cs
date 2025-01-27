@@ -292,7 +292,7 @@ public class initiator_MC : MonoBehaviour
     {
         if (IconManager.Instance != null)
         {
-            Guardian4x_point.position = new Vector3(transform.position.x, 5, transform.position.z + Skill_public_funtion.skill_4x_Sorting * 5);
+            Guardian4x_point.position = new Vector3(transform.position.x, 3, transform.position.z + Skill_public_funtion.skill_4x_Sorting * 5);
 
             foreach (var icon in IconManager.Instance.IconList)
             {
