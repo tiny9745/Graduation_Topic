@@ -19,15 +19,7 @@ public class Guardian41_col : MonoBehaviour
     void Start()
     {
         Guardian41_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
-        GameObject player = GameObject.Find("Player_S");
-        if (player != null)
-        {
-            Debug.Log("player_exist");
-        }
-        else
-        {
-            Debug.Log("player_exist_not");
-        }
+        player = GameObject.Find("Player_S");
     }
 
     void Update()
@@ -49,7 +41,7 @@ public class Guardian41_col : MonoBehaviour
         }
     }
 
-    private void OnTriggerE(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.tag == "NPC")
         {
@@ -59,12 +51,10 @@ public class Guardian41_col : MonoBehaviour
             {
                 if (closestNPC.transform.position.x > transform.position.x && !isFacingRight)
                 {
-                    Debug.Log("Guardian41_col:Flip_n");
                     Flip();
                 }
                 else if (closestNPC.transform.position.x < transform.position.x && isFacingRight)
                 {
-                    Debug.Log("Guardian41_col:Flip_n!");
                     Flip();
                 }
             }
@@ -88,15 +78,12 @@ public class Guardian41_col : MonoBehaviour
     {
         if (player != null)
         {
-            Debug.Log("Guardian41_col:player");
             if (player.transform.position.x > transform.position.x && !isFacingRight)
             {
-                Debug.Log("Guardian41_col:Flip_p");
                 Flip();
             }
             else if (player.transform.position.x < transform.position.x && isFacingRight)
             {
-                Debug.Log("Guardian41_col:Flip_p!");
                 Flip();
             }
         }
