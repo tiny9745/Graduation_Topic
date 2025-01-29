@@ -98,9 +98,9 @@ public class NPC_effect_03 : MonoBehaviour
                         static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
                         break;
                     case 5:
-                        if (Skill_public_funtion.skill_05_atk == 1)
+                        if (Skill_public_funtion.skill_05_atk == true && static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
                         {
-                            Skill_public_funtion.skill_05_atk = -1;
+                            Skill_public_funtion.skill_05_atk = false;
                             static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                         }
                         break;

@@ -70,12 +70,12 @@ public class initiator_MC : MonoBehaviour
                             }
                             break;
                         case 5:
-                            if (Skill_public_funtion.skill_05_atk == 0 && static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
-                            {
-                                Skill_public_funtion.skill_05_atk = 1;
+                            if (Skill_public_funtion.skill_05_atk == false && static_parameters.MC_HP_tmp != static_parameters.MC_HP)
+                            { 
+                                Skill_public_funtion.skill_05_atk = true;
                                 static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
                                 static_parameters.MC_ATK *= 1.5f;
-                            }
+                            }   
                             break;
                     }
                 }
