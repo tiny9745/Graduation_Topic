@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Skill_public_funtion : MonoBehaviour
 {
+    static public bool Reading = false;
     static public int feel_to_skill = -1;//old
     static public bool play_piano = false;//old
     static public short P_time = 4; static public float B_damage = 0;//skill 01
@@ -17,11 +18,8 @@ public class Skill_public_funtion : MonoBehaviour
     static public float skill_01_time = 0;
     static public int skill_05_atk = -1;
 
-    static public bool skill_51_trigger_enter = false;
-    static public bool skill_52_Dash_end = false; static public float skill_52_Dash_time = 0;
-    static public bool skill_53_Dash = false;
-    static public bool skill_54_Dash = false;
-    static public float skill_55_Dash_Magnification = 1f;
+    static public bool skill_51_trigger_enter = false,skill_52_Dash_end = false,skill_53_Dash = false,skill_54_Dash = false;
+    static public float skill_52_Dash_time = 0,skill_55_Dash_Magnification = 1f;
     static public float skill_11_throw_time = 0;
     static public bool skill_12_bullet = false;
     static public float skill_13_bullet_atk = 1f;
@@ -29,7 +27,6 @@ public class Skill_public_funtion : MonoBehaviour
     static public int skill_4x_Sorting = 1;
     static public bool skill_41_enter = false; static public int skill_41_Atk = 10;
     static public bool skill_42_enter = false; static public int skill_42_Atk = 6;
-    static public bool skill_43_enter = false;
-    static public bool skill_44_enter = false;
+    static public bool skill_43_enter = false,skill_44_enter = false;
     static public bool skill_45_enter = false; static public int skill_45_Atk = 22;
 }

@@ -36,16 +36,12 @@ public class D_icon_UI : MonoBehaviour
         chooseIcon = Iconpress.itemNumber;
         ShowSkill();
     }
-     void ShowSkill()
+    void ShowSkill()
     {
         if(chooseIcon>IconManager.Instance.IconList.Count){
-            Debug.Log("null");
             skill_title.text="選擇要查看的技能";
             skill_content.text=" ";
         }else{
-            Debug.Log("not null");
-            Debug.Log(chooseIcon);
-            Debug.Log(IconManager.Instance.IconList[chooseIcon-1].skill_title);
             skill_title.text = IconManager.Instance.IconList[chooseIcon-1].skill_title;
             skill_content.text = IconManager.Instance.IconList[chooseIcon-1].skill_content;
         }

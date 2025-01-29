@@ -78,21 +78,9 @@ public class Blood_col : MonoBehaviour
     private void UpdateHPMax()
     {
         blood_base = blood_tmp / static_parameters.MC_HP_Max;
-
-        if (HPimg_White != null)
-        {
-            HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max * blood_base, HPimg_White.sizeDelta.y);
-        }
-
-        if (HPimg_Green != null)
-        {
-            HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Green.sizeDelta.y);
-        }
-
-        if (HPimg_Red != null)
-        {
-            HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Red.sizeDelta.y);
-        }
+        HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max * blood_base, HPimg_White.sizeDelta.y);       
+        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Green.sizeDelta.y);       
+        HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Red.sizeDelta.y);    
     }
 
     public void MC_HP_effects()
