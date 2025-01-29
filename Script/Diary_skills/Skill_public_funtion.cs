@@ -15,7 +15,8 @@ public class Skill_public_funtion : MonoBehaviour
     static public float MC_Wspeed_tmp = static_parameters.MC_Wspeed;
 
     static public float skill_01_time = 0;
-    static public int skill_05_atk = -1;
+    static public bool skill_05_atk = false;
+
 
     static public bool skill_51_trigger_enter = false;
     static public bool skill_52_Dash_end = false; static public float skill_52_Dash_time = 0;
