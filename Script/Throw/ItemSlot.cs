@@ -8,11 +8,13 @@ public class ItemSlot : MonoBehaviour
     public Image ItemImage;
     public Text ItemName;
     public Sprite emptySprite;
+    public int slotID;
     public void AddItem(Item thisItem)
     {
         item = thisItem;
         ItemImage.sprite = item.ItemImage;
         ItemName.text = item.ItemName;
+        slotID = item.ItemID;
     }
     public void RemoveItem()
     {
