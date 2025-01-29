@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MC44_Throw : MonoBehaviour
 {
+    public GameObject throw_obj;
     // Start is called before the first frame update
     public int re_blood = 20;
     void Start()
@@ -13,6 +14,6 @@ public class MC44_Throw : MonoBehaviour
         {
             static_parameters.MC_HP = static_parameters.MC_HP_Max;
         }
-        Destroy(this);
+        Destroy(throw_obj);
     }
 }

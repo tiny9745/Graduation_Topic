@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 217264678553033287}
   - component: {fileID: 3607335302277646166}
   - component: {fileID: 5902869506166499922}
-  - component: {fileID: 7398496302421837386}
-  - component: {fileID: -8572752236023904055}
+  - component: {fileID: 7074989289862595784}
+  - component: {fileID: 8308519211597084292}
+  - component: {fileID: 4269526942709424790}
   m_Layer: 0
   m_Name: skill_42_bullet
   m_TagString: skill_42_bullet
@@ -108,7 +109,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.76, y: 0.66, z: 0.66}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!111 &7398496302421837386
+--- !u!95 &7074989289862595784
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764642641263110486}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a449e2cdd6239ba4a8d9579b67e3c09a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &8308519211597084292
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,24 +145,16 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!95 &-8572752236023904055
-Animator:
-  serializedVersion: 5
+--- !u!114 &4269526942709424790
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3764642641263110486}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a9631caa3352c40874d866d1fdc868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Guardian_42_bullet: {fileID: 7074989289862595784}
