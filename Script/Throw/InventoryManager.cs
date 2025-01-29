@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     #region Singleton
     public static InventoryManager Instance;
-    public GameObject bullet;
+    public GameObject bullet01, bullet43, bullet44;
     public Transform Firepoint;
     public ItemSlot _slot;
     public List<Item> ItemList;
@@ -58,9 +58,20 @@ public class InventoryManager : MonoBehaviour
     {
         if (static_parameters.MC_HP > 0)
         {
-            Instantiate(bullet, Firepoint.position, transform.rotation);
+            Debug.Log("_slot.slotID: " + _slot.slotID);
+            if (_slot.slotID == 1)
+            {
+                Instantiate(bullet01, Firepoint.position, transform.rotation);
+            }
+            else if (_slot.slotID == 43)
+            {
+                Instantiate(bullet43, Firepoint.position, transform.rotation);
+            }
+            else if (_slot.slotID == 44)
+            {
+                Instantiate(bullet44, Firepoint.position, transform.rotation);
+            }
             static_parameters.bullet_quantity--;
-            Debug.Log("bullet_quantity: " + static_parameters.bullet_quantity);
             _slot.UseItem();
         }
     }
