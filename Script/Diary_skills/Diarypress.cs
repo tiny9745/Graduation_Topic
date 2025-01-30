@@ -18,8 +18,13 @@ public class Diarypress : MonoBehaviour
         }else{
             Slots.SetActive(false);DText.SetActive(true);
             Skill_public_funtion.Reading = true;
-            Diary_title.text = IconManager.Instance.IconList[Choose_diary-1].skill_title;
-            Diary_content.text = IconManager.Instance.IconList[Choose_diary-1].skill_content;
+            Diary_title.text = IconManager.Instance.IconList[Choose_diary-1].diary_title;
+            Diary_content.text = IconManager.Instance.IconList[Choose_diary-1].diary_content;
         }
+    }
+    public void Dclose()
+    {
+        Slots.SetActive(true);DText.SetActive(false);
+        Skill_public_funtion.Reading = false;
     }
 }
