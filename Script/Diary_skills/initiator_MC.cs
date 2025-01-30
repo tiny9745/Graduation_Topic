@@ -15,7 +15,7 @@ public class initiator_MC : MonoBehaviour
     public GameObject bullet53, Ward54, throw11, Ward12, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
     public InventoryManager inventoryManager;
 
-    private Transform Guardian4x_point;
+    private Vector3 Guardian4x_point = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +49,7 @@ public class initiator_MC : MonoBehaviour
                             Skill_public_funtion.skill_01_time += Time.deltaTime;
                             if (Skill_public_funtion.skill_01_time > 10f)
                             {
+                                Debug.Log("skill_01");
                                 static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
                                 Skill_public_funtion.skill_01_time = 0;
                                 Debug.Log("MC_HP" + static_parameters.MC_HP);
@@ -57,6 +58,7 @@ public class initiator_MC : MonoBehaviour
                         case 3:
                             if (Skill_public_funtion.MC_HP_tmp != static_parameters.MC_HP)
                             {
+                                Debug.Log("skill_03");
                                 Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
                                 static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
                                 Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
@@ -64,18 +66,21 @@ public class initiator_MC : MonoBehaviour
                             break;
 
                         case 4:
-                            if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp)
+                            if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && Skill_public_funtion.skill_04_atk)
                             {
+                                Debug.Log("skill_04");
+                                Skill_public_funtion.skill_04_atk = false;
                                 static_parameters.MC_ATK *= 1.5f;
                             }
                             break;
                         case 5:
                             if (Skill_public_funtion.skill_05_atk == false && static_parameters.MC_HP_tmp != static_parameters.MC_HP)
-                            { 
+                            {
+                                Debug.Log("skill_05");
                                 Skill_public_funtion.skill_05_atk = true;
                                 static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
                                 static_parameters.MC_ATK *= 1.5f;
-                            }   
+                            }
                             break;
                     }
                 }
@@ -288,11 +293,11 @@ public class initiator_MC : MonoBehaviour
             }
         }
     }
-    private void Guardian()
+    private void Guardian()//背後靈
     {
         if (IconManager.Instance != null)
         {
-            Guardian4x_point.position = new Vector3(transform.position.x, 3, transform.position.z + Skill_public_funtion.skill_4x_Sorting * 5);
+            Guardian4x_point = new Vector3(transform.position.x, 3, transform.position.z + Skill_public_funtion.skill_4x_Sorting * 5);
 
             foreach (var icon in IconManager.Instance.IconList)
             {
@@ -302,15 +307,16 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_41_enter)
                         {
                             Skill_public_funtion.skill_41_enter = false;
-                            Instantiate(Guardian41, Guardian4x_point.position, transform.rotation);
+                            Instantiate(Guardian41, Guardian4x_point, transform.rotation);
                             Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                     case 42:
+                        Debug.Log("skill_42_enter:" + Skill_public_funtion.skill_42_enter);
                         if (Skill_public_funtion.skill_42_enter)
                         {
                             Skill_public_funtion.skill_42_enter = false;
-                            Instantiate(Guardian42, Guardian4x_point.position, transform.rotation);
+                            Instantiate(Guardian42, Guardian4x_point, transform.rotation);
                             Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
@@ -318,7 +324,7 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_43_enter)
                         {
                             Skill_public_funtion.skill_43_enter = false;
-                            Instantiate(Guardian43, Guardian4x_point.position, transform.rotation);
+                            Instantiate(Guardian43, Guardian4x_point, transform.rotation);
                             Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
@@ -326,7 +332,7 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_44_enter)
                         {
                             Skill_public_funtion.skill_44_enter = false;
-                            Instantiate(Guardian44, Guardian4x_point.position, transform.rotation);
+                            Instantiate(Guardian44, Guardian4x_point, transform.rotation);
                             Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
@@ -334,7 +340,7 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_45_enter)
                         {
                             Skill_public_funtion.skill_45_enter = false;
-                            Instantiate(Guardian45, Guardian4x_point.position, transform.rotation);
+                            Instantiate(Guardian45, Guardian4x_point, transform.rotation);
                             Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;

@@ -13,11 +13,17 @@ public class Guardian44_col : MonoBehaviour
     float Guardian44_to_player_distance = 0;
     private bool isFacingRight = true;
 
+    private Queue<Vector3> playerPath = new Queue<Vector3>(); // 儲存 player 走過的路徑點
+    private float pathLength = 0f; // 記錄路徑總長度
+    private Vector3 lastPlayerPosition;
+
+
     void Start()
     {
         DontDestroyOnLoad(this);
-        Guardian44_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 10;
+        Guardian44_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
         player = GameObject.Find("Player_S");
+        lastPlayerPosition = player.transform.position;
     }
 
     void Update()
@@ -68,14 +74,42 @@ public class Guardian44_col : MonoBehaviour
         }
     }
 
+    private void UpdatePlayerPath()
+    {
+        Vector3 currentPlayerPosition = player.transform.position;
+        float segmentLength = Vector3.Distance(lastPlayerPosition, currentPlayerPosition);
+
+        if (segmentLength > 0)
+        {
+            playerPath.Enqueue(currentPlayerPosition);
+            pathLength += segmentLength;
+
+            // 移除過長的路徑，保持總長度接近 Guardian44_to_player_distance
+            while (pathLength > Guardian44_to_player_distance && playerPath.Count > 1)
+            {
+                Vector3 removedPoint = playerPath.Dequeue();
+                pathLength -= Vector3.Distance(removedPoint, playerPath.Peek());
+            }
+
+            lastPlayerPosition = currentPlayerPosition;
+        }
+    }
+
     private void FollowPlayer()
     {
-        if (player != null)
+        UpdatePlayerPath();
+
+        if (playerPath.Count > 0)
         {
-            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-            Vector3 targetPosition = player.transform.position - directionToPlayer * Guardian44_to_player_distance;
-            targetPosition.y = transform.position.y;
+            Vector3 targetPosition = playerPath.Peek(); // 取出最舊的點
+            targetPosition.y = transform.position.y; // 保持 Y 軸不變
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
+
+            // 如果已經接近目標點，則從佇列移除該點
+            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            {
+                playerPath.Dequeue();
+            }
         }
     }
 }

@@ -78,36 +78,7 @@ public class NPC_effect_03 : MonoBehaviour
             control.change_color_red();
         }
     }
-    public void fight_instinct_npc()//被攻擊時作用
-    {
-        if (IconManager.Instance != null)
-        {
-            foreach (var icon in IconManager.Instance.IconList)
-            {
-                switch (icon.iconID)
-                {
-                    case 1:
-                        Skill_public_funtion.skill_01_time = 0;
-                        static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
-                        if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
-                        break;
-                    case 2:
-                        control.NPC_HP -= Mathf.Pow(control.NPC03_ATK, 2) / (control.NPC03_ATK + static_parameters.MC_DEF) * 0.2f;
-                        break;
-                    case 4:
-                        static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
-                        break;
-                    case 5:
-                        if (Skill_public_funtion.skill_05_atk == true && static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
-                        {
-                            Skill_public_funtion.skill_05_atk = false;
-                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
-                        }
-                        break;
-                }
-            }
-        }
-    }
+
 
     void Stun_end()
     {
@@ -144,6 +115,50 @@ public class NPC_effect_03 : MonoBehaviour
         }
     }
 
+    public void fight_instinct_npc()//被MC攻擊時作用
+    {
+        if (IconManager.Instance != null)
+        {
+            foreach (var icon in IconManager.Instance.IconList)
+            {
+                switch (icon.iconID)
+                {
+                    case 1:
+                        Skill_public_funtion.skill_01_time = 0;
+                        static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
+                        if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                        break;
+                    case 3:
+                        static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
+                        break;
+                    case 5:
+                        if (Skill_public_funtion.skill_05_atk == true && static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
+                        {
+                            Skill_public_funtion.skill_05_atk = false;
+                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
+    public void fight_instinct_MC()//攻擊MC時
+    {
+        if (IconManager.Instance != null)
+        {
+            foreach (var icon in IconManager.Instance.IconList)
+            {
+                switch (icon.iconID)
+                {
+                    case 2:
+                        control.NPC_HP -= Mathf.Pow(control.NPC03_ATK, 2) / (control.NPC03_ATK + static_parameters.MC_DEF) * 0.2f;
+                        break;
+                }
+            }
+        }
+    }
+
     public void skill_TriggerEnter(Collider other)
     {
         if (IconManager.Instance != null)
@@ -169,6 +184,22 @@ public class NPC_effect_03 : MonoBehaviour
                         }
                         break;
                 }
+            }
+
+            if (other.gameObject.tag == "skill_41_bullet")
+            {
+                control.change_color_red();
+                control.NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_41_Atk, 2) / (Skill_public_funtion.skill_41_Atk + control.NPC03_DEF);
+            }
+            if (other.gameObject.tag == "skill_42_bullet")
+            {
+                control.change_color_red();
+                control.NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_42_Atk, 2) / (Skill_public_funtion.skill_42_Atk + control.NPC03_DEF);
+            }
+            if (other.gameObject.tag == "skill_45_bullet")
+            {
+                control.change_color_red();
+                control.NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_45_Atk, 2) / (Skill_public_funtion.skill_45_Atk + control.NPC03_DEF);
             }
         }
     }
