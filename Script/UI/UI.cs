@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public short Diarystatus = 0;
-    public GameObject Notebook, BattleUI;
+    public GameObject Notebook, BattleUI,Diaryslots,Diarytext;
     public GameObject Menu, CH1, CH2, CH3, CH4;
     public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
     public GameObject LeftMark1, LeftMark2, LeftMark3, LeftMark4;
@@ -110,6 +110,7 @@ public class UI : MonoBehaviour
                 break;
         }
         piecechange();
+        Diaryslots.SetActive(true); Diarytext.SetActive(false); Skill_public_funtion.Reading = false;
         button_image.color = newColor;
         craft_image.sprite = craft_sprite;
     }

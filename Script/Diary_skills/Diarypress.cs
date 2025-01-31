@@ -10,7 +10,10 @@ public class Diarypress : MonoBehaviour
     public Text Diary_title, Diary_content;
     public void Dpress()
     {
-        int.TryParse(number.name, out DiaryNumber);
+        Slots.SetActive(false);DText.SetActive(true);
+        Diary_title.text = "1";
+        Diary_content.text = "1";
+        /*int.TryParse(number.name, out DiaryNumber);
         Choose_diary = DiaryNumber;
         if(Choose_diary>IconManager.Instance.IconList.Count){
             Diary_title.text=" ";
@@ -20,7 +23,7 @@ public class Diarypress : MonoBehaviour
             Skill_public_funtion.Reading = true;
             Diary_title.text = IconManager.Instance.IconList[Choose_diary-1].diary_title;
             Diary_content.text = IconManager.Instance.IconList[Choose_diary-1].diary_content;
-        }
+        }*/
     }
     public void Dclose()
     {
