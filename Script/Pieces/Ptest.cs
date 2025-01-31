@@ -29,14 +29,6 @@ public class Ptest : MonoBehaviour
         sortedPieces["Grn"] = new List<Diary_piece>();
     }
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            addp();
-            ShowPieces();
-        }
-    }
     public void _to_Drop()
     {
         addp();
