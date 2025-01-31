@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.U2D.IK;
 
 public class initiator_MC : MonoBehaviour
 {
@@ -220,16 +219,16 @@ public class initiator_MC : MonoBehaviour
                         {
                             Skill_public_funtion.skill_52_Dash_end = false;
                             Skill_public_funtion.skill_52_Dash_time = 0;
-                            static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
-                            static_parameters.MC_Wspeed = static_parameters.MC_Wspeed * 1.2f;
+                            static_parameters.MC_Wspeed *= 1.2f;
                         }
                         if (Skill_public_funtion.skill_52_Dash_time < 2f)
                         {
                             Skill_public_funtion.skill_52_Dash_time += Time.deltaTime;
                         }
-                        else
-                        { 
-                            static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp;
+                        else if (Skill_public_funtion.skill_52_Dash_time < 10f)
+                        {
+                            static_parameters.MC_Wspeed /= 1.2f;
+                            Skill_public_funtion.skill_52_Dash_time = 15f;
                         }
                         break;
                     case 53:
@@ -243,12 +242,16 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_54_Dash)
                         {
                             Skill_public_funtion.skill_54_Dash = false;
-                            Instantiate(Ward54, transform.position, transform.rotation);
+                            Instantiate(Ward54, transform.position, Ward54.transform.rotation);
                         }
                         break;
                     case 55:
-                        Ani_MC.DashCD_time = 2f;
-                        Skill_public_funtion.skill_55_Dash_Magnification = 0.9f;
+                        if (Skill_public_funtion.skill_55_Dash_Magnification == 1f)
+                        {
+                            Skill_public_funtion.skill_55_Dash_Magnification = 0.9f;
+                            Ani_MC.DashCD_time = 2f;
+                            Debug.Log("skill_55_Dash_Magnification:" + Skill_public_funtion.skill_55_Dash_Magnification);
+                        }
                         break;
                 }
             }

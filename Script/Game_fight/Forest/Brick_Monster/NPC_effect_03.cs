@@ -10,7 +10,6 @@ public class NPC_effect_03 : MonoBehaviour
     bool piano_flag = true;
 
     private bool skill_15_stop_time_trigger = true; private float skill_15_stop_time = 0;
-    private bool skill_51_stop_time_trigger = true;
 
     // Update is called once per frame
     void Update()
@@ -191,12 +190,7 @@ public class NPC_effect_03 : MonoBehaviour
                         if (Skill_public_funtion.skill_51_dash && other.gameObject.tag == "Player")
                         {
                             Debug.Log("NPC03 skill_51");
-                            skill_51_stop_time_trigger = false;
                             HP_control.TakeDamage(static_parameters.MC_ATK / 2, static_parameters.MC_DEF / 2);
-                        }
-                        else
-                        {
-                            skill_51_stop_time_trigger = true;
                         }
                         break;
                 }
@@ -213,6 +207,10 @@ public class NPC_effect_03 : MonoBehaviour
             if (other.gameObject.tag == "skill_45_bullet")
             {
                 HP_control.TakeDamage(Skill_public_funtion.skill_45_Atk, static_parameters.MC_DEF);
+            }
+            if (other.gameObject.tag == "skill_54_ward")
+            {
+                HP_control.TakeDamage(Skill_public_funtion.skill_54_atk, static_parameters.MC_DEF);
             }
         }
     }
