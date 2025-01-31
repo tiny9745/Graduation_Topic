@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class NPC_effect_03 : MonoBehaviour
 {
-    public NPC03_control control;
+    public NPC03_control control; public NPC_HP_03 HP_control;
     public GameObject bomb_piano, bomb_point;
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
 
     private bool skill_15_stop_time_trigger = true; private float skill_15_stop_time = 0;
+    private bool skill_51_stop_time_trigger = true;
 
     // Update is called once per frame
     void Update()
@@ -109,11 +110,11 @@ public class NPC_effect_03 : MonoBehaviour
                 {
                     case 1:
                         Skill_public_funtion.skill_01_time = 0;
-                        static_parameters.MC_HP += Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
+                        HP_control.TakeDamage(static_parameters.MC_ATK / 10, static_parameters.MC_DEF / 10);
                         if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
                         break;
                     case 3:
-                        static_parameters.MC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.1f;
+                        HP_control.TakeDamage(static_parameters.MC_ATK / 10, static_parameters.MC_DEF / 10);
                         break;
                     case 5:
                         if (Skill_public_funtion.skill_05_atk == true && static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
@@ -136,7 +137,7 @@ public class NPC_effect_03 : MonoBehaviour
                 switch (icon.iconID)
                 {
                     case 2:
-                        control.NPC_HP -= Mathf.Pow(control.NPC03_ATK, 2) / (control.NPC03_ATK + static_parameters.MC_DEF) * 0.2f;
+                        HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
                         break;
                 }
             }
@@ -189,28 +190,29 @@ public class NPC_effect_03 : MonoBehaviour
                     case 51:
                         if (Skill_public_funtion.skill_51_dash && other.gameObject.tag == "Player")
                         {
-                            control.change_color_red();
-                            control.NPC_HP -= Mathf.Pow(static_parameters.MC_ATK, 2) / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.5f;
+                            Debug.Log("NPC03 skill_51");
+                            skill_51_stop_time_trigger = false;
+                            HP_control.TakeDamage(static_parameters.MC_ATK / 2, static_parameters.MC_DEF / 2);
                         }
-
+                        else
+                        {
+                            skill_51_stop_time_trigger = true;
+                        }
                         break;
                 }
             }
 
             if (other.gameObject.tag == "skill_41_bullet")
             {
-                control.change_color_red();
-                control.NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_41_Atk, 2) / (Skill_public_funtion.skill_41_Atk + control.NPC03_DEF);
+                HP_control.TakeDamage(Skill_public_funtion.skill_41_Atk, static_parameters.MC_DEF);
             }
             if (other.gameObject.tag == "skill_42_bullet")
             {
-                control.change_color_red();
-                control.NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_42_Atk, 2) / (Skill_public_funtion.skill_42_Atk + control.NPC03_DEF);
+                HP_control.TakeDamage(Skill_public_funtion.skill_42_Atk, static_parameters.MC_DEF);
             }
             if (other.gameObject.tag == "skill_45_bullet")
             {
-                control.change_color_red();
-                control.NPC_HP -= Mathf.Pow(Skill_public_funtion.skill_45_Atk, 2) / (Skill_public_funtion.skill_45_Atk + control.NPC03_DEF);
+                HP_control.TakeDamage(Skill_public_funtion.skill_45_Atk, static_parameters.MC_DEF);
             }
         }
     }

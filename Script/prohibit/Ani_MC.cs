@@ -130,11 +130,11 @@ public class Ani_MC : MonoBehaviour
             yield return null;
         }
         Skill_public_funtion.skill_52_Dash_end = true;
+        Skill_public_funtion.skill_51_dash = false;
         DefaultCheck();
         yield return new WaitForSeconds(DashCD_time);
         isDashCooldown = false;
         isDashCooldown_for_move = false;
-        Skill_public_funtion.skill_51_dash = false;
     }
 
     private void combo_time()

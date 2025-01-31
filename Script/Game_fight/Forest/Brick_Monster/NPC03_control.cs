@@ -409,7 +409,6 @@ public class NPC03_control : MonoBehaviour
     }
     void dead_after()
     {
-        Debug.Log("Dead03");
         Destroy(gameObject);
     }
     public void change_color_red()

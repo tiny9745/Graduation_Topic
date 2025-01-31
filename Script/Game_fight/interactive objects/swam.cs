@@ -20,26 +20,20 @@ public class swam : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Player_Swam_enter");
-            static_parameters.MC_Wspeed/=2;
+            // Debug.Log("Player_Swam_enter");
+            static_parameters.MC_Wspeed /= 2;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Player_Swam_exit");
-            static_parameters.MC_Wspeed*=2;
+            // Debug.Log("Player_Swam_exit");
+            static_parameters.MC_Wspeed *= 2;
         }
     }
 }

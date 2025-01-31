@@ -567,6 +567,7 @@ MonoBehaviour:
   npc_interactive: {fileID: 2753665520669540544}
   nPC_hP: {fileID: 7916481744572787998}
   effect: {fileID: 9094819117705494734}
+  npcNavi: {fileID: 0}
   animator: {fileID: 1818161054931281942}
   animator_to_atk: {fileID: 2602999929209903440}
   TargetObj: {fileID: 0}
@@ -578,12 +579,9 @@ MonoBehaviour:
   NPC_HP_Max: 70
   npcSpeed: 4
   NPC_HP: 0
-  dist: 0
   NPC03_ATK: 25
   NPC03_DEF: 5
   stun: 0
-  navMeshAgentController: {fileID: 0}
-  Deduct_Blood: {fileID: 2100000, guid: fc21eb091654df0448671c299dccd1cc, type: 2}
   spriteTransform: {fileID: 4032549033181439169}
 --- !u!65 &5616752522870603614
 BoxCollider:
@@ -717,5 +715,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: {fileID: 7230315417705204069}
+  HP_control: {fileID: 7916481744572787998}
   bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
   bomb_point: {fileID: 7440025053212357370}
