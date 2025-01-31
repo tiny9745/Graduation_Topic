@@ -18,7 +18,7 @@ public class Skill_public_funtion : MonoBehaviour
     static public bool skill_04_atk = true;
     static public bool skill_05_atk = false;
 
-    static public bool skill_51_trigger_enter = false, skill_52_Dash_end = false, skill_53_Dash = false, skill_54_Dash = false;
+    static public bool skill_51_dash = false, skill_52_Dash_end = false, skill_53_Dash = false, skill_54_Dash = false;
     static public float skill_52_Dash_time = 0, skill_55_Dash_Magnification = 1f;
     static public float skill_11_throw_time = 0;
     static public bool skill_12_bullet = false;

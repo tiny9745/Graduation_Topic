@@ -42,6 +42,7 @@ public class Ani_MC : MonoBehaviour
         // 處理輸入
         if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving())
         {
+            Skill_public_funtion.skill_51_dash = true;
             Skill_public_funtion.skill_53_Dash = true;
             Skill_public_funtion.skill_54_Dash = true;
             StartCoroutine(DashSequence());
@@ -133,6 +134,7 @@ public class Ani_MC : MonoBehaviour
         yield return new WaitForSeconds(DashCD_time);
         isDashCooldown = false;
         isDashCooldown_for_move = false;
+        Skill_public_funtion.skill_51_dash = false;
     }
 
     private void combo_time()

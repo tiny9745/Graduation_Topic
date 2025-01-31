@@ -118,7 +118,6 @@ public class NPC03_control : MonoBehaviour
                 NPC_angle += 360;
             }
         }
-        effect.skill_updata();
     }
 
     private void PlayStandAnimation()
@@ -247,10 +246,6 @@ public class NPC03_control : MonoBehaviour
                 npcNavi.SetDestination(retreatTarget);
             }
             Invoke("wait_safe_to_walk", 1.5f);
-        }
-        if (other.gameObject.tag == "Player")
-        {
-            Skill_public_funtion.skill_51_trigger_enter = true;
         }
         effect.skill_TriggerEnter(other);
     }

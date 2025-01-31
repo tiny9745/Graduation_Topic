@@ -207,7 +207,7 @@ public class initiator_MC : MonoBehaviour
         //     }
         // }
     }
-    private void sprint_Bonus()//觸發衝刺時作用
+    private void sprint_Bonus()//觸發衝刺時作用，bool值在Ani_MC.cs
     {
         if (IconManager.Instance != null)
         {
@@ -219,6 +219,7 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_52_Dash_end)
                         {
                             Skill_public_funtion.skill_52_Dash_end = false;
+                            Skill_public_funtion.skill_52_Dash_time = 0;
                             static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
                             static_parameters.MC_Wspeed = static_parameters.MC_Wspeed * 1.2f;
                         }
@@ -227,8 +228,7 @@ public class initiator_MC : MonoBehaviour
                             Skill_public_funtion.skill_52_Dash_time += Time.deltaTime;
                         }
                         else
-                        {
-                            Skill_public_funtion.skill_52_Dash_time = 0;
+                        { 
                             static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp;
                         }
                         break;
