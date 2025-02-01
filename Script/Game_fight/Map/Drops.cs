@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Drops : MonoBehaviour
 {
-    public Text_Array text_array;
     public Ptest ptest;
     GameObject targetObject;
     void Start()
     {
-        // text_array = FindObjectOfType<Text_Array>();
         targetObject = GameObject.Find("UI");
 
         if (targetObject != null)
@@ -24,7 +22,6 @@ public class Drops : MonoBehaviour
         {
             Debug.LogWarning("UI not found in the scene!");
         }
-        print("drop_exist:" + transform.position);
     }
     private void OnTriggerEnter(Collider Hit)
     {
@@ -33,7 +30,6 @@ public class Drops : MonoBehaviour
             if (targetObject != null)
             {
                 ptest._to_Drop();
-                //text_array.SetRandomTextExistToTrue();
             }
             Destroy(gameObject);
         }

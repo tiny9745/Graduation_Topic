@@ -9,8 +9,6 @@ public class Puzzle : MonoBehaviour
     public GameObject Book, Ppage, Check;
     public GameObject Diary_text_Left, Diary_text_Right;
     public Text Diary_Left_Text, Diary_Right_Text;
-    public Drag_End drag_end;
-    //public GameObject Yes;
     public static bool OC = true;
     public GameObject cpmplete_piece_object;
     public Animator complete_piece_animator;
