@@ -28,7 +28,6 @@ public class UI : MonoBehaviour
         {
             openclose();
         }
-        // if(StaticParameters_magic.isSceneLoading_magic||StaticParameters_fight.isSceneLoading_fight)Loadmoney();
     }
     public void Onclick1()
     {

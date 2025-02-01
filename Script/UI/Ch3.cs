@@ -13,7 +13,7 @@ public class Ch3 : MonoBehaviour
     public string[] Read_text;
     int Max_page = 0;
 
-    public UI UI; public Drag_End Drag_End;
+    public UI UI;
     // Start is called before the first frame update
     void Start()
     {
