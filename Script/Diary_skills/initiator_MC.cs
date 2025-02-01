@@ -11,7 +11,7 @@ public class initiator_MC : MonoBehaviour
     private Vector3 previousPosition;
     float accumulatedDistance = 0;
     bool timer_close = true;
-    public GameObject bullet53, Ward54, throw11, Ward12, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
+    public GameObject bullet53, Ward54, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
     public InventoryManager inventoryManager;
 
     private Vector3 Guardian4x_point = Vector3.zero;
@@ -32,6 +32,7 @@ public class initiator_MC : MonoBehaviour
         fight_instinct();
         sprint_Bonus();
         Guardian();
+        Book_throwing();
     }
 
     private void fight_instinct()
@@ -276,20 +277,17 @@ public class initiator_MC : MonoBehaviour
                             Instantiate(throw11, Firepoint.position, transform.rotation);
                         }
                         break;
-                    case 12:
-                        if (Skill_public_funtion.skill_12_bullet)
+                    case 13:
+                        if (Skill_public_funtion.skill_13_bullet_atk == 1f)
                         {
-                            Skill_public_funtion.skill_12_bullet = false;
-                            Instantiate(Ward12, transform.position, transform.rotation);
+                            Skill_public_funtion.skill_13_bullet_atk = 2f;
+                            Debug.Log("skill_13_bullet_atk:" + Skill_public_funtion.skill_13_bullet_atk);
                         }
                         break;
-                    case 13:
-                        Skill_public_funtion.skill_13_bullet_atk = 2f;
-                        break;
                     case 14:
-                        if (Input.GetKeyDown(KeyCode.B) && static_parameters.Ani_state < 3)
+                        if (Skill_public_funtion.skill_14_enter == false)
                         {
-                            Invoke("inventoryManager.bullet_fire", 0.5f);
+                            Skill_public_funtion.skill_14_enter = true;
                         }
                         break;
                 }

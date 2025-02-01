@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPC_effect_03 : MonoBehaviour
 {
     public NPC03_control control; public NPC_HP_03 HP_control;
-    public GameObject bomb_piano, bomb_point;
+    public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
 
@@ -154,16 +154,16 @@ public class NPC_effect_03 : MonoBehaviour
                     case 15:
                         if (skill_15_stop_time_trigger)
                         {
-                            if (skill_15_stop_time < 1.5f)
+                            if (skill_15_stop_time < 10.5f)
                             {
-                                control.npcNavi.speed = 0;
                                 skill_15_stop_time += Time.deltaTime;
                             }
                             else
                             {
+                                Debug.Log("NPC03 rewalk");
                                 skill_15_stop_time_trigger = false;
-                                skill_15_stop_time = 0;
                                 control.npcNavi.speed = control.npcSpeed;
+                                break;
                             }
                         }
                         break;
@@ -180,10 +180,20 @@ public class NPC_effect_03 : MonoBehaviour
             {
                 switch (icon.iconID)
                 {
+                    case 12:
+                        if (other.gameObject.tag == "MC_bullet")
+                        {
+                            Vector3 point = new Vector3(transform.position.x, 0f, transform.position.z);
+                            Instantiate(Ward12, point, Ward12.transform.rotation);
+                        }
+                        break;
                     case 15://trigger Enter tag = "MC_bullet"
                         if (other.gameObject.tag == "MC_bullet")
                         {
+                            Debug.Log("NPC03 Stop");
                             skill_15_stop_time_trigger = true;
+                            skill_15_stop_time = 0;
+                            control.npcNavi.speed = 0;
                         }
                         break;
                     case 51:

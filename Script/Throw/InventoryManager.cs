@@ -59,20 +59,35 @@ public class InventoryManager : MonoBehaviour
         if (static_parameters.MC_HP > 0)
         {
             Debug.Log("_slot.slotID: " + _slot.slotID);
-            if (_slot.slotID == 1)
+            if (Skill_public_funtion.skill_14_enter)
             {
-                Instantiate(bullet01, Firepoint.position, transform.rotation);
+                bullet_into();
+                Invoke("bullet_into", 0.25f);
+                static_parameters.bullet_quantity--;
+                _slot.UseItem();
             }
-            else if (_slot.slotID == 43)
+            else
             {
-                Instantiate(bullet43, Firepoint.position, transform.rotation);
+                bullet_into();
+                static_parameters.bullet_quantity--;
+                _slot.UseItem();
             }
-            else if (_slot.slotID == 44)
-            {
-                Instantiate(bullet44, Firepoint.position, transform.rotation);
-            }
-            static_parameters.bullet_quantity--;
-            _slot.UseItem();
+        }
+    }
+
+    private void bullet_into()
+    {
+        if (_slot.slotID == 1)
+        {
+            Instantiate(bullet01, Firepoint.position, transform.rotation);
+        }
+        else if (_slot.slotID == 43)
+        {
+            Instantiate(bullet43, Firepoint.position, transform.rotation);
+        }
+        else if (_slot.slotID == 44)
+        {
+            Instantiate(bullet44, Firepoint.position, transform.rotation);
         }
     }
 }
