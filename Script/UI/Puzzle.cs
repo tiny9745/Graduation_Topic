@@ -89,12 +89,9 @@ public class Puzzle : MonoBehaviour
     }
     private void Complete_piece_after()
     {
-        Debug.Log("Complete_piece_after open");
         UI.Onclick3();
-        Debug.Log("Complete_piece_after:" + DragPiece_End.end_count);
         IconManager.Instance.Addicon(DragPiece_End.end_count);
         cpmplete_piece_object.SetActive(false);
         complete_piece_animator.SetInteger("piece_complete_color", -1);
-        Debug.Log("Complet_piecing:" + DragPiece_End.puzzle_color);
     }
 }

@@ -5,15 +5,14 @@ using UnityEngine.UI;
 
 public class Diarypress : MonoBehaviour
 {
+    D_UI d_UI;
     public GameObject number,Slots,DText;
     int Choose_diary,DiaryNumber;
     public Text Diary_title, Diary_content;
     public void Dpress()
     {
         Slots.SetActive(false);DText.SetActive(true);
-        Diary_title.text = "1";
-        Diary_content.text = "1";
-        /*int.TryParse(number.name, out DiaryNumber);
+        int.TryParse(number.name, out DiaryNumber);
         Choose_diary = DiaryNumber;
         if(Choose_diary>IconManager.Instance.IconList.Count){
             Diary_title.text=" ";
@@ -21,9 +20,9 @@ public class Diarypress : MonoBehaviour
         }else{
             Slots.SetActive(false);DText.SetActive(true);
             Skill_public_funtion.Reading = true;
-            Diary_title.text = IconManager.Instance.IconList[Choose_diary-1].diary_title;
-            Diary_content.text = IconManager.Instance.IconList[Choose_diary-1].diary_content;
-        }*/
+            Diary_title.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary-1].diary_title;
+            Diary_content.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary-1].diary_content;
+        }
     }
     public void Dclose()
     {

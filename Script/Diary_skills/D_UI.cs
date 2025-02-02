@@ -8,7 +8,7 @@ public class D_UI : MonoBehaviour
     static public Icon_slot[] DSlot;
     public Transform iconSlotPoint;
     public Text Diary_title, Diary_content;
-    int chooseIcon;
+    public int page = 0;int itemsPerPage = 8;
     void Start()
     {
         IconManager.Instance.IconInventoryCallBack += UpdateIcon;
@@ -24,17 +24,34 @@ public class D_UI : MonoBehaviour
             {
                 DSlot[i].AddIcon(IconManager.Instance.IconList[i]);
             }
+        }
+    }
+    public void NextPage()
+    {
+        // Check if the next page exists
+        if ((page + 1) * itemsPerPage < IconManager.Instance.IconList.Count)
+        {
+            page++;
+        }
+    }
+    public void PreviousPage()
+    {
+        if (page > 0) page--;
+    }
+    void ShowDiary()
+    {
+        int startIndex = page * itemsPerPage;
+        int endIndex = Mathf.Min(startIndex + itemsPerPage, IconManager.Instance.IconList.Count);
+        for (int i = 0; i < DSlot.Length; i++)
+        {
+            if (i < endIndex - startIndex)
+            {
+                DSlot[i].AddIcon(IconManager.Instance.IconList[i + startIndex]);
+            }
             else
             {
                 DSlot[i].Clean();
             }
         }
-    }
-    public void ChooseIcon()
-    {
-    }
-    void ShowSkill()
-    {
-
     }
 }
