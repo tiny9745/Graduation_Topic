@@ -21,7 +21,6 @@ public class ThornsController : MonoBehaviour
             if (collidersInRange.Add(other)) // 確保不重複添加
             {
                 colliderCount++;
-                Debug.Log("Collider entered: " + other.name + ". Current count: " + colliderCount);
             }
         }
 

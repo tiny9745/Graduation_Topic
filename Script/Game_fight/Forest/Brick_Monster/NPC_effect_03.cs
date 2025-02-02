@@ -101,27 +101,31 @@ public class NPC_effect_03 : MonoBehaviour
 
     public void fight_instinct_npc()//被MC攻擊時作用
     {
-        if (IconManager.Instance != null)
+        if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
         {
-            foreach (var icon in IconManager.Instance.IconList)
+            if (IconManager.Instance != null)
             {
-                switch (icon.iconID)
+                foreach (var icon in IconManager.Instance.IconList)
                 {
-                    case 1:
-                        Skill_public_funtion.skill_01_time = 0;
-                        HP_control.TakeDamage(static_parameters.MC_ATK / 10, static_parameters.MC_DEF / 10);
-                        if (static_parameters.MC_HP >= static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
-                        break;
-                    case 3:
-                        HP_control.TakeDamage(static_parameters.MC_ATK / 10, static_parameters.MC_DEF / 10);
-                        break;
-                    case 5:
-                        if (Skill_public_funtion.skill_05_atk == true && static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
-                        {
-                            Skill_public_funtion.skill_05_atk = false;
-                            static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
-                        }
-                        break;
+                    switch (icon.iconID)
+                    {
+                        case 1:
+                            Debug.Log("NPC03 skill_01");
+                            Skill_public_funtion.skill_01_time = 0;
+                            static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) / 4;
+                            if (static_parameters.MC_HP >= static_parameters.MC_HP_Max * 0.6f) static_parameters.MC_HP = static_parameters.MC_HP_Max * 0.6f;
+                            break;
+                        case 3:
+                            static_parameters.MC_HP -= static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) / 10;
+                            break;
+                        case 5:
+                            if (Skill_public_funtion.skill_05_atk == true && static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
+                            {
+                                Skill_public_funtion.skill_05_atk = false;
+                                static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
+                            }
+                            break;
+                    }
                 }
             }
         }
@@ -129,15 +133,18 @@ public class NPC_effect_03 : MonoBehaviour
 
     public void fight_instinct_MC()//攻擊MC時
     {
-        if (IconManager.Instance != null)
+        if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
         {
-            foreach (var icon in IconManager.Instance.IconList)
+            if (IconManager.Instance != null)
             {
-                switch (icon.iconID)
+                foreach (var icon in IconManager.Instance.IconList)
                 {
-                    case 2:
-                        HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
-                        break;
+                    switch (icon.iconID)
+                    {
+                        case 2:
+                            HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
+                            break;
+                    }
                 }
             }
         }

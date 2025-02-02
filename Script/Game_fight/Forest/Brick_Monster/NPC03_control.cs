@@ -262,7 +262,6 @@ public class NPC03_control : MonoBehaviour
             {
                 if (open_EnableHitbox)
                 {
-                    effect.fight_instinct_MC();
                     hit_Ani = true;
                     Invoke("EnableHitbox", 1.1f);
                     open_EnableHitbox = false;
