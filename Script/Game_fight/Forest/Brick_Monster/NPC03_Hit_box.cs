@@ -6,6 +6,7 @@ public class NPC03_Hit_box : MonoBehaviour
 {
     //
     public NPC03_control npcCtrl;
+    public NPC_effect_03 effect;
     public GameObject Player;
     float NPC_ATK = 0, minus;
     void Start()
@@ -41,6 +42,7 @@ public class NPC03_Hit_box : MonoBehaviour
         {
             if (!static_parameters.invincible)
             {
+                effect.fight_instinct_MC();
                 minus = (float)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
                 if (minus < 5) minus = 5.0f;
                 static_parameters.MC_HP -= minus;
