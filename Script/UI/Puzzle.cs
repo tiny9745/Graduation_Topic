@@ -7,8 +7,6 @@ public class Puzzle : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Book, Ppage, Check;
-    public GameObject Diary_text_Left, Diary_text_Right;
-    public Text Diary_Left_Text, Diary_Right_Text;
     public static bool OC = true;
     public GameObject cpmplete_piece_object;
     public Animator complete_piece_animator;
@@ -20,12 +18,6 @@ public class Puzzle : MonoBehaviour
     {
         Diary_icon[] all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
         complete_piece_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
     public void FinishDiary()
     {
@@ -40,11 +32,6 @@ public class Puzzle : MonoBehaviour
     public void cancel()
     {
         Check.SetActive(false);
-    }
-    public void Yes_clear_dairy_text()
-    {
-        Diary_Left_Text.text = "";
-        Diary_Right_Text.text = "";
     }
     public void Complet_piecing()
     {
