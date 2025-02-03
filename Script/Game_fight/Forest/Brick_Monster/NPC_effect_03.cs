@@ -16,9 +16,9 @@ public class NPC_effect_03 : MonoBehaviour
     {
         skill_update();
     }
-    public void piano_Skill()//skill_add
+    public void piano_Skill()//skill_add判斷式有問題?
     {
-        Debug.Log("NPC03 skill");
+        Debug.Log("piano NPC03 skill");
         if (Skill_public_funtion.play_piano)
         {
             if (play_piano_atk <= Skill_public_funtion.P_time)
@@ -115,12 +115,14 @@ public class NPC_effect_03 : MonoBehaviour
                             static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) / 4;
                             if (static_parameters.MC_HP >= static_parameters.MC_HP_Max * 0.6f) static_parameters.MC_HP = static_parameters.MC_HP_Max * 0.6f;
                             break;
-                        case 3:
+                        case 4:
+                            Debug.Log("NPC04 skill_04");
                             static_parameters.MC_HP -= static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) / 10;
                             break;
                         case 5:
-                            if (Skill_public_funtion.skill_05_atk == true && static_parameters.MC_ATK_tmp == static_parameters.MC_ATK)
+                            if (Skill_public_funtion.skill_05_atk == true)
                             {
+                                Debug.Log("NPC03 skill_05");
                                 Skill_public_funtion.skill_05_atk = false;
                                 static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                             }

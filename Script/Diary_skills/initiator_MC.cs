@@ -63,7 +63,6 @@ public class initiator_MC : MonoBehaviour
                                 Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                             }
                             break;
-
                         case 4:
                             if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && Skill_public_funtion.skill_04_atk)
                             {

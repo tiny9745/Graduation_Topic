@@ -45,7 +45,6 @@ public class D_icon_UI : MonoBehaviour
         }else{
             skill_title.text = IconManager.Instance.IconList[chooseIcon-1].skill_title;
             skill_content.text = IconManager.Instance.IconList[chooseIcon-1].skill_content;
-        }
-        
+        }  
     }
 }
