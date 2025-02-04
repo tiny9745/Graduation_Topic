@@ -51,26 +51,29 @@ public class Puzzle : MonoBehaviour
 
     Diary_icon key_count()
     {
-        switch (DragPiece_End.end_count)
+        if (DragPiece_End.end_count < 10 && DragPiece_End.end_count > 0)//0~9
         {
-            case 0:
-                return Resources.Load<Diary_icon>("icon_skill/Blue");
-            case 1:
-                return Resources.Load<Diary_icon>("icon_skill/Red");
-            case 2:
-                return Resources.Load<Diary_icon>("icon_skill/Green");
-            case 3:
-                return Resources.Load<Diary_icon>("icon_skill/Purple");
-            case 4:
-                return Resources.Load<Diary_icon>("icon_skill/Yellow");
-            case 5:
-                return Resources.Load<Diary_icon>("icon_skill/Blue");
-            case 6:
-                return Resources.Load<Diary_icon>("icon_skill/Red");
-            case 7:
-                return Resources.Load<Diary_icon>("icon_skill/Green");
-            default:
-                break;
+            return Resources.Load<Diary_icon>("icon_skill/Green");
+        }
+        else if (DragPiece_End.end_count < 20)//10~19
+        {
+            return Resources.Load<Diary_icon>("icon_skill/Red");
+        }
+        else if (DragPiece_End.end_count < 30)//20~29
+        {
+            return Resources.Load<Diary_icon>("icon_skill/Blue");
+        }
+        else if (DragPiece_End.end_count < 40)//30~39
+        {
+            return null;
+        }
+        else if (DragPiece_End.end_count < 50)//40~49
+        {
+            return Resources.Load<Diary_icon>("icon_skill/Yellow");
+        }
+        else if (DragPiece_End.end_count < 60)//50~59
+        {
+            return Resources.Load<Diary_icon>("icon_skill/Purple");
         }
         return null;
     }
