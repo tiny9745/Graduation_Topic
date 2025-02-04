@@ -14,11 +14,6 @@ public class Icon_slot : MonoBehaviour
         icon = thisItem;
         IconImage.sprite = icon.iconImage;
     }
-    public void RemoveItem()
-    {
-        IconManager.Instance.Remove(icon);
-        IconManager.Instance.IconInventoryCallBack();
-    }
     public void Clean()
     {
         icon = null;
