@@ -5,7 +5,6 @@ using UnityEngine;
 public class Skill_public_funtion : MonoBehaviour
 {
     static public bool Reading = false;
-    static public int feel_to_skill = -1;//old
     static public bool play_piano = false;//old
     static public short P_time = 4; static public float B_damage = 0;//skill 01
 

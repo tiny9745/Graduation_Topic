@@ -18,15 +18,28 @@ public class NPC_effect_03 : MonoBehaviour
     }
     public void piano_Skill()//skill_add判斷式有問題?
     {
-        Debug.Log("piano NPC03 skill");
+        foreach (var icon in IconManager.Instance.IconList)
+        {
+            if (Skill_public_funtion.play_piano)
+            {
+                break;
+            }
+            else if (icon.iconID >= 20 && icon.iconID < 30)
+            {
+                Skill_public_funtion.play_piano = true;
+            }
+        }
         if (Skill_public_funtion.play_piano)
         {
+            Debug.Log("piano NPC03 skill");
             if (play_piano_atk <= Skill_public_funtion.P_time)
             {
                 play_piano_atk++;
+                Debug.Log("NPC03 skill_2x:" + play_piano_atk);
             }
             else
             {
+                Debug.Log("NPC03 skill_2x complete!");
                 Instantiate(bomb_piano, bomb_point.transform.position, Quaternion.identity);
                 play_piano_atk = 0;
             }
@@ -42,31 +55,35 @@ public class NPC_effect_03 : MonoBehaviour
                 switch (icon.iconID)
                 {
                     case 21: // Bomb
+                        Debug.Log("NPC03 skill_21");
                         play_piano_atk = 0;
                         Skill_public_funtion.B_damage += 10;
                         continue;
 
                     case 22: // Flash
+                        Debug.Log("NPC03 skill_22");
                         Skill_public_funtion.B_damage += 15;
                         control.stun = true;
                         Invoke(nameof(Stun_end), 3);
                         continue;
 
                     case 23: // Ricochet
+                        Debug.Log("NPC03 skill_23");
                         Skill_public_funtion.B_damage += 20;
                         piano_flag = false;
                         play_piano_atk++;
                         continue;
 
                     case 24: // Air Bullet
+                        Debug.Log("NPC03 skill_24");
                         Skill_public_funtion.B_damage += 15;
                         if (control.NPC_HP < NPC_back)
                             control.NPC_HP = 0;
                         else
                             transform.position -= NPC_back * Vector3.back;
                         continue;
-
                     case 25: // Smoke Bomb
+                        Debug.Log("NPC03 skill_25");
                         Skill_public_funtion.B_damage += 20;//spawn smoke not done
                         continue;
                     default:
@@ -158,6 +175,9 @@ public class NPC_effect_03 : MonoBehaviour
         {
             foreach (var icon in IconManager.Instance.IconList)
             {
+                {
+                    Skill_public_funtion.play_piano = true;
+                }
                 switch (icon.iconID)
                 {
                     case 15:
