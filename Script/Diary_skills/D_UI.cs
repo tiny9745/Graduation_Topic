@@ -24,15 +24,15 @@ public class D_UI : MonoBehaviour
         Debug.Log("UpdateIcon");
         startIndex = page * itemsPerPage;
         endIndex = Mathf.Min(startIndex + itemsPerPage, IconManager.Instance.IconList.Count);
+        Debug.Log("startIndex:" + startIndex + " endIndex:" + endIndex);
         for (int i = startIndex; i <endIndex; i++)
         {
-            Debug.Log("i"+i); 
             if (i < IconManager.Instance.IconList.Count)
             {
                 DSlot[i].AddIcon(IconManager.Instance.IconList[i]);
             }else
             {
-                Debug.Log("clean");
+
                 DSlot[i].Clean();
             }
         }

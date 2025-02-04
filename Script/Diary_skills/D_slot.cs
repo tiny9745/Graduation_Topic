@@ -17,16 +17,11 @@ public class D_slot : MonoBehaviour
         diary_title.text = icon.diary_title;
         diary_date.text = icon.date;
     }
-    public void RemoveItem()
-    {
-        IconManager.Instance.Remove(icon);
-        IconManager.Instance.IconInventoryCallBack();
-    }
     public void Clean()
     {
         Debug.Log("Clean");
         icon = null;
         IconImage.sprite = emptySprite;
-        diary_title.text = ""; diary_date.text = "";
+        diary_title.text = "--"; diary_date.text = "--月--日";
     }
 }
