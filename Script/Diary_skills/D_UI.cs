@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class D_UI : MonoBehaviour
 {
-    static public Icon_slot[] DSlot;
-    public Transform iconSlotPoint;
+    static public D_slot[] DSlot;
+    public Transform DSlotPoint;
     public Text Diary_title, Diary_content;
     int itemsPerPage = 8,startIndex,endIndex;
     public int page = 0;
     void Start()
     {
+        Debug.Log("StartA");
         IconManager.Instance.IconInventoryCallBack += UpdateIcon;
-        DSlot = iconSlotPoint.GetComponentsInChildren<Icon_slot>();
+        UpdateIcon();
+        DSlot = DSlotPoint.GetComponentsInChildren<D_slot>();
     }
 
     // Update is called once per frame
