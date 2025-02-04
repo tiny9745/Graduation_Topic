@@ -12,7 +12,6 @@ public class D_icon_UI : MonoBehaviour
     int chooseIcon;
     void Start()
     {
-        Debug.Log("StartB");
         IconManager.Instance.IconInventoryCallBack += UpdateIcon;
         iconSlot = iconSlotPoint.GetComponentsInChildren<Icon_slot>();
     }

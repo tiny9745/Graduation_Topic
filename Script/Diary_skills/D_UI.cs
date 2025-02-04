@@ -12,19 +12,15 @@ public class D_UI : MonoBehaviour
     public int page = 0;
     void Start()
     {
-        Debug.Log("StartA");
         IconManager.Instance.IconInventoryCallBack += UpdateIcon;
-        UpdateIcon();
         DSlot = DSlotPoint.GetComponentsInChildren<D_slot>();
     }
 
     // Update is called once per frame
     void UpdateIcon()
     {
-        Debug.Log("UpdateIcon");
         startIndex = page * itemsPerPage;
         endIndex = Mathf.Min(startIndex + itemsPerPage, IconManager.Instance.IconList.Count);
-        Debug.Log("startIndex:" + startIndex + " endIndex:" + endIndex);
         for (int i = startIndex; i <endIndex; i++)
         {
             if (i < IconManager.Instance.IconList.Count)
@@ -32,7 +28,6 @@ public class D_UI : MonoBehaviour
                 DSlot[i].AddIcon(IconManager.Instance.IconList[i]);
             }else
             {
-
                 DSlot[i].Clean();
             }
         }
