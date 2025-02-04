@@ -10,7 +10,7 @@ public class initiator_MC : MonoBehaviour
     private Vector3 previousPosition;
     float accumulatedDistance = 0;
     bool timer_close = true;
-    public GameObject bullet53, Ward54, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
+    public GameObject bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
     public InventoryManager inventoryManager;
 
     private Vector3 Guardian4x_point = Vector3.zero;
@@ -106,43 +106,43 @@ public class initiator_MC : MonoBehaviour
             {
                 switch (icon.iconID)
                 {
-                    case 52:
-                        if (Skill_public_funtion.skill_52_Dash_end)
+                    case 32:
+                        if (Skill_public_funtion.skill_32_Dash_end)
                         {
-                            Skill_public_funtion.skill_52_Dash_end = false;
-                            Skill_public_funtion.skill_52_Dash_time = 0;
+                            Skill_public_funtion.skill_32_Dash_end = false;
+                            Skill_public_funtion.skill_32_Dash_time = 0;
                             static_parameters.MC_Wspeed *= 1.2f;
                         }
-                        if (Skill_public_funtion.skill_52_Dash_time < 2f)
+                        if (Skill_public_funtion.skill_32_Dash_time < 2f)
                         {
-                            Skill_public_funtion.skill_52_Dash_time += Time.deltaTime;
+                            Skill_public_funtion.skill_32_Dash_time += Time.deltaTime;
                         }
-                        else if (Skill_public_funtion.skill_52_Dash_time < 10f)
+                        else if (Skill_public_funtion.skill_32_Dash_time < 10f)
                         {
                             static_parameters.MC_Wspeed /= 1.2f;
-                            Skill_public_funtion.skill_52_Dash_time = 15f;
+                            Skill_public_funtion.skill_32_Dash_time = 15f;
                         }
                         break;
-                    case 53:
-                        if (Skill_public_funtion.skill_53_Dash)
+                    case 33:
+                        if (Skill_public_funtion.skill_33_Dash)
                         {
-                            Skill_public_funtion.skill_53_Dash = false;
-                            Instantiate(bullet53, Firepoint.position, transform.rotation);
+                            Skill_public_funtion.skill_33_Dash = false;
+                            Instantiate(bullet33, Firepoint.position, transform.rotation);
                         }
                         break;
-                    case 54:
-                        if (Skill_public_funtion.skill_54_Dash)
+                    case 34:
+                        if (Skill_public_funtion.skill_34_Dash)
                         {
-                            Skill_public_funtion.skill_54_Dash = false;
-                            Instantiate(Ward54, transform.position, Ward54.transform.rotation);
+                            Skill_public_funtion.skill_34_Dash = false;
+                            Instantiate(Ward34, transform.position, Ward34.transform.rotation);
                         }
                         break;
-                    case 55:
-                        if (Skill_public_funtion.skill_55_Dash_Magnification == 1f)
+                    case 35:
+                        if (Skill_public_funtion.skill_35_Dash_Magnification == 1f)
                         {
-                            Skill_public_funtion.skill_55_Dash_Magnification = 0.9f;
+                            Skill_public_funtion.skill_35_Dash_Magnification = 0.9f;
                             Ani_MC.DashCD_time = 2f;
-                            Debug.Log("skill_55_Dash_Magnification:" + Skill_public_funtion.skill_55_Dash_Magnification);
+                            Debug.Log("skill_35_Dash_Magnification:" + Skill_public_funtion.skill_35_Dash_Magnification);
                         }
                         break;
                 }

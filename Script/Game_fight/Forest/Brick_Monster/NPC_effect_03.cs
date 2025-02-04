@@ -232,10 +232,10 @@ public class NPC_effect_03 : MonoBehaviour
                             control.npcNavi.speed = 0;
                         }
                         break;
-                    case 51:
-                        if (Skill_public_funtion.skill_51_dash && other.gameObject.tag == "Player")
+                    case 31:
+                        if (Skill_public_funtion.skill_31_dash && other.gameObject.tag == "Player")
                         {
-                            Debug.Log("NPC03 skill_51");
+                            Debug.Log("NPC03 skill_31");
                             HP_control.TakeDamage(static_parameters.MC_ATK / 2, static_parameters.MC_DEF / 2);
                         }
                         break;
@@ -254,9 +254,9 @@ public class NPC_effect_03 : MonoBehaviour
             {
                 HP_control.TakeDamage(Skill_public_funtion.skill_45_Atk, static_parameters.MC_DEF);
             }
-            if (other.gameObject.tag == "skill_54_ward")
+            if (other.gameObject.tag == "skill_34_ward")
             {
-                HP_control.TakeDamage(Skill_public_funtion.skill_54_atk, static_parameters.MC_DEF);
+                HP_control.TakeDamage(Skill_public_funtion.skill_34_atk, static_parameters.MC_DEF);
             }
         }
     }

@@ -42,9 +42,9 @@ public class Ani_MC : MonoBehaviour
         // 處理輸入
         if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving())
         {
-            Skill_public_funtion.skill_51_dash = true;
-            Skill_public_funtion.skill_53_Dash = true;
-            Skill_public_funtion.skill_54_Dash = true;
+            Skill_public_funtion.skill_31_dash = true;
+            Skill_public_funtion.skill_33_Dash = true;
+            Skill_public_funtion.skill_34_Dash = true;
             StartCoroutine(DashSequence());
         }
         else if (Input.GetKeyDown(KeyCode.J))
@@ -120,8 +120,8 @@ public class Ani_MC : MonoBehaviour
         static_parameters.Ani_state = 5; // 設置為 Dash 狀態
 
         float dashStartTime = Time.time;
-        dashDuration = 0.63f / Skill_public_funtion.skill_55_Dash_Magnification;
-        animator.speed = Skill_public_funtion.skill_55_Dash_Magnification;
+        dashDuration = 0.63f / Skill_public_funtion.skill_35_Dash_Magnification;
+        animator.speed = Skill_public_funtion.skill_35_Dash_Magnification;
         PlayDashAnimation();
 
         // 確保動畫完整播放
@@ -129,8 +129,8 @@ public class Ani_MC : MonoBehaviour
         {
             yield return null;
         }
-        Skill_public_funtion.skill_52_Dash_end = true;
-        Skill_public_funtion.skill_51_dash = false;
+        Skill_public_funtion.skill_32_Dash_end = true;
+        Skill_public_funtion.skill_31_dash = false;
         DefaultCheck();
         yield return new WaitForSeconds(DashCD_time);
         isDashCooldown = false;
