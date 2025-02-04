@@ -32,6 +32,14 @@ public class initiator_MC : MonoBehaviour
         sprint_Bonus();
         Guardian();
         Book_throwing();
+        if (IconManager.Instance != null)
+        {
+            Debug.Log("IconManager.Instance is OK");
+        }
+        else
+        {
+            Debug.Log("IconManager.Instance == null");
+        }
     }
 
     private void fight_instinct()
