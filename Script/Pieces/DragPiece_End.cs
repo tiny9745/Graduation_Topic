@@ -26,31 +26,37 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         validSequences = new List<HashSet<int>>()
         {
             //拼湊完會將陣列改成999
-            new HashSet<int> { 11, 15 },
-            new HashSet<int> { 11, 16, 17 },
-            new HashSet<int> { 13, 16, 18 },
-            new HashSet<int> { 11, 14, 16 },
-            new HashSet<int> { 11, 12, 17, 19 },
-            new HashSet<int> { 22, 26 },
-            new HashSet<int> { 22, 24 },
-            new HashSet<int> { 21, 22, 26 },
-            new HashSet<int> { 22, 23, 25, 26 },
-            new HashSet<int> { 22, 24, 25, 26 },
-            new HashSet<int> { 42, 44 },
-            new HashSet<int> { 43, 44 },
-            new HashSet<int> { 42, 44, 45 },
-            new HashSet<int> { 41, 42, 44 },
-            new HashSet<int> { 42, 44, 46 },
-            new HashSet<int> { 1, 3 },
+            new HashSet<int> { 1, 2, 5, 6 },
+            new HashSet<int> { 1, 4, 5, 6 },
             new HashSet<int> { 2, 6 },
             new HashSet<int> { 2, 4, 6 },
-            new HashSet<int> { 1, 4, 5, 6 },
-            new HashSet<int> { 1, 2, 5, 6 },
-            new HashSet<int> { 31, 33 },
+            new HashSet<int> { 1, 3 },
+
+            new HashSet<int> { 11, 16, 17 },
+            new HashSet<int> { 11, 12, 17, 19 },
+            new HashSet<int> { 13, 16, 18 },
+            new HashSet<int> { 11, 14, 16 },
+            new HashSet<int> { 11, 15 },
+
+            new HashSet<int> { 22, 26 },
+            new HashSet<int> { 21, 22, 26 },
+            new HashSet<int> { 22, 23, 25, 26 },
+            new HashSet<int> { 22, 24 },
+            new HashSet<int> { 22, 24, 25, 26 },
+
+            
             new HashSet<int> { 32, 36, 37 },
             new HashSet<int> { 35, 36, 37 },
+            new HashSet<int> { 32, 34, 35, 39 },
             new HashSet<int> { 35, 37, 38 },
-            new HashSet<int> { 32, 34, 35, 39 }
+            new HashSet<int> { 31, 33 },
+
+            new HashSet<int> { 42, 44 },         
+            new HashSet<int> { 42, 44, 45 },
+            new HashSet<int> { 41, 42, 44 },
+            new HashSet<int> { 43, 44 },
+            new HashSet<int> { 42, 44, 46 },
+
         };
     }
 
