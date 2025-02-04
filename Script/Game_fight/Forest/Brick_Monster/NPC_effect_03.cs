@@ -18,16 +18,23 @@ public class NPC_effect_03 : MonoBehaviour
     }
     public void piano_Skill()//skill_add判斷式有問題?
     {
-        foreach (var icon in IconManager.Instance.IconList)
+        if (IconManager.Instance != null)
         {
-            if (Skill_public_funtion.play_piano)
+            foreach (var icon in IconManager.Instance.IconList)
             {
-                break;
+                if (Skill_public_funtion.play_piano)
+                {
+                    break;
+                }
+                else if (icon.iconID >= 20 && icon.iconID < 30)
+                {
+                    Skill_public_funtion.play_piano = true;
+                }
             }
-            else if (icon.iconID >= 20 && icon.iconID < 30)
-            {
-                Skill_public_funtion.play_piano = true;
-            }
+        }
+        else
+        {
+            Debug.Log("IconManager.Instance == null");
         }
         if (Skill_public_funtion.play_piano)
         {
