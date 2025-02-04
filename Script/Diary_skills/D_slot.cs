@@ -8,14 +8,14 @@ public class D_slot : MonoBehaviour
     Diary_icon icon;
     public Image IconImage;
     public Sprite emptySprite;
-    public Text diary_title,diary_content;
+    public Text diary_title,diary_date;
     
     public void AddIcon(Diary_icon thisItem)
     {
         icon = thisItem;
         IconImage.sprite = icon.iconImage;
         diary_title.text = icon.diary_title;
-        diary_content.text = icon.diary_content;
+        diary_date.text = icon.date;
     }
     public void RemoveItem()
     {
@@ -27,6 +27,6 @@ public class D_slot : MonoBehaviour
         Debug.Log("Clean");
         icon = null;
         IconImage.sprite = emptySprite;
-        diary_title.text = ""; diary_content.text = "";
+        diary_title.text = ""; diary_date.text = "";
     }
 }

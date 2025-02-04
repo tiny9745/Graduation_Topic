@@ -3969,7 +3969,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2047872728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: D_UI, Assembly-CSharp
         m_MethodName: PreviousPage
         m_Mode: 1
@@ -5215,6 +5215,7 @@ GameObject:
   - component: {fileID: 347870321}
   - component: {fileID: 347870322}
   - component: {fileID: 347870323}
+  - component: {fileID: 347870324}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -5325,6 +5326,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &347870324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347870319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d41948cd181c488e13046343860b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 1002547485}
+  emptySprite: {fileID: 21300000, guid: e0983952b8fea0547a84c7254bc2c3a6, type: 3}
+  diary_title: {fileID: 1060488338}
+  diary_date: {fileID: 1393715247}
 --- !u!1 &351064049
 GameObject:
   m_ObjectHideFlags: 0
@@ -7529,6 +7546,7 @@ GameObject:
   - component: {fileID: 512749198}
   - component: {fileID: 512749199}
   - component: {fileID: 512749200}
+  - component: {fileID: 512749201}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -7639,6 +7657,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &512749201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512749195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d41948cd181c488e13046343860b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 579071636}
+  emptySprite: {fileID: 21300000, guid: e0983952b8fea0547a84c7254bc2c3a6, type: 3}
+  diary_title: {fileID: 1785008149}
+  diary_date: {fileID: 684888529}
 --- !u!1 &533929500
 GameObject:
   m_ObjectHideFlags: 0
@@ -7771,6 +7805,7 @@ GameObject:
   - component: {fileID: 536492848}
   - component: {fileID: 536492849}
   - component: {fileID: 536492850}
+  - component: {fileID: 536492851}
   m_Layer: 5
   m_Name: 6
   m_TagString: Untagged
@@ -7881,6 +7916,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &536492851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536492846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d41948cd181c488e13046343860b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 44974140}
+  emptySprite: {fileID: 21300000, guid: e0983952b8fea0547a84c7254bc2c3a6, type: 3}
+  diary_title: {fileID: 1128128453}
+  diary_date: {fileID: 1746952477}
 --- !u!1 &540852137
 GameObject:
   m_ObjectHideFlags: 0
@@ -13810,6 +13861,7 @@ GameObject:
   - component: {fileID: 890314828}
   - component: {fileID: 890314829}
   - component: {fileID: 890314830}
+  - component: {fileID: 890314831}
   m_Layer: 5
   m_Name: 4
   m_TagString: Untagged
@@ -13920,6 +13972,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &890314831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890314826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d41948cd181c488e13046343860b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 540852139}
+  emptySprite: {fileID: 21300000, guid: e0983952b8fea0547a84c7254bc2c3a6, type: 3}
+  diary_title: {fileID: 2099984246}
+  diary_date: {fileID: 271804386}
 --- !u!1 &894064877
 GameObject:
   m_ObjectHideFlags: 0
@@ -16733,10 +16801,6 @@ MonoBehaviour:
   Book: {fileID: 1757500911}
   Ppage: {fileID: 1281009425}
   Check: {fileID: 0}
-  Diary_text_Left: {fileID: 0}
-  Diary_text_Right: {fileID: 0}
-  Diary_Left_Text: {fileID: 0}
-  Diary_Right_Text: {fileID: 0}
   cpmplete_piece_object: {fileID: 643548312}
   complete_piece_animator: {fileID: 643548316}
   composite_col: {fileID: 1135363988}
@@ -21194,7 +21258,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2047872728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: D_UI, Assembly-CSharp
         m_MethodName: NextPage
         m_Mode: 1
@@ -22313,6 +22377,7 @@ GameObject:
   - component: {fileID: 1558191999}
   - component: {fileID: 1558192000}
   - component: {fileID: 1558192001}
+  - component: {fileID: 1558192002}
   m_Layer: 5
   m_Name: 7
   m_TagString: Untagged
@@ -22423,6 +22488,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1558192002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558191997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d41948cd181c488e13046343860b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 1542499345}
+  emptySprite: {fileID: 21300000, guid: e0983952b8fea0547a84c7254bc2c3a6, type: 3}
+  diary_title: {fileID: 1230785883}
+  diary_date: {fileID: 545869235}
 --- !u!1 &1561577511
 GameObject:
   m_ObjectHideFlags: 0
@@ -23113,6 +23194,7 @@ GameObject:
   - component: {fileID: 1644071663}
   - component: {fileID: 1644071664}
   - component: {fileID: 1644071665}
+  - component: {fileID: 1644071666}
   m_Layer: 5
   m_Name: 8
   m_TagString: Untagged
@@ -23223,6 +23305,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1644071666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644071661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d41948cd181c488e13046343860b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 168171093}
+  emptySprite: {fileID: 21300000, guid: e0983952b8fea0547a84c7254bc2c3a6, type: 3}
+  diary_title: {fileID: 951726275}
+  diary_date: {fileID: 1715709994}
 --- !u!1 &1657130835
 GameObject:
   m_ObjectHideFlags: 0
@@ -23367,6 +23465,7 @@ GameObject:
   - component: {fileID: 1661539694}
   - component: {fileID: 1661539695}
   - component: {fileID: 1661539696}
+  - component: {fileID: 1661539697}
   m_Layer: 5
   m_Name: 3
   m_TagString: Untagged
@@ -23477,6 +23576,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1661539697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661539692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d41948cd181c488e13046343860b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 1888817336}
+  emptySprite: {fileID: 21300000, guid: e0983952b8fea0547a84c7254bc2c3a6, type: 3}
+  diary_title: {fileID: 1604742564}
+  diary_date: {fileID: 2064807205}
 --- !u!1 &1669576886
 GameObject:
   m_ObjectHideFlags: 0
@@ -24141,6 +24256,7 @@ GameObject:
   - component: {fileID: 1734730483}
   - component: {fileID: 1734730484}
   - component: {fileID: 1734730485}
+  - component: {fileID: 1734730486}
   m_Layer: 5
   m_Name: 5
   m_TagString: Untagged
@@ -24251,6 +24367,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1734730486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734730481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d41948cd181c488e13046343860b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconImage: {fileID: 1864701821}
+  emptySprite: {fileID: 21300000, guid: e0983952b8fea0547a84c7254bc2c3a6, type: 3}
+  diary_title: {fileID: 688426935}
+  diary_date: {fileID: 73833279}
 --- !u!1 &1746952475
 GameObject:
   m_ObjectHideFlags: 0
@@ -29431,7 +29563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f02e0f51a8594343a7bafe48a026474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconSlotPoint: {fileID: 1977320165}
+  DSlotPoint: {fileID: 1977320165}
   Diary_title: {fileID: 115386923}
   Diary_content: {fileID: 1780343521}
   page: 0
@@ -31981,11 +32113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -8.881784e-16
+      value: 2.4011726e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 4.440892e-16
+      value: -1.3328294e-10
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32009,11 +32141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000000832853
+      value: -0.000000007975309
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021564985
+      value: 0.000000002065039
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
