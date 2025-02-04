@@ -51,7 +51,7 @@ public class Puzzle : MonoBehaviour
 
     Diary_icon key_count()
     {
-        if (DragPiece_End.end_count < 10 && DragPiece_End.end_count > 0)//0~9
+        if (DragPiece_End.end_count < 10 && DragPiece_End.end_count > 0)//1~9
         {
             return Resources.Load<Diary_icon>("icon_skill/Green");
         }
