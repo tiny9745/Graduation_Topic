@@ -33,7 +33,6 @@ public class IconManager : MonoBehaviour
     public void Add(Diary_icon newIcon)
     {
         IconList.Add(newIcon);
-        Debug.Log("newIcon"+newIcon);
         IconInventoryCallBack?.Invoke();
     }
 
