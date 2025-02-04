@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Diarypress : MonoBehaviour
 {
-    D_UI d_UI;
+    public D_UI d_UI;
     public GameObject number,Slots,DText;
     int Choose_diary,DiaryNumber;
     public Text Diary_title, Diary_content;
@@ -20,8 +20,10 @@ public class Diarypress : MonoBehaviour
         }else{
             Slots.SetActive(false);DText.SetActive(true);
             Skill_public_funtion.Reading = true;
-            Diary_title.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary-1].diary_title;
-            Diary_content.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary-1].diary_content;
+            Debug.Log(d_UI.page*8 + Choose_diary);
+            Debug.Log(IconManager.Instance.IconList[d_UI.page*8 + Choose_diary].diary_title);
+            Diary_title.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary].diary_title;
+            Diary_content.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary].diary_content;
         }
     }
     public void Dclose()

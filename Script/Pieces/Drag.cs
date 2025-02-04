@@ -40,12 +40,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         // 移動物件至滑鼠指標位置
         if (GetComponent<Image>().sprite != nullsprite)
         {
-            Debug.Log("OnDrag triggered");
             _rectTransform.position = eventData.position;
         }
         else
         {
-            Debug.Log("OnDrag triggered but no sprite");
             return;
         }
     }
