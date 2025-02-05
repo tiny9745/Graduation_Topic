@@ -8,7 +8,7 @@ public class D_UI : MonoBehaviour
     static public D_slot[] DSlot;
     public Transform DSlotPoint;
     public Text Diary_title, Diary_content;
-    int itemsPerPage = 8,startIndex,endIndex;
+    int itemsPerPage = 8,startIndex;
     public int page = 0;
     void Start()
     {
@@ -20,8 +20,7 @@ public class D_UI : MonoBehaviour
     void UpdateIcon()
     {
         startIndex = page * itemsPerPage;
-        endIndex = Mathf.Min(startIndex + itemsPerPage, IconManager.Instance.IconList.Count);
-        for (int i = startIndex; i <endIndex; i++)
+        for (int i = startIndex; i <startIndex+8; i++)
         {
             if (i < IconManager.Instance.IconList.Count)
             {
