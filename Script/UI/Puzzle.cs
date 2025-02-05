@@ -65,15 +65,11 @@ public class Puzzle : MonoBehaviour
         }
         else if (DragPiece_End.end_count < 40)//30~39
         {
-            return null;
+            return Resources.Load<Diary_icon>("icon_skill/Purple");
         }
         else if (DragPiece_End.end_count < 50)//40~49
         {
             return Resources.Load<Diary_icon>("icon_skill/Yellow");
-        }
-        else if (DragPiece_End.end_count < 60)//50~59
-        {
-            return Resources.Load<Diary_icon>("icon_skill/Purple");
         }
         return null;
     }

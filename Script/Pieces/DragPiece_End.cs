@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.Mathematics;
 
 
 public class DragPiece_End : MonoBehaviour, IDropHandler
@@ -44,14 +45,14 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             new HashSet<int> { 22, 24 },
             new HashSet<int> { 22, 24, 25, 26 },
 
-            
+
             new HashSet<int> { 32, 36, 37 },
             new HashSet<int> { 35, 36, 37 },
             new HashSet<int> { 32, 34, 35, 39 },
             new HashSet<int> { 35, 37, 38 },
             new HashSet<int> { 31, 33 },
 
-            new HashSet<int> { 42, 44 },         
+            new HashSet<int> { 42, 44 },
             new HashSet<int> { 42, 44, 45 },
             new HashSet<int> { 41, 42, 44 },
             new HashSet<int> { 43, 44 },
@@ -150,7 +151,17 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
             if (combinationList.SequenceEqual(sequenceList))
             {
-                end_count = i;
+                int j = 0;
+                if (i % 5 == 0)
+                {
+                    j = 5;
+                }
+                else
+                {
+                    j = i % 5;
+                }
+                j += (int)(math.floor(i / 5) * 10);
+                end_count = j;
                 puzzle_count++;
                 return 2;
             }
