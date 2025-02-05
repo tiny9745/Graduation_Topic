@@ -46,7 +46,7 @@ public class D_UI : MonoBehaviour
     }
 
 
-    private void overflow_text(string Read_text)
+    public void overflow_text(string Read_text)
     {
         TextGenerator textGen = new TextGenerator();
         TextGenerationSettings settings = Diary_content_lift.GetGenerationSettings(Diary_content_lift.rectTransform.rect.size);
