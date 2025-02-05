@@ -162,6 +162,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 }
                 j += (int)(math.floor(i / 5) * 10);
                 end_count = j;
+                Debug.Log("end_count" + end_count);
                 puzzle_count++;
                 return 2;
             }
