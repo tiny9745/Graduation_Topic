@@ -15,15 +15,12 @@ public class Diarypress : MonoBehaviour
         int.TryParse(number.name, out DiaryNumber);
         Choose_diary = DiaryNumber;
         if(Choose_diary>IconManager.Instance.IconList.Count){
-            Diary_title.text=" ";
-            Diary_content.text=" ";
+            return;
         }else{
             Slots.SetActive(false);DText.SetActive(true);
             Skill_public_funtion.Reading = true;
-            Debug.Log(d_UI.page*8 + Choose_diary);
-            Debug.Log(IconManager.Instance.IconList[d_UI.page*8 + Choose_diary].diary_title);
-            Diary_title.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary].diary_title;
-            Diary_content.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary].diary_content;
+            Diary_title.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary-1].diary_title;
+            Diary_content.text = IconManager.Instance.IconList[d_UI.page*8 + Choose_diary-1].diary_content;
         }
     }
     public void Dclose()

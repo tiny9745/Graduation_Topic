@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class D_UI : MonoBehaviour
 {
     static public D_slot[] DSlot;
+    public GameObject Pageup, Pagedown;
     public Transform DSlotPoint;
     public Text Diary_title, Diary_content;
     int itemsPerPage = 8,startIndex;
