@@ -72,70 +72,69 @@ public class IconManager : MonoBehaviour
             case 5:
                 Add(all_icon[5]);
                 break;
-            case 6:
+            case 11:
                 Add(all_icon[6]);
                 break;
-            case 7:
+            case 12:
                 Add(all_icon[7]);
                 break;
-            case 8:
+            case 13:
                 Add(all_icon[8]);
                 break;
-            case 9:
+            case 14:
                 Add(all_icon[9]);
                 break;
-            case 10:
+            case 15:
                 Add(all_icon[10]);
                 break;
-            case 11:
+            case 21:
                 Add(all_icon[11]);
                 break;
-            case 12:
+            case 22:
                 Add(all_icon[12]);
                 break;
-            case 13:
+            case 23:
                 Add(all_icon[13]);
                 break;
-            case 14:
+            case 24:
                 Add(all_icon[14]);
                 break;
-            case 15:
+            case 25:
                 Add(all_icon[15]);
                 break;
-            case 16:
+            case 31:
                 Add(all_icon[16]);
                 break;
-            case 17:
+            case 32:
                 Add(all_icon[17]);
                 break;
-            case 18:
+            case 33:
                 Add(all_icon[18]);
                 break;
-            case 19:
+            case 34:
                 Add(all_icon[19]);
                 break;
-            case 20:
+            case 35:
                 Add(all_icon[20]);
                 break;
-            case 21:
+            case 41:
                 Add(all_icon[21]);
                 break;
-            case 22:
+            case 42:
                 Add(all_icon[22]);
                 break;
-            case 23:
+            case 43:
                 Add(all_icon[23]);
                 break;
-            case 24:
+            case 44:
                 Add(all_icon[24]);
                 break;
-            case 25:
+            case 45:
                 Add(all_icon[25]);
                 break;
             default:
                 Debug.Log("Inventory is full");
                 break;
         }
-
     }
 }
