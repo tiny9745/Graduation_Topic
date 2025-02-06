@@ -9,7 +9,7 @@ public class D_UI : MonoBehaviour
     public GameObject Pageup, Pagedown;
     public Transform DSlotPoint;
     public Text Diary_title, Diary_content_lift, Diary_content_right;
-    int itemsPerPage = 8,startIndex;
+    int itemsPerPage = 8, startIndex;
     public int page = 0;
     void Start()
     {
@@ -21,16 +21,18 @@ public class D_UI : MonoBehaviour
     void UpdateIcon()
     {
         startIndex = page * itemsPerPage;
-        for (int i = startIndex; i <startIndex+8; i++)
+        for (int i = startIndex; i < startIndex + 8; i++)
         {
             if (i < IconManager.Instance.IconList.Count)
             {
                 DSlot[i].AddIcon(IconManager.Instance.IconList[i]);
-            }else
+            }
+            else
             {
                 DSlot[i].Clean();
             }
         }
+        button();
     }
     public void NextPage()
     {
@@ -39,10 +41,39 @@ public class D_UI : MonoBehaviour
         {
             page++;
         }
+        button();
     }
     public void PreviousPage()
     {
         if (page > 0) page--;
+        button();
+    }
+    public void button()
+    {
+        if (Skill_public_funtion.Reading)
+        {
+            Pagedown.SetActive(false); Pageup.SetActive(true);
+        }
+        else
+        {
+            if (page == 0)
+            {
+                Pageup.SetActive(false);
+            }
+            else
+            {
+                Pageup.SetActive(true);
+            }
+            if ((page + 1) * itemsPerPage < IconManager.Instance.IconList.Count)
+            {
+                Pageup.SetActive(true);
+            }
+            else
+            {
+                Pagedown.SetActive(false);
+            }
+        }
+
     }
 
 

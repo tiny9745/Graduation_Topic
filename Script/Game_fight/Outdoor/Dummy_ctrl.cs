@@ -11,7 +11,7 @@ public class Dummy_ctrl : MonoBehaviour
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit, stun = false; Byte play_piano_atk = 0;
     public GameObject hitbox_Dummy, bomb_piano;
-    float NPC_back = 10;
+    //float NPC_back = 10;
     bool MC_to_Att, open_EnableHitbox = true, Skill_public_funtion_1_close = false;//skill_add
     public Dummy_HP nPC_hP;
 

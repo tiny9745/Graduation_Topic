@@ -13,6 +13,7 @@ public class Diarypress : MonoBehaviour
     {
         Slots.SetActive(false); DText.SetActive(true);
         int.TryParse(number.name, out DiaryNumber);
+        d_UI.button(); 
         Choose_diary = DiaryNumber;
         if (Choose_diary > IconManager.Instance.IconList.Count)
         {
