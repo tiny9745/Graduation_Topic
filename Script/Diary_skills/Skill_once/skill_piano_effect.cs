@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class skill_piano_effect : MonoBehaviour
 {
     // Start is called before the first frame update
     private Vector3 startPosition;
+    public SpriteRenderer number_pic;
+
+    public Sprite[] number_image;
 
     private void Awake()
     {
@@ -14,13 +18,13 @@ public class skill_piano_effect : MonoBehaviour
 
     private void Start()
     {
-        FadeInMoveUp(20f, 0.5f);
-        Debug.Log("piano NPC03 skill~~~");
+        FadeInMoveUp(0.5f, 50f);
     }
 
     /// 向上淡入進場（啟用物件，從下方移動至原位置）
     public void FadeInMoveUp(float duration, float moveDistance)
     {
+        Debug.Log("piano NPC03 FadeInMoveUp~~~");
         gameObject.SetActive(true);
         StartCoroutine(FadeInMoveUpRoutine(duration, moveDistance));
     }
@@ -30,9 +34,9 @@ public class skill_piano_effect : MonoBehaviour
         StartCoroutine(FadeOutMoveDownRoutine(duration, moveDistance));
     }
     /// 原地跳動（執行一次）
-    public void JumpAnimation(float jumpHeight, float jumpDuration)
+    public void JumpAnimation(float jumpHeight, float jumpDuration, int jumpcount)
     {
-        StartCoroutine(JumpRoutine(jumpHeight, jumpDuration));
+        StartCoroutine(JumpRoutine(jumpHeight, jumpDuration, jumpcount));
     }
 
     private IEnumerator FadeInMoveUpRoutine(float duration, float moveDistance)
@@ -69,7 +73,7 @@ public class skill_piano_effect : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private IEnumerator JumpRoutine(float jumpHeight, float jumpDuration)
+    private IEnumerator JumpRoutine(float jumpHeight, float jumpDuration, int jumpcount)
     {
         float elapsedTime = 0f;
         Vector3 start = startPosition;
@@ -84,6 +88,12 @@ public class skill_piano_effect : MonoBehaviour
         }
 
         elapsedTime = 0f;
+        if (jumpcount < 0 || jumpcount >= number_image.Length)
+        {
+            jumpcount = 0;
+            FadeOutMoveDown(0.5f, 50f);
+        }
+        number_pic.sprite = number_image[jumpcount];
 
         // 向下
         while (elapsedTime < jumpDuration / 2)

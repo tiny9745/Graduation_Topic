@@ -419,7 +419,7 @@ Transform:
   m_GameObject: {fileID: 4878936449309026861}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.26, z: 0}
+  m_LocalPosition: {x: 0, y: 10.35, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -589,7 +589,7 @@ Transform:
   m_GameObject: {fileID: 7386479384208023229}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 13.88, z: -0.3}
+  m_LocalPosition: {x: -0.5, y: 11.97, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -660,6 +660,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9ed1da931322541960111a7ca85458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  number_pic: {fileID: 4923010599586687976}
+  number_image:
+  - {fileID: 21300000, guid: 243f3dcbaf68bfd409a49ea8149fcdf8, type: 3}
+  - {fileID: 21300000, guid: 69ebb7cd3e8618c41abfb2e8d0ace76f, type: 3}
+  - {fileID: 21300000, guid: 6c782222bdfc6fa4db1639db63cbc287, type: 3}
+  - {fileID: 21300000, guid: 15aea61c14fef294a8f322d613b8f76c, type: 3}
+  - {fileID: 21300000, guid: 1b4a0f761eeddde43b8fd1e597b0bd6e, type: 3}
 --- !u!1 &7440025053212357370
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 7230315417705204069}
   HP_control: {fileID: 7916481744572787998}
+  _skill_piano_effect: {fileID: 5708055298538251588}
   bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
   bomb_point: {fileID: 7440025053212357370}
   Ward12: {fileID: 7035810975034627314, guid: cedb763a9d8468b4c880394512cb93db, type: 3}

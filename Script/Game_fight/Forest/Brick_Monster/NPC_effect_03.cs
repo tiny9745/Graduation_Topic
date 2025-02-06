@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC_effect_03 : MonoBehaviour
 {
-    public NPC03_control control; public NPC_HP_03 HP_control;
+    public NPC03_control control; public NPC_HP_03 HP_control;public skill_piano_effect _skill_piano_effect;
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
