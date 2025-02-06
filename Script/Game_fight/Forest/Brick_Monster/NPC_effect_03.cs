@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPC_effect_03 : MonoBehaviour
 {
-    public NPC03_control control; public NPC_HP_03 HP_control;public skill_piano_effect _skill_piano_effect;
+    public NPC03_control control; public NPC_HP_03 HP_control; public skill_piano_effect _skill_piano_effect;
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
@@ -16,7 +16,7 @@ public class NPC_effect_03 : MonoBehaviour
     {
         skill_update();
     }
-    public void piano_Skill()//skill_add判斷式有問題?
+    public void piano_Skill()
     {
         if (IconManager.Instance != null)
         {
@@ -43,6 +43,14 @@ public class NPC_effect_03 : MonoBehaviour
             {
                 play_piano_atk++;
                 Debug.Log("NPC03 skill_2x:" + play_piano_atk);
+                if (play_piano_atk == 1)
+                {
+                    _skill_piano_effect.FadeInMoveUp(0.5f, 50f);
+                }
+                else if (play_piano_atk > 1)
+                {
+                    _skill_piano_effect.JumpAnimation(20f, 0.5f, play_piano_atk - 1);
+                }
             }
             else
             {
@@ -64,6 +72,7 @@ public class NPC_effect_03 : MonoBehaviour
                     case 21: // Bomb
                         Debug.Log("NPC03 skill_21");
                         play_piano_atk = 0;
+                        _skill_piano_effect.FadeOutMoveDown(0.5f, 50f);
                         Skill_public_funtion.B_damage += 10;
                         continue;
 
@@ -100,6 +109,10 @@ public class NPC_effect_03 : MonoBehaviour
             damage(Skill_public_funtion.B_damage);
             Reset_flag();
             control.change_color_red();
+            if (play_piano_atk >= 5)
+            {
+                Debug.Log("NPC03 play_piano_atk warning! " + play_piano_atk);
+            }
         }
     }
 
