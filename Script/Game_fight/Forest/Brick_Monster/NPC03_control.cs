@@ -234,6 +234,7 @@ public class NPC03_control : MonoBehaviour
     {
         if (other.CompareTag(dangerTag))
         {
+            Debug.Log("進入危險區域");
             lastEnteredDirection = (transform.position - other.transform.position).normalized;
             isInDangerZone = true;
 
@@ -311,6 +312,7 @@ public class NPC03_control : MonoBehaviour
             // 如果進入危險區域且標記匹配
             if (other.CompareTag(dangerTag))
             {
+                Debug.Log("危險區域內");
                 if (!isInDangerZone)
                 {
                     isInDangerZone = true;
@@ -347,6 +349,7 @@ public class NPC03_control : MonoBehaviour
         // 當離開危險區域時，重置狀態
         if (other.CompareTag(dangerTag))
         {
+            Debug.Log("離開危險區域");
             isInDangerZone = false;
             if (npcNavi != null)
             {
