@@ -144,7 +144,11 @@ public class Ptest : MonoBehaviour
                 {
                     for (int i = 0; i < 16; i++)
                     {
-                        show.Add(pickedPieces[i]);
+                        if (i < pickedPieces.Count){
+                            show.Add(pickedPieces[i]);
+                        }else{
+                            return;
+                        }
                     }
                 }
                 else
