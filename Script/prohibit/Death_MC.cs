@@ -43,7 +43,6 @@ public class Death_MC : MonoBehaviour
             animator.SetTrigger("Death");
             StartCoroutine(FadeToFullOpacity());
             Blood_Screen.SetActive(true);
-            Debug.Log("Death: " + Death.activeSelf);
         }
     }
 

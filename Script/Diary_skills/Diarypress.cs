@@ -12,8 +12,7 @@ public class Diarypress : MonoBehaviour
     public void Dpress()
     {
         Slots.SetActive(false); DText.SetActive(true);
-        int.TryParse(number.name, out DiaryNumber);
-        d_UI.button(); 
+        int.TryParse(number.name, out DiaryNumber); 
         Choose_diary = DiaryNumber;
         if (Choose_diary > IconManager.Instance.IconList.Count)
         {
@@ -27,6 +26,7 @@ public class Diarypress : MonoBehaviour
             Diary_content.text = IconManager.Instance.IconList[d_UI.page * 8 + Choose_diary - 1].diary_content;
             d_UI.overflow_text(Diary_content.text);
         }
+        d_UI.button();
     }
     public void Dclose()
     {

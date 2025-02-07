@@ -31,7 +31,8 @@ public class Ptest : MonoBehaviour
     // Update is called once per frame
     public void _to_Drop()
     {
-        addp();
+        AddP();
+        AddP();
         ShowPieces();
     }
 
@@ -81,7 +82,7 @@ public class Ptest : MonoBehaviour
             ShowPieces();
         }
     }
-    public void addp()
+    public void AddP()
     {
         thisItem = GetRandomPiece();
         if (thisItem != null)
@@ -107,7 +108,6 @@ public class Ptest : MonoBehaviour
     {
         string key = piece.PieceName.Substring(0, 3);
         if (sortedPieces.ContainsKey(key)) sortedPieces[key].Add(piece);
-        else Debug.LogWarning($"Piece '{piece.PieceName}' does not match any category!");
         piece.survival_state = "Alive";
     }
 
@@ -144,7 +144,11 @@ public class Ptest : MonoBehaviour
                 {
                     for (int i = 0; i < 16; i++)
                     {
-                        show.Add(pickedPieces[i]);
+                        if (i < pickedPieces.Count){
+                            show.Add(pickedPieces[i]);
+                        }else{
+                            return;
+                        }
                     }
                 }
                 else

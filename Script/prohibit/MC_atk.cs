@@ -14,6 +14,7 @@ public class MC_atk : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        MC_Collider = GetComponent<Collider>();
         audioSource.volume=static_parameters._SE_volue;
         Transform hitboxTransform = transform.Find("Hitbox");
         if (hitboxTransform != null)
@@ -25,7 +26,6 @@ public class MC_atk : MonoBehaviour
     void Update()
     {
         attackDamage = static_parameters.MC_ATK;
-        MC_Collider = GetComponent<Collider>();
         T1 = static_parameters.Ani_state;
         if (T2 == -9)
         {
