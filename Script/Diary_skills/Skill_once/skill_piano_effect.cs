@@ -18,7 +18,7 @@ public class skill_piano_effect : MonoBehaviour
 
     private void Start()
     {
-        FadeInMoveUp(0.5f, 50f);
+        
     }
 
     /// 向上淡入進場（啟用物件，從下方移動至原位置）
@@ -88,7 +88,7 @@ public class skill_piano_effect : MonoBehaviour
         }
 
         elapsedTime = 0f;
-        if (jumpcount < 0 || jumpcount >= number_image.Length)
+        if (jumpcount >= number_image.Length)
         {
             jumpcount = 0;
             FadeOutMoveDown(0.5f, 50f);
