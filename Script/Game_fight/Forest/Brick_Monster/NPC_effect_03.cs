@@ -45,11 +45,11 @@ public class NPC_effect_03 : MonoBehaviour
                 Debug.Log("NPC03 skill_2x:" + play_piano_atk);
                 if (play_piano_atk == 1)
                 {
-                    _skill_piano_effect.FadeInMoveUp(0.5f, 50f);
+                    _skill_piano_effect.FadeInMoveUp(0.25f, 4f);
                 }
                 else if (play_piano_atk > 1)
                 {
-                    _skill_piano_effect.JumpAnimation(20f, 0.5f, play_piano_atk - 1);
+                    _skill_piano_effect.JumpAnimation(4f, 0.25f, play_piano_atk - 1);
                 }
             }
             else
@@ -72,7 +72,6 @@ public class NPC_effect_03 : MonoBehaviour
                     case 21: // Bomb
                         Debug.Log("NPC03 skill_21");
                         play_piano_atk = 0;
-                        _skill_piano_effect.FadeOutMoveDown(0.5f, 50f);
                         Skill_public_funtion.B_damage += 10;
                         continue;
 

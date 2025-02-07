@@ -9,6 +9,8 @@ public class skill_piano_effect : MonoBehaviour
     private Vector3 startPosition;
     public SpriteRenderer number_pic;
 
+    public GameObject number_object, icon_object;
+
     public Sprite[] number_image;
 
     private void Awake()
@@ -18,14 +20,14 @@ public class skill_piano_effect : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     /// 向上淡入進場（啟用物件，從下方移動至原位置）
     public void FadeInMoveUp(float duration, float moveDistance)
     {
-        Debug.Log("piano NPC03 FadeInMoveUp~~~");
-        gameObject.SetActive(true);
+        number_object.SetActive(true);
+        icon_object.SetActive(true);
         StartCoroutine(FadeInMoveUpRoutine(duration, moveDistance));
     }
     /// 向下淡出離場（移動後關閉物件）
@@ -42,7 +44,7 @@ public class skill_piano_effect : MonoBehaviour
     private IEnumerator FadeInMoveUpRoutine(float duration, float moveDistance)
     {
         float elapsedTime = 0f;
-        Vector3 start = startPosition - new Vector3(0, moveDistance, 0);
+        Vector3 start = startPosition + new Vector3(0, moveDistance, 0); // 🔹 起始點改為上方
         Vector3 end = startPosition;
         transform.localPosition = start;
 
@@ -52,7 +54,6 @@ public class skill_piano_effect : MonoBehaviour
             transform.localPosition = Vector3.Lerp(start, end, elapsedTime / duration);
             yield return null;
         }
-
         transform.localPosition = end;
     }
 
@@ -60,7 +61,7 @@ public class skill_piano_effect : MonoBehaviour
     {
         float elapsedTime = 0f;
         Vector3 start = startPosition;
-        Vector3 end = startPosition - new Vector3(0, moveDistance, 0);
+        Vector3 end = startPosition + new Vector3(0, moveDistance, 0); // 🔹 目標點改為上方
 
         while (elapsedTime < duration)
         {
@@ -68,9 +69,9 @@ public class skill_piano_effect : MonoBehaviour
             transform.localPosition = Vector3.Lerp(start, end, elapsedTime / duration);
             yield return null;
         }
-
         transform.localPosition = end;
-        gameObject.SetActive(false);
+        icon_object.SetActive(false);
+        number_object.SetActive(false);
     }
 
     private IEnumerator JumpRoutine(float jumpHeight, float jumpDuration, int jumpcount)
@@ -88,10 +89,10 @@ public class skill_piano_effect : MonoBehaviour
         }
 
         elapsedTime = 0f;
-        if (jumpcount >= number_image.Length)
+        if (jumpcount >= Skill_public_funtion.P_time)
         {
             jumpcount = 0;
-            FadeOutMoveDown(0.5f, 50f);
+            FadeOutMoveDown(0.25f, 4f);
         }
         number_pic.sprite = number_image[jumpcount];
 

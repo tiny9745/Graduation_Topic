@@ -489,12 +489,12 @@ GameObject:
   - component: {fileID: 1986092897256834497}
   - component: {fileID: 2107125510854533892}
   m_Layer: 0
-  m_Name: Counting Notes1
+  m_Name: number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1986092897256834497
 Transform:
   m_ObjectHideFlags: 0
@@ -504,11 +504,11 @@ Transform:
   m_GameObject: {fileID: 6374075330873130020}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.85, y: 0, z: 0.3}
+  m_LocalPosition: {x: 0.4106, y: 0, z: 0.15}
   m_LocalScale: {x: 1.08, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 459397438335577392}
+  m_Father: {fileID: 4614608800171506175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2107125510854533892
 SpriteRenderer:
@@ -562,6 +562,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7184768976639380334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4614608800171506175}
+  - component: {fileID: 6174231757301864181}
+  m_Layer: 0
+  m_Name: skill_piano_number
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4614608800171506175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7184768976639380334}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.060599983, y: 11.97, z: -0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1986092897256834497}
+  - {fileID: 459397438335577392}
+  m_Father: {fileID: 1377873141148376736}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6174231757301864181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7184768976639380334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9ed1da931322541960111a7ca85458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number_pic: {fileID: 2107125510854533892}
+  number_object: {fileID: 6374075330873130020}
+  icon_object: {fileID: 7386479384208023229}
+  number_image:
+  - {fileID: 21300000, guid: 243f3dcbaf68bfd409a49ea8149fcdf8, type: 3}
+  - {fileID: 21300000, guid: 69ebb7cd3e8618c41abfb2e8d0ace76f, type: 3}
+  - {fileID: 21300000, guid: 6c782222bdfc6fa4db1639db63cbc287, type: 3}
+  - {fileID: 21300000, guid: 15aea61c14fef294a8f322d613b8f76c, type: 3}
+  - {fileID: 21300000, guid: 1b4a0f761eeddde43b8fd1e597b0bd6e, type: 3}
 --- !u!1 &7386479384208023229
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,14 +627,13 @@ GameObject:
   m_Component:
   - component: {fileID: 459397438335577392}
   - component: {fileID: 4923010599586687976}
-  - component: {fileID: 5708055298538251588}
   m_Layer: 0
-  m_Name: skill_piano_number
+  m_Name: music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &459397438335577392
 Transform:
   m_ObjectHideFlags: 0
@@ -589,12 +643,11 @@ Transform:
   m_GameObject: {fileID: 7386479384208023229}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 11.97, z: -0.3}
+  m_LocalPosition: {x: -0.43940002, y: 0, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1986092897256834497}
-  m_Father: {fileID: 1377873141148376736}
+  m_Children: []
+  m_Father: {fileID: 4614608800171506175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4923010599586687976
 SpriteRenderer:
@@ -648,25 +701,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5708055298538251588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7386479384208023229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9ed1da931322541960111a7ca85458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  number_pic: {fileID: 4923010599586687976}
-  number_image:
-  - {fileID: 21300000, guid: 243f3dcbaf68bfd409a49ea8149fcdf8, type: 3}
-  - {fileID: 21300000, guid: 69ebb7cd3e8618c41abfb2e8d0ace76f, type: 3}
-  - {fileID: 21300000, guid: 6c782222bdfc6fa4db1639db63cbc287, type: 3}
-  - {fileID: 21300000, guid: 15aea61c14fef294a8f322d613b8f76c, type: 3}
-  - {fileID: 21300000, guid: 1b4a0f761eeddde43b8fd1e597b0bd6e, type: 3}
 --- !u!1 &7440025053212357370
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +772,7 @@ Transform:
   - {fileID: 2668280523366736796}
   - {fileID: 4032549033181439169}
   - {fileID: 2671291059079825813}
-  - {fileID: 459397438335577392}
+  - {fileID: 4614608800171506175}
   - {fileID: 1441875955274098756}
   - {fileID: 284238328540099381}
   m_Father: {fileID: 0}
@@ -908,7 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 7230315417705204069}
   HP_control: {fileID: 7916481744572787998}
-  _skill_piano_effect: {fileID: 5708055298538251588}
+  _skill_piano_effect: {fileID: 6174231757301864181}
   bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
   bomb_point: {fileID: 7440025053212357370}
   Ward12: {fileID: 7035810975034627314, guid: cedb763a9d8468b4c880394512cb93db, type: 3}
