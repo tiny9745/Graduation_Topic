@@ -8,6 +8,7 @@ public class NPC_effect_03 : MonoBehaviour
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
+    public Animator skill_2x_animator, skill21_animator, skill22_animator, skill23_animator, skill24_animator, skill25_1_animator, skill25_2_animator;
 
     private bool skill_15_stop_time_trigger = true; private float skill_15_stop_time = 0;
 
@@ -67,16 +68,22 @@ public class NPC_effect_03 : MonoBehaviour
         {
             foreach (var icon in IconManager.Instance.IconList)
             {
+                if (icon.iconID >= 20 && icon.iconID < 30)
+                {
+                    skill_2x_animator.SetTrigger("skill_base_bomb");
+                }
                 switch (icon.iconID)
                 {
                     case 21: // Bomb
                         Debug.Log("NPC03 skill_21");
+                        skill21_animator.SetTrigger("skill_bomb21");
                         play_piano_atk = 0;
                         Skill_public_funtion.B_damage += 10;
                         continue;
 
                     case 22: // Flash
                         Debug.Log("NPC03 skill_22");
+                        skill22_animator.SetBool("skill_bomb22", true);
                         Skill_public_funtion.B_damage += 15;
                         control.stun = true;
                         Invoke(nameof(Stun_end), 3);
@@ -84,6 +91,7 @@ public class NPC_effect_03 : MonoBehaviour
 
                     case 23: // Ricochet
                         Debug.Log("NPC03 skill_23");
+                        skill23_animator.SetTrigger("skill_bomb23");
                         Skill_public_funtion.B_damage += 20;
                         piano_flag = false;
                         play_piano_atk++;
@@ -91,6 +99,7 @@ public class NPC_effect_03 : MonoBehaviour
 
                     case 24: // Air Bullet
                         Debug.Log("NPC03 skill_24");
+                        skill24_animator.SetTrigger("skill_bomb24");
                         Skill_public_funtion.B_damage += 15;
                         if (control.NPC_HP < NPC_back)
                             control.NPC_HP = 0;
@@ -99,6 +108,8 @@ public class NPC_effect_03 : MonoBehaviour
                         continue;
                     case 25: // Smoke Bomb
                         Debug.Log("NPC03 skill_25");
+                        skill25_1_animator.SetBool("skill_bomb25_1", true);
+                        skill25_2_animator.SetBool("skill_bomb25_2", true);
                         Skill_public_funtion.B_damage += 20;//spawn smoke not done
                         continue;
                     default:
