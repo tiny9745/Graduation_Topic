@@ -43,7 +43,7 @@ public class NPC_effect_03 : MonoBehaviour
         if (Skill_public_funtion.play_piano)
         {
             Debug.Log("piano NPC03 skill");
-            if (play_piano_atk < Skill_public_funtion.P_time - 1)
+            if (play_piano_atk < Skill_public_funtion.P_time)
             {
                 play_piano_atk++;
                 Debug.Log("NPC03 skill_2x:" + play_piano_atk);
@@ -131,6 +131,7 @@ public class NPC_effect_03 : MonoBehaviour
 
     void Stun_end()
     {
+        skill22_animator.SetBool("skill_bomb22", false);
         control.stun = false;
     }
     void Reset_flag()

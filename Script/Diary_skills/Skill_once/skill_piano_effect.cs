@@ -89,7 +89,7 @@ public class skill_piano_effect : MonoBehaviour
         }
 
         elapsedTime = 0f;
-        if (jumpcount >= Skill_public_funtion.P_time - 1)
+        if (jumpcount >= Skill_public_funtion.P_time)
         {
             jumpcount = 0;
             FadeOutMoveDown(0.25f, 4f);
