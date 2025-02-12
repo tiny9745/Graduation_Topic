@@ -167,7 +167,7 @@ public class Ptest : MonoBehaviour
         List<int> k = new List<int>();
         for (int i = 0; i < availablePieces.Count; i++)
         {
-            if (availablePieces[i].PieceName.Substring(0, 3) == "Blu")
+            if (availablePieces[i].PieceName.Substring(0, 3) == "Red")
             {
                 pickedPieces.Add(availablePieces[i]);
                 SortPiece(availablePieces[i]);
