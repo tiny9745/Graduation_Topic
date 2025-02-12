@@ -12,7 +12,7 @@ public class NPC_effect_03 : MonoBehaviour
 
     private bool skill_15_stop_time_trigger = true; private float skill_15_stop_time = 0;
 
-    private bool skill_25_effect = false; private float skill_25_effect_time = 0; private int skill_25_effect_count = 0; private float skill_25_max_time = 5, skill_25_step_time = 0.5f;
+    private bool skill_25_effect = false; private float skill_25_effect_time = 0; private float skill_25_max_time = 2, skill_25_step_time = 0.5f;
 
 
     // Update is called once per frame
@@ -146,6 +146,7 @@ public class NPC_effect_03 : MonoBehaviour
         if (minus < 5) minus = 5.0f;
         control.NPC_HP -= minus;
         Skill_public_funtion.B_damage = 0;
+        HP_control.UpdateHealthBar();
     }
 
     public void fight_instinct_npc()//被MC攻擊時作用
@@ -232,12 +233,7 @@ public class NPC_effect_03 : MonoBehaviour
                         if (skill_25_effect && skill_25_effect_time < 5)
                         {
                             skill_25_effect_time += Time.deltaTime;
-                            if (skill_25_effect_time >= skill_25_step_time && skill_25_effect_time < skill_25_max_time)
-                            {
-                                HP_control.TakeDamage(20, control.NPC03_DEF);
-                                skill_25_step_time += 0.5f;
-                            }
-                            else if (skill_25_effect_time >= skill_25_max_time)
+                            if (skill_25_effect_time >= skill_25_max_time)
                             {
                                 skill_25_step_time = 0.5f;
                                 skill25_1_animator.SetBool("skill_bomb25_1", false);
@@ -246,53 +242,12 @@ public class NPC_effect_03 : MonoBehaviour
                                 skill_25_effect_time = 0;
                                 break;
                             }
-
-
-                            // if (skill_25_effect_time >= 0.5f && skill_25_effect_count == 0)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
-                            // else if (skill_25_effect_time >= 1f && skill_25_effect_count == 1)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
-                            // else if (skill_25_effect_time >= 1.5f && skill_25_effect_count == 2)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
-                            // else if (skill_25_effect_time >= 2f && skill_25_effect_count == 3)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
-                            // else if (skill_25_effect_time >= 2.5f && skill_25_effect_count == 4)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
-                            // else if (skill_25_effect_time >= 3f && skill_25_effect_count == 5)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
-                            // else if (skill_25_effect_time >= 3.5f && skill_25_effect_count == 6)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
-                            // else if (skill_25_effect_time >= 4f && skill_25_effect_count == 7)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
-                            // else if (skill_25_effect_time >= 4.5f && skill_25_effect_count == 8)
-                            // {
-                            //     damage(20);
-                            //     skill_25_effect_count++;
-                            // }
+                            else if (skill_25_effect_time >= skill_25_step_time)
+                            {
+                                HP_control.TakeDamage(5, control.NPC03_DEF);
+                                skill_25_step_time += 0.5f;
+                                Debug.Log("NPC03 skill_25_step_time:" + skill_25_step_time);
+                            }    
                         }
                         break;
                 }
