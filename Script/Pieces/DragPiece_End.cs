@@ -27,36 +27,35 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         validSequences = new List<HashSet<int>>()
         {
             //拼湊完會將陣列改成999
-            new HashSet<int> { 1, 2, 5, 6 },
-            new HashSet<int> { 1, 4, 5, 6 },
-            new HashSet<int> { 2, 6 },
-            new HashSet<int> { 2, 4, 6 },
-            new HashSet<int> { 1, 3 },
+            new HashSet<int> { 1, 2, 5, 6 },//1
+            new HashSet<int> { 1, 4, 5, 6 },//2
+            new HashSet<int> { 2, 6 },//3
+            new HashSet<int> { 2, 4, 6 },//4
+            new HashSet<int> { 1, 3 },//5
 
-            new HashSet<int> { 11, 16, 17 },
-            new HashSet<int> { 11, 12, 17, 19 },
-            new HashSet<int> { 13, 16, 18 },
-            new HashSet<int> { 11, 14, 16 },
-            new HashSet<int> { 11, 15 },
+            new HashSet<int> { 11, 16, 17 },//11
+            new HashSet<int> { 11, 12, 17, 19 },//12
+            new HashSet<int> { 13, 16, 18 },//13
+            new HashSet<int> { 11, 14, 16 },//14
+            new HashSet<int> { 11, 15 },//15
 
-            new HashSet<int> { 22, 26 },
-            new HashSet<int> { 21, 22, 26 },
-            new HashSet<int> { 22, 23, 25, 26 },
-            new HashSet<int> { 22, 24 },
-            new HashSet<int> { 22, 24, 25, 26 },
+            new HashSet<int> { 22, 26 },//#鋼琴 #老師
+            new HashSet<int> { 21, 22, 26 },//#鋼琴 #老師 #食物
+            new HashSet<int> { 22, 23, 25, 26 },//#鋼琴 #父母 #老師 #課業
+            new HashSet<int> { 22, 24 },//#鋼琴 #學校
+            new HashSet<int> { 22, 24, 25, 26 },//#鋼琴 #老師 #課業 #學校
 
+            new HashSet<int> { 32, 36, 37 },//31
+            new HashSet<int> { 35, 36, 37 },//32
+            new HashSet<int> { 32, 34, 35, 39 },//33
+            new HashSet<int> { 35, 37, 38 },//34
+            new HashSet<int> { 31, 33 },//35
 
-            new HashSet<int> { 32, 36, 37 },
-            new HashSet<int> { 35, 36, 37 },
-            new HashSet<int> { 32, 34, 35, 39 },
-            new HashSet<int> { 35, 37, 38 },
-            new HashSet<int> { 31, 33 },
-
-            new HashSet<int> { 42, 44 },
-            new HashSet<int> { 42, 44, 45 },
-            new HashSet<int> { 41, 42, 44 },
-            new HashSet<int> { 43, 44 },
-            new HashSet<int> { 42, 44, 46 },
+            new HashSet<int> { 42, 44 },//41
+            new HashSet<int> { 42, 44, 45 },//42
+            new HashSet<int> { 41, 42, 44 },//43
+            new HashSet<int> { 43, 44 },//44
+            new HashSet<int> { 42, 44, 46 },//45
 
         };
     }
@@ -133,9 +132,9 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     {
         HashSet<int> combinationSet = new HashSet<int>(combination);
 
-        for (int i = 0; i < validSequences.Count; i++)
+        for (int i = 1; i <= validSequences.Count; i++)
         {
-            HashSet<int> sequence = validSequences[i];
+            HashSet<int> sequence = validSequences[i - 1];
 
             // 將數列標準化並排序
             List<int> combinationList = new List<int>(combinationSet);
@@ -160,7 +159,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 {
                     j = i % 5;
                 }
-                j += (int)(math.floor(i / 5) * 10);
+                j += (int)(math.floor((i - 1) / 5) * 10);
                 end_count = j;
                 Debug.Log("end_count" + end_count);
                 puzzle_count++;

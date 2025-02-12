@@ -43,7 +43,7 @@ public class NPC_effect_03 : MonoBehaviour
         if (Skill_public_funtion.play_piano)
         {
             Debug.Log("piano NPC03 skill");
-            if (play_piano_atk <= Skill_public_funtion.P_time)
+            if (play_piano_atk < Skill_public_funtion.P_time - 1)
             {
                 play_piano_atk++;
                 Debug.Log("NPC03 skill_2x:" + play_piano_atk);
@@ -247,7 +247,7 @@ public class NPC_effect_03 : MonoBehaviour
                                 HP_control.TakeDamage(5, control.NPC03_DEF);
                                 skill_25_step_time += 0.5f;
                                 Debug.Log("NPC03 skill_25_step_time:" + skill_25_step_time);
-                            }    
+                            }
                         }
                         break;
                 }
