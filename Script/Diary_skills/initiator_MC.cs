@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class initiator_MC : MonoBehaviour
     float accumulatedDistance = 0;
     bool timer_close = true;
     public GameObject bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
+    public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3;
     public InventoryManager inventoryManager;
 
     private Vector3 Guardian4x_point = Vector3.zero;
@@ -98,19 +100,55 @@ public class initiator_MC : MonoBehaviour
             {
                 switch (icon.iconID)
                 {
+                    case 31:
+                        if (Skill_public_funtion.skill_31_dash && Skill_public_funtion.skill_31_open)
+                        {
+                            Skill_public_funtion.skill_31_open = false;
+                            skill31_animator.SetBool("skill31", true);
+                            skill31_animator_1.SetTrigger("skill31_1");
+                        }
+                        else if (Skill_public_funtion.skill_31_dash == false && Skill_public_funtion.skill_31_open == false)
+                        {
+                            Skill_public_funtion.skill_31_open = true;
+                            skill31_animator.SetBool("skill31", false);
+                        }
+                        break;
                     case 32:
                         if (Skill_public_funtion.skill_32_Dash_end)
                         {
                             Skill_public_funtion.skill_32_Dash_end = false;
                             Skill_public_funtion.skill_32_Dash_time = 0;
                             static_parameters.MC_Wspeed *= 1.2f;
+                            Debug.Log("skill_32_Dash_direction:" + Skill_public_funtion.skill_32_Dash_direction);
                         }
                         if (Skill_public_funtion.skill_32_Dash_time < 2f)
                         {
+                            if (Skill_public_funtion.skill_32_Dash_direction == 1 || Skill_public_funtion.skill_32_Dash_direction == 3)
+                            {
+                                skill32_animator_1.SetBool("skill32", true);
+                                skill32_animator_2.SetBool("skill32", false);
+                                skill32_animator_3.SetBool("skill32", false);
+                            }
+                            else if (Skill_public_funtion.skill_32_Dash_direction == 2)
+                            {
+                                skill32_animator_1.SetBool("skill32", false);
+                                skill32_animator_2.SetBool("skill32", true);
+                                skill32_animator_3.SetBool("skill32", false);
+                            }
+                            else if (Skill_public_funtion.skill_32_Dash_direction == 4)
+                            {
+                                skill32_animator_1.SetBool("skill32", false);
+                                skill32_animator_2.SetBool("skill32", false);
+                                skill32_animator_3.SetBool("skill32", true);
+                            }
                             Skill_public_funtion.skill_32_Dash_time += Time.deltaTime;
                         }
-                        else if (Skill_public_funtion.skill_32_Dash_time < 10f)
+                        else if (Skill_public_funtion.skill_32_Dash_time < 3f)
                         {
+                            Skill_public_funtion.skill_32_Dash_time = 5f;
+                            skill32_animator_1.SetBool("skill32", false);
+                            skill32_animator_2.SetBool("skill32", false);
+                            skill32_animator_3.SetBool("skill32", false);
                             static_parameters.MC_Wspeed /= 1.2f;
                             Skill_public_funtion.skill_32_Dash_time = 15f;
                         }

@@ -17,7 +17,6 @@ public class Ani_MC : MonoBehaviour
     static public float DashCD_time = 3f;
     short ATK_count = 0; float ATK_time = 0;
     float attackTime = 0; bool isAttack_combo = false;
-    public Animator skill31_animator, skill31_animator_1;
     static public float dashDuration = 0.63f;
     void Start()
     {
@@ -117,8 +116,6 @@ public class Ani_MC : MonoBehaviour
     IEnumerator DashSequence()
     {
         isDashCooldown = true;
-        skill31_animator.SetBool("skill31", true);
-        skill31_animator_1.SetTrigger("skill31_1");
         static_parameters.Ani_state = 5; // 設置為 Dash 狀態
 
         float dashStartTime = Time.time;
@@ -133,7 +130,6 @@ public class Ani_MC : MonoBehaviour
         }
         Skill_public_funtion.skill_32_Dash_end = true;
         Skill_public_funtion.skill_31_dash = false;
-        skill31_animator.SetBool("skill31", false);
 
         DefaultCheck();
         yield return new WaitForSeconds(DashCD_time);
@@ -178,21 +174,26 @@ public class Ani_MC : MonoBehaviour
         switch (Angle_sum)
         {
             case 0:
+                Skill_public_funtion.skill_32_Dash_direction = 1;
                 animator.CrossFade("MC_Dash_R", 0.1f);
                 break;
             case 45:
             case 90:
+                Skill_public_funtion.skill_32_Dash_direction = 2;
                 animator.CrossFade("MC_Dash_B", 0.1f);
                 break;
             case 135:
             case 180:
+                Skill_public_funtion.skill_32_Dash_direction = 3;
                 animator.CrossFade("MC_Dash_L", 0.1f);
                 break;
             case 225:
             case 270:
+                Skill_public_funtion.skill_32_Dash_direction = 4;
                 animator.CrossFade("MC_Dash_F", 0.1f);
                 break;
             case 315:
+                Skill_public_funtion.skill_32_Dash_direction = 1;
                 animator.CrossFade("MC_Dash_R", 0.1f);
                 break;
         }
@@ -281,21 +282,26 @@ public class Ani_MC : MonoBehaviour
         switch (Angle_sum)
         {
             case 0:
+                Skill_public_funtion.skill_32_Dash_direction = 1;
                 animator.Play("MC_Walk_Right");
                 break;
             case 45:
             case 90:
+                Skill_public_funtion.skill_32_Dash_direction = 2;
                 animator.Play("MC_Walk_Back");
                 break;
             case 135:
             case 180:
+                Skill_public_funtion.skill_32_Dash_direction = 3;
                 animator.Play("MC_Walk_Left");
                 break;
             case 225:
             case 270:
+                Skill_public_funtion.skill_32_Dash_direction = 4;
                 animator.Play("MC_Walk_Front");
                 break;
             case 315:
+                Skill_public_funtion.skill_32_Dash_direction = 1;
                 animator.Play("MC_Walk_Right");
                 break;
         }
