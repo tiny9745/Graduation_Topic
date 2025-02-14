@@ -7,12 +7,10 @@ using UnityEngine;
 
 public class initiator_MC : MonoBehaviour
 {
-    float timer_f = 0;
     private Vector3 previousPosition;
-    float accumulatedDistance = 0;
-    bool timer_close = true;
     public GameObject bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
-    public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3;
+    public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
+    public Transform skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
     public InventoryManager inventoryManager;
 
     private Vector3 Guardian4x_point = Vector3.zero;
@@ -119,23 +117,23 @@ public class initiator_MC : MonoBehaviour
                             Skill_public_funtion.skill_32_Dash_end = false;
                             Skill_public_funtion.skill_32_Dash_time = 0;
                             static_parameters.MC_Wspeed *= 1.2f;
-                            Debug.Log("skill_32_Dash_direction:" + Skill_public_funtion.skill_32_Dash_direction);
+                            Debug.Log("skill_32_Dash_direction:" + Skill_public_funtion.skill_32_33_Dash_direction);
                         }
                         if (Skill_public_funtion.skill_32_Dash_time < 2f)
                         {
-                            if (Skill_public_funtion.skill_32_Dash_direction == 1 || Skill_public_funtion.skill_32_Dash_direction == 3)
+                            if (Skill_public_funtion.skill_32_33_Dash_direction == 1 || Skill_public_funtion.skill_32_33_Dash_direction == 3)
                             {
                                 skill32_animator_1.SetBool("skill32", true);
                                 skill32_animator_2.SetBool("skill32", false);
                                 skill32_animator_3.SetBool("skill32", false);
                             }
-                            else if (Skill_public_funtion.skill_32_Dash_direction == 2)
+                            else if (Skill_public_funtion.skill_32_33_Dash_direction == 2)
                             {
                                 skill32_animator_1.SetBool("skill32", false);
                                 skill32_animator_2.SetBool("skill32", true);
                                 skill32_animator_3.SetBool("skill32", false);
                             }
-                            else if (Skill_public_funtion.skill_32_Dash_direction == 4)
+                            else if (Skill_public_funtion.skill_32_33_Dash_direction == 4)
                             {
                                 skill32_animator_1.SetBool("skill32", false);
                                 skill32_animator_2.SetBool("skill32", false);
@@ -156,8 +154,21 @@ public class initiator_MC : MonoBehaviour
                     case 33:
                         if (Skill_public_funtion.skill_33_Dash)
                         {
+                            Debug.Log("skill_33_Dash");
                             Skill_public_funtion.skill_33_Dash = false;
-                            Instantiate(bullet33, Firepoint.position, transform.rotation);
+                            if (Skill_public_funtion.skill_32_33_Dash_direction == 1 || Skill_public_funtion.skill_32_33_Dash_direction == 3)
+                            {
+                                skill33_animator_1.SetTrigger("skill33");
+                            }
+                            else if (Skill_public_funtion.skill_32_33_Dash_direction == 2)
+                            {
+                                skill33_animator_2.SetTrigger("skill33");
+                            }
+                            else if (Skill_public_funtion.skill_32_33_Dash_direction == 4)
+                            {
+                                skill33_animator_3.SetTrigger("skill33");
+                            }
+                            StartCoroutine(Delayed_skill33());
                         }
                         break;
                     case 34:
@@ -177,6 +188,26 @@ public class initiator_MC : MonoBehaviour
                         break;
                 }
             }
+        }
+    }
+    IEnumerator Delayed_skill33()
+    {
+        Debug.Log("Delayed_skill33");
+        yield return new WaitForSeconds(0.2f);
+        if (Skill_public_funtion.skill_32_33_Dash_direction == 1 || Skill_public_funtion.skill_32_33_Dash_direction == 3)
+        {
+            skill33_animator_1.SetTrigger("skill33");
+            Instantiate(bullet33, skill33_Firepoint_1.position, transform.rotation);
+        }
+        else if (Skill_public_funtion.skill_32_33_Dash_direction == 2)
+        {
+            skill33_animator_2.SetTrigger("skill33");
+            Instantiate(bullet33, skill33_Firepoint_2.position, transform.rotation);
+        }
+        else if (Skill_public_funtion.skill_32_33_Dash_direction == 4)
+        {
+            skill33_animator_3.SetTrigger("skill33");
+            Instantiate(bullet33, skill33_Firepoint_3.position, transform.rotation);
         }
     }
     private void Book_throwing()

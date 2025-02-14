@@ -174,26 +174,26 @@ public class Ani_MC : MonoBehaviour
         switch (Angle_sum)
         {
             case 0:
-                Skill_public_funtion.skill_32_Dash_direction = 1;
+                Skill_public_funtion.skill_32_33_Dash_direction = 1;
                 animator.CrossFade("MC_Dash_R", 0.1f);
                 break;
             case 45:
             case 90:
-                Skill_public_funtion.skill_32_Dash_direction = 2;
+                Skill_public_funtion.skill_32_33_Dash_direction = 2;
                 animator.CrossFade("MC_Dash_B", 0.1f);
                 break;
             case 135:
             case 180:
-                Skill_public_funtion.skill_32_Dash_direction = 3;
+                Skill_public_funtion.skill_32_33_Dash_direction = 3;
                 animator.CrossFade("MC_Dash_L", 0.1f);
                 break;
             case 225:
             case 270:
-                Skill_public_funtion.skill_32_Dash_direction = 4;
+                Skill_public_funtion.skill_32_33_Dash_direction = 4;
                 animator.CrossFade("MC_Dash_F", 0.1f);
                 break;
             case 315:
-                Skill_public_funtion.skill_32_Dash_direction = 1;
+                Skill_public_funtion.skill_32_33_Dash_direction = 1;
                 animator.CrossFade("MC_Dash_R", 0.1f);
                 break;
         }
@@ -282,26 +282,21 @@ public class Ani_MC : MonoBehaviour
         switch (Angle_sum)
         {
             case 0:
-                Skill_public_funtion.skill_32_Dash_direction = 1;
                 animator.Play("MC_Walk_Right");
                 break;
             case 45:
             case 90:
-                Skill_public_funtion.skill_32_Dash_direction = 2;
                 animator.Play("MC_Walk_Back");
                 break;
             case 135:
             case 180:
-                Skill_public_funtion.skill_32_Dash_direction = 3;
                 animator.Play("MC_Walk_Left");
                 break;
             case 225:
             case 270:
-                Skill_public_funtion.skill_32_Dash_direction = 4;
                 animator.Play("MC_Walk_Front");
                 break;
             case 315:
-                Skill_public_funtion.skill_32_Dash_direction = 1;
                 animator.Play("MC_Walk_Right");
                 break;
         }
