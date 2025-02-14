@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     #region Singleton
     public static InventoryManager Instance;
-    public GameObject bullet01, bullet43, bullet44;
+    public GameObject bullet01, bullet14_01, bullet43, bullet44;
     public Transform Firepoint;
     public ItemSlot _slot;
     public List<Item> ItemList;
@@ -59,18 +59,12 @@ public class InventoryManager : MonoBehaviour
         if (static_parameters.MC_HP > 0)
         {
             Debug.Log("_slot.slotID: " + _slot.slotID);
+            bullet_into();
+            static_parameters.bullet_quantity--;
+            _slot.UseItem();
             if (Skill_public_funtion.skill_14_enter)
             {
-                bullet_into();
-                Invoke("bullet_into", 0.25f);
-                static_parameters.bullet_quantity--;
-                _slot.UseItem();
-            }
-            else
-            {
-                bullet_into();
-                static_parameters.bullet_quantity--;
-                _slot.UseItem();
+                Invoke("bullet_into14", 0.25f);
             }
         }
     }
@@ -81,13 +75,24 @@ public class InventoryManager : MonoBehaviour
         {
             Instantiate(bullet01, Firepoint.position, transform.rotation);
         }
-        else if (_slot.slotID == 43)
+        else if (_slot.slotID == 43)//預置物暫時未套用43，目前設為01
         {
             Instantiate(bullet43, Firepoint.position, transform.rotation);
         }
-        else if (_slot.slotID == 44)
+        else if (_slot.slotID == 44)//回血道具
         {
             Instantiate(bullet44, Firepoint.position, transform.rotation);
         }
+    }
+    private void bullet_into14()
+    {
+        if (_slot.slotID == 1)
+        {
+            Instantiate(bullet14_01, Firepoint.position, transform.rotation);
+        }
+        // else if (_slot.slotID == 43)//預置物暫時未套用43，目前設為01
+        // {
+        //     Instantiate(bullet43, Firepoint.position, transform.rotation);
+        // }
     }
 }
