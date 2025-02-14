@@ -306,6 +306,10 @@ public class NPC_effect_03 : MonoBehaviour
             {
                 HP_control.TakeDamage(Skill_public_funtion.skill_34_atk, static_parameters.MC_DEF);
             }
+            if (other.gameObject.tag == "skill_12_ward")
+            {
+                HP_control.TakeDamage(Skill_public_funtion.skill_12_atk, static_parameters.MC_DEF);
+            }  
         }
     }
 }

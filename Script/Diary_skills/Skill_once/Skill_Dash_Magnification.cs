@@ -5,7 +5,7 @@ using UnityEngine;
 public class Skill_Dash_Magnification : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Destroy(gameObject, 5);
     }
