@@ -193,7 +193,7 @@ public class initiator_MC : MonoBehaviour
     IEnumerator Delayed_skill33()
     {
         Debug.Log("Delayed_skill33");
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         if (Skill_public_funtion.skill_32_33_Dash_direction == 1 || Skill_public_funtion.skill_32_33_Dash_direction == 3)
         {
             skill33_animator_1.SetTrigger("skill33");
