@@ -19,10 +19,6 @@ public class initiator_MC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Skill_public_funtion.play_piano = true;
-        // Skill_public_funtion.feel_to_skill = 2; // 0=happy,1=angry,2=sad,3=wow
-        // Debug.Log("feel_to_skill:" + Skill_public_funtion.feel_to_skill);
-
         previousPosition = transform.position;
         Skill_public_funtion.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
     }

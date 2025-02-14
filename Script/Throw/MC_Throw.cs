@@ -10,9 +10,11 @@ public class MC_Throw : MonoBehaviour
     public GameObject targetObject;
     Vector3 moveDirection;
     Transform targetTransform;
+    private Animator skill13_animator;
     void Start()
     {
         targetObject = GameObject.Find("Player_S");
+        skill13_animator = GetComponent<Animator>();
         if (targetObject != null)
         {
             float angle_NPC = FindNearestNPCAngle();
