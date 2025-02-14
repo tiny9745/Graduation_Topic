@@ -24,6 +24,17 @@ public class MC_Throw : MonoBehaviour
             moveDirection = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)); // 計算絕對方向向量
         }
         Destroy(gameObject, lifetime);
+        if (skill13_animator != null)
+        {
+            if (Skill_public_funtion.skill_13_bullet_atk != 1f)
+            {
+                skill13_animator.SetBool("skill13", true);
+            }
+            else
+            {
+                skill13_animator.SetBool("skill13", false);
+            }
+        }
     }
 
     // Update is called once per frame
