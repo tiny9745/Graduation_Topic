@@ -9,7 +9,8 @@ public class initiator_MC : MonoBehaviour
 {
     private Vector3 previousPosition;
     public GameObject bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
-    public Animator skill11_animatorA, skill11_animatorB, skill11_animatorC, skill11_animatorD, skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
+    public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
+    public Animator[] skill11_animatorA;
     public Transform skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
     public InventoryManager inventoryManager;
 
@@ -224,10 +225,10 @@ public class initiator_MC : MonoBehaviour
                         {
                             Skill_public_funtion.skill_11_throw_time += Time.deltaTime;
                         }
-                        else
+                        else if (static_parameters.bullet_quantity < 4)
                         {
                             Skill_public_funtion.skill_11_throw_time = 0;
-                            Instantiate(throw11, Firepoint.position, transform.rotation);
+                            StartCoroutine(skill_11_after());
                         }
                         break;
                     case 13:
@@ -246,6 +247,13 @@ public class initiator_MC : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator skill_11_after()
+    {
+        skill11_animatorA[static_parameters.bullet_quantity].SetTrigger("skill11A");
+        yield return new WaitForSeconds(1.15f);
+        Instantiate(throw11, Firepoint.position, transform.rotation);
     }
     private void Guardian()//背後靈
     {
