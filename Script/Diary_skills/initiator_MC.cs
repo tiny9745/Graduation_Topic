@@ -9,7 +9,7 @@ public class initiator_MC : MonoBehaviour
 {
     private Vector3 previousPosition;
     public GameObject bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
-    public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
+    public Animator skill11_animatorA, skill11_animatorB, skill11_animatorC, skill11_animatorD, skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
     public Transform skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
     public InventoryManager inventoryManager;
 
@@ -21,6 +21,7 @@ public class initiator_MC : MonoBehaviour
         // Skill_public_funtion.play_piano = true;
         // Skill_public_funtion.feel_to_skill = 2; // 0=happy,1=angry,2=sad,3=wow
         // Debug.Log("feel_to_skill:" + Skill_public_funtion.feel_to_skill);
+
         previousPosition = transform.position;
         Skill_public_funtion.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
     }
