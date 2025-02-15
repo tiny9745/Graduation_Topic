@@ -56,7 +56,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             new HashSet<int> { 41, 42, 44 },//#圖書館 #植物 #書籍-花苞
             new HashSet<int> { 43, 44 },//#植物 #魔法-禮物
             new HashSet<int> { 42, 44, 46 },//#圖書館 #植物 #天氣-無精打采
-
         };
     }
 
