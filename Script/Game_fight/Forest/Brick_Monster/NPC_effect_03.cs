@@ -10,7 +10,7 @@ public class NPC_effect_03 : MonoBehaviour
     bool piano_flag = true;
     public Animator skill_2x_animator, skill21_animator, skill22_animator, skill23_animator, skill24_animator, skill25_1_animator, skill25_2_animator;
 
-    private bool skill_15_stop_time_trigger = true; private float skill_15_stop_time = 0;
+    // private bool skill_15_stop_time_trigger = true; private float skill_15_stop_time = 0;
 
     private bool skill_25_effect = false; private float skill_25_effect_time = 0; private float skill_25_max_time = 2, skill_25_step_time = 0.5f;
 
@@ -89,7 +89,7 @@ public class NPC_effect_03 : MonoBehaviour
                         skill22_animator.SetBool("skill_bomb22", true);
                         Skill_public_funtion.B_damage += 15;
                         control.stun = true;
-                        Invoke(nameof(Stun_end), 3);
+                        Invoke(nameof(Stun_end22), 3);
                         continue;
 
                     case 23: // Ricochet
@@ -129,7 +129,7 @@ public class NPC_effect_03 : MonoBehaviour
     }
 
 
-    void Stun_end()
+    void Stun_end22()
     {
         skill22_animator.SetBool("skill_bomb22", false);
         control.stun = false;
@@ -214,22 +214,22 @@ public class NPC_effect_03 : MonoBehaviour
                 }
                 switch (icon.iconID)
                 {
-                    case 15:
-                        if (skill_15_stop_time_trigger)
-                        {
-                            if (skill_15_stop_time < 10.5f)
-                            {
-                                skill_15_stop_time += Time.deltaTime;
-                            }
-                            else
-                            {
-                                Debug.Log("NPC03 rewalk");
-                                skill_15_stop_time_trigger = false;
-                                control.npcNavi.speed = control.npcSpeed;
-                                break;
-                            }
-                        }
-                        break;
+                    // case 15:
+                    //     if (skill_15_stop_time_trigger)
+                    //     {
+                    //         if (skill_15_stop_time < 1.5f)
+                    //         {
+                    //             skill_15_stop_time += Time.deltaTime;
+                    //         }
+                    //         else
+                    //         {
+                    //             Debug.Log("NPC03 rewalk");
+                    //             skill_15_stop_time_trigger = false;
+                    //             control.stun = false;
+                    //             break;
+                    //         }
+                    //     }
+                    //     break;
                     case 25:
                         if (skill_25_effect && skill_25_effect_time < 5)
                         {
@@ -271,13 +271,15 @@ public class NPC_effect_03 : MonoBehaviour
                             Instantiate(Ward12, point, Ward12.transform.rotation);
                         }
                         break;
-                    case 15://trigger Enter tag = "MC_bullet"
+                    case 15:
                         if (other.gameObject.tag == "MC_bullet")
                         {
                             Debug.Log("NPC03 Stop");
-                            skill_15_stop_time_trigger = true;
-                            skill_15_stop_time = 0;
-                            control.npcNavi.speed = 0;
+                            // skill_15_stop_time_trigger = true;
+                            // skill_15_stop_time = 0;
+                            control.stun = true;
+                            skill22_animator.SetBool("skill_bullet15", true);
+                            Invoke(nameof(Stun_end15), 3);
                         }
                         break;
                     case 31:
@@ -309,7 +311,13 @@ public class NPC_effect_03 : MonoBehaviour
             if (other.gameObject.tag == "skill_12_ward")
             {
                 HP_control.TakeDamage(Skill_public_funtion.skill_12_atk, static_parameters.MC_DEF);
-            }  
+            }
         }
+    }
+    void Stun_end15()
+    {
+        Debug.Log("NPC03 rewalk");
+        skill22_animator.SetBool("skill_bullet15", false);
+        control.stun = false;
     }
 }
