@@ -191,20 +191,17 @@ public class initiator_MC : MonoBehaviour
     IEnumerator Delayed_skill33()
     {
         Debug.Log("Delayed_skill33");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.15f);
         if (Skill_public_funtion.skill_32_33_Dash_direction == 1 || Skill_public_funtion.skill_32_33_Dash_direction == 3)
         {
-            skill33_animator_1.SetTrigger("skill33");
             Instantiate(bullet33, skill33_Firepoint_1.position, transform.rotation);
         }
         else if (Skill_public_funtion.skill_32_33_Dash_direction == 2)
         {
-            skill33_animator_2.SetTrigger("skill33");
             Instantiate(bullet33, skill33_Firepoint_2.position, transform.rotation);
         }
         else if (Skill_public_funtion.skill_32_33_Dash_direction == 4)
         {
-            skill33_animator_3.SetTrigger("skill33");
             Instantiate(bullet33, skill33_Firepoint_3.position, transform.rotation);
         }
     }

@@ -167,23 +167,22 @@ public class Ptest : MonoBehaviour
     }
     void Test()
     {
-        int k=0,l=0;
+        int k = 0, l = 0;
         for (int i = 0; i < availablePieces.Count; i++)
         {
-            /*pickedPieces.Add(availablePieces[i]);
+            pickedPieces.Add(availablePieces[i]);
             SortPiece(availablePieces[i]);
-            show.Add(availablePieces[i]);*/
-            if (availablePieces[i].PieceName.Substring(0, 3) == "Red")
-            {
-                pickedPieces.Add(availablePieces[i]);
-                SortPiece(availablePieces[i]);
-                show.Add(availablePieces[i]);
-                if(l==0) k=i;   
-                l++;
-            }
+            show.Add(availablePieces[i]);
+            // if (availablePieces[i].PieceName.Substring(0, 3) == "Red")
+            // {
+            //     pickedPieces.Add(availablePieces[i]);
+            //     SortPiece(availablePieces[i]);
+            //     show.Add(availablePieces[i]);
+            //     if (l == 0) k = i;
+            //     l++;
+            // }
         }
-        Debug.Log("i"+k+" "+l);
-        for (int j = k; j < (l+k); j++)
+        for (int j = k; j < (l + k); j++)
         {
             Debug.Log(availablePieces[k].PieceName);
             availablePieces.RemoveAt(k);
