@@ -19,7 +19,6 @@ public class D_slot : MonoBehaviour
     }
     public void Clean()
     {
-        Debug.Log("Clean");
         icon = null;
         IconImage.sprite = emptySprite;
         diary_title.text = "--"; diary_date.text = "--月--日";

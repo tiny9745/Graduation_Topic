@@ -228,7 +228,6 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_13_bullet_atk == 1f)
                         {
                             Skill_public_funtion.skill_13_bullet_atk = 2f;
-                            Debug.Log("skill_13_bullet_atk:" + Skill_public_funtion.skill_13_bullet_atk);
                         }
                         break;
                     case 14:
