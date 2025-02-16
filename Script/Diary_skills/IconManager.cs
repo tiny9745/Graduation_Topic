@@ -94,11 +94,9 @@ public class IconManager : MonoBehaviour
                 Add(all_icon[2]);
                 break;
             case 24:
-                Debug.Log("Inventory is full:24");
                 Add(all_icon[3]);
                 break;
             case 25:
-                Debug.Log("Inventory is full:25");
                 Add(all_icon[4]);
                 break;
             case 31:
