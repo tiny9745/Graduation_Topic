@@ -167,24 +167,27 @@ public class Ptest : MonoBehaviour
     }
     void Test()
     {
-        List<int> k = new List<int>();
+        int k=0,l=0;
         for (int i = 0; i < availablePieces.Count; i++)
         {
-            pickedPieces.Add(availablePieces[i]);
+            /*pickedPieces.Add(availablePieces[i]);
             SortPiece(availablePieces[i]);
-            show.Add(availablePieces[i]);
-            /*if (availablePieces[i].PieceName.Substring(0, 3) == "Red")
+            show.Add(availablePieces[i]);*/
+            if (availablePieces[i].PieceName.Substring(0, 3) == "Red")
             {
                 pickedPieces.Add(availablePieces[i]);
                 SortPiece(availablePieces[i]);
                 show.Add(availablePieces[i]);
-                k.Add(i);
-            }*/
+                if(l==0) k=i;   
+                l++;
+            }
         }
-        /*for (int i = 0; i < availablePieces.Count; i++)
+        Debug.Log("i"+k+" "+l);
+        for (int j = k; j < (l+k); j++)
         {
-            availablePieces.RemoveAt(k[i]);
-        }*/
+            Debug.Log(availablePieces[k].PieceName);
+            availablePieces.RemoveAt(k);
+        }
         UpdateInventoryUI();
     }
 }
