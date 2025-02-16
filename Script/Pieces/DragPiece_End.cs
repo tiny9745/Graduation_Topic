@@ -160,8 +160,21 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 }
                 j += (int)(math.floor((i - 1) / 5) * 10);
                 end_count = j;
-                Debug.Log("end_count" + end_count);
                 puzzle_count++;
+                switch (math.floor((i - 1) / 5)){
+                    case 0:
+                        Skill_public_funtion.WOW += 1;
+                        break;
+                    case 1:
+                        Skill_public_funtion.SAD += 1;
+                        break;
+                    case 2:
+                        Skill_public_funtion.HAPPY += 1;
+                        break;
+                    case 3:
+                        Skill_public_funtion.ANGRY += 1;
+                        break;
+                }
                 return 2;
             }
 
@@ -215,10 +228,8 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         // 從 validSequences 中移除符合條件的組合
         foreach (var sequence in removedSequences)
         {
-            // validSequences.Remove(sequence);
             sequence.Clear(); // 清空原有內容
             sequence.Add(999); // 添加 999
-            Debug.Log("移除的組合: " + string.Join(", ", sequence));
         }
 
         // 清空 currentCombination 並重置碎片顯示

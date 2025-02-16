@@ -13,12 +13,11 @@ public class Change_mood : MonoBehaviour
     {
         
     }
-    public void Change(string mood){
-
-        //MoodChange(WOW, SAD, HAPPY, ANGRY, NORMAL);
+    public void Change(){
+        MoodChange(Skill_public_funtion.WOW,Skill_public_funtion.SAD,Skill_public_funtion.HAPPY,Skill_public_funtion.ANGRY);
     }
 
-    void MoodChange(int WOW, int SAD, int HAPPY, int ANGRY, int NORMAL){
+    void MoodChange(int WOW, int SAD, int HAPPY, int ANGRY){
         if(WOW > SAD && WOW > HAPPY && WOW > ANGRY){
             Mood.sprite = wow;
         }else if(SAD > WOW && SAD > HAPPY && SAD > ANGRY){
