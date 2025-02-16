@@ -23,7 +23,7 @@ public class Guardian41_col : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        Guardian41_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
+        Guardian41_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 15;
         player = GameObject.Find("Player_S");
         lastPlayerPosition = player.transform.position;
     }
@@ -160,17 +160,13 @@ public class Guardian41_col : MonoBehaviour
     {
         UpdatePlayerPath();
 
-        if (playerPath.Count > 0)
+        if (player != null)
         {
-            Vector3 targetPosition = playerPath.Peek(); // 取出最舊的點
-            targetPosition.y = transform.position.y; // 保持 Y 軸不變
+            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+            Vector3 targetPosition = player.transform.position - directionToPlayer * Guardian41_to_player_distance;
+            targetPosition.y = transform.position.y;
+            
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
-
-            // 如果已經接近目標點，則從佇列移除該點
-            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-            {
-                playerPath.Dequeue();
-            }
         }
     }
 }
