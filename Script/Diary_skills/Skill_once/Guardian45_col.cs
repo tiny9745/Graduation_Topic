@@ -18,7 +18,7 @@ public class Guardian45_col : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        Guardian45_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 5;
+        Guardian45_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 2.5f;
         player = GameObject.Find("Player_S");
     }
 
@@ -129,24 +129,33 @@ public class Guardian45_col : MonoBehaviour
         }
     }
 
-    private float orbitSpeed = 360f / 2f; // 2 秒繞一圈，每秒旋轉 180 度
+    private float orbitAngle = 0f; // 當前角度 (度數)
+    private float linearSpeed = 2f; // 固定線速度 (單位/秒)
+
+    // 確保 `orbitAngle` 根據 `linearSpeed` 和 `Guardian45_to_player_distance` 來計算角速度
     private void FollowPlayer()
     {
         if (player != null)
         {
-            float angle = Time.time * orbitSpeed; // 依時間變化的角度 (度數)
-            float radian = angle * Mathf.Deg2Rad; // 轉換為弧度
+            // 確保半徑不為零，避免除以零錯誤
+            if (Guardian45_to_player_distance <= 0.01f)
+                Guardian45_to_player_distance = 0.01f;
 
-            // 以 Guardian45_to_player_distance 作為繞圈半徑
+            float orbitSpeed = (linearSpeed / Guardian45_to_player_distance) * Mathf.Rad2Deg;
+
+            orbitAngle += orbitSpeed * Time.deltaTime;
+
+            if (orbitAngle >= 360f)
+                orbitAngle -= 360f;
+
+            float radian = orbitAngle * Mathf.Deg2Rad; // 轉換為弧度
+
             Vector3 orbitOffset = new Vector3(Mathf.Cos(radian), 0, Mathf.Sin(radian)) * Guardian45_to_player_distance;
 
-            // 設定新位置
             Vector3 targetPosition = player.transform.position + orbitOffset;
-            targetPosition.y = transform.position.y; // 保持當前高度
+            targetPosition.y = transform.position.y; // 保持高度不變
 
-            // 平滑移動
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
         }
     }
-
 }
