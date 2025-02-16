@@ -17,7 +17,6 @@ public class Guardian44_col : MonoBehaviour
     private float pathLength = 0f; // 記錄路徑總長度
     private Vector3 lastPlayerPosition;
 
-
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -84,7 +83,6 @@ public class Guardian44_col : MonoBehaviour
             playerPath.Enqueue(currentPlayerPosition);
             pathLength += segmentLength;
 
-            // 移除過長的路徑，保持總長度接近 Guardian44_to_player_distance
             while (pathLength > Guardian44_to_player_distance && playerPath.Count > 1)
             {
                 Vector3 removedPoint = playerPath.Dequeue();
@@ -99,17 +97,13 @@ public class Guardian44_col : MonoBehaviour
     {
         UpdatePlayerPath();
 
-        if (playerPath.Count > 0)
+        if (player != null)
         {
-            Vector3 targetPosition = playerPath.Peek(); // 取出最舊的點
-            targetPosition.y = transform.position.y; // 保持 Y 軸不變
+            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+            Vector3 targetPosition = player.transform.position - directionToPlayer * Guardian44_to_player_distance;
+            targetPosition.y = transform.position.y;
+            
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
-
-            // 如果已經接近目標點，則從佇列移除該點
-            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-            {
-                playerPath.Dequeue();
-            }
         }
     }
 }
