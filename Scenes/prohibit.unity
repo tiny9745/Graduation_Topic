@@ -32442,7 +32442,7 @@ GameObject:
   - component: {fileID: 902866627560755328}
   - component: {fileID: 3355518179463457968}
   m_Layer: 0
-  m_Name: skill_hit_box31
+  m_Name: skill_hit_box31_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32456,7 +32456,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3355518179463457967}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e52598d3707894041be9a0a2d559b672, type: 2}
   m_CullingMode: 0
@@ -33399,11 +33399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1.506022e-10
+      value: 8.881784e-16
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -8.359491e-11
+      value: -4.440892e-16
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33427,11 +33427,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008338372
+      value: -0.00000000832853
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000002159047
+      value: 0.0000000021564985
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -33879,6 +33879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af729279a3e6161488a12c857d0e2aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skill_hit_box31: {fileID: 8634359911271619275, guid: 1ffb8ea7515eaf24483b7a10762caaa2, type: 3}
   bullet33: {fileID: 1625309225332722915, guid: b5e50dbd78627954fb8cd690a8ff9a0c, type: 3}
   Ward34: {fileID: 8807571154689680997, guid: f3df8ffe633143b4c8cf3f29467de12d, type: 3}
   throw11: {fileID: 2674179045406656197, guid: 5bf85973acb2d5a44b4709131b6c39be, type: 3}
@@ -33901,6 +33902,7 @@ MonoBehaviour:
   - {fileID: 985837002}
   - {fileID: 980377996}
   - {fileID: 1478182011}
+  skill_hit_box31_postion: {fileID: 2579686309979548346}
   skill33_Firepoint_1: {fileID: 167108832}
   skill33_Firepoint_2: {fileID: 310251261}
   skill33_Firepoint_3: {fileID: 1743915123}
