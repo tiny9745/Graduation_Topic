@@ -209,9 +209,9 @@ public class NPC_effect_03 : MonoBehaviour
         {
             foreach (var icon in IconManager.Instance.IconList)
             {
-                {
-                    Skill_public_funtion.play_piano = true;
-                }
+                // {
+                //     Skill_public_funtion.play_piano = true;
+                // }
                 switch (icon.iconID)
                 {
                     // case 15:
