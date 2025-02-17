@@ -175,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 4882713094726148944}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000029563904, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -497,6 +497,7 @@ MonoBehaviour:
   bomb_hitbox: {fileID: 2484349344046770048}
   animator_ready: {fileID: 8088375046056724062}
   animator_bomb: {fileID: 6290252469277114274}
+  berry_bomb: {fileID: 5171298661249958598, guid: bac1568cbe61fba4186ec12f38566cbc, type: 3}
 --- !u!222 &4952138006261575214
 CanvasRenderer:
   m_ObjectHideFlags: 0

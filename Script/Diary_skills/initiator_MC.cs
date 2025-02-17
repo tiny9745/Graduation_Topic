@@ -7,12 +7,14 @@ using UnityEngine;
 
 public class initiator_MC : MonoBehaviour
 {
-    private Vector3 previousPosition;
-    public GameObject bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45; public Transform Firepoint;
+    private Vector3 previousPosition, lastTriggerPosition_31;
+    public GameObject skill_hit_box31, bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45;
+    public Transform Firepoint;
     public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
     public Animator[] skill11_animatorA;
-    public Transform skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
+    public Transform skill_hit_box31_postion, skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
     public InventoryManager inventoryManager;
+    private float skill31_triggerDistance = 3f;
 
     private Vector3 Guardian4x_point = Vector3.zero;
 
@@ -100,14 +102,23 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_31_dash && Skill_public_funtion.skill_31_open)
                         {
                             Skill_public_funtion.skill_31_open = false;
-                            skill31_animator.SetBool("skill31", true);
+                            // skill31_animator.SetBool("skill31", true);
                             skill31_animator_1.SetTrigger("skill31_1");
+                            lastTriggerPosition_31 = transform.position;
                         }
-                        else if (Skill_public_funtion.skill_31_dash == false && Skill_public_funtion.skill_31_open == false)
+                        if (Skill_public_funtion.skill_31_dash)
                         {
-                            Skill_public_funtion.skill_31_open = true;
-                            skill31_animator.SetBool("skill31", false);
+                            if (Vector3.Distance(transform.position, lastTriggerPosition_31) >= skill31_triggerDistance)
+                            {
+                                Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
+                                lastTriggerPosition_31 = transform.position;
+                            }
                         }
+                        // else if (Skill_public_funtion.skill_31_dash == false && Skill_public_funtion.skill_31_open == false)
+                        // {
+                        //     Skill_public_funtion.skill_31_open = true;
+                        //     skill31_animator.SetBool("skill31", false);
+                        // }
                         break;
                     case 32:
                         if (Skill_public_funtion.skill_32_Dash_end)
@@ -188,6 +199,17 @@ public class initiator_MC : MonoBehaviour
             }
         }
     }
+    IEnumerator Delayed_skill31()
+    {
+        Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
+        yield return new WaitForSeconds(0.2f);
+        Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
+    }
+
     IEnumerator Delayed_skill33()
     {
         Debug.Log("Delayed_skill33");

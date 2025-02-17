@@ -12,7 +12,7 @@ public class Bomb_Berry : MonoBehaviour
     private HashSet<GameObject> objectsInRange = new HashSet<GameObject>();
     public SphereCollider bomb_hitbox;
     public Animator animator_ready;
-    public Animator animator_bomb;
+    public GameObject berry_bomb;
     void Start()
     {
         // 紀錄初始子物件數量
@@ -123,7 +123,9 @@ public class Bomb_Berry : MonoBehaviour
     {
         if (berry != 0)
         {
-            animator_bomb.SetBool("BOOMFX_bomb", true);
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+            Debug.Log("Berry Explode");
+            Instantiate(berry_bomb, pos, transform.rotation);
             NPC_interactive.berry = berry;
             if (bomb_hitbox != null)
             {
@@ -133,6 +135,7 @@ public class Bomb_Berry : MonoBehaviour
             {
                 static_parameters.MC_HP -= 10 * berry;
             }
+            gameObject.SetActive(false);
             Destroy(gameObject, 1.1f);
         }
     }
