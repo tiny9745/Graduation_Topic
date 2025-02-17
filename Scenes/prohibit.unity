@@ -17343,6 +17343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Diarystatus: 0
+  C_mood: {fileID: 990590620}
   Notebook: {fileID: 2047872722}
   BattleUI: {fileID: 1717207085}
   Diaryslots: {fileID: 1977320164}
@@ -18351,18 +18352,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
         m_MethodName: Complet_piecing
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 990590620}
-        m_TargetAssemblyTypeName: Change_mood, Assembly-CSharp
-        m_MethodName: Change
-        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -33410,11 +33399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 8.881784e-16
+      value: 1.506022e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.440892e-16
+      value: -8.359491e-11
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33438,11 +33427,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000000832853
+      value: 0.000000008338372
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000021564985
+      value: -0.000000002159047
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

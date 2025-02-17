@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public short Diarystatus = 0;
+    public Change_mood C_mood;
     public GameObject Notebook, BattleUI,Diaryslots,Diarytext;
     public GameObject Menu, CH1, CH2, CH3, CH4;
     public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
@@ -27,6 +28,7 @@ public class UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             openclose();
+            C_mood.Change();
         }
     }
     public void Onclick1()
