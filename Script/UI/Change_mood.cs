@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Change_mood : MonoBehaviour
 {
-    public Image Mood;
-    public Sprite wow, sad, happy, angry, normal;
+    public Image Mood,Health,B1,B2,B3,B4;
+    public Sprite wow, sad, happy, angry, normal, bwow, bsad, bhappy, bangry, bnormal;
     public int mood=0;
     // Start is called before the first frame update
     void Start()
@@ -19,22 +19,27 @@ public class Change_mood : MonoBehaviour
         switch (mood)
         {
             case 0:
-                Mood.sprite = normal;
+                Mood.sprite = wow;
+                B1.sprite = bwow;B2.sprite = bwow;B3.sprite = bwow;B4.sprite = bwow;
                 break;
             case 1:
-                Mood.sprite = wow;
+                Mood.sprite = angry;
+                B1.sprite = bangry;B2.sprite = bangry;B3.sprite = bangry;B4.sprite = bangry;
                 break;
             case 2:
                 Mood.sprite = sad;
+                B1.sprite = bsad;B2.sprite = bsad;B3.sprite = bsad;B4.sprite = bsad;
                 break;
             case 3:
-                Mood.sprite = happy;
+                //Mood.sprite = ;
                 break;
             case 4:
-                Mood.sprite = angry;
+                Mood.sprite = happy;
+                B1.sprite = bhappy;B2.sprite = bhappy;B3.sprite = bhappy;B4.sprite = bhappy;
                 break;
             default:
                 Mood.sprite = normal;
+                B1.sprite = bnormal;B2.sprite = bnormal;B3.sprite = bnormal;B4.sprite = bnormal;
                 break;
         }
     }
