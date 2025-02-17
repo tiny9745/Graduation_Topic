@@ -16206,6 +16206,7 @@ MonoBehaviour:
   happy: {fileID: 21300000, guid: 0df826242eed85446b49a357f7dc3772, type: 3}
   angry: {fileID: 21300000, guid: fe414fca7270d0947a90e038324563f4, type: 3}
   normal: {fileID: 21300000, guid: 78ad7bcc3121f4a4283be1c204ad1a1a, type: 3}
+  mood: 0
 --- !u!1 &997483005
 GameObject:
   m_ObjectHideFlags: 0
@@ -32130,9 +32131,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146afc94139bc094189cffe6e9c6072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  C_mood: {fileID: 990590620}
   ItemImage: {fileID: 1538296698086646590}
   ItemName: {fileID: 2713348619047630232}
   emptySprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
+  Ewow: {fileID: 0}
+  Eanger: {fileID: 0}
+  Esad: {fileID: 0}
+  Ehappy: {fileID: 0}
   slotID: 0
 --- !u!114 &2482688568452668342
 MonoBehaviour:
@@ -33255,9 +33261,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146afc94139bc094189cffe6e9c6072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  C_mood: {fileID: 990590620}
   ItemImage: {fileID: 7758773204127119730}
   ItemName: {fileID: 3016366898273313317}
   emptySprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
+  Ewow: {fileID: 0}
+  Eanger: {fileID: 0}
+  Esad: {fileID: 0}
+  Ehappy: {fileID: 0}
   slotID: 0
 --- !u!1 &7473863357783155474
 GameObject:
@@ -33427,11 +33438,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000000832853
+      value: 0.000000008328529
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021564985
+      value: -0.0000000021564983
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -33590,9 +33601,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146afc94139bc094189cffe6e9c6072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  C_mood: {fileID: 990590620}
   ItemImage: {fileID: 3994475673567822014}
   ItemName: {fileID: 2482688568452668342}
   emptySprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
+  Ewow: {fileID: 0}
+  Eanger: {fileID: 0}
+  Esad: {fileID: 0}
+  Ehappy: {fileID: 0}
   slotID: 0
 --- !u!224 &8088372993401658900
 RectTransform:
@@ -33808,9 +33824,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146afc94139bc094189cffe6e9c6072c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  C_mood: {fileID: 990590620}
   ItemImage: {fileID: 3030329121442898060}
   ItemName: {fileID: 7063928266210603820}
   emptySprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
+  Ewow: {fileID: 0}
+  Eanger: {fileID: 0}
+  Esad: {fileID: 0}
+  Ehappy: {fileID: 0}
   slotID: 0
 --- !u!114 &8676149383117319065
 MonoBehaviour:
