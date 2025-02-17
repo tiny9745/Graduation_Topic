@@ -271,10 +271,17 @@ public class NPC03_control : MonoBehaviour
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 Debug.Log("MC_Att: " + static_parameters.Ani_state);
-                if (static_parameters.Ani_state > 1 && static_parameters.Ani_state < 5)
+                switch (static_parameters.Ani_state)
                 {
-                    Debug.Log("MC_Att_into");
-                    animator_to_atk.SetInteger("atk_to_MC", static_parameters.Ani_state - 1);
+                    case 2:
+                        animator_to_atk.SetTrigger("atk_to_MC01");
+                        break;
+                    case 3:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                    case 4:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
                 }
                 change_color_red();
                 effect.piano_Skill();
