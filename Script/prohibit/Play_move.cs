@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Play_move : MonoBehaviour
 {
     public float horizontalInput, verticalInput;
-    public float dashSpeed, walkSpeed=1;
+    public float dashSpeed, walkSpeed = 1;
     public bool DashCD = false;
 
     private Vector3 targetPosition;
@@ -21,7 +21,7 @@ public class Play_move : MonoBehaviour
         // Initialization if needed
         Player.transform.position = new Vector3(0, 2, 0);
     }
-    
+
     void Update()
     {
         rb.MovePosition(transform.position);
@@ -58,10 +58,12 @@ public class Play_move : MonoBehaviour
             {
                 transform.position += movement * dashSpeed * Time.deltaTime; // 衝刺速度
             }
-            else if(static_parameters.Ani_state>=2)
+            else if (static_parameters.Ani_state >= 2)
             {
                 transform.position += movement * 0.5f * Time.deltaTime;
-            }else{
+            }
+            else
+            {
                 transform.position += movement * walkSpeed * Time.deltaTime; // 行走速度
             }
 

@@ -647,7 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2671291059079825813}
   - component: {fileID: 5900787342013391770}
-  - component: {fileID: 2602999929209903440}
+  - component: {fileID: 2534671827271606428}
   m_Layer: 0
   m_Name: weaponDUCK-FX01-0001
   m_TagString: Untagged
@@ -722,7 +722,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2602999929209903440
+--- !u!95 &2534671827271606428
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -732,7 +732,7 @@ Animator:
   m_GameObject: {fileID: 3655277143602376797}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ffc84a46b0e339648a907b79147c8e81, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5419eb23553104e4288b4270930da50c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1468,7 +1468,7 @@ MonoBehaviour:
   effect: {fileID: 9094819117705494734}
   npcNavi: {fileID: 0}
   animator: {fileID: 1818161054931281942}
-  animator_to_atk: {fileID: 2602999929209903440}
+  animator_to_atk: {fileID: 2534671827271606428}
   TargetObj: {fileID: 0}
   Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
   NPC03: {fileID: 0}

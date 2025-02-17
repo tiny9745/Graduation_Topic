@@ -270,8 +270,12 @@ public class NPC03_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                animator_to_atk.SetTrigger("MC_Atk_N01");
-                Debug.Log("MC_Att");
+                Debug.Log("MC_Att: " + static_parameters.Ani_state);
+                if (static_parameters.Ani_state > 1 && static_parameters.Ani_state < 5)
+                {
+                    Debug.Log("MC_Att_into");
+                    animator_to_atk.SetInteger("atk_to_MC", static_parameters.Ani_state - 1);
+                }
                 change_color_red();
                 effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
@@ -444,5 +448,5 @@ public class NPC03_control : MonoBehaviour
     }
 
 
-    
+
 }
