@@ -8,8 +8,8 @@ public class NPC03_control : MonoBehaviour
 {
     public NPC_interactive npc_interactive; public NPC_HP_03 nPC_hP; public NPC_effect_03 effect;
     public NavMeshAgent npcNavi;
-    public Animator animator;
-    public Animator animator_to_atk;
+    public Animator animator, animator_to_atk;
+    public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Drop, NPC03, hitbox_Brick_Monster, Img_npc;
     public int DetectDistance = 33; int NPC_angle;
     public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, NPC03_ATK = 10, NPC03_DEF = 5;
@@ -271,6 +271,7 @@ public class NPC03_control : MonoBehaviour
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 Debug.Log("MC_Att: " + static_parameters.Ani_state);
+                Change();
                 switch (static_parameters.Ani_state)
                 {
                     case 2:
@@ -453,7 +454,28 @@ public class NPC03_control : MonoBehaviour
     {
         MC_to_Att = true;
     }
-
-
-
+    public void Change()
+    {
+        switch (Change_mood.mood)
+        {
+            case 0:
+                weaponDUCK.color = new UnityEngine.Color(0.63f, 0.98f, 0.86f, 1);
+                break;
+            case 1:
+                weaponDUCK.color = new UnityEngine.Color(0.98f, 0.62f, 0.63f, 1);
+                break;
+            case 2:
+                weaponDUCK.color = new UnityEngine.Color(0.61f, 0.8f, 1, 1);
+                break;
+            case 3:
+                //Mood.sprite = ;
+                break;
+            case 4:
+                weaponDUCK.color = new UnityEngine.Color(1, 0.93f, 0.59f, 1);
+                break;
+            default:
+                weaponDUCK.color = new UnityEngine.Color(0.95f, 0.88f, 0.89f, 1);
+                break;
+        }
+    }
 }
