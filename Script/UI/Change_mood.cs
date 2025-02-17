@@ -14,6 +14,7 @@ public class Change_mood : MonoBehaviour
         
     }
     public void Change(){
+        Debug.Log("Change");
         MoodChange(Skill_public_funtion.WOW,Skill_public_funtion.SAD,Skill_public_funtion.HAPPY,Skill_public_funtion.ANGRY);
     }
 
