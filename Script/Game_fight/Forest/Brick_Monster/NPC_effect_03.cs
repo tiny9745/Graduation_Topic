@@ -46,12 +46,11 @@ public class NPC_effect_03 : MonoBehaviour
             if (play_piano_atk < Skill_public_funtion.P_time)
             {
                 play_piano_atk++;
-                Debug.Log("NPC03 skill_2x:" + play_piano_atk);
                 if (play_piano_atk == 1)
                 {
                     _skill_piano_effect.FadeInMoveUp(0.25f, 4f);
                 }
-                else if (play_piano_atk > 1)
+                if (play_piano_atk > 0)
                 {
                     _skill_piano_effect.JumpAnimation(4f, 0.25f, play_piano_atk - 1);
                 }
@@ -59,6 +58,7 @@ public class NPC_effect_03 : MonoBehaviour
             else
             {
                 Debug.Log("NPC03 skill_2x complete!");
+                _skill_piano_effect.FadeOutMoveDown(0.25f, 4f);
                 Instantiate(bomb_piano, bomb_point.transform.position, Quaternion.identity);
                 play_piano_atk = 0;
             }
