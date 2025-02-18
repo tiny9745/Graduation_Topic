@@ -86,13 +86,7 @@ public class skill_piano_effect : MonoBehaviour
             transform.localPosition = Vector3.Lerp(start, peak, elapsedTime / (jumpDuration / 2));
             yield return null;
         }
-
         elapsedTime = 0f;
-        if (jumpcount >= Skill_public_funtion.P_time)
-        {
-            jumpcount = 0;
-            FadeOutMoveDown(0.25f, 4f);
-        }
         number_pic.sprite = number_image[jumpcount];
 
         // 向下
