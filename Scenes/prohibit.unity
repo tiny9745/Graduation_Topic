@@ -12110,6 +12110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fd8c293fd650c4a8c92636f2f4cfef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  piece: {fileID: 0}
   images_puzzle:
   - {fileID: 808646549}
   - {fileID: 147969121}
@@ -14081,7 +14082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &880867860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17356,6 +17357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Diarystatus: 0
   C_mood: {fileID: 990590620}
+  piece: {fileID: 1086910000}
+  dragPiece_End: {fileID: 805502239}
   Notebook: {fileID: 2047872722}
   BattleUI: {fileID: 1717207085}
   Diaryslots: {fileID: 1977320164}
@@ -17377,8 +17380,6 @@ MonoBehaviour:
   button_image: {fileID: 1135363989}
   craft_image: {fileID: 805502240}
   craft_sprite: {fileID: 21300000, guid: 45d53ef66c12be541a5ff2d335e92ea2, type: 3}
-  piece: {fileID: 1086910000}
-  dragPiece_End: {fileID: 805502239}
 --- !u!114 &1086909998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33409,11 +33410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 8.881784e-16
+      value: -1.8332003e-11
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.440892e-16
+      value: 1.0175194e-11
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33437,11 +33438,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008328529
+      value: 0.000000008347919
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000021564983
+      value: -0.000000002161519
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
