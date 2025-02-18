@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class Blood_col : MonoBehaviour
 {
     private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
+
+    public Image blood_after;
     float blood_base = 1;
-    float blood_tmp = 1000;
+    float blood_tmp = 1040;
     float previous_MC_HP_Max;
 
     void Start()
