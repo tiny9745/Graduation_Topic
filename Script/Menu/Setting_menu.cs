@@ -118,7 +118,7 @@ public class Setting_menu : MonoBehaviour
     public void Setting_SE()
     {
         SE_sound.volume = SE_control.value * All_sound_control.value;
-        static_parameters._SE_volue = SE_sound.volume * All_sound_control.value;
+        static_parameters._SE_volue = SE_sound.volume;
 
         SE_image_off.gameObject.SetActive(SE_control.value == 0);
         SE_image_on.gameObject.SetActive(SE_control.value > 0);
@@ -127,8 +127,7 @@ public class Setting_menu : MonoBehaviour
     public void Setting_BGM()
     {
         BGM_sound.volume = BGM_control.value * All_sound_control.value;
-        static_parameters._BGM_volue = BGM_sound.volume * All_sound_control.value;
-
+        static_parameters._BGM_volue = BGM_sound.volume;
         BGM_image_off.gameObject.SetActive(BGM_control.value == 0);
         BGM_image_on.gameObject.SetActive(BGM_control.value > 0);
     }
