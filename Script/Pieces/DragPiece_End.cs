@@ -8,18 +8,17 @@ using Unity.Mathematics;
 
 public class DragPiece_End : MonoBehaviour, IDropHandler
 {
+    public Ptest piece;
     private List<HashSet<int>> validSequences; // 有效的組合數列
     static public List<int> currentCombination = new List<int>(); // 當前的組合
     public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
     public Image[] images_puzzle_col = new Image[4]; // 圖片顏色陣列
     public Button composite_col;
     private Color newColor = new Color(1, 1, 1, 0.5f); // 按鈕透明度顏色
-    public UnityEngine.UI.Image button_image; // 按鈕圖像
+    public Image button_image; // 按鈕圖像
     private int puzzle_count = 0; // 碎片數量計數
-    static public int puzzle_color = 2; // 碎片顏色（默認為 2）
+    static public int puzzle_color = 2,end_count = -1; // 碎片顏色（默認為 2）
     public Animator animation_col; // 動畫控制器
-
-    static public int end_count = -1;
 
     void Start()
     {
@@ -102,7 +101,8 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
                 if (checkResult == -2)
                 {
-                    ResetCombination();
+                    piece.page = 0;
+                    ResetCombination();     
                 }
                 else if (checkResult == 2)
                 {
