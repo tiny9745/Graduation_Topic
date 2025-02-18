@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public short Diarystatus = 0;
-    public Change_mood C_mood;
+    public Change_mood C_mood;public Ptest piece; public DragPiece_End dragPiece_End;
     public GameObject Notebook, BattleUI,Diaryslots,Diarytext;
     public GameObject Menu, CH1, CH2, CH3, CH4;
     public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
@@ -15,7 +15,7 @@ public class UI : MonoBehaviour
     public Text money;
     public Image button_image,craft_image;
     public Sprite craft_sprite;
-    public Ptest piece; public DragPiece_End dragPiece_End;
+    
     // Start is called before the first frame update
     void Start()
     {
