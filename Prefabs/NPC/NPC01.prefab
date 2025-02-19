@@ -163,7 +163,7 @@ Animator:
   m_GameObject: {fileID: 1285159920377804108}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ffc84a46b0e339648a907b79147c8e81, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5419eb23553104e4288b4270930da50c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -363,6 +363,7 @@ MonoBehaviour:
   effect: {fileID: 598687366289779674}
   animator: {fileID: 5040306042332483355}
   animator_to_atk: {fileID: 536033589122980929}
+  weaponDUCK: {fileID: 8254015937789978251}
   TargetObj: {fileID: 0}
   hitbox_Crystal_baby: {fileID: 683040738566736164}
   Drop: {fileID: 0}
@@ -510,8 +511,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: {fileID: 4507803500508676976}
+  HP_control: {fileID: 0}
+  _skill_piano_effect: {fileID: 0}
   bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
   bomb_point: {fileID: 3917230693631719018}
+  Ward12: {fileID: 0}
+  skill_2x_animator: {fileID: 0}
+  skill21_animator: {fileID: 0}
+  skill22_animator: {fileID: 0}
+  skill23_animator: {fileID: 0}
+  skill24_animator: {fileID: 0}
+  skill25_1_animator: {fileID: 0}
+  skill25_2_animator: {fileID: 0}
 --- !u!1 &6200279387000505025
 GameObject:
   m_ObjectHideFlags: 0

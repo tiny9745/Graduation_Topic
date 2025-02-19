@@ -9,11 +9,7 @@ public class NPC_effect_03 : MonoBehaviour
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
     public Animator skill_2x_animator, skill21_animator, skill22_animator, skill23_animator, skill24_animator, skill25_1_animator, skill25_2_animator;
-
-    // private bool skill_15_stop_time_trigger = true; private float skill_15_stop_time = 0;
-
     private bool skill_25_effect = false; private float skill_25_effect_time = 0; private float skill_25_max_time = 2, skill_25_step_time = 0.5f;
-
 
     // Update is called once per frame
     void Update()
@@ -128,7 +124,6 @@ public class NPC_effect_03 : MonoBehaviour
         }
     }
 
-
     void Stun_end22()
     {
         skill22_animator.SetBool("skill_bomb22", false);
@@ -209,27 +204,8 @@ public class NPC_effect_03 : MonoBehaviour
         {
             foreach (var icon in IconManager.Instance.IconList)
             {
-                // {
-                //     Skill_public_funtion.play_piano = true;
-                // }
                 switch (icon.iconID)
                 {
-                    // case 15:
-                    //     if (skill_15_stop_time_trigger)
-                    //     {
-                    //         if (skill_15_stop_time < 1.5f)
-                    //         {
-                    //             skill_15_stop_time += Time.deltaTime;
-                    //         }
-                    //         else
-                    //         {
-                    //             Debug.Log("NPC03 rewalk");
-                    //             skill_15_stop_time_trigger = false;
-                    //             control.stun = false;
-                    //             break;
-                    //         }
-                    //     }
-                    //     break;
                     case 25:
                         if (skill_25_effect && skill_25_effect_time < 5)
                         {

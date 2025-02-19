@@ -10,6 +10,7 @@ public class NPC01_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator;
     public Animator animator_to_atk;
+    public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, hitbox_Crystal_baby, Drop, Img_npc;
     public int DetectDistance = 27, Pcounter = 0; int NPC_angle = 0;
     public float NPC01_ATK = 8, NPC01_DEF = 5, NPC_HP_Max = 100, npcSpeed = 5f, NPC_HP;
@@ -46,15 +47,12 @@ public class NPC01_control : MonoBehaviour
             {
                 renderer.enabled = false;
             }
-            ;
         }
         hitbox_Crystal_baby.SetActive(false);
         TargetObj = GameObject.Find("Player");
 
         npcNavi = GetComponent<NavMeshAgent>();
         npcNavi.speed = npcSpeed;
-        nPC_hP = GetComponent<NPC_HP_01>();
-
     }
 
     void Update()
@@ -264,7 +262,6 @@ public class NPC01_control : MonoBehaviour
         Invoke("dead", 1.6f);
     }
 
-
     bool open_EnableHitbox = true;
     private void OnTriggerEnter(Collider other)
     {
@@ -305,10 +302,21 @@ public class NPC01_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                animator_to_atk.SetTrigger("MC_Atk_N01");
-                UnityEngine.Debug.Log("MC_Att");
+                Change();
+                switch (static_parameters.Ani_state)
+                {
+                    case 2:
+                        animator_to_atk.SetTrigger("atk_to_MC01");
+                        break;
+                    case 3:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                    case 4:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                }
                 change_color_red();
-                effect.Skill();
+                effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
@@ -326,16 +334,16 @@ public class NPC01_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        nPC_hP.TakeDamage(4, NPC01_DEF);
+                        nPC_hP.TakeDamage(4 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 2:
-                        nPC_hP.TakeDamage(3, NPC01_DEF);
+                        nPC_hP.TakeDamage(3 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 3:
-                        nPC_hP.TakeDamage(5, NPC01_DEF);
+                        nPC_hP.TakeDamage(5 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 4:
-                        nPC_hP.TakeDamage(1, NPC01_DEF);
+                        nPC_hP.TakeDamage(1 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                 }
             }
@@ -460,5 +468,29 @@ public class NPC01_control : MonoBehaviour
     private void Des()
     {
         Destroy(gameObject);
+    }
+    public void Change()
+    {
+        switch (Change_mood.mood)
+        {
+            case 0:
+                weaponDUCK.color = new Color(0.63f, 0.98f, 0.86f, 1);
+                break;
+            case 1:
+                weaponDUCK.color = new Color(0.98f, 0.62f, 0.63f, 1);
+                break;
+            case 2:
+                weaponDUCK.color = new Color(0.61f, 0.8f, 1, 1);
+                break;
+            case 3:
+                //Mood.sprite = ;
+                break;
+            case 4:
+                weaponDUCK.color = new Color(1, 0.93f, 0.59f, 1);
+                break;
+            default:
+                weaponDUCK.color = new Color(0.95f, 0.88f, 0.89f, 1);
+                break;
+        }
     }
 }

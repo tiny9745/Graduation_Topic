@@ -38,7 +38,7 @@ public class Prefabs_start_241130 : MonoBehaviour
         switch (static_parameters.stage_number)
         {
             case 1:
-                // Number_NPC01 = 13;
+                Number_NPC01 = 13;
                 // Number_NPC02 = 13;
                 Number_NPC03 = 8;
                 // Number_NPC04 = 13;

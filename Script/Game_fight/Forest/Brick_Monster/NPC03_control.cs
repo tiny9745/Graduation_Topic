@@ -57,8 +57,6 @@ public class NPC03_control : MonoBehaviour
         {
             npcNavi.speed = npcSpeed;
         }
-        nPC_hP = GetComponent<NPC_HP_03>();
-        effect = GetComponent<NPC_effect_03>();
     }
 
     void Update()
@@ -270,7 +268,6 @@ public class NPC03_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                Debug.Log("MC_Att: " + static_parameters.Ani_state);
                 Change();
                 switch (static_parameters.Ani_state)
                 {
@@ -413,11 +410,11 @@ public class NPC03_control : MonoBehaviour
             dead_open = false;
         }
     }
-    void knock_back()
-    {
-        Vector3 currentPosition = transform.position;
-        transform.position = currentPosition + 5f * Vector3.back;
-    }
+    // void knock_back()
+    // {
+    //     Vector3 currentPosition = transform.position;
+    //     transform.position = currentPosition + 5f * Vector3.back;
+    // }
     void dead_after()
     {
         Destroy(gameObject);
