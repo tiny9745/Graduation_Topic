@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class NPC_effect_02 : MonoBehaviour
 {
-    public NPC02_control control;
+    public NPC02_control control;NPC_HP_02 HP_control; public skill_piano_effect _skill_piano_effect;
     public GameObject bomb_piano, bomb_point;
     int play_piano_atk = 0; float NPC_back = 10, minus;
     bool piano_flag = true;
-    
-    // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
