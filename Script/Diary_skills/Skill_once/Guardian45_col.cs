@@ -18,7 +18,7 @@ public class Guardian45_col : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        Guardian45_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 2.5f;
+        Guardian45_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 3.5f;
         player = GameObject.Find("Player_S");
     }
 
@@ -130,7 +130,7 @@ public class Guardian45_col : MonoBehaviour
     }
 
     private float orbitAngle = 0f; // 當前角度 (度數)
-    private float linearSpeed = 2f; // 固定線速度 (單位/秒)
+    private float linearSpeed = 6.5f; // 固定線速度 (單位/秒)
 
     // 確保 `orbitAngle` 根據 `linearSpeed` 和 `Guardian45_to_player_distance` 來計算角速度
     private void FollowPlayer()
