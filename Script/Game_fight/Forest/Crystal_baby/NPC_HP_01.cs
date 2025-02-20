@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class NPC_HP_01 : MonoBehaviour
 {
     public SpriteRenderer healthBarFill;
-    public float MaxHealth;float minus;
+    public float MaxHealth; float minus;
     private Vector3 initialScale;
     public NPC01_control control;
+    public NPC01_effect effect;
 
     void Start()
     {
@@ -26,9 +27,11 @@ public class NPC_HP_01 : MonoBehaviour
         healthBarFill.transform.localScale = newScale;
     }
     // Ensure health is between 0 and maximum health
-    public void TakeDamage(float damage,float NPC_DEF)
+    public void TakeDamage(float damage, float NPC_DEF)
     {
-        minus = (float)(damage*damage/(damage+NPC_DEF));
+        control.change_color_red();
+        effect.fight_instinct_npc();
+        minus = (float)(damage * damage / (damage + NPC_DEF));
         if (minus < 5) minus = 5;
         control.NPC_HP -= minus;
         control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, MaxHealth);
@@ -48,6 +51,6 @@ public class NPC_HP_01 : MonoBehaviour
         Rect rect = sprite.rect;
         Vector2 pivot = new Vector2(0, sprite.pivot.y / rect.height);
         Sprite newSprite = Sprite.Create(sprite.texture, rect, pivot, sprite.pixelsPerUnit);
-        spriteRenderer.sprite = newSprite;      
+        spriteRenderer.sprite = newSprite;
     }
 }

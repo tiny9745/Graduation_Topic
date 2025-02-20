@@ -7,15 +7,15 @@ public class NPC02_control : MonoBehaviour
 {
     public NPC_HP_02 nPC_hP; public NPC_interactive npc_interactive; public NPC_effect_02 effect;
     NavMeshAgent npcNavi;
-    public Animator animator;
-    public Animator animator_to_atk;
+    public Animator animator, animator_to_atk;
+    public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC02, Drop, hitbox_Robot, Img_npc;
     public int DetectDistance = 30; int NPC_angle = 0;
     public float NPC02_ATK = 13, NPC02_DEF = 10, NPC_HP_Max = 80, npcSpeed = 7f, NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f; float dist;
     bool hit_Ani = false, hit = false, bomb_Berry = true, dead_open = true, MC_to_Att = true;
     private bool isFacingRight = true, isCoroutineRunning = false; public bool stun = false;
-    private Vector3 lastPosition; 
+    private Vector3 lastPosition;
     private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
     void Start()
@@ -224,7 +224,7 @@ public class NPC02_control : MonoBehaviour
     }
 
     bool open_EnableHitbox = true;
-    
+
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
@@ -241,10 +241,22 @@ public class NPC02_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                animator_to_atk.SetTrigger("MC_Atk_N01");
+                Change();
+                switch (static_parameters.Ani_state)
+                {
+                    case 2:
+                        animator_to_atk.SetTrigger("atk_to_MC01");
+                        break;
+                    case 3:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                    case 4:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                }
                 Debug.Log("MC_Att");
                 change_color_red();
-                effect.Skill();
+                effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
@@ -262,16 +274,16 @@ public class NPC02_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        nPC_hP.TakeDamage(4, NPC02_DEF);
+                        nPC_hP.TakeDamage(4 * Skill_public_funtion.skill_13_bullet_atk, NPC02_DEF);
                         break;
                     case 2:
-                        nPC_hP.TakeDamage(3, NPC02_DEF);
+                        nPC_hP.TakeDamage(3 * Skill_public_funtion.skill_13_bullet_atk, NPC02_DEF);
                         break;
                     case 3:
-                        nPC_hP.TakeDamage(5, NPC02_DEF);
+                        nPC_hP.TakeDamage(5 * Skill_public_funtion.skill_13_bullet_atk, NPC02_DEF);
                         break;
                     case 4:
-                        nPC_hP.TakeDamage(1, NPC02_DEF);
+                        nPC_hP.TakeDamage(1 * Skill_public_funtion.skill_13_bullet_atk, NPC02_DEF);
                         break;
                 }
             }
@@ -383,5 +395,29 @@ public class NPC02_control : MonoBehaviour
     void dead_after()
     {
         Destroy(gameObject);
+    }
+    public void Change()
+    {
+        switch (Change_mood.mood)
+        {
+            case 0:
+                weaponDUCK.color = new UnityEngine.Color(0.63f, 0.98f, 0.86f, 1);
+                break;
+            case 1:
+                weaponDUCK.color = new UnityEngine.Color(0.98f, 0.62f, 0.63f, 1);
+                break;
+            case 2:
+                weaponDUCK.color = new UnityEngine.Color(0.61f, 0.8f, 1, 1);
+                break;
+            case 3:
+                //Mood.sprite = ;
+                break;
+            case 4:
+                weaponDUCK.color = new UnityEngine.Color(1, 0.93f, 0.59f, 1);
+                break;
+            default:
+                weaponDUCK.color = new UnityEngine.Color(0.95f, 0.88f, 0.89f, 1);
+                break;
+        }
     }
 }

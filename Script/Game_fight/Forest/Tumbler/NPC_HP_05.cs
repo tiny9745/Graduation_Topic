@@ -8,6 +8,7 @@ public class NPC_HP_05 : MonoBehaviour
     public float MaxHealth, minus;
     private Vector3 initialScale;
     public NPC05_control control;
+    public NPC_effect_05 effect;
 
     void Start()
     {
@@ -28,6 +29,8 @@ public class NPC_HP_05 : MonoBehaviour
     // Ensure health is between 0 and maximum health
     public void TakeDamage(float damage, float NPC_DEF)
     {
+        control.change_color_red();
+        effect.fight_instinct_npc();
         minus = (float)(damage * damage / (damage + NPC_DEF));
         if (minus < 5) minus = 5;
         control.NPC_HP -= minus;

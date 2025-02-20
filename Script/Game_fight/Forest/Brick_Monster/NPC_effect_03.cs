@@ -74,30 +74,23 @@ public class NPC_effect_03 : MonoBehaviour
                 switch (icon.iconID)
                 {
                     case 21: // Bomb
-                        Debug.Log("NPC03 skill_21");
                         skill21_animator.SetTrigger("skill_bomb21");
                         play_piano_atk = 0;
                         Skill_public_funtion.B_damage += 10;
                         continue;
-
                     case 22: // Flash
-                        Debug.Log("NPC03 skill_22");
                         skill22_animator.SetBool("skill_bomb22", true);
                         Skill_public_funtion.B_damage += 15;
                         control.stun = true;
                         Invoke(nameof(Stun_end22), 3);
                         continue;
-
                     case 23: // Ricochet
-                        Debug.Log("NPC03 skill_23");
                         skill23_animator.SetTrigger("skill_bomb23");
                         Skill_public_funtion.B_damage += 20;
                         piano_flag = false;
                         play_piano_atk++;
                         continue;
-
                     case 24: // Air Bullet
-                        Debug.Log("NPC03 skill_24");
                         skill24_animator.SetTrigger("skill_bomb24");
                         Skill_public_funtion.B_damage += 15;
                         if (control.NPC_HP < NPC_back)
@@ -117,10 +110,6 @@ public class NPC_effect_03 : MonoBehaviour
             damage(Skill_public_funtion.B_damage);
             Reset_flag();
             control.change_color_red();
-            if (play_piano_atk >= 5)
-            {
-                Debug.Log("NPC03 play_piano_atk warning! " + play_piano_atk);
-            }
         }
     }
 

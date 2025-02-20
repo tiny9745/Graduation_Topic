@@ -7,8 +7,8 @@ public class NPC04_control : MonoBehaviour
 {
     public NPC_HP_04 nPC_hP; public NPC_effect_04 effect; public NPC_interactive npc_interactive;
     NavMeshAgent npcNavi;
-    public Animator animator;
-    public Animator animator_to_atk;
+    public Animator animator, animator_to_atk;
+    public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC04, hitbox_Brick_Monster, Drop, Img_npc;
     public int DetectDistance = 25; int NPC_angle = 0;
     public float NPC04_ATK = 13, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
@@ -271,10 +271,21 @@ public class NPC04_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                animator_to_atk.SetTrigger("MC_Atk_N01");
-                Debug.Log("MC_Att");
+                Change();
+                switch (static_parameters.Ani_state)
+                {
+                    case 2:
+                        animator_to_atk.SetTrigger("atk_to_MC01");
+                        break;
+                    case 3:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                    case 4:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                }
                 change_color_red();
-                effect.Skill();
+                effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
@@ -292,16 +303,16 @@ public class NPC04_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        nPC_hP.TakeDamage(4, NPC04_DEF);
+                        nPC_hP.TakeDamage(4 * Skill_public_funtion.skill_13_bullet_atk, NPC04_DEF);
                         break;
                     case 2:
-                        nPC_hP.TakeDamage(3, NPC04_DEF);
+                        nPC_hP.TakeDamage(3 * Skill_public_funtion.skill_13_bullet_atk, NPC04_DEF);
                         break;
                     case 3:
-                        nPC_hP.TakeDamage(5, NPC04_DEF);
+                        nPC_hP.TakeDamage(5 * Skill_public_funtion.skill_13_bullet_atk, NPC04_DEF);
                         break;
                     case 4:
-                        nPC_hP.TakeDamage(1, NPC04_DEF);
+                        nPC_hP.TakeDamage(1 * Skill_public_funtion.skill_13_bullet_atk, NPC04_DEF);
                         break;
                 }
             }
@@ -432,5 +443,29 @@ public class NPC04_control : MonoBehaviour
     void dead_after()
     {
         Destroy(gameObject);
+    }
+    public void Change()
+    {
+        switch (Change_mood.mood)
+        {
+            case 0:
+                weaponDUCK.color = new UnityEngine.Color(0.63f, 0.98f, 0.86f, 1);
+                break;
+            case 1:
+                weaponDUCK.color = new UnityEngine.Color(0.98f, 0.62f, 0.63f, 1);
+                break;
+            case 2:
+                weaponDUCK.color = new UnityEngine.Color(0.61f, 0.8f, 1, 1);
+                break;
+            case 3:
+                //Mood.sprite = ;
+                break;
+            case 4:
+                weaponDUCK.color = new UnityEngine.Color(1, 0.93f, 0.59f, 1);
+                break;
+            default:
+                weaponDUCK.color = new UnityEngine.Color(0.95f, 0.88f, 0.89f, 1);
+                break;
+        }
     }
 }

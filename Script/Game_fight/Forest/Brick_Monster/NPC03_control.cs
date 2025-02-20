@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,7 +17,6 @@ public class NPC03_control : MonoBehaviour
     public bool stun; private bool isFacingRight = true;
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
-
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
 
     string dangerTag = "Thorns"; // 區域的 Tag
@@ -410,11 +408,7 @@ public class NPC03_control : MonoBehaviour
             dead_open = false;
         }
     }
-    // void knock_back()
-    // {
-    //     Vector3 currentPosition = transform.position;
-    //     transform.position = currentPosition + 5f * Vector3.back;
-    // }
+
     void dead_after()
     {
         Destroy(gameObject);

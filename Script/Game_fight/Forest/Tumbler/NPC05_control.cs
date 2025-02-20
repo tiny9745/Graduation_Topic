@@ -8,19 +8,19 @@ public class NPC05_control : MonoBehaviour
 {
     public NPC_interactive npc_interactive; public NPC_HP_05 nPC_hP; public NPC_effect_05 effect;
     NavMeshAgent npcNavi;
-    public Animator animator;
-    public Animator animator_to_atk;
+    public Animator animator, animator_to_atk;
+    public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Img_npc, bulletPrefab, NPC05, Drop;
     public int DetectDistance = 12; int NPC_angle = 0;
     public float NPC05_ATK = 35, NPC05_DEF = 15, NPC_HP_Max = 160, npcSpeed = 0f, NPC_HP, fireRate = 1f, bulletSpeed = 20f;
     float dist, nextFireTime = 0f;
-    bool hit_Ani= false, hit = false, dead_open= true, MC_to_Att= true, bomb_Berry = true;
+    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     private bool isCoroutineRunning = false, isFacingRight = true; public bool stun = false;
     private Vector3 lastPosition;
-    private Quaternion initialRotation;    
+    private Quaternion initialRotation;
     public Transform firePoint;
-    public AudioSource audioSource;public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; 
+    public AudioSource audioSource; public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -195,7 +195,7 @@ public class NPC05_control : MonoBehaviour
         }
     }
 
-    
+
     void Shoot()
     {
         // Instantiate the bullet
@@ -215,10 +215,22 @@ public class NPC05_control : MonoBehaviour
         {
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                animator_to_atk.SetTrigger("MC_Atk_N01");
+                Change();
+                switch (static_parameters.Ani_state)
+                {
+                    case 2:
+                        animator_to_atk.SetTrigger("atk_to_MC01");
+                        break;
+                    case 3:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                    case 4:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                }
                 change_color_red();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
-                MC_to_Att = false; effect.Skill();
+                MC_to_Att = false; effect.piano_Skill();
                 Invoke("wait_MC_att", 0.1f);
             }
 
@@ -260,9 +272,10 @@ public class NPC05_control : MonoBehaviour
                 npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
                 nPC_hP.UpdateHealthBar();
             }
-        }else dead();
+        }
+        else dead();
     }
-    
+
 
     void wait_MC_att()
     {
@@ -286,7 +299,7 @@ public class NPC05_control : MonoBehaviour
         Img_npc.transform.localScale = theScale;
     }
 
-    
+
     private void PlaySoundAtIndex(int index)
     {
         if (meleeSwingSounds.Length > index && audioSource != null)
@@ -298,7 +311,7 @@ public class NPC05_control : MonoBehaviour
             Debug.LogWarning($"音效序號 {index} 超出範圍或 AudioSource 未指定");
         }
     }
-    
+
     public void change_color_red()
     {
         if (spriteRenderer != null)
@@ -346,5 +359,29 @@ public class NPC05_control : MonoBehaviour
     void dead_after()
     {
         Destroy(gameObject);
+    }
+    public void Change()
+    {
+        switch (Change_mood.mood)
+        {
+            case 0:
+                weaponDUCK.color = new UnityEngine.Color(0.63f, 0.98f, 0.86f, 1);
+                break;
+            case 1:
+                weaponDUCK.color = new UnityEngine.Color(0.98f, 0.62f, 0.63f, 1);
+                break;
+            case 2:
+                weaponDUCK.color = new UnityEngine.Color(0.61f, 0.8f, 1, 1);
+                break;
+            case 3:
+                //Mood.sprite = ;
+                break;
+            case 4:
+                weaponDUCK.color = new UnityEngine.Color(1, 0.93f, 0.59f, 1);
+                break;
+            default:
+                weaponDUCK.color = new UnityEngine.Color(0.95f, 0.88f, 0.89f, 1);
+                break;
+        }
     }
 }
