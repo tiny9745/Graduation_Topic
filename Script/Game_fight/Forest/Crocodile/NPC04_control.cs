@@ -13,7 +13,7 @@ public class NPC04_control : MonoBehaviour
     public int DetectDistance = 25; int NPC_angle = 0;
     public float NPC04_ATK = 13, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
     float dist;
-    // private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     int open_EnableHitbox = 0;
     public bool stun = false; private bool isFacingRight = true;
@@ -64,13 +64,13 @@ public class NPC04_control : MonoBehaviour
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 取得 Layer 0 的動畫狀態
 
-        if (stateInfo.IsName("crocodile_LB_atk") && stateInfo.normalizedTime >= 0.5f && open_EnableHitbox == 1)
+        if (stateInfo.IsName("crocodile_LB_atk") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
         {
             open_EnableHitbox = 2;
             Debug.Log("動畫播放到一半！");
             EnableHitbox();
         }
-        else if (stateInfo.IsName("crocodile_LF_atk") && stateInfo.normalizedTime >= 0.5f && open_EnableHitbox == 1)
+        else if (stateInfo.IsName("crocodile_LF_atk") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
         {
             open_EnableHitbox = 2;
             Debug.Log("動畫播放到一半！");
@@ -96,7 +96,6 @@ public class NPC04_control : MonoBehaviour
 
             if (npcNavi != null && (isInDangerZone || npcNavi.velocity.magnitude > movementThreshold))
             {
-                Debug.Log("移動動畫啟動!");
                 PlayWalkAnimation();
             }
             else
@@ -106,7 +105,6 @@ public class NPC04_control : MonoBehaviour
         }
         else
         {
-            Debug.Log("攻擊動畫啟動!");
             PlayAttackAnimation();
         }
 
@@ -223,7 +221,6 @@ public class NPC04_control : MonoBehaviour
                 Flip();
             }
             animator.Play("crocodile_LB_atk");
-            Debug.Log("攻擊動畫啟動crocodile_LB_atk");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -232,7 +229,6 @@ public class NPC04_control : MonoBehaviour
                 Flip();
             }
             animator.Play("crocodile_LB_atk");
-            Debug.Log("攻擊動畫啟動crocodile_LB_atk");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -241,7 +237,6 @@ public class NPC04_control : MonoBehaviour
                 Flip();
             }
             animator.Play("crocodile_LF_atk");
-            Debug.Log("攻擊動畫啟動crocodile_LF_atk");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -250,7 +245,6 @@ public class NPC04_control : MonoBehaviour
                 Flip();
             }
             animator.Play("crocodile_LF_atk");
-            Debug.Log("攻擊動畫啟動crocodile_LF_atk");
         }
     }
 
@@ -279,9 +273,9 @@ public class NPC04_control : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && !stun)
+        if (NPC_HP > 0 && !stun )
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player" && Time.time > nextDamageTime)
             {
                 if (open_EnableHitbox == 0)
                 {
@@ -311,7 +305,7 @@ public class NPC04_control : MonoBehaviour
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
-                // nextDamageTime = Time.time + damageCooldown;
+                nextDamageTime = Time.time + damageCooldown;
             }
 
             if (other.gameObject.CompareTag("MC_bomb"))
@@ -422,11 +416,10 @@ public class NPC04_control : MonoBehaviour
     {
         hitbox_Brick_Monster.SetActive(true);
         hit = false;
-        Invoke("closeHitbox", 0.3f);
+        Invoke("closeHitbox", 2f);
     }
     void closeHitbox()
     {
-        hitbox_Brick_Monster.SetActive(false);
         open_EnableHitbox = 0;
     }
     void Flip()
