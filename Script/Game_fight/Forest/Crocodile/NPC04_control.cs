@@ -13,8 +13,9 @@ public class NPC04_control : MonoBehaviour
     public int DetectDistance = 25; int NPC_angle = 0;
     public float NPC04_ATK = 13, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
     float dist;
-    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
-    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, open_EnableHitbox = true, bomb_Berry = true;
+    // private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
+    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
+    int open_EnableHitbox = 0;
     public bool stun = false; private bool isFacingRight = true;
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
@@ -61,6 +62,21 @@ public class NPC04_control : MonoBehaviour
 
     void Update()
     {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 取得 Layer 0 的動畫狀態
+
+        if (stateInfo.IsName("crocodile_LB_atk") && stateInfo.normalizedTime >= 0.5f && open_EnableHitbox == 1)
+        {
+            open_EnableHitbox = 2;
+            Debug.Log("動畫播放到一半！");
+            EnableHitbox();
+        }
+        else if (stateInfo.IsName("crocodile_LF_atk") && stateInfo.normalizedTime >= 0.5f && open_EnableHitbox == 1)
+        {
+            open_EnableHitbox = 2;
+            Debug.Log("動畫播放到一半！");
+            EnableHitbox();
+        }
+
         if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null)
         {
@@ -80,7 +96,6 @@ public class NPC04_control : MonoBehaviour
 
             if (npcNavi != null && (isInDangerZone || npcNavi.velocity.magnitude > movementThreshold))
             {
-                Debug.Log("NPC is moving: " + npcNavi.velocity.magnitude);
                 PlayWalkAnimation();
             }
             else
@@ -90,6 +105,7 @@ public class NPC04_control : MonoBehaviour
         }
         else
         {
+            Debug.Log("攻擊動畫啟動!");
             PlayAttackAnimation();
         }
 
@@ -206,6 +222,7 @@ public class NPC04_control : MonoBehaviour
                 Flip();
             }
             animator.Play("crocodile_LB_atk");
+            Debug.Log("攻擊動畫啟動crocodile_LB_atk");
         }
         else if (NPC_angle >= 270 && NPC_angle < 360)
         {
@@ -214,6 +231,7 @@ public class NPC04_control : MonoBehaviour
                 Flip();
             }
             animator.Play("crocodile_LB_atk");
+            Debug.Log("攻擊動畫啟動crocodile_LB_atk");
         }
         else if (NPC_angle >= 180 && NPC_angle < 270)
         {
@@ -222,6 +240,7 @@ public class NPC04_control : MonoBehaviour
                 Flip();
             }
             animator.Play("crocodile_LF_atk");
+            Debug.Log("攻擊動畫啟動crocodile_LF_atk");
         }
         else if (NPC_angle >= 90 && NPC_angle < 180)
         {
@@ -230,6 +249,7 @@ public class NPC04_control : MonoBehaviour
                 Flip();
             }
             animator.Play("crocodile_LF_atk");
+            Debug.Log("攻擊動畫啟動crocodile_LF_atk");
         }
     }
 
@@ -258,15 +278,15 @@ public class NPC04_control : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
+        if (NPC_HP > 0 && !stun)
         {
             if (other.gameObject.tag == "Player")
             {
-                if (open_EnableHitbox)
+                if (open_EnableHitbox == 0)
                 {
+                    Debug.Log("動畫啟動!");
+                    open_EnableHitbox = 1;
                     hit_Ani = true;
-                    Invoke("EnableHitbox", 1.1f);
-                    open_EnableHitbox = false;
                 }
             }
 
@@ -290,7 +310,7 @@ public class NPC04_control : MonoBehaviour
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
-                nextDamageTime = Time.time + damageCooldown;
+                // nextDamageTime = Time.time + damageCooldown;
             }
 
             if (other.gameObject.CompareTag("MC_bomb"))
@@ -406,7 +426,7 @@ public class NPC04_control : MonoBehaviour
     void closeHitbox()
     {
         hitbox_Brick_Monster.SetActive(false);
-        open_EnableHitbox = true;
+        open_EnableHitbox = 0;
     }
     void Flip()
     {
@@ -450,22 +470,22 @@ public class NPC04_control : MonoBehaviour
         switch (Change_mood.mood)
         {
             case 0:
-                weaponDUCK.color = new UnityEngine.Color(0.63f, 0.98f, 0.86f, 1);
+                weaponDUCK.color = new Color(0.63f, 0.98f, 0.86f, 1);
                 break;
             case 1:
-                weaponDUCK.color = new UnityEngine.Color(0.98f, 0.62f, 0.63f, 1);
+                weaponDUCK.color = new Color(0.98f, 0.62f, 0.63f, 1);
                 break;
             case 2:
-                weaponDUCK.color = new UnityEngine.Color(0.61f, 0.8f, 1, 1);
+                weaponDUCK.color = new Color(0.61f, 0.8f, 1, 1);
                 break;
             case 3:
                 //Mood.sprite = ;
                 break;
             case 4:
-                weaponDUCK.color = new UnityEngine.Color(1, 0.93f, 0.59f, 1);
+                weaponDUCK.color = new Color(1, 0.93f, 0.59f, 1);
                 break;
             default:
-                weaponDUCK.color = new UnityEngine.Color(0.95f, 0.88f, 0.89f, 1);
+                weaponDUCK.color = new Color(0.95f, 0.88f, 0.89f, 1);
                 break;
         }
     }
