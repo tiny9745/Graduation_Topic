@@ -96,6 +96,7 @@ public class NPC04_control : MonoBehaviour
 
             if (npcNavi != null && (isInDangerZone || npcNavi.velocity.magnitude > movementThreshold))
             {
+                Debug.Log("移動動畫啟動!");
                 PlayWalkAnimation();
             }
             else
@@ -111,7 +112,7 @@ public class NPC04_control : MonoBehaviour
 
         if (dist >= DetectDistance * 3 / 5)
         {
-            hit_Ani = false;
+            // hit_Ani = false;
         }
 
         lastPosition = transform.position;
