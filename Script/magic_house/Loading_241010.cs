@@ -17,17 +17,13 @@ public class Loading_241010 : MonoBehaviour
     public Vector3 newPosition_start;
     private GameObject BlackScreen;
 
-    public UI UI;
-
     bool wave_return = true;
 
     private bool screen_close = true;
 
     void Start()
     {
-        UI = GameObject.Find("UI").GetComponent<UI>();
         BlackScreen = GameObject.Find("Black");
-        UI.Loadmoney();
         if (BlackScreen != null && Death_MC.isDead)
         {
             BlackScreen.SetActive(false);

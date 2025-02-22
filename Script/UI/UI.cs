@@ -116,8 +116,7 @@ public class UI : MonoBehaviour
         craft_image.sprite = craft_sprite;
     }
     public void Loadmoney()
-    {
-        Debug.Log("Loadmoney");
+    {      
         money.text = static_parameters.money.ToString();
     }
 }
