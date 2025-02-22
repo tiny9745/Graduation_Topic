@@ -76,15 +76,16 @@ public class NPC04_control : MonoBehaviour
         }
         else if (!hit_Ani)
         {
-            float movementThreshold = 0.01f; // 設定允許的移動範圍
+            float movementThreshold = 0.05f; // 設定允許的移動範圍
 
-            if (npcNavi != null && npcNavi.velocity.magnitude < movementThreshold)
+            if (npcNavi != null && (isInDangerZone || npcNavi.velocity.magnitude > movementThreshold))
             {
-                PlayStandAnimation();
+                Debug.Log("NPC is moving: " + npcNavi.velocity.magnitude);
+                PlayWalkAnimation();
             }
             else
             {
-                PlayWalkAnimation();
+                PlayStandAnimation();
             }
         }
         else

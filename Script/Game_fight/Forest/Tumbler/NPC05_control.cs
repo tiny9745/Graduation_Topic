@@ -229,9 +229,10 @@ public class NPC05_control : MonoBehaviour
                         break;
                 }
                 change_color_red();
+                effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
-                MC_to_Att = false; effect.piano_Skill();
-                Invoke("wait_MC_att", 0.1f);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.2f);
             }
 
             // Omit the middle

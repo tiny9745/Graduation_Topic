@@ -112,7 +112,11 @@ public class NPC01_1_control : MonoBehaviour
         }
         else if (!hit_Ani)
         {
-            if (transform.position == lastPosition)
+            if(isInDangerZone)
+            {
+                PlayWalkAnimation();
+            }
+            else if (transform.position == lastPosition)
             {
                 PlayStandAnimation();
             }
