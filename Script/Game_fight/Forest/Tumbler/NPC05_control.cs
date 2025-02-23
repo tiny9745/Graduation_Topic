@@ -20,11 +20,13 @@ public class NPC05_control : MonoBehaviour
     private Quaternion initialRotation;
     public Transform firePoint;
     public AudioSource audioSource; public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
+    public UI _UI;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
+        _UI = GameObject.Find("UI").GetComponent<UI>();
 
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
@@ -232,7 +234,7 @@ public class NPC05_control : MonoBehaviour
                 effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
                 MC_to_Att = false;
-                Invoke("wait_MC_att", 0.2f);
+                Invoke("wait_MC_att", 0.5f);
             }
 
             // Omit the middle
@@ -353,6 +355,7 @@ public class NPC05_control : MonoBehaviour
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             static_parameters.money += 6;
+            _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;
         }
