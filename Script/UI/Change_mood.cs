@@ -16,7 +16,7 @@ public class Change_mood : MonoBehaviour
     }
     public void Change()
     {
-        MoodChange(/*Skill_public_funtion.WOW*/1, /*Skill_public_funtion.SAD*/1, Skill_public_funtion.HAPPY, Skill_public_funtion.ANGRY);
+        MoodChange(Skill_public_funtion.WOW,Skill_public_funtion.SAD, Skill_public_funtion.HAPPY, Skill_public_funtion.ANGRY);
         switch (mood)
         {
             case 0:
