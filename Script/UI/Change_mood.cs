@@ -16,7 +16,7 @@ public class Change_mood : MonoBehaviour
     }
     public void Change()
     {
-        MoodChange(Skill_public_funtion.WOW, Skill_public_funtion.SAD, Skill_public_funtion.HAPPY, Skill_public_funtion.ANGRY);
+        MoodChange(/*Skill_public_funtion.WOW*/1, /*Skill_public_funtion.SAD*/1, Skill_public_funtion.HAPPY, Skill_public_funtion.ANGRY);
         switch (mood)
         {
             case 0:
@@ -47,6 +47,7 @@ public class Change_mood : MonoBehaviour
 
     void MoodChange(int WOW, int SAD, int HAPPY, int ANGRY)
     {
+
         if (WOW > SAD && WOW > HAPPY && WOW > ANGRY)
         {
             mood = 0;
@@ -65,7 +66,19 @@ public class Change_mood : MonoBehaviour
         }
         else
         {
-            mood = 5;
+            if (WOW > 0)
+            {
+                mood = 0; return;
+            }else if (SAD > 0)
+            {
+                mood = 2; return;
+            }else if (HAPPY > 0)
+            {
+                mood = 4; return;
+            }else if (ANGRY > 0)
+            {
+                mood = 1; return;
+            }else mood = 5;
         }
     }
 }
