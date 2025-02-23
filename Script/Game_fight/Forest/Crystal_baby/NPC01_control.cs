@@ -19,12 +19,11 @@ public class NPC01_control : MonoBehaviour
     bool hit_Ani = false, hit = false, bomb_Berry = true, dead_open = true, MC_to_Att = true;
     public bool NPC01_hit = false, stun = false;
     private bool isFacingRight = true;
+    int open_EnableHitbox = 0;
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
     public GameObject NPC01, NPC01_1;
-
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
-
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
@@ -57,6 +56,18 @@ public class NPC01_control : MonoBehaviour
 
     void Update()
     {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 取得 Layer 0 的動畫狀態
+        if (stateInfo.IsName("Crystal_baby_Big_Att_LB") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
+        {
+            open_EnableHitbox = 2;
+            EnableHitbox();
+        }
+        else if (stateInfo.IsName("Crystal_baby_Big_Att_LF") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
+        {
+            open_EnableHitbox = 2;
+            EnableHitbox();
+        }
+
         if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null)
         {
@@ -72,17 +83,13 @@ public class NPC01_control : MonoBehaviour
         }
         else if (!hit_Ani)
         {
-            if(isInDangerZone)
+            if (isInDangerZone || transform.position != lastPosition)
             {
                 PlayWalkAnimation();
-            }
-            else if (transform.position == lastPosition)
-            {
-                PlayStandAnimation();
             }
             else
             {
-                PlayWalkAnimation();
+                PlayStandAnimation();
             }
         }
         else
@@ -266,7 +273,6 @@ public class NPC01_control : MonoBehaviour
         Invoke("dead", 1.6f);
     }
 
-    bool open_EnableHitbox = true;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(dangerTag))
@@ -296,11 +302,10 @@ public class NPC01_control : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                if (open_EnableHitbox)
+                if (open_EnableHitbox == 0)
                 {
+                    open_EnableHitbox = 1;
                     hit_Ani = true;
-                    Invoke("EnableHitbox", 1.1f);
-                    open_EnableHitbox = false;
                 }
             }
 
@@ -323,7 +328,7 @@ public class NPC01_control : MonoBehaviour
                 effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;
-                Invoke("wait_MC_att", 0.2f);
+                Invoke("wait_MC_att", 0.5f);
                 nextDamageTime = Time.time + damageCooldown;
             }
 
@@ -411,13 +416,12 @@ public class NPC01_control : MonoBehaviour
     void EnableHitbox()
     {
         hitbox_Crystal_baby.SetActive(true);
-        Invoke("closeHitbox", 0.5f);
         hit = false;
+        Invoke("closeHitbox", 1f);
     }
     void closeHitbox()
     {
-        hitbox_Crystal_baby.SetActive(false);
-        open_EnableHitbox = true;
+        open_EnableHitbox = 0;
     }
     void Flip()
     {

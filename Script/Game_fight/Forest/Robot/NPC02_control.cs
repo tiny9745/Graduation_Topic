@@ -15,6 +15,9 @@ public class NPC02_control : MonoBehaviour
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f; float dist;
     bool hit_Ani = false, hit = false, bomb_Berry = true, dead_open = true, MC_to_Att = true;
     private bool isFacingRight = true, isCoroutineRunning = false; public bool stun = false;
+    public UI _UI;
+
+    int open_EnableHitbox = 0;
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
@@ -22,6 +25,7 @@ public class NPC02_control : MonoBehaviour
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
+        _UI = GameObject.Find("UI").GetComponent<UI>();
 
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
@@ -56,6 +60,18 @@ public class NPC02_control : MonoBehaviour
 
     void Update()
     {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 取得 Layer 0 的動畫狀態
+        if (stateInfo.IsName("Robot_Att_LF") && stateInfo.normalizedTime >= 0.5f && open_EnableHitbox == 1)
+        {
+            open_EnableHitbox = 2;
+            EnableHitbox();
+        }
+        else if (stateInfo.IsName("Robot_Att_LB") && stateInfo.normalizedTime >= 0.5f && open_EnableHitbox == 1)
+        {
+            open_EnableHitbox = 2;
+            EnableHitbox();
+        }
+
         if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null)
         {
@@ -223,19 +239,16 @@ public class NPC02_control : MonoBehaviour
         }
     }
 
-    bool open_EnableHitbox = true;
-
     private void OnTriggerStay(Collider other)
     {
         if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
         {
             if (other.gameObject.tag == "Player")
             {
-                if (open_EnableHitbox)
+                if (open_EnableHitbox == 0)
                 {
+                    open_EnableHitbox = 1;
                     hit_Ani = true;
-                    Invoke("EnableHitbox", 1.1f);
-                    open_EnableHitbox = false;
                 }
             }
 
@@ -324,13 +337,12 @@ public class NPC02_control : MonoBehaviour
     void EnableHitbox()
     {
         hitbox_Robot.SetActive(true);
-        Invoke("closeHitbox", 0.5f);//atk time
         hit = false;
+        Invoke("closeHitbox", 2f);//atk time
     }
     void closeHitbox()
     {
-        hitbox_Robot.SetActive(false);
-        open_EnableHitbox = true;
+        open_EnableHitbox = 0;
     }
 
     void Flip()
@@ -388,6 +400,7 @@ public class NPC02_control : MonoBehaviour
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             static_parameters.money += 5;
+            _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;
         }

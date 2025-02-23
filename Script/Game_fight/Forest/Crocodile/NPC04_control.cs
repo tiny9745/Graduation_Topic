@@ -20,7 +20,7 @@ public class NPC04_control : MonoBehaviour
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
-
+    public UI _UI;
 
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 115f; // 移動距離
@@ -32,6 +32,7 @@ public class NPC04_control : MonoBehaviour
         originalColor = spriteRenderer.color; // 儲存原始顏色
         lastEnteredDirection = transform.position.normalized;
         presentPosition = Vector3.forward;
+        _UI = GameObject.Find("UI").GetComponent<UI>();
 
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
@@ -63,17 +64,14 @@ public class NPC04_control : MonoBehaviour
     void Update()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 取得 Layer 0 的動畫狀態
-
         if (stateInfo.IsName("crocodile_LB_atk") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
         {
             open_EnableHitbox = 2;
-            Debug.Log("動畫播放到一半！");
             EnableHitbox();
         }
         else if (stateInfo.IsName("crocodile_LF_atk") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
         {
             open_EnableHitbox = 2;
-            Debug.Log("動畫播放到一半！");
             EnableHitbox();
         }
 
@@ -108,9 +106,10 @@ public class NPC04_control : MonoBehaviour
             PlayAttackAnimation();
         }
 
-        if (dist >= DetectDistance * 3 / 5)
+        if (dist >= DetectDistance * 3 / 5 && hit_Ani && open_EnableHitbox == 0)
         {
-            // hit_Ani = false;
+            hit_Ani = false;
+            Debug.Log("hit_Ani: " + hit_Ani);
         }
 
         lastPosition = transform.position;
@@ -273,13 +272,12 @@ public class NPC04_control : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && !stun )
+        if (NPC_HP > 0 && !stun)
         {
             if (other.gameObject.tag == "Player" && Time.time > nextDamageTime)
             {
                 if (open_EnableHitbox == 0)
                 {
-                    Debug.Log("動畫啟動!");
                     open_EnableHitbox = 1;
                     hit_Ani = true;
                 }
@@ -304,7 +302,7 @@ public class NPC04_control : MonoBehaviour
                 effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC04_DEF);
                 MC_to_Att = false;
-                Invoke("wait_MC_att", 0.2f);
+                Invoke("wait_MC_att", 0.5f);
                 nextDamageTime = Time.time + damageCooldown;
             }
 
@@ -451,6 +449,7 @@ public class NPC04_control : MonoBehaviour
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             static_parameters.money += 4;
+            _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;
         }

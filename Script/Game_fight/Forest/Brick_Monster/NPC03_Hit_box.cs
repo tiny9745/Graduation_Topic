@@ -4,36 +4,28 @@ using UnityEngine;
 
 public class NPC03_Hit_box : MonoBehaviour
 {
-    //
     public NPC03_control npcCtrl;
     public NPC_effect_03 effect;
     public GameObject Player;
     float NPC_ATK = 0, minus;
     void Start()
     {
-        Player = GameObject.Find("Player");
         if (Player == null)
         {
-            Debug.LogError("Player object not found!");
+            Player = GameObject.Find("Player");
         }
         if (npcCtrl == null)
         {
             npcCtrl = GetComponentInParent<NPC03_control>();
         }
     }
-
+    
     void Update()
     {
         if (npcCtrl != null) NPC_ATK = npcCtrl.GetNPC03_ATK();
         if (Player != null)
         {
-            Vector3 direction = Player.transform.position - transform.position;
-            direction.y = 0;
-            if (direction != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = targetRotation;
-            }
+            transform.LookAt(Player.transform.position);
         }
     }
     private void OnTriggerEnter(Collider Hit)
@@ -46,7 +38,7 @@ public class NPC03_Hit_box : MonoBehaviour
                 minus = (float)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
                 if (minus < 5) minus = 5.0f;
                 static_parameters.MC_HP -= minus;
-                this.enabled = false;
+                gameObject.SetActive(false);
             }
         }
     }

@@ -39,10 +39,10 @@ public class Prefabs_start_241130 : MonoBehaviour
         {
             case 1:
                 // Number_NPC01 = 7;
-                // Number_NPC02 = 7;
-                // Number_NPC03 = 15;
-                Number_NPC04 = 1;
-                // Number_NPC05 = 5;
+                Number_NPC02 = 7;
+                // Number_NPC03 = 7;
+                // Number_NPC04 = 7;
+                // Number_NPC05 = 7;
                 break;
             case 2:
                 Number_NPC03 = 12;

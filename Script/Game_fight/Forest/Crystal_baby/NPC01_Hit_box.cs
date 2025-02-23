@@ -5,51 +5,45 @@ using UnityEngine;
 public class NPC01_Hit_box : MonoBehaviour
 {
     public NPC01_control npcCtrl;
+    public NPC01_effect effect;
     public GameObject Player;
     float NPC_ATK = 0; float minus;
     void Start()
     {
-        Player = GameObject.Find("Player");
         if (Player == null)
         {
-            Debug.LogError("Player object not found!");
+            Player = GameObject.Find("Player");
         }
-        if (npcCtrl == null){
+        if (npcCtrl == null)
+        {
             npcCtrl = GetComponentInParent<NPC01_control>();
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (npcCtrl != null) NPC_ATK = npcCtrl.GetNPC01_ATK();
         if (Player != null)
         {
-            // Get target direction
-            Vector3 direction = Player.transform.position - transform.position;
-            direction.y = 0;
-            if (direction != Vector3.zero)
-            {
-                // target rotation
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = targetRotation;
-            }
+            transform.LookAt(Player.transform.position);
         }
     }
     private void OnTriggerEnter(Collider Hit)
     {
-        //NPC attack determination
         if (Hit.gameObject.CompareTag("Player"))
         {
             Damage();
-            this.enabled = false;
+            gameObject.SetActive(false);
         }
     }
     void Damage()
     {
-        if(!static_parameters.invincible){
+        if (!static_parameters.invincible)
+        {
+            effect.fight_instinct_MC();
             minus = (int)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
             if (minus < 5) minus = 5.0f;
             static_parameters.MC_HP -= minus;
-        }       
+        }
     }
 }

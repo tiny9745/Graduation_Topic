@@ -5,42 +5,41 @@ using UnityEngine;
 public class NPC02_Hit_box : MonoBehaviour
 {
     public NPC02_control npcCtrl;
+    public NPC_effect_02 effect;
     public GameObject Player;
     float NPC_ATK = 0, minus;
-    void Start(){
-        Player = GameObject.Find("Player");
-        if (Player == null){
-            Debug.LogError("Player object not found!");
+    void Start()
+    {
+        if (Player == null)
+        {
+            Player = GameObject.Find("Player");
         }
-        if (npcCtrl == null){
+        if (npcCtrl == null)
+        {
             npcCtrl = GetComponentInParent<NPC02_control>();
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
-        if (npcCtrl != null) NPC_ATK = npcCtrl.GetNPC02_ATK();   
-        if (Player != null){
-            // Get target direction
-            Vector3 direction = Player.transform.position - transform.position;
-            direction.y = 0;
-            if (direction != Vector3.zero){
-                // target rotation
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = targetRotation;
-            }
+        if (npcCtrl != null) NPC_ATK = npcCtrl.GetNPC02_ATK();
+        if (Player != null)
+        {
+            transform.LookAt(Player.transform.position);
         }
     }
-    private void OnTriggerEnter(Collider Hit){
-        //NPC attack determination
+    private void OnTriggerEnter(Collider Hit)
+    {
         if (Hit.gameObject.CompareTag("Player"))
         {
-            if(!static_parameters.invincible){
-                minus = (float)(NPC_ATK*NPC_ATK/(static_parameters.MC_DEF+NPC_ATK));
+            if (!static_parameters.invincible)
+            {
+                effect.fight_instinct_MC();
+                minus = (float)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
                 if (minus < 5) minus = 5.0f;
                 static_parameters.MC_HP -= minus;
-                this.enabled = false;
-            }       
-        }      
+                gameObject.SetActive(false);
+            }
+        }
     }
 }

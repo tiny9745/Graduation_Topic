@@ -14,10 +14,12 @@ public class NPC03_control : MonoBehaviour
     public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, NPC03_ATK = 10, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f, dist;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
+    int open_EnableHitbox = 0;
     public bool stun; private bool isFacingRight = true;
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
+    public UI _UI;
 
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
@@ -31,6 +33,7 @@ public class NPC03_control : MonoBehaviour
         originalColor = spriteRenderer.color; // 儲存原始顏色
         lastEnteredDirection = transform.position.normalized;
         presentPosition = Vector3.forward;
+        _UI = GameObject.Find("UI").GetComponent<UI>();
 
         static_parameters.Change_enemy++;
         NPC_HP = NPC_HP_Max;
@@ -59,6 +62,17 @@ public class NPC03_control : MonoBehaviour
 
     void Update()
     {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 取得 Layer 0 的動畫狀態
+        if (stateInfo.IsName("blocksLB_atk") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
+        {
+            open_EnableHitbox = 2;
+            EnableHitbox();
+        }
+        else if (stateInfo.IsName("blocksLF_atk") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
+        {
+            open_EnableHitbox = 2;
+            EnableHitbox();
+        }
         if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj != null) dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         if (NPC_HP <= 0)
@@ -71,7 +85,7 @@ public class NPC03_control : MonoBehaviour
         }
         else if (!hit_Ani)
         {
-            if(isInDangerZone)
+            if (isInDangerZone)
             {
                 PlayWalkAnimation();
             }
@@ -228,8 +242,6 @@ public class NPC03_control : MonoBehaviour
         }
     }
 
-    bool open_EnableHitbox = true;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(dangerTag))
@@ -256,15 +268,14 @@ public class NPC03_control : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
+        if (NPC_HP > 0 && !stun)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player" && Time.time >= nextDamageTime)
             {
-                if (open_EnableHitbox)
+                if (open_EnableHitbox == 0)
                 {
+                    open_EnableHitbox = 1;
                     hit_Ani = true;
-                    Invoke("EnableHitbox", 1.1f);
-                    open_EnableHitbox = false;
                 }
             }
 
@@ -287,7 +298,7 @@ public class NPC03_control : MonoBehaviour
                 effect.piano_Skill();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
-                Invoke("wait_MC_att", 0.2f);
+                Invoke("wait_MC_att", 0.5f);
                 nextDamageTime = Time.time + damageCooldown;
             }
 
@@ -369,13 +380,12 @@ public class NPC03_control : MonoBehaviour
     void EnableHitbox()
     {
         hitbox_Brick_Monster.SetActive(true);
-        Invoke("closeHitbox", 0.5f);//atk time
         hit = false;
+        Invoke("closeHitbox", 2f);
     }
     void closeHitbox()
     {
-        hitbox_Brick_Monster.SetActive(false);
-        open_EnableHitbox = true;
+        open_EnableHitbox = 0;
     }
 
     void Flip()
@@ -408,6 +418,7 @@ public class NPC03_control : MonoBehaviour
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             static_parameters.money += 7;
+            _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;
         }
