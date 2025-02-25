@@ -153,7 +153,6 @@ public class NPC_effect_03 : MonoBehaviour
                     switch (icon.iconID)
                     {
                         case 1:
-                            Debug.Log("NPC03 skill_01");
                             skill_01_1.SetTrigger("skill_01_1");
                             Skill_public_funtion.skill_01_time = 0;
                             static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) / 4;
@@ -188,6 +187,20 @@ public class NPC_effect_03 : MonoBehaviour
                     switch (icon.iconID)
                     {
                         case 2:
+                            if (control.NPC_angle >= 0 && control.NPC_angle < 180)
+                            {
+                                if (isFacingRight)
+                                {
+                                    Flip_02();
+                                }
+                            }
+                            else
+                            {
+                                if (!isFacingRight)
+                                {
+                                    Flip_02();
+                                }
+                            }
                             HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
                             break;
                     }
@@ -293,5 +306,15 @@ public class NPC_effect_03 : MonoBehaviour
         Debug.Log("NPC03 rewalk");
         skill22_animator.SetBool("skill_bullet15", false);
         control.stun = false;
+    }
+
+    bool isFacingRight = true;
+    public GameObject Img_npc;
+    public void Flip_02()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = Img_npc.transform.localScale;
+        theScale.x *= -1;
+        Img_npc.transform.localScale = theScale;
     }
 }

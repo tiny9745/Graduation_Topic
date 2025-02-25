@@ -47,11 +47,11 @@ public class initiator_MC : MonoBehaviour
                     {
                         case 1:
                             skill01_animator.SetInteger("skill_0x", 2);
-                            skill_01_2.SetTrigger("skill_01_2");
                             Skill_public_funtion.skill_01_time += Time.deltaTime;
                             if (Skill_public_funtion.skill_01_time > 10f)
                             {
                                 Debug.Log("skill_01");
+                                skill_01_2.SetTrigger("skill_01_2");
                                 static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
                                 Skill_public_funtion.skill_01_time = 0;
                                 Debug.Log("MC_HP" + static_parameters.MC_HP);
