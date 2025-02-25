@@ -5,7 +5,6 @@ using UnityEngine;
 public class Shopoint : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Upgrade;
     bool P1 = false;
     short price;
     int spawn;
