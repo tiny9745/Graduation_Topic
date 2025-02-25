@@ -10,7 +10,7 @@ public class initiator_MC : MonoBehaviour
     private Vector3 previousPosition, lastTriggerPosition_31;
     public GameObject skill_hit_box31, bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45;
     public Transform Firepoint;
-    public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
+    public Animator skill01_animator, skill_01_2, skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
     public Animator[] skill11_animatorA;
     public Transform skill_hit_box31_postion, skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
     public InventoryManager inventoryManager;
@@ -36,15 +36,18 @@ public class initiator_MC : MonoBehaviour
 
     private void fight_instinct()
     {
-        if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
+
+        if (IconManager.Instance != null)
         {
-            if (IconManager.Instance != null)
+            foreach (var icon in IconManager.Instance.IconList)
             {
-                foreach (var icon in IconManager.Instance.IconList)
+                if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
                 {
                     switch (icon.iconID)
                     {
                         case 1:
+                            skill01_animator.SetInteger("skill_0x", 2);
+                            skill_01_2.SetTrigger("skill_01_2");
                             Skill_public_funtion.skill_01_time += Time.deltaTime;
                             if (Skill_public_funtion.skill_01_time > 10f)
                             {
@@ -54,7 +57,11 @@ public class initiator_MC : MonoBehaviour
                                 Debug.Log("MC_HP" + static_parameters.MC_HP);
                             }
                             break;
+                        case 2:
+                            skill01_animator.SetInteger("skill_0x", 2);
+                            break;
                         case 3:
+                            skill01_animator.SetInteger("skill_0x", 2);
                             if (Skill_public_funtion.MC_HP_tmp != static_parameters.MC_HP)
                             {
                                 Debug.Log("skill_03");
@@ -64,6 +71,7 @@ public class initiator_MC : MonoBehaviour
                             }
                             break;
                         case 4:
+                            skill01_animator.SetInteger("skill_0x", 2);
                             if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && Skill_public_funtion.skill_04_atk)
                             {
                                 Debug.Log("skill_04");
@@ -72,6 +80,7 @@ public class initiator_MC : MonoBehaviour
                             }
                             break;
                         case 5:
+                            skill01_animator.SetInteger("skill_0x", 2);
                             if (Skill_public_funtion.skill_05_atk == false && static_parameters.MC_HP_tmp != static_parameters.MC_HP)
                             {
                                 Debug.Log("skill_05");
@@ -79,6 +88,19 @@ public class initiator_MC : MonoBehaviour
                                 static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
                                 static_parameters.MC_ATK *= 1.5f;
                             }
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (icon.iconID)
+                    {
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                            skill01_animator.SetInteger("skill_0x", 1);
                             break;
                     }
                 }

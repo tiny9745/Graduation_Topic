@@ -203,23 +203,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 j += (int)(math.floor((i - 1) / 5) * 10);
                 end_count = j;
                 puzzle_count++;
-                switch (math.floor((i - 1) / 5))
-                {
-                    case 0:
-                        Skill_public_funtion.WOW += 1;
-                        break;
-                    case 1:
-                        Skill_public_funtion.ANGRY += 1;
-                        break;
-                    case 2:
-                        Skill_public_funtion.SAD += 1;
-                        break;
-                    case 4:
-                        Skill_public_funtion.HAPPY += 1;
-                        break;
-                    default:
-                        break;
-                }
+                Skill_public_funtion.mood_number = (int)math.floor((i - 1) / 5);
                 return 2;
             }
 
