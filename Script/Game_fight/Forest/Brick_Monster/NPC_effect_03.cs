@@ -8,7 +8,7 @@ public class NPC_effect_03 : MonoBehaviour
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
-    public Animator skill_01_1;
+    public Animator skill_01_1, skill_02;
     public Animator skill_2x_animator, skill21_animator, skill22_animator, skill23_animator, skill24_animator, skill25_1_animator, skill25_2_animator;
     private bool skill_25_effect = false; private float skill_25_effect_time = 0; private float skill_25_max_time = 2, skill_25_step_time = 0.5f;
 
@@ -201,6 +201,7 @@ public class NPC_effect_03 : MonoBehaviour
                                     Flip_02();
                                 }
                             }
+                            skill_02.SetTrigger("skill_02");
                             HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
                             break;
                     }
@@ -309,12 +310,12 @@ public class NPC_effect_03 : MonoBehaviour
     }
 
     bool isFacingRight = true;
-    public GameObject Img_npc;
+    public GameObject Img_skill02;
     public void Flip_02()
     {
         isFacingRight = !isFacingRight;
-        Vector3 theScale = Img_npc.transform.localScale;
+        Vector3 theScale = Img_skill02.transform.localScale;
         theScale.x *= -1;
-        Img_npc.transform.localScale = theScale;
+        Img_skill02.transform.localScale = theScale;
     }
 }
