@@ -13,12 +13,15 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     static public List<int> currentCombination = new List<int>(); // 當前的組合
     public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
     public Image[] images_puzzle_col = new Image[4]; // 圖片顏色陣列
+    public Image[] images_effect_col = new Image[4]; // 碎片裝飾陣列
+    public Image[] images_effect_change = new Image[4]; // 碎片更換陣列
     public Button composite_col;
     private Color newColor = new Color(1, 1, 1, 0.5f); // 按鈕透明度顏色
     public Image button_image; // 按鈕圖像
     private int puzzle_count = 0; // 碎片數量計數
-    static public int puzzle_color = 2,end_count = -1; // 碎片顏色（默認為 2）
-    public Animator animation_col; // 動畫控制器
+    static public int puzzle_color = 2, end_count = -1; // 碎片顏色（默認為 2）
+    // public Animator animation_col;
+
 
     void Start()
     {
@@ -97,28 +100,68 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
                 // 檢查組合並處理結果
                 int checkResult = CheckCombination(currentCombination);
-                animation_col.SetInteger("fragment_control", checkResult);
+                // animation_col.SetInteger("fragment_control", checkResult);
 
                 if (checkResult == -2)
                 {
                     piece.page = 0;
-                    ResetCombination();     
+                    ResetCombination();
                 }
                 else if (checkResult == 2)
                 {
                     newColor.a = 1;
                     SetPuzzleColor(key_color);
                     composite_col.enabled = true;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Debug.Log("images_open");
+                        images_effect_col[i].gameObject.SetActive(false);
+                        images_effect_change[i].gameObject.SetActive(true);
+                    }
+                }
+                if (checkResult != 2)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Debug.Log("images_close");
+                        images_effect_col[i].gameObject.SetActive(true);
+                        images_effect_change[i].gameObject.SetActive(false);
+                    }
                 }
 
                 if (puzzle_count != 0)
                 {
                     images_puzzle[puzzle_count - 1].SetActive(true);
-                    if (key_color == "Blu") images_puzzle_col[puzzle_count - 1].color = new Color(170f / 255f, 219f / 255f, 255f / 255f, 1);
-                    if (key_color == "Red") images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 190f / 255f, 190f / 255f, 1);
-                    if (key_color == "Grn") images_puzzle_col[puzzle_count - 1].color = new Color(170f / 255f, 255f / 255f, 160f / 255f, 1);
-                    if (key_color == "Prp") images_puzzle_col[puzzle_count - 1].color = new Color(230f / 255f, 195f / 255f, 255f / 255f, 1);
-                    if (key_color == "Yel") images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
+                    if (key_color == "Blu")
+                    {
+                        images_puzzle_col[puzzle_count - 1].color = new Color(170f / 255f, 219f / 255f, 255f / 255f, 1);
+                        images_effect_col[puzzle_count - 1].color = new Color(170f / 255f, 219f / 255f, 255f / 255f, 1);
+                        images_effect_change[puzzle_count - 1].color = new Color(170f / 255f, 219f / 255f, 255f / 255f, 1);
+                    }
+                    if (key_color == "Red")
+                    {
+                        images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 190f / 255f, 190f / 255f, 1);
+                        images_effect_col[puzzle_count - 1].color = new Color(225f / 255f, 190f / 255f, 190f / 255f, 1);
+                        images_effect_change[puzzle_count - 1].color = new Color(225f / 255f, 190f / 255f, 190f / 255f, 1);
+                    }
+                    if (key_color == "Grn")
+                    {
+                        images_puzzle_col[puzzle_count - 1].color = new Color(170f / 255f, 255f / 255f, 160f / 255f, 1);
+                        images_effect_col[puzzle_count - 1].color = new Color(170f / 255f, 255f / 255f, 160f / 255f, 1);
+                        images_effect_change[puzzle_count - 1].color = new Color(170f / 255f, 255f / 255f, 160f / 255f, 1);
+                    }
+                    if (key_color == "Prp")
+                    {
+                        images_puzzle_col[puzzle_count - 1].color = new Color(230f / 255f, 195f / 255f, 255f / 255f, 1);
+                        images_effect_col[puzzle_count - 1].color = new Color(230f / 255f, 195f / 255f, 255f / 255f, 1);
+                        images_effect_change[puzzle_count - 1].color = new Color(230f / 255f, 195f / 255f, 255f / 255f, 1);
+                    }
+                    if (key_color == "Yel")
+                    {
+                        images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
+                        images_effect_col[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
+                        images_effect_change[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
+                    }
                     if (checkResult != 2) newColor.a = 0.5f;
                 }
             }
@@ -160,7 +203,8 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 j += (int)(math.floor((i - 1) / 5) * 10);
                 end_count = j;
                 puzzle_count++;
-                switch (math.floor((i - 1) / 5)){
+                switch (math.floor((i - 1) / 5))
+                {
                     case 0:
                         Skill_public_funtion.WOW += 1;
                         break;
@@ -174,7 +218,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                         Skill_public_funtion.HAPPY += 1;
                         break;
                     default:
-                        break;    
+                        break;
                 }
                 return 2;
             }
