@@ -76,6 +76,24 @@ public class Puzzle : MonoBehaviour
     private void Complete_piece_after()
     {
         UI.Onclick3();
+        Debug.Log("Skill_public_funtion.mood_number: " + Skill_public_funtion.mood_number);
+        switch (Skill_public_funtion.mood_number)
+        {
+            case 0:
+                Skill_public_funtion.WOW += 1;
+                break;
+            case 1:
+                Skill_public_funtion.ANGRY += 1;
+                break;
+            case 2:
+                Skill_public_funtion.SAD += 1;
+                break;
+            case 4:
+                Skill_public_funtion.HAPPY += 1;
+                break;
+            default:
+                break;
+        }
         IconManager.Instance.Addicon(DragPiece_End.end_count);
         cpmplete_piece_object.SetActive(false);
         complete_piece_animator.SetInteger("piece_complete_color", -1);

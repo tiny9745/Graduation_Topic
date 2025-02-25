@@ -8,10 +8,18 @@ public class NPC_effect_03 : MonoBehaviour
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
+    public Animator skill_01_1;
     public Animator skill_2x_animator, skill21_animator, skill22_animator, skill23_animator, skill24_animator, skill25_1_animator, skill25_2_animator;
     private bool skill_25_effect = false; private float skill_25_effect_time = 0; private float skill_25_max_time = 2, skill_25_step_time = 0.5f;
 
-    // Update is called once per frame
+    void Start()
+    {
+        GameObject skill_01_1G = GameObject.Find("skill_01_add");
+        if (skill_01_1G != null)
+        {
+            skill_01_1 = skill_01_1G.GetComponent<Animator>();
+        }
+    }
     void Update()
     {
         skill_update();
@@ -146,12 +154,13 @@ public class NPC_effect_03 : MonoBehaviour
                     {
                         case 1:
                             Debug.Log("NPC03 skill_01");
+                            skill_01_1.SetTrigger("skill_01_1");
                             Skill_public_funtion.skill_01_time = 0;
                             static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) / 4;
                             if (static_parameters.MC_HP >= static_parameters.MC_HP_Max * 0.6f) static_parameters.MC_HP = static_parameters.MC_HP_Max * 0.6f;
                             break;
                         case 4:
-                            Debug.Log("NPC04 skill_04");
+                            Debug.Log("NPC03 skill_04");
                             static_parameters.MC_HP -= static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) / 10;
                             break;
                         case 5:

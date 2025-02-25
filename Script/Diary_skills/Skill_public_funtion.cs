@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Skill_public_funtion : MonoBehaviour
 {
-    static public bool Reading = false; static public int WOW, SAD, HAPPY, ANGRY;
+    static public bool Reading = false; static public int WOW, SAD, HAPPY, ANGRY, mood_number = 0;
     static public bool play_piano = false;//old
     static public short P_time = 4; static public float B_damage = 0;//skill 01
 
