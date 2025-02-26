@@ -133,32 +133,22 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     if (key_color == "Blu")
                     {
                         images_puzzle_col[puzzle_count - 1].color = new Color(170f / 255f, 219f / 255f, 255f / 255f, 1);
-                        images_effect_col[puzzle_count - 1].color = new Color(170f / 255f, 219f / 255f, 255f / 255f, 1);
-                        images_effect_change[puzzle_count - 1].color = new Color(170f / 255f, 219f / 255f, 255f / 255f, 1);
                     }
                     if (key_color == "Red")
                     {
                         images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 190f / 255f, 190f / 255f, 1);
-                        images_effect_col[puzzle_count - 1].color = new Color(225f / 255f, 190f / 255f, 190f / 255f, 1);
-                        images_effect_change[puzzle_count - 1].color = new Color(225f / 255f, 190f / 255f, 190f / 255f, 1);
                     }
                     if (key_color == "Grn")
                     {
                         images_puzzle_col[puzzle_count - 1].color = new Color(170f / 255f, 255f / 255f, 160f / 255f, 1);
-                        images_effect_col[puzzle_count - 1].color = new Color(170f / 255f, 255f / 255f, 160f / 255f, 1);
-                        images_effect_change[puzzle_count - 1].color = new Color(170f / 255f, 255f / 255f, 160f / 255f, 1);
                     }
                     if (key_color == "Prp")
                     {
                         images_puzzle_col[puzzle_count - 1].color = new Color(230f / 255f, 195f / 255f, 255f / 255f, 1);
-                        images_effect_col[puzzle_count - 1].color = new Color(230f / 255f, 195f / 255f, 255f / 255f, 1);
-                        images_effect_change[puzzle_count - 1].color = new Color(230f / 255f, 195f / 255f, 255f / 255f, 1);
                     }
                     if (key_color == "Yel")
                     {
                         images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
-                        images_effect_col[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
-                        images_effect_change[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
                     }
                     if (checkResult != 2) newColor.a = 0.5f;
                 }
