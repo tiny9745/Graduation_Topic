@@ -10,7 +10,8 @@ public class initiator_MC : MonoBehaviour
     private Vector3 previousPosition, lastTriggerPosition_31;
     public GameObject skill_hit_box31, bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45;
     public Transform Firepoint;
-    public Animator skill01_animator, skill_01_2, skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
+    public Animator skill01_animator, skill_01_2, skill03C;
+    public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
     public Animator[] skill11_animatorA;
     public Transform skill_hit_box31_postion, skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
     public InventoryManager inventoryManager;
@@ -64,9 +65,20 @@ public class initiator_MC : MonoBehaviour
                             skill01_animator.SetInteger("skill_0x", 2);
                             if (Skill_public_funtion.MC_HP_tmp != static_parameters.MC_HP)
                             {
-                                Debug.Log("skill_03");
                                 Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
                                 static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
+                                if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.2f)
+                                {
+                                    skill03C.SetInteger("A03C", 3);
+                                }
+                                else if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.4f)
+                                {
+                                    skill03C.SetInteger("A03C", 2);
+                                }
+                                else if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
+                                {
+                                    skill03C.SetInteger("A03C", 1);
+                                }
                                 Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                             }
                             break;
@@ -100,6 +112,7 @@ public class initiator_MC : MonoBehaviour
                         case 3:
                         case 4:
                         case 5:
+                            skill03C.SetInteger("A03C", 0);
                             skill01_animator.SetInteger("skill_0x", 1);
                             break;
                     }

@@ -114,7 +114,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     composite_col.enabled = true;
                     for (int i = 0; i < 4; i++)
                     {
-                        Debug.Log("images_open");
                         images_effect_col[i].gameObject.SetActive(false);
                         images_effect_change[i].gameObject.SetActive(true);
                     }
@@ -123,7 +122,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        Debug.Log("images_close");
                         images_effect_col[i].gameObject.SetActive(true);
                         images_effect_change[i].gameObject.SetActive(false);
                     }
@@ -172,43 +170,47 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     private int CheckCombination(List<int> combination)
     {
         HashSet<int> combinationSet = new HashSet<int>(combination);
-
-        for (int i = 1; i <= validSequences.Count; i++)
+        if (Ptest.show.Count == 0)
         {
-            HashSet<int> sequence = validSequences[i - 1];
+            return -2;
+        }
 
-            // 將數列標準化並排序
+        // 先檢查是否有完全匹配的組合
+        for (int i = 0; i < validSequences.Count; i++)
+        {
+            HashSet<int> sequence = validSequences[i];
+
             List<int> combinationList = new List<int>(combinationSet);
             List<int> sequenceList = new List<int>(sequence);
 
             combinationList.Sort();
             sequenceList.Sort();
 
-            if (Ptest.show.Count == 0)
-            {
-                return -2;
-            }
-
             if (combinationList.SequenceEqual(sequenceList))
             {
-                int j = 0;
-                if (i % 5 == 0)
-                {
-                    j = 5;
-                }
-                else
-                {
-                    j = i % 5;
-                }
-                j += (int)(math.floor((i - 1) / 5) * 10);
+                int j = (i % 5 == 0) ? 5 : i % 5;
+                j += (int)(math.floor(i / 5) * 10);
                 end_count = j;
                 puzzle_count++;
-                Skill_public_funtion.mood_number = (int)math.floor((i - 1) / 5);
+                Skill_public_funtion.mood_number = (int)math.floor(i / 5);
                 return 2;
             }
+        }
+
+        // 若沒有完全匹配的組合，再檢查是否為子集
+        for (int i = 0; i < validSequences.Count; i++)
+        {
+            HashSet<int> sequence = validSequences[i];
+
+            List<int> combinationList = new List<int>(combinationSet);
+            List<int> sequenceList = new List<int>(sequence);
+
+            combinationList.Sort();
+            sequenceList.Sort();
 
             if (IsSubset(combinationList, sequenceList))
             {
+                Debug.Log("Combination: " + string.Join(", ", combinationList));
                 puzzle_count++;
                 return 1;
             }
