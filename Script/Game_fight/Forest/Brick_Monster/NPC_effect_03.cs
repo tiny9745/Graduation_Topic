@@ -350,6 +350,5 @@ public class NPC_effect_03 : MonoBehaviour
         Vector3 theScale5 = Img_skill05.transform.localScale;
         theScale5.x *= -1;
         Img_skill05.transform.localScale = theScale5;
-
     }
 }

@@ -8,10 +8,28 @@ public class NPC01_effect : MonoBehaviour
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 10, minus;
     bool piano_flag = true;
+    public Animator skill_01_1, skill_02, skill04A, skill04_B, skill05A, skill05B;
     public Animator skill_2x_animator, skill21_animator, skill22_animator, skill23_animator, skill24_animator, skill25_1_animator, skill25_2_animator;
     private bool skill_25_effect = false; private float skill_25_effect_time = 0; private float skill_25_max_time = 2, skill_25_step_time = 0.5f;
 
-    // Update is called once per frame
+    void Start()
+    {
+        GameObject skill_01_1G = GameObject.Find("skill_01_add");
+        if (skill_01_1G != null)
+        {
+            skill_01_1 = skill_01_1G.GetComponent<Animator>();
+        }
+        GameObject skill_04A = GameObject.Find("skill_04A");
+        if (skill_04A != null)
+        {
+            skill04A = skill_04A.GetComponent<Animator>();
+        }
+        GameObject skill05_A = GameObject.Find("skill05_A");
+        if (skill05_A != null)
+        {
+            skill05A = skill05_A.GetComponent<Animator>();
+        }
+    }
     void Update()
     {
         skill_update();
@@ -74,30 +92,23 @@ public class NPC01_effect : MonoBehaviour
                 switch (icon.iconID)
                 {
                     case 21: // Bomb
-                        Debug.Log("NPC03 skill_21");
                         skill21_animator.SetTrigger("skill_bomb21");
                         play_piano_atk = 0;
                         Skill_public_funtion.B_damage += 10;
                         continue;
-
                     case 22: // Flash
-                        Debug.Log("NPC03 skill_22");
                         skill22_animator.SetBool("skill_bomb22", true);
                         Skill_public_funtion.B_damage += 15;
                         control.stun = true;
                         Invoke(nameof(Stun_end22), 3);
                         continue;
-
                     case 23: // Ricochet
-                        Debug.Log("NPC03 skill_23");
                         skill23_animator.SetTrigger("skill_bomb23");
                         Skill_public_funtion.B_damage += 20;
                         piano_flag = false;
                         play_piano_atk++;
                         continue;
-
                     case 24: // Air Bullet
-                        Debug.Log("NPC03 skill_24");
                         skill24_animator.SetTrigger("skill_bomb24");
                         Skill_public_funtion.B_damage += 15;
                         if (control.NPC_HP < NPC_back)
@@ -117,10 +128,6 @@ public class NPC01_effect : MonoBehaviour
             damage(Skill_public_funtion.B_damage);
             Reset_flag();
             control.change_color_red();
-            if (play_piano_atk >= 5)
-            {
-                Debug.Log("NPC03 play_piano_atk warning! " + play_piano_atk);
-            }
         }
     }
 
@@ -156,19 +163,36 @@ public class NPC01_effect : MonoBehaviour
                     switch (icon.iconID)
                     {
                         case 1:
-                            Debug.Log("NPC03 skill_01");
+                            skill_01_1.SetTrigger("skill_01_1");
                             Skill_public_funtion.skill_01_time = 0;
                             static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC01_DEF) / 4;
                             if (static_parameters.MC_HP >= static_parameters.MC_HP_Max * 0.6f) static_parameters.MC_HP = static_parameters.MC_HP_Max * 0.6f;
                             break;
                         case 4:
-                            Debug.Log("NPC04 skill_04");
+                            skill04A.SetTrigger("skill04_A");
+                            skill04_B.SetTrigger("skill_04_B");
                             static_parameters.MC_HP -= static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC01_DEF) / 10;
                             break;
                         case 5:
                             if (Skill_public_funtion.skill_05_atk == true)
                             {
-                                Debug.Log("NPC03 skill_05");
+                                if (control.NPC_angle >= 0 && control.NPC_angle < 180)
+                                {
+                                    if (isFacingRight)
+                                    {
+                                        Flip_02();
+                                    }
+                                }
+                                else
+                                {
+                                    if (!isFacingRight)
+                                    {
+                                        Flip_02();
+                                    }
+                                }
+                                skill05A.SetTrigger("skill05_trigger");
+                                skill05A.SetBool("skill05_bool", false);
+                                skill05B.SetTrigger("skill05_B2");
                                 Skill_public_funtion.skill_05_atk = false;
                                 static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                             }
@@ -190,6 +214,21 @@ public class NPC01_effect : MonoBehaviour
                     switch (icon.iconID)
                     {
                         case 2:
+                            if (control.NPC_angle >= 0 && control.NPC_angle < 180)
+                            {
+                                if (isFacingRight)
+                                {
+                                    Flip_02();
+                                }
+                            }
+                            else
+                            {
+                                if (!isFacingRight)
+                                {
+                                    Flip_02();
+                                }
+                            }
+                            skill_02.SetTrigger("skill_02");
                             HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
                             break;
                     }
@@ -295,5 +334,21 @@ public class NPC01_effect : MonoBehaviour
         Debug.Log("NPC03 rewalk");
         skill22_animator.SetBool("skill_bullet15", false);
         control.stun = false;
+    }
+
+    bool isFacingRight = true;
+    public GameObject Img_skill02;
+    public GameObject Img_skill05;
+    public void Flip_02()
+    {
+        isFacingRight = !isFacingRight;
+
+        Vector3 theScale2 = Img_skill02.transform.localScale;
+        theScale2.x *= -1;
+        Img_skill02.transform.localScale = theScale2;
+
+        Vector3 theScale5 = Img_skill05.transform.localScale;
+        theScale5.x *= -1;
+        Img_skill05.transform.localScale = theScale5;
     }
 }

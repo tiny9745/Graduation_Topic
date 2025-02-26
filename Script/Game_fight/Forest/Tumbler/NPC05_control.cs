@@ -11,7 +11,7 @@ public class NPC05_control : MonoBehaviour
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Img_npc, bulletPrefab, NPC05, Drop;
-    public int DetectDistance = 12; int NPC_angle = 0;
+    public int DetectDistance = 12; public int NPC_angle = 0;
     public float NPC05_ATK = 35, NPC05_DEF = 15, NPC_HP_Max = 160, npcSpeed = 0f, NPC_HP, fireRate = 1f, bulletSpeed = 20f;
     float dist, nextFireTime = 0f;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;

@@ -21,7 +21,7 @@ public class NPC01_1_control : MonoBehaviour
     private Quaternion initialRotation;
     public GameObject NPC01_1;
     public GameObject hitbox_Crystal_baby_small, Drop;
-    int NPC_angle = 0;
+    public int NPC_angle = 0;
 
     public GameObject Img_npc;
     SpriteRenderer spriterenderer;
