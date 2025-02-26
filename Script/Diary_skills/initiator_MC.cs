@@ -79,14 +79,13 @@ public class initiator_MC : MonoBehaviour
                                 {
                                     skill03C.SetInteger("A03C", 1);
                                 }
-                                Debug.Log("MC_ATK:" + static_parameters.MC_ATK);
                             }
                             break;
                         case 4:
                             skill01_animator.SetInteger("skill_0x", 2);
                             if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && Skill_public_funtion.skill_04_atk)
                             {
-                                Debug.Log("skill_04");
+                                
                                 Skill_public_funtion.skill_04_atk = false;
                                 static_parameters.MC_ATK *= 1.5f;
                             }
