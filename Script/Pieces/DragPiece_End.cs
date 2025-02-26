@@ -189,7 +189,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             if (combinationList.SequenceEqual(sequenceList))
             {
                 Debug.Log($"完全匹配的組合：{sequence}");
-                Debug.Log("碎片組合成功:" + i + 1);
+                Debug.Log("碎片組合成功:" + (i + 1));
                 int j = ((i + 1) % 5 == 0) ? 5 : (i + 1) % 5;
                 j += (int)(math.floor(i / 5) * 10);
                 end_count = j;
