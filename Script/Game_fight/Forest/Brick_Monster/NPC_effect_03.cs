@@ -8,7 +8,7 @@ public class NPC_effect_03 : MonoBehaviour
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 20, minus;
     bool piano_flag = true;
-    public Animator skill_01_1, skill_02, skill04A, skill04_B;
+    public Animator skill_01_1, skill_02, skill04A, skill04_B, skill05A, skill05B;
     public Animator skill_2x_animator, skill21_animator, skill22_animator, skill23_animator, skill24_animator, skill25_1_animator, skill25_2_animator;
     private bool skill_25_effect = false; private float skill_25_effect_time = 0; private float skill_25_max_time = 2, skill_25_step_time = 0.5f;
 
@@ -23,6 +23,11 @@ public class NPC_effect_03 : MonoBehaviour
         if (skill_04A != null)
         {
             skill04A = skill_04A.GetComponent<Animator>();
+        }
+        GameObject skill05_A = GameObject.Find("skill05_A");
+        if (skill05_A != null)
+        {
+            skill05A = skill05_A.GetComponent<Animator>();
         }
     }
     void Update()
@@ -171,7 +176,23 @@ public class NPC_effect_03 : MonoBehaviour
                         case 5:
                             if (Skill_public_funtion.skill_05_atk == true)
                             {
-                                Debug.Log("NPC03 skill_05");
+                                if (control.NPC_angle >= 0 && control.NPC_angle < 180)
+                                {
+                                    if (isFacingRight)
+                                    {
+                                        Flip_02();
+                                    }
+                                }
+                                else
+                                {
+                                    if (!isFacingRight)
+                                    {
+                                        Flip_02();
+                                    }
+                                }
+                                skill05A.SetTrigger("skill05_trigger");
+                                skill05A.SetBool("skill05_bool", false);
+                                skill05B.SetTrigger("skill05_B2");
                                 Skill_public_funtion.skill_05_atk = false;
                                 static_parameters.MC_ATK = static_parameters.MC_ATK_tmp;
                             }
@@ -317,11 +338,18 @@ public class NPC_effect_03 : MonoBehaviour
 
     bool isFacingRight = true;
     public GameObject Img_skill02;
+    public GameObject Img_skill05;
     public void Flip_02()
     {
         isFacingRight = !isFacingRight;
-        Vector3 theScale = Img_skill02.transform.localScale;
-        theScale.x *= -1;
-        Img_skill02.transform.localScale = theScale;
+
+        Vector3 theScale2 = Img_skill02.transform.localScale;
+        theScale2.x *= -1;
+        Img_skill02.transform.localScale = theScale2;
+
+        Vector3 theScale5 = Img_skill05.transform.localScale;
+        theScale5.x *= -1;
+        Img_skill05.transform.localScale = theScale5;
+
     }
 }

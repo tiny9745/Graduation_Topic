@@ -10,7 +10,7 @@ public class initiator_MC : MonoBehaviour
     private Vector3 previousPosition, lastTriggerPosition_31;
     public GameObject skill_hit_box31, bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45;
     public Transform Firepoint;
-    public Animator skill01_animator, skill_01_2, skill03C;
+    public Animator skill01_animator, skill_01_2, skill03C, skill05A;
     public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
     public Animator[] skill11_animatorA;
     public Transform skill_hit_box31_postion, skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
@@ -85,7 +85,7 @@ public class initiator_MC : MonoBehaviour
                             skill01_animator.SetInteger("skill_0x", 2);
                             if (static_parameters.MC_ATK == static_parameters.MC_ATK_tmp && Skill_public_funtion.skill_04_atk)
                             {
-                                
+
                                 Skill_public_funtion.skill_04_atk = false;
                                 static_parameters.MC_ATK *= 1.5f;
                             }
@@ -94,7 +94,7 @@ public class initiator_MC : MonoBehaviour
                             skill01_animator.SetInteger("skill_0x", 2);
                             if (Skill_public_funtion.skill_05_atk == false && static_parameters.MC_HP_tmp != static_parameters.MC_HP)
                             {
-                                Debug.Log("skill_05");
+                                skill05A.SetBool("skill05_bool", true);
                                 Skill_public_funtion.skill_05_atk = true;
                                 static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
                                 static_parameters.MC_ATK *= 1.5f;
