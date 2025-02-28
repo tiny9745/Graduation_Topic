@@ -35,4 +35,5 @@ public class static_parameters : MonoBehaviour
     static public int bullet_quantity = 0;
     static public int _ItemID, Piece_ID = 0;
     static public int _IconID = 0;
+    static public int teaching_stop = -1;
 }
