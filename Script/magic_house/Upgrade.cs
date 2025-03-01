@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Upgrade : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject ATK_plus, DEF_plus, HP_plus, Speed_plus, Knockback_plus, comfirm, cancel ,ATK1, DEF2, HP3, Speed4, Knockback5;
-    public Image AB,DB,HB,SB,KB,cancel_img,comfirm_img;
-    public Sprite AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
+    public GameObject ATK_plus, DEF_plus, HP_plus, Speed_plus, Knockback_plus, comfirm, cancel;
+    public Image cancel_img,comfirm_img;
+    public GameObject AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
                   SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;//,comfirm_on,comfirm_off,cancel_on,cancel_off;
     public Text textbox;
     short ATK_LV=1, DEF_LV=1, HP_LV=1, Speed_LV=1, Knockback_LV=1,Click;
@@ -153,7 +153,7 @@ public class Upgrade : MonoBehaviour
                         {
                             static_parameters.money -= ATK_price[0];
                             static_parameters.MC_ATK += 3;
-                            ATK_LV++; AB.sprite = AB1; ATK1.SetActive(true);
+                            ATK_LV++; AB1.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -166,7 +166,7 @@ public class Upgrade : MonoBehaviour
                         {
                             static_parameters.money -= ATK_price[1];
                             static_parameters.MC_ATK += 5;
-                            ATK_LV++; AB.sprite = AB2;
+                            ATK_LV++; AB2.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -179,7 +179,7 @@ public class Upgrade : MonoBehaviour
                         {
                             static_parameters.money -= ATK_price[2];
                             static_parameters.MC_ATK += 8;
-                            ATK_LV++; AB.sprite = AB3;
+                            ATK_LV++; AB3.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -192,7 +192,7 @@ public class Upgrade : MonoBehaviour
                         {
                             static_parameters.money -= ATK_price[3];
                             static_parameters.MC_ATK += 13;
-                            ATK_LV++; AB.sprite = AB4;
+                            ATK_LV++; AB4.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -205,7 +205,7 @@ public class Upgrade : MonoBehaviour
                         {
                             static_parameters.money -= ATK_price[4];
                             static_parameters.MC_ATK += 21;
-                            ATK_LV++; AB.sprite = AB5;
+                            ATK_LV++; AB5.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -225,7 +225,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[0])
                         {
                             static_parameters.money -= DEF_price[0];
-                            DEF_LV++; DB.sprite = DB1;DEF2.SetActive(true);
+                            DEF_LV++; DB1.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -237,7 +237,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[1])
                         {
                             static_parameters.money -= DEF_price[1];
-                            DEF_LV++; DB.sprite = DB2;
+                            DEF_LV++; DB2.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -249,7 +249,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[2])
                         {
                             static_parameters.money -= DEF_price[2];
-                            DEF_LV++; DB.sprite = DB3;
+                            DEF_LV++; DB3.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -261,7 +261,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[3])
                         {
                             static_parameters.money -= DEF_price[3];
-                            DEF_LV++; DB.sprite = DB4;
+                            DEF_LV++; DB4.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -273,7 +273,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[4])
                         {
                             static_parameters.money -= DEF_price[4];
-                            DEF_LV++; DB.sprite = DB5;
+                            DEF_LV++; DB5.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -293,7 +293,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= HP_price[0])
                         {
                             static_parameters.money -= HP_price[0];
-                            HP_LV++; HB.sprite = HB1;HP3.SetActive(true);
+                            HP_LV++; HB1.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -305,7 +305,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= HP_price[1])
                         {
                             static_parameters.money -= HP_price[1];
-                            HP_LV++; HB.sprite = HB2;
+                            HP_LV++; HB2.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -317,7 +317,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= HP_price[2])
                         {
                             static_parameters.money -= HP_price[2];
-                            HP_LV++; HB.sprite = HB3;
+                            HP_LV++; HB3.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -329,7 +329,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= HP_price[3])
                         {
                             static_parameters.money -= HP_price[3];
-                            HP_LV++; HB.sprite = HB4;
+                            HP_LV++; HB4.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -341,7 +341,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= HP_price[4])
                         {
                             static_parameters.money -= HP_price[4];
-                            HP_LV++; HB.sprite = HB5;
+                            HP_LV++; HB5.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -361,7 +361,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[0])
                         {
                             static_parameters.money -= Speed_price[0];
-                            Speed_LV++; SB.sprite = SB1;Speed4.SetActive(true);
+                            Speed_LV++; SB1.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -373,7 +373,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[1])
                         {
                             static_parameters.money -= Speed_price[1];
-                            Speed_LV++; SB.sprite = SB2;
+                            Speed_LV++; SB2.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -385,7 +385,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[2])
                         {
                             static_parameters.money -= Speed_price[2];
-                            Speed_LV++; SB.sprite = SB3;
+                            Speed_LV++; SB3.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -397,7 +397,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[3])
                         {
                             static_parameters.money -= Speed_price[3];
-                            Speed_LV++; SB.sprite = SB4;
+                            Speed_LV++; SB4.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -409,7 +409,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[4])
                         {
                             static_parameters.money -= Speed_price[4];
-                            Speed_LV++; SB.sprite = SB5;
+                            Speed_LV++; SB5.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -429,7 +429,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Knockback_price[0])
                         {
                             static_parameters.money -= Knockback_price[0];
-                            Knockback_LV++; KB.sprite = KB1;Knockback5.SetActive(true); 
+                            Knockback_LV++; KB1.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -441,7 +441,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Knockback_price[1])
                         {
                             static_parameters.money -= Knockback_price[1];
-                            Knockback_LV++; KB.sprite = KB2;
+                            Knockback_LV++; KB2.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -453,7 +453,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Knockback_price[2])
                         {
                             static_parameters.money -= Knockback_price[2];
-                            Knockback_LV++; KB.sprite = KB3;
+                            Knockback_LV++; KB3.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -465,7 +465,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Knockback_price[3])
                         {
                             static_parameters.money -= Knockback_price[3];
-                            Knockback_LV++; KB.sprite = KB4;
+                            Knockback_LV++; KB4.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
@@ -477,7 +477,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Knockback_price[4])
                         {
                             static_parameters.money -= Knockback_price[4];
-                            Knockback_LV++; KB.sprite = KB5;
+                            Knockback_LV++; KB5.SetActive(true);
                             textbox.text = "升級成功";
                         }
                         else
