@@ -11,7 +11,8 @@ public class Teaching_TextF : MonoBehaviour
     public Image Main_character, Magician;
     public Sprite[] Main_character_face;
     public Sprite[] Magician_face;
-    public Text name_text, talk_text;
+    public Image black;
+    public Text name_text, talk_text, Narration_text, teach_text;
     uint talk_number = 0;
 
     void Start()
@@ -27,10 +28,7 @@ public class Teaching_TextF : MonoBehaviour
             {
                 case 0:
                     static_parameters.teaching_stop = -1;
-                    dialog_box.SetActive(true);
-                    Teaching_dialog_box.SetActive(false);
-                    Main_character_object.SetActive(true);
-                    Magician_object.SetActive(true);
+                    open();
                     Magician.sprite = Magician_face[0];
                     name_text.text = "莓莓";
                     talk_text.text = "今天天氣真不錯，早餐就來吃草莓蛋餅吧！";
@@ -41,20 +39,24 @@ public class Teaching_TextF : MonoBehaviour
                     talk_text.text = "那我還要加巧克力醬！";
                     break;
                 case 2:
-                    name_text.text = "";
-                    talk_text.text = "［忽然，外頭傳來了奇怪的聲音。］";
+                    opce_nav();
+                    Narration_text.text = "［忽然，外頭傳來了奇怪的聲音。］";
                     break;
                 case 3:
+                    opce_nav();
                     Magician.sprite = Magician_face[0];
                     name_text.text = "莓莓";
                     talk_text.text = "你等我一下喔，我出去看看。";
                     break;
                 case 4:
+                    opce_nav();
                     Magician_object.SetActive(false);
-                    name_text.text = "";
-                    talk_text.text = "［曦然待在原地，準備食材。］";
+                    Narration_text.text = "［曦然待在原地，準備食材。］";
                     break;
                 case 5:
+                    opce_nav();
+                    Narration_text.gameObject.SetActive(false);
+                    talk_text.gameObject.SetActive(true);
                     name_text.text = "莓莓";
                     talk_text.text = "啊！！！";
                     break;
@@ -65,20 +67,16 @@ public class Teaching_TextF : MonoBehaviour
                     break;
                 case 7:
                     close();
-                    name_text.text = "";
-                    talk_text.text = "*WASD控制曦然去玩偶區拿起鴨子布偶來防禦吧！*";
+                    teach_text.text = "*WASD控制曦然去玩偶區拿起鴨子布偶來防禦吧！*";
                     break;
                 case 8:
-                    name_text.text = "";
-                    talk_text.text = "*走出門口，查看莓莓的情況*";
+                    teach_text.text = "*走出門口，查看莓莓的情況*";
                     break;
                 case 9:
-                    name_text.text = "";
-                    talk_text.text = "*莓莓要受傷了！快按下J鍵使用鴨子布偶來攻擊敵人！*";
+                    teach_text.text = "*莓莓要受傷了！快按下J鍵使用鴨子布偶來攻擊敵人！*";
                     break;
                 case 10:
-                    name_text.text = "";
-                    talk_text.text = "*把剩餘士兵擊退吧！*";
+                    teach_text.text = "*把剩餘士兵擊退吧！*";
                     break;
                 case 11:
                     open();
@@ -113,8 +111,7 @@ public class Teaching_TextF : MonoBehaviour
                     break;
                 case 17:
                     close();
-                    name_text.text = "";
-                    talk_text.text = "*按下Z鍵，打開筆記本吧！*";
+                    teach_text.text = "*按下Z鍵，打開筆記本吧！*";
                     break;
                 case 18:
                     open(); ;
@@ -129,8 +126,7 @@ public class Teaching_TextF : MonoBehaviour
                     break;
                 case 20:
                     close();
-                    name_text.text = "";
-                    talk_text.text = "*將剛剛獲得的碎片拖曳到畫面上試試看！*";
+                    teach_text.text = "*將剛剛獲得的碎片拖曳到畫面上試試看！*";
                     break;
                 case 21:
                     open();
@@ -172,10 +168,11 @@ public class Teaching_TextF : MonoBehaviour
                     talk_text.text = "所以……拜託妳去城堡查看詛咒來源，在路上順便蒐集碎片吧！";
                     break;
                 case 29:
-                    name_text.text = "";
-                    talk_text.text = "（回到房屋裡，早餐草莓巧克力蛋餅已經完成，還有一杯粉色回魂藥水）";
+                    opce_nav();
+                    Narration_text.text = "（回到房屋裡，早餐草莓巧克力蛋餅已經完成，還有一杯粉色回魂藥水）";
                     break;
                 case 30:
+                    opce_nav();
                     name_text.text = "莓莓";
                     talk_text.text = "出發前要記得補充好營養，這杯叫做回魂藥水。";
                     break;
@@ -194,17 +191,18 @@ public class Teaching_TextF : MonoBehaviour
                     talk_text.text = "哇，真神奇。";
                     break;
                 case 34:
-                    name_text.text = "";
-                    talk_text.text = "［曦然喝下了回魂藥水，也吃了早餐，準備出發］";
+                    opce_nav();
+                    Narration_text.text = "［曦然喝下了回魂藥水，也吃了早餐，準備出發］";
                     break;
                 case 35:
+                    opce_nav();
                     Magician.sprite = Magician_face[0];
                     name_text.text = "莓莓";
                     talk_text.text = "出門小心！願甜蜜與妳同在。";
                     break;
                 case 36:
-                    name_text.text = "";
-                    talk_text.text = "（遊戲正式開始）";
+                    opce_nav();
+                    Narration_text.text = "（遊戲正式開始）";
                     break;
                 case 37:
                     close();
@@ -220,6 +218,8 @@ public class Teaching_TextF : MonoBehaviour
         Main_character_object.SetActive(true);
         dialog_box.SetActive(true);
         Teaching_dialog_box.SetActive(false);
+        black.gameObject.SetActive(true);
+        black.color = new Color(0, 0, 0, 0.7f);
     }
     private void close()
     {
@@ -227,5 +227,13 @@ public class Teaching_TextF : MonoBehaviour
         Main_character_object.SetActive(false);
         dialog_box.SetActive(false);
         Teaching_dialog_box.SetActive(true);
+        black.color = new Color(0, 0, 0, 1);
+        black.gameObject.SetActive(false);
+    }
+    private void opce_nav()
+    {
+        Narration_text.gameObject.SetActive(!Narration_text.gameObject.activeSelf);
+        name_text.gameObject.SetActive(!name_text.gameObject.activeSelf);
+        talk_text.gameObject.SetActive(!talk_text.gameObject.activeSelf);
     }
 }
