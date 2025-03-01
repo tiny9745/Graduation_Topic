@@ -7,7 +7,7 @@ public class Upgrade : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject ATK_plus, DEF_plus, HP_plus, Speed_plus, Knockback_plus, comfirm, cancel;
-    public Image cancel_img,comfirm_img; public Button Comfirm_button, Cancel_button;
+    public Image cancel_img,comfirm_img; public Button C2, C1;
     public Sprite cancel_on, cancel_off, comfirm_on, comfirm_off;
     public GameObject AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
                   SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;//,comfirm_on,comfirm_off,cancel_on,cancel_off;
@@ -20,8 +20,8 @@ public class Upgrade : MonoBehaviour
     Knockback_price = { 100, 200, 300, 400, 500 };
     void Start()
     {
-        Comfirm_button.onClick.AddListener(ChangeImage1);
-        Cancel_button.onClick.AddListener(ChangeImage2);
+        C2.onClick.AddListener(ChangeImage1);
+        C1.onClick.AddListener(ChangeImage2);
     }
     void ChangeImage1()
     {
