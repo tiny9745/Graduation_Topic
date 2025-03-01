@@ -26,13 +26,53 @@ public class Teaching_TextF : MonoBehaviour
                 case 0:
                     static_parameters.teaching_stop = -1;
                     Main_character.sprite = Main_character_face[0];
-                    name_text.text = "主角";
-                    talk_text.text = "這是什麼地方？";
+                    name_text.text = "莓莓";
+                    talk_text.text = "今天天氣真不錯，早餐就來吃草莓蛋餅吧！";
                     break;
                 case 1:
                     Magician.sprite = Magician_face[1];
+                    name_text.text = "曦然";
+                    talk_text.text = "那我還要加巧克力醬！";
+                    break;
+                case 2:
+                    Main_character.sprite = Main_character_face[1];
+                    name_text.text = "";
+                    talk_text.text = "［忽然，外頭傳來了奇怪的聲音。］";
+                    break;
+                case 3:
+                    Magician.sprite = Magician_face[0];
+                    name_text.text = "莓莓";
+                    talk_text.text = "你等我一下喔，我出去看看。";
+                    break;
+                case 4:                 
+                    Magician.sprite = Magician_face[1];
+                    name_text.text = "";
+                    talk_text.text = "［曦然待在原地，準備食材。］";
+                    break;
+                case 5:
+                    Magician.sprite = Magician_face[0];
+                    name_text.text = "莓莓";
+                    talk_text.text = "啊！！！";
+                    break;
+                case 6:
+                    Magician.sprite = Magician_face[1];
                     name_text.text = "魔法師";
-                    talk_text.text = "這裡是魔法學院，你是新生嗎？";
+                    talk_text.text = "很好，接下來我們來學習攻擊。";
+                    break;
+                case 7:
+                    Magician.sprite = Magician_face[0];
+                    name_text.text = "魔法師";
+                    talk_text.text = "請按下鍵盤上的J鍵，試著攻擊一下。";
+                    break;
+                case 8:
+                    Magician.sprite = Magician_face[1];
+                    name_text.text = "魔法師";
+                    talk_text.text = "很好，接下來我們來學習購買物品。";
+                    break;
+                case 9:
+                    Magician.sprite = Magician_face[0];
+                    name_text.text = "魔法師";
+                    talk_text.text = "請走到商店前，按下F鍵購買物品。";
                     break;
             }
             talk_number++;
