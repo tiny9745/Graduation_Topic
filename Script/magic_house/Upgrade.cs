@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Upgrade : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject ATK_plus, DEF_plus, HP_plus, Speed_plus, Knockback_plus, comfirm, cancel;
-    public Image cancel_img,comfirm_img; public Button C2, C1;
-    public Sprite cancel_on, cancel_off, comfirm_on, comfirm_off;
+    public GameObject ATK_plus, DEF_plus, HP_plus, Speed_plus, Knockback_plus;
     public GameObject AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
-                  SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;//,comfirm_on,comfirm_off,cancel_on,cancel_off;
+                  SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;
     public Text textbox;
     short ATK_LV=1, DEF_LV=1, HP_LV=1, Speed_LV=1, Knockback_LV=1,Click;
     short[] ATK_price = { 100, 200, 300, 400, 500 },
@@ -20,32 +17,8 @@ public class Upgrade : MonoBehaviour
     Knockback_price = { 100, 200, 300, 400, 500 };
     void Start()
     {
-        C2.onClick.AddListener(ChangeImage1);
-        C1.onClick.AddListener(ChangeImage2);
-    }
-    void ChangeImage1()
-    {
-        if (comfirm_img.sprite == comfirm_on)
-        {
-            comfirm_img.sprite = comfirm_off;
-        }
-        else
-        {
-            comfirm_img.sprite = comfirm_on;
-        }
-    }
-    void ChangeImage2()
-    {
-        if (cancel_img.sprite == cancel_on)
-        {
-            cancel_img.sprite = cancel_off;
-        }
-        else
-        {
-            cancel_img.sprite = cancel_on;
-        }
-    }
 
+    }
     public void ATK()
     {
         Click = 1;
@@ -513,5 +486,7 @@ public class Upgrade : MonoBehaviour
     public void Cancel()
     {
         Click = 0;
+        textbox.text = "請選擇升級項目";
     }
+    
 }

@@ -8920,6 +8920,7 @@ GameObject:
   - component: {fileID: 1471619152}
   - component: {fileID: 1471619151}
   - component: {fileID: 1471619150}
+  - component: {fileID: 1471619153}
   m_Layer: 5
   m_Name: Comfirm
   m_TagString: Untagged
@@ -9040,6 +9041,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471619148}
   m_CullTransparentMesh: 1
+--- !u!114 &1471619153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471619148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3088d8b958db9414a9d2a5ec8f8d9a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comfirm_img: {fileID: 1471619151}
+  comfirm_on: {fileID: 21300000, guid: 52873b6b4f580a2418fbd9d580a48d18, type: 3}
+  comfirm_off: {fileID: 21300000, guid: 09a47cf126111ed40a5ad387f158bb49, type: 3}
 --- !u!1 &1482430901
 GameObject:
   m_ObjectHideFlags: 0
@@ -10727,6 +10743,7 @@ GameObject:
   - component: {fileID: 1689400063}
   - component: {fileID: 1689400062}
   - component: {fileID: 1689400061}
+  - component: {fileID: 1689400064}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -10847,6 +10864,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689400059}
   m_CullTransparentMesh: 1
+--- !u!114 &1689400064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689400059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633aeaeb0a9076b469d0832318f128a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cancel_img: {fileID: 1689400062}
+  cancel_on: {fileID: 21300000, guid: b637c5c9f96e5d645a6a336ef56cb419, type: 3}
+  cancel_off: {fileID: 21300000, guid: 1a3e5256e701eef4199f4cc802b672e8, type: 3}
 --- !u!1 &1697249389
 GameObject:
   m_ObjectHideFlags: 0
@@ -11791,16 +11823,6 @@ MonoBehaviour:
   HP_plus: {fileID: 1646029914}
   Speed_plus: {fileID: 925713868}
   Knockback_plus: {fileID: 216401694}
-  comfirm: {fileID: 1471619148}
-  cancel: {fileID: 1689400059}
-  cancel_img: {fileID: 1471619151}
-  comfirm_img: {fileID: 1689400062}
-  C2: {fileID: 0}
-  C1: {fileID: 0}
-  cancel_on: {fileID: 21300000, guid: 1a3e5256e701eef4199f4cc802b672e8, type: 3}
-  cancel_off: {fileID: 21300000, guid: b637c5c9f96e5d645a6a336ef56cb419, type: 3}
-  comfirm_on: {fileID: 21300000, guid: 09a47cf126111ed40a5ad387f158bb49, type: 3}
-  comfirm_off: {fileID: 21300000, guid: 52873b6b4f580a2418fbd9d580a48d18, type: 3}
   AB1: {fileID: 133439322}
   AB2: {fileID: 2014491019}
   AB3: {fileID: 130560360}
