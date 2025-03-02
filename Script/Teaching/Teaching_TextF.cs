@@ -24,7 +24,13 @@ public class Teaching_TextF : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19)
         {
-            switch (talk_number)
+            reading();
+        }
+    }
+
+    public void reading()
+    {
+        switch (talk_number)
             {
                 case 0:
                     static_parameters.teaching_stop = -1;
@@ -236,7 +242,6 @@ public class Teaching_TextF : MonoBehaviour
             {
                 talk_number++;
             }
-        }
     }
     private void open()
     {

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class doll : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Teaching_TextF teaching_TextF;
+    void Start()
+    {
+        
+    }
     private void OnCollisionEnter(Collision Hit)
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop == 0)
         {
-            Debug.Log("doll");
-            Debug.Log("doll:"+static_parameters.teaching_stop);
+            static_parameters.teaching_stop = 1;
+            teaching_TextF.reading();
         }
     }
     private void OnTriggerEnter(Collider Hit)
@@ -18,7 +22,7 @@ public class doll : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop == 0)
         {
             static_parameters.teaching_stop = 1;
-            Debug.Log("doll:"+static_parameters.teaching_stop);
+            teaching_TextF.reading();
         }
     }
 }
