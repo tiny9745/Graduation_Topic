@@ -7,7 +7,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
 {
     private void OnCollisionEnter(Collision Hit)
     {
-        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 1)
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop == 1)
         {
             SceneManager.LoadScene("house_outside");
             static_parameters.teaching_stop = 2;
@@ -15,7 +15,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     }
     private void OnTriggerEnter(Collider Hit)
     {
-        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 1)
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop == 1)
         {
             SceneManager.LoadScene("house_outside");
             static_parameters.teaching_stop = 2;
