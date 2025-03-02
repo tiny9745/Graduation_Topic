@@ -46,7 +46,7 @@ public class Ani_MC : MonoBehaviour
             Skill_public_funtion.skill_34_Dash = true;
             StartCoroutine(DashSequence());
         }
-        else if (Input.GetKeyDown(KeyCode.J))
+        else if (Input.GetKeyDown(KeyCode.J) && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2)
         {
             if (ATK_count < 3)
             {

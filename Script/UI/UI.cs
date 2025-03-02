@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public short Diarystatus = 0;
-    public Change_mood C_mood;public Ptest piece; public DragPiece_End dragPiece_End;
-    public GameObject Notebook, BattleUI,Diaryslots,Diarytext;
+    public Change_mood C_mood; public Ptest piece; public DragPiece_End dragPiece_End;
+    public GameObject Notebook, BattleUI, Diaryslots, Diarytext;
     public GameObject Menu, CH1, CH2, CH3, CH4;
     public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
     public GameObject LeftMark1, LeftMark2, LeftMark3, LeftMark4;
     private Color newColor = new Color(1, 1, 1, 0.5f);
     public Text money;
-    public Image button_image,craft_image;
+    public Image button_image, craft_image;
     public Sprite craft_sprite;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,19 +53,22 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        if (!static_parameters.Bookstate)
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 3)
         {
-            // Time.timeScale = 0;
-            static_parameters.Bookstate = true;
-            Notebook.SetActive(true);
-            BattleUI.SetActive(false);
-        }
-        else
-        {
-            // Time.timeScale = 1;
-            static_parameters.Bookstate = false;
-            Notebook.SetActive(false);
-            BattleUI.SetActive(true);
+            if (!static_parameters.Bookstate)
+            {
+                // Time.timeScale = 0;
+                static_parameters.Bookstate = true;
+                Notebook.SetActive(true);
+                BattleUI.SetActive(false);
+            }
+            else
+            {
+                // Time.timeScale = 1;
+                static_parameters.Bookstate = false;
+                Notebook.SetActive(false);
+                BattleUI.SetActive(true);
+            }
         }
     }
     void piecechange()
@@ -116,7 +119,7 @@ public class UI : MonoBehaviour
         craft_image.sprite = craft_sprite;
     }
     public void Loadmoney()
-    {      
+    {
         money.text = static_parameters.money.ToString();
     }
 }

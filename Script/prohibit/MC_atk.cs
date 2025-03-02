@@ -15,7 +15,7 @@ public class MC_atk : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         MC_Collider = GetComponent<Collider>();
-        audioSource.volume=static_parameters._SE_volue;
+        audioSource.volume = static_parameters._SE_volue;
         Transform hitboxTransform = transform.Find("Hitbox");
         if (hitboxTransform != null)
         {
@@ -40,7 +40,7 @@ public class MC_atk : MonoBehaviour
     }
     void skill()
     {
-        if (Input.GetKey(KeyCode.J))
+        if (Input.GetKey(KeyCode.J) && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2)
         {
             switch (static_parameters.Ani_state)
             {

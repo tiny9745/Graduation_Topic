@@ -18,7 +18,6 @@ public class Play_move : MonoBehaviour
 
     void Start()
     {
-        // Initialization if needed
         Player.transform.position = new Vector3(0, 2, 0);
     }
 
@@ -26,7 +25,7 @@ public class Play_move : MonoBehaviour
     {
         rb.MovePosition(transform.position);
         // 檢查是否可以移動 (生命大於 0 且角色未死亡)
-        if (static_parameters.MC_HP > 0 && Death_MC.isDead)
+        if (static_parameters.MC_HP > 0 && Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
         {
             // 讀取輸入
             horizontalInput = Input.GetAxis("Horizontal");
@@ -70,7 +69,7 @@ public class Play_move : MonoBehaviour
             // 更新角色朝向
             UpdateFaceDirection(movement);
             // 監聽衝刺鍵
-            if (Input.GetKeyDown(KeyCode.L) && !DashCD && Ani_MC.isDashCooldown_for_move == false && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
+            if (Input.GetKeyDown(KeyCode.L) && !DashCD && Ani_MC.isDashCooldown_for_move == false && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))&& static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
             {
                 Ani_MC.isDashCooldown_for_move = true;
                 Debug.Log("Dash");

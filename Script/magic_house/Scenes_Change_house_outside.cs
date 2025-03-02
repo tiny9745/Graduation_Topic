@@ -13,11 +13,10 @@ public class Scenes_Change_house_outside : MonoBehaviour
         player_S = GameObject.Find("Player_S");
         player = GameObject.Find("Player");
         player_S.transform.position = new Vector3(0, 0, -15);
-        // player.transform.position = new Vector3(0, 0, 0);
     }
     private void OnCollisionEnter(Collision Hit)
     {
-        if (Hit.gameObject.CompareTag("Player"))
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 5)
         {
             static_parameters.stage_number = 1;
 
@@ -31,7 +30,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
     }
     private void OnTriggerEnter(Collider Hit)
     {
-        if (Hit.gameObject.CompareTag("Player"))
+        if (Hit.gameObject.CompareTag("Player")  && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 5)
         {
             static_parameters.stage_number = 1;
 

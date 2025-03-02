@@ -22,7 +22,7 @@ public class Teaching_TextF : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 5)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19)
         {
             switch (talk_number)
             {
@@ -68,6 +68,10 @@ public class Teaching_TextF : MonoBehaviour
                 case 7:
                     close();
                     teach_text.text = "*WASD控制曦然去玩偶區拿起鴨子布偶來防禦吧！*";
+                    if (static_parameters.teaching_stop == -1)
+                    {
+                        static_parameters.teaching_stop = 0;
+                    }
                     break;
                 case 8:
                     teach_text.text = "*走出門口，查看莓莓的情況*";
@@ -112,6 +116,7 @@ public class Teaching_TextF : MonoBehaviour
                 case 17:
                     close();
                     teach_text.text = "*按下Z鍵，打開筆記本吧！*";
+                    static_parameters.teaching_stop = 3;
                     break;
                 case 18:
                     open(); ;
@@ -209,11 +214,33 @@ public class Teaching_TextF : MonoBehaviour
                     Teaching_dialog_box.SetActive(false);
                     break;
             }
-            talk_number++;
+            if (talk_number == 7)
+            {
+                Debug.Log("talk_number:" + talk_number);
+                Debug.Log("static_parameters.teaching_stop:" + static_parameters.teaching_stop);
+                if (static_parameters.teaching_stop == 1)
+                {
+                    talk_number++;
+                    teach_text.text = "*走出門口，查看莓莓的情況*";
+                }
+            }
+            else if (talk_number == 8)
+            {
+                if (static_parameters.teaching_stop == 2)
+                {
+                    talk_number++;
+                    teach_text.text = "*莓莓要受傷了！快按下J鍵使用鴨子布偶來攻擊敵人！*";
+                }
+            }
+            else
+            {
+                talk_number++;
+            }
         }
     }
     private void open()
     {
+        static_parameters.isTeaching = true;
         Magician_object.SetActive(true);
         Main_character_object.SetActive(true);
         dialog_box.SetActive(true);
@@ -223,6 +250,7 @@ public class Teaching_TextF : MonoBehaviour
     }
     private void close()
     {
+        static_parameters.isTeaching = false;
         Magician_object.SetActive(false);
         Main_character_object.SetActive(false);
         dialog_box.SetActive(false);

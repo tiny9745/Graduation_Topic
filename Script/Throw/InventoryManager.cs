@@ -32,7 +32,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (static_parameters.bullet_quantity > 0)
         {
-            if (Input.GetKeyDown(KeyCode.K) && static_parameters.Ani_state < 3)
+            if (Input.GetKeyDown(KeyCode.K) && static_parameters.Ani_state < 3 && static_parameters.teaching_stop >= 2 && static_parameters.isTeaching == false)
             {
                 bullet_fire();
             }
