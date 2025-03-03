@@ -465,22 +465,22 @@ public class NPC03_control : MonoBehaviour
         switch (Change_mood.mood)
         {
             case 0:
-                weaponDUCK.color = new UnityEngine.Color(0.63f, 0.98f, 0.86f, 1);
+                weaponDUCK.color = new Color(0.63f, 0.98f, 0.86f, 1);
                 break;
             case 1:
-                weaponDUCK.color = new UnityEngine.Color(0.98f, 0.62f, 0.63f, 1);
+                weaponDUCK.color = new Color(0.98f, 0.62f, 0.63f, 1);
                 break;
             case 2:
-                weaponDUCK.color = new UnityEngine.Color(0.61f, 0.8f, 1, 1);
+                weaponDUCK.color = new Color(0.61f, 0.8f, 1, 1);
                 break;
             case 3:
                 //Mood.sprite = ;
                 break;
             case 4:
-                weaponDUCK.color = new UnityEngine.Color(1, 0.93f, 0.59f, 1);
+                weaponDUCK.color = new Color(1, 0.93f, 0.59f, 1);
                 break;
             default:
-                weaponDUCK.color = new UnityEngine.Color(0.95f, 0.88f, 0.89f, 1);
+                weaponDUCK.color = new Color(0.95f, 0.88f, 0.89f, 1);
                 break;
         }
     }

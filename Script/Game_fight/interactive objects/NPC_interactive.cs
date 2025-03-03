@@ -7,17 +7,6 @@ public class NPC_interactive : MonoBehaviour
     // Start is called before the first frame update
     static public int berry = 3;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     float npc_timmer = 0;
     public void NPC_Thorns(ref float _NPC_HP)
     {
