@@ -8,12 +8,12 @@ public class Shopoint : MonoBehaviour
     // Start is called before the first frame update
     //public GameObject Upgrade;
     public SpriteRenderer Goods;//指定實體物件
-    public Sprite item1;//更換圖片
+    public Sprite item1,item2,item3,item4,item5;
     bool P1 = false;
     int spawn, price;
     void Start()
     {
-        spawn = 0;//Random.Range(0, 6);
+        spawn = Random.Range(0, 5);
         Setgoods(spawn);
     }
 
@@ -45,23 +45,27 @@ public class Shopoint : MonoBehaviour
         switch (num)
         {
             case 0:
-                price = 100;
+                price = 50;
                 Goods.sprite = item1;
                 break;
             case 1:
-                price = 200;
+                price = 100;
+                Goods.sprite = item2;
                 break;
             case 2:
-                price = 300;
+                price = 200;
+                Goods.sprite = item3;
                 break;
             case 3:
-                price = 400;
+                price = 250;
+                Goods.sprite = item4;
                 break;
             case 4:
                 price = 500;
+                Goods.sprite = item5;
                 break;
             case 5:
-                price = 600;
+                price = 50;
                 break;
         }
     }
@@ -89,7 +93,6 @@ public class Shopoint : MonoBehaviour
             case 5:
 
                 break;
-
 
         }
     }
