@@ -77,11 +77,11 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             if (int.TryParse(droppedObject.name, out int itemNumber) && itemNumber > 0)
             {
                 if (static_parameters.teaching_stop == 8) static_parameters.teaching_stop = 9;
-                Debug.Log("碎片拖放成功:" + static_parameters.teaching_stop);
                 // 獲取拖放物件的相關數據
                 string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
                 string key_name = Ptest.show[itemNumber - 1].PieceName;
                 currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
+                Debug.Log("Ptest.show[itemNumber - 1].PieceID:" + Ptest.show[itemNumber - 1].PieceID);
 
                 // 清除並重新整理顯示的碎片
                 Ptest.show.Clear();

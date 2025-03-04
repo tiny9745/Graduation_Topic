@@ -23,15 +23,6 @@ public class Loading_241010 : MonoBehaviour
 
     void Start()
     {
-        Animation anim = GetComponent<Animation>();
-
-        if (anim != null)
-        {
-            foreach (AnimationState state in anim)
-            {
-                state.clip.legacy = true; // 設為 Legacy 模式
-            }
-        }
         BlackScreen = GameObject.Find("Black");
         if (BlackScreen != null && Death_MC.isDead)
         {

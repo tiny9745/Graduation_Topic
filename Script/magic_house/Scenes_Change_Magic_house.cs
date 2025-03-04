@@ -10,7 +10,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && (static_parameters.teaching_stop == 1 || static_parameters.teaching_stop >= 100))
         {
             SceneManager.LoadScene("house_outside");
-            static_parameters.teaching_stop = 2;
+            if (static_parameters.teaching_stop == 1) static_parameters.teaching_stop = 2;
         }
     }
     private void OnTriggerEnter(Collider Hit)
@@ -18,7 +18,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && (static_parameters.teaching_stop == 1 || static_parameters.teaching_stop >= 100))
         {
             SceneManager.LoadScene("house_outside");
-            static_parameters.teaching_stop = 2;
+            if (static_parameters.teaching_stop == 1) static_parameters.teaching_stop = 2;
         }
     }
 }
