@@ -23,9 +23,13 @@ public class Teaching_TextF : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19)
         {
+            Debug.Log("talk_number:" + talk_number);
+            Debug.Log("static_parameters.teaching_stop:" + static_parameters.teaching_stop);
             reading();
         }
-        else if (static_parameters.teaching_stop == 1 || static_parameters.teaching_stop == 3 && talk_number == 8)
+        else if (
+            static_parameters.teaching_stop == 1 || static_parameters.teaching_stop == 3 && talk_number == 8 ||
+            talk_number == 9 && static_parameters.teaching_stop == 5 || talk_number == 10 && static_parameters.teaching_stop == 6)
         {
             reading();
         }
@@ -92,9 +96,6 @@ public class Teaching_TextF : MonoBehaviour
                 teach_text.text = "*把剩餘士兵擊退吧！*";
                 break;
             case 11:
-                open();
-                Magician_object.SetActive(false);
-                Main_character.sprite = Main_character_face[4];
                 name_text.text = "曦然";
                 talk_text.text = "妳沒事吧？";
                 break;
@@ -125,7 +126,6 @@ public class Teaching_TextF : MonoBehaviour
             case 17:
                 close();
                 teach_text.text = "*按下Z鍵，打開筆記本吧！*";
-                static_parameters.teaching_stop = 3;
                 break;
             case 18:
                 open(); ;
@@ -143,82 +143,85 @@ public class Teaching_TextF : MonoBehaviour
                 teach_text.text = "*將剛剛獲得的碎片拖曳到畫面上試試看！*";
                 break;
             case 21:
+                close_co();
+                break;
+            case 22:
                 open();
                 name_text.text = "莓莓";
                 talk_text.text = "出現了一點魔力，哼嗯……似乎跟詛咒有相同的氣息……？";
                 break;
-            case 22:
+            case 23:
                 Magician.sprite = Magician_face[3];
                 name_text.text = "莓莓";
                 talk_text.text = "但是碎片還不夠多，也許只要多去打敗那些受詛咒的人或生物";
                 break;
-            case 23:
+            case 24:
                 name_text.text = "莓莓";
                 talk_text.text = "我想就能得到更多碎片來拼湊吧？";
                 break;
-            case 24:
+            case 25:
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
                 talk_text.text = "蒐集到一定的魔力，也許就可以反向解開詛咒呢。";
                 break;
-            case 25:
+            case 26:
                 Main_character.sprite = Main_character_face[4];
                 name_text.text = "曦然";
                 talk_text.text = "真的嗎？";
                 break;
-            case 26:
+            case 27:
                 Magician.sprite = Magician_face[3];
                 name_text.text = "莓莓";
                 talk_text.text = "不過我沒有辦法和你一起去，詛咒影響我越來越深了";
                 break;
-            case 27:
+            case 28:
                 Magician.sprite = Magician_face[3];
                 name_text.text = "莓莓";
                 talk_text.text = "所以……";
                 break;
-            case 28:
+            case 29:
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
                 talk_text.text = "所以……拜託妳去城堡查看詛咒來源，在路上順便蒐集碎片吧！";
                 break;
-            case 29:
+            case 30:
                 opce_nav();
                 Narration_text.text = "（回到房屋裡，早餐草莓巧克力蛋餅已經完成，還有一杯粉色回魂藥水）";
                 break;
-            case 30:
+            case 31:
                 opce_nav();
                 name_text.text = "莓莓";
                 talk_text.text = "出發前要記得補充好營養，這杯叫做回魂藥水。";
                 break;
-            case 31:
+            case 32:
                 name_text.text = "莓莓";
                 talk_text.text = "如果妳不幸被怪物攻擊致死，別擔心！";
                 break;
-            case 32:
+            case 33:
                 Magician.sprite = Magician_face[1];
                 name_text.text = "莓莓";
                 talk_text.text = "妳會重新回到糖果屋裡！不會真的死亡喔！";
                 break;
-            case 33:
+            case 34:
                 Main_character.sprite = Main_character_face[1];
                 name_text.text = "曦然";
                 talk_text.text = "哇，真神奇。";
                 break;
-            case 34:
+            case 35:
                 opce_nav();
                 Narration_text.text = "［曦然喝下了回魂藥水，也吃了早餐，準備出發］";
                 break;
-            case 35:
+            case 36:
                 opce_nav();
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
                 talk_text.text = "出門小心！願甜蜜與妳同在。";
                 break;
-            case 36:
+            case 37:
                 opce_nav();
                 Narration_text.text = "（遊戲正式開始）";
                 break;
-            case 37:
+            case 38:
                 close();
                 Teaching_dialog_box.SetActive(false);
                 break;
@@ -243,12 +246,36 @@ public class Teaching_TextF : MonoBehaviour
         }
         else if (talk_number == 9)
         {
-            if (static_parameters.teaching_stop == 4)
+            if (static_parameters.teaching_stop == 5)
             {
                 talk_number++;
                 teach_text.text = "*把剩餘士兵擊退吧！*";
             }
         }
+        else if (talk_number == 10)
+        {
+            if (static_parameters.teaching_stop == 6)
+            {
+                static_parameters.teaching_stop = 7;
+                talk_number++;
+                open();
+                name_text.text = "曦然";
+                talk_text.text = "妳沒事吧？";
+            }
+        }
+        else if (talk_number == 17)
+        {
+            if (static_parameters.teaching_stop == 7 && Input.GetKeyDown(KeyCode.Z))
+            {
+                talk_number++;
+                open();
+                Magician_object.SetActive(false);
+                Main_character.sprite = Main_character_face[0];
+                name_text.text = "曦然";
+                talk_text.text = "這個碎片材質跟筆記本一樣耶。";
+            }
+        }
+
         else
         {
             talk_number++;
@@ -271,6 +298,16 @@ public class Teaching_TextF : MonoBehaviour
         Main_character_object.SetActive(false);
         dialog_box.SetActive(false);
         Teaching_dialog_box.SetActive(true);
+        black.color = new Color(0, 0, 0, 1);
+        black.gameObject.SetActive(false);
+    }
+    private void close_co()
+    {
+        static_parameters.isTeaching = false;
+        Magician_object.SetActive(false);
+        Main_character_object.SetActive(false);
+        dialog_box.SetActive(false);
+        Teaching_dialog_box.SetActive(false);
         black.color = new Color(0, 0, 0, 1);
         black.gameObject.SetActive(false);
     }
