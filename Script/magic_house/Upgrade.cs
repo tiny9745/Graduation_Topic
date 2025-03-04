@@ -25,19 +25,19 @@ public class Upgrade : MonoBehaviour
         switch (ATK_LV)
         {
             case 1:
-                textbox.text = "升級價格:" + ATK_price[0];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[0];
                 break;
             case 2:
-                textbox.text = "升級價格:" + ATK_price[1];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[1];
                 break;
             case 3:
-                textbox.text = "升級價格:" + ATK_price[2];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[2];
                 break;
             case 4:
-                textbox.text = "升級價格:" + ATK_price[3];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[3];
                 break;
             case 5:
-                textbox.text = "升級價格:" + ATK_price[4];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[4];
                 break;
         }
     }
@@ -47,19 +47,19 @@ public class Upgrade : MonoBehaviour
         switch (DEF_LV)
         {
             case 1:
-                textbox.text = "升級價格:" + DEF_price[0];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[0];
                 break;
             case 2:
-                textbox.text = "升級價格:" + DEF_price[1];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[1];
                 break;
             case 3:
-                textbox.text = "升級價格:" + DEF_price[2];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[2];
                 break;
             case 4:
-                textbox.text = "升級價格:" + DEF_price[3];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[3];
                 break;
             case 5:
-                textbox.text = "升級價格:" + DEF_price[4];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[4];
                 break;
         }
     }
@@ -69,19 +69,19 @@ public class Upgrade : MonoBehaviour
         switch (HP_LV)
         {
             case 1:
-                textbox.text = "升級價格:" + HP_price[0];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[0];
                 break;
             case 2:
-                textbox.text = "升級價格:" + HP_price[1];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[1];
                 break;
             case 3:
-                textbox.text = "升級價格:" + HP_price[2];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[2];
                 break;
             case 4:
-                textbox.text = "升級價格:" + HP_price[3];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[3];
                 break;
             case 5:
-                textbox.text = "升級價格:" + HP_price[4];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[4];
                 break;
         }
     }
@@ -91,19 +91,19 @@ public class Upgrade : MonoBehaviour
         switch (Speed_LV)
         {
             case 1:
-                textbox.text = "升級價格:" + Speed_price[0];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[0];
                 break;
             case 2:
-                textbox.text = "升級價格:" + Speed_price[1];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[1];
                 break;
             case 3:
-                textbox.text = "升級價格:" + Speed_price[2];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[2];
                 break;
             case 4:
-                textbox.text = "升級價格:" + Speed_price[3];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[3];
                 break;
             case 5:
-                textbox.text = "升級價格:" + Speed_price[4];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[4];
                 break;
         }
     }
@@ -113,19 +113,19 @@ public class Upgrade : MonoBehaviour
         switch (Knockback_LV)
         {
             case 1:
-                textbox.text = "升級價格:" + Knockback_price[0];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[0];
                 break;
             case 2:
-                textbox.text = "升級價格:" + Knockback_price[1];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[1];
                 break;
             case 3:
-                textbox.text = "升級價格:" + Knockback_price[2];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[2];
                 break;
             case 4:
-                textbox.text = "升級價格:" + Knockback_price[3];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[3];
                 break;
             case 5:
-                textbox.text = "升級價格:" + Knockback_price[4];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[4];
                 break;
         }
     }
