@@ -27,7 +27,6 @@ public class gin_col : MonoBehaviour
         _UI = GameObject.Find("UI").GetComponent<UI>();
 
         static_parameters.Change_enemy++;
-        Debug.Log("static_parameters.Change_enemy = " + static_parameters.Change_enemy);
         NPC_HP = NPC_HP_Max;
         initialRotation = transform.rotation;
         NPC_gin = GameObject.Find("gingerbreadman");
