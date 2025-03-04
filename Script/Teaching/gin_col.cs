@@ -84,7 +84,7 @@ public class gin_col : MonoBehaviour
             PlayWalkAnimation();
         }
 
-        if (dist >= 10)
+        if (dist >= 15)
         {
             hit_Ani = false;
         }
@@ -93,21 +93,12 @@ public class gin_col : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null)
         {
-            if (dist < DetectDistance && NPC_HP > 0 && !stun)
-            {
-                npcNavi.destination = TargetObj.transform.position;
-            }
-            else
-            {
-                npcNavi.destination = transform.position;
-            }
+            npcNavi.destination = TargetObj.transform.position;
 
             Vector3 direction = TargetObj.transform.position - transform.position;
             Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
             Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
-
             NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
-            Debug.Log("NPC_angle: " + NPC_angle);
             if (NPC_angle < 0)
             {
                 NPC_angle += 360;
@@ -264,8 +255,6 @@ public class gin_col : MonoBehaviour
                 currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
-            static_parameters.money += 7;
-            _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;
         }
@@ -273,6 +262,10 @@ public class gin_col : MonoBehaviour
 
     void dead_after()
     {
+        if (static_parameters.Change_enemy == 0)
+        {
+            static_parameters.teaching_stop = 6;
+        }
         Destroy(gameObject);
     }
     public void change_color_red()
