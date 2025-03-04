@@ -5,13 +5,12 @@ using UnityEngine.AI;
 
 public class gin_col : MonoBehaviour
 {
-
     public NPC_interactive npc_interactive; public gin_HP nPC_hP;
     public NavMeshAgent npcNavi;
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Drop, NPC_gin, hitbox_Brick_Monster, Img_npc;
-    public int DetectDistance = 40; public int NPC_angle;
+    public int DetectDistance = 50; public int NPC_angle;
     public float NPC_HP_Max = 50, npcSpeed = 4f, NPC_HP, NPC_gin_ATK = 0, NPC_gin_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f, dist;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
@@ -77,16 +76,16 @@ public class gin_col : MonoBehaviour
             npcNavi.speed = 0;
             dead();
         }
-        else if (!hit_Ani)
-        {
-            PlayWalkAnimation();
-        }
-        else
+        else if (hit_Ani)
         {
             PlayAttackAnimation();
         }
+        else
+        {
+            PlayWalkAnimation();
+        }
 
-        if (dist >= DetectDistance * 3 / 5)
+        if (dist >= 10)
         {
             hit_Ani = false;
         }
@@ -109,7 +108,7 @@ public class gin_col : MonoBehaviour
             Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
 
             NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
-
+            Debug.Log("NPC_angle: " + NPC_angle);
             if (NPC_angle < 0)
             {
                 NPC_angle += 360;
@@ -203,7 +202,7 @@ public class gin_col : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                Change();
+                // Change();
                 switch (static_parameters.Ani_state)
                 {
                     case 2:
@@ -221,43 +220,6 @@ public class gin_col : MonoBehaviour
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.5f);
                 nextDamageTime = Time.time + damageCooldown;
-            }
-
-            if (other.gameObject.CompareTag("MC_bullet"))
-            {
-                change_color_red();
-                switch (static_parameters._ItemID)
-                {
-                    case 1:
-                        nPC_hP.TakeDamage(4 * Skill_public_funtion.skill_13_bullet_atk, NPC_gin_DEF);
-                        break;
-                    case 2:
-                        nPC_hP.TakeDamage(3 * Skill_public_funtion.skill_13_bullet_atk, NPC_gin_DEF);
-                        break;
-                    case 3:
-                        nPC_hP.TakeDamage(5 * Skill_public_funtion.skill_13_bullet_atk, NPC_gin_DEF);
-                        break;
-                    case 4:
-                        nPC_hP.TakeDamage(1 * Skill_public_funtion.skill_13_bullet_atk, NPC_gin_DEF);
-                        break;
-                }
-            }
-        }
-
-        if (NPC_HP > 0)
-        {
-            if (other.tag == "Thorns_atk")
-            {
-                change_color_red();
-                npc_interactive.NPC_Thorns(ref NPC_HP);
-                nPC_hP.UpdateHealthBar();
-            }
-            if (other.tag == "Bomb_Fruit" && bomb_Berry)
-            {
-                change_color_red();
-                bomb_Berry = false;
-                npc_interactive.NPC_Bomb_Berry(ref NPC_HP);
-                nPC_hP.UpdateHealthBar();
             }
         }
     }
@@ -284,8 +246,9 @@ public class gin_col : MonoBehaviour
     {
         if (dead_open)
         {
-            Transform object_A = this.transform;
-            Transform object_B = object_A.Find("blocksLF_stb_0").transform;
+            animator.speed = 0;
+            Transform object_A = transform;
+            Transform object_B = object_A.Find("gingerbreadman_pic").transform;
             Transform object_C = object_B.Find("Quad");
             if (object_C != null)
             {
@@ -344,29 +307,5 @@ public class gin_col : MonoBehaviour
     void wait_MC_att()
     {
         MC_to_Att = true;
-    }
-    public void Change()
-    {
-        switch (Change_mood.mood)
-        {
-            case 0:
-                weaponDUCK.color = new UnityEngine.Color(0.63f, 0.98f, 0.86f, 1);
-                break;
-            case 1:
-                weaponDUCK.color = new UnityEngine.Color(0.98f, 0.62f, 0.63f, 1);
-                break;
-            case 2:
-                weaponDUCK.color = new UnityEngine.Color(0.61f, 0.8f, 1, 1);
-                break;
-            case 3:
-                //Mood.sprite = ;
-                break;
-            case 4:
-                weaponDUCK.color = new UnityEngine.Color(1, 0.93f, 0.59f, 1);
-                break;
-            default:
-                weaponDUCK.color = new UnityEngine.Color(0.95f, 0.88f, 0.89f, 1);
-                break;
-        }
     }
 }
