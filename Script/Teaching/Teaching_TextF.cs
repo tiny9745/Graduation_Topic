@@ -13,11 +13,13 @@ public class Teaching_TextF : MonoBehaviour
     public Sprite[] Magician_face;
     public Image black;
     public Text name_text, talk_text, Narration_text, teach_text;
+    public UI _UI;
     uint talk_number = 0;
 
     void Start()
     {
         static_parameters.teaching_stop = -1;
+        _UI = GameObject.Find("UI").GetComponent<UI>();
     }
 
     void Update()
@@ -136,8 +138,6 @@ public class Teaching_TextF : MonoBehaviour
             case 16:
                 close();
                 teach_text.text = "*按下Z鍵，打開筆記本吧！*";
-                break;
-            case 17:
                 break;
             case 18:
                 open(); ;
@@ -273,7 +273,6 @@ public class Teaching_TextF : MonoBehaviour
         {
             if (static_parameters.teaching_stop == 7)
             {
-
                 Debug.Log("!!talk_number:" + talk_number + "static_parameters.teaching_stop:" + static_parameters.teaching_stop);
                 talk_number++;
                 open();
@@ -287,13 +286,23 @@ public class Teaching_TextF : MonoBehaviour
             {
                 static_parameters.teaching_stop = 8;
                 talk_number += 2;
+                _UI.Onclick2();
                 open();
                 Main_character.sprite = Main_character_face[0];
                 name_text.text = "曦然";
                 talk_text.text = "這個碎片材質跟筆記本一樣耶。";
             }
         }
-
+        else if (talk_number == 21)
+        {
+            if (static_parameters.teaching_stop == 9)
+            {
+                open();
+                talk_number++;
+                name_text.text = "莓莓";
+                talk_text.text = "出現了一點魔力，哼嗯……似乎跟詛咒有相同的氣息……？";
+            }
+        }
         else
         {
             talk_number++;
