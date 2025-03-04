@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Shopoint : MonoBehaviour
 {
-    // Start is called before the first frame update
     //public GameObject Upgrade;
+    Ptest piece;
     public SpriteRenderer Goods;//指定實體物件
     public Sprite item1,item2,item3,item4,item5;
     bool P1 = false;
@@ -74,21 +74,28 @@ public class Shopoint : MonoBehaviour
         switch (num)
         {
             case 0:
-                //static_parameters.MC_HP_Max += 50;
-                //static_parameters.MC_HP += 50;
+                static_parameters.MC_HP += 30;
+                if(static_parameters.MC_HP > static_parameters.MC_HP_Max)static_parameters.MC_HP = static_parameters.MC_HP_Max;
                 Debug.Log("A1");
                 break;
             case 1:
-
+                static_parameters.MC_HP += 60;
+                if(static_parameters.MC_HP > static_parameters.MC_HP_Max)static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                Debug.Log("A2");
                 break;
             case 2:
-
+                static_parameters.MC_HP += 120;
+                if(static_parameters.MC_HP > static_parameters.MC_HP_Max)static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                Debug.Log("A3");
                 break;
             case 3:
-
+                static_parameters.MC_HP += 200;
+                if(static_parameters.MC_HP > static_parameters.MC_HP_Max)static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                Debug.Log("A4");
                 break;
             case 4:
-
+                static_parameters.revival = true;
+                Debug.Log("revival"+static_parameters.revival);
                 break;
             case 5:
 
