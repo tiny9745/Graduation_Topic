@@ -16,7 +16,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
     }
     private void OnCollisionEnter(Collision Hit)
     {
-        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false)
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
         {
             static_parameters.stage_number = 1;
             switch (Random.Range(0, 1))
@@ -29,7 +29,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
     }
     private void OnTriggerEnter(Collider Hit)
     {
-        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false)
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
         {
             static_parameters.stage_number = 1;
             switch (Random.Range(0, 1))

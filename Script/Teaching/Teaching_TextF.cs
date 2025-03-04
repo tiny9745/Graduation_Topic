@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Teaching_TextF : MonoBehaviour
@@ -33,7 +34,7 @@ public class Teaching_TextF : MonoBehaviour
         else if (
             static_parameters.teaching_stop == 1 || static_parameters.teaching_stop == 3 && talk_number == 8 ||
             talk_number == 9 && static_parameters.teaching_stop == 5 || talk_number == 10 && static_parameters.teaching_stop == 7 ||
-            talk_number == 17 && Input.GetKeyDown(KeyCode.Z)
+            talk_number == 17 && Input.GetKeyDown(KeyCode.Z) || talk_number == 21 || talk_number == 29
             )
         {
             reading();
@@ -171,6 +172,7 @@ public class Teaching_TextF : MonoBehaviour
             case 24:
                 name_text.text = "莓莓";
                 talk_text.text = "我想就能得到更多碎片來拼湊吧？";
+                _UI.openclose();
                 break;
             case 25:
                 Magician.sprite = Magician_face[0];
@@ -198,10 +200,7 @@ public class Teaching_TextF : MonoBehaviour
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
                 talk_text.text = "所以……拜託妳去城堡查看詛咒來源，在路上順便蒐集碎片吧！";
-                break;
-            case 30:
-                opce_nav();
-                Narration_text.text = "（回到房屋裡，早餐草莓巧克力蛋餅已經完成，還有一杯粉色回魂藥水）";
+                SceneManager.LoadScene("magic_house");
                 break;
             case 31:
                 opce_nav();
@@ -240,6 +239,8 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 38:
                 close();
+                static_parameters.teaching_stop = 101;
+                talk_number = 100;
                 Teaching_dialog_box.SetActive(false);
                 break;
         }
@@ -298,9 +299,17 @@ public class Teaching_TextF : MonoBehaviour
             if (static_parameters.teaching_stop == 9)
             {
                 open();
-                talk_number++;
+                talk_number += 2;
                 name_text.text = "莓莓";
                 talk_text.text = "出現了一點魔力，哼嗯……似乎跟詛咒有相同的氣息……？";
+            }
+        }
+        else if (talk_number == 29)
+        {
+            if (SceneManager.GetActiveScene().name == "magic_house")
+            {
+                opce_nav();
+                Narration_text.text = "（回到房屋裡，早餐草莓巧克力蛋餅已經完成，還有一杯粉色回魂藥水）";
             }
         }
         else
