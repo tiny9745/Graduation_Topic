@@ -11,11 +11,6 @@ public class JiangMi : MonoBehaviour
         Invoke("JM_atk", .5f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void JM_atk()
     {
         JM_animator.SetInteger("JM", 1);
@@ -32,7 +27,11 @@ public class JiangMi : MonoBehaviour
         if (Hit.gameObject.CompareTag("MC_Att"))
         {
             JM_animator.SetInteger("JM", 2);
-            Destroy(gameObject, 3f);
+            Invoke("Dead_wait",4f);
         }
+    }
+    private void Dead_wait(){
+        static_parameters.teaching_stop = 4;
+        Destroy(gameObject);
     }
 }

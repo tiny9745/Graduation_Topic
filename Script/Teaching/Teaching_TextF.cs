@@ -241,6 +241,14 @@ public class Teaching_TextF : MonoBehaviour
                 teach_text.text = "*莓莓要受傷了！快按下J鍵使用鴨子布偶來攻擊敵人！*";
             }
         }
+        else if (talk_number == 9)
+        {
+            if (static_parameters.teaching_stop == 4)
+            {
+                talk_number++;
+                teach_text.text = "*把剩餘士兵擊退吧！*";
+            }
+        }
         else
         {
             talk_number++;
