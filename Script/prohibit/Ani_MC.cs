@@ -5,10 +5,8 @@ using UnityEngine;
 public class Ani_MC : MonoBehaviour
 {
     public Animator animator;
-    // public GameObject playerPrefab;
     private Play_move MC_move;
     int Angle_sum = 270;
-
     public GameObject Play_s;
 
     static public bool isDashCooldown = false;
@@ -27,7 +25,7 @@ public class Ani_MC : MonoBehaviour
     void Update()
     {
         // 更新角色位置
-        this.transform.position = new Vector3(Play_s.transform.position.x, transform.position.y, Play_s.transform.position.z);
+        transform.position = new Vector3(Play_s.transform.position.x, transform.position.y, Play_s.transform.position.z);
 
         // 設定角色面向角度
         UpdateFacingDirection();
@@ -37,7 +35,7 @@ public class Ani_MC : MonoBehaviour
         {
             return;
         }
-        // if(isDashCooldown)Debug.Log("isDashCooldown");
+
         // 處理輸入
         if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving())
         {
@@ -61,10 +59,11 @@ public class Ani_MC : MonoBehaviour
         }
 
         // 確保動畫狀態正確
-        if (static_parameters.Ani_state == 0 || static_parameters.Ani_state == 1)
+        if (static_parameters.Ani_state >= 0 || static_parameters.Ani_state <= 4)
         {
             MC_ani_state();
         }
+
         if (isAttack_combo)
         {
             attackTime += Time.deltaTime;
@@ -164,7 +163,7 @@ public class Ani_MC : MonoBehaviour
                 ATK_count = 0;
                 break;
         }
-        DefaultCheck();
+        // DefaultCheck();
         isAttackPlaying = false;
         Invoke("combo_time", 0.5f);
     }
@@ -201,6 +200,7 @@ public class Ani_MC : MonoBehaviour
 
     void MC_ani_state()
     {
+        Debug.Log("MC_ani_state:"+static_parameters.Ani_state);
         switch (static_parameters.Ani_state)
         {
             case 0: // Stand

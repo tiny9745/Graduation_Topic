@@ -76,7 +76,7 @@ public class Scene_Change_Forest : MonoBehaviour
 
             if (static_parameters.stage_number < 4)
             {
-                i = 4;
+                i = static_parameters.stage_number;
             }
             else//測試用
             {

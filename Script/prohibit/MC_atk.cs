@@ -78,10 +78,15 @@ public class MC_atk : MonoBehaviour
     public void OpenCollider()
     {
         MC_Collider.enabled = true;
+        static_parameters.wait_atk_return = true;
     }
     public void CloseCollider()
     {
         MC_Collider.enabled = false;
+        Invoke("wait_return", 1.25f);
+    }
+    private void wait_return(){
+        static_parameters.wait_atk_return = false;
     }
     private void PlaySoundAtIndex(int index)
     {

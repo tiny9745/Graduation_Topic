@@ -62,7 +62,7 @@ public class Play_move : MonoBehaviour
             // 更新角色朝向
             UpdateFaceDirection(movement);
             // 監聽衝刺鍵
-            if (Input.GetKeyDown(KeyCode.L) && !DashCD && Ani_MC.isDashCooldown_for_move == false && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))&& static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
+            if (Input.GetKeyDown(KeyCode.L) && !DashCD && Ani_MC.isDashCooldown_for_move == false && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
             {
                 Ani_MC.isDashCooldown_for_move = true;
                 Debug.Log("Dash");

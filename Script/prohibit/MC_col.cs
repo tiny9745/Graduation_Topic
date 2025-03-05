@@ -42,9 +42,7 @@ public class MC_col : MonoBehaviour
         {
             ATK_speedupdate();
         }
-
-        // Check and update the walk speed
-        if (static_parameters.MC_Wspeed != static_parameters.MC_Wspeed_tmp)
+        else if (static_parameters.MC_Wspeed != static_parameters.MC_Wspeed_tmp)// Check and update the walk speed
         {
             Walk_speedupdate();
         }
