@@ -200,7 +200,6 @@ public class Ani_MC : MonoBehaviour
 
     void MC_ani_state()
     {
-        Debug.Log("MC_ani_state:"+static_parameters.Ani_state);
         switch (static_parameters.Ani_state)
         {
             case 0: // Stand
