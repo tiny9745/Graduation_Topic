@@ -10,6 +10,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 {
     public Ptest piece;
     private List<HashSet<int>> validSequences; // 有效的組合數列
+    private List<HashSet<int>> validSequences_re;
     static public List<int> currentCombination = new List<int>(); // 當前的組合
     public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
     public Image[] images_puzzle_col = new Image[4]; // 圖片顏色陣列

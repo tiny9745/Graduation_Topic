@@ -43,7 +43,7 @@ public class NPC02_control : MonoBehaviour
 
         if (TargetObj == null)
         {
-            TargetObj = GameObject.Find("Player");
+            TargetObj = GameObject.Find("Player_S");
         }
         // 初始化 npcNavi
         npcNavi = GetComponent<NavMeshAgent>();

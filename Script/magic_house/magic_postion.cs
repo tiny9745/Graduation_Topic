@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class magic_postion : MonoBehaviour
 {
-    public GameObject player;
+    // public GameObject player;
     public GameObject player_S;
 
     public Vector3 minBoundary; // Define the minimum boundary
@@ -19,7 +19,7 @@ public class magic_postion : MonoBehaviour
     }
     void Update()
     {
-        if (player.transform.position.x > padding_X_max || player.transform.position.x < padding_X_min || player.transform.position.z > padding_Z_max || player.transform.position.z < padding_Z_min)
+        if (player_S.transform.position.x > padding_X_max || player_S.transform.position.x < padding_X_min || player_S.transform.position.z > padding_Z_max || player_S.transform.position.z < padding_Z_min)
         {
             ClampPlayerPosition();
         }
@@ -27,17 +27,15 @@ public class magic_postion : MonoBehaviour
 
     void ResetPlayerPosition()
     {
-        player = GameObject.Find("Player");
         player_S = GameObject.Find("Player_S");
         player_S.transform.position = startPos;
-        player.transform.position = startPos;
     }
     void ClampPlayerPosition()
     {
-        player.transform.position = new Vector3(
-            Mathf.Clamp(player.transform.position.x, padding_X_min, padding_X_max),
-            Mathf.Clamp(player.transform.position.y, minBoundary.y, maxBoundary.y),
-            Mathf.Clamp(player.transform.position.z, padding_Z_min, padding_Z_max)
+        player_S.transform.position = new Vector3(
+            Mathf.Clamp(player_S.transform.position.x, padding_X_min, padding_X_max),
+            Mathf.Clamp(player_S.transform.position.y, minBoundary.y, maxBoundary.y),
+            Mathf.Clamp(player_S.transform.position.z, padding_Z_min, padding_Z_max)
         );
     }
 }

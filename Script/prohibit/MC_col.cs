@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class MC_col : MonoBehaviour
 {
-    public GameObject MC, MC_S;
     public Blood_col Blood_Col;
     public Animator animator;
     public Transform spriteTransform;
@@ -17,8 +16,6 @@ public class MC_col : MonoBehaviour
 
     void Start()
     {
-        MC = GameObject.Find("Player");
-        MC_S = GameObject.Find("Player_S");
         playerAgent = GameObject.Find("Player_S").GetComponent<NavMeshAgent>();
         playerAgent.enabled = false;
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
@@ -36,7 +33,7 @@ public class MC_col : MonoBehaviour
     {
         if (static_parameters.MC_HP <= 0)
         {
-            static_parameters.Change_enemy=0;
+            static_parameters.Change_enemy = 0;
             playerAgent.enabled = false;
         }
         SetLookDirection(static_parameters.face);
@@ -51,7 +48,6 @@ public class MC_col : MonoBehaviour
         {
             Walk_speedupdate();
         }
-        // Debug.Log("static_parameters.Change_enemy: " + static_parameters.Change_enemy);
     }
 
     void SetAnimationSpeed_ATK(string animName, float animSpeed)

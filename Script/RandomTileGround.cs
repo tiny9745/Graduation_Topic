@@ -8,7 +8,7 @@ public class RandomTileGround : MonoBehaviour
     public int tilesX = 10; // Number of tiles on the X-axis
     public int tilesZ = 10; // Number of tiles on the Z-axis
     public float tileSize = 1.0f; // Size of each tile
-    public GameObject player;
+    // public GameObject player;
     public GameObject player_S;
 
     public Vector3 minBoundary; // Define the minimum boundary
@@ -44,7 +44,7 @@ public class RandomTileGround : MonoBehaviour
 
     void InitializeBoundaries()
     {
-        player = GameObject.Find("Player");
+        // player = GameObject.Find("Player");
         player_S = GameObject.Find("Player_S");
 
         float halfX = tilesX * tileSize / 2;
@@ -175,10 +175,10 @@ public class RandomTileGround : MonoBehaviour
 
     void ClampPlayerPosition()
     {
-        player.transform.position = new Vector3(
-            Mathf.Clamp(player.transform.position.x, minBoundary.x + padding_X_min, maxBoundary.x - padding_X_max),
-            Mathf.Clamp(player.transform.position.y, minBoundary.y, maxBoundary.y),
-            Mathf.Clamp(player.transform.position.z, minBoundary.z + padding_Z_min, maxBoundary.z - padding_Z_max)
+        player_S.transform.position = new Vector3(
+            Mathf.Clamp(player_S.transform.position.x, minBoundary.x + padding_X_min, maxBoundary.x - padding_X_max),
+            Mathf.Clamp(player_S.transform.position.y, minBoundary.y, maxBoundary.y),
+            Mathf.Clamp(player_S.transform.position.z, minBoundary.z + padding_Z_min, maxBoundary.z - padding_Z_max)
         );
     }
 
@@ -186,7 +186,6 @@ public class RandomTileGround : MonoBehaviour
     {
         Vector3 startPos = new Vector3(0, -1, -tilesZ * tileSize / 2);
         player_S.transform.position = startPos;
-        player.transform.position = startPos;
     }
 
     void MakeTexturesReadable()

@@ -49,7 +49,7 @@ public class NPC04_control : MonoBehaviour
 
         if (TargetObj == null)
         {
-            TargetObj = GameObject.Find("Player");
+            TargetObj = GameObject.Find("Player_S");
         }
         hitbox_Brick_Monster.SetActive(false);
 

@@ -48,7 +48,7 @@ public class NPC01_control : MonoBehaviour
             }
         }
         hitbox_Crystal_baby.SetActive(false);
-        TargetObj = GameObject.Find("Player");
+        TargetObj = GameObject.Find("Player_S");
 
         npcNavi = GetComponent<NavMeshAgent>();
         npcNavi.speed = npcSpeed;

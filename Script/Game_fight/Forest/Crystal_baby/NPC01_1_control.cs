@@ -64,7 +64,7 @@ public class NPC01_1_control : MonoBehaviour
 
         if (TargetObj == null)
         {
-            TargetObj = GameObject.Find("Player");
+            TargetObj = GameObject.Find("Player_S");
         }
 
         if (nPC_hP == null)
@@ -100,7 +100,7 @@ public class NPC01_1_control : MonoBehaviour
 
     void Update()
     {
-        TargetObj = GameObject.Find("Player");
+        TargetObj = GameObject.Find("Player_S");
         npcNavi = GetComponent<NavMeshAgent>();
         if (NPC_HP <= 0)
         {

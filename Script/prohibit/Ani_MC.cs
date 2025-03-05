@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ani_MC : MonoBehaviour
 {
     public Animator animator;
-    public GameObject playerPrefab;
+    // public GameObject playerPrefab;
     private Play_move MC_move;
     int Angle_sum = 270;
 
@@ -15,13 +15,13 @@ public class Ani_MC : MonoBehaviour
     static public bool isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 3f;
-    short ATK_count = 0; float ATK_time = 0;
+    short ATK_count = 0;
     float attackTime = 0; bool isAttack_combo = false;
     static public float dashDuration = 0.63f;
     void Start()
     {
         animator = GetComponent<Animator>();
-        MC_move = playerPrefab.GetComponent<Play_move>();
+        MC_move = Play_s.GetComponent<Play_move>();
     }
 
     void Update()

@@ -12,7 +12,7 @@ public class gin_col : MonoBehaviour
     public int DetectDistance = 50; public int NPC_angle;
     public float NPC_HP_Max = 50, npcSpeed = 4f, NPC_HP, NPC_gin_ATK = 0, NPC_gin_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f, dist;
-    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
+    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true;
     int open_EnableHitbox = 0;
     public bool stun; private bool isFacingRight = true;
     private Vector3 lastPosition, presentPosition;
@@ -42,7 +42,7 @@ public class gin_col : MonoBehaviour
 
         if (TargetObj == null)
         {
-            TargetObj = GameObject.Find("Player");
+            TargetObj = GameObject.Find("Player_S");
         }
         npcNavi = GetComponent<NavMeshAgent>();
         if (npcNavi != null)

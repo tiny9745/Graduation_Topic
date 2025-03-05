@@ -9,7 +9,7 @@ public class NPC05_Hit_box : MonoBehaviour
     float NPC_ATK = 0, minus;
     void Start()
     {
-        Player = GameObject.Find("Player");
+        Player = GameObject.Find("Player_S");
         if (Player == null)
         {
             Debug.LogError("Player object not found!");

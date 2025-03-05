@@ -10,7 +10,7 @@ public class Dummy_hit : MonoBehaviour
     float NPC_ATK = 0, minus;
     void Start()
     {
-        Player = GameObject.Find("Player");
+        Player = GameObject.Find("Player_S");
         if (Player == null)
         {
             Debug.LogError("Player object not found!");

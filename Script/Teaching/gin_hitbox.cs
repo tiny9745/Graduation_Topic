@@ -11,7 +11,7 @@ public class gin_hitbox : MonoBehaviour
     {
         if (Player == null)
         {
-            Player = GameObject.Find("Player");
+            Player = GameObject.Find("Player_S");
         }
         if (npcCtrl == null)
         {

@@ -13,7 +13,7 @@ public class Prefabs_start : MonoBehaviour
     private int Number_NPC01, Number_NPC02, Number_NPC03, Number_NPC04, Number_NPC05;
 
     public GameObject[] Scenes_object_obstacle; public GameObject[] Scenes_object_decorate;
-    private int MaxInsideDecorate = 250, MaxInsideObstacle = 130;
+    private int MaxInsideDecorate = 250;
     void Start()
     {
         // 計算初始 NavMesh 範圍

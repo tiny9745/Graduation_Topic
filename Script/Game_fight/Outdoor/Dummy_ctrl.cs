@@ -40,7 +40,7 @@ public class Dummy_ctrl : MonoBehaviour
 
         if (TargetObj == null)
         {
-            TargetObj = GameObject.Find("Player");
+            TargetObj = GameObject.Find("Player_S");
         }
     }
     private void OnTriggerStay(Collider other)

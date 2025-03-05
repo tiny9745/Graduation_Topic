@@ -59,7 +59,7 @@ public class NPC05_control : MonoBehaviour
         if (npcNavi == null || !npcNavi.isOnNavMesh) return;
         if (TargetObj == null)
         {
-            TargetObj = GameObject.Find("Player");
+            TargetObj = GameObject.Find("Player_S");
         }
         else
         {

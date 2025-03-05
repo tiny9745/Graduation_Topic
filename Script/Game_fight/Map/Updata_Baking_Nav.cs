@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class Updata_Baking_Nav : MonoBehaviour
 {
     public NavMeshSurface surface;
-    bool BuildNavMesh_open = true;
     public GameObject player_S;
     // Start is called before the first frame update
 
