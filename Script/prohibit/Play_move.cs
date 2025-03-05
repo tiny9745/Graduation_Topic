@@ -8,7 +8,6 @@ public class Play_move : MonoBehaviour
     public float horizontalInput, verticalInput;
     public float dashSpeed, walkSpeed = 1;
     public bool DashCD = false;
-
     private Vector3 targetPosition;
     private bool navMeshAvailable;
     public NavMeshAgent agent;
@@ -52,12 +51,14 @@ public class Play_move : MonoBehaviour
             }
             else if (static_parameters.Ani_state >= 2)
             {
-                transform.position += movement * 0.5f * Time.deltaTime;
+                transform.position += movement * 0.1f * Time.deltaTime;
+                Debug.Log(transform.position);
             }
             else
             {
                 transform.position += movement * walkSpeed * Time.deltaTime; // 行走速度
             }
+            
 
             // 更新角色朝向
             UpdateFaceDirection(movement);
