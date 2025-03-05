@@ -52,7 +52,7 @@ public class Play_move : MonoBehaviour
             else if (static_parameters.Ani_state >= 2)
             {
                 transform.position += movement * 0.1f * Time.deltaTime;
-                Debug.Log(transform.position);
+                // Debug.Log(transform.position);
             }
             else
             {

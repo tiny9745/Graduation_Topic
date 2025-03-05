@@ -11,10 +11,10 @@ public class Ani_MC : MonoBehaviour
 
     static public bool isDashCooldown = false;
     static public bool isDashCooldown_for_move = false;
-    static public bool isAttackPlaying = false;
+    static public bool isAttackPlaying = false, wait_atk_return = false;
     static public float DashCD_time = 3f;
     short ATK_count = 0;
-    float attackTime = 0; bool isAttack_combo = false;
+    float attackTime = 0, attackTime_max = 0.5f; bool isAttack_combo = false;
     static public float dashDuration = 0.63f;
     void Start()
     {
@@ -53,6 +53,10 @@ public class Ani_MC : MonoBehaviour
                 StartCoroutine(AttackSequence());
             }
         }
+        else if (wait_atk_return)
+        {
+            MC_ani_state_ATK();
+        }
         else
         {
             DefaultCheck();
@@ -67,7 +71,7 @@ public class Ani_MC : MonoBehaviour
         if (isAttack_combo)
         {
             attackTime += Time.deltaTime;
-            if (attackTime >= 0.45f)
+            if (attackTime >= attackTime_max)
             {
                 ATK_count = 0;
                 attackTime = 0;
@@ -102,6 +106,7 @@ public class Ani_MC : MonoBehaviour
 
     void DefaultCheck()
     {
+        if (isAttackPlaying) return;
         if (static_parameters.face == 0)
         {
             static_parameters.Ani_state = 0; // 站立
@@ -138,6 +143,8 @@ public class Ani_MC : MonoBehaviour
 
     private void combo_time()
     {
+        wait_atk_return = false;
+        Debug.Log("wait_atk_return: " + wait_atk_return);
         if (ATK_count != 0)
         {
             isAttack_combo = false;
@@ -147,25 +154,26 @@ public class Ani_MC : MonoBehaviour
     IEnumerator AttackSequence()
     {
         isAttackPlaying = true;
+        wait_atk_return = true;
         isAttack_combo = true;
+        Debug.Log("wait_atk_return: " + wait_atk_return);
         // 播放攻擊動畫
         MC_ani_state();
         switch (static_parameters.Ani_state)
         {
             case 2:
-                yield return new WaitForSeconds(0.65f);
+                yield return new WaitForSeconds(0.6f);
                 break;
             case 3:
-                yield return new WaitForSeconds(0.65f);
+                yield return new WaitForSeconds(0.6f);
                 break;
             case 4:
-                yield return new WaitForSeconds(1.05f);
+                yield return new WaitForSeconds(1f);
                 ATK_count = 0;
                 break;
         }
-        // DefaultCheck();
         isAttackPlaying = false;
-        Invoke("combo_time", 0.5f);
+        Invoke("combo_time", attackTime_max + 0.1f);
     }
 
     void PlayDashAnimation()
@@ -219,6 +227,22 @@ public class Ani_MC : MonoBehaviour
                 break;
         }
     }
+    void MC_ani_state_ATK()
+    {
+        switch (static_parameters.Ani_state)
+        {
+            case 2: // Attack
+                Atk_step_number();
+                break;
+            case 3: // Attack 2
+                Atk_step_number();
+                break;
+            case 4: // Attack 3
+                Atk_step_number();
+                break;
+        }
+    }
+
 
     private void Atk_step_number()
     {
