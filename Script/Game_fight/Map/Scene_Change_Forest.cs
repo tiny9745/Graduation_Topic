@@ -8,7 +8,7 @@ public class Scene_Change_Forest : MonoBehaviour
     public GameObject CloseDoor01;
     public GameObject CloseDoor02;
     public GameObject player_S;
-    int i;
+    
     bool open = false;
     // Update is called once per frame
     public GameObject image_complete;
@@ -70,30 +70,23 @@ public class Scene_Change_Forest : MonoBehaviour
     // }
     private void OnTriggerEnter(Collider Hit)
     {
+        int i;
         if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0 && open)
         {
             static_parameters.stage_number++;
 
-            if (static_parameters.stage_number < 4)
+            if (static_parameters.stage_number < 6)
             {
                 i = static_parameters.stage_number;
             }
-            else//測試用
+            else
             {
-                i = 4;
+                i = 5;
             }
-            // else if (static_parameters.stage_number < 6)
-            // {
-            //     i = static_parameters.stage_number;
-            // }
-            // else
-            // {
-            //     i = 5;
-            // }
             static_parameters.money += i * 10;
             Debug.Log("static_parameters.stage_number:" + static_parameters.stage_number);
             Debug.Log("i:" + i);
-            if (static_parameters.stage_number >= i)
+            if (static_parameters.stage_number >= 5)
             {
                 image_complete.SetActive(true);//通關畫面
 

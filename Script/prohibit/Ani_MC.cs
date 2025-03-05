@@ -63,7 +63,7 @@ public class Ani_MC : MonoBehaviour
         }
 
         // 確保動畫狀態正確
-        if (static_parameters.Ani_state >= 0 || static_parameters.Ani_state <= 4)
+        if (static_parameters.Ani_state == 0 || static_parameters.Ani_state == 1)
         {
             MC_ani_state();
         }
@@ -144,7 +144,6 @@ public class Ani_MC : MonoBehaviour
     private void combo_time()
     {
         wait_atk_return = false;
-        Debug.Log("wait_atk_return: " + wait_atk_return);
         if (ATK_count != 0)
         {
             isAttack_combo = false;
@@ -162,18 +161,18 @@ public class Ani_MC : MonoBehaviour
         switch (static_parameters.Ani_state)
         {
             case 2:
-                yield return new WaitForSeconds(0.6f);
+                yield return new WaitForSeconds(0.65f);
                 break;
             case 3:
-                yield return new WaitForSeconds(0.6f);
+                yield return new WaitForSeconds(0.65f);
                 break;
             case 4:
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1.05f);
                 ATK_count = 0;
                 break;
         }
         isAttackPlaying = false;
-        Invoke("combo_time", attackTime_max + 0.1f);
+        Invoke("combo_time", attackTime_max + 0.5f);
     }
 
     void PlayDashAnimation()

@@ -38,40 +38,37 @@ public class Prefabs_start_241130 : MonoBehaviour
         switch (static_parameters.stage_number)
         {
             case 1:
-                // Number_NPC01 = 7;
-                // Number_NPC02 = 7;
-                Number_NPC03 = 7;
-                // Number_NPC04 = 7;
-                // Number_NPC05 = 7;
+                Number_NPC01 = 8;
+                Number_NPC03 = 5;
                 break;
             case 2:
-                Number_NPC03 = 12;
-                // Number_NPC01 = 10;
-                // Number_NPC02 = 6;
+                // Number_NPC03 = 12;
+                Number_NPC01 = 10;
+                Number_NPC02 = 6;
                 break;
             case 3:
-                Number_NPC03 = 16;
-                // Number_NPC01 = 16;
-                // Number_NPC02 = 8;
+                // Number_NPC03 = 16;
+                Number_NPC01 = 16;
+                Number_NPC02 = 8;
                 break;
             case 4:
-                Number_NPC03 = 22;
-                // Number_NPC01 = 7;
-                // Number_NPC03 = 10;
-                // Number_NPC05 = 6;
+                // Number_NPC03 = 22;
+                Number_NPC01 = 7;
+                Number_NPC03 = 10;
+                Number_NPC05 = 6;
                 break;
             case 5:
-                Number_NPC03 = 30;
-                // Number_NPC01 = 15;
-                // Number_NPC02 = 12;
-                // Number_NPC03 = 12;
+                // Number_NPC03 = 30;
+                Number_NPC01 = 15;
+                Number_NPC02 = 12;
+                Number_NPC03 = 12;
                 break;
             case 6:
-                Number_NPC03 = 42;
-                // Number_NPC01 = 10;
-                // Number_NPC02 = 13;
-                // Number_NPC03 = 11;
-                // Number_NPC05 = 11;
+                // Number_NPC03 = 42;
+                Number_NPC01 = 10;
+                Number_NPC02 = 13;
+                Number_NPC03 = 11;
+                Number_NPC05 = 11;
                 break;
             default:
                 break;
