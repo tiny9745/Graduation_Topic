@@ -5,40 +5,36 @@ using UnityEngine;
 public class Ani_MC : MonoBehaviour
 {
     public Animator animator;
-    private Play_move MC_move;
     int Angle_sum = 270;
+
     public GameObject Play_s;
 
     static public bool isDashCooldown = false;
     static public bool isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 3f;
-    short ATK_count = 2;
-    float attackTime = 0, attackTime_max = 0.5f; bool isAttack_combo = false, memory_J = false;
+    short ATK_count = 0; float ATK_time = 0;
+    float attackTime = 0; bool isAttack_combo = false;
     static public float dashDuration = 0.63f;
-    float timeATK = 0, timeATK_max = 0;
     void Start()
     {
         animator = GetComponent<Animator>();
-        MC_move = Play_s.GetComponent<Play_move>();
     }
 
     void Update()
     {
         // 更新角色位置
-        transform.position = new Vector3(Play_s.transform.position.x, transform.position.y, Play_s.transform.position.z);
+        this.transform.position = new Vector3(Play_s.transform.position.x, transform.position.y, Play_s.transform.position.z);
 
         // 設定角色面向角度
         UpdateFacingDirection();
 
         // 如果動畫正在播放，則不處理其他輸入
-        if (static_parameters.Ani_state == 5) return;
-        if (isAttackPlaying)
+        if (isAttackPlaying || static_parameters.Ani_state == 5)
         {
-            // Atk_time();
             return;
         }
-
+        // if(isDashCooldown)Debug.Log("isDashCooldown");
         // 處理輸入
         if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving())
         {
@@ -49,16 +45,12 @@ public class Ani_MC : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.J) && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2)
         {
-            if (ATK_count < 5)
+            if (ATK_count < 3)
             {
-                static_parameters.Ani_state = ATK_count;
-                StartCoroutine(AttackSequence());
                 ATK_count++;
+                static_parameters.Ani_state = ATK_count + 1;
+                StartCoroutine(AttackSequence());
             }
-        }
-        else if (isAttack_combo)
-        {
-            Atk_time();
         }
         else
         {
@@ -70,13 +62,12 @@ public class Ani_MC : MonoBehaviour
         {
             MC_ani_state();
         }
-
         if (isAttack_combo)
         {
             attackTime += Time.deltaTime;
-            if (attackTime >= attackTime_max)
+            if (attackTime >= 0.45f)
             {
-                ATK_count = 2;
+                ATK_count = 0;
                 attackTime = 0;
             }
         }
@@ -143,11 +134,20 @@ public class Ani_MC : MonoBehaviour
         isDashCooldown_for_move = false;
     }
 
+    private void combo_time()
+    {
+        if (ATK_count != 0)
+        {
+            isAttack_combo = false;
+        }
+    }
+
     IEnumerator AttackSequence()
     {
         isAttackPlaying = true;
         isAttack_combo = true;
-        MC_ani_state_ATK();
+        // 播放攻擊動畫
+        MC_ani_state();
         switch (static_parameters.Ani_state)
         {
             case 2:
@@ -158,10 +158,12 @@ public class Ani_MC : MonoBehaviour
                 break;
             case 4:
                 yield return new WaitForSeconds(1.05f);
-                ATK_count = 2;
+                ATK_count = 0;
                 break;
         }
+        DefaultCheck();
         isAttackPlaying = false;
+        Invoke("combo_time", 0.5f);
     }
 
     void PlayDashAnimation()
@@ -215,68 +217,6 @@ public class Ani_MC : MonoBehaviour
                 break;
         }
     }
-
-    void MC_ani_state_ATK()
-    {
-        Debug.Log("ATK: " + static_parameters.Ani_state);
-        switch (static_parameters.Ani_state)
-        {
-            case 2: // Attack
-                Atk_step_number();
-                break;
-            case 3: // Attack 2
-                Atk_step_number();
-                break;
-            case 4: // Attack 3
-                Atk_step_number();
-                break;
-        }
-
-    }
-
-    void Atk_time()
-    {
-        switch (static_parameters.Ani_state)
-        {
-            case 2: // Attack
-                timeATK_max = 0.65f;
-                break;
-            case 3: // Attack 2
-                timeATK_max = 0.65f;
-                break;
-            case 4: // Attack 3
-                timeATK_max = 1.05f;
-                break;
-        }
-
-        if (timeATK >= timeATK_max + 0.5f)
-        {
-            isAttack_combo = false;
-            memory_J = false;
-            timeATK = 0;
-            ATK_count = 2;
-            return;
-        }
-        else
-        {
-            timeATK += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.J) && memory_J == false)
-            {
-                memory_J = true;
-                ATK_count++;
-                if (ATK_count >= 4)
-                {
-                    ATK_count = 2;
-                }
-                static_parameters.Ani_state = ATK_count;
-            }
-            if (timeATK >= timeATK_max)
-            {
-                isAttackPlaying = false;
-            }
-        }
-    }
-
 
     private void Atk_step_number()
     {
