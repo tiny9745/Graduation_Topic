@@ -5,6 +5,8 @@ using UnityEngine;
 public class Ani_MC : MonoBehaviour
 {
     public Animator animator;
+    public GameObject playerPrefab;
+    private Play_move MC_move;
     int Angle_sum = 270;
 
     public GameObject Play_s;
@@ -19,6 +21,7 @@ public class Ani_MC : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        MC_move = playerPrefab.GetComponent<Play_move>();
     }
 
     void Update()
