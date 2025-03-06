@@ -51,7 +51,7 @@ public class Play_move : MonoBehaviour
             }
             else if (static_parameters.Ani_state >= 2)
             {
-                newPosition += movement * 0.1f * Time.fixedDeltaTime; // Slow movement
+                newPosition += movement * 0.2f * Time.fixedDeltaTime; // Slow movement
             }
             else
             {

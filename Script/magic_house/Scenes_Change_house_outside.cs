@@ -21,7 +21,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
             {
                 case 0:
                     // SceneManager.LoadScene("Fight_241130");
-                    SceneManager.LoadScene("Fight1-1_A");
+                    SceneManager.LoadScene("A01");
                     break;
             }
         }
@@ -35,7 +35,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
             {
                 case 0:
                     // SceneManager.LoadScene("Fight_241130");
-                    SceneManager.LoadScene("Fight1-1_A");
+                    SceneManager.LoadScene("A01");
                     break;
             }
         }
