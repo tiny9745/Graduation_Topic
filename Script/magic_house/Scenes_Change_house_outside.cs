@@ -34,7 +34,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
             switch (Random.Range(0, 1))
             {
                 case 0:
-                    SceneManager.LoadScene("Fight_241130");
+                    // SceneManager.LoadScene("Fight_241130");
                     SceneManager.LoadScene("Fight1-1_A");
                     break;
             }
