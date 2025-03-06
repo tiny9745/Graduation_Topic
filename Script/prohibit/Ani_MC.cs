@@ -5,7 +5,6 @@ using UnityEngine;
 public class Ani_MC : MonoBehaviour
 {
     public Animator animator;
-    public GameObject playerPrefab;
     int Angle_sum = 270;
 
     public GameObject Play_s;
