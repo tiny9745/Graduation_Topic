@@ -12,18 +12,24 @@ public class Play_move : MonoBehaviour
     private bool navMeshAvailable;
     public NavMeshAgent agent;
     public float navMeshCheckRadius = 1.0f;
-
+    Rigidbody rb;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     void Update()
     {
-        // rb.MovePosition(transform.position);
-        // 檢查是否可以移動 (生命大於 0 且角色未死亡)
+
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 newPosition = rb.position; // Get current position
         if (static_parameters.MC_HP > 0 && Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
         {
             // 讀取輸入
             horizontalInput = Input.GetAxis("Horizontal");
             verticalInput = Input.GetAxis("Vertical");
-
-            // 計算行走速度與衝刺速度
             walkSpeed = static_parameters.MC_Wspeed;
             dashSpeed = walkSpeed * 3;
 
@@ -31,49 +37,39 @@ public class Play_move : MonoBehaviour
             navMeshAvailable = NavMeshHasBakedData();
 
             // 更新 NavMesh 範圍內的移動
-            if (navMeshAvailable)
-            {
-                MC_Nav_Baking_range(horizontalInput, verticalInput);
-            }
-
-            // 計算移動向量
+            if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
+            
             Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
 
             if (movement.magnitude > 1)
             {
                 movement.Normalize();
             }
-
-            // 根據 DashCD 狀態決定速度
             if (DashCD)
             {
-                transform.position += movement * dashSpeed * Time.deltaTime; // 衝刺速度
+                newPosition += movement * dashSpeed * Time.fixedDeltaTime; // Dash speed
             }
             else if (static_parameters.Ani_state >= 2)
             {
-                transform.position += movement * 0.1f * Time.deltaTime;
-                // Debug.Log(transform.position);
+                newPosition += movement * 0.1f * Time.fixedDeltaTime; // Slow movement
             }
             else
             {
-                transform.position += movement * walkSpeed * Time.deltaTime; // 行走速度
+                newPosition += movement * walkSpeed * Time.fixedDeltaTime; // Walk speed
             }
-            
-
             // 更新角色朝向
             UpdateFaceDirection(movement);
             // 監聽衝刺鍵
             if (Input.GetKeyDown(KeyCode.L) && !DashCD && Ani_MC.isDashCooldown_for_move == false && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
             {
                 Ani_MC.isDashCooldown_for_move = true;
-                Debug.Log("Dash");
                 DashCD = true;
                 static_parameters.invincible = true;
-                Invoke("DogeCooldown", 0.67f); // 衝刺冷卻時間
+                Invoke("DogeCooldown", 0.6f); // 衝刺冷卻時間
             }
         }
+        rb.MovePosition(newPosition); // Apply movement
     }
-
 
     void DogeCooldown()
     {
