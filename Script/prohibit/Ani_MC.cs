@@ -14,7 +14,7 @@ public class Ani_MC : MonoBehaviour
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 3f;
     short ATK_count = 2;
-    bool isAttack_combo = false, memory_J = false;
+    float attackTime = 0, attackTime_max = 0.5f; bool isAttack_combo = false, memory_J = false;
     static public float dashDuration = 0.63f;
     float timeATK = 0, timeATK_max = 0;
     void Start()
@@ -56,13 +56,11 @@ public class Ani_MC : MonoBehaviour
                 ATK_count++;
             }
         }
-        
-        if (isAttack_combo)
+        else if (isAttack_combo)
         {
             Atk_time();
         }
-
-        if (isAttackPlaying == false || memory_J == false)
+        else
         {
             DefaultCheck();
         }
@@ -71,6 +69,20 @@ public class Ani_MC : MonoBehaviour
         if (static_parameters.Ani_state == 0 || static_parameters.Ani_state == 1)
         {
             MC_ani_state();
+        }
+
+        if (isAttack_combo)
+        {
+            attackTime += Time.deltaTime;
+            if (attackTime >= attackTime_max)
+            {
+                ATK_count = 2;
+                attackTime = 0;
+            }
+        }
+        else
+        {
+            attackTime = 0;
         }
     }
 
@@ -241,7 +253,6 @@ public class Ani_MC : MonoBehaviour
         {
             isAttack_combo = false;
             memory_J = false;
-            Debug.Log("memory_J0: " + memory_J);
             timeATK = 0;
             ATK_count = 2;
             return;
@@ -252,7 +263,6 @@ public class Ani_MC : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.J) && memory_J == false)
             {
                 memory_J = true;
-                Debug.Log("memory_J2: " + memory_J);
                 ATK_count++;
                 if (ATK_count >= 4)
                 {
