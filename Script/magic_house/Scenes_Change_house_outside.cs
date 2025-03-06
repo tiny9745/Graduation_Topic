@@ -14,23 +14,20 @@ public class Scenes_Change_house_outside : MonoBehaviour
     }
     private void OnCollisionEnter(Collision Hit)
     {
-        Debug.Log("static_parameters.isTeaching: " + static_parameters.isTeaching);
-        Debug.Log("static_parameters.teaching_stop: " + static_parameters.teaching_stop);
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
         {
             static_parameters.stage_number = 1;
             switch (Random.Range(0, 1))
             {
                 case 0:
-                    SceneManager.LoadScene("Fight_241130");
+                    // SceneManager.LoadScene("Fight_241130");
+                    SceneManager.LoadScene("Fight1-1_A");
                     break;
             }
         }
     }
     private void OnTriggerEnter(Collider Hit)
     {
-        Debug.Log("static_parameters.isTeaching: " + static_parameters.isTeaching);
-        Debug.Log("static_parameters.teaching_stop: " + static_parameters.teaching_stop);
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
         {
             static_parameters.stage_number = 1;
@@ -38,6 +35,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
             {
                 case 0:
                     SceneManager.LoadScene("Fight_241130");
+                    SceneManager.LoadScene("Fight1-1_A");
                     break;
             }
         }
