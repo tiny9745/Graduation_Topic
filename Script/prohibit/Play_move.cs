@@ -49,7 +49,7 @@ public class Play_move : MonoBehaviour
             {
                 newPosition += movement * dashSpeed * Time.fixedDeltaTime; // Dash speed
             }
-            else if (static_parameters.Ani_state >= 2)
+            else if (Ani_MC.isAttackPlaying)
             {
                 newPosition += movement * 0.2f * Time.fixedDeltaTime; // Slow movement
             }
