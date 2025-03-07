@@ -9,16 +9,20 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && (static_parameters.teaching_stop == 1 || static_parameters.teaching_stop >= 100))
         {
-            SceneManager.LoadScene("house_outside");
-            if (static_parameters.teaching_stop == 1) static_parameters.teaching_stop = 2;
+            On_Enter();
         }
     }
     private void OnTriggerEnter(Collider Hit)
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && (static_parameters.teaching_stop == 1 || static_parameters.teaching_stop >= 100))
         {
-            SceneManager.LoadScene("house_outside");
-            if (static_parameters.teaching_stop == 1) static_parameters.teaching_stop = 2;
+            On_Enter();
         }
+    }
+
+    private void On_Enter()
+    {
+        SceneManager.LoadScene("house_outside");
+        if (static_parameters.teaching_stop == 1) static_parameters.teaching_stop = 2;
     }
 }

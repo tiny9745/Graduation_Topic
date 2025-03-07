@@ -6640,6 +6640,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e55f632425c0345a320e561406be25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HPimg_White: {fileID: 0}
+  HPimg_Red: {fileID: 0}
+  HPimg_Green: {fileID: 0}
 --- !u!114 &412413370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17362,6 +17365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e55f632425c0345a320e561406be25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HPimg_White: {fileID: 72194813}
+  HPimg_Red: {fileID: 72194813}
+  HPimg_Green: {fileID: 1827398082}
 --- !u!114 &990590620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35398,11 +35404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -8.881784e-16
+      value: 1.0124612e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 4.440892e-16
+      value: -5.6199267e-11
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35426,11 +35432,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008328529
+      value: 0.000000008398571
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021564983
+      value: -0.0000000021746338
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -35830,8 +35836,6 @@ MonoBehaviour:
   DashCD: 0
   agent: {fileID: 8830870452476947112}
   navMeshCheckRadius: 1
-  Player: {fileID: 6664972478766756054}
-  rb: {fileID: 8830870452476947114}
 --- !u!195 &8830870452476947112
 NavMeshAgent:
   m_ObjectHideFlags: 0

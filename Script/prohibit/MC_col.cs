@@ -96,45 +96,6 @@ public class MC_col : MonoBehaviour
         return false;
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Scene activeScene = SceneManager.GetActiveScene();
-        Debug.Log("RRRRRRR Loaded Scene: " + scene.name);
-        Debug.Log("RRRRRRR Active Scene: " + activeScene.name);
-
-        if (activeScene.name == Game_fight)
-        {
-            if (Blood_Col != null) Blood_Col.FindHPImage();
-        }
-        else if (activeScene.name == magic_house)
-        {
-            Debug.Log("magic_houseRRRRRRR");
-            static_parameters.MC_HP = static_parameters.MC_HP_Max;
-        }
-    }
-
-
-    private void OnSceneUnloaded(Scene scene)//Leave Scene
-    {
-        if (scene.name == house_outside)
-        {
-            Debug.Log("house_outsideRRRRRRR");
-            static_parameters.MC_HP = static_parameters.MC_HP_Max;
-        }
-    }
-
     void SetLookDirection(int face)
     {
         switch (face)

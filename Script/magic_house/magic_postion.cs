@@ -15,6 +15,7 @@ public class magic_postion : MonoBehaviour
 
     void Start()
     {
+        static_parameters.MC_HP = static_parameters.MC_HP_Max;
         ResetPlayerPosition();
     }
     void Update()

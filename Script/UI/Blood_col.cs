@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Blood_col : MonoBehaviour
 {
-    private RectTransform HPimg_White, HPimg_Red, HPimg_Green;
+    private RectTransform HPimg_White, HPimg_Green;
     float blood_base = 1;
     float blood_tmp = 1040;
     float previous_MC_HP_Max;
@@ -21,6 +21,11 @@ public class Blood_col : MonoBehaviour
         {
             AdjustHPForNewMax();
             previous_MC_HP_Max = static_parameters.MC_HP_Max;
+        }
+
+        if (static_parameters.MC_HP == static_parameters.MC_HP_Max)
+        {
+            FindHPImage();
         }
 
         if (static_parameters.MC_HP_tmp != static_parameters.MC_HP)
@@ -40,13 +45,9 @@ public class Blood_col : MonoBehaviour
         RectTransform[] foundRectTransforms = FindObjectsOfType<RectTransform>();
         foreach (RectTransform rectTransform in foundRectTransforms)
         {
-            if (rectTransform.name == "HP_BG")
-            {
-                HPimg_White = rectTransform;
-            }
             if (rectTransform.name == "HP_change")
             {
-                HPimg_Red = rectTransform;
+                HPimg_White = rectTransform;
             }
             if (rectTransform.name == "HP_change_after")
             {
@@ -57,10 +58,9 @@ public class Blood_col : MonoBehaviour
 
         blood_base = blood_tmp / static_parameters.MC_HP_Max;
 
-        if (HPimg_White != null && HPimg_Red != null && HPimg_Green != null)
+        if (HPimg_White != null  && HPimg_Green != null)
         {
             HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max * blood_base, HPimg_White.sizeDelta.y);
-            HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_White.sizeDelta.y);
             HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_White.sizeDelta.y);
         }
     }
@@ -77,23 +77,22 @@ public class Blood_col : MonoBehaviour
     private void UpdateHPMax()
     {
         blood_base = blood_tmp / static_parameters.MC_HP_Max;
-        HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max * blood_base, HPimg_White.sizeDelta.y);       
-        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Green.sizeDelta.y);       
-        HPimg_Red.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Red.sizeDelta.y);    
+        HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max * blood_base, HPimg_White.sizeDelta.y);
+        HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Green.sizeDelta.y);
     }
 
     public void MC_HP_effects()
     {
-        if (HPimg_Red != null && HPimg_Green != null && HPimg_Red.sizeDelta.x > HPimg_Green.sizeDelta.x)
+        if (HPimg_White != null && HPimg_Green != null && HPimg_White.sizeDelta.x > HPimg_Green.sizeDelta.x)
         {
             float baseSpeed = 6f;
-            float difference = HPimg_Red.sizeDelta.x - HPimg_Green.sizeDelta.x;
+            float difference = HPimg_White.sizeDelta.x - HPimg_Green.sizeDelta.x;
             float speed = baseSpeed + (difference * 0.1f);
-            HPimg_Red.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * speed;
+            HPimg_White.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * speed;
 
-            if (HPimg_Red.sizeDelta.x < HPimg_Green.sizeDelta.x)
+            if (HPimg_White.sizeDelta.x < HPimg_Green.sizeDelta.x)
             {
-                HPimg_Red.sizeDelta = new Vector2(HPimg_Green.sizeDelta.x, HPimg_Red.sizeDelta.y);
+                HPimg_White.sizeDelta = new Vector2(HPimg_Green.sizeDelta.x, HPimg_White.sizeDelta.y);
             }
         }
     }
