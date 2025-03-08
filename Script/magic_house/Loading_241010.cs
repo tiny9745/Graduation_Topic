@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,6 +25,7 @@ public class Loading_241010 : MonoBehaviour
     void Start()
     {
         BlackScreen = GameObject.Find("Black");
+
         if (BlackScreen != null && Death_MC.isDead)
         {
             BlackScreen.SetActive(false);
@@ -35,6 +37,9 @@ public class Loading_241010 : MonoBehaviour
 
     void Update()
     {
+        if (loadingBar == null) loadingBar = GameObject.Find("BG_pink").GetComponent<Image>();
+        if (loadingScreen == null) loadingScreen = GameObject.Find("Load_pink");
+
         // 判斷是否關閉加載畫面
         if (loadingBar.transform.position.y >= targetFillAmount && screen_close && loadingTimeElapsed >= minimumLoadingTime)
         {

@@ -4689,7 +4689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &910823672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13306,6 +13306,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eeb56234de783a4a821d26a6e52a72f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 2145698944112924917}
+  loadingBar: {fileID: 7257496601944108336}
+  loadingSpeed: 100
+  maxFillAmount: 275
+  wave_bar_range: 30
   player_S: {fileID: 0}
 --- !u!4 &5203571500808296738
 Transform:
