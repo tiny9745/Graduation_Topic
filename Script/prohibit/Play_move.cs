@@ -43,7 +43,7 @@ public class Play_move : MonoBehaviour
             {
                 movement.Normalize();
             }
-            if (Ani_MC.isDashCooldown && static_parameters.invincible == false)
+            if (Ani_MC.isDashCooldown_for_move && static_parameters.invincible == false)
             {
                 newPosition += movement * dashSpeed * Time.fixedDeltaTime; // Dash speed
             }
@@ -58,9 +58,9 @@ public class Play_move : MonoBehaviour
             // 更新角色朝向
             UpdateFaceDirection(movement);
             // 監聽衝刺鍵
-            if (Input.GetKeyDown(KeyCode.L) && Ani_MC.isDashCooldown_for_move == false && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
+            if (Input.GetKeyDown(KeyCode.L) && Ani_MC.isDashCooldown == false && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
             {
-                Ani_MC.isDashCooldown_for_move = true;
+                Ani_MC.isDashCooldown_for_move=true;
                 static_parameters.invincible = true;
                 Invoke("DogeCooldown", 0.6f); // 衝刺冷卻時間
             }
@@ -71,6 +71,7 @@ public class Play_move : MonoBehaviour
     void DogeCooldown()
     {
         static_parameters.invincible = false;
+        Ani_MC.isDashCooldown_for_move = true;
     }
 
     void MC_Nav_Baking_range(float h, float v)
