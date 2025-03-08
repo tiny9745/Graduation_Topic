@@ -30,7 +30,7 @@ public class Ani_MC : MonoBehaviour
         UpdateFacingDirection();
 
         // 如果動畫正在播放，則不處理其他輸入
-        if (isAttackPlaying || static_parameters.Ani_state == 5)
+        if (isAttackPlaying || static_parameters.Ani_state == -1)
         {
             return;
         }
@@ -65,7 +65,7 @@ public class Ani_MC : MonoBehaviour
         if (isAttack_combo)
         {
             attackTime += Time.deltaTime;
-            if (attackTime >= 0.45f)
+            if (attackTime >= 0.4f)
             {
                 ATK_count = 0;
                 attackTime = 0;
@@ -113,7 +113,7 @@ public class Ani_MC : MonoBehaviour
     IEnumerator DashSequence()
     {
         isDashCooldown = true;
-        static_parameters.Ani_state = 5; // 設置為 Dash 狀態
+        static_parameters.Ani_state = -1; // 設置為 Dash 狀態
 
         float dashStartTime = Time.time;
         dashDuration = 0.63f / Skill_public_funtion.skill_35_Dash_Magnification;
