@@ -92,8 +92,6 @@ public class NPC05_control : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-
-
         if (TargetObj != null && Vector3.Distance(transform.position, TargetObj.transform.position) <= DetectDistance)
         {
             // Shoot at the player
@@ -232,6 +230,7 @@ public class NPC05_control : MonoBehaviour
                 }
                 change_color_red();
                 effect.piano_Skill();
+                effect.fight_instinct_npc();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC05_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.5f);

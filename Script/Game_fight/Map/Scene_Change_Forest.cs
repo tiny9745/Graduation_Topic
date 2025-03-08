@@ -32,6 +32,10 @@ public class Scene_Change_Forest : MonoBehaviour
     }
     private void Update()
     {
+        if (loadingBar == null) loadingBar = GameObject.Find("BG_pink").GetComponent<Image>();
+        else Debug.Log("loadingBar:" + loadingBar.name);
+        if (loadingScreen == null) loadingScreen = GameObject.Find("Load_pink");
+        else Debug.Log("loadingScreen:" + loadingScreen.name);
         if (static_parameters.Change_enemy == 0)
         {
             CloseDoor01.SetActive(false);
@@ -113,7 +117,8 @@ public class Scene_Change_Forest : MonoBehaviour
             else
             {
                 player_S.transform.localPosition = new Vector3(0, 0, -138);
-                SceneManager.LoadScene("Fight_241130");
+                loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
+                StartCoroutine(LoadSceneWithProgress("Fight_241130"));
             }
         }
     }
@@ -140,7 +145,7 @@ public class Scene_Change_Forest : MonoBehaviour
             // 至少跑 minProgressTime 秒才允許場景切換
             if (elapsedTime >= minProgressTime)
             {
-                SceneManager.LoadScene("house_outside");
+                SceneManager.LoadScene("Fight_241130");
             }
             yield return null;
         }

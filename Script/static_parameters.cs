@@ -38,4 +38,6 @@ public class static_parameters : MonoBehaviour
     static public int teaching_stop = 100;
     static public bool isTeaching = false;
     static public bool wait_atk_return = false;
+
+    static public bool into_gameFight = false;//是否進入戰鬥場景
 }

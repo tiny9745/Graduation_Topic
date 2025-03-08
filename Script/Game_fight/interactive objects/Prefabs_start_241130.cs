@@ -21,7 +21,7 @@ public class Prefabs_start_241130 : MonoBehaviour
 
         // 在 NavMesh 更新後重新計算範圍
         NavMesh.onPreUpdate += UpdateNavMeshBounds;
-
+        static_parameters.into_gameFight = true;
         // 延遲生成確保範圍正確
         Invoke("BakeNavMesh", 1.5f);
         Invoke("NPC_into", 3.1f);
