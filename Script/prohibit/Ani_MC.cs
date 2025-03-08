@@ -13,7 +13,7 @@ public class Ani_MC : MonoBehaviour
     static public bool isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 3f;
-    short ATK_count = 0; float ATK_time = 0;
+    short ATK_count = 0;
     float attackTime = 0; bool isAttack_combo = false;
     static public float dashDuration = 0.63f;
     void Start()
@@ -54,7 +54,6 @@ public class Ani_MC : MonoBehaviour
         }
         else if(ATK_count < 1)
         {
-            Debug.Log("DefaultCheck1");
             DefaultCheck();
         }
 
@@ -70,6 +69,7 @@ public class Ani_MC : MonoBehaviour
             {
                 ATK_count = 0;
                 attackTime = 0;
+                DefaultCheck();
             }
         }
         else
@@ -137,7 +137,6 @@ public class Ani_MC : MonoBehaviour
     {
         if (ATK_count != 0)
         {
-
             isAttack_combo = false;
         }
     }
