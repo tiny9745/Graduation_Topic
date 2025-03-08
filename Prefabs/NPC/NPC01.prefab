@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcCtrl: {fileID: 0}
-  effect: {fileID: 0}
+  effect: {fileID: 3885733296886919737}
   Player: {fileID: 0}
 --- !u!1 &718408723029886671
 GameObject:
@@ -1250,6 +1250,7 @@ GameObject:
   - component: {fileID: 1840519291462866230}
   - component: {fileID: 7891580912511692219}
   - component: {fileID: 1912572351394191432}
+  - component: {fileID: 3885733296886919737}
   m_Layer: 8
   m_Name: NPC01
   m_TagString: NPC
@@ -1292,7 +1293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nPC_hP: {fileID: 1840519291462866230}
   npc_interactive: {fileID: 7891580912511692219}
-  effect: {fileID: 0}
+  effect: {fileID: 3885733296886919737}
   animator: {fileID: 5040306042332483355}
   animator_to_atk: {fileID: 536033589122980929}
   weaponDUCK: {fileID: 8254015937789978251}
@@ -1431,6 +1432,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3885733296886919737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642523929771483394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a282bd4aaef3a1949b4971f006274e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  control: {fileID: 4507803500508676976}
+  HP_control: {fileID: 1840519291462866230}
+  _skill_piano_effect: {fileID: 297879975830301726}
+  bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
+  bomb_point: {fileID: 3917230693631719018}
+  Ward12: {fileID: 7035810975034627314, guid: cedb763a9d8468b4c880394512cb93db, type: 3}
+  skill_01_1: {fileID: 0}
+  skill_02: {fileID: 5185151832354452699}
+  skill04A: {fileID: 0}
+  skill04_B: {fileID: 2605215872580487890}
+  skill05A: {fileID: 0}
+  skill05B: {fileID: 7127619774328084066}
+  skill_2x_animator: {fileID: 2822611162573677064}
+  skill21_animator: {fileID: 5945742392991115376}
+  skill22_animator: {fileID: 5605551249725993433}
+  skill23_animator: {fileID: 2517367399326379329}
+  skill24_animator: {fileID: 4052493382189402781}
+  skill25_1_animator: {fileID: 7108096943763022699}
+  skill25_2_animator: {fileID: 3079947560658623042}
+  Img_skill02: {fileID: 6678031340963820240}
+  Img_skill05: {fileID: 2866338915433989695}
 --- !u!1 &5672631104872129551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,7 +1877,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 680454516274240650}
-  - component: {fileID: 7974900186029078818}
   m_Layer: 0
   m_Name: skill
   m_TagString: Untagged
@@ -1868,39 +1901,6 @@ Transform:
   - {fileID: 6454118133562995272}
   m_Father: {fileID: 7467593094685646681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7974900186029078818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8469960153590843995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a282bd4aaef3a1949b4971f006274e25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  control: {fileID: 4507803500508676976}
-  HP_control: {fileID: 1840519291462866230}
-  _skill_piano_effect: {fileID: 297879975830301726}
-  bomb_piano: {fileID: 1215060209081986893, guid: b68979c4817beef45a0ee6dc5cef88c8, type: 3}
-  bomb_point: {fileID: 3917230693631719018}
-  Ward12: {fileID: 7035810975034627314, guid: cedb763a9d8468b4c880394512cb93db, type: 3}
-  skill_01_1: {fileID: 0}
-  skill_02: {fileID: 5185151832354452699}
-  skill04A: {fileID: 0}
-  skill04_B: {fileID: 2605215872580487890}
-  skill05A: {fileID: 0}
-  skill05B: {fileID: 7127619774328084066}
-  skill_2x_animator: {fileID: 2822611162573677064}
-  skill21_animator: {fileID: 5945742392991115376}
-  skill22_animator: {fileID: 5605551249725993433}
-  skill23_animator: {fileID: 2517367399326379329}
-  skill24_animator: {fileID: 4052493382189402781}
-  skill25_1_animator: {fileID: 7108096943763022699}
-  skill25_2_animator: {fileID: 3079947560658623042}
-  Img_skill02: {fileID: 6678031340963820240}
-  Img_skill05: {fileID: 2866338915433989695}
 --- !u!1 &8529658835100848863
 GameObject:
   m_ObjectHideFlags: 0
