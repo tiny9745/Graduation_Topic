@@ -363,6 +363,7 @@ public class NPC01_1_control : MonoBehaviour
                 }
                 change_color_red();
                 effect.piano_Skill();
+                effect.fight_instinct_npc();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);

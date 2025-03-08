@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 708759943}
   - component: {fileID: 708759946}
   - component: {fileID: 708759945}
-  - component: {fileID: 708759947}
   m_Layer: 0
   m_Name: GF_script
   m_TagString: Untagged
@@ -233,23 +232,6 @@ MonoBehaviour:
   prefabNPC04: {fileID: 1059627953628221374, guid: b9431ec825b6b2745b5ff9b58c406ae2, type: 3}
   prefabNPC05: {fileID: 2695759851995036783, guid: 2b28e16f047b0594bad00a3f01c0e841, type: 3}
   navMeshSurface: {fileID: 1322086228}
---- !u!114 &708759947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708759935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa6b6086f107284419a2998a11884705, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
-  loadingBar: {fileID: 0}
-  loadingSpeed: 100
-  maxFillAmount: 275
-  wave_bar_range: 30
 --- !u!1 &1124389366
 GameObject:
   m_ObjectHideFlags: 0

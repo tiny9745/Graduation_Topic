@@ -6640,9 +6640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e55f632425c0345a320e561406be25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPimg_White: {fileID: 0}
-  HPimg_Red: {fileID: 0}
-  HPimg_Green: {fileID: 0}
 --- !u!114 &412413370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9169,7 +9166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &574710611
 Transform:
   m_ObjectHideFlags: 0
@@ -17365,9 +17362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e55f632425c0345a320e561406be25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPimg_White: {fileID: 72194813}
-  HPimg_Red: {fileID: 72194813}
-  HPimg_Green: {fileID: 1827398082}
 --- !u!114 &990590620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27142,7 +27136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1756241545
 Transform:
   m_ObjectHideFlags: 0
@@ -35404,11 +35398,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1.0124612e-10
+      value: -2.9487524e-13
       objectReference: {fileID: 0}
     - target: {fileID: 3627966759463682702, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -5.6199267e-11
+      value: 1.6386892e-13
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35432,11 +35426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008398571
+      value: 0.0000000083285085
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000021746338
+      value: -0.0000000021564928
       objectReference: {fileID: 0}
     - target: {fileID: 8491087605652071030, guid: 595039114cf969c4a831a5d6c155330d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -35833,7 +35827,6 @@ MonoBehaviour:
   verticalInput: 0
   dashSpeed: 0
   walkSpeed: 0
-  DashCD: 0
   agent: {fileID: 8830870452476947112}
   navMeshCheckRadius: 1
 --- !u!195 &8830870452476947112
@@ -35870,6 +35863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af729279a3e6161488a12c857d0e2aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skill_0x: {fileID: 1756241544}
+  skill_3x: {fileID: 574710610}
   skill_hit_box31: {fileID: 8634359911271619275, guid: 1ffb8ea7515eaf24483b7a10762caaa2, type: 3}
   bullet33: {fileID: 1625309225332722915, guid: b5e50dbd78627954fb8cd690a8ff9a0c, type: 3}
   Ward34: {fileID: 8807571154689680997, guid: f3df8ffe633143b4c8cf3f29467de12d, type: 3}

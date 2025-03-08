@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class initiator_MC : MonoBehaviour
 {
+    public GameObject skill_0x, skill_3x;
     private Vector3 previousPosition, lastTriggerPosition_31;
     public GameObject skill_hit_box31, bullet33, Ward34, throw11, Guardian41, Guardian42, Guardian43, Guardian44, Guardian45;
     public Transform Firepoint;
@@ -29,10 +30,20 @@ public class initiator_MC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fight_instinct();
-        sprint_Bonus();
-        Guardian();
-        Book_throwing();
+        if (static_parameters.into_gameFight)
+        {
+            skill_0x.SetActive(true);
+            skill_3x.SetActive(true);
+            fight_instinct();
+            sprint_Bonus();
+            Guardian();
+            Book_throwing();
+        }
+        else
+        {
+            skill_0x.SetActive(false);
+            skill_3x.SetActive(false);
+        }
     }
 
     private void fight_instinct()

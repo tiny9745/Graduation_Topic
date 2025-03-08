@@ -8,7 +8,6 @@ public class NPC_HP_02 : MonoBehaviour
     public float MaxHealth, minus;
     private Vector3 initialScale;
     public NPC02_control control;
-    public NPC_effect_02 effect;
 
     void Start()
     {
@@ -30,7 +29,6 @@ public class NPC_HP_02 : MonoBehaviour
     public void TakeDamage(float damage, float NPC_DEF)
     {
         control.change_color_red();
-        effect.fight_instinct_npc();
         minus = (float)(damage * damage / (damage + NPC_DEF));
         if (minus < 5) minus = 5;
         control.NPC_HP -= minus;
