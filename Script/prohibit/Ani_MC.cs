@@ -12,7 +12,7 @@ public class Ani_MC : MonoBehaviour
     static public bool isDashCooldown = false;
     static public bool isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
-    static public float DashCD_time = 3f;
+    static public float DashCD_time = 2f;
     short ATK_count = 0;
     float attackTime = 0; bool isAttack_combo = false;
     static public float dashDuration = 0.63f;
@@ -69,12 +69,11 @@ public class Ani_MC : MonoBehaviour
             {
                 ATK_count = 0;
                 attackTime = 0;
-                DefaultCheck();
             }
         }
         else
         {
-            attackTime = 0;
+            attackTime = 0;ATK_count = 0;
         }
     }
 
@@ -114,6 +113,7 @@ public class Ani_MC : MonoBehaviour
     IEnumerator DashSequence()
     {
         isDashCooldown = true;
+        isDashCooldown_for_move = true;
         static_parameters.Ani_state = -1; // 設置為 Dash 狀態
         float dashStartTime = Time.time;
         dashDuration = 0.63f / Skill_public_funtion.skill_35_Dash_Magnification;
@@ -135,9 +135,11 @@ public class Ani_MC : MonoBehaviour
 
     private void combo_time()
     {
+        Debug.Log("combo_time");
         if (ATK_count != 0)
         {
             isAttack_combo = false;
+            DefaultCheck();
         }
     }
 
