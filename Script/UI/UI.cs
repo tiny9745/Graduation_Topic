@@ -53,7 +53,7 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6)
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 &&static_parameters.into_gameFight == false)
         {
             Debug.Log("static_parameters.Bookstate: " + static_parameters.Bookstate);
             if (!static_parameters.Bookstate)

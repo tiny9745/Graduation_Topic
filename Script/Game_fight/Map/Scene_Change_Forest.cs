@@ -33,9 +33,7 @@ public class Scene_Change_Forest : MonoBehaviour
     private void Update()
     {
         if (loadingBar == null) loadingBar = GameObject.Find("BG_pink").GetComponent<Image>();
-        else Debug.Log("loadingBar:" + loadingBar.name);
         if (loadingScreen == null) loadingScreen = GameObject.Find("Load_pink");
-        else Debug.Log("loadingScreen:" + loadingScreen.name);
         if (static_parameters.Change_enemy == 0)
         {
             CloseDoor01.SetActive(false);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bomb_Berry : MonoBehaviour
 {
-    int berry = 3;
+    int berry = 1;
     bool isExplode = false;
     float explode_time_max = 3, timmer = 0;
     private int lastChildCount, startChildCount; // 上一次檢查時的子物件數量
@@ -13,11 +13,12 @@ public class Bomb_Berry : MonoBehaviour
     public SphereCollider bomb_hitbox;
     public Animator animator_ready;
     public GameObject berry_bomb;
+    private bool isExplode_start = false;
     void Start()
     {
         // 紀錄初始子物件數量
-        startChildCount = transform.childCount;
-        lastChildCount = transform.childCount;
+        startChildCount = 1;
+        lastChildCount = 1;
         berry = lastChildCount;
     }
 
@@ -54,6 +55,7 @@ public class Bomb_Berry : MonoBehaviour
     {
         if (berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
         {
+            Debug.Log("Berry in range: " + berry);
             objectsInRange.Add(other.gameObject);
             if (timmer < explode_time_max && objectsInRange.Count == 1)
             {
@@ -90,34 +92,34 @@ public class Bomb_Berry : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
-        {
-            objectsInRange.Remove(other.gameObject);
-            if (objectsInRange.Count == 0)
-            {
-                animator_ready.SetBool("ani_bool_ready", false);
-                isExplode = false;
-                timmer = 0;
-                for (int i = 0; i < startChildCount - 3; i++)
-                {
-                    if (spriteRenderer[i] != null)
-                    {
-                        // 取得當前顏色
-                        Color color = spriteRenderer[i].color;
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
+    //     {
+    //         objectsInRange.Remove(other.gameObject);
+    //         if (objectsInRange.Count == 0)
+    //         {
+    //             animator_ready.SetBool("ani_bool_ready", false);
+    //             isExplode = false;
+    //             timmer = 0;
+    //             for (int i = 0; i < startChildCount - 3; i++)
+    //             {
+    //                 if (spriteRenderer[i] != null)
+    //                 {
+    //                     // 取得當前顏色
+    //                     Color color = spriteRenderer[i].color;
 
-                        // 修改透明度
-                        color.r = 1;
-                        color.g = 1;
-                        color.b = 1;
-                        // 將修改後的顏色賦值回去
-                        spriteRenderer[i].color = color;
-                    }
-                }
-            }
-        }
-    }
+    //                     // 修改透明度
+    //                     color.r = 1;
+    //                     color.g = 1;
+    //                     color.b = 1;
+    //                     // 將修改後的顏色賦值回去
+    //                     spriteRenderer[i].color = color;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     private void Bomb_Berry_Explode(Collider other)
     {
