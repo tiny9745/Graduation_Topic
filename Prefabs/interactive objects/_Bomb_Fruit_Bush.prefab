@@ -418,7 +418,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -434,6 +434,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d123c03cfe990c40826ab3662a00757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bomb_berry: {fileID: 3426659868003328328}
+  spriteRenderer:
+  - {fileID: 6209007020723338161}
+  bomb_hitbox: {fileID: 2484349344046770048}
+  animator_ready: {fileID: 8088375046056724062}
+  berry_bomb: {fileID: 4882713094726148944}
 --- !u!1 &6829575668444537915
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,14 +496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0edac8ad0bd184eb406a5a9f5a6bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer:
-  - {fileID: 6209007020723338161}
-  - {fileID: 0}
-  - {fileID: 0}
-  bomb_hitbox: {fileID: 2484349344046770048}
-  animator_ready: {fileID: 8088375046056724062}
-  animator_bomb: {fileID: 6290252469277114274}
-  berry_bomb: {fileID: 5171298661249958598, guid: bac1568cbe61fba4186ec12f38566cbc, type: 3}
+  berry: 1
+  lastChildCount: 0
+  startChildCount: 0
 --- !u!222 &4952138006261575214
 CanvasRenderer:
   m_ObjectHideFlags: 0
