@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_public_funtion : MonoBehaviour
+public class Skill_public_funtion : MonoBehaviour // this change Remembers change the All_return.cs
 {
     static public bool Reading = false; static public int WOW, SAD, HAPPY, ANGRY, mood_number = 0;
     static public bool play_piano = false;//old
     static public short P_time = 4; static public float B_damage = 0;//skill 01
 
-    static public bool Normal_blood_deduction_NPC = false;
     static public float blood_deduction_NPC_count = 0;
     static public int ATK_count = 0;
     static public float MC_HP_tmp = static_parameters.MC_HP;
