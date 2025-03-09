@@ -65,15 +65,16 @@ public class Ani_MC : MonoBehaviour
         if (isAttack_combo)
         {
             attackTime += Time.deltaTime;
-            if (attackTime >= 0.4f)
+            if (attackTime >= 0.5f)
             {
                 ATK_count = 0;
                 attackTime = 0;
+                isAttack_combo = false;
             }
         }
         else
         {
-            attackTime = 0;ATK_count = 0;
+            attackTime = 0;
         }
     }
 
@@ -135,11 +136,9 @@ public class Ani_MC : MonoBehaviour
 
     private void combo_time()
     {
-        Debug.Log("combo_time");
         if (ATK_count != 0)
         {
             isAttack_combo = false;
-            DefaultCheck();
         }
     }
 
@@ -152,18 +151,18 @@ public class Ani_MC : MonoBehaviour
         switch (static_parameters.Ani_state)
         {
             case 2:
-                yield return new WaitForSeconds(0.65f);
+                yield return new WaitForSeconds(0.7f);
                 break;
             case 3:
-                yield return new WaitForSeconds(0.65f);
+                yield return new WaitForSeconds(0.7f);
                 break;
             case 4:
                 yield return new WaitForSeconds(1.05f);
                 ATK_count = 0;
                 break;
         }
-        isAttackPlaying = false;DefaultCheck();
-        Invoke("combo_time", 0.5f);
+        isAttackPlaying = false;
+        Invoke("combo_time", 0.55f);
     }
 
     void PlayDashAnimation()
