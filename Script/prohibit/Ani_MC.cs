@@ -52,7 +52,7 @@ public class Ani_MC : MonoBehaviour
                 StartCoroutine(AttackSequence());
             }
         }
-        else if(ATK_count < 1)
+        else if(ATK_count == 0)
         {
             DefaultCheck();
         }
@@ -156,7 +156,6 @@ public class Ani_MC : MonoBehaviour
                 break;
         }
         isAttackPlaying = false;
-        Debug.Log(isAttackPlaying+"3");
     }
     void PlayDashAnimation()
     {
