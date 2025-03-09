@@ -159,11 +159,6 @@ public class initiator_MC : MonoBehaviour
                                 lastTriggerPosition_31 = transform.position;
                             }
                         }
-                        // else if (Skill_public_funtion.skill_31_dash == false && Skill_public_funtion.skill_31_open == false)
-                        // {
-                        //     Skill_public_funtion.skill_31_open = true;
-                        //     skill31_animator.SetBool("skill31", false);
-                        // }
                         break;
                     case 32:
                         if (Skill_public_funtion.skill_32_Dash_end)
@@ -243,16 +238,6 @@ public class initiator_MC : MonoBehaviour
                 }
             }
         }
-    }
-    IEnumerator Delayed_skill31()
-    {
-        Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
-        yield return new WaitForSeconds(0.2f);
-        Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
-        yield return new WaitForSeconds(0.2f);
-        Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
-        yield return new WaitForSeconds(0.2f);
-        Instantiate(skill_hit_box31, skill_hit_box31_postion.position, skill_hit_box31_postion.rotation);
     }
 
     IEnumerator Delayed_skill33()
