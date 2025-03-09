@@ -49,10 +49,12 @@ public class Play_move : MonoBehaviour
             }
             else if (Ani_MC.isAttackPlaying)
             {
+                Debug.Log("3");
                 newPosition += movement * 0.2f * Time.fixedDeltaTime; // Slow movement
             }
             else
             {
+                Debug.Log("4");
                 newPosition += movement * walkSpeed * Time.fixedDeltaTime; // Walk speed
             }
             // 更新角色朝向

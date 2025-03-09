@@ -145,18 +145,18 @@ public class Ani_MC : MonoBehaviour
         {
             case 2:
                 Debug.Log(isAttackPlaying);
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(0.65f);
                 break;
             case 3:
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(0.65f);
                 break;
             case 4:
                 yield return new WaitForSeconds(1.05f);
                 ATK_count = 0;
                 break;
         }
-        Debug.Log(isAttackPlaying+"8");
         isAttackPlaying = false;
+        Debug.Log(isAttackPlaying+"3");
     }
     void PlayDashAnimation()
     {
