@@ -22,12 +22,12 @@ public class All_return : MonoBehaviour
         static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
         static_parameters.stage_number = 0;
         static_parameters.stage_number_Boss = 0;
-        static_parameters.stage_number_Store = 0;
-        static_parameters.stage_number_Award = 0;
+        // static_parameters.stage_number_Store = 0;
+        // static_parameters.stage_number_Award = 0;
         static_parameters.Text_box_state = new int[] { 1, 1, 0, 0 };
-        static_parameters.isSceneLoading = false;
+        // static_parameters.isSceneLoading = false;
         static_parameters.Bookstate = false;
-        static_parameters.filp = false;
+        // static_parameters.filp = false;
         static_parameters.invincible = false;
         static_parameters.revival = false;
         static_parameters.Ani_state = 0;
@@ -45,7 +45,7 @@ public class All_return : MonoBehaviour
             new uint[] { 0, 0, 0, 0 },
             new uint[] { 0, 0, 0, 0 }
         };
-        static_parameters.diary_step = 0;
+        // static_parameters.diary_step = 0;
         static_parameters._BGM_volue = 1;
         static_parameters._SE_volue = 1;
         static_parameters.Map_start = 0;
@@ -67,7 +67,7 @@ public class All_return : MonoBehaviour
         Skill_public_funtion.play_piano = false;
         Skill_public_funtion.P_time = 4;
         Skill_public_funtion.B_damage = 0;
-        Skill_public_funtion.Normal_blood_deduction_NPC = false;
+        // Skill_public_funtion.Normal_blood_deduction_NPC = false;
         Skill_public_funtion.blood_deduction_NPC_count = 0;
         Skill_public_funtion.ATK_count = 0;
         Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
