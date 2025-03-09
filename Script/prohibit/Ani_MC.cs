@@ -70,6 +70,7 @@ public class Ani_MC : MonoBehaviour
                 ATK_count = 0;
                 attackTime = 0;
                 isAttack_combo = false;
+                DefaultCheck();
             }
         }
         else
@@ -134,14 +135,6 @@ public class Ani_MC : MonoBehaviour
         isDashCooldown = false;
     }
 
-    private void combo_time()
-    {
-        if (ATK_count != 0)
-        {
-            isAttack_combo = false;
-        }
-    }
-
     IEnumerator AttackSequence()
     {
         isAttackPlaying = true;
@@ -151,6 +144,7 @@ public class Ani_MC : MonoBehaviour
         switch (static_parameters.Ani_state)
         {
             case 2:
+                Debug.Log(isAttackPlaying);
                 yield return new WaitForSeconds(0.7f);
                 break;
             case 3:
@@ -161,10 +155,9 @@ public class Ani_MC : MonoBehaviour
                 ATK_count = 0;
                 break;
         }
+        Debug.Log(isAttackPlaying+"8");
         isAttackPlaying = false;
-        Invoke("combo_time", 0.55f);
     }
-
     void PlayDashAnimation()
     {
         switch (Angle_sum)
