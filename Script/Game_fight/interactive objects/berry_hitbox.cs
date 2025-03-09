@@ -16,9 +16,15 @@ public class berry_hitbox : MonoBehaviour
 
     void Update()
     {
+        if (spriteRenderer == null || spriteRenderer.Length == 0)
+        {
+            Debug.LogError("spriteRenderer 陣列未初始化或為空！");
+            return;
+        }
         if (isExplode)
         {
             timmer += Time.deltaTime;
+
             if (bomb_berry.berry == 0 && timmer < explode_time_max)
             {
                 animator_ready.SetBool("ani_bool_ready", false);
@@ -26,101 +32,73 @@ public class berry_hitbox : MonoBehaviour
                 {
                     if (spriteRenderer[i] != null)
                     {
-                        // 取得當前顏色
                         Color color = spriteRenderer[i].color;
-                        // 修改透明度
                         color.r = 1;
                         color.g = 1;
                         color.b = 1;
-                        // 將修改後的顏色賦值回去
                         spriteRenderer[i].color = color;
                     }
                 }
                 isExplode = false;
+            }
+
+            // **檢查是否達到爆炸時間**
+            if (timmer >= explode_time_max)
+            {
+                Debug.Log("Berry explode00");
+                isExplode = false;
+
+                // **觸發爆炸（即使 Player 已經離開範圍，仍會爆炸）**
+                Bomb_Berry_Explode();
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (bomb_berry.berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
+        if (bomb_berry.berry != 0 && (other.CompareTag("Player") || other.CompareTag("NPC")))
         {
             Debug.Log("Berry in range: " + bomb_berry.berry);
-            objectsInRange.Add(other.gameObject);
+
+            // 確保不重複加入
+            if (!objectsInRange.Contains(other.gameObject))
+            {
+                objectsInRange.Add(other.gameObject);
+            }
+
             if (timmer < explode_time_max && objectsInRange.Count == 1)
             {
                 animator_ready.SetBool("ani_bool_ready", true);
                 Debug.Log("Berry ready to explode");
                 isExplode = true;
+                timmer = 0;
+
                 for (int i = 0; i < bomb_berry.startChildCount - 3; i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
-                        // 取得當前顏色
                         Color color = spriteRenderer[i].color;
-
-                        // 修改透明度
                         color.r = 1;
                         color.g = 0;
                         color.b = 0;
-                        // 將修改後的顏色賦值回去
                         spriteRenderer[i].color = color;
                     }
                 }
             }
-
-            //移至update
-            if (timmer > explode_time_max && isExplode)
-            {
-                Debug.Log("Berry explode00");
-                isExplode = false;
-                Bomb_Berry_Explode(other);
-            }
         }
     }
 
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     if (bomb_berry.berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
-    //     {
-    //         if (timmer > explode_time_max && isExplode)
-    //         {
-    //             isExplode = false;
-    //             Bomb_Berry_Explode(other);
-    //         }
-    //     }
-    // }
+    private void OnTriggerExit(Collider other)
+    {
+        // 記錄離開範圍的物件
+        if (objectsInRange.Contains(other.gameObject))
+        {
+            Debug.Log(other.name + " 離開範圍");
+            objectsInRange.Remove(other.gameObject);
+        }
+    }
 
-    // private void OnTriggerExit(Collider other)
-    // {
-    //     if (berry != 0 && (other.tag == "Player") || (other.tag == "NPC"))
-    //     {
-    //         objectsInRange.Remove(other.gameObject);
-    //         if (objectsInRange.Count == 0)
-    //         {
-    //             animator_ready.SetBool("ani_bool_ready", false);
-    //             isExplode = false;
-    //             timmer = 0;
-    //             for (int i = 0; i < startChildCount - 3; i++)
-    //             {
-    //                 if (spriteRenderer[i] != null)
-    //                 {
-    //                     // 取得當前顏色
-    //                     Color color = spriteRenderer[i].color;
-
-    //                     // 修改透明度
-    //                     color.r = 1;
-    //                     color.g = 1;
-    //                     color.b = 1;
-    //                     // 將修改後的顏色賦值回去
-    //                     spriteRenderer[i].color = color;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
-    private void Bomb_Berry_Explode(Collider other)
+    private void Bomb_Berry_Explode()
     {
         if (bomb_berry.berry != 0)
         {
@@ -128,14 +106,23 @@ public class berry_hitbox : MonoBehaviour
             Debug.Log("Berry Explode");
             Instantiate(berry_bomb, pos, transform.rotation);
             NPC_interactive.berry = bomb_berry.berry;
-            // if (bomb_hitbox != null)
-            // {
-            //     bomb_hitbox.enabled = true;
-            // }
-            if (other.tag == "Player")
+
+            GameObject playerInRange = null;
+            foreach (GameObject obj in objectsInRange)
             {
+                if (obj.CompareTag("Player"))
+                {
+                    playerInRange = obj;
+                    break;  // 找到 Player 後就中斷迴圈
+                }
+            }
+
+            if (playerInRange != null)
+            {
+                Debug.Log("爆炸傷害觸發 Player：" + playerInRange.name);
                 static_parameters.MC_HP -= 10 * bomb_berry.berry;
             }
+
             bomb_berry.Destroy_Berry();
         }
     }
