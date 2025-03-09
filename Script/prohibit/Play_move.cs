@@ -49,10 +49,12 @@ public class Play_move : MonoBehaviour
             }
             else if (Ani_MC.isAttackPlaying)
             {
+                Debug.Log("3");
                 newPosition += movement * 0.2f * Time.fixedDeltaTime; // Slow movement
             }
             else
             {
+                Debug.Log("4");
                 newPosition += movement * walkSpeed * Time.fixedDeltaTime; // Walk speed
             }
             // 更新角色朝向
@@ -61,7 +63,6 @@ public class Play_move : MonoBehaviour
             if (Ani_MC.isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
             {
                 static_parameters.invincible = true;
-                Debug.Log(Ani_MC.isDashCooldown_for_move);
                 Invoke("DogeCooldown", 0.6f); // 衝刺冷卻時間
             }
         }
@@ -70,9 +71,10 @@ public class Play_move : MonoBehaviour
 
     void DogeCooldown()
     {
-        static_parameters.invincible = false;
-        Debug.Log(Ani_MC.isDashCooldown_for_move);
-        Ani_MC.isDashCooldown_for_move = false;
+        if(static_parameters.invincible){
+            static_parameters.invincible = false;
+            Ani_MC.isDashCooldown_for_move = false;
+        } 
     }
 
     void MC_Nav_Baking_range(float h, float v)
