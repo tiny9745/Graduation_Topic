@@ -12,9 +12,9 @@ public class Ani_MC : MonoBehaviour
     static public bool isDashCooldown = false;
     static public bool isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
-    static public float DashCD_time = 2f; float startTime = 0; int ani=0;
+    static public float DashCD_time = 2f;
     short ATK_count = 0;
-    float attackTime = 0; bool isAttack_combo = false;
+    float attackTime = 0; bool isAttack_combo = false,hold = false;
     static public float dashDuration = 0.63f;
     void Start()
     {
@@ -32,7 +32,12 @@ public class Ani_MC : MonoBehaviour
         // 如果動畫正在播放，則不處理其他輸入
         if (isAttackPlaying || static_parameters.Ani_state == -1)
         {
+            hold = true;
             return;
+        }
+        if(hold){
+            hold = false;
+            DefaultCheck();
         }
         // if(isDashCooldown)Debug.Log("isDashCooldown");
         // 處理輸入
@@ -69,8 +74,7 @@ public class Ani_MC : MonoBehaviour
             {
                 Debug.Log("leave time: "+attackTime);
                 ATK_count = 0; attackTime = 0;
-                isAttack_combo = false;               
-                DefaultCheck();
+                isAttack_combo = false;
             }
         }
         else
