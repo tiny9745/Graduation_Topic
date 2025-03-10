@@ -57,7 +57,7 @@ public class Ani_MC : MonoBehaviour
                 StartCoroutine(AttackSequence());
             }
         }
-        else if(ATK_count == 0)
+        else if (ATK_count == 0)
         {
             DefaultCheck();
         }

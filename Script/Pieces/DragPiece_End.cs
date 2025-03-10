@@ -9,8 +9,7 @@ using Unity.Mathematics;
 public class DragPiece_End : MonoBehaviour, IDropHandler
 {
     public Ptest piece;
-    private List<HashSet<int>> validSequences; // 有效的組合數列
-    private List<HashSet<int>> validSequences_re;
+
     static public List<int> currentCombination = new List<int>(); // 當前的組合
     public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
     public Image[] images_puzzle_col = new Image[4]; // 圖片顏色陣列
@@ -21,53 +20,51 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     public Image button_image; // 按鈕圖像
     private int puzzle_count = 0; // 碎片數量計數
     static public int puzzle_color = 2, end_count = -1; // 碎片顏色（默認為 2）
-    // public Animator animation_col;
-
 
     void Start()
     {
         // 初始化有效的組合數列
-        validSequences = new List<HashSet<int>>()
-        {
-            //拼湊完會將陣列改成999
-            new HashSet<int> { 1, 2, 5, 6 },//#空閒時間 #食物 #小玩具 #書籍-甜食折價券
-            new HashSet<int> { 1, 4, 5, 6 },//#空閒時間 #父母 #小玩具 #書籍-新開的店
-            new HashSet<int> { 2, 6 },//#空閒時間#食物-鎮上的雜貨店
-            new HashSet<int> { 2, 4, 6 },//#空閒時間 #父母 #食物-午餐
-            new HashSet<int> { 1, 3 },//#書籍 #植物-書籤
+        Skill_public_funtion.validSequences = Skill_public_funtion.validSequences_re
+     .Select(hashset => new HashSet<int>(hashset)) // 為每個 HashSet 重新複製
+     .ToList(); // 轉成 List<HashSet<int>>
+        // validSequences = new List<HashSet<int>>()
+        // {
+        //     //拼湊完會將陣列改成999
+        //     new HashSet<int> { 1, 2, 5, 6 },//#空閒時間 #食物 #小玩具 #書籍-甜食折價券
+        //     new HashSet<int> { 1, 4, 5, 6 },//#空閒時間 #父母 #小玩具 #書籍-新開的店
+        //     new HashSet<int> { 2, 6 },//#空閒時間#食物-鎮上的雜貨店
+        //     new HashSet<int> { 2, 4, 6 },//#空閒時間 #父母 #食物-午餐
+        //     new HashSet<int> { 1, 3 },//#書籍 #植物-書籤
 
-            new HashSet<int> { 11, 16, 17 },//#書籍 #父母 #魔法-新讀的小說
-            new HashSet<int> { 11, 12, 17, 19 },//#父母 #天氣 #補習班 #書籍-雨夜
-            new HashSet<int> { 13, 16, 18 },//#課業 #魔法 #食物-夢由心生
-            new HashSet<int> { 11, 14, 16 },//#書籍 #魔法 #空閒時間-創作
-            new HashSet<int> { 11, 15 },//#圖書館 #書籍-古老書籍
+        //     new HashSet<int> { 11, 16, 17 },//#書籍 #父母 #魔法-新讀的小說
+        //     new HashSet<int> { 11, 12, 17, 19 },//#父母 #天氣 #補習班 #書籍-雨夜
+        //     new HashSet<int> { 13, 16, 18 },//#課業 #魔法 #食物-夢由心生
+        //     new HashSet<int> { 11, 14, 16 },//#書籍 #魔法 #空閒時間-創作
+        //     new HashSet<int> { 11, 15 },//#圖書館 #書籍-古老書籍
 
-            new HashSet<int> { 22, 26 },//#鋼琴 #老師-手指
-            new HashSet<int> { 21, 22, 26 },//#鋼琴 #老師 #食物-何乃老師
-            new HashSet<int> { 22, 23, 25, 26 },//#鋼琴 #父母 #老師 #課業-敷衍塞責
-            new HashSet<int> { 22, 24 },//#鋼琴 #學校-學校音樂會
-            new HashSet<int> { 22, 24, 25, 26 },//#鋼琴 #老師 #課業 #學校-音樂課
+        //     new HashSet<int> { 22, 26 },//#鋼琴 #老師-手指
+        //     new HashSet<int> { 21, 22, 26 },//#鋼琴 #老師 #食物-何乃老師
+        //     new HashSet<int> { 22, 23, 25, 26 },//#鋼琴 #父母 #老師 #課業-敷衍塞責
+        //     new HashSet<int> { 22, 24 },//#鋼琴 #學校-學校音樂會
+        //     new HashSet<int> { 22, 24, 25, 26 },//#鋼琴 #老師 #課業 #學校-音樂課
 
-            new HashSet<int> { 32, 36, 37 },//#課業 #老師 #補習班-補習日
-            new HashSet<int> { 35, 36, 37 },//#課業 #老師 #學校-作文欣賞
-            new HashSet<int> { 32, 34, 35, 39 },//#補習班 #父母 #學校 #天氣-失眠
-            new HashSet<int> { 35, 37, 38 },//#老師 #小玩具 #學校-班導對話
-            new HashSet<int> { 31, 33 },//#空閒時間 #書籍-新日記本
+        //     new HashSet<int> { 32, 36, 37 },//#課業 #老師 #補習班-補習日
+        //     new HashSet<int> { 35, 36, 37 },//#課業 #老師 #學校-作文欣賞
+        //     new HashSet<int> { 32, 34, 35, 39 },//#補習班 #父母 #學校 #天氣-失眠
+        //     new HashSet<int> { 35, 37, 38 },//#老師 #小玩具 #學校-班導對話
+        //     new HashSet<int> { 31, 33 },//#空閒時間 #書籍-新日記本
 
-            new HashSet<int> { 42, 44 },//#圖書館 #植物-圖書館的新生命
-            new HashSet<int> { 42, 44, 45 },//#圖書館 #植物 #學校-除塵
-            new HashSet<int> { 41, 42, 44 },//#圖書館 #植物 #書籍-花苞
-            new HashSet<int> { 43, 44 },//#植物 #魔法-禮物
-            new HashSet<int> { 42, 44, 46 },//#圖書館 #植物 #天氣-無精打采
-        };
+        //     new HashSet<int> { 42, 44 },//#圖書館 #植物-圖書館的新生命
+        //     new HashSet<int> { 42, 44, 45 },//#圖書館 #植物 #學校-除塵
+        //     new HashSet<int> { 41, 42, 44 },//#圖書館 #植物 #書籍-花苞
+        //     new HashSet<int> { 43, 44 },//#植物 #魔法-禮物
+        //     new HashSet<int> { 42, 44, 46 },//#圖書館 #植物 #天氣-無精打采
+        // };
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ResetCombination();
-        }
+
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -169,9 +166,9 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         }
 
         // 先檢查是否有完全匹配的組合
-        for (int i = 0; i < validSequences.Count; i++)
+        for (int i = 0; i < Skill_public_funtion.validSequences.Count; i++)
         {
-            HashSet<int> sequence = validSequences[i];
+            HashSet<int> sequence = Skill_public_funtion.validSequences[i];
 
             List<int> combinationList = new List<int>(combinationSet);
             List<int> sequenceList = new List<int>(sequence);
@@ -193,9 +190,9 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         }
 
         // 若沒有完全匹配的組合，再檢查是否為子集
-        for (int i = 0; i < validSequences.Count; i++)
+        for (int i = 0; i < Skill_public_funtion.validSequences.Count; i++)
         {
-            HashSet<int> sequence = validSequences[i];
+            HashSet<int> sequence = Skill_public_funtion.validSequences[i];
 
             List<int> combinationList = new List<int>(combinationSet);
             List<int> sequenceList = new List<int>(sequence);
@@ -241,7 +238,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     {
         // 儲存要移除的組合
         List<HashSet<int>> removedSequences = new List<HashSet<int>>();
-        foreach (var sequence in validSequences)
+        foreach (var sequence in Skill_public_funtion.validSequences)
         {
             // 檢查 currentCombination 是否等於 validSequences 的某一項
             if (new HashSet<int>(currentCombination).SetEquals(sequence))

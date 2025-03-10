@@ -39,6 +39,7 @@ public class Puzzle : MonoBehaviour
         complete_piece_animator.SetInteger("piece_complete_color", DragPiece_End.puzzle_color);
         composite_col.enabled = false;
         thisItem = key_count();
+
         dragPiece_end.Combination_End();
         // IconManager.Instance.Add(thisItem);
         StartCoroutine(DelayedAction(3f));
