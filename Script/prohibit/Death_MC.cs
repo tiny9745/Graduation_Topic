@@ -3,26 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
+
 
 public class Death_MC : MonoBehaviour
 {
     // Start is called before the first frame update
     private GameObject MC_S, MC_Img;
     public GameObject Blood_Screen, Death;
-    public UnityEngine.UI.Image Blood_Screen_Img;
+    public Image Blood_Screen_Img;
     private float fadeDuration = 3.2f;
     public Animator animator;
     static public bool isDead = true;
     private bool sceneLoaded = false;
 
     public Sprite Death_Img_Sprite;
-    public UnityEngine.UI.Image Death_Img;
+    public Image Death_Img;
+    Diary_icon thisItem;
 
     void Start()
     {
         MC_S = GameObject.Find("Player_S");
         MC_Img = GameObject.Find("F S0100");
-
+        Diary_icon[] all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
         // 訂閱場景加載完成的事件
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -36,6 +39,23 @@ public class Death_MC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log(string.Join("\n", Skill_public_funtion.validSequences.Select(hs => "{" + string.Join(", ", hs) + "}")));
+            // 初始化有效的組合數列
+            Skill_public_funtion.validSequences = Skill_public_funtion.validSequences_re.Select(hashset => new HashSet<int>(hashset)).ToList(); // 轉成 List<HashSet<int>>
+            Debug.Log("Input.GetKeyDown(KeyCode.O)");
+            Debug.Log(string.Join("\n", Skill_public_funtion.validSequences.Select(hs => "{" + string.Join(", ", hs) + "}")));
+            DragPiece_End.puzzle_color = 2;
+            DragPiece_End.end_count = -1;
+            thisItem = null;
+
+            for (int i = Ptest.pickedPieces.Count - 1; i >= 0; i--)
+            {
+                Ptest.pickedPieces[i].survival_state = "Alive";
+            }
+        }
+
         if (static_parameters.MC_HP <= 0 && isDead)
         {
             Blood_Screen_Img.color = new Color(0f, 0f, 0f, 0.5f);
