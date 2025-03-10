@@ -12,7 +12,7 @@ public class Ani_MC : MonoBehaviour
     static public bool isDashCooldown = false;
     static public bool isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
-    static public float DashCD_time = 2f;
+    static public float DashCD_time = 2f; float startTime = 0; int ani=0;
     short ATK_count = 0;
     float attackTime = 0; bool isAttack_combo = false;
     static public float dashDuration = 0.63f;
@@ -67,15 +67,16 @@ public class Ani_MC : MonoBehaviour
             attackTime += Time.deltaTime;
             if (attackTime >= 0.5f)
             {
-                ATK_count = 0;
-                attackTime = 0;
-                isAttack_combo = false;
+                Debug.Log("leave time: "+attackTime);
+                ATK_count = 0; attackTime = 0;
+                isAttack_combo = false;               
                 DefaultCheck();
             }
         }
         else
         {
             attackTime = 0;
+            DefaultCheck();
         }
     }
 
@@ -137,14 +138,12 @@ public class Ani_MC : MonoBehaviour
 
     IEnumerator AttackSequence()
     {
-        isAttackPlaying = true;
-        isAttack_combo = true;
+        isAttackPlaying = true; isAttack_combo = true; startTime = Time.time;
         // 播放攻擊動畫
         MC_ani_state();
         switch (static_parameters.Ani_state)
         {
             case 2:
-                Debug.Log(isAttackPlaying);
                 yield return new WaitForSeconds(0.65f);
                 break;
             case 3:
@@ -189,6 +188,13 @@ public class Ani_MC : MonoBehaviour
 
     void MC_ani_state()
     {
+        if(ani != static_parameters.Ani_state)
+        {
+            ani = static_parameters.Ani_state;
+            Debug.Log("Attack " + static_parameters.Ani_state);
+            float elapsedTime = Time.time - startTime; // Calculate elapsed time
+            if(elapsedTime!=0)Debug.Log("Attack duration: " + elapsedTime + " seconds");
+        }
         switch (static_parameters.Ani_state)
         {
             case 0: // Stand
@@ -238,7 +244,7 @@ public class Ani_MC : MonoBehaviour
                 PlayAttackAnimation($"MC_FR_Atk_0{static_parameters.Ani_state - 1}");
                 break;
         }
-    }
+   }
 
     void PlayStandAnimation()
     {
