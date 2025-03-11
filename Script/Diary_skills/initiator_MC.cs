@@ -374,7 +374,10 @@ public class initiator_MC : MonoBehaviour
             D_slot.Clean();
         }
 
-        Change_mood.mood = 0;
+        Skill_public_funtion.WOW = 0;
+        Skill_public_funtion.SAD = 0;
+        Skill_public_funtion.HAPPY = 0;
+        Skill_public_funtion.ANGRY = 0;
         C_mood.Change();
 
         Skill_public_funtion.skill_01_time = 0;
