@@ -14,7 +14,7 @@ public class Ani_MC : MonoBehaviour
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 2f;
     short ATK_count = 0;
-    float attackTime = 0; bool isAttack_combo = false,hold = false;
+    float attackTime = 0; //bool isAttack_combo = false;
     static public float dashDuration = 0.63f;
     void Start()
     {
@@ -29,17 +29,24 @@ public class Ani_MC : MonoBehaviour
         // 設定角色面向角度
         UpdateFacingDirection();
 
-        // 如果動畫正在播放，則不處理其他輸入
-        if (isAttackPlaying || static_parameters.Ani_state == -1)
+        if (isAttackPlaying)
         {
-            hold = true;
-            return;
+            attackTime += Time.deltaTime;
         }
-        if(hold){
-            hold = false;
+        else
+        {
+            attackTime = 0;
             DefaultCheck();
         }
-        // if(isDashCooldown)Debug.Log("isDashCooldown");
+
+        if (attackTime >= 0.5f)
+        {
+            ATK_count = 0; attackTime = 0;
+        }
+
+        // 如果動畫正在播放，則不處理其他輸入
+        if (isAttackPlaying || static_parameters.Ani_state == -1) return;
+        
         // 處理輸入
         if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving())
         {
@@ -66,21 +73,6 @@ public class Ani_MC : MonoBehaviour
         if (static_parameters.Ani_state == 0 || static_parameters.Ani_state == 1)
         {
             MC_ani_state();
-        }
-        if (isAttack_combo)
-        {
-            attackTime += Time.deltaTime;
-            if (attackTime >= 0.5f)
-            {
-                Debug.Log("leave time: "+attackTime);
-                ATK_count = 0; attackTime = 0;
-                isAttack_combo = false;
-            }
-        }
-        else
-        {
-            attackTime = 0;
-            DefaultCheck();
         }
     }
 
@@ -142,7 +134,8 @@ public class Ani_MC : MonoBehaviour
 
     IEnumerator AttackSequence()
     {
-        // isAttackPlaying = true; isAttack_combo = true; startTime = Time.time;
+
+        isAttackPlaying = true;
         // 播放攻擊動畫
         MC_ani_state();
         switch (static_parameters.Ani_state)
@@ -192,13 +185,6 @@ public class Ani_MC : MonoBehaviour
 
     void MC_ani_state()
     {
-        // if(ani != static_parameters.Ani_state)
-        // {
-        //     ani = static_parameters.Ani_state;
-        //     Debug.Log("Attack " + static_parameters.Ani_state);
-        //     float elapsedTime = Time.time - startTime; // Calculate elapsed time
-        //     if(elapsedTime!=0)Debug.Log("Attack duration: " + elapsedTime + " seconds");
-        // }
         switch (static_parameters.Ani_state)
         {
             case 0: // Stand
