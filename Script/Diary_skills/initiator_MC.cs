@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.UI;
 
 public class initiator_MC : MonoBehaviour
 {
@@ -30,6 +29,10 @@ public class initiator_MC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Reborn();
+        }
         if (static_parameters.into_gameFight)
         {
             skill_0x.SetActive(true);
@@ -62,11 +65,9 @@ public class initiator_MC : MonoBehaviour
                             Skill_public_funtion.skill_01_time += Time.deltaTime;
                             if (Skill_public_funtion.skill_01_time > 10f)
                             {
-                                Debug.Log("skill_01");
                                 skill_01_2.SetTrigger("skill_01_2");
                                 static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
                                 Skill_public_funtion.skill_01_time = 0;
-                                Debug.Log("MC_HP" + static_parameters.MC_HP);
                             }
                             break;
                         case 2:
@@ -166,7 +167,6 @@ public class initiator_MC : MonoBehaviour
                             Skill_public_funtion.skill_32_Dash_end = false;
                             Skill_public_funtion.skill_32_Dash_time = 0;
                             static_parameters.MC_Wspeed *= 1.2f;
-                            Debug.Log("skill_32_Dash_direction:" + Skill_public_funtion.skill_32_33_Dash_direction);
                         }
                         if (Skill_public_funtion.skill_32_Dash_time < 2f)
                         {
@@ -232,7 +232,6 @@ public class initiator_MC : MonoBehaviour
                         {
                             Skill_public_funtion.skill_35_Dash_Magnification = 0.9f;
                             Ani_MC.DashCD_time = 2f;
-                            Debug.Log("skill_35_Dash_Magnification:" + Skill_public_funtion.skill_35_Dash_Magnification);
                         }
                         break;
                 }
@@ -352,6 +351,72 @@ public class initiator_MC : MonoBehaviour
                         break;
                 }
             }
+        }
+    }
+
+    Diary_icon thisItem;
+    public Change_mood C_mood;
+    private void Reborn()
+    {
+        Debug.Log(string.Join("\n", Skill_public_funtion.validSequences.Select(hs => "{" + string.Join(", ", hs) + "}")));
+        // 初始化有效的組合數列
+        Skill_public_funtion.validSequences = Skill_public_funtion.validSequences_re.Select(hashset => new HashSet<int>(hashset)).ToList(); // 轉成 List<HashSet<int>>
+        Debug.Log(string.Join("\n", Skill_public_funtion.validSequences.Select(hs => "{" + string.Join(", ", hs) + "}")));
+        Icon_slot[] all_icon_slot = Resources.FindObjectsOfTypeAll<Icon_slot>();
+        foreach (Icon_slot icon_slot in all_icon_slot)
+        {
+            icon_slot.Clean();
+        }
+        IconManager.Instance.IconList.Clear();
+        D_slot[] all_D_slot = Resources.FindObjectsOfTypeAll<D_slot>();
+        foreach (D_slot D_slot in all_D_slot)
+        {
+            D_slot.Clean();
+        }
+
+        Change_mood.mood = 0;
+        C_mood.Change();
+
+        Skill_public_funtion.skill_01_time = 0;
+        Skill_public_funtion.skill_04_atk = true;
+        Skill_public_funtion.skill_05_atk = false;
+
+        Skill_public_funtion.skill_11_throw_time = 0;
+        Skill_public_funtion.skill_13_bullet_atk = 1f;
+        Skill_public_funtion.skill_14_enter = false;
+
+        Skill_public_funtion.skill_32_33_Dash_direction = 4;
+        Skill_public_funtion.skill_31_dash = false;
+        Skill_public_funtion.skill_31_open = true;
+        Skill_public_funtion.skill_32_Dash_end = false;
+        Skill_public_funtion.skill_33_Dash = false;
+        Skill_public_funtion.skill_34_Dash = false;
+        // Skill_public_funtion.skill_34_atk = 15;
+        // Skill_public_funtion.skill_12_atk = 5;
+        Skill_public_funtion.skill_32_Dash_time = 15;
+        Skill_public_funtion.skill_35_Dash_Magnification = 1f;
+
+        Skill_public_funtion.skill_4x_Sorting = 1;
+        Skill_public_funtion.skill_41_enter = true;
+        Skill_public_funtion.skill_42_enter = true;
+        Skill_public_funtion.skill_43_enter = true;
+        Skill_public_funtion.skill_44_enter = true;
+        Skill_public_funtion.skill_45_enter = true;
+
+        skill01_animator.SetInteger("skill_0x", 0);
+        skill03C.SetInteger("A03C", 0);
+        skill05A.SetBool("skill05_bool", false);
+        skill32_animator_1.SetBool("skill32", false);
+        skill32_animator_2.SetBool("skill32", false);
+        skill32_animator_3.SetBool("skill32", false);
+
+        DragPiece_End.puzzle_color = 2;
+        DragPiece_End.end_count = -1;
+        thisItem = null;
+
+        for (int i = Ptest.pickedPieces.Count - 1; i >= 0; i--)
+        {
+            Ptest.pickedPieces[i].survival_state = "Alive";
         }
     }
 }

@@ -142,7 +142,7 @@ public class Ani_MC : MonoBehaviour
 
     IEnumerator AttackSequence()
     {
-        isAttackPlaying = true; isAttack_combo = true; startTime = Time.time;
+        // isAttackPlaying = true; isAttack_combo = true; startTime = Time.time;
         // 播放攻擊動畫
         MC_ani_state();
         switch (static_parameters.Ani_state)
@@ -192,13 +192,13 @@ public class Ani_MC : MonoBehaviour
 
     void MC_ani_state()
     {
-        if(ani != static_parameters.Ani_state)
-        {
-            ani = static_parameters.Ani_state;
-            Debug.Log("Attack " + static_parameters.Ani_state);
-            float elapsedTime = Time.time - startTime; // Calculate elapsed time
-            if(elapsedTime!=0)Debug.Log("Attack duration: " + elapsedTime + " seconds");
-        }
+        // if(ani != static_parameters.Ani_state)
+        // {
+        //     ani = static_parameters.Ani_state;
+        //     Debug.Log("Attack " + static_parameters.Ani_state);
+        //     float elapsedTime = Time.time - startTime; // Calculate elapsed time
+        //     if(elapsedTime!=0)Debug.Log("Attack duration: " + elapsedTime + " seconds");
+        // }
         switch (static_parameters.Ani_state)
         {
             case 0: // Stand
