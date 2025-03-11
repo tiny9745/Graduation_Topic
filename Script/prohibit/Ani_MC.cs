@@ -14,7 +14,6 @@ public class Ani_MC : MonoBehaviour
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 2f;
     short ATK_count = 0;
-    float attackTime = 0; //bool isAttack_combo = false;
     static public float dashDuration = 0.63f;
     void Start()
     {
@@ -28,21 +27,6 @@ public class Ani_MC : MonoBehaviour
 
         // 設定角色面向角度
         UpdateFacingDirection();
-
-        if (isAttackPlaying)
-        {
-            attackTime += Time.deltaTime;
-        }
-        else
-        {
-            attackTime = 0;
-            DefaultCheck();
-        }
-
-        if (attackTime >= 0.5f)
-        {
-            ATK_count = 0; attackTime = 0;
-        }
 
         // 如果動畫正在播放，則不處理其他輸入
         if (isAttackPlaying || static_parameters.Ani_state == -1) return;
@@ -134,7 +118,6 @@ public class Ani_MC : MonoBehaviour
 
     IEnumerator AttackSequence()
     {
-
         isAttackPlaying = true;
         // 播放攻擊動畫
         MC_ani_state();
@@ -151,6 +134,7 @@ public class Ani_MC : MonoBehaviour
                 ATK_count = 0;
                 break;
         }
+        Invoke("Combo_check", 0.1f);
         isAttackPlaying = false;
     }
     void PlayDashAnimation()
@@ -289,5 +273,11 @@ public class Ani_MC : MonoBehaviour
     void PlayAttackAnimation(string animationName)
     {
         animator.CrossFade(animationName, 0.1f);
+    }
+    void Combo_check(){
+        if (isAttackPlaying == false)
+        {
+            ATK_count = 0;
+        }
     }
 }
