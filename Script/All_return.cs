@@ -46,8 +46,8 @@ public class All_return : MonoBehaviour
             new uint[] { 0, 0, 0, 0 }
         };
         // static_parameters.diary_step = 0;
-        static_parameters._BGM_volue = 1;
-        static_parameters._SE_volue = 1;
+        // static_parameters._BGM_volue = 1;
+        // static_parameters._SE_volue = 1;
         static_parameters.Map_start = 0;
         static_parameters.bullet_quantity = 0;
         static_parameters._ItemID = 0;

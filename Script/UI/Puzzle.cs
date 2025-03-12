@@ -17,7 +17,7 @@ public class Puzzle : MonoBehaviour
     void Start()
     {
         Diary_icon[] all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
-        complete_piece_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        // complete_piece_animator.updateMode = AnimatorUpdateMode.UnscaledTime;
     }
     public void FinishDiary()
     {
@@ -46,7 +46,7 @@ public class Puzzle : MonoBehaviour
     }
     IEnumerator DelayedAction(float delayInSeconds)
     {
-        yield return new WaitForSecondsRealtime(delayInSeconds);
+        yield return new WaitForSeconds(delayInSeconds);
         Complete_piece_after();
     }
 

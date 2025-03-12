@@ -28,8 +28,7 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
     new uint[] { 0, 0, 0, 0 }
 };
 
-    static public float _BGM_volue = 1;
-    static public float _SE_volue = 1;
+    static public float _All_sound = 1, _BGM_volue = 1, _SE_volue = 1;
     static public int Map_start = 0;
     static public int bullet_quantity = 0;
     static public int _ItemID, Piece_ID = 0;

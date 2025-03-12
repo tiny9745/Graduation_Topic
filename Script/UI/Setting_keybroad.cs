@@ -5,6 +5,7 @@ using UnityEngine;
 public class Setting_keybroad : MonoBehaviour
 {
     // Start is called before the first frame update
+    static public bool ESC_col = false;
     void Start()
     {
 
@@ -15,7 +16,16 @@ public class Setting_keybroad : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            if (ESC_col)
+            {
+                ESC_col = false;
+                Time.timeScale = 1;
+            }
+            else
+            {
+                ESC_col = true;
+                Time.timeScale = 0;
+            }
         }
     }
 }

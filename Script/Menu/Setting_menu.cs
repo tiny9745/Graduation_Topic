@@ -75,6 +75,7 @@ public class Setting_menu : MonoBehaviour
     public void Setting_All_sound()
     {
         AudioListener.volume = All_sound_control.value;
+        static_parameters._All_sound = All_sound_control.value;
         static_parameters._SE_volue = SE_sound.volume * All_sound_control.value;
         static_parameters._BGM_volue = BGM_sound.volume * All_sound_control.value;
         Image fillImage_SE = SE_control.GetComponentsInChildren<Image>()[1];
@@ -161,5 +162,17 @@ public class Setting_menu : MonoBehaviour
     {
         key_count = 3;
         UpdateIcons(false, false, true);
+    }
+
+    public void click_All_sound()
+    {
+        if (All_sound_control.value == 0)
+        {
+            All_sound_control.value = static_parameters._All_sound;
+        }
+        else
+        {
+            All_sound_control.value = 0;
+        }
     }
 }
