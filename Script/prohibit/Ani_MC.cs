@@ -13,7 +13,7 @@ public class Ani_MC : MonoBehaviour
     static public bool isDashCooldown = false,isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 2f,dashDuration = 0.63f;
-    short ATK_count = 0; bool Read_atk = true,atk_flag=false; float atk_time = 0;
+    short ATK_count = 0; bool atk_flag=false; float atk_time = 0;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -26,16 +26,16 @@ public class Ani_MC : MonoBehaviour
 
         // 設定角色面向角度
         UpdateFacingDirection();
-        if(isAttackPlaying){
-           atk_time += Time.deltaTime; 
-        }else{
-            atk_time = 0;
-        }
+        if(atk_flag)atk_time += Time.deltaTime; 
 
-        if(atk_time >= 0.5f){
-            if(!Read_atk && Input.GetKeyDown(KeyCode.J)){
-                Read_atk = true; atk_flag = true; 
+        if(atk_time >= 0.45f){
+            if(Input.GetKeyDown(KeyCode.J)){
+                atk_flag = true;
+                atk_time = 0;
             }
+        }
+        if(atk_time >= 0.65f){
+            ResetCombo();
         }
 
         // 如果動畫正在播放，則不處理其他輸入
@@ -49,7 +49,7 @@ public class Ani_MC : MonoBehaviour
             Skill_public_funtion.skill_34_Dash = true;
             StartCoroutine(DashSequence());
         }
-        else if ((Input.GetKeyDown(KeyCode.J) && Read_atk && static_parameters.teaching_stop >= 2)||atk_flag)
+        else if ((Input.GetKeyDown(KeyCode.J) && static_parameters.teaching_stop >= 2)||atk_flag)
         {
             ATK_Counter();
         }
@@ -131,8 +131,7 @@ public class Ani_MC : MonoBehaviour
 
     IEnumerator AttackSequence()
     {
-        isAttackPlaying = true;
-        Read_atk = false;
+        isAttackPlaying = true;atk_flag = true;
         
         // 播放攻擊動畫
         MC_ani_state();
@@ -149,8 +148,6 @@ public class Ani_MC : MonoBehaviour
                 ATK_count = 0;
                 break;
         }
-        Invoke("ResetCombo", 0.25f);
-        Read_atk = true;atk_flag = false;
         isAttackPlaying = false;
     }
     
@@ -293,7 +290,6 @@ public class Ani_MC : MonoBehaviour
     }
     void ResetCombo()
     {
-        Debug.Log("ResetCombo");
-        ATK_count = 0;
+        ATK_count = 0;atk_time = 0;atk_flag = false;
     }
 }
