@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
     public Text money;
     public Image button_image, craft_image;
     public Sprite craft_sprite;
+    public Button Pageup, Pagedown;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +54,7 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 &&static_parameters.into_gameFight == false)
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 && static_parameters.into_gameFight == false)
         {
             Debug.Log("static_parameters.Bookstate: " + static_parameters.Bookstate);
             if (!static_parameters.Bookstate)
@@ -122,5 +123,21 @@ public class UI : MonoBehaviour
     public void Loadmoney()
     {
         money.text = static_parameters.money.ToString();
+    }
+
+    public bool putting_diary(bool isopen)
+    {
+        if (isopen)
+        {
+            Pagedown.enabled = true;
+            Pageup.enabled = true;
+            return true;
+        }
+        else
+        {
+            Pagedown.enabled = false;
+            Pageup.enabled = false;
+            return false;
+        }
     }
 }
