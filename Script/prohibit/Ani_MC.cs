@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Ani_MC : MonoBehaviour
@@ -9,12 +10,10 @@ public class Ani_MC : MonoBehaviour
 
     public GameObject Play_s;
 
-    static public bool isDashCooldown = false;
-    static public bool isDashCooldown_for_move = false;
+    static public bool isDashCooldown = false,isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
-    static public float DashCD_time = 2f;
-    short ATK_count = 0;
-    static public float dashDuration = 0.63f;
+    static public float DashCD_time = 2f,dashDuration = 0.63f;
+    short ATK_count = 0; bool Read_atk = true,atk_flag=false; float atk_time = 0;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -27,10 +26,21 @@ public class Ani_MC : MonoBehaviour
 
         // 設定角色面向角度
         UpdateFacingDirection();
+        if(isAttackPlaying){
+           atk_time += Time.deltaTime; 
+        }else{
+            atk_time = 0;
+        }
+
+        if(atk_time >= 0.5f){
+            if(!Read_atk && Input.GetKeyDown(KeyCode.J)){
+                Read_atk = true; atk_flag = true; 
+            }
+        }
 
         // 如果動畫正在播放，則不處理其他輸入
         if (isAttackPlaying || static_parameters.Ani_state == -1) return;
-        
+
         // 處理輸入
         if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving())
         {
@@ -39,16 +49,11 @@ public class Ani_MC : MonoBehaviour
             Skill_public_funtion.skill_34_Dash = true;
             StartCoroutine(DashSequence());
         }
-        else if (Input.GetKeyDown(KeyCode.J) && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2)
+        else if ((Input.GetKeyDown(KeyCode.J) && Read_atk && static_parameters.teaching_stop >= 2)||atk_flag)
         {
-            if (ATK_count < 3)
-            {
-                ATK_count++;
-                static_parameters.Ani_state = ATK_count + 1;
-                StartCoroutine(AttackSequence());
-            }
+            ATK_Counter();
         }
-        else if (ATK_count == 0)
+        else if (!isAttackPlaying)
         {
             DefaultCheck();
         }
@@ -80,7 +85,15 @@ public class Ani_MC : MonoBehaviour
     {
         return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
     }
-
+    void ATK_Counter()
+    {
+        if (ATK_count < 3)
+        {
+            ATK_count++;
+            static_parameters.Ani_state = ATK_count + 1;
+            if(!isAttackPlaying)StartCoroutine(AttackSequence());
+        }
+    }
     void DefaultCheck()
     {
         if (static_parameters.face == 0)
@@ -119,6 +132,8 @@ public class Ani_MC : MonoBehaviour
     IEnumerator AttackSequence()
     {
         isAttackPlaying = true;
+        Read_atk = false;
+        
         // 播放攻擊動畫
         MC_ani_state();
         switch (static_parameters.Ani_state)
@@ -134,9 +149,11 @@ public class Ani_MC : MonoBehaviour
                 ATK_count = 0;
                 break;
         }
-        Invoke("Combo_check", 0.1f);
+        Invoke("ResetCombo", 0.25f);
+        Read_atk = true;atk_flag = false;
         isAttackPlaying = false;
     }
+    
     void PlayDashAnimation()
     {
         switch (Angle_sum)
@@ -218,7 +235,7 @@ public class Ani_MC : MonoBehaviour
                 PlayAttackAnimation($"MC_FR_Atk_0{static_parameters.Ani_state - 1}");
                 break;
         }
-   }
+    }
 
     void PlayStandAnimation()
     {
@@ -274,10 +291,9 @@ public class Ani_MC : MonoBehaviour
     {
         animator.CrossFade(animationName, 0.1f);
     }
-    void Combo_check(){
-        if (isAttackPlaying == false)
-        {
-            ATK_count = 0;
-        }
+    void ResetCombo()
+    {
+        Debug.Log("ResetCombo");
+        ATK_count = 0;
     }
 }
