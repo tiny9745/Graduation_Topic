@@ -34,18 +34,18 @@ public class Play_move : MonoBehaviour
 
             // 更新 NavMesh 範圍內的移動
             if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
-            
+
             Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
 
             if (movement.magnitude > 1) movement.Normalize();
-            
+
             if (Ani_MC.isDashCooldown_for_move)
             {
                 agent.speed = dashSpeed; // Set dash speed
             }
             else if (Ani_MC.isAttackPlaying)
             {
-               agent.speed = 0.1f; // Slow movement speed
+                agent.speed = 0.1f; // Slow movement speed
             }
             else
             {
@@ -61,18 +61,19 @@ public class Play_move : MonoBehaviour
             }
             if (movement != Vector3.zero)
             {
-                agent.destination = transform.position + movement; 
+                agent.destination = transform.position + movement;
             }
         }
-        
+
     }
 
     void DogeCooldown()
     {
-        if(static_parameters.invincible){
+        if (static_parameters.invincible)
+        {
             static_parameters.invincible = false;
             Ani_MC.isDashCooldown_for_move = false;
-        } 
+        }
     }
 
     void MC_Nav_Baking_range(float h, float v)
