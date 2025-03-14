@@ -17,7 +17,7 @@ public class MC_col : MonoBehaviour
     void Start()
     {
         playerAgent = GameObject.Find("Player_S").GetComponent<NavMeshAgent>();
-        playerAgent.enabled = false;
+        // playerAgent.enabled = false;
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         if (renderer1 != null)
         {
@@ -34,7 +34,7 @@ public class MC_col : MonoBehaviour
         if (static_parameters.MC_HP <= 0)
         {
             static_parameters.Change_enemy = 0;
-            playerAgent.enabled = false;
+            // playerAgent.enabled = false;
         }
         SetLookDirection(static_parameters.face);
         // Check and update the attack speed
