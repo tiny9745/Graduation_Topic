@@ -11967,6 +11967,7 @@ GameObject:
   - component: {fileID: 1875171812}
   - component: {fileID: 1875171813}
   - component: {fileID: 1875171814}
+  - component: {fileID: 1875171815}
   m_Layer: 0
   m_Name: MH_script
   m_TagString: Untagged
@@ -12086,6 +12087,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject: {fileID: 1488708881}
   combinedTexture: {fileID: 0}
+--- !u!114 &1875171815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875171807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.1
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 80d33da9748bd4f45ac6b4e6080aaf03, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &1877335506
 GameObject:
   m_ObjectHideFlags: 0
@@ -15555,13 +15587,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef1047e17f424a48bbcd4fda031fb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: magic_house
   loadingScreen: {fileID: 7140566927690790612}
   loadingBar: {fileID: 1902947515110179601}
   loadingSpeed: 100
   maxFillAmount: 275
   wave_bar_range: 30
-  newPosition_start: {x: 0, y: 0, z: 0}
 --- !u!95 &5117008376364555034
 Animator:
   serializedVersion: 5
