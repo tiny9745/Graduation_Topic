@@ -23,7 +23,7 @@ public class Play_move : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 newPosition = rb.position; // Get current position
-        if (Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
+        if (static_parameters.MC_HP>0 && Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
         {
             // 讀取輸入
             horizontalInput = Input.GetAxis("Horizontal");
@@ -45,14 +45,17 @@ public class Play_move : MonoBehaviour
             }
             if (Ani_MC.isDashCooldown_for_move)
             {
+                Debug.Log("A");
                 newPosition += movement * dashSpeed * Time.fixedDeltaTime; // Dash speed
             }
             else if (Ani_MC.isAttackPlaying)
             {
+                Debug.Log("B");
                 newPosition += movement * 0.2f * Time.fixedDeltaTime; // Slow movement
             }
             else
             {
+                Debug.Log("C");
                 newPosition += movement * walkSpeed * Time.fixedDeltaTime; // Walk speed
             }
             // 更新角色朝向
