@@ -10,10 +10,9 @@ public class Play_move : MonoBehaviour
     private bool navMeshAvailable;
     public NavMeshAgent agent;
     public float navMeshCheckRadius = 1.0f;
-    Rigidbody rb;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
     }
     void Update()
     {
@@ -22,7 +21,6 @@ public class Play_move : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 newPosition = rb.position; // Get current position
         if (Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
         {
             // 讀取輸入
@@ -39,21 +37,19 @@ public class Play_move : MonoBehaviour
             
             Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
 
-            if (movement.magnitude > 1)
-            {
-                movement.Normalize();
-            }
+            if (movement.magnitude > 1) movement.Normalize();
+            
             if (Ani_MC.isDashCooldown_for_move)
             {
-                newPosition += movement * dashSpeed * Time.fixedDeltaTime; // Dash speed
+                agent.speed = dashSpeed; // Set dash speed
             }
             else if (Ani_MC.isAttackPlaying)
             {
-                newPosition += movement * 0.2f * Time.fixedDeltaTime; // Slow movement
+               agent.speed = 0.1f; // Slow movement speed
             }
             else
             {
-                newPosition += movement * walkSpeed * Time.fixedDeltaTime; // Walk speed
+                agent.speed = walkSpeed; // Normal walk speed
             }
             // 更新角色朝向
             UpdateFaceDirection(movement);
@@ -63,8 +59,12 @@ public class Play_move : MonoBehaviour
                 static_parameters.invincible = true;
                 Invoke("DogeCooldown", 0.6f); // 衝刺冷卻時間
             }
+            if (movement != Vector3.zero)
+            {
+                agent.destination = transform.position + movement; 
+            }
         }
-        rb.MovePosition(newPosition); // Apply movement
+        
     }
 
     void DogeCooldown()
