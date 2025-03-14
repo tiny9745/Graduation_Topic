@@ -17,6 +17,7 @@ public class Loading_241010 : MonoBehaviour
     private float loadingTimeElapsed = 0f; // 計時器
     public Vector3 newPosition_start;
     private GameObject BlackScreen;
+    private GameObject player_S;
 
     bool wave_return = true;
 
@@ -25,7 +26,9 @@ public class Loading_241010 : MonoBehaviour
     void Start()
     {
         BlackScreen = GameObject.Find("Black");
-
+        player_S = GameObject.Find("Player_S");
+        player_S.transform.localPosition = new Vector3(0, 0, -138);
+        Debug.Log("transform.localPosition: " + player_S.transform.localPosition);
         if (BlackScreen != null && Death_MC.isDead)
         {
             BlackScreen.SetActive(false);

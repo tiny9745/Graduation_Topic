@@ -15,6 +15,7 @@ public class Scence_FU_241130 : MonoBehaviour
         player_S = GameObject.Find("Player_S");
         playerAgent = player_S.GetComponent<NavMeshAgent>();
         player_S.transform.localPosition = new Vector3(0, 0, -138);
+        Debug.Log("transform.localPosition: " + player_S.transform.localPosition);
         playerAgent.enabled = true;
         // switch (static_parameters.stage_number_Boss){}
         Fight_FU();
