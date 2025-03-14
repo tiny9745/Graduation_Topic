@@ -22,6 +22,8 @@ public class Setting_menu : MonoBehaviour
     public Image BGM_image_off, SE_image_off;
 
     public GameObject BGM_sound_obj, SE_sound_obj;
+    public Button BGM_sound_button_on, SE_sound_button_on;
+    public Button BGM_sound_button_off, SE_sound_button_off;
 
     private int key_count = 1;
     private const int key_count_max = 3;
@@ -169,14 +171,24 @@ public class Setting_menu : MonoBehaviour
     {
         if (All_sound_control.value == 0)
         {
-            BGM_sound_obj.SetActive(true);
-            SE_sound_obj.SetActive(true);
+            BGM_control.enabled = true;
+            SE_control.enabled = true;
+            BGM_image_on.enabled = true;
+            SE_image_on.enabled = true;
+            BGM_image_off.enabled = true;
+            SE_image_off.enabled = true;
             All_sound_control.value = static_parameters._All_sound_tmp;
+            BGM_sound.volume = static_parameters._BGM_volue_tmp;
+            SE_sound.volume = static_parameters._SE_volue_tmp;
         }
         else
         {
-            BGM_sound_obj.SetActive(false);
-            SE_sound_obj.SetActive(false);
+            BGM_control.enabled = false;
+            SE_control.enabled = false;
+            BGM_image_on.enabled = false;
+            SE_image_on.enabled = false;
+            BGM_image_off.enabled = false;
+            SE_image_off.enabled = false;
             static_parameters._All_sound_tmp = All_sound_control.value;
             All_sound_control.value = 0;
         }
