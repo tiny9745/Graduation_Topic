@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 public class Setting_menu : MonoBehaviour
 {
     public GameObject _Setting_menu;
-
     public Slider All_sound_control;
     public Slider BGM_control;
     public Slider SE_control;
@@ -21,6 +20,8 @@ public class Setting_menu : MonoBehaviour
     public Image All_image_on, All_image_off;
     public Image BGM_image_on, SE_image_on;
     public Image BGM_image_off, SE_image_off;
+
+    public GameObject BGM_sound_obj, SE_sound_obj;
 
     private int key_count = 1;
     private const int key_count_max = 3;
@@ -168,11 +169,44 @@ public class Setting_menu : MonoBehaviour
     {
         if (All_sound_control.value == 0)
         {
-            All_sound_control.value = static_parameters._All_sound;
+            BGM_sound_obj.SetActive(true);
+            SE_sound_obj.SetActive(true);
+            All_sound_control.value = static_parameters._All_sound_tmp;
         }
         else
         {
+            BGM_sound_obj.SetActive(false);
+            SE_sound_obj.SetActive(false);
+            static_parameters._All_sound_tmp = All_sound_control.value;
             All_sound_control.value = 0;
+        }
+    }
+    public void click_BGM_sound()
+    {
+        if (BGM_sound.volume == 0)
+        {
+            BGM_image_off.gameObject.SetActive(false);
+            BGM_image_on.gameObject.SetActive(true);
+            BGM_sound.volume = static_parameters._BGM_volue_tmp;
+        }
+        else
+        {
+            BGM_image_off.gameObject.SetActive(true);
+            BGM_image_on.gameObject.SetActive(false);
+            static_parameters._BGM_volue_tmp = BGM_sound.volume;
+            BGM_sound.volume = 0;
+        }
+    }
+    public void click_SE_sound()
+    {
+        if (SE_sound.volume == 0)
+        {
+            SE_sound.volume = static_parameters._SE_volue_tmp;
+        }
+        else
+        {
+            static_parameters._SE_volue_tmp = SE_sound.volume;
+            SE_sound.volume = 0;
         }
     }
 }
