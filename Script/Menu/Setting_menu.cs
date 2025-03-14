@@ -173,22 +173,22 @@ public class Setting_menu : MonoBehaviour
         {
             BGM_control.enabled = true;
             SE_control.enabled = true;
-            BGM_image_on.enabled = true;
-            SE_image_on.enabled = true;
-            BGM_image_off.enabled = true;
-            SE_image_off.enabled = true;
+            BGM_sound_button_on.enabled = true;
+            SE_sound_button_on.enabled = true;
+            BGM_sound_button_off.enabled = true;
+            SE_sound_button_off.enabled = true;
             All_sound_control.value = static_parameters._All_sound_tmp;
-            BGM_sound.volume = static_parameters._BGM_volue_tmp;
-            SE_sound.volume = static_parameters._SE_volue_tmp;
+            BGM_sound.volume = static_parameters._BGM_volue;
+            SE_sound.volume = static_parameters._SE_volue;
         }
         else
         {
             BGM_control.enabled = false;
             SE_control.enabled = false;
-            BGM_image_on.enabled = false;
-            SE_image_on.enabled = false;
-            BGM_image_off.enabled = false;
-            SE_image_off.enabled = false;
+            BGM_sound_button_on.enabled = false;
+            SE_sound_button_on.enabled = false;
+            BGM_sound_button_off.enabled = false;
+            SE_sound_button_off.enabled = false;
             static_parameters._All_sound_tmp = All_sound_control.value;
             All_sound_control.value = 0;
         }
@@ -200,6 +200,7 @@ public class Setting_menu : MonoBehaviour
             BGM_image_off.gameObject.SetActive(false);
             BGM_image_on.gameObject.SetActive(true);
             BGM_sound.volume = static_parameters._BGM_volue_tmp;
+            BGM_control.value = static_parameters._BGM_volue_tmp;
         }
         else
         {
@@ -207,18 +208,25 @@ public class Setting_menu : MonoBehaviour
             BGM_image_on.gameObject.SetActive(false);
             static_parameters._BGM_volue_tmp = BGM_sound.volume;
             BGM_sound.volume = 0;
+            BGM_control.value = 0;
         }
     }
     public void click_SE_sound()
     {
         if (SE_sound.volume == 0)
         {
+            SE_image_off.gameObject.SetActive(false);
+            SE_image_on.gameObject.SetActive(true);
             SE_sound.volume = static_parameters._SE_volue_tmp;
+            SE_control.value = static_parameters._SE_volue_tmp;
         }
         else
         {
+            SE_image_off.gameObject.SetActive(true);
+            SE_image_on.gameObject.SetActive(false);
             static_parameters._SE_volue_tmp = SE_sound.volume;
             SE_sound.volume = 0;
+            SE_control.value = 0;
         }
     }
 }
