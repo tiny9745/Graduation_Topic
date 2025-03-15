@@ -53,23 +53,8 @@ public class Play_move : MonoBehaviour
             }
             // 更新角色朝向
             UpdateFaceDirection(movement);
-            // 監聽衝刺鍵
-            if (Ani_MC.isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
-            {
-                static_parameters.invincible = true;
-                Invoke("DogeCooldown", 0.6f); // 衝刺冷卻時間
-            }
         }
         if (movement.magnitude > 0) rb.MovePosition(newPosition);// Apply movement        
-    }
-
-    void DogeCooldown()
-    {
-        if (static_parameters.invincible)
-        {
-            static_parameters.invincible = false;
-            Ani_MC.isDashCooldown_for_move = false;
-        }
     }
 
     void MC_Nav_Baking_range(float h, float v)
