@@ -12,7 +12,6 @@ public class berry_hitbox : MonoBehaviour
     public SphereCollider bomb_hitbox;
     public Animator animator_ready;
     public GameObject berry_bomb;
-    private bool isExplode_start = false;
 
     void Update()
     {
@@ -45,9 +44,7 @@ public class berry_hitbox : MonoBehaviour
             // **檢查是否達到爆炸時間**
             if (timmer >= explode_time_max)
             {
-                Debug.Log("Berry explode00");
                 isExplode = false;
-
                 // **觸發爆炸（即使 Player 已經離開範圍，仍會爆炸）**
                 Bomb_Berry_Explode();
             }
@@ -93,7 +90,6 @@ public class berry_hitbox : MonoBehaviour
         // 記錄離開範圍的物件
         if (objectsInRange.Contains(other.gameObject))
         {
-            Debug.Log(other.name + " 離開範圍");
             objectsInRange.Remove(other.gameObject);
         }
     }
@@ -103,7 +99,6 @@ public class berry_hitbox : MonoBehaviour
         if (bomb_berry.berry != 0)
         {
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
-            Debug.Log("Berry Explode");
             Instantiate(berry_bomb, pos, transform.rotation);
             NPC_interactive.berry = bomb_berry.berry;
 
@@ -117,12 +112,8 @@ public class berry_hitbox : MonoBehaviour
                 }
             }
 
-            if (playerInRange != null)
-            {
-                Debug.Log("爆炸傷害觸發 Player：" + playerInRange.name);
-                static_parameters.MC_HP -= 10 * bomb_berry.berry;
-            }
-
+            if (playerInRange != null) static_parameters.MC_HP -= 10 * bomb_berry.berry;
+            
             bomb_berry.Destroy_Berry();
         }
     }

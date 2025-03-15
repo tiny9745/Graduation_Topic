@@ -61,10 +61,6 @@ public class MC_col : MonoBehaviour
                 // Set the speed of the specified animation
                 animator.SetFloat(paramName, animSpeed);
             }
-            else
-            {
-                Debug.LogWarning("Animator does not have the specified parameter: " + paramName);
-            }
         }
     }
 
@@ -76,10 +72,6 @@ public class MC_col : MonoBehaviour
             if (AnimatorHasParameter(animator, paramName))
             {
                 animator.SetFloat(paramName, animSpeed);
-            }
-            else
-            {
-                Debug.LogWarning("Animator does not have the specified parameter: " + paramName);
             }
         }
     }

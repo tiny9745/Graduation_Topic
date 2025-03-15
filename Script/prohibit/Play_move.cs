@@ -6,24 +6,20 @@ public class Play_move : MonoBehaviour
 {
     public float horizontalInput, verticalInput;
     public float dashSpeed, walkSpeed = 1;
-    private Vector3 targetPosition;
     private bool navMeshAvailable;
-    public NavMeshAgent agent;
+    public NavMeshAgent agent; private Vector3 targetPosition;
     public float navMeshCheckRadius = 1.0f;
-    Rigidbody rb;
+    Rigidbody rb; Vector3 movement;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-    }
-    void Update()
-    {
-
+        agent.updatePosition = false;
     }
 
     void FixedUpdate()
     {
         Vector3 newPosition = rb.position; // Get current position
-        if (static_parameters.MC_HP>0 && Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
+        if (static_parameters.MC_HP > 0 && Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
         {
             // 讀取輸入
             horizontalInput = Input.GetAxis("Horizontal");
@@ -37,7 +33,7 @@ public class Play_move : MonoBehaviour
             // 更新 NavMesh 範圍內的移動
             //if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
 
-            Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
+            movement = new Vector3(horizontalInput, 0f, verticalInput);
 
             if (movement.magnitude > 1)
             {
@@ -64,7 +60,7 @@ public class Play_move : MonoBehaviour
                 Invoke("DogeCooldown", 0.6f); // 衝刺冷卻時間
             }
         }
-        rb.MovePosition(newPosition); // Apply movement
+        if (movement.magnitude > 0) rb.MovePosition(newPosition);// Apply movement        
     }
 
     void DogeCooldown()
@@ -83,16 +79,12 @@ public class Play_move : MonoBehaviour
         {
             targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
             targetPosition.z += 10f; // 假設偏移
-
-            if (IsPositionOnNavMesh(targetPosition) && agent.enabled)
-            {
-                agent.Move(direction * static_parameters.MC_Wspeed * Time.deltaTime);
-            }
         }
     }
 
     bool IsPositionOnNavMesh(Vector3 position)
     {
+        if (!GetComponent<NavMeshAgent>().enabled) return false;
         NavMeshHit hit;
         return NavMesh.SamplePosition(position, out hit, navMeshCheckRadius, NavMesh.AllAreas);
     }

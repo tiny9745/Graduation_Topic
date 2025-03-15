@@ -135,7 +135,6 @@ public class Prefabs_start_241130 : MonoBehaviour
                 if (collider.CompareTag("Thorns"))
                 {
                     isInThorns = true;
-                    Debug.LogWarning($"位置 {hit.position} 位於 'Thorns' (Trigger) 區域內，跳過生成 {prefab.name}。");
                     break;
                 }
             }
@@ -144,12 +143,10 @@ public class Prefabs_start_241130 : MonoBehaviour
             if (!isInThorns)
             {
                 Instantiate(prefab, hit.position, Quaternion.identity);
-                Debug.Log($"成功生成 {prefab.name} 在位置 {hit.position}。");
             }
         }
         else
         {
-            Debug.LogWarning($"無法在範圍內找到有效 NavMesh 位置，跳過此生成 {prefab.name}。");
         }
     }
     void GenerateDecorate(GameObject prefab)
@@ -161,10 +158,6 @@ public class Prefabs_start_241130 : MonoBehaviour
         if (NavMesh.SamplePosition(position, out NavMeshHit hit, 2.0f, NavMesh.AllAreas))
         {
             Instantiate(prefab, hit.position, Quaternion.identity);
-        }
-        else
-        {
-            Debug.LogWarning($"無法在範圍內找到有效 NavMesh 位置，跳過此生成 {prefab.name}。");
         }
     }
     void BakeNavMesh()
