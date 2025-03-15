@@ -23,7 +23,7 @@ public class Play_move : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 newPosition = rb.position; // Get current position
-        if (static_parameters.MC_HP>0 && Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
+        if (static_parameters.MC_HP>0 && Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
         {
             // 讀取輸入
             horizontalInput = Input.GetAxis("Horizontal");
