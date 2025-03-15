@@ -3907,6 +3907,8 @@ GameObject:
   m_Component:
   - component: {fileID: 748327740}
   - component: {fileID: 748327741}
+  - component: {fileID: 748327742}
+  - component: {fileID: 748327743}
   m_Layer: 0
   m_Name: 1-door-01
   m_TagString: Untagged
@@ -3981,6 +3983,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &748327742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748327739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 13.23, y: 13.23, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &748327743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748327739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b249659829423614bba89407778c0f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &761741110
 GameObject:
   m_ObjectHideFlags: 0
@@ -12174,7 +12209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2403634892054833153
 GameObject:
   m_ObjectHideFlags: 0
@@ -12518,7 +12553,7 @@ Transform:
   m_GameObject: {fileID: 2375740465373367580}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 5.5, z: -0.9}
+  m_LocalPosition: {x: 0, y: 5.5, z: -0.48}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:

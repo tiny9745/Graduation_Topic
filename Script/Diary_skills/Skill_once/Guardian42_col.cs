@@ -23,6 +23,7 @@ public class Guardian42_col : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         Guardian42_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 3.5f;
+        Skill_public_funtion.skill_4x_Sorting++;
         player = GameObject.Find("Player_S");
         lastPlayerPosition = player.transform.position;
     }
@@ -44,6 +45,7 @@ public class Guardian42_col : MonoBehaviour
         {
             NPC_distance_out();
         }
+        MC_Dead();
     }
 
     private void OnTriggerStay(Collider collision)
@@ -181,6 +183,14 @@ public class Guardian42_col : MonoBehaviour
             targetPosition.y = transform.position.y;
             
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
+        }
+    }
+
+    private void MC_Dead()
+    {
+        if (static_parameters.MC_HP <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

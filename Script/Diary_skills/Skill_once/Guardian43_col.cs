@@ -21,6 +21,7 @@ public class Guardian43_col : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         Guardian43_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 3.5f;
+        Skill_public_funtion.skill_4x_Sorting++;
         player = GameObject.Find("Player_S");
         lastPlayerPosition = player.transform.position;
     }
@@ -40,6 +41,7 @@ public class Guardian43_col : MonoBehaviour
             Invoke("bullet_fire", 3f);
         }
         NPC_distance_out();
+        MC_Dead();
     }
 
     private void NPC_distance_out()
@@ -105,6 +107,14 @@ public class Guardian43_col : MonoBehaviour
             targetPosition.y = transform.position.y;
             
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
+        }
+    }
+
+    private void MC_Dead()
+    {
+        if (static_parameters.MC_HP <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

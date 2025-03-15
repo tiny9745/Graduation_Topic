@@ -312,8 +312,8 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_41_enter)
                         {
                             Skill_public_funtion.skill_41_enter = false;
+                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian41, Guardian4x_point, transform.rotation);
-                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                     case 42:
@@ -321,32 +321,33 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_42_enter)
                         {
                             Skill_public_funtion.skill_42_enter = false;
+                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian42, Guardian4x_point, transform.rotation);
-                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                     case 43:
                         if (Skill_public_funtion.skill_43_enter)
                         {
                             Skill_public_funtion.skill_43_enter = false;
+                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian43, Guardian4x_point, transform.rotation);
-                            Skill_public_funtion.skill_4x_Sorting++;
+
                         }
                         break;
                     case 44:
                         if (Skill_public_funtion.skill_44_enter)
                         {
                             Skill_public_funtion.skill_44_enter = false;
+                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian44, Guardian4x_point, transform.rotation);
-                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                     case 45:
                         if (Skill_public_funtion.skill_45_enter)
                         {
                             Skill_public_funtion.skill_45_enter = false;
+                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian45, Guardian4x_point, transform.rotation);
-                            Skill_public_funtion.skill_4x_Sorting++;
                         }
                         break;
                 }

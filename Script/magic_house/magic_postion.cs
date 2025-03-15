@@ -16,6 +16,7 @@ public class magic_postion : MonoBehaviour
     void Start()
     {
         static_parameters.MC_HP = static_parameters.MC_HP_Max;
+        skill_return();
         static_parameters.into_gameFight = false;
         ResetPlayerPosition();
     }
@@ -25,6 +26,16 @@ public class magic_postion : MonoBehaviour
         {
             ClampPlayerPosition();
         }
+    }
+
+    private void skill_return()
+    {
+        Skill_public_funtion.skill_4x_Sorting = 1;
+        Skill_public_funtion.skill_41_enter = true;
+        Skill_public_funtion.skill_42_enter = true;
+        Skill_public_funtion.skill_43_enter = true;
+        Skill_public_funtion.skill_44_enter = true;
+        Skill_public_funtion.skill_45_enter = true;
     }
 
     void ResetPlayerPosition()
