@@ -109,7 +109,6 @@ public class Ani_MC : MonoBehaviour
     IEnumerator DashSequence()
     {
         isDashCooldown = true;
-        isDashCooldown_for_move = true;
         static_parameters.Ani_state = -1; // 設置為 Dash 狀態
         float dashStartTime = Time.time;
         dashDuration = 0.63f / Skill_public_funtion.skill_35_Dash_Magnification;
@@ -119,8 +118,10 @@ public class Ani_MC : MonoBehaviour
         // 確保動畫完整播放
         while (Time.time - dashStartTime < dashDuration)
         {
+            isDashCooldown_for_move = true; static_parameters.invincible = true;
             yield return null;
         }
+        isDashCooldown_for_move = false; static_parameters.invincible = false;
         Skill_public_funtion.skill_32_Dash_end = true;
         Skill_public_funtion.skill_31_dash = false;
 
