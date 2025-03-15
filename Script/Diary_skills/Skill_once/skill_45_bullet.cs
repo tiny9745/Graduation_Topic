@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class skill_45_bullet : MonoBehaviour
 {
-    float speed = 15f;
+    float speed = 30f;
     private GameObject targetObject;
     Vector3 moveDirection;
     Transform targetTransform;
