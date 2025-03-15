@@ -45,17 +45,14 @@ public class Play_move : MonoBehaviour
             }
             if (Ani_MC.isDashCooldown_for_move)
             {
-                Debug.Log("A");
                 newPosition += movement * dashSpeed * Time.fixedDeltaTime; // Dash speed
             }
             else if (Ani_MC.isAttackPlaying)
             {
-                Debug.Log("B");
                 newPosition += movement * 0.2f * Time.fixedDeltaTime; // Slow movement
             }
             else
             {
-                Debug.Log("C");
                 newPosition += movement * walkSpeed * Time.fixedDeltaTime; // Walk speed
             }
             // 更新角色朝向
