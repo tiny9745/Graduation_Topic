@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class Sound_BGM : MonoBehaviour
 {
     public AudioSource BGM_sound;
-    public AudioSource SE_sound;
     public AudioClip[] BGM_clip;
-    public AudioClip[] SE_clip;
-    // Start is called before the first frame update
+
+    // public AudioClip[] SE_clip;
+    // public AudioSource SE_sound;
+
     void Start()
     {
 
@@ -18,7 +19,7 @@ public class Sound_BGM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        BGM_sound.volume = static_parameters._BGM_volue * static_parameters._All_sound;
     }
 
     private void OnEnable()
