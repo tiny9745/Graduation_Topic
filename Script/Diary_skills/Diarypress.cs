@@ -21,7 +21,7 @@ public class Diarypress : MonoBehaviour
         else
         {
             Slots.SetActive(false); DText.SetActive(true);
-            Skill_public_funtion.Reading = true;
+            Skill_public_funtion.Reading = true;  
             Diary_title.text = IconManager.Instance.IconList[d_UI.page * 8 + Choose_diary - 1].diary_title;
             Diary_content.text = IconManager.Instance.IconList[d_UI.page * 8 + Choose_diary - 1].diary_content;
             d_UI.overflow_text(Diary_content.text);
