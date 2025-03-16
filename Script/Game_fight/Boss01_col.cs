@@ -4,15 +4,54 @@ using UnityEngine;
 
 public class Boss_col : MonoBehaviour
 {
-    // Start is called before the first frame update
+    float Atk_time = 0;
+    bool Atk_bool = false;
+    int Atk_state = 1;
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Atk_time <= 3 && Atk_bool == false)
+        {
+            Atk_time += Time.deltaTime;
+        }
+        else
+        {
+            Atk_time = 0;
+            switch (Atk_state)
+            {
+                case 1:
+                    Boss_Atk01();
+                    break;
+                case 2:
+                    Boss_Atk02();
+                    break;
+                case 3:
+                    Boss_Atk03();
+                    break;
+            }
+        }
+    }
+    private void Boss_Atk01()
+    {
+        Atk_state = 2;
+    }
+
+    private void Boss_Atk02()
+    {
+        Atk_state = 3;
+    }
+
+    private void Boss_Atk03()
+    {
+        Atk_state = 1;
+    }
+
+    private void Atk_End()
+    {
+        Atk_bool = false;
     }
 }
