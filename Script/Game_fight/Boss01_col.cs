@@ -36,9 +36,16 @@ public class Boss_col : MonoBehaviour
             }
         }
     }
+    public GameObject[] BOSS_Atk01_Area;
+    public Animator[] BOSS_Atk01_Counterclockwise;
+    public Animator[] BOSS_Atk01_Clockwise;
+    public Animator[] BOSS_Atk01_Outside;
+    public Animator[] BOSS_Atk01_Inside;
     private void Boss_Atk01()
     {
         Atk_state = 2;
+        //逆時針、順時針、由內向外、由外向內
+
     }
 
     private void Boss_Atk02()
