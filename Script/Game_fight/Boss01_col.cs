@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss_col : MonoBehaviour
 {
+    public Animator Boss_Animator;
     float Atk_time = 0;
     bool Atk_bool = false;
     int Atk_state = 1;
@@ -53,5 +54,14 @@ public class Boss_col : MonoBehaviour
     private void Atk_End()
     {
         Atk_bool = false;
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.tag == "MC_Att")
+        {
+            Boss_Animator.SetTrigger("Hit");
+            Invoke("Atk_End", 1f);
+        }
     }
 }
