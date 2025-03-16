@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class D_UI : MonoBehaviour
 {
     static public D_slot[] DSlot;
-    public GameObject Pageup, Pagedown;
+    public GameObject Pageup, Pagedown, Diary, Text;
     public Transform DSlotPoint;
     public Text Diary_title, Diary_content_lift, Diary_content_right;
     int itemsPerPage = 8, startIndex;
@@ -36,23 +36,31 @@ public class D_UI : MonoBehaviour
     }
     public void NextPage()
     {
-        // Check if the next page exists
+        Debug.Log("NextPage");   
         if ((page + 1) * itemsPerPage < IconManager.Instance.IconList.Count)
         {
             page++;
-        }
-        button();
+        }   
     }
     public void PreviousPage()
     {
-        if (page > 0) page--;
+        Debug.Log("PreviousPage");
+        if(Skill_public_funtion.Reading){
+            Diary.SetActive(true); Text.SetActive(false);
+        }else{
+            if (page > 0){
+                page--;
+            } else{
+                page = 0;
+            }
+        }
         button();
     }
     public void button()
     {
         if (Skill_public_funtion.Reading)
         {
-            Pagedown.SetActive(false); Pageup.SetActive(true);
+            Pagedown.SetActive(false); Pageup.SetActive(true);    
         }
         else
         {
@@ -66,7 +74,7 @@ public class D_UI : MonoBehaviour
             }
             if ((page + 1) * itemsPerPage < IconManager.Instance.IconList.Count)
             {
-                Pageup.SetActive(true);
+                Pagedown.SetActive(false);
             }
             else
             {
