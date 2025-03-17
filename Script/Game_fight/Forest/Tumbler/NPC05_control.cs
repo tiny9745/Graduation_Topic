@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class NPC05_control : MonoBehaviour
 {
-    public NPC_interactive npc_interactive; public NPC_HP_05 nPC_hP; public NPC_effect_05 effect;
+    public NPC_interactive npc_interactive; public NPC_HP_05 nPC_hP; public NPC_effect_05 effect;public UI _UI;
     NavMeshAgent npcNavi;
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
@@ -21,7 +21,7 @@ public class NPC05_control : MonoBehaviour
     public Transform firePoint;
     public AudioSource audioSource; public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
-    public UI _UI;
+    private float fadeDuration = 5f,fadeTimer = 0f;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -71,6 +71,7 @@ public class NPC05_control : MonoBehaviour
             NPC_HP = 0;
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
+            fade();
             dead();
         }
         else if (!hit_Ani)
@@ -261,12 +262,6 @@ public class NPC05_control : MonoBehaviour
             {
                 effect.play_piano_effect();
             }
-            // if (other.tag == "Thorns")
-            // {
-            //     change_color_red();
-            //     npc_interactive.NPC_Thorns(ref NPC_HP);
-            //     nPC_hP.UpdateHealthBar();
-            // }
             if (other.tag == "Bomb_Fruit" && bomb_Berry)
             {
                 change_color_red();
@@ -323,6 +318,14 @@ public class NPC05_control : MonoBehaviour
             {
                 StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
             }
+        }
+    }
+    void fade(){
+        if (fadeTimer < fadeDuration)
+        {
+            fadeTimer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
         }
     }
     IEnumerator ResetColorAfterDelay(float delay)

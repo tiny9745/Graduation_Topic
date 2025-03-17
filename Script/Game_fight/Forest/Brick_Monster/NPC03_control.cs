@@ -5,27 +5,23 @@ using UnityEngine.AI;
 
 public class NPC03_control : MonoBehaviour
 {
-    public NPC_interactive npc_interactive; public NPC_HP_03 nPC_hP; public NPC_effect_03 effect;
-    public NavMeshAgent npcNavi;
+    public NPC_interactive npc_interactive; public NPC_HP_03 nPC_hP; public NPC_effect_03 effect; public UI _UI;
+    public NavMeshAgent npcNavi;public Transform spriteTransform;
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Drop, NPC03, hitbox_Brick_Monster, Img_npc;
-    public int DetectDistance = 33; public int NPC_angle;
+    public int DetectDistance = 33, NPC_angle;
     public float NPC_HP_Max = 70, npcSpeed = 5.5f, NPC_HP, NPC03_ATK = 10, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f, dist;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     int open_EnableHitbox = 0;
     public bool stun; private bool isFacingRight = true;
-    private Vector3 lastPosition, presentPosition;
-    private Quaternion initialRotation;
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
-    public UI _UI;
-
+    private Vector3 lastPosition, presentPosition,lastEnteredDirection;// 記錄進入方向
+    private Quaternion initialRotation;private bool isCoroutineRunning = false,isInDangerZone = false;
+    private SpriteRenderer spriteRenderer; private Color originalColor; 
+    private float fadeDuration = 5f,fadeTimer = 0f;
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
-    private bool isInDangerZone = false; // 是否在危險區域內
-    private Vector3 lastEnteredDirection; // 記錄進入方向
-
 
     void Start()
     {
@@ -80,6 +76,7 @@ public class NPC03_control : MonoBehaviour
             NPC_HP = 0;
             hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
+            fade();
             npcNavi.speed = 0;
             dead();
         }
@@ -396,6 +393,14 @@ public class NPC03_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
+    void fade(){
+        if (fadeTimer < fadeDuration)
+        {
+            fadeTimer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
+        }
+    }
     void dead()
     {
         if (dead_open)
@@ -431,14 +436,12 @@ public class NPC03_control : MonoBehaviour
     }
     public void change_color_red()
     {
-        if (spriteRenderer != null)
+        spriteRenderer.color = Color.red; // 將顏色改為紅色
+        if (!isCoroutineRunning)  // 檢查協程是否正在運行
         {
-            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
-            if (!isCoroutineRunning)  // 檢查協程是否正在運行
-            {
-                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
-            }
+            StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
         }
+        
     }
     IEnumerator ResetColorAfterDelay(float delay)
     {
