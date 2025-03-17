@@ -10,12 +10,14 @@ public class Diarypress : MonoBehaviour
     int Choose_diary, DiaryNumber;
     public Text Diary_title, Diary_content;
     public void Dpress()
-    {
-        Slots.SetActive(false); DText.SetActive(true);
+    {   
         int.TryParse(number.name, out DiaryNumber); 
         Choose_diary = DiaryNumber;
         if (Choose_diary > IconManager.Instance.IconList.Count)
         {
+            Diary_title.text = " ";   Diary_content.text = " ";
+            Slots.SetActive(true); DText.SetActive(false);
+            Skill_public_funtion.Reading = false;
             return;
         }
         else
