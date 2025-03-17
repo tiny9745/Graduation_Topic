@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6993291281802069994}
   - component: {fileID: 3751149311807605770}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardB03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 6567536916530336891}
   - component: {fileID: 7027900623925080782}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardD01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1044,7 +1044,7 @@ GameObject:
   - component: {fileID: 1374356955453360630}
   - component: {fileID: 9073276925476432848}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-1
+  m_Name: Boss-Atk-1-FxA-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1371,7 +1371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468584873647615450}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -1380,7 +1380,7 @@ Transform:
   - {fileID: 5301806727569556303}
   - {fileID: 8005826350719815834}
   - {fileID: 7984483441809962368}
-  m_Father: {fileID: 483754108575063423}
+  m_Father: {fileID: 6458492131262579446}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &489807288071522575
 GameObject:
@@ -1814,7 +1814,7 @@ GameObject:
   - component: {fileID: 4335641404423327109}
   - component: {fileID: 7375241140019997993}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-2
+  m_Name: Boss-Atk-1-FxE-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2119,6 +2119,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &632398885008914183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6458492131262579446}
+  m_Layer: 0
+  m_Name: Attack Tips01A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6458492131262579446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632398885008914183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1114730285837029052}
+  - {fileID: 7120324660749658442}
+  m_Father: {fileID: 483754108575063423}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &637136919759675445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,8 +2386,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7483904834788560719}
-  - {fileID: 2707032027368624350}
-  - {fileID: 7601064413510461135}
+  - {fileID: 2303239110817259046}
   m_Father: {fileID: 8647164965758762485}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &186998527927313852
@@ -3230,7 +3262,7 @@ GameObject:
   - component: {fileID: 5674782117462654370}
   - component: {fileID: 8473669387325847971}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardD03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3336,7 +3368,7 @@ GameObject:
   - component: {fileID: 7496989556351709350}
   - component: {fileID: 9161561530850641502}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardA03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3442,7 +3474,7 @@ GameObject:
   - component: {fileID: 1830141348298206328}
   - component: {fileID: 188316194919515579}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardA02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4232,7 +4264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036753208129652813}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0.000000029802319, z: 0.000000029802319, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -4241,7 +4273,7 @@ Transform:
   - {fileID: 7243286783427013286}
   - {fileID: 6042628931916873486}
   - {fileID: 5083997197116532793}
-  m_Father: {fileID: 7492268169806182106}
+  m_Father: {fileID: 1274769687431513428}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1056132868709173542
 GameObject:
@@ -4554,16 +4586,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Boss_Animator: {fileID: 2260164484229378940}
-  BOSS_Atk01_Area:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  BOSS_Atk01_Counterclockwise: []
-  BOSS_Atk01_Clockwise: []
-  BOSS_Atk01_Outside: []
-  BOSS_Atk01_Inside: []
+  BOSS_Atk01_Tips_Area:
+  - {fileID: 632398885008914183}
+  - {fileID: 7265758791515777467}
+  - {fileID: 2099260923594255668}
+  - {fileID: 7409941412961153478}
+  - {fileID: 3213764096534223453}
+  BOSS_Atk01_clockwise:
+  - {fileID: 9073276925476432848}
+  - {fileID: 256515632520092272}
+  - {fileID: 4697467425442214621}
+  - {fileID: 4083546078263080940}
+  - {fileID: 8325048435253914746}
+  - {fileID: 212524649974719480}
+  - {fileID: 8565847086059174846}
+  - {fileID: 5832830479485477097}
+  - {fileID: 4238709037008666244}
+  - {fileID: 3973779442834179700}
+  - {fileID: 7366274859553611806}
+  - {fileID: 5216529108736685898}
+  - {fileID: 8571747706183494612}
+  - {fileID: 839429725311017825}
+  - {fileID: 7375241140019997993}
+  - {fileID: 5075697977508949917}
+  BOSS_Atk01_clockwise_cards:
+  - {fileID: 7976060825280905722}
+  - {fileID: 188316194919515579}
+  - {fileID: 9161561530850641502}
+  - {fileID: 4159620209686030375}
+  - {fileID: 7570548107635841182}
+  - {fileID: 3751149311807605770}
+  - {fileID: 5685546978479359775}
+  - {fileID: 2591853981313650384}
+  - {fileID: 4001568756233331983}
+  - {fileID: 966361744476557628}
+  - {fileID: 7027900623925080782}
+  - {fileID: 3267916738925464345}
+  - {fileID: 8473669387325847971}
+  - {fileID: 17244928451084041}
+  - {fileID: 9089342225681946186}
+  - {fileID: 7524706439714433489}
+  BOSS_Atk01_inOutside: []
 --- !u!65 &4907013956242682544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5569,7 +5632,7 @@ GameObject:
   - component: {fileID: 6339832718010886978}
   - component: {fileID: 212524649974719480}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-3
+  m_Name: Boss-Atk-1-FxB-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7849,7 +7912,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780707827117788890}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0.000000029802319, z: -0.000000029802319, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -7858,7 +7921,7 @@ Transform:
   - {fileID: 766508088747944596}
   - {fileID: 6717733382451524331}
   - {fileID: 2161442387079668938}
-  m_Father: {fileID: 6953462733097808636}
+  m_Father: {fileID: 1684852301800118075}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1803690066887050559
 GameObject:
@@ -8979,7 +9042,7 @@ GameObject:
   - component: {fileID: 9120219936707680842}
   - component: {fileID: 839429725311017825}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-1
+  m_Name: Boss-Atk-1-FxE-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9586,6 +9649,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab0c3b52312ee544afe067c8c8ad1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2099260923594255668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8176248728088548655}
+  m_Layer: 0
+  m_Name: Attack Tips01C
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8176248728088548655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099260923594255668}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5320319454137389896}
+  - {fileID: 6185273106171749449}
+  m_Father: {fileID: 2834842936772375127}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2103725997842787438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9682,7 +9778,7 @@ GameObject:
   - component: {fileID: 2197798563581790208}
   - component: {fileID: 7976060825280905722}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardA01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10193,7 +10289,7 @@ GameObject:
   - component: {fileID: 8235587047675981144}
   - component: {fileID: 8571747706183494612}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-3
+  m_Name: Boss-Atk-1-FxD-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10564,7 +10660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2277190631805208306}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0.000000029802319, z: -0.000000029802319, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -10573,7 +10669,7 @@ Transform:
   - {fileID: 8111542776306817701}
   - {fileID: 4227666980487789146}
   - {fileID: 1291903445810868979}
-  m_Father: {fileID: 6953462733097808636}
+  m_Father: {fileID: 1684852301800118075}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2294866052988076590
 GameObject:
@@ -11037,7 +11133,7 @@ GameObject:
   - component: {fileID: 7273459543434333278}
   - component: {fileID: 7366274859553611806}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-1
+  m_Name: Boss-Atk-1-FxD-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14370,7 +14466,7 @@ GameObject:
   - component: {fileID: 2847565220638127277}
   - component: {fileID: 7524706439714433489}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardE03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14822,6 +14918,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3213764096534223453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2303239110817259046}
+  m_Layer: 0
+  m_Name: Attack Tips01E
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2303239110817259046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213764096534223453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2707032027368624350}
+  - {fileID: 7601064413510461135}
+  m_Father: {fileID: 1931197934920555761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3218518597759075993
 GameObject:
   m_ObjectHideFlags: 0
@@ -14944,7 +15073,7 @@ GameObject:
   - component: {fileID: 8522151748074248675}
   - component: {fileID: 2591853981313650384}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardC02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15968,8 +16097,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3526262611945472129}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: -1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15977,7 +16106,7 @@ Transform:
   - {fileID: 8522555744780474883}
   - {fileID: 1076503575119637683}
   - {fileID: 2001865817521172965}
-  m_Father: {fileID: 483754108575063423}
+  m_Father: {fileID: 6458492131262579446}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &3527082013750054619
 GameObject:
@@ -16760,7 +16889,7 @@ GameObject:
   - component: {fileID: 4186668721382549175}
   - component: {fileID: 5216529108736685898}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-2
+  m_Name: Boss-Atk-1-FxD-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17229,7 +17358,7 @@ Transform:
   m_GameObject: {fileID: 3723036627237058910}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -17237,7 +17366,7 @@ Transform:
   - {fileID: 3289356770702281064}
   - {fileID: 7752341542576031013}
   - {fileID: 5443622236073408979}
-  m_Father: {fileID: 1931197934920555761}
+  m_Father: {fileID: 2303239110817259046}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &3762178966103850464
 GameObject:
@@ -17293,7 +17422,7 @@ GameObject:
   - component: {fileID: 1938197475939053981}
   - component: {fileID: 5075697977508949917}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-3
+  m_Name: Boss-Atk-1-FxE-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18156,7 +18285,7 @@ GameObject:
   - component: {fileID: 8831870120369787631}
   - component: {fileID: 7570548107635841182}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardB02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18262,7 +18391,7 @@ GameObject:
   - component: {fileID: 2468271396731421156}
   - component: {fileID: 4159620209686030375}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardB01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23898,7 +24027,7 @@ GameObject:
   - component: {fileID: 7537379491406625023}
   - component: {fileID: 4697467425442214621}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-3
+  m_Name: Boss-Atk-1-FxA-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24922,7 +25051,7 @@ GameObject:
   - component: {fileID: 9103909611514700908}
   - component: {fileID: 17244928451084041}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardE01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25112,7 +25241,7 @@ GameObject:
   - component: {fileID: 8287502383969240690}
   - component: {fileID: 256515632520092272}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-2
+  m_Name: Boss-Atk-1-FxA-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25219,7 +25348,7 @@ GameObject:
   - component: {fileID: 4160665546137558070}
   - component: {fileID: 966361744476557628}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardC04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25346,7 +25475,7 @@ Transform:
   - {fileID: 4130274300557744716}
   - {fileID: 5847800739361667867}
   - {fileID: 1994478405965224726}
-  m_Father: {fileID: 1931197934920555761}
+  m_Father: {fileID: 2303239110817259046}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &5622275569782134750
 GameObject:
@@ -26171,7 +26300,7 @@ Transform:
   - {fileID: 2224165861418725964}
   - {fileID: 5723237684011361934}
   - {fileID: 6416511585939678148}
-  m_Father: {fileID: 2834842936772375127}
+  m_Father: {fileID: 8176248728088548655}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &5825499437960811425
 GameObject:
@@ -26384,8 +26513,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5090138784178154331}
-  - {fileID: 5320319454137389896}
-  - {fileID: 6185273106171749449}
+  - {fileID: 8176248728088548655}
   m_Father: {fileID: 8647164965758762485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5862468180374650490
@@ -26754,8 +26882,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1816631469521828065}
-  - {fileID: 1960847130224698459}
-  - {fileID: 7886989369903413338}
+  - {fileID: 1684852301800118075}
   m_Father: {fileID: 8647164965758762485}
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
 --- !u!1 &5925729225343251580
@@ -27293,7 +27420,7 @@ Transform:
   - {fileID: 7445959448790684584}
   - {fileID: 1573032319083156862}
   - {fileID: 4877947791331112640}
-  m_Father: {fileID: 2834842936772375127}
+  m_Father: {fileID: 8176248728088548655}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &6062238844815747654
 GameObject:
@@ -28219,7 +28346,7 @@ GameObject:
   - component: {fileID: 3305086947170572117}
   - component: {fileID: 5685546978479359775}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardC01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28669,8 +28796,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9088629612459141908}
-  - {fileID: 9017610008534036574}
-  - {fileID: 2738598319966038805}
+  - {fileID: 1274769687431513428}
   m_Father: {fileID: 8647164965758762485}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1 &6549819912510176642
@@ -28769,7 +28895,7 @@ GameObject:
   - component: {fileID: 1751106223439878689}
   - component: {fileID: 5832830479485477097}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-2
+  m_Name: Boss-Atk-1-FxC-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29750,7 +29876,7 @@ GameObject:
   - component: {fileID: 148514100767709700}
   - component: {fileID: 9089342225681946186}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardE02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31550,7 +31676,7 @@ GameObject:
   - component: {fileID: 9168045125929256709}
   - component: {fileID: 3973779442834179700}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-4
+  m_Name: Boss-Atk-1-FxC-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32053,7 +32179,7 @@ GameObject:
   - component: {fileID: 8434236619836766636}
   - component: {fileID: 8325048435253914746}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-2
+  m_Name: Boss-Atk-1-FxB-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32232,6 +32358,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7265758791515777467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1274769687431513428}
+  m_Layer: 0
+  m_Name: Attack Tips01B
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1274769687431513428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7265758791515777467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9017610008534036574}
+  - {fileID: 2738598319966038805}
+  m_Father: {fileID: 7492268169806182106}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7269828229446436088
 GameObject:
   m_ObjectHideFlags: 0
@@ -32677,6 +32836,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7409941412961153478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684852301800118075}
+  m_Layer: 0
+  m_Name: Attack Tips01D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1684852301800118075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409941412961153478}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1960847130224698459}
+  - {fileID: 7886989369903413338}
+  m_Father: {fileID: 6953462733097808636}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7417305233861186708
 GameObject:
   m_ObjectHideFlags: 0
@@ -33885,7 +34077,7 @@ GameObject:
   - component: {fileID: 6633439785541256696}
   - component: {fileID: 4238709037008666244}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-3
+  m_Name: Boss-Atk-1-FxC-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34686,7 +34878,7 @@ GameObject:
   - component: {fileID: 8573296770638893438}
   - component: {fileID: 3267916738925464345}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardD02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35104,8 +35296,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2094602954683933828}
-  - {fileID: 1114730285837029052}
-  - {fileID: 7120324660749658442}
+  - {fileID: 6458492131262579446}
   m_Father: {fileID: 8647164965758762485}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &4605762165993324113
@@ -35613,7 +35804,7 @@ GameObject:
   - component: {fileID: 4315774376695627352}
   - component: {fileID: 4001568756233331983}
   m_Layer: 0
-  m_Name: Boss-Atk-1-cardA29
+  m_Name: Boss-Atk-1-cardC03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37816,7 +38007,7 @@ GameObject:
   - component: {fileID: 5199378953345575918}
   - component: {fileID: 4083546078263080940}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-1
+  m_Name: Boss-Atk-1-FxB-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39959,7 +40150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9030952579254996044}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: -0.000000029802319, z: 0.000000029802319, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -39968,7 +40159,7 @@ Transform:
   - {fileID: 3537867322863550655}
   - {fileID: 8440977462710309919}
   - {fileID: 4642628590511763250}
-  m_Father: {fileID: 7492268169806182106}
+  m_Father: {fileID: 1274769687431513428}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &9043988610185159667
 GameObject:
@@ -40130,7 +40321,7 @@ GameObject:
   - component: {fileID: 7379240158033591533}
   - component: {fileID: 8565847086059174846}
   m_Layer: 0
-  m_Name: Boss-Atk-1-Fx01-1
+  m_Name: Boss-Atk-1-FxC-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
