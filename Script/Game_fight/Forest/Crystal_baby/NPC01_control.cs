@@ -20,14 +20,15 @@ public class NPC01_control : MonoBehaviour
     public bool NPC01_hit = false, stun = false;
     private bool isFacingRight = true;
     int open_EnableHitbox = 0;
-    private Vector3 lastPosition, presentPosition;
+    private Vector3 lastPosition, presentPosition, lastEnteredDirection;// 記錄進入方向
     private Quaternion initialRotation;
     public GameObject NPC01, NPC01_1;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
+    private float fadeDuration = 1.6f,fadeTimer = 0f;
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
-    private Vector3 lastEnteredDirection; // 記錄進入方向
+ 
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -79,6 +80,7 @@ public class NPC01_control : MonoBehaviour
             hitbox_Crystal_baby.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
+            fade();
             PlayBombAnimation();
         }
         else if (!hit_Ani)
@@ -96,6 +98,7 @@ public class NPC01_control : MonoBehaviour
         {
             PlayAttackAnimation();
         }
+
         if (dist >= DetectDistance * 3 / 5)
         {
             hit_Ani = false;
@@ -113,13 +116,11 @@ public class NPC01_control : MonoBehaviour
             {
                 npcNavi.destination = transform.position;
             }
-
             Vector3 direction = TargetObj.transform.position - transform.position;
             Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
             Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
 
             NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
-
             if (NPC_angle < 0)
             {
                 NPC_angle += 360;
@@ -451,7 +452,14 @@ public class NPC01_control : MonoBehaviour
             }
         }
     }
-
+    void fade(){
+        if (fadeTimer < fadeDuration)
+        {
+            fadeTimer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
+        }
+    }
     IEnumerator ResetColorAfterDelay(float delay)
     {
         isCoroutineRunning = true; // 設置為 true，表示協程正在運行

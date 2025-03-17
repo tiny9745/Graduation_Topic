@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NPC04_control : MonoBehaviour
 {
-    public NPC_HP_04 nPC_hP; public NPC_effect_04 effect; public NPC_interactive npc_interactive;
+    public NPC_HP_04 nPC_hP; public NPC_effect_04 effect; public NPC_interactive npc_interactive; public UI _UI;
     NavMeshAgent npcNavi;
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
@@ -17,15 +17,13 @@ public class NPC04_control : MonoBehaviour
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     int open_EnableHitbox = 0;
     public bool stun = false; private bool isFacingRight = true;
-    private Vector3 lastPosition, presentPosition;
+    private Vector3 lastPosition, presentPosition,lastEnteredDirection; private bool isCoroutineRunning = false;
     private Quaternion initialRotation;
-    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
-    public UI _UI;
-
+    public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
+    private float fadeDuration = 5f,fadeTimer = 0f;
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 115f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
-    private Vector3 lastEnteredDirection; // 記錄進入方向
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -86,6 +84,7 @@ public class NPC04_control : MonoBehaviour
             hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
+            fade();
             dead();
         }
         else if (!hit_Ani)
@@ -427,6 +426,14 @@ public class NPC04_control : MonoBehaviour
         Vector3 theScale = Img_npc.transform.localScale;
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
+    }
+    void fade(){
+        if (fadeTimer < fadeDuration)
+        {
+            fadeTimer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
+        }
     }
     void dead()
     {
