@@ -23,9 +23,10 @@ public class Scence_FU_241130 : MonoBehaviour
 
     public void Fight_FU()
     {
-        scence_random = Random.Range(0, 5);
+        // scence_random = Random.Range(0, 5);
         // Generatescence(FU[scence_random], new Vector3(0, 0, 0));
-        Generatescence(FU[static_parameters.stage_number - 1], new Vector3(0, 0, 0));
+        if (static_parameters.stage_number < 5) Generatescence(FU[static_parameters.stage_number - 1], new Vector3(0, 0, 0));
+        else Generatescence(FU[static_parameters.stage_number - 1], new Vector3(0, 0, -40));
         // Generatescence(FU[3], new Vector3(0, 0, 0));
     }
 

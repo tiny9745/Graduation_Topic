@@ -38,6 +38,7 @@ public class Boss_col : MonoBehaviour
         }
     }
     public GameObject[] BOSS_Atk01_Tips_Area;
+    public Collider[] BOSS_Atk01_Tips_Tip;
     public Animator[] BOSS_Atk01_clockwise;
     public Animator[] BOSS_Atk01_clockwise_cards;
     public Animator[] BOSS_Atk01_inOutside;

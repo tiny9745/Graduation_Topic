@@ -2128,13 +2128,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6458492131262579446}
+  - component: {fileID: 2658111922630912457}
   m_Layer: 0
   m_Name: Attack Tips01A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6458492131262579446
 Transform:
   m_ObjectHideFlags: 0
@@ -2143,7 +2144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632398885008914183}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2152,6 +2153,27 @@ Transform:
   - {fileID: 7120324660749658442}
   m_Father: {fileID: 483754108575063423}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2658111922630912457
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632398885008914183}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 5, z: 0.2}
+  m_Center: {x: 0, y: -0.25, z: 0}
 --- !u!1 &637136919759675445
 GameObject:
   m_ObjectHideFlags: 0
@@ -4592,6 +4614,7 @@ MonoBehaviour:
   - {fileID: 2099260923594255668}
   - {fileID: 7409941412961153478}
   - {fileID: 3213764096534223453}
+  BOSS_Atk01_Tips_Tip: []
   BOSS_Atk01_clockwise:
   - {fileID: 9073276925476432848}
   - {fileID: 256515632520092272}
@@ -9658,13 +9681,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8176248728088548655}
+  - component: {fileID: 1850993491051136283}
   m_Layer: 0
   m_Name: Attack Tips01C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8176248728088548655
 Transform:
   m_ObjectHideFlags: 0
@@ -9682,6 +9706,27 @@ Transform:
   - {fileID: 6185273106171749449}
   m_Father: {fileID: 2834842936772375127}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1850993491051136283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099260923594255668}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.2, z: 7}
+  m_Center: {x: 0, y: 0, z: -1}
 --- !u!1 &2103725997842787438
 GameObject:
   m_ObjectHideFlags: 0
@@ -14927,13 +14972,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2303239110817259046}
+  - component: {fileID: 1246678489779247444}
   m_Layer: 0
   m_Name: Attack Tips01E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2303239110817259046
 Transform:
   m_ObjectHideFlags: 0
@@ -14951,6 +14997,27 @@ Transform:
   - {fileID: 7601064413510461135}
   m_Father: {fileID: 1931197934920555761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1246678489779247444
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213764096534223453}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3218518597759075993
 GameObject:
   m_ObjectHideFlags: 0
@@ -32367,13 +32434,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1274769687431513428}
+  - component: {fileID: 6903291516559479925}
   m_Layer: 0
   m_Name: Attack Tips01B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1274769687431513428
 Transform:
   m_ObjectHideFlags: 0
@@ -32391,6 +32459,27 @@ Transform:
   - {fileID: 2738598319966038805}
   m_Father: {fileID: 7492268169806182106}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6903291516559479925
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7265758791515777467}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.2, z: 8}
+  m_Center: {x: 0, y: 0, z: -1.25}
 --- !u!1 &7269828229446436088
 GameObject:
   m_ObjectHideFlags: 0
@@ -32845,13 +32934,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684852301800118075}
+  - component: {fileID: 6847827077270529178}
   m_Layer: 0
   m_Name: Attack Tips01D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1684852301800118075
 Transform:
   m_ObjectHideFlags: 0
@@ -32869,6 +32959,27 @@ Transform:
   - {fileID: 7886989369903413338}
   m_Father: {fileID: 6953462733097808636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6847827077270529178
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7409941412961153478}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.2, z: 8}
+  m_Center: {x: 0, y: 0, z: -1.25}
 --- !u!1 &7417305233861186708
 GameObject:
   m_ObjectHideFlags: 0
@@ -35274,7 +35385,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 483754108575063423}
-  - component: {fileID: 4605762165993324113}
   m_Layer: 0
   m_Name: ATK-1-hint-A
   m_TagString: Untagged
@@ -35290,7 +35400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7953950204653267764}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -27.5, y: 2, z: -0.5}
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_ConstrainProportionsScale: 1
@@ -35298,28 +35408,7 @@ Transform:
   - {fileID: 2094602954683933828}
   - {fileID: 6458492131262579446}
   m_Father: {fileID: 8647164965758762485}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &4605762165993324113
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7953950204653267764}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.2, z: 5}
-  m_Center: {x: 0, y: 0, z: -0.2}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!1 &7988064949149969952
 GameObject:
   m_ObjectHideFlags: 0
