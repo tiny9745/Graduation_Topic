@@ -37,7 +37,7 @@ public class Boss_col : MonoBehaviour
             }
         }
     }
-    public GameObject[] BOSS_Atk01_Tips_Area;
+    // public GameObject[] BOSS_Atk01_Tips_Area;
     public Collider[] BOSS_Atk01_Tips_Tip;
     public Animator[] BOSS_Atk01_clockwise;
     public Animator[] BOSS_Atk01_clockwise_cards;
@@ -53,16 +53,17 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator BOSS_Atk01_ready01()
     {
-        random = 0;
-        Debug.Log("逆時針");
+        // random = 1;
+        random = Random.Range(0, 2);
         Boss_Animator.SetTrigger("aup");
         Boss_Animator.SetBool("atk_end", true);
         switch (random)
         {
             case 0://逆時針
-                for (int i = 0; i < BOSS_Atk01_Tips_Area.Length; i++)
+                Debug.Log("逆時針");
+                for (int i = 0; i < BOSS_Atk01_Tips_Tip.Length; i++)
                 {
-                    BOSS_Atk01_Tips_Area[i].SetActive(true);
+                    BOSS_Atk01_Tips_Tip[i].gameObject.SetActive(true);
                     yield return new WaitForSeconds(BOSS_Atk01_delay);
                 }
                 for (int i = 0; i < BOSS_Atk01_clockwise.Length; i++)
@@ -81,12 +82,25 @@ public class Boss_col : MonoBehaviour
                 }
                 break;
             case 1://順時針
-                // for (int i = BOSS_Atk01_Tips_Area.Length - 1; i >= 0; i--)
-                // {
-                //     BOSS_Atk01_Tips_Area[i].SetActive(true);
-                //     BOSS_Atk01_clockwise[i].SetTrigger("Atk");
-                //     BOSS_Atk01_InOutside[i].SetTrigger("Atk");
-                // }
+                for (int i = BOSS_Atk01_Tips_Tip.Length - 1; i >= 0; i--)
+                {
+                    BOSS_Atk01_Tips_Tip[i].gameObject.SetActive(true);
+                    yield return new WaitForSeconds(BOSS_Atk01_delay);
+                }
+                for (int i = BOSS_Atk01_clockwise.Length - 1; i >= 0; i--)
+                {
+                    BOSS_Atk01_clockwise[i].SetTrigger("ready_area");
+                    BOSS_Atk01_clockwise[i].SetBool("ready_area_wait", true);
+                    switch (i)
+                    {
+                        case 3:
+                        case 6:
+                        case 10:
+                        case 13:
+                            yield return new WaitForSeconds(BOSS_Atk01_delay);
+                            break;
+                    }
+                }
                 break;
         }
         Atk_state = 2;
@@ -97,6 +111,7 @@ public class Boss_col : MonoBehaviour
         yield return new WaitForSeconds(wait);
         Boss_Animator.SetBool("atk_end", false);
         yield return new WaitForSeconds(0.2f);
+        int j = 0;
         switch (random)
         {
             case 0://逆時針
@@ -104,36 +119,74 @@ public class Boss_col : MonoBehaviour
                 {
                     int card_style = Random.Range(0, 6);
                     BOSS_Atk01_clockwise_cards[i].SetTrigger($"Atk{card_style}");
+
                     switch (i)
                     {
                         case 2:
                         case 5:
                         case 9:
                         case 12:
+                            BOSS_Atk01_Tips_Tip[j].enabled = true;
+                            j++;
                             yield return new WaitForSeconds(BOSS_Atk01_delay);
                             break;
                     }
                 }
                 yield return new WaitForSeconds(1.8f - BOSS_Atk01_delay * 4);
+                j = 0;
                 for (int i = 0; i < BOSS_Atk01_clockwise.Length; i++)
                 {
                     BOSS_Atk01_clockwise[i].SetBool("ready_area_wait", false);
+
                     switch (i)
                     {
                         case 0:
-                            BOSS_Atk01_Tips_Area[0].SetActive(false);
-                            break;
                         case 2:
-                            BOSS_Atk01_Tips_Area[1].SetActive(false);
-                            break;
                         case 5:
-                            BOSS_Atk01_Tips_Area[2].SetActive(false);
-                            break;
                         case 9:
-                            BOSS_Atk01_Tips_Area[3].SetActive(false);
-                            break;
                         case 12:
-                            BOSS_Atk01_Tips_Area[4].SetActive(false);
+                            BOSS_Atk01_Tips_Tip[j].enabled = false;
+                            BOSS_Atk01_Tips_Tip[j].gameObject.SetActive(false);
+                            j++;
+                            yield return new WaitForSeconds(BOSS_Atk01_delay);
+                            break;
+                    }
+                }
+                break;
+            case 1://順時針
+                for (int i = BOSS_Atk01_clockwise_cards.Length - 1; i >= 0; i--)
+                {
+                    int card_style = Random.Range(0, 6);
+                    BOSS_Atk01_clockwise_cards[i].SetTrigger($"Atk{card_style}");
+
+                    switch (i)
+                    {
+                        case 3:
+                        case 6:
+                        case 10:
+                        case 13:
+                            BOSS_Atk01_Tips_Tip[j].enabled = true;
+                            j++;
+                            yield return new WaitForSeconds(BOSS_Atk01_delay);
+                            break;
+                    }
+                }
+                yield return new WaitForSeconds(1.8f - BOSS_Atk01_delay * 4);
+                j = 0;
+                for (int i = BOSS_Atk01_clockwise_cards.Length - 1; i >= 0; i--)
+                {
+                    BOSS_Atk01_clockwise[i].SetBool("ready_area_wait", false);
+
+                    switch (i)
+                    {
+                        case 0:
+                        case 3:
+                        case 6:
+                        case 10:
+                        case 13:
+                            BOSS_Atk01_Tips_Tip[j].enabled = false;
+                            BOSS_Atk01_Tips_Tip[j].gameObject.SetActive(false);
+                            j++;
                             yield return new WaitForSeconds(BOSS_Atk01_delay);
                             break;
                     }
