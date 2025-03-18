@@ -53,8 +53,8 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator BOSS_Atk01_ready01()
     {
-        // random = 1;
-        random = Random.Range(0, 2);
+        random = 2;
+        // random = Random.Range(0, 2);
         Boss_Animator.SetTrigger("aup");
         Boss_Animator.SetBool("atk_end", true);
         switch (random)
@@ -102,9 +102,30 @@ public class Boss_col : MonoBehaviour
                     }
                 }
                 break;
+            case 2://由內向外
+                for (int i = 0; i < (BOSS_Atk01_Tips_Tip.Length - 1) / 2 + 1 + 1; i++)
+                {
+                    BOSS_Atk01_Tips_Tip[i].gameObject.SetActive(true);
+                    BOSS_Atk01_Tips_Tip[BOSS_Atk01_Tips_Tip.Length - 1 - i].gameObject.SetActive(true);
+                    yield return new WaitForSeconds(BOSS_Atk01_delay);
+                }
+                for (int i = 0; i < (BOSS_Atk01_clockwise.Length - 1) / 2 + 1; i++)
+                {
+                    BOSS_Atk01_clockwise[i].SetTrigger("ready_area");
+                    BOSS_Atk01_clockwise[i].SetBool("ready_area_wait", true);
+                    BOSS_Atk01_clockwise[BOSS_Atk01_clockwise.Length - 1 - i].SetTrigger("ready_area");
+                    BOSS_Atk01_clockwise[BOSS_Atk01_clockwise.Length - 1 - i].SetBool("ready_area_wait", true);
+                    switch (i)
+                    {
+                        case 2:
+                        case 5:
+                            yield return new WaitForSeconds(BOSS_Atk01_delay);
+                            break;
+                    }
+                }
+                break;
         }
         Atk_state = 2;
-        //逆時針、順時針、由內向外、由外向內
     }
     IEnumerator BOSS_Atk01_ready02(float wait)
     {
@@ -192,10 +213,49 @@ public class Boss_col : MonoBehaviour
                     }
                 }
                 break;
+            case 2://由內向外
+                for (int i = 0; i < (BOSS_Atk01_clockwise.Length - 1) / 2 + 1; i++)
+                {
+                    int card_style = Random.Range(0, 6);
+                    BOSS_Atk01_clockwise_cards[i].SetTrigger($"Atk{card_style}");
+                    card_style = Random.Range(0, 6);
+                    BOSS_Atk01_clockwise_cards[BOSS_Atk01_clockwise_cards.Length - 1 - i].SetTrigger($"Atk{card_style}");
+                    switch (i)
+                    {
+                        case 2:
+                        case 5:
+                            BOSS_Atk01_Tips_Tip[j].enabled = true;
+                            BOSS_Atk01_Tips_Tip[BOSS_Atk01_Tips_Tip.Length - 1 - j].enabled = true;
+                            j++;
+                            yield return new WaitForSeconds(BOSS_Atk01_delay);
+                            break;
+                    }
+                }
+                yield return new WaitForSeconds(1.8f - BOSS_Atk01_delay * 4);
+                j = 0;
+                for (int i = 0; i < (BOSS_Atk01_clockwise.Length - 1) / 2 + 1; i++)
+                {
+                    BOSS_Atk01_clockwise[i].SetBool("ready_area_wait", false);
+                    BOSS_Atk01_clockwise[BOSS_Atk01_clockwise.Length - 1 - i].SetBool("ready_area_wait", false);
+                    switch (i)
+                    {
+                        case 0:
+                        case 2:
+                        case 5:
+                            BOSS_Atk01_Tips_Tip[j].enabled = false;
+                            BOSS_Atk01_Tips_Tip[BOSS_Atk01_Tips_Tip.Length - 1 - j].enabled = false;
+                            BOSS_Atk01_Tips_Tip[j].gameObject.SetActive(false);
+                            BOSS_Atk01_Tips_Tip[BOSS_Atk01_Tips_Tip.Length - 1 - j].gameObject.SetActive(false);
+                            j++;
+                            yield return new WaitForSeconds(BOSS_Atk01_delay);
+                            break;
+                    }
+                }
+                break;
         }
         Atk_state = 2;
         Atk_bool = false;
-        //逆時針、順時針、由內向外、由外向內
+        //由內向外、由外向內、由近向遠、由遠向近
     }
 
     private void Boss_Atk02()
