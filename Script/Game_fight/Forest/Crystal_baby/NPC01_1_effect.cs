@@ -110,7 +110,7 @@ public class NPC01_1_effect : MonoBehaviour
                         if (control.NPC_HP < NPC_back)
                             control.NPC_HP = 0;
                         else
-                            transform.position -= NPC_back * Vector3.back;
+                            transform.position -= NPC_back/2 * Vector3.back;
                         continue;
                     case 25: // Smoke Bomb
                         skill_25_effect = true;
