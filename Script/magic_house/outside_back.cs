@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class outside_back : MonoBehaviour
 {
     private GameObject player_S;
-    // Start is called before the first frame update
     void Start()
     {
-        if (static_parameters.teaching_stop < 100 || static_parameters.isTeaching == true){
+        if (static_parameters.teaching_stop < 100 || static_parameters.isTeaching == true)
+        {
             Destroy(gameObject);
         }
         player_S = GameObject.Find("Player_S");

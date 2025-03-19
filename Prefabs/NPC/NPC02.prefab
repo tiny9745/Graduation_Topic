@@ -853,6 +853,7 @@ MonoBehaviour:
   nPC_hP: {fileID: 6529399861343814723}
   npc_interactive: {fileID: 706302328957079377}
   effect: {fileID: 5798026473166693158}
+  _UI: {fileID: 0}
   animator: {fileID: 124343239934936072}
   animator_to_atk: {fileID: 8509637281782683286}
   weaponDUCK: {fileID: 280408946520091740}
@@ -869,7 +870,6 @@ MonoBehaviour:
   npcSpeed: 5
   NPC_HP: 80
   stun: 0
-  _UI: {fileID: 0}
   spriteTransform: {fileID: 8852287399680147352}
 --- !u!195 &5936887255690602063
 NavMeshAgent:
@@ -986,7 +986,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1010,7 +1010,6 @@ MonoBehaviour:
   Ward12: {fileID: 7035810975034627314, guid: cedb763a9d8468b4c880394512cb93db, type: 3}
   skill_01_1: {fileID: 0}
   skill_02: {fileID: 8199237112565463145}
-  skill04A: {fileID: 0}
   skill04_B: {fileID: 1304707575308387936}
   skill05A: {fileID: 0}
   skill05B: {fileID: 6113270095675005648}
