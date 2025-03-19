@@ -62,7 +62,6 @@ public class Play_move : MonoBehaviour
     void MC_Nav_Baking_range(float h, float v)
     {
         Vector3 direction = new Vector3(h, 0, v).normalized;
-<<<<<<< HEAD
 
         if (direction.magnitude >= 0.1f)
         {
@@ -83,17 +82,7 @@ public class Play_move : MonoBehaviour
                 Debug.Log("目標位置不在 NavMesh 上，回到最後有效位置");
             }
         }
-=======
->>>>>>> ea2a9f911c6ace8b50948a8d42f07c93198f7363
     }
-
-    // bool IsPositionOnNavMesh(Vector3 position)
-    // {
-    //     if (!GetComponent<NavMeshAgent>().enabled) return false;
-    //     NavMeshHit hit;
-    //     return NavMesh.SamplePosition(position, out hit, navMeshCheckRadius, NavMesh.AllAreas);
-    // }
-
     bool NavMeshHasBakedData()
     {
         NavMeshData[] navMeshData = FindObjectsOfType<NavMeshData>();
