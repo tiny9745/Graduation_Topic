@@ -57,22 +57,39 @@ public class Play_move : MonoBehaviour
         if (movement.magnitude > 0) rb.MovePosition(newPosition);// Apply movement        
     }
 
+    Vector3 lastValidPosition; // 記錄最後合法的 NavMesh 位置
+
     void MC_Nav_Baking_range(float h, float v)
     {
         Vector3 direction = new Vector3(h, 0, v).normalized;
+
         if (direction.magnitude >= 0.1f)
         {
-            targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
-            targetPosition.z += 10f; // 假設偏移
+            Vector3 proposedPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
+
+            // **檢查該位置是否在 NavMesh 上**
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(proposedPosition, out hit, navMeshCheckRadius, NavMesh.AllAreas))
+            {
+                // **確認該位置可行走，才更新目標位置**
+                targetPosition = hit.position;
+                lastValidPosition = hit.position; // 記錄最後有效位置
+            }
+            else
+            {
+                // **無效位置 -> 回到最後安全的位置**
+                targetPosition = lastValidPosition;
+                Debug.Log("目標位置不在 NavMesh 上，回到最後有效位置");
+            }
         }
     }
 
-    bool IsPositionOnNavMesh(Vector3 position)
-    {
-        if (!GetComponent<NavMeshAgent>().enabled) return false;
-        NavMeshHit hit;
-        return NavMesh.SamplePosition(position, out hit, navMeshCheckRadius, NavMesh.AllAreas);
-    }
+    // bool IsPositionOnNavMesh(Vector3 position)
+    // {
+    //     if (!GetComponent<NavMeshAgent>().enabled) return false;
+    //     NavMeshHit hit;
+    //     return NavMesh.SamplePosition(position, out hit, navMeshCheckRadius, NavMesh.AllAreas);
+    // }
 
     bool NavMeshHasBakedData()
     {
