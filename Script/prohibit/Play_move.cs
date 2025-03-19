@@ -60,11 +60,6 @@ public class Play_move : MonoBehaviour
     void MC_Nav_Baking_range(float h, float v)
     {
         Vector3 direction = new Vector3(h, 0, v).normalized;
-        if (direction.magnitude >= 0.1f)
-        {
-            targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
-            targetPosition.z += 10f; // 假設偏移
-        }
     }
 
     bool IsPositionOnNavMesh(Vector3 position)
@@ -79,11 +74,6 @@ public class Play_move : MonoBehaviour
         NavMeshData[] navMeshData = FindObjectsOfType<NavMeshData>();
         return navMeshData != null && navMeshData.Length > 0;
     }
-    bool IsMoving()
-    {
-        return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
-    }
-
     void UpdateFaceDirection(Vector3 movement)
     {
         if (movement != Vector3.zero)
