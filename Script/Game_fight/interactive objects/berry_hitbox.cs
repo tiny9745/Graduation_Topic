@@ -20,6 +20,7 @@ public class berry_hitbox : MonoBehaviour
             Debug.LogError("spriteRenderer 陣列未初始化或為空！");
             return;
         }
+
         if (isExplode)
         {
             timmer += Time.deltaTime;
@@ -27,7 +28,9 @@ public class berry_hitbox : MonoBehaviour
             if (bomb_berry.berry == 0 && timmer < explode_time_max)
             {
                 animator_ready.SetBool("ani_bool_ready", false);
-                for (int i = 0; i < bomb_berry.lastChildCount; i++)
+
+                // **確保索引不超過 spriteRenderer 的範圍**
+                for (int i = 0; i < Mathf.Min(bomb_berry.lastChildCount, spriteRenderer.Length); i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
@@ -45,7 +48,6 @@ public class berry_hitbox : MonoBehaviour
             if (timmer >= explode_time_max)
             {
                 isExplode = false;
-                // **觸發爆炸（即使 Player 已經離開範圍，仍會爆炸）**
                 Bomb_Berry_Explode();
             }
         }
@@ -57,7 +59,6 @@ public class berry_hitbox : MonoBehaviour
         {
             Debug.Log("Berry in range: " + bomb_berry.berry);
 
-            // 確保不重複加入
             if (!objectsInRange.Contains(other.gameObject))
             {
                 objectsInRange.Add(other.gameObject);
@@ -70,7 +71,8 @@ public class berry_hitbox : MonoBehaviour
                 isExplode = true;
                 timmer = 0;
 
-                for (int i = 0; i < bomb_berry.startChildCount - 3; i++)
+                // **確保索引不超過 spriteRenderer 的範圍**
+                for (int i = 0; i < Mathf.Min(bomb_berry.startChildCount - 3, spriteRenderer.Length); i++)
                 {
                     if (spriteRenderer[i] != null)
                     {
@@ -113,7 +115,7 @@ public class berry_hitbox : MonoBehaviour
             }
 
             if (playerInRange != null) static_parameters.MC_HP -= 10 * bomb_berry.berry;
-            
+
             bomb_berry.Destroy_Berry();
         }
     }
