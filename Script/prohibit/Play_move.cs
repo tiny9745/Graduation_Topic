@@ -35,10 +35,8 @@ public class Play_move : MonoBehaviour
 
             movement = new Vector3(horizontalInput, 0f, verticalInput);
 
-            if (movement.magnitude > 1)
-            {
-                movement.Normalize();
-            }
+            if (movement.magnitude > 1) movement.Normalize();
+            
             if (Ani_MC.isDashCooldown_for_move)
             {
                 newPosition += movement * dashSpeed * Time.fixedDeltaTime; // Dash speed
