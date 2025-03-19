@@ -18,43 +18,48 @@ public class Play_move : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 newPosition = rb.position; // Get current position
-        if (static_parameters.MC_HP > 0 && Death_MC.isDead && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
+        Vector3 newPosition = rb.position; // 取得當前位置
+
+        if (static_parameters.MC_HP > 0 && Death_MC.isDead && static_parameters.isTeaching == false &&
+            static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
         {
-            // 讀取輸入
             horizontalInput = Input.GetAxis("Horizontal");
             verticalInput = Input.GetAxis("Vertical");
             walkSpeed = static_parameters.MC_Wspeed;
             dashSpeed = walkSpeed * 3;
 
-            // 檢查 NavMesh 是否有 Baking 資料
             navMeshAvailable = NavMeshHasBakedData();
 
-            // 更新 NavMesh 範圍內的移動
             if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
 
             movement = new Vector3(horizontalInput, 0f, verticalInput);
 
-            if (movement.magnitude > 1)
-            {
-                movement.Normalize();
-            }
+            if (movement.magnitude > 1) movement.Normalize();
+
             if (Ani_MC.isDashCooldown_for_move)
             {
-                newPosition += movement * dashSpeed * Time.fixedDeltaTime; // Dash speed
+                newPosition += movement * dashSpeed * Time.fixedDeltaTime;
             }
             else if (Ani_MC.isAttackPlaying)
             {
-                newPosition += movement * 0.2f * Time.fixedDeltaTime; // Slow movement
+                newPosition += movement * 0.2f * Time.fixedDeltaTime;
             }
             else
             {
-                newPosition += movement * walkSpeed * Time.fixedDeltaTime; // Walk speed
+                newPosition += movement * walkSpeed * Time.fixedDeltaTime;
             }
-            // 更新角色朝向
+
+            // **確保角色回到最後有效位置**
+            if (!IsPositionOnNavMesh(newPosition))
+            {
+                Debug.Log("嘗試移動到無效區域，將位置設為 lastValidPosition");
+                newPosition = lastValidPosition; // 強制回到安全區域
+            }
+
             UpdateFaceDirection(movement);
         }
-        if (movement.magnitude > 0) rb.MovePosition(newPosition);// Apply movement        
+
+        if (movement.magnitude > 0) rb.MovePosition(newPosition);
     }
 
     Vector3 lastValidPosition; // 記錄最後合法的 NavMesh 位置
@@ -62,37 +67,30 @@ public class Play_move : MonoBehaviour
     void MC_Nav_Baking_range(float h, float v)
     {
         Vector3 direction = new Vector3(h, 0, v).normalized;
-<<<<<<< HEAD
-
         if (direction.magnitude >= 0.1f)
         {
-            Vector3 proposedPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
+            targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
 
-            // **檢查該位置是否在 NavMesh 上**
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(proposedPosition, out hit, navMeshCheckRadius, NavMesh.AllAreas))
+            if (IsPositionOnNavMesh(targetPosition))
             {
-                // **確認該位置可行走，才更新目標位置**
-                targetPosition = hit.position;
-                lastValidPosition = hit.position; // 記錄最後有效位置
+                lastValidPosition = targetPosition; // 更新最後有效的位置
             }
             else
             {
-                // **無效位置 -> 回到最後安全的位置**
-                targetPosition = lastValidPosition;
-                Debug.Log("目標位置不在 NavMesh 上，回到最後有效位置");
+                Debug.Log("目標位置不在 NavMesh 上，取消移動");
+                targetPosition = lastValidPosition; // 回到最後有效的位置
             }
         }
-=======
->>>>>>> ea2a9f911c6ace8b50948a8d42f07c93198f7363
     }
+    bool IsPositionOnNavMesh(Vector3 position)
+    {
+        if (!agent.enabled) return false; // 若 NavMeshAgent 未啟用，直接返回 false
 
-    // bool IsPositionOnNavMesh(Vector3 position)
-    // {
-    //     if (!GetComponent<NavMeshAgent>().enabled) return false;
-    //     NavMeshHit hit;
-    //     return NavMesh.SamplePosition(position, out hit, navMeshCheckRadius, NavMesh.AllAreas);
-    // }
+        NavMeshHit hit;
+        bool isValid = NavMesh.SamplePosition(position, out hit, navMeshCheckRadius, NavMesh.AllAreas);
+
+        return isValid; // 回傳 true (在 NavMesh 上) 或 false (超出範圍)
+    }
 
     bool NavMeshHasBakedData()
     {
