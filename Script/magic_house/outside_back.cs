@@ -9,6 +9,9 @@ public class outside_back : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (static_parameters.teaching_stop < 100 || static_parameters.isTeaching == true){
+            Destroy(gameObject);
+        }
         player_S = GameObject.Find("Player_S");
     }
 

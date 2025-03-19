@@ -31,7 +31,7 @@ public class Play_move : MonoBehaviour
             navMeshAvailable = NavMeshHasBakedData();
 
             // 更新 NavMesh 範圍內的移動
-            //if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
+            if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
 
             movement = new Vector3(horizontalInput, 0f, verticalInput);
 

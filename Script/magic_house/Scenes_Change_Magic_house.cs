@@ -25,7 +25,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && (static_parameters.teaching_stop == 1 || static_parameters.teaching_stop >= 100))
         {
-           loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
+            loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
             StartCoroutine(LoadSceneWithProgress("house_outside"));
         }
     }
@@ -87,7 +87,6 @@ public class Scenes_Change_Magic_house : MonoBehaviour
         {
             wave_return = true;
         }
-
         float moveDirection = wave_return ? 1 : -1;
         newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, newPosition_start.x + (moveDirection * wave_bar_range), loadingSpeed * Time.deltaTime / 3);
         rect.anchoredPosition = newPosition_horizontal;

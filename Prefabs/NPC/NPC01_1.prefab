@@ -97,6 +97,10 @@ MonoBehaviour:
   animator_to_atk: {fileID: 1769806620761152983}
   weaponDUCK: {fileID: 7886900022609078045}
   TargetObj: {fileID: 0}
+  NPC01_1: {fileID: 0}
+  Img_npc: {fileID: 2288497789995992781}
+  hitbox_Crystal_baby_small: {fileID: 2939803849758536278}
+  Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
   DetectDistance: 10
   NPC01_ATK: 4
   NPC01_DEF: 2
@@ -105,11 +109,7 @@ MonoBehaviour:
   NPC_HP: 40
   minus: 0
   stun: 0
-  NPC01_1: {fileID: 0}
-  hitbox_Crystal_baby_small: {fileID: 2939803849758536278}
-  Drop: {fileID: 8990647007487261236, guid: 97aa78b69f17c194a92590a47c1fb569, type: 3}
   NPC_angle: 0
-  Img_npc: {fileID: 2288497789995992781}
   spriteTransform: {fileID: 224236896702524408}
 --- !u!195 &8046484801250225074
 NavMeshAgent:
@@ -225,7 +225,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -249,7 +249,6 @@ MonoBehaviour:
   Ward12: {fileID: 7035810975034627314, guid: cedb763a9d8468b4c880394512cb93db, type: 3}
   skill_01_1: {fileID: 0}
   skill_02: {fileID: 2392367502799093003}
-  skill04A: {fileID: 0}
   skill04_B: {fileID: 4819326072248746754}
   skill05A: {fileID: 0}
   skill05B: {fileID: 300718512711983026}

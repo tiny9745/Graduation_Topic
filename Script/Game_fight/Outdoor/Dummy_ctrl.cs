@@ -17,6 +17,10 @@ public class Dummy_ctrl : MonoBehaviour
 
     void Start()
     {
+        if (static_parameters.teaching_stop < 100 || static_parameters.isTeaching == true)
+        {
+            Destroy(gameObject);
+        }
         NPC_HP = NPC_HP_Max;
         hitbox_Dummy.SetActive(false);
 

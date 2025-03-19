@@ -9,6 +9,10 @@ public class JiangMi : MonoBehaviour
     void Start()
     {
         Invoke("JM_atk", .5f);
+        if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void JM_atk()
@@ -27,10 +31,11 @@ public class JiangMi : MonoBehaviour
         if (Hit.gameObject.CompareTag("MC_Att"))
         {
             JM_animator.SetInteger("JM", 2);
-            Invoke("Dead_wait",4f);
+            Invoke("Dead_wait", 4f);
         }
     }
-    private void Dead_wait(){
+    private void Dead_wait()
+    {
         static_parameters.teaching_stop = 4;
         Destroy(gameObject);
     }
