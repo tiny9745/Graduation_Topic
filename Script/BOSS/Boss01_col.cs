@@ -126,7 +126,6 @@ public class Boss_col : MonoBehaviour
                 }
                 break;
         }
-        Atk_state = 2;
     }
     IEnumerator BOSS_Atk01_ready02(float wait)
     {
@@ -272,12 +271,14 @@ public class Boss_col : MonoBehaviour
     {
         for (int i = 0; i < BOSS_Atk02_Ani_cards.Length; i++)
         {
+            BOSS_Atk02_Ani_cards[i].gameObject.SetActive(true);
             BOSS_Atk02_Ani_cards[i].SetTrigger($"Atk0{i + 1}");
             yield return new WaitForSeconds(wait);
         }
         for (int i = 0; i < BOSS_Atk02_Atk_cards.Length; i++)
         {
             Instantiate(BOSS_Atk02_Atk_cards[i], BOSS_Atk02_Ani_cards[i].gameObject.transform.position, BOSS_Atk02_Area.transform.rotation);
+            BOSS_Atk02_Ani_cards[i].gameObject.SetActive(false);
             yield return new WaitForSeconds(wait);
         }
         Atk_bool = false;
