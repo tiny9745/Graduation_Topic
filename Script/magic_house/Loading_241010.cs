@@ -11,6 +11,7 @@ public class Loading_241010 : MonoBehaviour
     public Image loadingBar;
     public float loadingSpeed = 100f; // 控制進度條速度
     public float maxFillAmount = 275f; // 用於控制 Y 軸的最大值
+    float scaleFactor = Screen.height / 1080f; // 依據螢幕解析度縮放
     public float wave_bar_range = 30f;
     private float targetFillAmount = 0f; // 目標進度
     private float minimumLoadingTime = 2f; // 最少顯示 x 秒
@@ -36,6 +37,7 @@ public class Loading_241010 : MonoBehaviour
         newPosition_start = loadingBar.transform.position;
         loadingScreen.SetActive(true);
         StartCoroutine(LoadSceneAsync(targetSceneName));
+        maxFillAmount = 275f * scaleFactor; // 讓 maxFillAmount 根據解析度縮放
     }
 
     void Update()
