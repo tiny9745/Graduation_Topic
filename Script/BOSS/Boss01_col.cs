@@ -272,7 +272,7 @@ public class Boss_col : MonoBehaviour
     {
         for (int i = 0; i < BOSS_Atk02_Ani_cards.Length; i++)
         {
-            BOSS_Atk02_Ani_cards[i].SetTrigger($"Atk{i}");
+            BOSS_Atk02_Ani_cards[i].SetTrigger($"Atk0{i + 1}");
             yield return new WaitForSeconds(wait);
         }
         for (int i = 0; i < BOSS_Atk02_Atk_cards.Length; i++)
