@@ -6,12 +6,14 @@ using UnityEngine;
 public class Boss_col : MonoBehaviour
 {
     public Animator Boss_Animator;
-    float Atk_time = 0;
+    float Atk_time = -5;
     bool Atk_bool = false;
     int Atk_state = 1;
+    private GameObject targetObject;
     void Start()
     {
-        Invoke("Boss_col_Atk01", 5f);
+        targetObject = GameObject.Find("Player_S");
+        // Invoke("Boss_Atk01", 5f);
     }
 
     void Update()
@@ -26,7 +28,7 @@ public class Boss_col : MonoBehaviour
             switch (Atk_state)
             {
                 case 1:
-
+                    Boss_Atk01();
                     break;
                 case 2:
                     Boss_Atk02();
@@ -37,14 +39,13 @@ public class Boss_col : MonoBehaviour
             }
         }
     }
-    // public GameObject[] BOSS_Atk01_Tips_Area;
     public Collider[] BOSS_Atk01_Tips_Tip;
     public Animator[] BOSS_Atk01_clockwise;
     public Animator[] BOSS_Atk01_clockwise_cards;
     public Animator[] BOSS_Atk01_inOutside;
     private int random; private float BOSS_Atk01_delay = 0.167f;
 
-    private void Boss_col_Atk01()
+    private void Boss_Atk01()
     {
         Atk_bool = true;
         random = Random.Range(0, 4);
@@ -53,8 +54,8 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator BOSS_Atk01_ready01()
     {
-        random = 2;
-        // random = Random.Range(0, 2);
+        // random = 2;
+        random = Random.Range(0, 3);
         Boss_Animator.SetTrigger("aup");
         Boss_Animator.SetBool("atk_end", true);
         switch (random)
@@ -258,8 +259,28 @@ public class Boss_col : MonoBehaviour
         //由內向外、由外向內、由近向遠、由遠向近
     }
 
+    public Animator[] BOSS_Atk02_Ani_cards;
+    public GameObject[] BOSS_Atk02_Atk_cards;
+    public GameObject BOSS_Atk02_Area;
+
     private void Boss_Atk02()
     {
+        Atk_bool = true;
+        StartCoroutine(BOSS_Atk02_ready01(0.67f));
+    }
+    IEnumerator BOSS_Atk02_ready01(float wait)
+    {
+        for (int i = 0; i < BOSS_Atk02_Ani_cards.Length; i++)
+        {
+            BOSS_Atk02_Ani_cards[i].SetTrigger($"Atk{i}");
+            yield return new WaitForSeconds(wait);
+        }
+        for (int i = 0; i < BOSS_Atk02_Atk_cards.Length; i++)
+        {
+            Instantiate(BOSS_Atk02_Atk_cards[i], BOSS_Atk02_Ani_cards[i].gameObject.transform.position, BOSS_Atk02_Area.transform.rotation);
+            yield return new WaitForSeconds(wait);
+        }
+        Atk_bool = false;
         Atk_state = 3;
     }
 
