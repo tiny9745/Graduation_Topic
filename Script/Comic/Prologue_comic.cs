@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -219,14 +218,6 @@ public class Prologue_comic : MonoBehaviour
                     Debug.LogError("Failed to load image from Resources: " + BG_Path);
                 }
             }
-            else
-            {
-                Debug.LogError("BG GameObject does not have an Image component.");
-            }
-        }
-        else
-        {
-            Debug.LogError("BG GameObject not found.");
         }
     }
 
