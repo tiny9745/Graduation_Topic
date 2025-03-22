@@ -237,21 +237,28 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                imagePath = "Sprites/Comic/Prologue/01/comics_1-1";
+                change_comic_BG("Sprites/Comic/Leading comic/01/comics01_1");
+                imagePath = "Sprites/Comic/Leading comic/01/comics01_2";
                 break;
             case 2:
-                imagePath = "Sprites/Comic/Prologue/01/comics_1-2";
+                imagePath = "Sprites/Comic/Leading comic/01/word box01_1";
                 break;
             case 3:
-                imagePath = "Sprites/Comic/Prologue/01/comics_1-3";
+                imagePath = "Sprites/Comic/Leading comic/01/comics01_3";
                 break;
             case 4:
-                imagePath = "Sprites/Comic/Prologue/01/dialogbox_1-1";
+                imagePath = "Sprites/Comic/Leading comic/01/comics01_4";
                 break;
             case 5:
-                imagePath = "Sprites/Comic/Prologue/01/comics_1-4";
+                imagePath = "Sprites/Comic/Leading comic/01/word box01_2";
                 break;
             case 6:
+                imagePath = "Sprites/Comic/Leading comic/01/comics01_5";
+                break;
+            case 7:
+                imagePath = "Sprites/Comic/Leading comic/01/word box01_3";
+                break;
+            case 8:
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
                 comic_step = 1;
@@ -265,7 +272,7 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                change_comic_BG("Sprites/Comic/Prologue/02/background_c2");
+                change_comic_BG("Sprites/Comic/Leading comic/black BG");
                 imagePath = "Sprites/Comic/Prologue/02/comics_2-1";
                 break;
             case 2:
