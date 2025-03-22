@@ -6,34 +6,32 @@ using UnityEngine;
 public class Boss_col : MonoBehaviour
 {
     public Animator Boss_Animator;
-    float Atk_time = -5;
-    bool Atk_bool = false;
-    int Atk_state = 1;
-    private GameObject targetObject;
+    static public float BOSS_Atk_time = -5;
+    static public bool BOSS_Atk_bool = false;
+    static public int BOSS_Atk_state = 1;
+
     void Start()
     {
-        targetObject = GameObject.Find("Player_S");
+        // targetObject = GameObject.Find("Player_S");
         // Invoke("Boss_Atk01", 5f);
     }
 
     void Update()
     {
-        if (Atk_time <= 3 && Atk_bool == false)
+        if (BOSS_Atk_time <= 3 && BOSS_Atk_bool == false)
         {
-            Atk_time += Time.deltaTime;
+            BOSS_Atk_time += Time.deltaTime;
         }
         else
         {
-            Atk_time = 0;
-            switch (Atk_state)
+            switch (BOSS_Atk_state)
             {
                 case 1:
+                    BOSS_Atk_time = 0;
                     Boss_Atk01();
                     break;
-                case 2:
-                    Boss_Atk02();
-                    break;
                 case 3:
+                    BOSS_Atk_time = 0;
                     Boss_Atk03();
                     break;
             }
@@ -47,11 +45,13 @@ public class Boss_col : MonoBehaviour
 
     private void Boss_Atk01()
     {
-        Atk_bool = true;
+        BOSS_Atk_bool = true;
         random = Random.Range(0, 4);
         StartCoroutine(BOSS_Atk01_ready01());
         StartCoroutine(BOSS_Atk01_ready02(3f));
     }
+
+
     IEnumerator BOSS_Atk01_ready01()
     {
         // random = 2;
@@ -253,46 +253,23 @@ public class Boss_col : MonoBehaviour
                 }
                 break;
         }
-        Atk_state = 2;
-        Atk_bool = false;
+        BOSS_Atk_state = 2;
+        BOSS_Atk_bool = false;
         //由內向外、由外向內、由近向遠、由遠向近
     }
 
-    public Animator[] BOSS_Atk02_Ani_cards;
-    public GameObject[] BOSS_Atk02_Atk_cards;
-    public GameObject BOSS_Atk02_Area;
 
-    private void Boss_Atk02()
-    {
-        Atk_bool = true;
-        StartCoroutine(BOSS_Atk02_ready01(0.67f));
-    }
-    IEnumerator BOSS_Atk02_ready01(float wait)
-    {
-        for (int i = 0; i < BOSS_Atk02_Ani_cards.Length; i++)
-        {
-            BOSS_Atk02_Ani_cards[i].gameObject.SetActive(true);
-            BOSS_Atk02_Ani_cards[i].SetTrigger($"Atk0{i + 1}");
-            yield return new WaitForSeconds(wait);
-        }
-        for (int i = 0; i < BOSS_Atk02_Atk_cards.Length; i++)
-        {
-            Instantiate(BOSS_Atk02_Atk_cards[i], BOSS_Atk02_Ani_cards[i].gameObject.transform.position, BOSS_Atk02_Area.transform.rotation);
-            BOSS_Atk02_Ani_cards[i].gameObject.SetActive(false);
-            yield return new WaitForSeconds(wait);
-        }
-        Atk_bool = false;
-        Atk_state = 3;
-    }
+
+
 
     private void Boss_Atk03()
     {
-        Atk_state = 1;
+        BOSS_Atk_state = 1;
     }
 
     private void Atk_End()
     {
-        Atk_bool = false;
+        BOSS_Atk_bool = false;
     }
 
     private void OnTriggerEnter(Collider collision)
