@@ -35,7 +35,7 @@ public class BOSS_Atk02_Target : MonoBehaviour
     }
     private void Boss_Atk02()
     {
-        StartCoroutine(BOSS_Atk02_ready01(1.05f));
+        StartCoroutine(BOSS_Atk02_ready01(1.06f));
     }
     IEnumerator BOSS_Atk02_ready01(float wait)
     {
@@ -43,11 +43,18 @@ public class BOSS_Atk02_Target : MonoBehaviour
         {
             BOSS_Atk02_Ani_cards[i].gameObject.SetActive(true);
             BOSS_Atk02_Ani_cards[i].SetBool($"Atk0{i + 1}", true);
-            yield return new WaitForSeconds(wait);
+
+            // 等待動畫播放到 95% 再繼續
+            yield return new WaitUntil(() =>
+            {
+                AnimatorStateInfo stateInfo = BOSS_Atk02_Ani_cards[i].GetCurrentAnimatorStateInfo(0);
+                return stateInfo.IsName($"BOSS_Atk02_0{i + 1}") && stateInfo.normalizedTime >= 0.95f;
+            });
+            Debug.Log("動畫播放到 95% 觸發條件！");
             BOSS_Atk02_hints[i].SetActive(true);
             BOSS_Atk02_Ani_target[i].SetTrigger("BOSS_Atk02_Target");
         }
-        yield return new WaitForSeconds(wait);
+        // yield return new WaitForSeconds(wait);
         for (int i = 0; i < BOSS_Atk02_Ani_cards.Length; i++)
         {
             BOSS_Atk02_ready02(i);
