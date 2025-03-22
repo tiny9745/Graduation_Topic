@@ -6,11 +6,6 @@ public class BOSS_Atk02_card_col : MonoBehaviour
 {
     float speed = 30f;
     float Timer = 0;
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         // 根據物件的朝向向前移動
@@ -25,7 +20,7 @@ public class BOSS_Atk02_card_col : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            static_parameters.MC_HP -= 20;
+            static_parameters.MC_HP -= static_parameters.MC_HP_Max * 0.1f;
             Destroy(gameObject);
         }
     }

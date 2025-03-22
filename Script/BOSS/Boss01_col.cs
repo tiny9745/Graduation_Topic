@@ -31,6 +31,11 @@ public class Boss_col : MonoBehaviour
                     BOSS_Atk_time = 0;
                     Boss_Atk01();
                     break;
+                case 2:
+                    BOSS_Atk_bool = true;
+                    BOSS_Atk_time = 0;
+                    Boss_Atk02();
+                    break;
                 case 3:
                     BOSS_Atk_bool = true;
                     BOSS_Atk_time = 0;
@@ -51,7 +56,6 @@ public class Boss_col : MonoBehaviour
         StartCoroutine(BOSS_Atk01_ready01());
         StartCoroutine(BOSS_Atk01_ready02(3f));
     }
-
 
     IEnumerator BOSS_Atk01_ready01()
     {
@@ -259,6 +263,15 @@ public class Boss_col : MonoBehaviour
         //由內向外、由外向內、由近向遠、由遠向近
     }
 
+    private void Boss_Atk02()
+    {
+        StartCoroutine(BOSS_Atk02_ready01(0.67f));
+    }
+
+    IEnumerator BOSS_Atk02_ready01(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+    }
     private void Boss_Atk03()
     {
         BOSS_Atk_state = 1;

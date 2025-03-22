@@ -16,7 +16,7 @@ public class BOSS_Atk02_Target : MonoBehaviour
         {
             triggered[i] = false;
         }
-        Invoke("Boss_Atk02", 10f);
+        Invoke("Boss_Atk02", 7f);
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class BOSS_Atk02_Target : MonoBehaviour
     }
     private void Boss_Atk02()
     {
-        StartCoroutine(BOSS_Atk02_ready01(0.67f));
+        StartCoroutine(BOSS_Atk02_ready01(1.05f));
     }
     IEnumerator BOSS_Atk02_ready01(float wait)
     {
@@ -44,6 +44,7 @@ public class BOSS_Atk02_Target : MonoBehaviour
             BOSS_Atk02_Ani_cards[i].gameObject.SetActive(true);
             BOSS_Atk02_Ani_cards[i].SetBool($"Atk0{i + 1}", true);
             yield return new WaitForSeconds(wait);
+            BOSS_Atk02_hints[i].SetActive(true);
             BOSS_Atk02_Ani_target[i].SetTrigger("BOSS_Atk02_Target");
         }
         yield return new WaitForSeconds(wait);
