@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BOSS_Atk02_card_col : MonoBehaviour
 {
-    // Start is called before the first frame update
+    float speed = 30f;
+    private GameObject targetObject;
     void Start()
     {
-        
+        targetObject = GameObject.Find("Player_S");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (targetObject != null)
+        {
+            transform.Translate(transform.position * speed * Time.deltaTime, Space.World);
+        }
     }
 }

@@ -23171,6 +23171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1306385328}
   - component: {fileID: 1306385329}
+  - component: {fileID: 1306385330}
   m_Layer: 9
   m_Name: BOSS_Atk02
   m_TagString: Untagged
@@ -23240,7 +23241,18 @@ MonoBehaviour:
   - {fileID: 7152324444891182821}
   - {fileID: 3546001278510047859}
   - {fileID: 3431480936315773746}
-  BOSS_Atk02_Area: {fileID: 9009058389520475302}
+--- !u!114 &1306385330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306385327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d167e8b934a6764ea30d9d76be57fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1308120725
 GameObject:
   m_ObjectHideFlags: 0
@@ -38521,7 +38533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665106452557131918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25066262, y: 0.00000000832853, z: -0.0000000021564985, w: 0.9680745}
+  m_LocalRotation: {x: 0.25066262, y: 0.000000008328529, z: -0.0000000021564983, w: 0.9680745}
   m_LocalPosition: {x: -0.5, y: 12.52, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -43220,7 +43232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2790218688367779811}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -8.881784e-16, z: 2.220446e-16, w: 1}
+  m_LocalRotation: {x: -0, y: 8.881784e-16, z: -4.440892e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
