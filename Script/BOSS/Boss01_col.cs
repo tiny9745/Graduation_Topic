@@ -22,15 +22,17 @@ public class Boss_col : MonoBehaviour
         {
             BOSS_Atk_time += Time.deltaTime;
         }
-        else
+        if (BOSS_Atk_time > 3)
         {
             switch (BOSS_Atk_state)
             {
                 case 1:
+                    BOSS_Atk_bool = true;
                     BOSS_Atk_time = 0;
                     Boss_Atk01();
                     break;
                 case 3:
+                    BOSS_Atk_bool = true;
                     BOSS_Atk_time = 0;
                     Boss_Atk03();
                     break;
@@ -45,7 +47,6 @@ public class Boss_col : MonoBehaviour
 
     private void Boss_Atk01()
     {
-        BOSS_Atk_bool = true;
         random = Random.Range(0, 4);
         StartCoroutine(BOSS_Atk01_ready01());
         StartCoroutine(BOSS_Atk01_ready02(3f));
@@ -257,10 +258,6 @@ public class Boss_col : MonoBehaviour
         BOSS_Atk_bool = false;
         //由內向外、由外向內、由近向遠、由遠向近
     }
-
-
-
-
 
     private void Boss_Atk03()
     {
