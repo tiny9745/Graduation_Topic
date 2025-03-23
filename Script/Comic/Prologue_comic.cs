@@ -276,10 +276,10 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_1";
                 break;
             case 2:
-                imagePath = "Sprites/Comic/Leading comic/01/word box02_1";
+                imagePath = "Sprites/Comic/Leading comic/02/word box02_1";
                 break;
             case 3:
-                imagePath = "Sprites/Comic/Leading comic/01/word box02_2";
+                imagePath = "Sprites/Comic/Leading comic/02/word box02_2";
                 break;
             case 4:
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_2";
@@ -288,13 +288,13 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_3";
                 break;
             case 6:
-                imagePath = "Sprites/Comic/Leading comic/01/word box02_3";
+                imagePath = "Sprites/Comic/Leading comic/02/word box02_3";
                 break;
             case 7:
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_4";
                 break;
             case 8:
-                imagePath = "Sprites/Comic/Leading comic/01/word box02_4";
+                imagePath = "Sprites/Comic/Leading comic/02/word box02_4";
                 break;
             case 9:
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_4";
@@ -303,10 +303,10 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_5";
                 break;
             case 11:
-                imagePath = "Sprites/Comic/Leading comic/01/word box02_5";
+                imagePath = "Sprites/Comic/Leading comic/02/word box02_5";
                 break;
             case 12:
-                imagePath = "Sprites/Comic/Leading comic/01/word box02_7";
+                imagePath = "Sprites/Comic/Leading comic/02/word box02_7";
                 break;
             case 13:
                 static_parameters.Comic_scene_sort++;
@@ -365,69 +365,78 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-1";
+                imagePath = "Sprites/Comic/Leading comic/04/comics04_1";
                 break;
             case 2:
-                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-1";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_1";
                 break;
             case 3:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-2";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_2";
                 break;
             case 4:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-3";
+                imagePath = "Sprites/Comic/Leading comic/04/comics04_2";
                 break;
             case 5:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-4";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_3";
                 break;
             case 6:
-                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-3";
+                imagePath = "Sprites/Comic/Leading comic/04/comics04_3";
                 break;
             case 7:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-5";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_4";
                 break;
             case 8:
-                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-4";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_5";
                 break;
             case 9:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-6";
+                imagePath = "Sprites/Comic/Leading comic/04/comics04_4";
                 break;
             case 10:
-                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-5";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_6";
                 break;
             case 11:
-                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-6";
+                imagePath = "Sprites/Comic/Leading comic/04/comics04_5";
                 break;
             case 12:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-7";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_7";
                 break;
             case 13:
-                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-7";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_8";
                 break;
             case 14:
-                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-8";
+                imagePath = "Sprites/Comic/Leading comic/04/comics04_6";
                 break;
             case 15:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-8";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_9";
                 break;
             case 16:
-                imagePath = "Sprites/Comic/Prologue/04/dialogbox_4-9";
+                imagePath = "Sprites/Comic/Leading comic/04/comics04_7";
                 break;
             case 17:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-9";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_10";
                 break;
             case 18:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-10";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_11";
                 break;
             case 19:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-11";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_12";
                 break;
             case 20:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-12";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_13";
                 break;
             case 21:
-                imagePath = "Sprites/Comic/Prologue/04/comics_4-13";
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_14";
                 break;
             case 22:
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_15";
+                break;
+            case 23:
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_16";
+                break;
+            case 24:
+                imagePath = "Sprites/Comic/Leading comic/04/comics04_8";
+                return;
+            case 25:
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
                 comic_step = 1;
@@ -442,30 +451,6 @@ public class Prologue_comic : MonoBehaviour
             case 1:
                 change_comic_BG("Sprites/Comic/Leading comic/black BG");
                 imagePath = "Sprites/Comic/Prologue/05/comics_5-1";
-                break;
-            case 2:
-                imagePath = "Sprites/Comic/Prologue/05/dialogbox_5-1";
-                break;
-            case 3:
-                imagePath = "Sprites/Comic/Prologue/05/comics_5-2";
-                break;
-            case 4:
-                imagePath = "Sprites/Comic/Prologue/05/dialogbox_5-2";
-                break;
-            case 5:
-                imagePath = "Sprites/Comic/Prologue/05/comics_5-3";
-                break;
-            case 6:
-                imagePath = "Sprites/Comic/Prologue/05/comics_5-4";
-                break;
-            case 7:
-                imagePath = "Sprites/Comic/Prologue/05/comics_5-5";
-                break;
-            case 8:
-                imagePath = "Sprites/Comic/Prologue/05/comics_5-6";
-                break;
-            case 9:
-                imagePath = "Sprites/Comic/Prologue/05/comics_5-7";
                 break;
             case 10:
                 static_parameters.Comic_scene_sort = -1;
