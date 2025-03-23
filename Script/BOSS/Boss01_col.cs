@@ -275,6 +275,9 @@ public class Boss_col : MonoBehaviour
         }
     }
 
+    public GameObject[] BOSS_Atk03_Tips;
+    public Animator[] BOSS_Atk03_Ani_ground;
+    public Animator[] BOSS_Atk03_Ani_cards;
     private void Boss_Atk03()
     {
         BOSS_Atk_state = 1;
