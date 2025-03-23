@@ -2022,7 +2022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5929696193431263389}
   m_Layer: 0
-  m_Name: BOSS Atk03_Tip01
+  m_Name: BOSS Atk03_TipA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13415,7 +13415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8380715086027779160}
   m_Layer: 0
-  m_Name: BOSS Atk03_Tip01 (3)
+  m_Name: BOSS Atk03_TipD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29966,7 +29966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7006037295713271433}
   m_Layer: 0
-  m_Name: BOSS Atk03_Tip01 (1)
+  m_Name: BOSS Atk03_TipB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31371,7 +31371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1085256698182723448}
   m_Layer: 0
-  m_Name: BOSS Atk03_Tip01 (4)
+  m_Name: BOSS Atk03_TipE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32207,7 +32207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 850936165596941549}
   m_Layer: 0
-  m_Name: BOSS Atk03_Tip01 (5)
+  m_Name: BOSS Atk03_TipF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34528,7 +34528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6650100918273130550}
   m_Layer: 0
-  m_Name: BOSS Atk03_Tip01 (2)
+  m_Name: BOSS Atk03_TipC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40186,6 +40186,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4550582101590174993}
+  - {fileID: 180936748192677492}
   m_Father: {fileID: 1964819475440839840}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8282681324959662565
@@ -45971,4 +45972,66 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7127043374134237356, guid: 98ace5f849ce3264e874b2a4bd52a887, type: 3}
   m_PrefabInstance: {fileID: 5839887681531490432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5990593943923961479
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4731408007027942906}
+    m_Modifications:
+    - target: {fileID: 4992305359588216708, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_Name
+      value: BOSS Atk 03 Ground_Card area
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+--- !u!4 &180936748192677492 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5881714790130716915, guid: 69efb5d908dec5c4680ec91c1404d6d2, type: 3}
+  m_PrefabInstance: {fileID: 5990593943923961479}
   m_PrefabAsset: {fileID: 0}
