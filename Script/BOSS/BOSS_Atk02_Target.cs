@@ -16,7 +16,7 @@ public class BOSS_Atk02_Target : MonoBehaviour
         {
             triggered[i] = false;
         }
-        Invoke("Boss_Atk02", 7f);
+        // Invoke("Boss_Atk02", 7f);
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class BOSS_Atk02_Target : MonoBehaviour
     }
     private void Boss_Atk02()
     {
-        StartCoroutine(BOSS_Atk02_ready00(1f));
+        StartCoroutine(BOSS_Atk02_ready00(0.75f));
         StartCoroutine(BOSS_Atk02_ready02());
     }
     IEnumerator BOSS_Atk02_ready00(float wait)

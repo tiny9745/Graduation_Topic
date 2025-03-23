@@ -14,10 +14,9 @@ public class BOSS_Atk01 : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            minus = (float)(BOSS_Atk * BOSS_Atk / (static_parameters.MC_DEF + BOSS_Atk));
-            if (minus < 15) minus = 15.0f;
-            static_parameters.MC_HP -= minus;
-            Debug.Log("BOSS_Atk01: " + minus);
+            // minus = (float)(BOSS_Atk * BOSS_Atk / (static_parameters.MC_DEF + BOSS_Atk));
+            // if (minus < 15) minus = 15.0f;
+            static_parameters.MC_HP -= BOSS_Atk;
             BOSS_Atk01_Tips_Tip.enabled = false;
         }
     }
