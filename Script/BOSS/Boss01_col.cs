@@ -45,10 +45,10 @@ public class Boss_col : MonoBehaviour
         {
             Boss_Atk02();
         }
-        if (BOSS_Atk_bool && BOSS_Atk_state == 3)
-        {
-            StartCoroutine(BOSS_Atk03_ready02());
-        }
+        // if (BOSS_Atk_bool && BOSS_Atk_state == 3)
+        // {
+        //     StartCoroutine(BOSS_Atk03_ready02());
+        // }
     }
     public Collider[] BOSS_Atk01_Tips_Tip;
     public Animator[] BOSS_Atk01_clockwise;
@@ -283,7 +283,7 @@ public class Boss_col : MonoBehaviour
     private void Boss_Atk03()
     {
         StartCoroutine(BOSS_Atk03_ready01(0.167f));
-        // StartCoroutine(BOSS_Atk03_ready02());
+        StartCoroutine(BOSS_Atk03_ready02());
     }
     IEnumerator BOSS_Atk03_ready01(float wait)
     {
@@ -319,15 +319,14 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator BOSS_Atk03_ready02()
     {
-        Debug.Log("BOSS_Atk03_ready02");
         for (int i = 0; i < BOSS_Atk03_GC.Length; i++)
         {
             yield return new WaitUntil(() =>
             {
                 AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3].GetCurrentAnimatorStateInfo(0);
-                return stateInfo.IsName("BOSS_Atk03_card") && stateInfo.normalizedTime >= 0.98f;
+                return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
             });
-            Debug.Log("BOSS_Atk03_GC[i].enabled: " + BOSS_Atk03_GC[i].enabled);
+            Debug.Log($"BOSS_Atk03_GC[{i}].enabled: " + BOSS_Atk03_GC[i].enabled);
             BOSS_Atk03_GC[i].enabled = false;
         }
         BOSS_Atk_state = 1;
