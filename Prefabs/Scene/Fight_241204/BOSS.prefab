@@ -1591,7 +1591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7447808441925370530
 Transform:
   m_ObjectHideFlags: 0
@@ -1627,7 +1627,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
@@ -2790,7 +2790,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1931197934920555761}
-  - component: {fileID: 186998527927313852}
   m_Layer: 0
   m_Name: ATK-1-hint-E
   m_TagString: BOSS_Atk
@@ -2815,27 +2814,6 @@ Transform:
   - {fileID: 2303239110817259046}
   m_Father: {fileID: 8647164965758762485}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!65 &186998527927313852
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733567672729354002}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.2, z: 5}
-  m_Center: {x: 0, y: 0, z: -0.2}
 --- !u!1 &739691065971986883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5037,6 +5015,12 @@ MonoBehaviour:
   - {fileID: 6718460772440456862}
   - {fileID: 6265947479413342740}
   - {fileID: 7723613649296516278}
+  BOSS_Atk03_GC:
+  - {fileID: 7976442808023028161}
+  - {fileID: 7334954549180286473}
+  - {fileID: 2682129793049524610}
+  - {fileID: 8305823870803298525}
+  - {fileID: 1992510395090939946}
   BOSS_Atk03_Ani_ground:
   - {fileID: 1051939728009609481}
   - {fileID: 7617946600349696304}
@@ -18779,7 +18763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8136309237562504309
 Transform:
   m_ObjectHideFlags: 0
@@ -18815,7 +18799,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
@@ -31776,7 +31760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7347320194544228556
 Transform:
   m_ObjectHideFlags: 0
@@ -31812,7 +31796,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
@@ -37123,7 +37107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8052467028410903924
 Transform:
   m_ObjectHideFlags: 0
@@ -37159,7 +37143,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
@@ -43496,7 +43480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7116209727445528622
 Transform:
   m_ObjectHideFlags: 0
@@ -43532,7 +43516,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}

@@ -12,33 +12,30 @@ public class Boss_col : MonoBehaviour
 
     void Start()
     {
-        Invoke("Boss_Atk01", 5f);
+        // Invoke("Boss_Atk03", 5f);
+        BOSS_Atk_state = 3;
     }
 
     void Update()
     {
-        if (BOSS_Atk_time <= 3 && BOSS_Atk_bool == false)
+        if (BOSS_Atk_time < 3 && BOSS_Atk_bool == false)
         {
             BOSS_Atk_time += Time.deltaTime;
         }
-        if (BOSS_Atk_time > 3 && BOSS_Atk_bool == false)
+        if (BOSS_Atk_time >= 3 && BOSS_Atk_bool == false)
         {
+            BOSS_Atk_bool = true;
+            BOSS_Atk_time = 0;
             Boss_Animator.SetTrigger("aup");
             Boss_Animator.SetBool("atk_end", true);
             switch (BOSS_Atk_state)
             {
                 case 1:
-                    BOSS_Atk_bool = true;
-                    BOSS_Atk_time = 0;
                     Boss_Atk01();
                     break;
                 case 2:
-                    BOSS_Atk_bool = true;
-                    BOSS_Atk_time = 0;
                     break;
                 case 3:
-                    BOSS_Atk_bool = true;
-                    BOSS_Atk_time = 0;
                     Boss_Atk03();
                     break;
             }
@@ -47,6 +44,10 @@ public class Boss_col : MonoBehaviour
         if (BOSS_Atk_bool && BOSS_Atk_state == 2)
         {
             Boss_Atk02();
+        }
+        if (BOSS_Atk_bool && BOSS_Atk_state == 3)
+        {
+            StartCoroutine(BOSS_Atk03_ready02());
         }
     }
     public Collider[] BOSS_Atk01_Tips_Tip;
@@ -276,11 +277,62 @@ public class Boss_col : MonoBehaviour
     }
 
     public GameObject[] BOSS_Atk03_Tips;
+    public Collider[] BOSS_Atk03_GC;
     public Animator[] BOSS_Atk03_Ani_ground;
     public Animator[] BOSS_Atk03_Ani_cards;
     private void Boss_Atk03()
     {
+        StartCoroutine(BOSS_Atk03_ready01(0.167f));
+        // StartCoroutine(BOSS_Atk03_ready02());
+    }
+    IEnumerator BOSS_Atk03_ready01(float wait)
+    {
+        int random = Random.Range(0, 3);
+        random = 0;
+        switch (random)
+        {
+            case 0:
+                for (int i = 0; i < BOSS_Atk03_Tips.Length; i++)
+                {
+                    BOSS_Atk03_Tips[i].SetActive(true);
+                    yield return new WaitForSeconds(wait);
+                }
+                yield return new WaitForSeconds(7f);
+                for (int i = 0; i < BOSS_Atk03_Tips.Length; i++)
+                {
+                    BOSS_Atk03_Tips[i].SetActive(false);
+                    yield return new WaitForSeconds(wait);
+                }
+                Boss_Animator.SetBool("atk_end", false);
+                for (int i = 0; i < BOSS_Atk03_Ani_cards.Length; i++)
+                {
+                    for (int j = i; i < j + 3; i++)
+                    {
+                        BOSS_Atk03_Ani_ground[i].SetTrigger("BOSS_Atk03_Ground");
+                        BOSS_Atk03_Ani_cards[i].SetTrigger("BOSS_Atk03_Card");
+                    }
+                    i--;
+                    yield return new WaitForSeconds(wait);
+                }
+                break;
+        }
+    }
+    IEnumerator BOSS_Atk03_ready02()
+    {
+        Debug.Log("BOSS_Atk03_ready02");
+        for (int i = 0; i < BOSS_Atk03_GC.Length; i++)
+        {
+            yield return new WaitUntil(() =>
+            {
+                AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3].GetCurrentAnimatorStateInfo(0);
+                return stateInfo.IsName("BOSS_Atk03_card") && stateInfo.normalizedTime >= 0.98f;
+            });
+            Debug.Log("BOSS_Atk03_GC[i].enabled: " + BOSS_Atk03_GC[i].enabled);
+            BOSS_Atk03_GC[i].enabled = false;
+        }
         BOSS_Atk_state = 1;
+        BOSS_Atk_bool = false;
+        Debug.Log("BOSS_Atk_state = " + BOSS_Atk_state + ",BOSS_Atk_bool = " + BOSS_Atk_bool);
     }
 
     private void MC_Atk_End()

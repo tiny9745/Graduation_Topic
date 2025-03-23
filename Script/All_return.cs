@@ -99,7 +99,7 @@ public class All_return : MonoBehaviour
         Skill_public_funtion.skill_45_Atk = 22;
 
         Boss_col.BOSS_Atk_time = 0;
-        Boss_col.BOSS_Atk_state = 0;
+        Boss_col.BOSS_Atk_state = 1;
         Boss_col.BOSS_Atk_bool = false;
     }
 }
