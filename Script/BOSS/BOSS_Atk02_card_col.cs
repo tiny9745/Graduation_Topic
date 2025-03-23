@@ -11,7 +11,7 @@ public class BOSS_Atk02_card_col : MonoBehaviour
         // 根據物件的朝向向前移動
         transform.Translate(Vector3.down * speed * Time.deltaTime, Space.Self);
         Timer += Time.deltaTime;
-        if (Timer > 6)
+        if (Timer > 5)
         {
             Destroy(gameObject);
         }
@@ -20,7 +20,7 @@ public class BOSS_Atk02_card_col : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            static_parameters.MC_HP -= static_parameters.MC_HP_Max * 0.1f;
+            // static_parameters.MC_HP -= static_parameters.MC_HP_Max * 0.1f;
             Destroy(gameObject);
         }
     }

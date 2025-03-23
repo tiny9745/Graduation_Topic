@@ -12,8 +12,7 @@ public class Boss_col : MonoBehaviour
 
     void Start()
     {
-        // targetObject = GameObject.Find("Player_S");
-        // Invoke("Boss_Atk01", 5f);
+        Invoke("Boss_Atk01", 5f);
     }
 
     void Update()
@@ -22,8 +21,10 @@ public class Boss_col : MonoBehaviour
         {
             BOSS_Atk_time += Time.deltaTime;
         }
-        if (BOSS_Atk_time > 3)
+        if (BOSS_Atk_time > 3 && BOSS_Atk_bool == false)
         {
+            Boss_Animator.SetTrigger("aup");
+            Boss_Animator.SetBool("atk_end", true);
             switch (BOSS_Atk_state)
             {
                 case 1:
@@ -34,7 +35,6 @@ public class Boss_col : MonoBehaviour
                 case 2:
                     BOSS_Atk_bool = true;
                     BOSS_Atk_time = 0;
-                    Boss_Atk02();
                     break;
                 case 3:
                     BOSS_Atk_bool = true;
@@ -42,6 +42,11 @@ public class Boss_col : MonoBehaviour
                     Boss_Atk03();
                     break;
             }
+        }
+
+        if (BOSS_Atk_bool && BOSS_Atk_state == 2)
+        {
+            Boss_Atk02();
         }
     }
     public Collider[] BOSS_Atk01_Tips_Tip;
@@ -59,10 +64,7 @@ public class Boss_col : MonoBehaviour
 
     IEnumerator BOSS_Atk01_ready01()
     {
-        // random = 2;
         random = Random.Range(0, 3);
-        Boss_Animator.SetTrigger("aup");
-        Boss_Animator.SetBool("atk_end", true);
         switch (random)
         {
             case 0://逆時針
@@ -263,21 +265,22 @@ public class Boss_col : MonoBehaviour
         //由內向外、由外向內、由近向遠、由遠向近
     }
 
+    static public bool BOSS_Atk02_ready_bool = false;
     private void Boss_Atk02()
     {
-        StartCoroutine(BOSS_Atk02_ready01(0.67f));
+        if (BOSS_Atk02_ready_bool)
+        {
+            BOSS_Atk02_ready_bool = false;
+            Boss_Animator.SetBool("atk_end", false);
+        }
     }
 
-    IEnumerator BOSS_Atk02_ready01(float wait)
-    {
-        yield return new WaitForSeconds(wait);
-    }
     private void Boss_Atk03()
     {
         BOSS_Atk_state = 1;
     }
 
-    private void Atk_End()
+    private void MC_Atk_End()
     {
         BOSS_Atk_bool = false;
     }
@@ -287,7 +290,7 @@ public class Boss_col : MonoBehaviour
         if (collision.tag == "MC_Att")
         {
             Boss_Animator.SetTrigger("Hit");
-            Invoke("Atk_End", 1f);
+            Invoke("MC_Atk_End", 1f);
         }
     }
 }
