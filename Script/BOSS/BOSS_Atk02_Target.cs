@@ -35,36 +35,58 @@ public class BOSS_Atk02_Target : MonoBehaviour
     }
     private void Boss_Atk02()
     {
-        StartCoroutine(BOSS_Atk02_ready01(1.06f));
+        StartCoroutine(BOSS_Atk02_ready00(1f));
+        StartCoroutine(BOSS_Atk02_ready02());
     }
-    IEnumerator BOSS_Atk02_ready01(float wait)
+    IEnumerator BOSS_Atk02_ready00(float wait)
     {
         for (int i = 0; i < BOSS_Atk02_Ani_cards.Length; i++)
         {
-            BOSS_Atk02_Ani_cards[i].gameObject.SetActive(true);
-            BOSS_Atk02_Ani_cards[i].SetBool($"Atk0{i + 1}", true);
-
-            // 等待動畫播放到 95% 再繼續
-            yield return new WaitUntil(() =>
-            {
-                AnimatorStateInfo stateInfo = BOSS_Atk02_Ani_cards[i].GetCurrentAnimatorStateInfo(0);
-                return stateInfo.IsName($"BOSS_Atk02_0{i + 1}") && stateInfo.normalizedTime >= 0.95f;
-            });
-            Debug.Log("動畫播放到 95% 觸發條件！");
-            BOSS_Atk02_hints[i].SetActive(true);
-            BOSS_Atk02_Ani_target[i].SetTrigger("BOSS_Atk02_Target");
+            StartCoroutine(BOSS_Atk02_ready01(i));
+            yield return new WaitForSeconds(wait);
         }
-        // yield return new WaitForSeconds(wait);
+    }
+
+    IEnumerator BOSS_Atk02_ready01(int i)
+    {
+        BOSS_Atk02_Ani_cards[i].gameObject.SetActive(true);
+        BOSS_Atk02_Ani_cards[i].SetBool($"Atk0{i + 1}", true);
+
+        yield return new WaitUntil(() =>
+        {
+            AnimatorStateInfo stateInfo = BOSS_Atk02_Ani_cards[i].GetCurrentAnimatorStateInfo(0);
+            return stateInfo.IsName($"BOSS_Atk02_0{i + 1}");
+        });
+
+        yield return new WaitUntil(() =>
+        {
+            AnimatorStateInfo stateInfo = BOSS_Atk02_Ani_cards[i].GetCurrentAnimatorStateInfo(0);
+            return stateInfo.normalizedTime >= 0.95f;
+        });
+        BOSS_Atk02_hints[i].SetActive(true);
+        BOSS_Atk02_Ani_target[i].SetTrigger("BOSS_Atk02_Target");
+    }
+
+    IEnumerator BOSS_Atk02_ready02()
+    {
         for (int i = 0; i < BOSS_Atk02_Ani_cards.Length; i++)
         {
-            BOSS_Atk02_ready02(i);
-            yield return new WaitForSeconds(wait);
+            yield return new WaitUntil(() =>
+            {
+                AnimatorStateInfo stateInfo = BOSS_Atk02_Ani_target[i].GetCurrentAnimatorStateInfo(0);
+                return stateInfo.IsName("BOSS_Atk02_Target") && stateInfo.normalizedTime >= 0.9f;
+            });
+            BOSS_Atk02_ready03(i);
+            if (i == 0)
+            {
+                Boss_col.BOSS_Atk02_ready_bool = true;
+            }
         }
         Boss_col.BOSS_Atk_state = 3;
         Boss_col.BOSS_Atk_bool = false;
     }
 
-    private void BOSS_Atk02_ready02(int count)
+    private void BOSS_Atk02_ready03(int count)
     {
         Instantiate(BOSS_Atk02_Atk_cards[count], BOSS_Atk02_Ani_cards[count].gameObject.transform.position, BOSS_Atk02_Ani_cards[count].gameObject.transform.rotation);
         BOSS_Atk02_Ani_cards[count].SetBool($"Atk0{count + 1}", false);
