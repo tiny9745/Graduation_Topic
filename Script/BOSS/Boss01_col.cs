@@ -9,12 +9,8 @@ public class Boss_col : MonoBehaviour
     static public float BOSS_Atk_time = -5;
     static public bool BOSS_Atk_bool = false;
     static public int BOSS_Atk_state = 1;
-
-    void Start()
-    {
-        // Invoke("Boss_Atk03", 5f);
-        BOSS_Atk_state = 3;
-    }
+    static public float BOSS_HP_Max = 1000;
+    static public float BOSS_HP = BOSS_HP_Max;
 
     void Update()
     {
@@ -22,7 +18,7 @@ public class Boss_col : MonoBehaviour
         {
             BOSS_Atk_time += Time.deltaTime;
         }
-        if (BOSS_Atk_time >= 3 && BOSS_Atk_bool == false)
+        if (BOSS_Atk_time >= 3 && BOSS_Atk_bool == false && BOSS_Atk_state != 2)
         {
             BOSS_Atk_bool = true;
             BOSS_Atk_time = 0;
@@ -32,8 +28,6 @@ public class Boss_col : MonoBehaviour
             {
                 case 1:
                     Boss_Atk01();
-                    break;
-                case 2:
                     break;
                 case 3:
                     Boss_Atk03();
@@ -45,10 +39,6 @@ public class Boss_col : MonoBehaviour
         {
             Boss_Atk02();
         }
-        // if (BOSS_Atk_bool && BOSS_Atk_state == 3)
-        // {
-        //     StartCoroutine(BOSS_Atk03_ready02());
-        // }
     }
     public Collider[] BOSS_Atk01_Tips_Tip;
     public Animator[] BOSS_Atk01_clockwise;
@@ -263,7 +253,6 @@ public class Boss_col : MonoBehaviour
         }
         BOSS_Atk_state = 2;
         BOSS_Atk_bool = false;
-        //由內向外、由外向內、由近向遠、由遠向近
     }
 
     static public bool BOSS_Atk02_ready_bool = false;
@@ -290,7 +279,7 @@ public class Boss_col : MonoBehaviour
     IEnumerator BOSS_Atk03_ready01(float wait)
     {
         BOSS_Atk03_random = Random.Range(0, 2);
-        BOSS_Atk03_random = 0;
+        BOSS_Atk03_random = 1;
         switch (BOSS_Atk03_random)
         {
             case 0:
@@ -310,16 +299,14 @@ public class Boss_col : MonoBehaviour
                     yield return new WaitForSeconds(wait);
                 }
                 Boss_Animator.SetBool("atk_end", false);
-                Debug.Log("BOSS_Atk03_Tips.Length - 1 = " + (BOSS_Atk03_Tips.Length - 1));
-                for (int i = 0; i < BOSS_Atk03_Ani_cards.Length - 4; i++)
+                for (int i = 0; i < BOSS_Atk03_Tips.Length - 1; i++)
                 {
-                    for (int j = i; i < j + 3; i++)
+                    for (int j = i * 3; j < i * 3 + 3; j++)
                     {
-                        BOSS_Atk03_Ani_ground[i].SetTrigger("BOSS_Atk03_Ground");
-                        BOSS_Atk03_Ani_cards[i].SetTrigger("BOSS_Atk03_Card");
-                        Debug.Log("BOSS Atk i = " + i + ",j = " + j);
+                        BOSS_Atk03_Ani_ground[j].SetTrigger("BOSS_Atk03_Ground");
+                        BOSS_Atk03_Ani_cards[j].SetTrigger("BOSS_Atk03_Card");
                     }
-                    i--;
+                    BOSS_Atk03_GC[i].enabled = true;
                     yield return new WaitForSeconds(wait);
                 }
                 break;
@@ -340,13 +327,15 @@ public class Boss_col : MonoBehaviour
                     yield return new WaitForSeconds(wait);
                 }
                 Boss_Animator.SetBool("atk_end", false);
-                for (int i = BOSS_Atk03_Ani_cards.Length - 1; i > 3; i--)
+                for (int i = BOSS_Atk03_Tips.Length - 1; i > 0; i--)
                 {
-                    for (int j = i; i > j - 3; i--)
+                    for (int j = (i + 1) * 3 - 1; j > i * 3 - 1; j--)
                     {
-                        BOSS_Atk03_Ani_ground[i].SetTrigger("BOSS_Atk03_Ground");
-                        BOSS_Atk03_Ani_cards[i].SetTrigger("BOSS_Atk03_Card");
+                        BOSS_Atk03_Ani_ground[j].SetTrigger("BOSS_Atk03_Ground");
+                        BOSS_Atk03_Ani_cards[j].SetTrigger("BOSS_Atk03_Card");
+                        Debug.Log("j:" + j);
                     }
+                    BOSS_Atk03_GC[i].enabled = true;
                     yield return new WaitForSeconds(wait);
                 }
                 break;
@@ -366,8 +355,6 @@ public class Boss_col : MonoBehaviour
                     });
                     BOSS_Atk03_GC[i].enabled = false;
                 }
-                BOSS_Atk_state = 1;
-                BOSS_Atk_bool = false;
                 break;
             case 1:
                 for (int i = BOSS_Atk03_GC.Length - 1; i > 0; i--)
@@ -379,36 +366,28 @@ public class Boss_col : MonoBehaviour
                     });
                     BOSS_Atk03_GC[i].enabled = false;
                 }
-                BOSS_Atk_state = 1;
-                BOSS_Atk_bool = false;
-                Debug.Log("BOSS_Atk_state = " + BOSS_Atk_state + ",BOSS_Atk_bool = " + BOSS_Atk_bool);
                 break;
         }
-
+        BOSS_Atk_state = 1;
+        BOSS_Atk_bool = false;
     }
 
     void Flip()
     {
-        for (int i = 0; i < BOSS_Atk03_Ani_cards.Length; i++)
+        BOSS_Atk03_isFacingRight = !BOSS_Atk03_isFacingRight;
+        for (int i = 0; i < BOSS_Atk03_Ani_ground.Length; i++)
         {
-            BOSS_Atk03_isFacingRight = !BOSS_Atk03_isFacingRight;
-            Vector3 theScale = BOSS_Atk03_Ani_cards[i].transform.localScale;
+            Vector3 theScale = BOSS_Atk03_Ani_ground[i].transform.localScale;
             theScale.x *= -1;
-            BOSS_Atk03_Ani_cards[i].transform.localScale = theScale;
+            BOSS_Atk03_Ani_ground[i].transform.localScale = theScale;
         }
-    }
-
-    private void MC_Atk_End()
-    {
-        BOSS_Atk_bool = false;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "MC_Att")
         {
-            Boss_Animator.SetTrigger("Hit");
-            Invoke("MC_Atk_End", 1f);
+            Boss_Animator.SetTrigger("hit");
         }
     }
 }

@@ -16,12 +16,11 @@ public class BOSS_Atk02_Target : MonoBehaviour
         {
             triggered[i] = false;
         }
-        // Invoke("Boss_Atk02", 7f);
     }
 
     void Update()
     {
-        if (Boss_col.BOSS_Atk_time > 3)
+        if (Boss_col.BOSS_Atk_time >= 3)
         {
             switch (Boss_col.BOSS_Atk_state)
             {

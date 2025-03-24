@@ -997,7 +997,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1272,7 +1272,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1585,6 +1585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7447808441925370530}
   - component: {fileID: 8305823870803298525}
+  - component: {fileID: 4582235255335725117}
   m_Layer: 0
   m_Name: BOSS Atk03_GC_D
   m_TagString: BOSS_Atk
@@ -1631,6 +1632,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
+--- !u!114 &4582235255335725117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420049197762742686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13f4c4b15ff84945a151966e6ecebc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BOSS_Atk03_GC:
+  - {fileID: 7976442808023028161}
+  - {fileID: 7334954549180286473}
+  - {fileID: 2682129793049524610}
+  - {fileID: 8305823870803298525}
+  - {fileID: 1992510395090939946}
 --- !u!1 &468584873647615450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2735,7 +2754,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5068,11 +5087,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6, y: 10, z: 0.2}
+  m_Size: {x: 6, y: 10, z: 1}
   m_Center: {x: 0, y: -0.2, z: 0}
 --- !u!1 &1122233914224183689
 GameObject:
@@ -10125,7 +10144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1331686831779175957}
   - component: {fileID: 5048660715366477696}
-  - component: {fileID: 5628602528189466631}
+  - component: {fileID: 8318812198791734518}
   m_Layer: 0
   m_Name: BOSS restricted area
   m_TagString: Untagged
@@ -10169,7 +10188,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12, y: 20, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &5628602528189466631
+--- !u!208 &8318812198791734518
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10179,7 +10198,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 6, y: 10, z: 5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -18757,6 +18776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8136309237562504309}
   - component: {fileID: 1992510395090939946}
+  - component: {fileID: 2015034166337249883}
   m_Layer: 0
   m_Name: BOSS Atk03_GC_E
   m_TagString: BOSS_Atk
@@ -18803,6 +18823,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
+--- !u!114 &2015034166337249883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3770527287755556402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13f4c4b15ff84945a151966e6ecebc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BOSS_Atk03_GC:
+  - {fileID: 7976442808023028161}
+  - {fileID: 7334954549180286473}
+  - {fileID: 2682129793049524610}
+  - {fileID: 8305823870803298525}
+  - {fileID: 1992510395090939946}
 --- !u!1 &3788317465175145291
 GameObject:
   m_ObjectHideFlags: 0
@@ -21775,7 +21813,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -22386,7 +22424,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -23795,7 +23833,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25281,7 +25319,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -27537,7 +27575,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -31754,6 +31792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7347320194544228556}
   - component: {fileID: 2682129793049524610}
+  - component: {fileID: 8075316502893517697}
   m_Layer: 0
   m_Name: BOSS Atk03_GC_C
   m_TagString: BOSS_Atk
@@ -31800,6 +31839,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
+--- !u!114 &8075316502893517697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6295758702801820431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13f4c4b15ff84945a151966e6ecebc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BOSS_Atk03_GC:
+  - {fileID: 7976442808023028161}
+  - {fileID: 7334954549180286473}
+  - {fileID: 2682129793049524610}
+  - {fileID: 8305823870803298525}
+  - {fileID: 1992510395090939946}
 --- !u!1 &6320468648712786853
 GameObject:
   m_ObjectHideFlags: 0
@@ -34086,7 +34143,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -37101,6 +37158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8052467028410903924}
   - component: {fileID: 7976442808023028161}
+  - component: {fileID: 7961489552977700771}
   m_Layer: 0
   m_Name: BOSS Atk03_GC_A
   m_TagString: BOSS_Atk
@@ -37147,6 +37205,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
+--- !u!114 &7961489552977700771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7388057490119938336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13f4c4b15ff84945a151966e6ecebc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BOSS_Atk03_GC:
+  - {fileID: 7976442808023028161}
+  - {fileID: 7334954549180286473}
+  - {fileID: 2682129793049524610}
+  - {fileID: 8305823870803298525}
+  - {fileID: 1992510395090939946}
 --- !u!1 &7409941412961153478
 GameObject:
   m_ObjectHideFlags: 0
@@ -39775,7 +39851,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -40512,7 +40588,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -42015,7 +42091,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -42735,7 +42811,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -43474,6 +43550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7116209727445528622}
   - component: {fileID: 7334954549180286473}
+  - component: {fileID: 5086755779918384577}
   m_Layer: 0
   m_Name: BOSS Atk03_GC_B
   m_TagString: BOSS_Atk
@@ -43520,6 +43597,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.65, y: 8, z: 1}
   m_Center: {x: 0, y: -2.6, z: 0}
+--- !u!114 &5086755779918384577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8544744349405493841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13f4c4b15ff84945a151966e6ecebc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BOSS_Atk03_GC:
+  - {fileID: 7976442808023028161}
+  - {fileID: 7334954549180286473}
+  - {fileID: 2682129793049524610}
+  - {fileID: 8305823870803298525}
+  - {fileID: 1992510395090939946}
 --- !u!1 &8546089148722096611
 GameObject:
   m_ObjectHideFlags: 0
@@ -45809,7 +45904,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -46692,7 +46787,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 441283acdc36a1a49bf09f9722c935f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 005500c718e8d8f4e9b01e734fb4b39b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

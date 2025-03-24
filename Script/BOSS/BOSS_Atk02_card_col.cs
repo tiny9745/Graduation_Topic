@@ -20,7 +20,7 @@ public class BOSS_Atk02_card_col : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            // static_parameters.MC_HP -= static_parameters.MC_HP_Max * 0.1f;
+            static_parameters.MC_HP -= static_parameters.MC_HP_Max * 0.1f;
             Destroy(gameObject);
         }
     }
