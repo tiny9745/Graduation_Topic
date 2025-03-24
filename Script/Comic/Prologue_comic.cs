@@ -5,14 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Prologue_comic : MonoBehaviour
 {
-    uint comic_step = 0,comic_step_tmp=0;
-    float comic_time_sum = 0;
-    string imagePath = "Sprites/Comic/Prologue/01/comics_1-1"; // 圖檔在 Resources 中的路徑
+    
     public Canvas canvas; // 需要將新建的 Image 放到的 Canvas
     public GameObject Image_box;
-
-    float auto_comic_time;
-
+    uint comic_step = 0,comic_step_tmp=0,Wait_time=0;
+    float comic_time_sum = 0,auto_comic_time;
+    string imagePath = "Sprites/Comic/Prologue/01/comics_1-1"; // 圖檔在 Resources 中的路徑
     // Start is called before the first frame update
     void Start()
     {
@@ -54,61 +52,16 @@ public class Prologue_comic : MonoBehaviour
         }
         else
         {
-            if (static_parameters.Comic_scene_sort == 0 && comic_step == 5 || static_parameters.Comic_scene_sort == 1 && comic_step == 7)
-            {
-                auto_comic(6f);
-            }
-            else if (static_parameters.Comic_scene_sort == 2 && comic_step == 16 || static_parameters.Comic_scene_sort == 3 && comic_step == 21 || static_parameters.Comic_scene_sort == 4 && comic_step == 9)
-            {
-                auto_comic(8f);
-            }
-            else if (static_parameters.Comic_scene_sort == 1 && comic_step >= 5 && comic_step < 7)
-            {
-                auto_comic(0.6f);
-            }
-            else if (static_parameters.Comic_scene_sort == 2 && (comic_step == 1 || comic_step == 3 || comic_step == 5))
-            {
-                auto_comic(0.65f);
-            }
-            else if (static_parameters.Comic_scene_sort == 2 && comic_step == 2)
-            {
-                auto_comic(0.5f);
-            }
-            else if (static_parameters.Comic_scene_sort == 2 && comic_step >= 8 && comic_step < 10)
-            {
-                auto_comic(0.65f);
-            }
-            else if (static_parameters.Comic_scene_sort == 2 && (comic_step == 11 || comic_step == 13 || comic_step == 15))
-            {
-                auto_comic(0.6f);
-            }
-            else if (static_parameters.Comic_scene_sort == 3 && comic_step >= 1 && comic_step < 3)
-            {
-                auto_comic(0.55f);
-            }
-            else if (static_parameters.Comic_scene_sort == 3 && comic_step == 3)
-            {
-                auto_comic(0.35f);
-            }
-            else if (static_parameters.Comic_scene_sort == 3 && comic_step == 5)
-            {
-                auto_comic(0.6f);
-            }
-            else if (static_parameters.Comic_scene_sort == 3 && comic_step >= 6 && comic_step < 8)
-            {
-                auto_comic(0.55f);
-            }
-            else if (static_parameters.Comic_scene_sort == 3 && comic_step == 10)
-            {
-                auto_comic(0.45f);
-            }
-            else if (static_parameters.Comic_scene_sort == 3 && comic_step >= 17 && comic_step < 21)
-            {
-                auto_comic(0.65f);
-            }
-            else
-            {
-                auto_comic(3.5f);
+            switch(Wait_time){
+                case 0:
+                    auto_comic(3.5f);
+                    break;
+                case 1:
+                    auto_comic(1f);
+                    break;
+                case 2:
+                    auto_comic(0.35f);
+                    break;
             }
         }
     }
