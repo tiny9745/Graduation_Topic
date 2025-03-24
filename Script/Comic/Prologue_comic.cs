@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Prologue_comic : MonoBehaviour
 {
-    uint comic_step = 0;
-    uint comic_step_tmp;
+    uint comic_step = 0,comic_step_tmp=0;
     float comic_time_sum = 0;
     string imagePath = "Sprites/Comic/Prologue/01/comics_1-1"; // 圖檔在 Resources 中的路徑
     public Canvas canvas; // 需要將新建的 Image 放到的 Canvas
