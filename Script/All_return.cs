@@ -27,7 +27,6 @@ public class All_return : MonoBehaviour
         static_parameters.Text_box_state = new int[] { 1, 1, 0, 0 };
         // static_parameters.isSceneLoading = false;
         static_parameters.Bookstate = false;
-        // static_parameters.filp = false;
         static_parameters.invincible = false;
         static_parameters.revival = false;
         static_parameters.Ani_state = 0;

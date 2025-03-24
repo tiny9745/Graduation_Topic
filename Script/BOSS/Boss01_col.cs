@@ -280,6 +280,8 @@ public class Boss_col : MonoBehaviour
     public Collider[] BOSS_Atk03_GC;
     public Animator[] BOSS_Atk03_Ani_ground;
     public Animator[] BOSS_Atk03_Ani_cards;
+    private bool BOSS_Atk03_isFacingRight = true;
+    int BOSS_Atk03_random = 0;
     private void Boss_Atk03()
     {
         StartCoroutine(BOSS_Atk03_ready01(0.167f));
@@ -287,31 +289,64 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator BOSS_Atk03_ready01(float wait)
     {
-        int random = Random.Range(0, 3);
-        random = 0;
-        switch (random)
+        BOSS_Atk03_random = Random.Range(0, 2);
+        BOSS_Atk03_random = 0;
+        switch (BOSS_Atk03_random)
         {
             case 0:
-                for (int i = 0; i < BOSS_Atk03_Tips.Length; i++)
+                if (!BOSS_Atk03_isFacingRight)
+                {
+                    Flip();
+                }
+                for (int i = 0; i < BOSS_Atk03_Tips.Length - 1; i++)
                 {
                     BOSS_Atk03_Tips[i].SetActive(true);
                     yield return new WaitForSeconds(wait);
                 }
                 yield return new WaitForSeconds(7f);
-                for (int i = 0; i < BOSS_Atk03_Tips.Length; i++)
+                for (int i = 0; i < BOSS_Atk03_Tips.Length - 1; i++)
                 {
                     BOSS_Atk03_Tips[i].SetActive(false);
                     yield return new WaitForSeconds(wait);
                 }
                 Boss_Animator.SetBool("atk_end", false);
-                for (int i = 0; i < BOSS_Atk03_Ani_cards.Length; i++)
+                Debug.Log("BOSS_Atk03_Tips.Length - 1 = " + (BOSS_Atk03_Tips.Length - 1));
+                for (int i = 0; i < BOSS_Atk03_Ani_cards.Length - 4; i++)
                 {
                     for (int j = i; i < j + 3; i++)
                     {
                         BOSS_Atk03_Ani_ground[i].SetTrigger("BOSS_Atk03_Ground");
                         BOSS_Atk03_Ani_cards[i].SetTrigger("BOSS_Atk03_Card");
+                        Debug.Log("BOSS Atk i = " + i + ",j = " + j);
                     }
                     i--;
+                    yield return new WaitForSeconds(wait);
+                }
+                break;
+            case 1:
+                if (BOSS_Atk03_isFacingRight)
+                {
+                    Flip();
+                }
+                for (int i = BOSS_Atk03_Tips.Length - 1; i > 0; i--)
+                {
+                    BOSS_Atk03_Tips[i].SetActive(true);
+                    yield return new WaitForSeconds(wait);
+                }
+                yield return new WaitForSeconds(7f);
+                for (int i = BOSS_Atk03_Tips.Length - 1; i > 0; i--)
+                {
+                    BOSS_Atk03_Tips[i].SetActive(false);
+                    yield return new WaitForSeconds(wait);
+                }
+                Boss_Animator.SetBool("atk_end", false);
+                for (int i = BOSS_Atk03_Ani_cards.Length - 1; i > 3; i--)
+                {
+                    for (int j = i; i > j - 3; i--)
+                    {
+                        BOSS_Atk03_Ani_ground[i].SetTrigger("BOSS_Atk03_Ground");
+                        BOSS_Atk03_Ani_cards[i].SetTrigger("BOSS_Atk03_Card");
+                    }
                     yield return new WaitForSeconds(wait);
                 }
                 break;
@@ -319,19 +354,48 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator BOSS_Atk03_ready02()
     {
-        for (int i = 0; i < BOSS_Atk03_GC.Length; i++)
+        switch (BOSS_Atk03_random)
         {
-            yield return new WaitUntil(() =>
-            {
-                AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3].GetCurrentAnimatorStateInfo(0);
-                return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
-            });
-            Debug.Log($"BOSS_Atk03_GC[{i}].enabled: " + BOSS_Atk03_GC[i].enabled);
-            BOSS_Atk03_GC[i].enabled = false;
+            case 0:
+                for (int i = 0; i < BOSS_Atk03_GC.Length - 1; i++)
+                {
+                    yield return new WaitUntil(() =>
+                    {
+                        AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3].GetCurrentAnimatorStateInfo(0);
+                        return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
+                    });
+                    BOSS_Atk03_GC[i].enabled = false;
+                }
+                BOSS_Atk_state = 1;
+                BOSS_Atk_bool = false;
+                break;
+            case 1:
+                for (int i = BOSS_Atk03_GC.Length - 1; i > 0; i--)
+                {
+                    yield return new WaitUntil(() =>
+                    {
+                        AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3].GetCurrentAnimatorStateInfo(0);
+                        return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
+                    });
+                    BOSS_Atk03_GC[i].enabled = false;
+                }
+                BOSS_Atk_state = 1;
+                BOSS_Atk_bool = false;
+                Debug.Log("BOSS_Atk_state = " + BOSS_Atk_state + ",BOSS_Atk_bool = " + BOSS_Atk_bool);
+                break;
         }
-        BOSS_Atk_state = 1;
-        BOSS_Atk_bool = false;
-        Debug.Log("BOSS_Atk_state = " + BOSS_Atk_state + ",BOSS_Atk_bool = " + BOSS_Atk_bool);
+
+    }
+
+    void Flip()
+    {
+        for (int i = 0; i < BOSS_Atk03_Ani_cards.Length; i++)
+        {
+            BOSS_Atk03_isFacingRight = !BOSS_Atk03_isFacingRight;
+            Vector3 theScale = BOSS_Atk03_Ani_cards[i].transform.localScale;
+            theScale.x *= -1;
+            BOSS_Atk03_Ani_cards[i].transform.localScale = theScale;
+        }
     }
 
     private void MC_Atk_End()
