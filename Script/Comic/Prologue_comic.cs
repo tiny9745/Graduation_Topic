@@ -54,13 +54,13 @@ public class Prologue_comic : MonoBehaviour
         {
             switch(Wait_time){
                 case 0:
-                    auto_comic(3.5f);
+                    auto_comic(2.5f);//換圖時間-無對話框
                     break;
                 case 1:
-                    auto_comic(1f);
+                    auto_comic(1f);//換圖時間-對話框
                     break;
                 case 2:
-                    auto_comic(0.35f);
+                    auto_comic(0.35f);//換圖時間-對話框快
                     break;
             }
         }
@@ -189,25 +189,31 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
+                Wait_time = 0;
                 change_comic_BG("Sprites/Comic/Leading comic/01/comics01_1");
-                imagePath = "Sprites/Comic/Leading comic/01/comics01_2";
+                imagePath = "Sprites/Comic/Leading comic/01/comics01_2";    
                 break;
             case 2:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/01/word box01_1";
                 break;
             case 3:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/01/comics01_3";
                 break;
             case 4:
                 imagePath = "Sprites/Comic/Leading comic/01/comics01_4";
                 break;
             case 5:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/01/word box01_2";
                 break;
             case 6:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/01/comics01_5";
                 break;
             case 7:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/01/word box01_3";
                 break;
             case 8:
@@ -224,43 +230,48 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
+                Wait_time = 0;
                 change_comic_BG("Sprites/Comic/Leading comic/white BG");
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_1";
                 break;
             case 2:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_1";
                 break;
             case 3:
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_2";
                 break;
             case 4:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_2";
                 break;
             case 5:
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_3";
                 break;
             case 6:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_3";
                 break;
             case 7:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_4";
                 break;
             case 8:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_4";
                 break;
             case 9:
-                imagePath = "Sprites/Comic/Leading comic/02/comics02_4";
-                break;
-            case 10:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_5";
                 break;
-            case 11:
+            case 10:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_5";
-                break;
-            case 12:
+                break;              
+            case 11:
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_7";
                 break;
-            case 13:
+            case 12:
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
                 comic_step = 1;
@@ -274,34 +285,41 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
+                Wait_time = 0;
                 change_comic_BG("Sprites/Comic/Leading comic/white BG");
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_1";
                 break;
             case 2:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/03/word box03_1";
                 break;
             case 3:
                 imagePath = "Sprites/Comic/Leading comic/03/word box03_2";
                 break;
             case 4:
-                imagePath = "SSprites/Comic/Leading comic/03/comics03_2";
+                Wait_time = 0;
+                imagePath = "Sprites/Comic/Leading comic/03/comics03_2";
                 break;
             case 5:
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_3";
                 break;
             case 6:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/03/word box03_3";
                 break;
             case 7:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_4";
                 break;
             case 8:
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_5";
                 break;
             case 9:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/03/word box03_4";
                 break;
             case 10:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_6";
                 break;
             case 11:
@@ -317,54 +335,68 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_1";
                 break;
             case 2:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_1";
                 break;
             case 3:
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_2";
                 break;
             case 4:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_2";
                 break;
             case 5:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_3";
                 break;
             case 6:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_3";
                 break;
             case 7:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_4";
                 break;
             case 8:
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_5";
                 break;
             case 9:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_4";
                 break;
             case 10:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_6";
                 break;
             case 11:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_5";
                 break;
             case 12:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_7";
                 break;
             case 13:
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_8";
                 break;
             case 14:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_6";
                 break;
             case 15:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_9";
                 break;
             case 16:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_7";
                 break;
             case 17:
+                Wait_time = 1;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_10";
                 break;
             case 18:
@@ -374,18 +406,23 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_12";
                 break;
             case 20:
+                Wait_time = 2;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_13";
                 break;
             case 21:
+                Wait_time = 2;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_14";
                 break;
             case 22:
+                Wait_time = 2;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_15";
                 break;
             case 23:
-                imagePath = "Sprites/Comic/Leading comic/04/word box04_16";
+                Wait_time = 2;
+                imagePath = "Sprites/Comic/Leading comic/04/word box04_17";
                 break;
             case 24:
+                Wait_time = 0;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_8";
                 return;
             case 25:
@@ -402,7 +439,7 @@ public class Prologue_comic : MonoBehaviour
         {
             case 1:
                 change_comic_BG("Sprites/Comic/Leading comic/black BG");
-                imagePath = "Sprites/Comic/Prologue/05/comics_5-1";
+                imagePath = "Sprites/Comic/Leading comic/05/05";
                 break;
             case 10:
                 static_parameters.Comic_scene_sort = -1;
