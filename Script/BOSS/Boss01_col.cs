@@ -279,7 +279,6 @@ public class Boss_col : MonoBehaviour
     IEnumerator BOSS_Atk03_ready01(float wait)
     {
         BOSS_Atk03_random = Random.Range(0, 2);
-        BOSS_Atk03_random = 1;
         switch (BOSS_Atk03_random)
         {
             case 0:
@@ -304,7 +303,13 @@ public class Boss_col : MonoBehaviour
                     for (int j = i * 3; j < i * 3 + 3; j++)
                     {
                         BOSS_Atk03_Ani_ground[j].SetTrigger("BOSS_Atk03_Ground");
-                        BOSS_Atk03_Ani_cards[j].SetTrigger("BOSS_Atk03_Card");
+                    }
+                    if (i < BOSS_Atk03_Tips.Length - 2)
+                    {
+                        for (int j = i * 4; j < i * 4 + 4; j++)
+                        {
+                            BOSS_Atk03_Ani_cards[j].SetTrigger("BOSS_Atk03_Card");
+                        }
                     }
                     BOSS_Atk03_GC[i].enabled = true;
                     yield return new WaitForSeconds(wait);
@@ -332,8 +337,13 @@ public class Boss_col : MonoBehaviour
                     for (int j = (i + 1) * 3 - 1; j > i * 3 - 1; j--)
                     {
                         BOSS_Atk03_Ani_ground[j].SetTrigger("BOSS_Atk03_Ground");
-                        BOSS_Atk03_Ani_cards[j].SetTrigger("BOSS_Atk03_Card");
-                        Debug.Log("j:" + j);
+                    }
+                    if (i > 1)
+                    {
+                        for (int j = i * 4 - 1; j > (i - 1) * 4 - 1; j--)
+                        {
+                            BOSS_Atk03_Ani_cards[j].SetTrigger("BOSS_Atk03_Card");
+                        }
                     }
                     BOSS_Atk03_GC[i].enabled = true;
                     yield return new WaitForSeconds(wait);
@@ -380,6 +390,12 @@ public class Boss_col : MonoBehaviour
             Vector3 theScale = BOSS_Atk03_Ani_ground[i].transform.localScale;
             theScale.x *= -1;
             BOSS_Atk03_Ani_ground[i].transform.localScale = theScale;
+        }
+        for (int i = 0; i < BOSS_Atk03_Ani_cards.Length; i++)
+        {
+            Vector3 theScale = BOSS_Atk03_Ani_cards[i].transform.localScale;
+            theScale.x *= -1;
+            BOSS_Atk03_Ani_cards[i].transform.localScale = theScale;
         }
     }
 

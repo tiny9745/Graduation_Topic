@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Teaching_TextF : MonoBehaviour
 {
-    public GameObject Main_character_object, Magician_object;
+    public GameObject Main_character_object, Magician_object, skip_button;
     public GameObject dialog_box, Teaching_dialog_box;
     public Image Main_character, Magician;
     public Image Main_character_body, Magician_body;
@@ -47,6 +47,7 @@ public class Teaching_TextF : MonoBehaviour
         {
             case 0:
                 static_parameters.teaching_stop = -1;
+                skip_button.SetActive(true);
                 open();
                 magic_talk();
                 Magician.sprite = Magician_face[0];
@@ -241,6 +242,7 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 38:
                 close();
+                skip_button.SetActive(false);
                 static_parameters.teaching_stop = 101;
                 talk_number = 100;
                 Teaching_dialog_box.SetActive(false);
@@ -339,6 +341,7 @@ public class Teaching_TextF : MonoBehaviour
         Teaching_dialog_box.SetActive(true);
         black.color = new Color(0, 0, 0, 1);
         black.gameObject.SetActive(false);
+
     }
     private void close_co()
     {
@@ -379,5 +382,14 @@ public class Teaching_TextF : MonoBehaviour
         Narration_text.gameObject.SetActive(!Narration_text.gameObject.activeSelf);
         name_text.gameObject.SetActive(!name_text.gameObject.activeSelf);
         talk_text.gameObject.SetActive(!talk_text.gameObject.activeSelf);
+    }
+
+    public void Onclick_skip()
+    {
+        close();
+        skip_button.SetActive(false);
+        static_parameters.teaching_stop = 101;
+        talk_number = 100;
+        Teaching_dialog_box.SetActive(false);
     }
 }
