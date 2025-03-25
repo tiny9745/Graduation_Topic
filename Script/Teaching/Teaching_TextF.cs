@@ -34,7 +34,7 @@ public class Teaching_TextF : MonoBehaviour
         else if (
             static_parameters.teaching_stop == 1 || static_parameters.teaching_stop == 3 && talk_number == 8 ||
             talk_number == 9 && static_parameters.teaching_stop == 5 || talk_number == 10 && static_parameters.teaching_stop == 7 ||
-            talk_number == 17 && Input.GetKeyDown(KeyCode.Z) || talk_number == 21 || talk_number == 30
+            talk_number == 17 && Input.GetKeyDown(KeyCode.Z) || talk_number == 21 || talk_number == 31
             )
         {
             reading();
@@ -203,44 +203,46 @@ public class Teaching_TextF : MonoBehaviour
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
                 talk_text.text = "所以……拜託妳去城堡查看詛咒來源，在路上順便蒐集碎片吧！";
+                break;
+            case 30:
                 SceneManager.LoadScene("magic_house");
                 break;
-            case 31:
+            case 32:
                 opce_nav();
                 name_text.text = "莓莓";
                 talk_text.text = "出發前要記得補充好營養，這杯叫做回魂藥水。";
                 break;
-            case 32:
+            case 33:
                 name_text.text = "莓莓";
                 talk_text.text = "如果妳不幸被怪物攻擊致死，別擔心！";
                 break;
-            case 33:
+            case 34:
                 Magician.sprite = Magician_face[1];
                 name_text.text = "莓莓";
                 talk_text.text = "妳會重新回到糖果屋裡！不會真的死亡喔！";
                 break;
-            case 34:
+            case 35:
                 main_talk();
                 Main_character.sprite = Main_character_face[1];
                 name_text.text = "曦然";
                 talk_text.text = "哇，真神奇。";
                 break;
-            case 35:
+            case 36:
                 opce_nav();
                 Narration_text.text = "［曦然喝下了回魂藥水，也吃了早餐，準備出發］";
                 break;
-            case 36:
+            case 37:
                 opce_nav();
                 magic_talk();
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
                 talk_text.text = "出門小心！願甜蜜與妳同在。";
                 break;
-            case 37:
+            case 38:
                 opce_nav();
                 Narration_text.text = "（遊戲正式開始）";
                 break;
-            case 38:
+            case 39:
                 close();
                 skip_button.SetActive(false);
                 static_parameters.teaching_stop = 101;
@@ -308,7 +310,7 @@ public class Teaching_TextF : MonoBehaviour
                 talk_text.text = "出現了一點魔力，哼嗯……似乎跟詛咒有相同的氣息……？";
             }
         }
-        else if (talk_number == 30)
+        else if (talk_number == 31)
         {
             if (SceneManager.GetActiveScene().name == "magic_house")
             {
