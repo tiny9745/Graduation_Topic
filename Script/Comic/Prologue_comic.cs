@@ -55,13 +55,13 @@ public class Prologue_comic : MonoBehaviour
         {
             switch(Wait_time){//須提前一步
                 case 0:
-                    auto_comic(2f);//換圖時間-無對話框
+                    auto_comic(2.5f);//換圖時間-無對話框
                     break;
                 case 1:
-                    auto_comic(0.8f);//換圖時間-對話框
+                    auto_comic(1.5f);//換圖時間-對話框
                     break;
                 case 2:
-                    auto_comic(0.3f);//換圖時間-對話框快
+                    auto_comic(0.55f);//換圖時間-對話框快
                     break;
             }
         }
@@ -124,7 +124,7 @@ public class Prologue_comic : MonoBehaviour
         newColor.a = 0f;
         image.color = newColor;
 
-        // 持續時間內逐步增加 alpha 並移動 X 軸位置
+        // 持續時間內逐步增加 alpha
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -146,6 +146,38 @@ public class Prologue_comic : MonoBehaviour
 
         // 確保 X 軸移動到最終位置
         image.transform.position = new Vector3(originalPosition.x, originalPosition.y + moveDistance, originalPosition.z);
+    }
+    IEnumerator FadeOutImage(Image image, float duration, float moveDistance)
+    {
+        float elapsedTime = 0f;
+        Color newColor = image.color;
+        Vector3 originalPosition = image.transform.position; // 儲存初始位置
+
+        // 初始化 alpha 為 1（完全不透明）
+        newColor.a = 1f;
+        image.color = newColor;
+
+        // 持續時間內逐步減少 alpha
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            // 更新透明度
+            newColor.a = 1 - Mathf.Clamp01(elapsedTime / duration);
+            image.color = newColor;
+
+            // 更新 Y 軸位置，逐步減少至 moveDistance
+            float newXPosition = Mathf.Lerp(originalPosition.y + moveDistance, originalPosition.y, elapsedTime / duration);
+            image.transform.position = new Vector3(originalPosition.x, newXPosition, originalPosition.z);
+
+            yield return null; // 等待下一幀
+        }
+
+        // 確保最後完全隱藏
+        newColor.a = 0f;
+        image.color = newColor;
+
+        // 確保 X 軸移動到最終位置
+        image.transform.position = originalPosition;
     }
 
     void DeleteAllImagesUnderCanvas()
@@ -432,7 +464,7 @@ public class Prologue_comic : MonoBehaviour
                 break;
             case 24:
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_8";
-                return;
+                break;
             case 25:
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
