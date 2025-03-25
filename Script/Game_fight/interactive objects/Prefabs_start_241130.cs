@@ -63,13 +63,6 @@ public class Prefabs_start_241130 : MonoBehaviour
                 Number_NPC02 = 12;
                 Number_NPC03 = 12;
                 break;
-            case 6:
-                // Number_NPC03 = 42;
-                Number_NPC01 = 10;
-                Number_NPC02 = 13;
-                Number_NPC03 = 11;
-                Number_NPC05 = 11;
-                break;
             default:
                 break;
         }
@@ -144,9 +137,6 @@ public class Prefabs_start_241130 : MonoBehaviour
             {
                 Instantiate(prefab, hit.position, Quaternion.identity);
             }
-        }
-        else
-        {
         }
     }
     void GenerateDecorate(GameObject prefab)

@@ -7,13 +7,24 @@ public class Boss_col : MonoBehaviour
 {
     public Animator Boss_Animator;
     static public float BOSS_Atk_time = -5;
-    static public bool BOSS_Atk_bool = false;
+    static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
-    static public float BOSS_HP_Max = 1000;
+    static public float BOSS_HP_Max = 1000, BOSS_DEF = 10;
     static public float BOSS_HP = BOSS_HP_Max;
 
     void Update()
     {
+        if (BOSS_HP <= 0)
+        {
+            if (BOSS_live)
+            {
+                BOSS_live = false;
+                Boss_Animator.SetTrigger("die");
+                Destroy(gameObject, 1.5f);
+            }
+            return;
+        }
+
         if (BOSS_Atk_time < 3 && BOSS_Atk_bool == false)
         {
             BOSS_Atk_time += Time.deltaTime;
@@ -404,6 +415,7 @@ public class Boss_col : MonoBehaviour
         if (collision.tag == "MC_Att")
         {
             Boss_Animator.SetTrigger("hit");
+            BOSS_HP -= static_parameters.MC_ATK * 2 / (BOSS_DEF + static_parameters.MC_ATK);
         }
     }
 }
