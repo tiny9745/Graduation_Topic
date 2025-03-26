@@ -1,17 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boss_col : MonoBehaviour
 {
     public Animator Boss_Animator;
+    private GameObject TargetObj;
     static public float BOSS_Atk_time = -5;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
-    static public float BOSS_HP_Max = 1000, BOSS_DEF = 10;
-    static public float BOSS_HP = BOSS_HP_Max;
+    public float BOSS_HP_Max = 1000, BOSS_DEF = 10, BOSS_HP;
+    public BOSS01_HP boss_hP; public BOSS01_effect effect;
+    public bool stun = false;
+    public int NPC_angle = 0;
+    public Transform spriteTransform;
 
+    void Start()
+    {
+        spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color; // 儲存原始顏色
+        BOSS_HP = BOSS_HP_Max;
+        TargetObj = GameObject.Find("Player_S");
+    }
     void Update()
     {
         if (BOSS_HP <= 0)
@@ -45,10 +54,22 @@ public class Boss_col : MonoBehaviour
                     break;
             }
         }
-
         if (BOSS_Atk_bool && BOSS_Atk_state == 2)
         {
             Boss_Atk02();
+        }
+
+        if (TargetObj != null)
+        {
+            Vector3 direction = TargetObj.transform.position - transform.position;
+            Vector3 directionOnXZ = new Vector3(direction.x, 0, direction.z);
+            Vector3 forwardOnXZ = new Vector3(transform.forward.x, 0, transform.forward.z);
+
+            NPC_angle = Mathf.RoundToInt(Vector3.SignedAngle(forwardOnXZ, directionOnXZ, Vector3.up));
+            if (NPC_angle < 0)
+            {
+                NPC_angle += 360;
+            }
         }
     }
     public Collider[] BOSS_Atk01_Tips_Tip;
@@ -410,12 +431,120 @@ public class Boss_col : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    public Animator animator_to_atk;
+    public SpriteRenderer weaponDUCK;
+    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
+    private SpriteRenderer spriteRenderer; private Color originalColor;
+    private bool isCoroutineRunning = false, isInDangerZone = false;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f, dist;
+    int open_EnableHitbox = 0;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.tag == "MC_Att")
+        if (BOSS_HP > 0)
         {
-            Boss_Animator.SetTrigger("hit");
-            BOSS_HP -= static_parameters.MC_ATK * 2 / (BOSS_DEF + static_parameters.MC_ATK);
+            if (other.gameObject.tag == "Player" && Time.time >= nextDamageTime)
+            {
+                if (open_EnableHitbox == 0)
+                {
+                    open_EnableHitbox = 1;
+                    hit_Ani = true;
+                }
+            }
+
+            if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
+            {
+                Change();
+                switch (static_parameters.Ani_state)
+                {
+                    case 2:
+                        animator_to_atk.SetTrigger("atk_to_MC01");
+                        break;
+                    case 3:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                    case 4:
+                        animator_to_atk.SetTrigger("atk_to_MC02");
+                        break;
+                }
+                change_color_red();
+                effect.piano_Skill();
+                effect.fight_instinct_npc();
+                boss_hP.TakeDamage(static_parameters.MC_ATK, BOSS_DEF);
+                MC_to_Att = false;
+                Invoke("wait_MC_att", 0.5f);
+                nextDamageTime = Time.time + damageCooldown;
+            }
+
+            if (other.gameObject.CompareTag("MC_bomb"))
+            {
+                effect.play_piano_effect();
+            }
+
+            if (other.gameObject.CompareTag("MC_bullet"))
+            {
+                change_color_red();
+                switch (static_parameters._ItemID)
+                {
+                    case 1:
+                        boss_hP.TakeDamage(4 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
+                        break;
+                    case 2:
+                        boss_hP.TakeDamage(3 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
+                        break;
+                    case 3:
+                        boss_hP.TakeDamage(5 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
+                        break;
+                    case 4:
+                        boss_hP.TakeDamage(1 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
+                        break;
+                }
+            }
+        }
+    }
+    public void change_color_red()
+    {
+        spriteRenderer.color = Color.red; // 將顏色改為紅色
+        if (!isCoroutineRunning)  // 檢查協程是否正在運行
+        {
+            StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+        }
+
+    }
+    IEnumerator ResetColorAfterDelay(float delay)
+    {
+        isCoroutineRunning = true; // 設置為 true，表示協程正在運行
+        yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
+        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        isCoroutineRunning = false; // 協程結束後將旗標設回 false
+    }
+
+    void wait_MC_att()
+    {
+        MC_to_Att = true;
+    }
+    public void Change()
+    {
+        switch (Change_mood.mood)
+        {
+            case 0:
+                weaponDUCK.color = new Color(0.63f, 0.98f, 0.86f, 1);
+                break;
+            case 1:
+                weaponDUCK.color = new Color(0.98f, 0.62f, 0.63f, 1);
+                break;
+            case 2:
+                weaponDUCK.color = new Color(0.61f, 0.8f, 1, 1);
+                break;
+            case 3:
+                //Mood.sprite = ;
+                break;
+            case 4:
+                weaponDUCK.color = new Color(1, 0.93f, 0.59f, 1);
+                break;
+            default:
+                weaponDUCK.color = new Color(0.95f, 0.88f, 0.89f, 1);
+                break;
         }
     }
 }

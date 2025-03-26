@@ -10,10 +10,10 @@ public class Ani_MC : MonoBehaviour
 
     public GameObject Play_s;
 
-    static public bool isDashCooldown = false,isDashCooldown_for_move = false;
+    static public bool isDashCooldown = false, isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
-    static public float DashCD_time = 2f,dashDuration = 0.63f;
-    short ATK_count = 0; bool atk_flag=false; float atk_time = 0;
+    static public float DashCD_time = 2f, dashDuration = 0.63f;
+    short ATK_count = 0; bool atk_flag = false; float atk_time = 0;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -26,15 +26,18 @@ public class Ani_MC : MonoBehaviour
 
         // 設定角色面向角度
         UpdateFacingDirection();
-        if(atk_flag)atk_time += Time.deltaTime; 
+        if (atk_flag) atk_time += Time.deltaTime;
 
-        if(atk_time >= 0.45f){
-            if(Input.GetKeyDown(KeyCode.J)){
+        if (atk_time >= 0.45f)
+        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
                 atk_flag = true;
                 atk_time = 0;
             }
         }
-        if(atk_time >= 0.65f){
+        if (atk_time >= 0.65f)
+        {
             ResetCombo();
         }
 
@@ -42,14 +45,14 @@ public class Ani_MC : MonoBehaviour
         if (isAttackPlaying || static_parameters.Ani_state == -1) return;
 
         // 處理輸入
-        if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving())
+        if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
         {
             Skill_public_funtion.skill_31_dash = true;
             Skill_public_funtion.skill_33_Dash = true;
             Skill_public_funtion.skill_34_Dash = true;
             StartCoroutine(DashSequence());
         }
-        else if ((Input.GetKeyDown(KeyCode.J) && static_parameters.teaching_stop >= 2)||atk_flag)
+        else if ((Input.GetKeyDown(KeyCode.J) && static_parameters.teaching_stop >= 2) || atk_flag)
         {
             ATK_Counter();
         }
@@ -91,7 +94,7 @@ public class Ani_MC : MonoBehaviour
         {
             ATK_count++;
             static_parameters.Ani_state = ATK_count + 1;
-            if(!isAttackPlaying)StartCoroutine(AttackSequence());
+            if (!isAttackPlaying) StartCoroutine(AttackSequence());
         }
     }
     void DefaultCheck()
@@ -132,8 +135,8 @@ public class Ani_MC : MonoBehaviour
 
     IEnumerator AttackSequence()
     {
-        isAttackPlaying = true;atk_flag = true;
-        
+        isAttackPlaying = true; atk_flag = true;
+
         // 播放攻擊動畫
         MC_ani_state();
         switch (static_parameters.Ani_state)
@@ -151,7 +154,7 @@ public class Ani_MC : MonoBehaviour
         }
         isAttackPlaying = false;
     }
-    
+
     void PlayDashAnimation()
     {
         switch (Angle_sum)
@@ -291,6 +294,6 @@ public class Ani_MC : MonoBehaviour
     }
     void ResetCombo()
     {
-        ATK_count = 0;atk_time = 0;atk_flag = false;
+        ATK_count = 0; atk_time = 0; atk_flag = false;
     }
 }
