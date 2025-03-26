@@ -25,7 +25,7 @@ public class Teaching_TextF : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19 && Setting_keybroad.ESC_col == false && static_parameters.Bookstate == false)
         {
             Debug.Log("talk_number:" + talk_number);
             Debug.Log("static_parameters.teaching_stop:" + static_parameters.teaching_stop);

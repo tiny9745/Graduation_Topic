@@ -59,7 +59,7 @@ public class Main_menu : MonoBehaviour
         }
     }
 
-    public void Game_Play() => SceneManager.LoadScene("prohibit");
+    public void Game_Play() => SceneManager.LoadScene("Comic");
     public void Game_Setting() => _Setting_menu.SetActive(true);
     public void Game_Information() => SceneManager.LoadScene("Information");
     public void Game_Exit() => Application.Quit();
