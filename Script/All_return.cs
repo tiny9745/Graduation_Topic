@@ -36,14 +36,6 @@ public class All_return : MonoBehaviour
         static_parameters.Comic_scene_sort = 0;
         static_parameters.diary_number = 0;
         static_parameters.money = 999999;
-        static_parameters.diary_memory = new uint[][]
-        {
-            new uint[] { 0, 0, 0, 0 },//暫存
-            new uint[] { 0, 0, 0, 0 },//以下定存
-            new uint[] { 0, 0, 0, 0 },
-            new uint[] { 0, 0, 0, 0 },
-            new uint[] { 0, 0, 0, 0 }
-        };
         // static_parameters.diary_step = 0;
         // static_parameters._BGM_volue = 1;
         // static_parameters._SE_volue = 1;
