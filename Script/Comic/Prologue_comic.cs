@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Prologue_comic : MonoBehaviour
 {
-    
     public Canvas canvas; // 需要將新建的 Image 放到的 Canvas
     public GameObject Image_box;
-    uint comic_step = 0,comic_step_tmp=0,Wait_time=0;
-    float comic_time_sum = 0,auto_comic_time;
+    uint comic_step = 0, comic_step_tmp = 0, Wait_time = 0;
+    float comic_time_sum = 0, auto_comic_time;
     bool isTopLayer = false;
     string imagePath = "Sprites/Comic/Prologue/01/comics_1-1"; // 圖檔在 Resources 中的路徑
     // Start is called before the first frame update
@@ -23,7 +22,13 @@ public class Prologue_comic : MonoBehaviour
     void Update()
     {
         comic_time_sum += Time.deltaTime;
-        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && comic_time_sum > 0.8f)
+        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        {
+            static_parameters.Comic_scene_sort = 0;
+            comic_step = 1;
+            SceneManager.LoadScene("prohibit");
+        }
+        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && comic_time_sum > 0.5f)
         {
             auto_comic_time = 0;
             comic_time_sum = 0;
@@ -53,7 +58,8 @@ public class Prologue_comic : MonoBehaviour
         }
         else
         {
-            switch(Wait_time){//須提前一步
+            switch (Wait_time)
+            {//須提前一步
                 case 0:
                     auto_comic(2.5f);//換圖時間-無對話框
                     break;
@@ -82,6 +88,11 @@ public class Prologue_comic : MonoBehaviour
                 comicTransform = comicObject.transform;
             }
 
+            // 計算縮放比例
+            float scaleX = Screen.width / 1920f;
+            float scaleY = Screen.height / 1080f;
+            float scaleFactor = Mathf.Min(scaleX, scaleY); // 保持原始寬高比
+
             // 動態建立新的 Image 物件
             GameObject newImageObject = new GameObject("Comic_Image" + comic_step.ToString());
             newImageObject.transform.SetParent(comicTransform); // 設置父物件為 Comic
@@ -94,8 +105,8 @@ public class Prologue_comic : MonoBehaviour
 
             // 設定 Image 的位置和大小
             RectTransform rectTransform = newImage.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(1920, 1080); // 設定大小
-            rectTransform.anchoredPosition = new Vector2(0, -300); // 設定位置（相對於 Canvas 中心）
+            rectTransform.sizeDelta = new Vector2(1920 * scaleFactor, 1080 * scaleFactor); // 調整大小
+            rectTransform.anchoredPosition = new Vector2(0, -300 * scaleFactor); // 調整位置
 
             if (isTopLayer)
             {
@@ -105,8 +116,9 @@ public class Prologue_comic : MonoBehaviour
             {
                 newImageObject.transform.SetSiblingIndex(0); // 最底層
             }
+
             // 呼叫淡入效果
-            StartCoroutine(FadeInImage(newImage, 0.4f, 300f));
+            StartCoroutine(FadeInImage(newImage, 0.4f, 300f * scaleFactor));
         }
         else
         {
@@ -119,6 +131,10 @@ public class Prologue_comic : MonoBehaviour
         float elapsedTime = 0f;
         Color newColor = image.color;
         Vector3 originalPosition = image.transform.position; // 儲存初始位置
+
+        // 計算縮放比例
+        float scaleFactor = Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
+        moveDistance *= scaleFactor;
 
         // 初始化 alpha 為 0（完全透明）
         newColor.a = 0f;
@@ -134,8 +150,8 @@ public class Prologue_comic : MonoBehaviour
             image.color = newColor;
 
             // 更新 Y 軸位置，逐步增加至 moveDistance
-            float newXPosition = Mathf.Lerp(originalPosition.y, originalPosition.y + moveDistance, elapsedTime / duration);
-            image.transform.position = new Vector3(originalPosition.x, newXPosition, originalPosition.z);
+            float newYPosition = Mathf.Lerp(originalPosition.y, originalPosition.y + moveDistance, elapsedTime / duration);
+            image.transform.position = new Vector3(originalPosition.x, newYPosition, originalPosition.z);
 
             yield return null; // 等待下一幀
         }
@@ -144,7 +160,7 @@ public class Prologue_comic : MonoBehaviour
         newColor.a = 1f;
         image.color = newColor;
 
-        // 確保 X 軸移動到最終位置
+        // 確保 Y 軸移動到最終位置
         image.transform.position = new Vector3(originalPosition.x, originalPosition.y + moveDistance, originalPosition.z);
     }
 
@@ -153,23 +169,30 @@ public class Prologue_comic : MonoBehaviour
         float elapsedTime = 0f;
         Color newColor = image.color;
         Vector3 originalPosition = image.transform.position; // 儲存初始位置
+
+        // 計算縮放比例
+        float scaleFactor = Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
+        moveDistance *= scaleFactor;
+
         // 持續時間內逐步減少 alpha
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            newColor.a = 1 - Mathf.Clamp01(elapsedTime / duration);// 更新透明度
+            newColor.a = 1 - Mathf.Clamp01(elapsedTime / duration); // 更新透明度
             image.color = newColor;
 
             // 更新 Y 軸位置，逐步減少至 moveDistance
-            float newXPosition = Mathf.Lerp(originalPosition.y ,originalPosition.y + moveDistance, elapsedTime / duration);
-            image.transform.position = new Vector3(originalPosition.x, newXPosition, originalPosition.z);
+            float newYPosition = Mathf.Lerp(originalPosition.y, originalPosition.y + moveDistance, elapsedTime / duration);
+            image.transform.position = new Vector3(originalPosition.x, newYPosition, originalPosition.z);
 
             yield return null; // 等待下一幀
         }
+
         // 確保最後完全隱藏
         newColor.a = 0f;
         image.color = newColor;
     }
+
 
     void DeleteAllImagesUnderCanvas()
     {
@@ -221,12 +244,12 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                
+
                 change_comic_BG("Sprites/Comic/Leading comic/01/comics01_1");
-                imagePath = "Sprites/Comic/Leading comic/01/comics01_2";  
-                Wait_time = 1; isTopLayer = true;  
+                imagePath = "Sprites/Comic/Leading comic/01/comics01_2";
+                Wait_time = 1; isTopLayer = true;
                 break;
-            case 2:               
+            case 2:
                 imagePath = "Sprites/Comic/Leading comic/01/word box01_1";
                 Wait_time = 0;
                 break;
@@ -237,11 +260,11 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/01/comics01_4";
                 Wait_time = 1;
                 break;
-            case 5:  
+            case 5:
                 imagePath = "Sprites/Comic/Leading comic/01/word box01_2";
                 Wait_time = 0;
                 break;
-            case 6:               
+            case 6:
                 imagePath = "Sprites/Comic/Leading comic/01/comics01_5";
                 Wait_time = 1;
                 break;
@@ -267,41 +290,41 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_1";
                 Wait_time = 1;
                 break;
-            case 2:               
+            case 2:
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_1";
                 break;
             case 3:
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_2";
-                Wait_time = 0; 
+                Wait_time = 0;
                 break;
-            case 4:              
+            case 4:
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_2";
                 isTopLayer = false;
                 break;
-            case 5:             
+            case 5:
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_3";
                 isTopLayer = true; Wait_time = 1;
                 break;
-            case 6:            
+            case 6:
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_3";
                 Wait_time = 0;
                 break;
-            case 7:              
+            case 7:
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_4";
                 Wait_time = 1;
                 break;
-            case 8:           
+            case 8:
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_4";
                 Wait_time = 0;
                 break;
-            case 9:               
+            case 9:
                 imagePath = "Sprites/Comic/Leading comic/02/comics02_5";
-                isTopLayer = false; Wait_time = 1; 
+                isTopLayer = false; Wait_time = 1;
                 break;
-            case 10:               
+            case 10:
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_5";
                 isTopLayer = true;
-                break;              
+                break;
             case 11:
                 imagePath = "Sprites/Comic/Leading comic/02/word box02_7";
                 Wait_time = 0;
@@ -320,7 +343,7 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                
+
                 change_comic_BG("Sprites/Comic/Leading comic/white BG");
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_1";
                 Wait_time = 1;
@@ -332,7 +355,7 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/03/word box03_2";
                 Wait_time = 0;
                 break;
-            case 4:             
+            case 4:
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_2";
                 break;
             case 5:
@@ -343,7 +366,7 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/03/word box03_3";
                 Wait_time = 0;
                 break;
-            case 7:               
+            case 7:
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_4";
                 break;
             case 8:
@@ -354,7 +377,7 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/03/word box03_4";
                 Wait_time = 0;
                 break;
-            case 10:               
+            case 10:
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_6";
                 break;
             case 11:
@@ -384,11 +407,11 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_2";
                 Wait_time = 1;
                 break;
-            case 5:    
+            case 5:
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_3";
                 Wait_time = 0;
                 break;
-            case 6:       
+            case 6:
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_3";
                 Wait_time = 1;
                 break;
@@ -407,7 +430,7 @@ public class Prologue_comic : MonoBehaviour
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_6";
                 Wait_time = 0;
                 break;
-            case 11: 
+            case 11:
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_5";
                 Wait_time = 1;
                 break;
@@ -416,7 +439,7 @@ public class Prologue_comic : MonoBehaviour
                 break;
             case 13:
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_8";
-                Wait_time = 0; 
+                Wait_time = 0;
                 break;
             case 14:
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_6";
@@ -424,7 +447,7 @@ public class Prologue_comic : MonoBehaviour
                 break;
             case 15:
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_9";
-                isTopLayer = true;Wait_time = 0;
+                isTopLayer = true; Wait_time = 0;
                 break;
             case 16:
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_7";
@@ -475,13 +498,13 @@ public class Prologue_comic : MonoBehaviour
                 break;
             case 2:
                 StartCoroutine(FadeOutImage(GameObject.Find("Comic_Image1").GetComponent<Image>(), 0.4f, 300f));
-                break;    
+                break;
             case 3:
-                static_parameters.Comic_scene_sort = -1;
+                static_parameters.Comic_scene_sort = 0;
                 comic_step = 1;
                 SceneManager.LoadScene("prohibit");
                 return;
         }
-        
+
     }
 }
