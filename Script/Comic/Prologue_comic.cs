@@ -61,7 +61,7 @@ public class Prologue_comic : MonoBehaviour
                     auto_comic(1.5f);//換圖時間-對話框
                     break;
                 case 2:
-                    auto_comic(0.55f);//換圖時間-對話框快
+                    auto_comic(0.85f);//換圖時間-對話框快
                     break;
             }
         }
@@ -147,37 +147,28 @@ public class Prologue_comic : MonoBehaviour
         // 確保 X 軸移動到最終位置
         image.transform.position = new Vector3(originalPosition.x, originalPosition.y + moveDistance, originalPosition.z);
     }
+
     IEnumerator FadeOutImage(Image image, float duration, float moveDistance)
     {
         float elapsedTime = 0f;
         Color newColor = image.color;
         Vector3 originalPosition = image.transform.position; // 儲存初始位置
-
-        // 初始化 alpha 為 1（完全不透明）
-        newColor.a = 1f;
-        image.color = newColor;
-
         // 持續時間內逐步減少 alpha
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            // 更新透明度
-            newColor.a = 1 - Mathf.Clamp01(elapsedTime / duration);
+            newColor.a = 1 - Mathf.Clamp01(elapsedTime / duration);// 更新透明度
             image.color = newColor;
 
             // 更新 Y 軸位置，逐步減少至 moveDistance
-            float newXPosition = Mathf.Lerp(originalPosition.y + moveDistance, originalPosition.y, elapsedTime / duration);
+            float newXPosition = Mathf.Lerp(originalPosition.y ,originalPosition.y + moveDistance, elapsedTime / duration);
             image.transform.position = new Vector3(originalPosition.x, newXPosition, originalPosition.z);
 
             yield return null; // 等待下一幀
         }
-
         // 確保最後完全隱藏
         newColor.a = 0f;
         image.color = newColor;
-
-        // 確保 X 軸移動到最終位置
-        image.transform.position = originalPosition;
     }
 
     void DeleteAllImagesUnderCanvas()
@@ -480,13 +471,17 @@ public class Prologue_comic : MonoBehaviour
             case 1:
                 change_comic_BG("Sprites/Comic/Leading comic/black BG");
                 imagePath = "Sprites/Comic/Leading comic/05/05";
+                comic_image_add();
                 break;
-            case 10:
+            case 2:
+                StartCoroutine(FadeOutImage(GameObject.Find("Comic_Image1").GetComponent<Image>(), 0.4f, 300f));
+                break;    
+            case 3:
                 static_parameters.Comic_scene_sort = -1;
                 comic_step = 1;
                 SceneManager.LoadScene("prohibit");
                 return;
         }
-        comic_image_add();
+        
     }
 }
