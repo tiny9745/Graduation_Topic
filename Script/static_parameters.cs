@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class static_parameters : MonoBehaviour // this change Remembers change the All_return.cs
 {

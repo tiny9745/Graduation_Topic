@@ -267,7 +267,6 @@ public class NPC02_control : MonoBehaviour
                         animator_to_atk.SetTrigger("atk_to_MC02");
                         break;
                 }
-                Debug.Log("MC_Att");
                 change_color_red();
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
@@ -353,10 +352,10 @@ public class NPC02_control : MonoBehaviour
         Img_npc.transform.localScale = theScale;
     }
 
-    void knock_back()
+    void knock_back(Transform player)
     {
-        Vector3 currentPosition = transform.position;
-        transform.position = currentPosition + 0.5f * Vector3.back;
+        Vector3 knockbackDirection = (transform.position - player.position).normalized; // Get direction away from player
+        transform.position += 0.5f * knockbackDirection; // Apply knockback
     }
 
     public void change_color_red()
