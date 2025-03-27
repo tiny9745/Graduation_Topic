@@ -12,7 +12,6 @@ public class MC_col : MonoBehaviour
     public Material Deduct_Blood;
     private Material originalMaterial;
     private NavMeshAgent playerAgent;
-    public string Game_fight = "Fight_241130", magic_house = "magic_house", house_outside = "house_outside";
 
     void Start()
     {

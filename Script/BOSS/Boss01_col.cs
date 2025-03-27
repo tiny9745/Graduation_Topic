@@ -4,7 +4,7 @@ using UnityEngine;
 public class Boss_col : MonoBehaviour
 {
     public Animator Boss_Animator;
-    private GameObject TargetObj;
+    private GameObject TargetObj, Boss_Skill;
     static public float BOSS_Atk_time = -5;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
@@ -29,6 +29,7 @@ public class Boss_col : MonoBehaviour
             {
                 BOSS_live = false;
                 Boss_Animator.SetTrigger("die");
+                Destroy(Boss_Skill);
                 Destroy(gameObject, 1.5f);
             }
             return;
@@ -396,6 +397,7 @@ public class Boss_col : MonoBehaviour
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
                     BOSS_Atk03_GC[i].enabled = false;
+                    Debug.Log($"BOSS_Atk03_GC[{i}].enabled = " + BOSS_Atk03_GC[i].enabled);
                 }
                 break;
             case 1:
@@ -407,6 +409,7 @@ public class Boss_col : MonoBehaviour
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
                     BOSS_Atk03_GC[i].enabled = false;
+                    Debug.Log($"BOSS_Atk03_GC[{i}].enabled = " + BOSS_Atk03_GC[i].enabled);
                 }
                 break;
         }

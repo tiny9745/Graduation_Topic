@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class UI : MonoBehaviour
 {
     public short Diarystatus = 0;
@@ -11,6 +12,7 @@ public class UI : MonoBehaviour
     public GameObject Menu, CH1, CH2, CH3, CH4;
     public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
     public GameObject LeftMark1, LeftMark2, LeftMark3, LeftMark4;
+    public GameObject TeachiUI;
     private Color newColor = new Color(1, 1, 1, 0.5f);
     public Text money;
     public Image button_image, craft_image;
@@ -30,6 +32,10 @@ public class UI : MonoBehaviour
         {
             openclose();
             C_mood.Change();
+        }
+        if (SceneManager.GetActiveScene().name == "magic_house")
+        {
+            TeachiUI.SetActive(true);
         }
     }
     public void Onclick1()

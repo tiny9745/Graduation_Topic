@@ -12,7 +12,7 @@ public class Ani_MC : MonoBehaviour
 
     static public bool isDashCooldown = false, isDashCooldown_for_move = false;
     static public bool isAttackPlaying = false;
-    static public float DashCD_time = 2f, dashDuration = 0.63f;
+    static public float DashCD_time = 1f, dashDuration = 0.63f;
     short ATK_count = 0; bool atk_flag = false; float atk_time = 0;
     void Start()
     {

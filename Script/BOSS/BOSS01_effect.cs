@@ -108,8 +108,8 @@ public class BOSS01_effect : MonoBehaviour
                         Skill_public_funtion.B_damage += 15;
                         if (control.BOSS_HP < NPC_back)
                             control.BOSS_HP = 0;
-                        else
-                            transform.position -= NPC_back / 2 * Vector3.back;
+                        // else
+                        //     transform.position -= NPC_back / 2 * Vector3.back;
                         continue;
                     case 25: // Smoke Bomb
                         skill_25_effect = true;

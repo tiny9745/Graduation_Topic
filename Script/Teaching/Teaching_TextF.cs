@@ -21,6 +21,7 @@ public class Teaching_TextF : MonoBehaviour
     {
         static_parameters.teaching_stop = -1;
         _UI = GameObject.Find("UI").GetComponent<UI>();
+        reading();
     }
 
     void Update()
