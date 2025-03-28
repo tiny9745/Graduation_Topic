@@ -59,6 +59,8 @@ public class MC_atk : MonoBehaviour
                     PlaySoundAtIndex(2);
                     melee2();
                     break;
+                default:
+                break;
             }
         }
     }
