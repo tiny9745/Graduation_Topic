@@ -1,37 +1,38 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class skill_41_bullet : MonoBehaviour
 {
-    float speed = 10f;
+    public float speed = 10f;
     private GameObject targetObject;
-    Vector3 moveDirection;
-    Transform targetTransform;
+    private Vector3 moveDirection;
     public Animator Guardian_41_bullet;
-    private bool isFacingRight = true;
+    // private bool isFacingRight = true;
+
     void Start()
     {
         targetObject = GameObject.Find("Player_S");
         if (targetObject != null)
         {
-            float angle_NPC = FindNearestNPCAngle();
-            targetTransform = targetObject.transform;
-            float radians = angle_NPC * Mathf.Deg2Rad; // 將角度轉為弧度
-            moveDirection = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)); // 計算絕對方向向量
+            GameObject nearestNPC = FindNearestNPC();
+            if (nearestNPC != null)
+            {
+                moveDirection = (nearestNPC.transform.position - transform.position).normalized; // 直接朝向 NPC
+                transform.forward = moveDirection; // 確保子彈的前方對準 NPC
+            }
+            else
+            {
+                moveDirection = transform.forward; // 若無 NPC，則沿當前朝向前進
+            }
         }
     }
 
     void Update()
     {
-        if (targetObject != null)
-        {
-            transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-        }
+        transform.position += moveDirection * speed * Time.deltaTime;
     }
 
-    public float FindNearestNPCAngle()
+    private GameObject FindNearestNPC()
     {
         GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
         GameObject nearestNPC = null;
@@ -39,29 +40,14 @@ public class skill_41_bullet : MonoBehaviour
 
         foreach (GameObject npc in npcs)
         {
-            float distance = Vector3.Distance(targetObject.transform.position, npc.transform.position);
+            float distance = Vector3.Distance(transform.position, npc.transform.position);
             if (distance < shortestDistance)
             {
                 shortestDistance = distance;
                 nearestNPC = npc;
-                if (npc.transform.position.x > transform.position.x && !isFacingRight)
-                {
-                    Flip();
-                }
-                else if (npc.transform.position.x < transform.position.x && isFacingRight)
-                {
-                    Flip();
-                }
             }
         }
-
-        if (nearestNPC != null)
-        {
-            Vector3 directionToNPC = (nearestNPC.transform.position - transform.position).normalized;
-            float angle = Vector3.SignedAngle(transform.forward, directionToNPC, Vector3.up);
-            return angle;
-        }
-        return -1;
+        return nearestNPC;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,13 +57,5 @@ public class skill_41_bullet : MonoBehaviour
             Guardian_41_bullet.SetTrigger("Guardian_41_bullet");
             Destroy(gameObject, 0.11f);
         }
-    }
-
-    void Flip()
-    {
-        isFacingRight = !isFacingRight;
-        Vector3 theScale = this.transform.localScale;
-        theScale.x *= -1;
-        this.transform.localScale = theScale;
     }
 }
