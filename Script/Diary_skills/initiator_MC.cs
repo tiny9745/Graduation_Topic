@@ -317,7 +317,6 @@ public class initiator_MC : MonoBehaviour
                         }
                         break;
                     case 42:
-                        Debug.Log("skill_42_enter:" + Skill_public_funtion.skill_42_enter);
                         if (Skill_public_funtion.skill_42_enter)
                         {
                             Skill_public_funtion.skill_42_enter = false;

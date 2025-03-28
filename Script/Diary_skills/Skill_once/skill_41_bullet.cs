@@ -7,7 +7,8 @@ public class skill_41_bullet : MonoBehaviour
     private GameObject targetObject;
     private Vector3 moveDirection;
     public Animator Guardian_41_bullet;
-    // private bool isFacingRight = true;
+    public GameObject Img_Guardian; // 需要設定 Guardian 的圖像
+    private bool isFacingRight = true;
 
     void Start()
     {
@@ -17,12 +18,13 @@ public class skill_41_bullet : MonoBehaviour
             GameObject nearestNPC = FindNearestNPC();
             if (nearestNPC != null)
             {
-                moveDirection = (nearestNPC.transform.position - transform.position).normalized; // 直接朝向 NPC
-                transform.forward = moveDirection; // 確保子彈的前方對準 NPC
+                moveDirection = (nearestNPC.transform.position - transform.position).normalized; // 朝向最近 NPC
+                transform.forward = moveDirection; // 確保子彈朝向移動方向
+                CheckAndFlip(nearestNPC.transform.position); // 初始時檢查翻轉
             }
             else
             {
-                moveDirection = transform.forward; // 若無 NPC，則沿當前朝向前進
+                moveDirection = transform.forward; // 若無 NPC，則沿當前朝向移動
             }
         }
     }
@@ -56,6 +58,18 @@ public class skill_41_bullet : MonoBehaviour
         {
             Guardian_41_bullet.SetTrigger("Guardian_41_bullet");
             Destroy(gameObject, 0.11f);
+        }
+    }
+
+    void CheckAndFlip(Vector3 targetPosition)
+    {
+        if ((moveDirection.x > 0 && !isFacingRight) || (moveDirection.x < 0 && isFacingRight))
+        {
+           
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = Img_Guardian.transform.localScale;
+        theScale.x *= -1;
+        Img_Guardian.transform.localScale = theScale;
         }
     }
 }
