@@ -34,7 +34,7 @@ public class Skill_public_funtion : MonoBehaviour // this change Remembers chang
     static public List<HashSet<int>> validSequences; // 有效的組合數列
     static public List<HashSet<int>> validSequences_re = new List<HashSet<int>>(){
             new HashSet<int> { 1, 2, 5, 6 },//#空閒時間 #食物 #小玩具 #書籍-甜食折價券
-            new HashSet<int> { 1, 4, 5, 6 },//#空閒時間 #父母 #小玩具 #書籍-新開的店
+            new HashSet<int> { 1, 2, 4, 5 },//#空閒時間 #父母 #小玩具 #書籍-新開的店
             new HashSet<int> { 2, 6 },//#空閒時間#食物-鎮上的雜貨店
             new HashSet<int> { 2, 4, 6 },//#空閒時間 #父母 #食物-午餐
             new HashSet<int> { 1, 3 },//#書籍 #植物-書籤
