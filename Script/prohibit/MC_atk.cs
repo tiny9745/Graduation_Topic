@@ -40,7 +40,7 @@ public class MC_atk : MonoBehaviour
     }
     void skill()
     {
-        if (Input.GetKey(KeyCode.J) && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2)
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2)
         {
             switch (static_parameters.Ani_state)
             {
