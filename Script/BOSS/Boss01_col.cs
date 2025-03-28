@@ -525,6 +525,7 @@ public class Boss_col : MonoBehaviour
     void wait_MC_att()
     {
         MC_to_Att = true;
+        Debug.Log("MC_to_Att ="+ MC_to_Att);
     }
     public void Change()
     {
