@@ -13,6 +13,7 @@ public class Prefabs_start_241130 : MonoBehaviour
     private int Number_NPC01, Number_NPC02, Number_NPC03, Number_NPC04, Number_NPC05;
     void Start()
     {
+        static_parameters.MC_NPC_col_move = false; // 禁止 NPC 移動
         // 計算初始 NavMesh 範圍
         UpdateNavMeshBounds();
 
@@ -24,7 +25,7 @@ public class Prefabs_start_241130 : MonoBehaviour
         static_parameters.into_gameFight = true;
         // 延遲生成確保範圍正確
         Invoke("BakeNavMesh", 1.5f);
-        Invoke("NPC_into", 3.1f);
+        Invoke("NPC_into", 3.2f);
     }
 
     void OnDestroy()
@@ -151,6 +152,7 @@ public class Prefabs_start_241130 : MonoBehaviour
         if (navMeshSurface != null)
         {
             navMeshSurface.BuildNavMesh();  // 重新建構NavMesh
+            static_parameters.MC_NPC_col_move = true;
         }
         else
         {
