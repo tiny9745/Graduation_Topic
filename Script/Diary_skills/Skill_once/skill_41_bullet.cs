@@ -22,10 +22,6 @@ public class skill_41_bullet : MonoBehaviour
                 transform.forward = moveDirection; // 確保子彈朝向移動方向
                 CheckAndFlip(nearestNPC.transform.position); // 初始時檢查翻轉
             }
-            else
-            {
-                moveDirection = transform.forward; // 若無 NPC，則沿當前朝向移動
-            }
         }
     }
 
@@ -56,6 +52,7 @@ public class skill_41_bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("NPC"))
         {
+            speed = 0; // 停止移動
             Guardian_41_bullet.SetTrigger("Guardian_41_bullet");
             StartCoroutine(bullet41_AniEnd());
         }
@@ -63,9 +60,8 @@ public class skill_41_bullet : MonoBehaviour
 
     void CheckAndFlip(Vector3 targetPosition)
     {
-        if ((moveDirection.x > 0 && !isFacingRight) || (moveDirection.x < 0 && isFacingRight))
+        if ((moveDirection.x > 0 && isFacingRight) || (moveDirection.x < 0 && !isFacingRight))
         {
-
             isFacingRight = !isFacingRight;
             Vector3 theScale = Img_Guardian.transform.localScale;
             theScale.x *= -1;

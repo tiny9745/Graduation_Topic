@@ -18,14 +18,9 @@ public class skill_42_bullet : MonoBehaviour
             GameObject nearestNPC = FindNearestNPC();
             if (nearestNPC != null)
             {
-                Vector3 direction = nearestNPC.transform.position - transform.position;
-                direction.y = 0; // 確保不受 Y 軸影響
-                moveDirection = direction.normalized;
-                CheckAndFlip(nearestNPC.transform.position);
-            }
-            else
-            {
-                moveDirection = transform.forward;
+                moveDirection = (nearestNPC.transform.position - transform.position).normalized; // 朝向最近 NPC
+                transform.forward = moveDirection; // 確保子彈朝向移動方向
+                CheckAndFlip(nearestNPC.transform.position); // 初始時檢查翻轉
             }
         }
     }
@@ -57,6 +52,7 @@ public class skill_42_bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("NPC"))
         {
+            speed = 0; // 停止移動
             Guardian_42_bullet.SetTrigger("bullet42");
             StartCoroutine(bullet42_AniEnd());
         }
@@ -64,7 +60,6 @@ public class skill_42_bullet : MonoBehaviour
 
     void CheckAndFlip(Vector3 targetPosition)
     {
-        // 反轉判斷邏輯
         if ((moveDirection.x > 0 && isFacingRight) || (moveDirection.x < 0 && !isFacingRight))
         {
             isFacingRight = !isFacingRight;

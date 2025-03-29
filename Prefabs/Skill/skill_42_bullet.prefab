@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7074989289862595784}
   - component: {fileID: 8308519211597084292}
   - component: {fileID: 4269526942709424790}
+  - component: {fileID: 560262173128985403}
   m_Layer: 0
   m_Name: skill_42_bullet
   m_TagString: skill_42_bullet
@@ -160,3 +161,17 @@ MonoBehaviour:
   speed: 10
   Guardian_42_bullet: {fileID: 7074989289862595784}
   Img_Guardian: {fileID: 3764642641263110486}
+--- !u!114 &560262173128985403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764642641263110486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fc7b5ed6f08b44a9e7c73ec190dba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera_main: {fileID: 0}
+  buttonImage: {fileID: 3764642641263110486}

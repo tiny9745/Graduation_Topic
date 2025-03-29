@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class NPC05_control : MonoBehaviour
 {
-    public NPC_interactive npc_interactive; public NPC_HP_05 nPC_hP; public NPC_effect_05 effect;public UI _UI;
+    public NPC_interactive npc_interactive; public NPC_HP_05 nPC_hP; public NPC_effect_05 effect; public UI _UI;
     NavMeshAgent npcNavi;
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
@@ -21,7 +21,7 @@ public class NPC05_control : MonoBehaviour
     public Transform firePoint;
     public AudioSource audioSource; public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
-    private float fadeDuration = 5f,fadeTimer = 0f;
+    private float fadeDuration = 5f, fadeTimer = 0f;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -196,6 +196,10 @@ public class NPC05_control : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        effect.skill_TriggerEnter(other);
+    }
 
     void Shoot()
     {
@@ -320,7 +324,8 @@ public class NPC05_control : MonoBehaviour
             }
         }
     }
-    void fade(){
+    void fade()
+    {
         if (fadeTimer < fadeDuration)
         {
             fadeTimer += Time.deltaTime;

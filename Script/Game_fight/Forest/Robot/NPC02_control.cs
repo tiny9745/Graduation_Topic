@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NPC02_control : MonoBehaviour
 {
-    public NPC_HP_02 nPC_hP; public NPC_interactive npc_interactive; public NPC_effect_02 effect;public UI _UI;
+    public NPC_HP_02 nPC_hP; public NPC_interactive npc_interactive; public NPC_effect_02 effect; public UI _UI;
     NavMeshAgent npcNavi;
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
@@ -19,7 +19,7 @@ public class NPC02_control : MonoBehaviour
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
-    private float fadeDuration = 5f,fadeTimer = 0f;
+    private float fadeDuration = 5f, fadeTimer = 0f;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -238,6 +238,10 @@ public class NPC02_control : MonoBehaviour
             animator.Play("Robot_Att_LF");
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        effect.skill_TriggerEnter(other);
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -369,7 +373,8 @@ public class NPC02_control : MonoBehaviour
             }
         }
     }
-    void fade(){
+    void fade()
+    {
         if (fadeTimer < fadeDuration)
         {
             fadeTimer += Time.deltaTime;

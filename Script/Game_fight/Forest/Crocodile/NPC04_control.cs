@@ -263,6 +263,7 @@ public class NPC04_control : MonoBehaviour
             }
             Invoke("wait_safe_to_walk", 1.5f);
         }
+        effect.skill_TriggerEnter(other);
     }
 
     private void wait_safe_to_walk()

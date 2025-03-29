@@ -14,7 +14,7 @@ public class Guardian41_col : MonoBehaviour
     float bullet_time_max = 8f;
     float Guardian41_to_player_distance = 0;
     private bool isFacingRight = true;
-    private bool Ready = false, npc_distance = false;
+    private bool Ready = false;
 
     private Queue<Vector3> playerPath = new Queue<Vector3>(); // 儲存 player 走過的路徑點
     private float pathLength = 0f; // 記錄路徑總長度
@@ -42,58 +42,16 @@ public class Guardian41_col : MonoBehaviour
             bullet_time = 0;
             Ready = true;
         }
-        if (!npc_distance)
-        {
-            NPC_distance_out();
-        }
+        FaceNearestNPC(); // 不斷檢測並朝向最近的 NPC
         MC_Dead();
     }
 
-    private void OnTriggerStay(Collider collision)
+    private void FaceNearestNPC()
     {
-        if (collision.tag == "NPC")
+        GameObject closestNPC = FindClosestNPCWithinCollider();
+        if (closestNPC != null)
         {
-            npc_distance = true;
-            GameObject closestNPC = FindClosestNPCWithinCollider();
-            if (closestNPC != null)
-            {
-                if (closestNPC.transform.position.x > transform.position.x && !isFacingRight)
-                {
-                    Flip();
-                }
-                else if (closestNPC.transform.position.x < transform.position.x && isFacingRight)
-                {
-                    Flip();
-                }
-            }
-            if (Ready)
-            {
-                Invoke("bullet_fire", 0.5f);
-                Guardian_41.SetTrigger("Plant_guard01_ATK");
-                Ready = false;
-            }
-        }
-    }
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.tag == "NPC")
-        {
-            npc_distance = false;
-        }
-    }
-
-    private void NPC_distance_out()
-    {
-        if (player != null)
-        {
-            if (player.transform.position.x > transform.position.x && !isFacingRight)
-            {
-                Flip();
-            }
-            else if (player.transform.position.x < transform.position.x && isFacingRight)
-            {
-                Flip();
-            }
+            FaceTarget(closestNPC.transform);
         }
     }
 
@@ -116,9 +74,27 @@ public class Guardian41_col : MonoBehaviour
                     closestDistance = distance;
                     closestNPC = hitCollider.gameObject;
                 }
+                if (Ready)
+                {
+                    Invoke("bullet_fire", 0.5f);
+                    Guardian_41.SetTrigger("Plant_guard01_ATK");
+                    Ready = false;
+                }
             }
         }
         return closestNPC;
+    }
+
+    private void FaceTarget(Transform target)
+    {
+        if (target.position.x > transform.position.x && isFacingRight)
+        {
+            Flip();
+        }
+        else if (target.position.x < transform.position.x && !isFacingRight)
+        {
+            Flip();
+        }
     }
 
     void Flip()
@@ -133,7 +109,8 @@ public class Guardian41_col : MonoBehaviour
     {
         if (static_parameters.MC_HP > 0)
         {
-            Instantiate(bullet, Firepoint.position, transform.rotation);
+            Debug.Log("Firepoint.rotation:" + Firepoint.rotation);
+            Instantiate(bullet, Firepoint.position, Firepoint.rotation);
         }
     }
 
@@ -147,7 +124,6 @@ public class Guardian41_col : MonoBehaviour
             playerPath.Enqueue(currentPlayerPosition);
             pathLength += segmentLength;
 
-            // 移除過長的路徑，保持總長度接近 Guardian44_to_player_distance
             while (pathLength > Guardian41_to_player_distance && playerPath.Count > 1)
             {
                 Vector3 removedPoint = playerPath.Dequeue();

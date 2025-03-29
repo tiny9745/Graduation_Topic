@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1142351160673755526}
   - component: {fileID: 5675167787803803883}
   - component: {fileID: 4385809445168675512}
+  - component: {fileID: 7136749874676921210}
   m_Layer: 0
   m_Name: 2E-00
-  m_TagString: Untagged
+  m_TagString: skill_45_bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +123,27 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!135 &7136749874676921210
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687188922923025740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.89
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1706319004315893134
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +228,7 @@ GameObject:
   - component: {fileID: 6642297856694538978}
   m_Layer: 0
   m_Name: firepoint
-  m_TagString: Untagged
+  m_TagString: skill_45_bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
