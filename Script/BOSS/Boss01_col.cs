@@ -436,13 +436,16 @@ public class Boss_col : MonoBehaviour
 
     public Animator animator_to_atk;
     public SpriteRenderer weaponDUCK;
-    bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     private SpriteRenderer spriteRenderer; private Color originalColor;
-    private bool isCoroutineRunning = false, isInDangerZone = false;
-    private float damageCooldown = 1.0f, nextDamageTime = 0.0f, dist;
+    private bool  MC_to_Att = true, isCoroutineRunning = false;
+    private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     int open_EnableHitbox = 0;
 
     private void OnTriggerEnter(Collider other)
+    {
+        effect.skill_TriggerEnter(other);
+    }
+    private void OnTriggerStay(Collider other)
     {
         if (BOSS_HP > 0)
         {
@@ -451,7 +454,6 @@ public class Boss_col : MonoBehaviour
                 if (open_EnableHitbox == 0)
                 {
                     open_EnableHitbox = 1;
-                    hit_Ani = true;
                 }
             }
 
@@ -525,7 +527,7 @@ public class Boss_col : MonoBehaviour
     void wait_MC_att()
     {
         MC_to_Att = true;
-        Debug.Log("MC_to_Att ="+ MC_to_Att);
+        Debug.Log("MC_to_Att =" + MC_to_Att);
     }
     public void Change()
     {

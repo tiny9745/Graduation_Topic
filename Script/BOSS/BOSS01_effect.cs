@@ -51,7 +51,6 @@ public class BOSS01_effect : MonoBehaviour
         }
         if (Skill_public_funtion.play_piano)
         {
-            Debug.Log("piano NPC03 skill");
             if (play_piano_atk < Skill_public_funtion.P_time)
             {
                 play_piano_atk++;
@@ -66,7 +65,6 @@ public class BOSS01_effect : MonoBehaviour
             }
             else
             {
-                Debug.Log("NPC03 skill_2x complete!");
                 _skill_piano_effect.FadeOutMoveDown(0.25f, 4f);
                 Instantiate(bomb_piano, bomb_point.transform.position, Quaternion.identity);
                 play_piano_atk = 0;
