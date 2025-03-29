@@ -45,10 +45,7 @@ public class NPC01_effect : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log("IconManager.Instance == null");
-        }
+ 
         if (Skill_public_funtion.play_piano)
         {
             Debug.Log("piano NPC03 skill");

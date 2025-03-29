@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,11 +22,11 @@ public class NPC01_control : MonoBehaviour
     private Quaternion initialRotation;
     public GameObject NPC01, NPC01_1;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
-    private float fadeDuration = 1.6f,fadeTimer = 0f;
+    private float fadeDuration = 1.6f, fadeTimer = 0f;
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
- 
+
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -327,6 +325,7 @@ public class NPC01_control : MonoBehaviour
                         break;
                 }
                 change_color_red();
+                knock_back(TargetObj.transform);
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
@@ -453,7 +452,21 @@ public class NPC01_control : MonoBehaviour
             }
         }
     }
-    void fade(){
+    void knock_back(Transform player)
+    {
+        float knockbackForce = static_parameters.knockback_force; // Get knockback strength
+        Vector3 knockbackDirection = (transform.position - player.position).normalized; // Direction away from player
+
+        Rigidbody rb = GetComponent<Rigidbody>(); // Get Rigidbody
+        if (rb != null)
+        {
+            Debug.Log("Knockback direction: " + knockbackDirection); // Debug log for direction
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse); // Apply instant force
+        }
+    }
+
+    void fade()
+    {
         if (fadeTimer < fadeDuration)
         {
             fadeTimer += Time.deltaTime;
