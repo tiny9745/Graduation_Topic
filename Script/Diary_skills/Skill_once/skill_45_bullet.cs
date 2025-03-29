@@ -57,7 +57,7 @@ public class skill_45_bullet : MonoBehaviour
         if (other.gameObject.CompareTag("NPC"))
         {
             Guardian_45_bullet.SetTrigger("bullet45");
-            Destroy(gameObject, 0.11f);
+           StartCoroutine(bullet45_AniEnd());
         }
     }
 
@@ -70,5 +70,15 @@ public class skill_45_bullet : MonoBehaviour
         theScale.x *= -1;
         Img_Guardian.transform.localScale = theScale;
         }
+    }
+
+    IEnumerator bullet45_AniEnd()
+    {
+        yield return new WaitUntil(() =>
+        {
+            AnimatorStateInfo stateInfo = Guardian_45_bullet.GetCurrentAnimatorStateInfo(0);
+            return stateInfo.IsName("bullet45_bomb") && stateInfo.normalizedTime >= 0.98f;
+        });
+        Destroy(gameObject);
     }
 }

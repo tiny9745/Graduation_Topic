@@ -21,7 +21,8 @@ public class Play_move : MonoBehaviour
         Vector3 newPosition = rb.position; // 取得當前位置
 
         if (static_parameters.MC_HP > 0 && Death_MC.isDead && static_parameters.isTeaching == false &&
-            static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
+            static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false &&
+            static_parameters.MC_NPC_col_move == true)
         {
             horizontalInput = Input.GetAxis("Horizontal");
             verticalInput = Input.GetAxis("Vertical");

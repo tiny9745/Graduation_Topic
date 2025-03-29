@@ -18,12 +18,14 @@ public class skill_42_bullet : MonoBehaviour
             GameObject nearestNPC = FindNearestNPC();
             if (nearestNPC != null)
             {
-                moveDirection = (nearestNPC.transform.position - transform.position).normalized; // 朝向最近 NPC
-                CheckAndFlip(nearestNPC.transform.position); // 初始時檢查翻轉
+                Vector3 direction = nearestNPC.transform.position - transform.position;
+                direction.y = 0; // 確保不受 Y 軸影響
+                moveDirection = direction.normalized;
+                CheckAndFlip(nearestNPC.transform.position);
             }
             else
             {
-                moveDirection = transform.forward; // 若無 NPC，則沿當前朝向移動
+                moveDirection = transform.forward;
             }
         }
     }
@@ -56,7 +58,7 @@ public class skill_42_bullet : MonoBehaviour
         if (other.gameObject.CompareTag("NPC"))
         {
             Guardian_42_bullet.SetTrigger("bullet42");
-            Destroy(gameObject, 0.11f);
+            StartCoroutine(bullet42_AniEnd());
         }
     }
 
@@ -70,5 +72,15 @@ public class skill_42_bullet : MonoBehaviour
             theScale.x *= -1;
             Img_Guardian.transform.localScale = theScale;
         }
+    }
+
+    IEnumerator bullet42_AniEnd()
+    {
+        yield return new WaitUntil(() =>
+        {
+            AnimatorStateInfo stateInfo = Guardian_42_bullet.GetCurrentAnimatorStateInfo(0);
+            return stateInfo.IsName("bullet_bomb42") && stateInfo.normalizedTime >= 0.98f;
+        });
+        Destroy(gameObject);
     }
 }

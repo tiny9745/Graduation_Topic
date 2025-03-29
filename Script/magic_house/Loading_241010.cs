@@ -26,6 +26,7 @@ public class Loading_241010 : MonoBehaviour
     {
         scaleFactor = Screen.height / 1080f;
         maxFillAmount *= scaleFactor;
+        static_parameters.MC_NPC_col_move = false;
 
         BlackScreen = GameObject.Find("Black");
         player_S = GameObject.Find("Player_S");
@@ -117,11 +118,12 @@ public class Loading_241010 : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress / 0.95f);
             targetFillAmount = progress * maxFillAmount;
 
-            if (operation.progress >= 0.95f && loadingTimeElapsed >= minimumLoadingTime)
+            if (operation.progress >= 0.94f && loadingTimeElapsed >= minimumLoadingTime)
             {
                 operation.allowSceneActivation = true;
             }
             yield return null;
         }
+        static_parameters.MC_NPC_col_move = true;
     }
 }

@@ -57,7 +57,7 @@ public class skill_41_bullet : MonoBehaviour
         if (other.gameObject.CompareTag("NPC"))
         {
             Guardian_41_bullet.SetTrigger("Guardian_41_bullet");
-            Destroy(gameObject, 0.11f);
+            StartCoroutine(bullet41_AniEnd());
         }
     }
 
@@ -65,11 +65,21 @@ public class skill_41_bullet : MonoBehaviour
     {
         if ((moveDirection.x > 0 && !isFacingRight) || (moveDirection.x < 0 && isFacingRight))
         {
-           
-        isFacingRight = !isFacingRight;
-        Vector3 theScale = Img_Guardian.transform.localScale;
-        theScale.x *= -1;
-        Img_Guardian.transform.localScale = theScale;
+
+            isFacingRight = !isFacingRight;
+            Vector3 theScale = Img_Guardian.transform.localScale;
+            theScale.x *= -1;
+            Img_Guardian.transform.localScale = theScale;
         }
+    }
+
+    IEnumerator bullet41_AniEnd()
+    {
+        yield return new WaitUntil(() =>
+        {
+            AnimatorStateInfo stateInfo = Guardian_41_bullet.GetCurrentAnimatorStateInfo(0);
+            return stateInfo.IsName("bullet41_bomb") && stateInfo.normalizedTime >= 0.98f;
+        });
+        Destroy(gameObject);
     }
 }
