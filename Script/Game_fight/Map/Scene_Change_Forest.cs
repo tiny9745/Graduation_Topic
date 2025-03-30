@@ -35,15 +35,17 @@ public class Scene_Change_Forest : MonoBehaviour
         if (static_parameters.stage_number == 5)
         {
             static_parameters.into_gameFight_Levels = 6;
+            Signs.sprite = Signs_Sprite[1];
         }
         else if (static_parameters.stage_number == 4)
         {
             static_parameters.into_gameFight_Levels = 5;
+            Signs.sprite = Signs_Sprite[2];
         }
         else
         {
             static_parameters.into_gameFight_Levels = Random.Range(0, 5);
-            static_parameters.into_gameFight_Levels = static_parameters.stage_number;
+            Signs.sprite = Signs_Sprite[0];
         }
         Debug.Log("static_parameters.into_gameFight_Levels:" + static_parameters.into_gameFight_Levels);
     }
