@@ -7,12 +7,14 @@ public class Shopoint : MonoBehaviour
 {
     //public GameObject Upgrade;
     Ptest piece;
+    public UI ui;
     public SpriteRenderer Goods;//指定實體物件
-    public Sprite item1,item2,item3,item4,item5;
+    public Sprite item1, item2, item3, item4, item5;
     bool P1 = false;
     int spawn, price;
     void Start()
     {
+        ui = GameObject.Find("UI").GetComponent<UI>();
         spawn = Random.Range(0, 4);
         Setgoods(spawn);
     }
@@ -75,32 +77,33 @@ public class Shopoint : MonoBehaviour
         {
             case 0:
                 static_parameters.MC_HP += 30;
-                if(static_parameters.MC_HP > static_parameters.MC_HP_Max)static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                if (static_parameters.MC_HP > static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
                 Debug.Log("A1");
                 break;
             case 1:
                 static_parameters.MC_HP += 60;
-                if(static_parameters.MC_HP > static_parameters.MC_HP_Max)static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                if (static_parameters.MC_HP > static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
                 Debug.Log("A2");
                 break;
             case 2:
                 static_parameters.MC_HP += 120;
-                if(static_parameters.MC_HP > static_parameters.MC_HP_Max)static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                if (static_parameters.MC_HP > static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
                 Debug.Log("A3");
                 break;
             case 3:
                 static_parameters.MC_HP += 200;
-                if(static_parameters.MC_HP > static_parameters.MC_HP_Max)static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                if (static_parameters.MC_HP > static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
                 Debug.Log("A4");
                 break;
             case 4:
                 static_parameters.revival = true;
-                Debug.Log("revival"+static_parameters.revival);
+                Debug.Log("revival" + static_parameters.revival);
                 break;
             case 5:
 
                 break;
         }
+        ui.Loadmoney();
         Destroy(gameObject, 0.1f);
     }
 }
