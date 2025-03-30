@@ -66,8 +66,6 @@ public class MC_Throw : MonoBehaviour
         {
             Vector3 directionToNPC = (nearestNPC.transform.position - transform.position).normalized;
             float angle = Vector3.SignedAngle(transform.forward, directionToNPC, Vector3.up);
-
-            Debug.Log($"最近的 NPC 是: {nearestNPC.name}，距離為: {shortestDistance}，與 MC 的角度為: {angle} 度");
             return angle;
         }
         return -1;

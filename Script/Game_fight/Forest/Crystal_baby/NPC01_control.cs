@@ -461,7 +461,7 @@ public class NPC01_control : MonoBehaviour
         if (rb != null)
         {
             Debug.Log("Knockback direction: " + knockbackDirection); // Debug log for direction
-            rb.AddForce(knockbackDirection * knockbackForce*10, ForceMode.Impulse); // Apply instant force
+            rb.AddForce(knockbackDirection * knockbackForce * 5, ForceMode.Impulse); // Apply instant force
             Debug.Log("Knockback force applied: " + knockbackDirection * knockbackForce); // Debug log for force
         }
     }

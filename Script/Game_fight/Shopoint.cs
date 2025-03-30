@@ -100,7 +100,7 @@ public class Shopoint : MonoBehaviour
             case 5:
 
                 break;
-
         }
+        Destroy(gameObject, 0.1f);
     }
 }
