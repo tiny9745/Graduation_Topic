@@ -23,10 +23,10 @@ public class Scene_Change_Forest : MonoBehaviour
     private bool wave_return = true;
     private bool screen_close = true;
     private int into_gameFight_Levels_memory = 0;
-
     bool open = false;
-    // Update is called once per frame
+    private int all_stage = 6;
     public GameObject image_complete;
+
     void Start()
     {
         player_S = GameObject.Find("Player_S");
@@ -47,7 +47,7 @@ public class Scene_Change_Forest : MonoBehaviour
         }
         else
         {
-            static_parameters.into_gameFight_Levels = Random.Range(1, 3);
+            static_parameters.into_gameFight_Levels = Random.Range(0, 5);
             into_gameFight_Levels_memory = static_parameters.into_gameFight_Levels;
             Signs.sprite = Signs_Sprite[0];
         }
@@ -82,17 +82,17 @@ public class Scene_Change_Forest : MonoBehaviour
             static_parameters.into_gameFight_Levels = into_gameFight_Levels_memory;
             static_parameters.stage_number++;
 
-            if (static_parameters.stage_number < 5)
+            if (static_parameters.stage_number < all_stage)
             {
                 i = static_parameters.stage_number;
             }
             else
             {
-                i = 5;
+                i = all_stage;
             }
             static_parameters.money += i * 10;
             Debug.Log("static_parameters.stage_number:" + static_parameters.stage_number);
-            if (static_parameters.stage_number > 5)
+            if (static_parameters.stage_number > all_stage)
             {
                 // image_complete.SetActive(true);//通關畫面
                 // Debug.Log("Go Back");
