@@ -22,6 +22,7 @@ public class Scene_Change_Forest : MonoBehaviour
     private Vector3 newPosition_start;
     private bool wave_return = true;
     private bool screen_close = true;
+    private int into_gameFight_Levels_memory = 0;
 
     bool open = false;
     // Update is called once per frame
@@ -35,19 +36,22 @@ public class Scene_Change_Forest : MonoBehaviour
         if (static_parameters.stage_number == 5)
         {
             static_parameters.into_gameFight_Levels = 6;
+            into_gameFight_Levels_memory = static_parameters.into_gameFight_Levels;
             Signs.sprite = Signs_Sprite[1];
         }
         else if (static_parameters.stage_number == 4)
         {
             static_parameters.into_gameFight_Levels = 5;
+            into_gameFight_Levels_memory = static_parameters.into_gameFight_Levels;
             Signs.sprite = Signs_Sprite[2];
         }
         else
         {
-            static_parameters.into_gameFight_Levels = Random.Range(0, 5);
+            static_parameters.into_gameFight_Levels = Random.Range(1, 3);
+            into_gameFight_Levels_memory = static_parameters.into_gameFight_Levels;
             Signs.sprite = Signs_Sprite[0];
         }
-        Debug.Log("static_parameters.into_gameFight_Levels:" + static_parameters.into_gameFight_Levels);
+        Debug.Log("into_gameFight_Levels_memory:" + into_gameFight_Levels_memory);
     }
     private void Update()
     {
@@ -75,9 +79,10 @@ public class Scene_Change_Forest : MonoBehaviour
         int i;
         if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0 && open)
         {
+            static_parameters.into_gameFight_Levels = into_gameFight_Levels_memory;
             static_parameters.stage_number++;
 
-            if (static_parameters.stage_number < 6)
+            if (static_parameters.stage_number < 5)
             {
                 i = static_parameters.stage_number;
             }
@@ -87,8 +92,7 @@ public class Scene_Change_Forest : MonoBehaviour
             }
             static_parameters.money += i * 10;
             Debug.Log("static_parameters.stage_number:" + static_parameters.stage_number);
-            Debug.Log("i:" + i);
-            if (static_parameters.stage_number >= 5)
+            if (static_parameters.stage_number > 5)
             {
                 // image_complete.SetActive(true);//通關畫面
                 // Debug.Log("Go Back");
@@ -105,8 +109,6 @@ public class Scene_Change_Forest : MonoBehaviour
             }
         }
     }
-
-
 
     IEnumerator LoadSceneWithProgress(string sceneName)
     {
@@ -156,7 +158,6 @@ public class Scene_Change_Forest : MonoBehaviour
         {
             wave_return = true;
         }
-
         float moveDirection = wave_return ? 1 : -1;
         newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, newPosition_start.x + (moveDirection * wave_bar_range), loadingSpeed * Time.deltaTime / 3);
         rect.anchoredPosition = newPosition_horizontal;

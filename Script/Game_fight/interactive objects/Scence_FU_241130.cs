@@ -8,22 +8,21 @@ public class Scence_FU_241130 : MonoBehaviour
 {
     public GameObject[] FU;
     private GameObject player_S;
-    int scence_random;
     private NavMeshAgent playerAgent;
     void Start()
     {
         player_S = GameObject.Find("Player_S");
         playerAgent = player_S.GetComponent<NavMeshAgent>();
-        player_S.transform.localPosition = new Vector3(0, 0, -138);
+        player_S.transform.localPosition = new Vector3(0, 0, -140);
         Debug.Log("transform.localPosition: " + player_S.transform.localPosition);
         playerAgent.enabled = true;
-        // switch (static_parameters.stage_number_Boss){}
         Fight_FU();
     }
 
     public void Fight_FU()
     {
-        if (static_parameters.into_gameFight_Levels == 6) Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, -40));
+        Debug.Log("static_parameters.into_gameFight_Levels_Next: " + static_parameters.into_gameFight_Levels);
+        if (static_parameters.into_gameFight_Levels > 3) Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, -45));
         else Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, 0));
     }
 

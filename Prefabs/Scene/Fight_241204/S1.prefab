@@ -9815,6 +9815,18 @@ MonoBehaviour:
   CloseDoor01: {fileID: 6396607442252164443}
   CloseDoor02: {fileID: 1358723999074299376}
   player_S: {fileID: 0}
+  Signs: {fileID: 5607372436142984207}
+  Signs_Sprite:
+  - {fileID: 21300000, guid: 6f769d21147bdf843a0a2bab2359a723, type: 3}
+  - {fileID: 21300000, guid: 7406669613566984690f64a084ed4c90, type: 3}
+  - {fileID: 21300000, guid: 7c79bc22e9e2a6e40a069b81a7087423, type: 3}
+  - {fileID: 21300000, guid: 59e1bad923c14bb47a67a838f15ad2fc, type: 3}
+  - {fileID: 21300000, guid: 43c850043eed8bf4a8cd38c5747c4d5d, type: 3}
+  loadingScreen: {fileID: 0}
+  loadingBar: {fileID: 0}
+  loadingSpeed: 100
+  maxFillAmount: 275
+  wave_bar_range: 30
   image_complete: {fileID: 8627881203299361094}
 --- !u!1 &2487905046935958207
 GameObject:
@@ -12545,7 +12557,7 @@ SpriteRenderer:
   m_Size: {x: 3.99, y: 5.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3233725397900870395

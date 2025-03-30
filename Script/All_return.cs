@@ -7,13 +7,13 @@ public class All_return : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        static_parameters.MC_HP_Max = 250;
+        static_parameters.MC_HP_Max = 1250;
         static_parameters.MC_HP = static_parameters.MC_HP_Max;
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
         static_parameters.MC_HP_Max_tmp = static_parameters.MC_HP_Max;
-        static_parameters.MC_ATK = 15;
+        static_parameters.MC_ATK = 115;
         static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
-        static_parameters.MC_DEF = 12;
+        static_parameters.MC_DEF = 112;
         static_parameters.MC_DEF_tmp = static_parameters.MC_DEF;
         static_parameters.MC_Wspeed = 20f;
         static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
