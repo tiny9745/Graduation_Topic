@@ -22,7 +22,7 @@ public class Scence_FU_241130 : MonoBehaviour
     public void Fight_FU()
     {
         Debug.Log("static_parameters.into_gameFight_Levels_Next: " + static_parameters.into_gameFight_Levels);
-        if (static_parameters.into_gameFight_Levels > 3) Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, -45));
+        if (static_parameters.into_gameFight_Levels >= 3) Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, -45));
         else Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, 0));
     }
 

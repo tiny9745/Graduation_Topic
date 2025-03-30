@@ -28,7 +28,7 @@ public class NPC_Bullet : MonoBehaviour
                 minus = (float)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
                 if (minus < 5) minus = 5.0f;
                 static_parameters.MC_HP -= minus;
-                Debug.Log("MC_HP: " + static_parameters.MC_HP);
+                Destroy(gameObject);
             }
         }
     }

@@ -7,13 +7,13 @@ public class All_return : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        static_parameters.MC_HP_Max = 1250;
+        static_parameters.MC_HP_Max = 250;
         static_parameters.MC_HP = static_parameters.MC_HP_Max;
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
         static_parameters.MC_HP_Max_tmp = static_parameters.MC_HP_Max;
-        static_parameters.MC_ATK = 115;
+        static_parameters.MC_ATK = 15;
         static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
-        static_parameters.MC_DEF = 112;
+        static_parameters.MC_DEF = 12;
         static_parameters.MC_DEF_tmp = static_parameters.MC_DEF;
         static_parameters.MC_Wspeed = 20f;
         static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
@@ -35,7 +35,7 @@ public class All_return : MonoBehaviour
         static_parameters.Change_enemy = 0;
         static_parameters.Comic_scene_sort = 0;
         static_parameters.diary_number = 0;
-        static_parameters.money = 0;
+        static_parameters.money = 99999;
         // static_parameters.diary_step = 0;
         // static_parameters._BGM_volue = 1;
         // static_parameters._SE_volue = 1;
