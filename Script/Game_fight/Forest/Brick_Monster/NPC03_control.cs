@@ -294,6 +294,7 @@ public class NPC03_control : MonoBehaviour
                 change_color_red();
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
+                knock_back(TargetObj.transform);
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC03_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.5f);
@@ -447,8 +448,15 @@ public class NPC03_control : MonoBehaviour
     {
         isCoroutineRunning = true; // 設置為 true，表示協程正在運行
         yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
-        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        spriteRenderer.color = Color.white; // 重置顏色為白色
         isCoroutineRunning = false; // 協程結束後將旗標設回 false
+    }
+    void knock_back(Transform player)
+    {
+        float knockbackForce = static_parameters.knockback_force;
+        Vector3 knockbackDirection = (transform.position - player.position).normalized;
+        Rigidbody rb = GetComponent<Rigidbody>(); // Get Rigidbody
+        if (rb != null) rb.AddForce(knockbackDirection * knockbackForce * 5, ForceMode.Impulse);
     }
     public float GetNPC03_ATK()
     {

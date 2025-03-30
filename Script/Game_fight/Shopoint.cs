@@ -13,7 +13,7 @@ public class Shopoint : MonoBehaviour
     int spawn, price;
     void Start()
     {
-        spawn = Random.Range(0, 5);
+        spawn = Random.Range(0, 4);
         Setgoods(spawn);
     }
 

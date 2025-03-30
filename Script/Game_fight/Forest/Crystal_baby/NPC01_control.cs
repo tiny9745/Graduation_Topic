@@ -445,25 +445,19 @@ public class NPC01_control : MonoBehaviour
     {
         if (spriteRenderer != null)
         {
-            spriteRenderer.color = UnityEngine.Color.red; // 將顏色改為紅色
-            if (!isCoroutineRunning)  // 檢查協程是否正在運行
+            spriteRenderer.color = Color.red; // 將顏色改為紅色
+            if (!isCoroutineRunning)
             {
-                StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
+                StartCoroutine(ResetColorAfterDelay(0.75F));
             }
         }
     }
     void knock_back(Transform player)
     {
-        float knockbackForce = static_parameters.knockback_force; // Get knockback strength
-        Vector3 knockbackDirection = (transform.position - player.position).normalized; // Direction away from player
-
+        float knockbackForce = static_parameters.knockback_force;
+        Vector3 knockbackDirection = (transform.position - player.position).normalized;
         Rigidbody rb = GetComponent<Rigidbody>(); // Get Rigidbody
-        if (rb != null)
-        {
-            Debug.Log("Knockback direction: " + knockbackDirection); // Debug log for direction
-            rb.AddForce(knockbackDirection * knockbackForce * 5, ForceMode.Impulse); // Apply instant force
-            Debug.Log("Knockback force applied: " + knockbackDirection * knockbackForce); // Debug log for force
-        }
+        if (rb != null) rb.AddForce(knockbackDirection * knockbackForce * 5, ForceMode.Impulse);
     }
 
     void fade()

@@ -274,6 +274,7 @@ public class NPC02_control : MonoBehaviour
                 change_color_red();
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
+                knock_back(TargetObj.transform);
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC02_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.5f);
@@ -358,8 +359,10 @@ public class NPC02_control : MonoBehaviour
 
     void knock_back(Transform player)
     {
-        Vector3 knockbackDirection = (transform.position - player.position).normalized; // Get direction away from player
-        transform.position += 0.5f * knockbackDirection; // Apply knockback
+        float knockbackForce = static_parameters.knockback_force;
+        Vector3 knockbackDirection = (transform.position - player.position).normalized;
+        Rigidbody rb = GetComponent<Rigidbody>(); // Get Rigidbody
+        if (rb != null) rb.AddForce(knockbackDirection * knockbackForce * 5, ForceMode.Impulse);
     }
 
     public void change_color_red()
