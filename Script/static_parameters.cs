@@ -28,4 +28,5 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
     static public bool wait_atk_return = false;
     static public bool MC_NPC_col_move = true;
     static public bool into_gameFight = false;//是否進入戰鬥場景
+    static public int into_gameFight_Levels = 0;//戰鬥場景選擇的關卡
 }

@@ -9,6 +9,8 @@ public class Scene_Change_Forest : MonoBehaviour
     public GameObject CloseDoor01;
     public GameObject CloseDoor02;
     public GameObject player_S;
+    public SpriteRenderer Signs;
+    public Sprite[] Signs_Sprite;
 
     public GameObject loadingScreen;
     public Image loadingBar;
@@ -29,6 +31,21 @@ public class Scene_Change_Forest : MonoBehaviour
         player_S = GameObject.Find("Player_S");
         Invoke("OpenDoor", 4f);
         newPosition_start = new Vector2(737f, -557f);
+
+        if (static_parameters.stage_number == 5)
+        {
+            static_parameters.into_gameFight_Levels = 6;
+        }
+        else if (static_parameters.stage_number == 4)
+        {
+            static_parameters.into_gameFight_Levels = 5;
+        }
+        else
+        {
+            static_parameters.into_gameFight_Levels = Random.Range(0, 5);
+            static_parameters.into_gameFight_Levels = static_parameters.stage_number;
+        }
+        Debug.Log("static_parameters.into_gameFight_Levels:" + static_parameters.into_gameFight_Levels);
     }
     private void Update()
     {
@@ -51,38 +68,6 @@ public class Scene_Change_Forest : MonoBehaviour
         open = true;
     }
 
-    // private void OnCollisionEnter(Collision Hit)
-    // {
-    //     if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0)
-    //     {
-    //         static_parameters.stage_number++;
-
-    //         if (static_parameters.stage_number < 3)
-    //         {
-    //             i = 3;
-    //         }
-    //         else if (static_parameters.stage_number < 6)
-    //         {
-    //             i = static_parameters.stage_number;
-    //         }
-    //         else
-    //         {
-    //             i = 5;
-    //         }
-    //         static_parameters.money += i * 10;
-    //         if (static_parameters.stage_number >= i)
-    //         {
-    //             //SceneManager.LoadScene("Game_fight_Boss");
-    //             SceneManager.LoadScene("magic_house");
-    //             static_parameters.stage_number = 0;
-    //             static_parameters.stage_number_Boss++;
-    //         }
-    //         else
-    //         {
-    //             SceneManager.LoadScene("Fight_FU01");
-    //         }
-    //     }
-    // }
     private void OnTriggerEnter(Collider Hit)
     {
         int i;
@@ -103,11 +88,9 @@ public class Scene_Change_Forest : MonoBehaviour
             Debug.Log("i:" + i);
             if (static_parameters.stage_number >= 5)
             {
-                image_complete.SetActive(true);//通關畫面
-
+                // image_complete.SetActive(true);//通關畫面
                 // Debug.Log("Go Back");
                 // player_S.transform.localPosition = new Vector3(0, 0, -15);
-                // //SceneManager.LoadScene("Game_fight_Boss");
                 // SceneManager.LoadScene("magic_house");
                 // static_parameters.stage_number = 0;
                 // static_parameters.stage_number_Boss++;
