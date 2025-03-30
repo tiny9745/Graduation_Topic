@@ -5,6 +5,7 @@ using UnityEngine;
 public class All_return : MonoBehaviour
 {
     // Start is called before the first frame update
+    public UI ui;
     void Start()
     {
         static_parameters.MC_HP_Max = 250;
@@ -35,7 +36,7 @@ public class All_return : MonoBehaviour
         static_parameters.Change_enemy = 0;
         static_parameters.Comic_scene_sort = 0;
         static_parameters.diary_number = 0;
-        static_parameters.money = 0;
+        static_parameters.money = 99999;
         // static_parameters.diary_step = 0;
         // static_parameters._BGM_volue = 1;
         // static_parameters._SE_volue = 1;
@@ -92,5 +93,7 @@ public class All_return : MonoBehaviour
         Boss_col.BOSS_Atk_time = 0;
         Boss_col.BOSS_Atk_state = 1;
         Boss_col.BOSS_Atk_bool = false;
+
+        ui.Loadmoney();
     }
 }
