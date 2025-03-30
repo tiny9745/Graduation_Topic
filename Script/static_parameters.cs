@@ -16,7 +16,7 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
     static public int Change_enemy = 0;
 
     static public int Comic_scene_sort = 0;
-    static public int diary_number = 0, money = 999999;
+    static public int diary_number = 0, money = 0;
     static public float _All_sound = 1, _BGM_volue = 1, _SE_volue = 1;
     static public float _All_sound_tmp = 1, _BGM_volue_tmp = 1, _SE_volue_tmp = 1;
     static public int Map_start = 0;
