@@ -49,15 +49,15 @@ public class Shopoint : MonoBehaviour
                 Goods.sprite = item1;
                 break;
             case 1:
-                price = 100;
+                price = 75;
                 Goods.sprite = item2;
                 break;
             case 2:
-                price = 200;
+                price = 150;
                 Goods.sprite = item3;
                 break;
             case 3:
-                price = 250;
+                price = 200;
                 Goods.sprite = item4;
                 break;
             case 4:
