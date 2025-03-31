@@ -248,6 +248,7 @@ public class Teaching_TextF : MonoBehaviour
                 static_parameters.teaching_stop = 101;
                 talk_number = 100;
                 Teaching_dialog_box.SetActive(false);
+                affect_teaching_object.SetActive(true);
                 break;
         }
         if (talk_number == 7)
@@ -343,7 +344,6 @@ public class Teaching_TextF : MonoBehaviour
         Teaching_dialog_box.SetActive(true);
         black.color = new Color(0, 0, 0, 1);
         black.gameObject.SetActive(false);
-        affect_teaching_object.SetActive(true);
     }
     private void close_co()
     {
