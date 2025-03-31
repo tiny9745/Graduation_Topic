@@ -99,6 +99,7 @@ public class teaching_affect : MonoBehaviour
     }
     public void handle_teaching_4()
     {
+        number = 4;
         Affect_teaching.sprite = Affect_teaching_image[3];
         handle_teaching[0].color = new Color(1, 1, 1, 1);
         handle_teaching[1].color = new Color(1, 1, 1, 1);
