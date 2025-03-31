@@ -24,27 +24,11 @@ public class teaching_affect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            number++;
-            switch (number)
-            {
-                case 2:
-                    handle_teaching_2();
-                    break;
-                case 3:
-                    handle_teaching_3();
-                    break;
-                case 4:
-                    handle_teaching_4();
-                    break;
-                case 5:
-                    Time.timeScale = 1;
-                    this.gameObject.SetActive(false);
-                    break;
-            }
+            affect_teaching();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) )
         {
             number--;
             switch (number)
@@ -67,7 +51,23 @@ public class teaching_affect : MonoBehaviour
 
     public void affect_teaching()
     {
-        Affect_teaching.sprite = Affect_teaching_image[0];
+        number++;
+        switch (number)
+        {
+            case 2:
+                handle_teaching_2();
+                break;
+            case 3:
+                handle_teaching_3();
+                break;
+            case 4:
+                handle_teaching_4();
+                break;
+            case 5:
+                Time.timeScale = 1;
+                this.gameObject.SetActive(false);
+                break;
+        }
     }
 
     public void handle_teaching_1()
