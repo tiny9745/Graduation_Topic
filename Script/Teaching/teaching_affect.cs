@@ -31,7 +31,6 @@ public class teaching_affect : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             number--;
-            Debug.Log("number: " + number);
             switch (number)
             {
                 case 1:
@@ -57,7 +56,6 @@ public class teaching_affect : MonoBehaviour
     public void affect_teaching()
     {
         number++;
-        Debug.Log("number: " + number);
         switch (number)
         {
             case 1:
@@ -82,7 +80,6 @@ public class teaching_affect : MonoBehaviour
     public void handle_teaching_1()
     {
         number = 1;
-        Debug.Log("number: " + number);
         Affect_teaching.sprite = Affect_teaching_image[0];
         handle_teaching[0].color = new Color(1, 160 / 255f, 200 / 255f, 1);
         handle_teaching[1].color = new Color(1, 1, 1, 1);
@@ -92,7 +89,6 @@ public class teaching_affect : MonoBehaviour
     public void handle_teaching_2()
     {
         number = 2;
-        Debug.Log("number: " + number);
         Affect_teaching.sprite = Affect_teaching_image[1];
         handle_teaching[0].color = new Color(1, 1, 1, 1);
         handle_teaching[1].color = new Color(1, 160 / 255f, 200 / 255f, 1);
@@ -102,7 +98,6 @@ public class teaching_affect : MonoBehaviour
     public void handle_teaching_3()
     {
         number = 3;
-        Debug.Log("number: " + number);
         Affect_teaching.sprite = Affect_teaching_image[2];
         handle_teaching[0].color = new Color(1, 1, 1, 1);
         handle_teaching[1].color = new Color(1, 1, 1, 1);
@@ -112,7 +107,6 @@ public class teaching_affect : MonoBehaviour
     public void handle_teaching_4()
     {
         number = 4;
-        Debug.Log("number: " + number);
         Affect_teaching.sprite = Affect_teaching_image[3];
         handle_teaching[0].color = new Color(1, 1, 1, 1);
         handle_teaching[1].color = new Color(1, 1, 1, 1);
