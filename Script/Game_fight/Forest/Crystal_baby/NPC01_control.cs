@@ -458,7 +458,6 @@ public class NPC01_control : MonoBehaviour
         Vector3 knockbackDirection = (transform.position - player.position).normalized;
         Rigidbody rb = GetComponent<Rigidbody>(); // Get Rigidbody
         if (rb != null) rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
-        Debug.Log("NPC01 knockback: " + knockbackDirection * knockbackForce);
     }
 
     void fade()

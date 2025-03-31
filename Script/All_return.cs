@@ -94,6 +94,12 @@ public class All_return : MonoBehaviour
         Boss_col.BOSS_Atk_state = 1;
         Boss_col.BOSS_Atk_bool = false;
 
+        Upgrade.ATK_LV = 0;
+        Upgrade.DEF_LV = 0;
+        Upgrade.HP_LV = 0;
+        Upgrade.Speed_LV = 0;
+        Upgrade.Knockback_LV = 0;
+
         ui.Loadmoney();
     }
 }

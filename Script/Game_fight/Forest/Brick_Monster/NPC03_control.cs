@@ -456,7 +456,7 @@ public class NPC03_control : MonoBehaviour
         float knockbackForce = static_parameters.knockback_force;
         Vector3 knockbackDirection = (transform.position - player.position).normalized;
         Rigidbody rb = GetComponent<Rigidbody>(); // Get Rigidbody
-        if (rb != null) rb.AddForce(knockbackDirection * knockbackForce * 5, ForceMode.Impulse);
+        if (rb != null) rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
     }
     public float GetNPC03_ATK()
     {
