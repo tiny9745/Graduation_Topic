@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Teaching_TextF : MonoBehaviour
 {
-    public GameObject Main_character_object, Magician_object, skip_button;
+    public GameObject Main_character_object, Magician_object, skip_button, affect_teaching_object;
     public GameObject dialog_box, Teaching_dialog_box;
     public Image Main_character, Magician;
     public Image Main_character_body, Magician_body;
@@ -20,7 +20,6 @@ public class Teaching_TextF : MonoBehaviour
     void Start()
     {
         static_parameters.teaching_stop = -1;
-        _UI = GameObject.Find("UI").GetComponent<UI>();
         reading();
     }
 
@@ -344,7 +343,7 @@ public class Teaching_TextF : MonoBehaviour
         Teaching_dialog_box.SetActive(true);
         black.color = new Color(0, 0, 0, 1);
         black.gameObject.SetActive(false);
-
+        affect_teaching_object.SetActive(true);
     }
     private void close_co()
     {
