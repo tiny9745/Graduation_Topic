@@ -48,6 +48,9 @@ public class Sound_BGM : MonoBehaviour
         {
             BGM_sound.clip = BGM_clip[1];
         }
+        else if(static_parameters.into_gameFight_Levels == 6){
+            BGM_sound.clip = BGM_clip[3];
+        }
         BGM_sound.Play();
     }
 }
