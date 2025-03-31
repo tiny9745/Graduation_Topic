@@ -361,6 +361,7 @@ public class NPC01_1_control : MonoBehaviour
                 change_color_red();
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
+                knock_back(TargetObj.transform);
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, NPC01_DEF);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.2f);
@@ -465,6 +466,13 @@ public class NPC01_1_control : MonoBehaviour
             float alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
         }
+    }
+    void knock_back(Transform player)
+    {
+        float knockbackForce = static_parameters.knockback_force;
+        Vector3 knockbackDirection = (transform.position - player.position).normalized;
+        Rigidbody rb = GetComponent<Rigidbody>(); // Get Rigidbody
+        if (rb != null) rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
     }
     IEnumerator ResetColorAfterDelay(float delay)
     {
