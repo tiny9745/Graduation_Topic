@@ -8,14 +8,15 @@ public class Boss_col : MonoBehaviour
     static public float BOSS_Atk_time = -5;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
-    static public bool BOSS_Atk02_ready = false;
+    static public bool BOSS_Atk02_ready03_waring = false;
+    static public bool BOSS_Atk02_ready01 = false, BOSS_Atk02_ready03 = false;
     public float BOSS_HP_Max = 1000, BOSS_DEF = 10, BOSS_HP;
     public BOSS01_HP boss_hP; public BOSS01_effect effect;
     public bool stun = false;
     public int NPC_angle = 0;
     public Transform spriteTransform;
     public AudioSource audioSource;
-    public AudioClip BOSS_Loop, BOSS_laugh, BOSS_hit, BOSS_Die, BOSS_none;
+    public AudioClip BOSS_Loop, BOSS_laugh, BOSS_hit, BOSS_Die;
     public AudioClip[] BOSS_Atk01_sound;
     public AudioClip[] BOSS_Atk02_sound;
     public AudioClip[] BOSS_Atk03_sound;
@@ -58,6 +59,7 @@ public class Boss_col : MonoBehaviour
             switch (BOSS_Atk_state)
             {
                 case 1:
+                    BOSS_Atk02_ready03_waring = true;
                     Boss_Atk01();
                     break;
                 case 3:
@@ -74,13 +76,24 @@ public class Boss_col : MonoBehaviour
             audioSource.Play();
             Boss_Atk02();
         }
-        if (BOSS_Atk02_ready)
+
+        if (BOSS_Atk02_ready01)
         {
-            BOSS_Atk02_ready = false;
-            Boss_Animator.SetBool("atk_end", false);
-            audioSource.loop = false;
-            audioSource.clip = BOSS_laugh;
-            audioSource.Play();
+            BOSS_Atk02_ready01 = false;
+            audioSource.clip = BOSS_Atk02_sound[0];
+        }
+        if (BOSS_Atk02_ready03)
+        {
+            BOSS_Atk02_ready03 = false;
+            if (BOSS_Atk02_ready03_waring)
+            {
+                BOSS_Atk02_ready03_waring = false;
+                Boss_Animator.SetBool("atk_end", false);
+                audioSource.loop = false;
+                audioSource.clip = BOSS_Atk02_sound[2];
+                audioSource.Play();
+                audioSource.PlayOneShot(BOSS_Atk02_sound[0]);
+            }
         }
 
         if (TargetObj != null)
