@@ -13,6 +13,11 @@ public class Boss_col : MonoBehaviour
     public bool stun = false;
     public int NPC_angle = 0;
     public Transform spriteTransform;
+    public AudioSource audioSource;
+    public AudioClip BOSS_Loop, BOSS_laugh, BOSS_hit,BOSS_Die;
+    public AudioClip[] BOSS_Atk01_sound;
+    public AudioClip[] BOSS_Atk02_sound;
+    public AudioClip[] BOSS_Atk03_sound;
 
     void Start()
     {
@@ -437,7 +442,7 @@ public class Boss_col : MonoBehaviour
     public Animator animator_to_atk;
     public SpriteRenderer weaponDUCK;
     private SpriteRenderer spriteRenderer; private Color originalColor;
-    private bool  MC_to_Att = true, isCoroutineRunning = false;
+    private bool MC_to_Att = true, isCoroutineRunning = false;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     int open_EnableHitbox = 0;
 
