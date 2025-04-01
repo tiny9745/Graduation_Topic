@@ -80,7 +80,7 @@ public class Boss_col : MonoBehaviour
         if (BOSS_Atk02_ready01)
         {
             BOSS_Atk02_ready01 = false;
-            audioSource.clip = BOSS_Atk02_sound[0];
+            audioSource.PlayOneShot(BOSS_Atk02_sound[0]);
         }
         if (BOSS_Atk02_ready03)
         {
@@ -90,10 +90,10 @@ public class Boss_col : MonoBehaviour
                 BOSS_Atk02_ready03_waring = false;
                 Boss_Animator.SetBool("atk_end", false);
                 audioSource.loop = false;
-                audioSource.clip = BOSS_Atk02_sound[2];
+                audioSource.clip = BOSS_Atk02_sound[1];
                 audioSource.Play();
-                audioSource.PlayOneShot(BOSS_Atk02_sound[0]);
             }
+            audioSource.PlayOneShot(BOSS_Atk02_sound[2]);
         }
 
         if (TargetObj != null)

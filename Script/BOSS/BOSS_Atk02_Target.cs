@@ -64,6 +64,7 @@ public class BOSS_Atk02_Target : MonoBehaviour
             AnimatorStateInfo stateInfo = BOSS_Atk02_Ani_cards[i].GetCurrentAnimatorStateInfo(0);
             return stateInfo.normalizedTime >= 0.95f;
         });
+        
         BOSS_Atk02_hints[i].SetActive(true);
         BOSS_Atk02_Ani_target[i].SetTrigger("BOSS_Atk02_Target");
     }
