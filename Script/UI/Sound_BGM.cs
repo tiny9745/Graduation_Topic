@@ -44,13 +44,15 @@ public class Sound_BGM : MonoBehaviour
         {
             BGM_sound.clip = BGM_clip[0];
         }
-        else if (SceneManager.GetActiveScene().buildIndex >= 7 && SceneManager.GetActiveScene().buildIndex <= 26)
+        else if (static_parameters.into_gameFight_Levels == 6)
+        {
+            BGM_sound.clip = BGM_clip[3];
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 7)
         {
             BGM_sound.clip = BGM_clip[1];
         }
-        else if(static_parameters.into_gameFight_Levels == 6){
-            BGM_sound.clip = BGM_clip[3];
-        }
+
         BGM_sound.Play();
     }
 }

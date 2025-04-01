@@ -421,6 +421,7 @@ public class Boss_col : MonoBehaviour
                     {
                         for (int j = i * 4 - 1; j > (i - 1) * 4 - 1; j--)
                         {
+                            audioSource.PlayOneShot(BOSS_Atk03_sound[0]);
                             BOSS_Atk03_Ani_cards[j].SetTrigger("BOSS_Atk03_Card");
                         }
                     }
@@ -506,6 +507,7 @@ public class Boss_col : MonoBehaviour
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 Change();
+                audioSource.PlayOneShot(BOSS_hit);
                 switch (static_parameters.Ani_state)
                 {
                     case 2:
