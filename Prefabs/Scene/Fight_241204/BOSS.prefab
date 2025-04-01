@@ -5398,6 +5398,7 @@ GameObject:
   - component: {fileID: 4674632264996338837}
   - component: {fileID: 3968350904618038784}
   - component: {fileID: 4907013956242682544}
+  - component: {fileID: 5987571147239869724}
   m_Layer: 0
   m_Name: Boss01
   m_TagString: NPC
@@ -5517,6 +5518,23 @@ MonoBehaviour:
   stun: 0
   NPC_angle: 0
   spriteTransform: {fileID: 7580088038561074419}
+  audioSource: {fileID: 5987571147239869724}
+  BOSS_Loop: {fileID: 8300000, guid: 887232029ac465543920962fe91872a7, type: 3}
+  BOSS_laugh: {fileID: 8300000, guid: 13bdcff4980c45f459a8874a2eba072a, type: 3}
+  BOSS_hit: {fileID: 8300000, guid: 3cb3e5d97dc3d9a42b09f0e77d5e097d, type: 3}
+  BOSS_Die: {fileID: 8300000, guid: e4db363f0c4a36640bd22b80ba02fa49, type: 3}
+  BOSS_Atk01_sound:
+  - {fileID: 8300000, guid: 9b23da656117b2d47a1b6c88285ff60d, type: 3}
+  - {fileID: 8300000, guid: 2819a3b7081092a4583d1ccda3aa13af, type: 3}
+  - {fileID: 8300000, guid: 5c6f8981d95f8624189095b807c76007, type: 3}
+  - {fileID: 8300000, guid: 5e5abe55d2195c449874aa792a7ac830, type: 3}
+  - {fileID: 8300000, guid: b66cfe4a7b2b4fb4393ada7e74543cdd, type: 3}
+  BOSS_Atk02_sound:
+  - {fileID: 8300000, guid: a4b99359452d9974095f5cbc4304c8d4, type: 3}
+  - {fileID: 8300000, guid: adf501723a418d24cb2104919c47b152, type: 3}
+  - {fileID: 8300000, guid: c8c6664ce0344994d90e6bd2d4b4e9eb, type: 3}
+  BOSS_Atk03_sound:
+  - {fileID: 8300000, guid: 2bf9dc3fa28cdc44582034bf65ea82ec, type: 3}
   BOSS_Atk01_Tips_Tip:
   - {fileID: 2658111922630912457}
   - {fileID: 6903291516559479925}
@@ -5671,6 +5689,102 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 10, z: 1}
   m_Center: {x: 0, y: -0.2, z: 0}
+--- !u!82 &5987571147239869724
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108663846322096851}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1122233914224183689
 GameObject:
   m_ObjectHideFlags: 0
@@ -27737,7 +27851,7 @@ SpriteRenderer:
   m_Size: {x: 3.99, y: 5.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &5232193084330864744
@@ -42245,6 +42359,8 @@ MonoBehaviour:
   CloseDoor01: {fileID: 8586887544204848010}
   CloseDoor02: {fileID: 1365583341003676157}
   player_S: {fileID: 0}
+  Signs: {fileID: 0}
+  Signs_Sprite: []
   loadingScreen: {fileID: 0}
   loadingBar: {fileID: 0}
   loadingSpeed: 100
