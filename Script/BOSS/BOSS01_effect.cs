@@ -265,6 +265,7 @@ public class BOSS01_effect : MonoBehaviour
 
     public void skill_TriggerEnter(Collider other)
     {
+        Debug.Log("skill_TriggerEnter:" + other.gameObject.tag);
         if (IconManager.Instance != null)
         {
             foreach (var icon in IconManager.Instance.IconList)
