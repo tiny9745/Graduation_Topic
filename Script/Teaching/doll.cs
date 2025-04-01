@@ -13,6 +13,7 @@ public class doll : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop == 0)
         {
             static_parameters.teaching_stop = 1;
+            Destroy(gameObject);
         }
     }
     private void OnTriggerEnter(Collider Hit)
@@ -20,6 +21,7 @@ public class doll : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop == 0)
         {
             static_parameters.teaching_stop = 1;
+            Destroy(gameObject);
         }
     }
 }
