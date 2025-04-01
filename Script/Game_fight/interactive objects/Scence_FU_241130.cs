@@ -20,8 +20,7 @@ public class Scence_FU_241130 : MonoBehaviour
     public void Fight_FU()
     {
         if (static_parameters.into_gameFight_Levels >= 3) Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, -45));
-        else Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, -45));
-        // else Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, 0));
+        else Generatescence(FU[static_parameters.into_gameFight_Levels], new Vector3(0, 0, 0));
     }
 
     void Generatescence(GameObject scence, Vector3 position)
