@@ -6,10 +6,13 @@ using UnityEngine.UI;
 
 public class Teaching_TextF : MonoBehaviour
 {
+    public GameObject player_S;
     public GameObject Main_character_object, Magician_object, skip_button, affect_teaching_object;
     public GameObject dialog_box, Teaching_dialog_box;
     public Image Main_character, Magician;
     public Image Main_character_body, Magician_body;
+    public GameObject[] teaching_sprite_keycode;
+    public GameObject teaching_throwing_object;
     public Sprite[] Main_character_face;
     public Sprite[] Magician_face;
     public Image black;
@@ -25,7 +28,7 @@ public class Teaching_TextF : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19 && Setting_keybroad.ESC_col == false && static_parameters.Bookstate == false)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19 && Setting_keybroad.ESC_col == false)
         {
             Debug.Log("talk_number:" + talk_number);
             Debug.Log("static_parameters.teaching_stop:" + static_parameters.teaching_stop);
@@ -97,13 +100,16 @@ public class Teaching_TextF : MonoBehaviour
                 teach_text.text = "*WASD控制曦然去玩偶區拿起鴨子布偶來防禦吧！*";
                 if (static_parameters.teaching_stop == -1)
                 {
+                    teaching_sprite_keycode[0].SetActive(true);
                     static_parameters.teaching_stop = 0;
                 }
                 break;
             case 8:
+                teaching_sprite_keycode[0].SetActive(false);
                 teach_text.text = "*走出門口，查看莓莓的情況*";
                 break;
             case 9:
+                teaching_sprite_keycode[1].SetActive(true);
                 teach_text.text = "*莓莓要受傷了！快按下J鍵使用鴨子布偶來攻擊敵人！*";
                 break;
             case 10:
@@ -140,6 +146,7 @@ public class Teaching_TextF : MonoBehaviour
             case 16:
                 close();
                 static_parameters.teaching_stop = 6;
+                teaching_sprite_keycode[3].SetActive(true);
                 teach_text.text = "*按下Z鍵，打開筆記本吧！*";
                 break;
             case 18:
@@ -266,6 +273,7 @@ public class Teaching_TextF : MonoBehaviour
             if (static_parameters.teaching_stop == 3)
             {
                 talk_number++;
+                teaching_sprite_keycode[1].SetActive(true);
                 teach_text.text = "*莓莓要受傷了！快按下J鍵使用鴨子布偶來攻擊敵人！*";
             }
         }
@@ -275,23 +283,28 @@ public class Teaching_TextF : MonoBehaviour
             {
                 talk_number++;
                 teach_text.text = "*把剩餘士兵擊退吧！*";
+                teaching_sprite_keycode[1].SetActive(false);
+                teaching_sprite_keycode[2].SetActive(true);
+                Instantiate(teaching_throwing_object, player_S.transform.position, Quaternion.identity, transform);
+                Instantiate(teaching_throwing_object, player_S.transform.position, Quaternion.identity, transform);
             }
         }
         else if (talk_number == 10)
         {
             if (static_parameters.teaching_stop == 7)
             {
-                Debug.Log("!!talk_number:" + talk_number + "static_parameters.teaching_stop:" + static_parameters.teaching_stop);
                 talk_number++;
                 open();
                 name_text.text = "曦然";
                 talk_text.text = "妳沒事吧？";
+                teaching_sprite_keycode[2].SetActive(false);
             }
         }
         else if (talk_number == 17)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
+                teaching_sprite_keycode[3].SetActive(false);
                 static_parameters.teaching_stop = 8;
                 talk_number += 2;
                 _UI.Onclick2();

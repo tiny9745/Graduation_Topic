@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
 {
     #region Singleton
     public static InventoryManager Instance;
-    public GameObject bullet01, bullet14_01, bullet43, bullet44;
+    public GameObject bullet00, bullet01, bullet14_01, bullet43, bullet44;
     public Transform Firepoint;
     public ItemSlot _slot;
     public List<Item> ItemList;
@@ -71,7 +71,11 @@ public class InventoryManager : MonoBehaviour
 
     private void bullet_into()
     {
-        if (_slot.slotID == 1)
+        if (_slot.slotID == 0)
+        {
+            Instantiate(bullet00, Firepoint.position, transform.rotation);
+        }
+        else if (_slot.slotID == 1)
         {
             Instantiate(bullet01, Firepoint.position, transform.rotation);
         }
