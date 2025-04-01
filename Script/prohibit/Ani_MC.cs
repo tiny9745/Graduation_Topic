@@ -7,7 +7,6 @@ public class Ani_MC : MonoBehaviour
 {
     public Animator animator;
     int Angle_sum = 270;
-
     public GameObject Play_s;
 
     static public bool isDashCooldown = false, isDashCooldown_for_move = false;
