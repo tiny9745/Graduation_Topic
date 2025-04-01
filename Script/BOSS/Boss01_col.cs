@@ -384,6 +384,7 @@ public class Boss_col : MonoBehaviour
                     {
                         for (int j = i * 4; j < i * 4 + 4; j++)
                         {
+                            audioSource.PlayOneShot(BOSS_Atk03_sound[0]);
                             BOSS_Atk03_Ani_cards[j].SetTrigger("BOSS_Atk03_Card");
                         }
                     }
@@ -444,7 +445,6 @@ public class Boss_col : MonoBehaviour
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
                     BOSS_Atk03_GC[i].enabled = false;
-                    Debug.Log($"BOSS_Atk03_GC[{i}].enabled = " + BOSS_Atk03_GC[i].enabled);
                 }
                 break;
             case 1:
@@ -456,12 +456,12 @@ public class Boss_col : MonoBehaviour
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
                     BOSS_Atk03_GC[i].enabled = false;
-                    Debug.Log($"BOSS_Atk03_GC[{i}].enabled = " + BOSS_Atk03_GC[i].enabled);
                 }
                 break;
         }
         BOSS_Atk_state = 1;
         BOSS_Atk_bool = false;
+        Debug.Log("END:BOSS_Atk_state = " + BOSS_Atk_state + ",BOSS_Atk_bool = " + BOSS_Atk_bool);
     }
 
     void Flip()
