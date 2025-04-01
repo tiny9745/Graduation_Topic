@@ -26,18 +26,11 @@ public class Scenes_Change_house_outside : MonoBehaviour
         player_S.transform.position = new Vector3(0, 0, -15);
         newPosition_start = new Vector2(737f, -557f);
     }
-    private void OnCollisionEnter(Collision Hit)
-    {
-        if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
-        {
-            static_parameters.stage_number = 1;
-        }
-    }
     private void OnTriggerEnter(Collider Hit)
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
         {
-            static_parameters.stage_number = 1;
+            static_parameters.stage_number = 7;
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
             StartCoroutine(LoadSceneWithProgress("Fight_241130"));
         }

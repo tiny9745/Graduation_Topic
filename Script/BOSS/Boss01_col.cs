@@ -506,6 +506,7 @@ public class Boss_col : MonoBehaviour
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 Change();
+                audioSource.PlayOneShot(BOSS_hit);
                 switch (static_parameters.Ani_state)
                 {
                     case 2:
