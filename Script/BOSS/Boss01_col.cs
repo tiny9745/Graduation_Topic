@@ -8,13 +8,14 @@ public class Boss_col : MonoBehaviour
     static public float BOSS_Atk_time = -5;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
+    static public bool BOSS_Atk02_ready = false;
     public float BOSS_HP_Max = 1000, BOSS_DEF = 10, BOSS_HP;
     public BOSS01_HP boss_hP; public BOSS01_effect effect;
     public bool stun = false;
     public int NPC_angle = 0;
     public Transform spriteTransform;
     public AudioSource audioSource;
-    public AudioClip BOSS_Loop, BOSS_laugh, BOSS_hit,BOSS_Die;
+    public AudioClip BOSS_Loop, BOSS_laugh, BOSS_hit, BOSS_Die, BOSS_none;
     public AudioClip[] BOSS_Atk01_sound;
     public AudioClip[] BOSS_Atk02_sound;
     public AudioClip[] BOSS_Atk03_sound;
@@ -50,6 +51,10 @@ public class Boss_col : MonoBehaviour
             BOSS_Atk_time = 0;
             Boss_Animator.SetTrigger("aup");
             Boss_Animator.SetBool("atk_end", true);
+            audioSource.clip = BOSS_Loop;
+            audioSource.loop = true;
+            audioSource.Play();
+
             switch (BOSS_Atk_state)
             {
                 case 1:
@@ -62,7 +67,20 @@ public class Boss_col : MonoBehaviour
         }
         if (BOSS_Atk_bool && BOSS_Atk_state == 2)
         {
+            Boss_Animator.SetTrigger("aup");
+            Boss_Animator.SetBool("atk_end", true);
+            audioSource.clip = BOSS_Loop;
+            audioSource.loop = true;
+            audioSource.Play();
             Boss_Atk02();
+        }
+        if (BOSS_Atk02_ready)
+        {
+            BOSS_Atk02_ready = false;
+            Boss_Animator.SetBool("atk_end", false);
+            audioSource.loop = false;
+            audioSource.clip = BOSS_laugh;
+            audioSource.Play();
         }
 
         if (TargetObj != null)
@@ -167,6 +185,10 @@ public class Boss_col : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         Boss_Animator.SetBool("atk_end", false);
+        audioSource.loop = false;
+        audioSource.clip = BOSS_laugh;
+        audioSource.Play();
+
         yield return new WaitForSeconds(0.2f);
         int j = 0;
         switch (random)
@@ -184,6 +206,7 @@ public class Boss_col : MonoBehaviour
                         case 9:
                         case 12:
                             BOSS_Atk01_Tips_Tip[j].enabled = true;
+                            audioSource.PlayOneShot(BOSS_Atk01_sound[j]);
                             j++;
                             yield return new WaitForSeconds(BOSS_Atk01_delay);
                             break;
@@ -223,6 +246,7 @@ public class Boss_col : MonoBehaviour
                         case 10:
                         case 13:
                             BOSS_Atk01_Tips_Tip[j].enabled = true;
+                            audioSource.PlayOneShot(BOSS_Atk01_sound[j]);
                             j++;
                             yield return new WaitForSeconds(BOSS_Atk01_delay);
                             break;
@@ -262,6 +286,7 @@ public class Boss_col : MonoBehaviour
                         case 5:
                             BOSS_Atk01_Tips_Tip[j].enabled = true;
                             BOSS_Atk01_Tips_Tip[BOSS_Atk01_Tips_Tip.Length - 1 - j].enabled = true;
+                            audioSource.PlayOneShot(BOSS_Atk01_sound[j]);
                             j++;
                             yield return new WaitForSeconds(BOSS_Atk01_delay);
                             break;
@@ -370,6 +395,9 @@ public class Boss_col : MonoBehaviour
                     yield return new WaitForSeconds(wait);
                 }
                 Boss_Animator.SetBool("atk_end", false);
+                audioSource.loop = false;
+                audioSource.clip = BOSS_laugh;
+                audioSource.Play();
                 for (int i = BOSS_Atk03_Tips.Length - 1; i > 0; i--)
                 {
                     for (int j = (i + 1) * 3 - 1; j > i * 3 - 1; j--)
