@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class doll : MonoBehaviour
 {
+    void Start()
+    {
+        
+    }
     private void OnCollisionEnter(Collision Hit)
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop == 0)

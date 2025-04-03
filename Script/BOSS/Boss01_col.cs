@@ -448,7 +448,7 @@ public class Boss_col : MonoBehaviour
                 }
                 break;
             case 1:
-                for (int i = BOSS_Atk03_GC.Length - 1; i > 0; i--)
+                for (int i = BOSS_Atk03_GC.Length - 2; i > 0; i--)
                 {
                     yield return new WaitUntil(() =>
                     {
