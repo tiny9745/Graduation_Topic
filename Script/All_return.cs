@@ -45,7 +45,7 @@ public class All_return : MonoBehaviour
         static_parameters._ItemID = 0;
         static_parameters.Piece_ID = 0;
         static_parameters._IconID = 0;
-        static_parameters.teaching_stop = 100;
+        static_parameters.teaching_stop = -1;
         static_parameters.isTeaching = false;
         static_parameters.wait_atk_return = false;
         static_parameters.into_gameFight = false;

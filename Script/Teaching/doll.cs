@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class doll : MonoBehaviour
 {
-    void Start()
+    void Update()
     {
-        
+        if (static_parameters.teaching_stop >= 100)
+        {
+            Destroy(gameObject);
+        }
     }
     private void OnCollisionEnter(Collision Hit)
     {

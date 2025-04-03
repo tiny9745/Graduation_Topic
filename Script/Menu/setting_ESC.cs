@@ -26,6 +26,9 @@ public class srtting_ESC : MonoBehaviour
     void Start()
     {
         OnPointerEnter_Music(); // 預設選擇第一個選項
+        All_sound_control.value = static_parameters._All_sound;
+        BGM_control.value = static_parameters._BGM_volue;
+        SE_control.value = static_parameters._SE_volue;
         All_sound_control.onValueChanged.AddListener(delegate { Setting_All_sound(); });
         BGM_control.onValueChanged.AddListener(delegate { Setting_BGM(); });
         SE_control.onValueChanged.AddListener(delegate { Setting_SE(); });
