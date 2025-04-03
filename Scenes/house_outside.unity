@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 42857050}
   - component: {fileID: 42857051}
   - component: {fileID: 42857052}
+  - component: {fileID: 42857053}
   m_Layer: 0
   m_Name: 4-wood-3
   m_TagString: Untagged
@@ -315,6 +316,22 @@ CapsuleCollider:
   m_Height: 7.14
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &42857053
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42857049}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 3.5700002, y: 3.5700002, z: 3.5700002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &54480389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,6 +1099,7 @@ GameObject:
   - component: {fileID: 191487927}
   - component: {fileID: 191487928}
   - component: {fileID: 191487929}
+  - component: {fileID: 191487930}
   m_Layer: 0
   m_Name: 4-wood-2
   m_TagString: Untagged
@@ -1179,6 +1197,22 @@ CapsuleCollider:
   m_Height: 7.14
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &191487930
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191487926}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 3.5700002, y: 3.5700002, z: 3.5700002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &209745907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1431,7 @@ GameObject:
   - component: {fileID: 270153577}
   - component: {fileID: 270153578}
   - component: {fileID: 270153579}
+  - component: {fileID: 270153580}
   m_Layer: 0
   m_Name: 4-wood-1
   m_TagString: Untagged
@@ -1494,6 +1529,22 @@ CapsuleCollider:
   m_Height: 7.14
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &270153580
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270153576}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 3.5700002, y: 3.5700002, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &278394686
 GameObject:
   m_ObjectHideFlags: 0

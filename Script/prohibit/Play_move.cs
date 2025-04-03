@@ -30,7 +30,7 @@ public class Play_move : MonoBehaviour
             dashSpeed = walkSpeed * 3;
 
             navMeshAvailable = NavMeshHasBakedData();
-
+            Debug.Log($"NavMeshAvailable: {navMeshAvailable}");
             if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
 
             movement = new Vector3(horizontalInput, 0f, verticalInput);
@@ -71,14 +71,13 @@ public class Play_move : MonoBehaviour
         if (direction.magnitude >= 0.1f)
         {
             targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
-
+            Debug.Log($"目標位置: {targetPosition}");
             if (IsPositionOnNavMesh(targetPosition))
             {
                 lastValidPosition = targetPosition; // 更新最後有效的位置
             }
             else
             {
-                Debug.Log("目標位置不在 NavMesh 上，取消移動");
                 targetPosition = lastValidPosition; // 回到最後有效的位置
             }
         }
@@ -89,14 +88,13 @@ public class Play_move : MonoBehaviour
 
         NavMeshHit hit;
         bool isValid = NavMesh.SamplePosition(position, out hit, navMeshCheckRadius, NavMesh.AllAreas);
-
         return isValid; // 回傳 true (在 NavMesh 上) 或 false (超出範圍)
     }
 
     bool NavMeshHasBakedData()
     {
         NavMeshData[] navMeshData = FindObjectsOfType<NavMeshData>();
-        return navMeshData != null && navMeshData.Length > 0;
+        return navMeshData != null;
     }
     void UpdateFaceDirection(Vector3 movement)
     {

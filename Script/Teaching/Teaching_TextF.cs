@@ -19,10 +19,15 @@ public class Teaching_TextF : MonoBehaviour
     public Text name_text, talk_text, Narration_text, teach_text;
     public UI _UI;
     uint talk_number = 0;
+    public GameObject Money_object, Throwing_object, Blood_object, Diary_object;
 
     void Start()
     {
         static_parameters.teaching_stop = -1;
+        Money_object.SetActive(false);
+        Throwing_object.SetActive(false);
+        Blood_object.SetActive(false);
+        Diary_object.SetActive(false);
         reading();
     }
 
@@ -146,6 +151,7 @@ public class Teaching_TextF : MonoBehaviour
             case 16:
                 close();
                 static_parameters.teaching_stop = 6;
+                Diary_object.SetActive(true);
                 teaching_sprite_keycode[3].SetActive(true);
                 teach_text.text = "*按下Z鍵，打開筆記本吧！*";
                 break;
@@ -251,11 +257,7 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 39:
                 close();
-                skip_button.SetActive(false);
-                static_parameters.teaching_stop = 101;
-                talk_number = 100;
-                Teaching_dialog_box.SetActive(false);
-                affect_teaching_object.SetActive(true);
+                Teaching_end();
                 break;
         }
         if (talk_number == 7)
@@ -282,6 +284,8 @@ public class Teaching_TextF : MonoBehaviour
             if (static_parameters.teaching_stop == 5)
             {
                 talk_number++;
+                Blood_object.SetActive(true);
+                Throwing_object.SetActive(true);
                 teach_text.text = "*把剩餘士兵擊退吧！*";
                 teaching_sprite_keycode[1].SetActive(false);
                 teaching_sprite_keycode[2].SetActive(true);
@@ -402,9 +406,19 @@ public class Teaching_TextF : MonoBehaviour
     public void Onclick_skip()
     {
         close();
+        Teaching_end();
+    }
+
+    private void Teaching_end()
+    {
         skip_button.SetActive(false);
         static_parameters.teaching_stop = 101;
         talk_number = 100;
         Teaching_dialog_box.SetActive(false);
+        affect_teaching_object.SetActive(true);
+        Money_object.SetActive(true);
+        Throwing_object.SetActive(true);
+        Blood_object.SetActive(true);
+        Diary_object.SetActive(true);
     }
 }
