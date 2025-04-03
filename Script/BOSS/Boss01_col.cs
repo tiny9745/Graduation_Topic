@@ -365,12 +365,14 @@ public class Boss_col : MonoBehaviour
                 for (int i = 0; i < BOSS_Atk03_Tips.Length - 1; i++)
                 {
                     BOSS_Atk03_Tips[i].SetActive(true);
+                    Debug.Log("L1");
                     yield return new WaitForSeconds(wait);
                 }
                 yield return new WaitForSeconds(7f);
                 for (int i = 0; i < BOSS_Atk03_Tips.Length - 1; i++)
                 {
                     BOSS_Atk03_Tips[i].SetActive(false);
+                    Debug.Log("L2");
                     yield return new WaitForSeconds(wait);
                 }
                 Boss_Animator.SetBool("atk_end", false);
@@ -389,6 +391,7 @@ public class Boss_col : MonoBehaviour
                         }
                     }
                     BOSS_Atk03_GC[i].enabled = true;
+                    Debug.Log("L3");
                     yield return new WaitForSeconds(wait);
                 }
                 break;
@@ -400,12 +403,14 @@ public class Boss_col : MonoBehaviour
                 for (int i = BOSS_Atk03_Tips.Length - 1; i > 0; i--)
                 {
                     BOSS_Atk03_Tips[i].SetActive(true);
+                    Debug.Log("R1");
                     yield return new WaitForSeconds(wait);
                 }
                 yield return new WaitForSeconds(7f);
                 for (int i = BOSS_Atk03_Tips.Length - 1; i > 0; i--)
                 {
                     BOSS_Atk03_Tips[i].SetActive(false);
+                    Debug.Log("R2");
                     yield return new WaitForSeconds(wait);
                 }
                 Boss_Animator.SetBool("atk_end", false);
@@ -427,6 +432,7 @@ public class Boss_col : MonoBehaviour
                         }
                     }
                     BOSS_Atk03_GC[i].enabled = true;
+                    Debug.Log("R3");
                     yield return new WaitForSeconds(wait);
                 }
                 break;
@@ -444,18 +450,18 @@ public class Boss_col : MonoBehaviour
                         AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3].GetCurrentAnimatorStateInfo(0);
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
+                    Debug.Log("L4");
                     BOSS_Atk03_GC[i].enabled = false;
                 }
                 break;
             case 1:
-                for (int i = BOSS_Atk03_GC.Length - 1; i > 0; i--)
+                for (int i = BOSS_Atk03_GC.Length - 2; i > 0; i--)
                 {
                     yield return new WaitUntil(() =>
                     {
                         AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3].GetCurrentAnimatorStateInfo(0);
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
-                    Debug.Log($"BOSS_Atk03_GC[{i}].enabled = false;");
                     BOSS_Atk03_GC[i].enabled = false;
                 }
                 break;

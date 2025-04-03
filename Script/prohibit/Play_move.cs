@@ -52,7 +52,6 @@ public class Play_move : MonoBehaviour
             // **確保角色回到最後有效位置**
             if (!IsPositionOnNavMesh(newPosition))
             {
-                Debug.Log("嘗試移動到無效區域，將位置設為 lastValidPosition");
                 newPosition = lastValidPosition; // 強制回到安全區域
             }
 
@@ -70,7 +69,6 @@ public class Play_move : MonoBehaviour
         if (direction.magnitude >= 0.1f)
         {
             targetPosition = transform.position + direction * static_parameters.MC_Wspeed * Time.deltaTime;
-            Debug.Log($"目標位置: {targetPosition}");
             if (IsPositionOnNavMesh(targetPosition))
             {
                 lastValidPosition = targetPosition; // 更新最後有效的位置
