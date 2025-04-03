@@ -463,6 +463,7 @@ public class Boss_col : MonoBehaviour
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
                     BOSS_Atk03_GC[i].enabled = false;
+                    Debug.Log("R4");
                 }
                 break;
         }
