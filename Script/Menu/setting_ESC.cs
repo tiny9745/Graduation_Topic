@@ -79,6 +79,7 @@ public class srtting_ESC : MonoBehaviour
         static_parameters._All_sound = All_sound_control.value;
         static_parameters._SE_volue = SE_control.value * All_sound_control.value;
         static_parameters._BGM_volue = BGM_control.value * All_sound_control.value;
+        Debug.Log("音量All：" + All_sound_control.value);
         Image fillImage_SE = SE_control.GetComponentsInChildren<Image>()[1];
         Image fillImage_BGM = BGM_control.GetComponentsInChildren<Image>()[1];
 
@@ -119,6 +120,7 @@ public class srtting_ESC : MonoBehaviour
     public void Setting_SE()
     {
         static_parameters._SE_volue = SE_control.value;
+        Debug.Log("音量SE：" + SE_control.value * All_sound_control.value);
         SE_image_off.gameObject.SetActive(SE_control.value == 0);
         SE_image_on.gameObject.SetActive(SE_control.value > 0);
     }
@@ -126,6 +128,7 @@ public class srtting_ESC : MonoBehaviour
     public void Setting_BGM()
     {
         static_parameters._BGM_volue = BGM_control.value;
+        Debug.Log("音量BGM：" + BGM_control.value * All_sound_control.value);
         BGM_image_off.gameObject.SetActive(BGM_control.value == 0);
         BGM_image_on.gameObject.SetActive(BGM_control.value > 0);
     }
