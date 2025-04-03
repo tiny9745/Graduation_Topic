@@ -354,7 +354,7 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator BOSS_Atk03_ready01(float wait)
     {
-        BOSS_Atk03_random = Random.Range(0, 1);
+        BOSS_Atk03_random = Random.Range(1, 2);
         switch (BOSS_Atk03_random)
         {
             case 0:
