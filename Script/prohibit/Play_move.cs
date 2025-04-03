@@ -30,7 +30,6 @@ public class Play_move : MonoBehaviour
             dashSpeed = walkSpeed * 3;
 
             navMeshAvailable = NavMeshHasBakedData();
-            Debug.Log($"NavMeshAvailable: {navMeshAvailable}");
             if (navMeshAvailable) MC_Nav_Baking_range(horizontalInput, verticalInput);
 
             movement = new Vector3(horizontalInput, 0f, verticalInput);
