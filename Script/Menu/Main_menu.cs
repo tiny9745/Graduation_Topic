@@ -15,6 +15,7 @@ public class Main_menu : MonoBehaviour
 
     void Start()
     {
+        AudioListener.volume = static_parameters._All_sound;
         OnPointerEnter_Play(); // 預設選擇第一個選項
     }
 

@@ -31,6 +31,30 @@ public class Setting_menu : MonoBehaviour
     void Start()
     {
         OnPointerEnter_Music(); // 預設選擇第一個選項
+        AudioListener.volume = static_parameters._All_sound;
+        All_sound_control.value = static_parameters._All_sound;
+        BGM_control.value = static_parameters._BGM_volue;
+        SE_control.value = static_parameters._SE_volue;
+        Setting_All_sound();
+        Setting_SE();
+        Setting_BGM();
+        if (All_sound_control.value == 0)
+        {
+            BGM_image_off.gameObject.SetActive(true);
+            BGM_image_on.gameObject.SetActive(false);
+            SE_image_off.gameObject.SetActive(true);
+            SE_image_on.gameObject.SetActive(false);
+            Image fillImage_SE = SE_control.GetComponentsInChildren<Image>()[1];
+            Image fillImage_BGM = BGM_control.GetComponentsInChildren<Image>()[1];
+            fillImage_SE.color = new Color(252 / 255f, 178 / 255f, 197 / 255f, 0.5f);
+            fillImage_BGM.color = new Color(252 / 255f, 178 / 255f, 197 / 255f, 0.5f);
+            BGM_control.enabled = false;
+            SE_control.enabled = false;
+            BGM_sound_button_on.enabled = false;
+            SE_sound_button_on.enabled = false;
+            BGM_sound_button_off.enabled = false;
+            SE_sound_button_off.enabled = false;
+        }
         All_sound_control.onValueChanged.AddListener(delegate { Setting_All_sound(); });
         BGM_control.onValueChanged.AddListener(delegate { Setting_BGM(); });
         SE_control.onValueChanged.AddListener(delegate { Setting_SE(); });
@@ -79,8 +103,6 @@ public class Setting_menu : MonoBehaviour
     {
         AudioListener.volume = All_sound_control.value;
         static_parameters._All_sound = All_sound_control.value;
-        static_parameters._SE_volue = SE_sound.volume * All_sound_control.value;
-        static_parameters._BGM_volue = BGM_sound.volume * All_sound_control.value;
         Image fillImage_SE = SE_control.GetComponentsInChildren<Image>()[1];
         Image fillImage_BGM = BGM_control.GetComponentsInChildren<Image>()[1];
         Debug.Log("音量All：" + All_sound_control.value);
@@ -120,8 +142,8 @@ public class Setting_menu : MonoBehaviour
 
     public void Setting_SE()
     {
-        SE_sound.volume = SE_control.value * All_sound_control.value;
-        Debug.Log("音量SE：" + SE_control.value*All_sound_control.value);
+        SE_sound.volume = SE_control.value;
+        Debug.Log("音量SE：" + SE_control.value);
         static_parameters._SE_volue = SE_sound.volume;
 
         SE_image_off.gameObject.SetActive(SE_control.value == 0);
@@ -130,8 +152,8 @@ public class Setting_menu : MonoBehaviour
 
     public void Setting_BGM()
     {
-        BGM_sound.volume = BGM_control.value * All_sound_control.value;
-        Debug.Log("音量BGM：" + BGM_control.value*All_sound_control.value);
+        BGM_sound.volume = BGM_control.value;
+        Debug.Log("音量BGM：" + BGM_control.value);
         static_parameters._BGM_volue = BGM_sound.volume;
         BGM_image_off.gameObject.SetActive(BGM_control.value == 0);
         BGM_image_on.gameObject.SetActive(BGM_control.value > 0);
