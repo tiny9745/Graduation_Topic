@@ -365,14 +365,12 @@ public class Boss_col : MonoBehaviour
                 for (int i = 0; i < BOSS_Atk03_Tips.Length - 1; i++)
                 {
                     BOSS_Atk03_Tips[i].SetActive(true);
-                    Debug.Log("L1");
                     yield return new WaitForSeconds(wait);
                 }
                 yield return new WaitForSeconds(7f);
                 for (int i = 0; i < BOSS_Atk03_Tips.Length - 1; i++)
                 {
                     BOSS_Atk03_Tips[i].SetActive(false);
-                    Debug.Log("L2");
                     yield return new WaitForSeconds(wait);
                 }
                 Boss_Animator.SetBool("atk_end", false);
@@ -391,7 +389,6 @@ public class Boss_col : MonoBehaviour
                         }
                     }
                     BOSS_Atk03_GC[i].enabled = true;
-                    Debug.Log("L3");
                     yield return new WaitForSeconds(wait);
                 }
                 break;
@@ -403,14 +400,12 @@ public class Boss_col : MonoBehaviour
                 for (int i = BOSS_Atk03_Tips.Length - 1; i > 0; i--)
                 {
                     BOSS_Atk03_Tips[i].SetActive(true);
-                    Debug.Log("R1");
                     yield return new WaitForSeconds(wait);
                 }
                 yield return new WaitForSeconds(7f);
                 for (int i = BOSS_Atk03_Tips.Length - 1; i > 0; i--)
                 {
                     BOSS_Atk03_Tips[i].SetActive(false);
-                    Debug.Log("R2");
                     yield return new WaitForSeconds(wait);
                 }
                 Boss_Animator.SetBool("atk_end", false);
@@ -432,7 +427,6 @@ public class Boss_col : MonoBehaviour
                         }
                     }
                     BOSS_Atk03_GC[i].enabled = true;
-                    Debug.Log("R3");
                     yield return new WaitForSeconds(wait);
                 }
                 break;
@@ -450,7 +444,6 @@ public class Boss_col : MonoBehaviour
                         AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3].GetCurrentAnimatorStateInfo(0);
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
-                    Debug.Log("L4");
                     BOSS_Atk03_GC[i].enabled = false;
                 }
                 break;
@@ -460,17 +453,14 @@ public class Boss_col : MonoBehaviour
                     yield return new WaitUntil(() =>
                     {
                         AnimatorStateInfo stateInfo = BOSS_Atk03_Ani_cards[i * 3 + 1].GetCurrentAnimatorStateInfo(0);
-                        Debug.Log($"BOSS_Atk03_Ani_cards[{i * 3 + 1}]");
                         return stateInfo.IsName("BOSS_Atk03_Card") && stateInfo.normalizedTime >= 0.98f;
                     });
                     BOSS_Atk03_GC[i].enabled = false;
-                    Debug.Log("R4");
                 }
                 break;
         }
         BOSS_Atk_state = 1;
         BOSS_Atk_bool = false;
-        Debug.Log("END:BOSS_Atk_state = " + BOSS_Atk_state + ",BOSS_Atk_bool = " + BOSS_Atk_bool);
     }
 
     void Flip()
@@ -584,7 +574,6 @@ public class Boss_col : MonoBehaviour
     void wait_MC_att()
     {
         MC_to_Att = true;
-        Debug.Log("MC_to_Att =" + MC_to_Att);
     }
     public void Change()
     {
