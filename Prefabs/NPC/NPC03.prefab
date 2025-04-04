@@ -1678,7 +1678,9 @@ MonoBehaviour:
   npc_interactive: {fileID: 2753665520669540544}
   nPC_hP: {fileID: 7916481744572787998}
   effect: {fileID: 8711652012388244203}
+  _UI: {fileID: 0}
   npcNavi: {fileID: 0}
+  spriteTransform: {fileID: 4032549033181439169}
   animator: {fileID: 1818161054931281942}
   animator_to_atk: {fileID: 6094473398910519568}
   weaponDUCK: {fileID: 2764316329090714134}
@@ -1695,8 +1697,6 @@ MonoBehaviour:
   NPC03_ATK: 25
   NPC03_DEF: 5
   stun: 0
-  spriteTransform: {fileID: 4032549033181439169}
-  _UI: {fileID: 0}
 --- !u!65 &5616752522870603614
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1797,7 +1797,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7984589684211309320}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1836,7 +1836,6 @@ MonoBehaviour:
   Ward12: {fileID: 7035810975034627314, guid: cedb763a9d8468b4c880394512cb93db, type: 3}
   skill_01_1: {fileID: 0}
   skill_02: {fileID: 1974800558868923230}
-  skill04A: {fileID: 0}
   skill04_B: {fileID: 8697907406338620759}
   skill05A: {fileID: 0}
   skill05B: {fileID: 4501592814147330535}
