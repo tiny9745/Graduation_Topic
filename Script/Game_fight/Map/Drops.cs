@@ -54,6 +54,7 @@ public class Drops : MonoBehaviour
             Debug.Log("randomIndex: " + randomIndex + " money: " + static_parameters.money);
         }
         yield return new WaitForSeconds(0.65f);
+        static_parameters.next_door = true;
         Destroy(gameObject);
     }
 }

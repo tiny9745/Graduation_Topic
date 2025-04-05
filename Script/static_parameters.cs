@@ -17,7 +17,7 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
 
     static public int Comic_scene_sort = 0;
     static public int diary_number = 0, money = 0;
-    static public float _All_sound = 0.5f, _BGM_volue =  0.5f, _SE_volue =  0.5f;
+    static public float _All_sound = 0.5f, _BGM_volue = 0.5f, _SE_volue = 0.5f;
     static public float _All_sound_tmp = 1, _BGM_volue_tmp = 1, _SE_volue_tmp = 1;
     static public int Map_start = 0;
     static public int bullet_quantity = 0;
@@ -29,4 +29,5 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
     static public bool MC_NPC_col_move = true;
     static public bool into_gameFight = false;//是否進入戰鬥場景
     static public int into_gameFight_Levels = 0;//戰鬥場景選擇的關卡
+    static public bool next_door = false;
 }
