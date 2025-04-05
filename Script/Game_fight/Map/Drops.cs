@@ -7,6 +7,7 @@ public class Drops : MonoBehaviour
     public Ptest ptest;
     GameObject targetObject;
     Animator Chest_Animator;
+    int randomIndex = Random.Range(5, 9);
     void Start()
     {
         targetObject = GameObject.Find("UI");
@@ -23,6 +24,14 @@ public class Drops : MonoBehaviour
         {
             Debug.LogWarning("UI not found in the scene!");
         }
+        Chest_Animator = GetComponent<Animator>();
+        Chest_Animator.SetTrigger($"chest{randomIndex}");
+        
+    }
+
+    private IEnumerator Aniwait(){
+        yield return new WaitForSeconds(0.5f);
+        Chest_Animator.SetBool("Open", true);
     }
     private void OnTriggerEnter(Collider Hit)
     {
@@ -32,7 +41,6 @@ public class Drops : MonoBehaviour
             {
                 if (static_parameters.teaching_stop <= 6) static_parameters.teaching_stop = 7;
                 Debug.Log("static_parameters.teaching_stop: " + static_parameters.teaching_stop);
-                int randomIndex = Random.Range(5, 8);
                 ptest._to_Drop(randomIndex);
             }
             Destroy(gameObject);
