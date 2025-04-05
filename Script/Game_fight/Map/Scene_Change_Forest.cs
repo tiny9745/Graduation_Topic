@@ -57,7 +57,7 @@ public class Scene_Change_Forest : MonoBehaviour
     {
         if (loadingBar == null) loadingBar = GameObject.Find("BG_pink").GetComponent<Image>();
         if (loadingScreen == null) loadingScreen = GameObject.Find("Load_pink");
-        if (static_parameters.Change_enemy == 0)
+        if (static_parameters.Change_enemy == 0 && static_parameters.next_door == true)
         {
             CloseDoor01.SetActive(false);
             CloseDoor02.SetActive(false);
@@ -77,7 +77,7 @@ public class Scene_Change_Forest : MonoBehaviour
     private void OnTriggerEnter(Collider Hit)
     {
         int i;
-        if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0 && open)
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0 && static_parameters.next_door == true)
         {
             static_parameters.into_gameFight_Levels = into_gameFight_Levels_memory;
             static_parameters.stage_number++;
@@ -91,22 +91,9 @@ public class Scene_Change_Forest : MonoBehaviour
                 i = all_stage;
             }
             static_parameters.money += i * 10;
-            Debug.Log("static_parameters.stage_number:" + static_parameters.stage_number);
-            if (static_parameters.stage_number > all_stage)
-            {
-                // image_complete.SetActive(true);//通關畫面
-                // Debug.Log("Go Back");
-                // player_S.transform.localPosition = new Vector3(0, 0, -15);
-                // SceneManager.LoadScene("magic_house");
-                // static_parameters.stage_number = 0;
-                // static_parameters.stage_number_Boss++;
-            }
-            else
-            {
-                player_S.transform.localPosition = new Vector3(0, 0, -138);
-                loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
-                StartCoroutine(LoadSceneWithProgress("Fight_241130"));
-            }
+            player_S.transform.localPosition = new Vector3(0, 0, -138);
+            loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
+            StartCoroutine(LoadSceneWithProgress("Fight_241130"));
         }
     }
 
