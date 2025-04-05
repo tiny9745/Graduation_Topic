@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ptest : MonoBehaviour
@@ -31,8 +29,11 @@ public class Ptest : MonoBehaviour
     // Update is called once per frame
     public void _to_Drop()
     {
-        AddP();
-        AddP();
+        int randomIndex = Random.Range(5, 8);
+        for (int i = 0; i < randomIndex; i++)
+        {
+            AddP();
+        }
         ShowPieces();
     }
 
