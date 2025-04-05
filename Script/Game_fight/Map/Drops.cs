@@ -6,6 +6,7 @@ public class Drops : MonoBehaviour
 {
     public Ptest ptest;
     GameObject targetObject;
+    Animator Chest_Animator;
     void Start()
     {
         targetObject = GameObject.Find("UI");
@@ -31,7 +32,8 @@ public class Drops : MonoBehaviour
             {
                 if (static_parameters.teaching_stop <= 6) static_parameters.teaching_stop = 7;
                 Debug.Log("static_parameters.teaching_stop: " + static_parameters.teaching_stop);
-                ptest._to_Drop();
+                int randomIndex = Random.Range(5, 8);
+                ptest._to_Drop(randomIndex);
             }
             Destroy(gameObject);
         }
