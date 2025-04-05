@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Drops : MonoBehaviour
 {
-    public Ptest ptest;
+    private UI _UI;
+    private Ptest ptest;
     GameObject targetObject;
     Animator Chest_Animator;
-    int randomIndex = Random.Range(5, 9);
+    int randomIndex;
+    bool isAni = false;
     void Start()
     {
+        randomIndex = Random.Range(5, 9);
         targetObject = GameObject.Find("UI");
 
         if (targetObject != null)
@@ -24,26 +27,33 @@ public class Drops : MonoBehaviour
         {
             Debug.LogWarning("UI not found in the scene!");
         }
+        _UI = targetObject.GetComponent<UI>();
         Chest_Animator = GetComponent<Animator>();
         Chest_Animator.SetTrigger($"chest{randomIndex}");
-        
     }
 
-    private IEnumerator Aniwait(){
-        yield return new WaitForSeconds(0.5f);
-        Chest_Animator.SetBool("Open", true);
-    }
-    private void OnTriggerEnter(Collider Hit)
+    private void Update()
     {
-        if (Hit.gameObject.CompareTag("Player"))
+        StartCoroutine(Aniwait());
+    }
+
+    private IEnumerator Aniwait()
+    {
+        yield return new WaitUntil(() =>
         {
-            if (targetObject != null)
-            {
-                if (static_parameters.teaching_stop <= 6) static_parameters.teaching_stop = 7;
-                Debug.Log("static_parameters.teaching_stop: " + static_parameters.teaching_stop);
-                ptest._to_Drop(randomIndex);
-            }
-            Destroy(gameObject);
+            AnimatorStateInfo stateInfo = Chest_Animator.GetCurrentAnimatorStateInfo(0);
+            return stateInfo.IsName($"chest{randomIndex}") && stateInfo.normalizedTime >= 0.75f;
+        });
+        if (targetObject != null && isAni == false)
+        {
+            isAni = true;
+            if (static_parameters.teaching_stop <= 6) static_parameters.teaching_stop = 7;
+            ptest._to_Drop(randomIndex);
+            static_parameters.money += Random.Range(25, 41);
+            _UI.Loadmoney();
+            Debug.Log("randomIndex: " + randomIndex + " money: " + static_parameters.money);
         }
+        yield return new WaitForSeconds(0.65f);
+        Destroy(gameObject);
     }
 }
