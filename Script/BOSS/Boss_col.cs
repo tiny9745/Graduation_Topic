@@ -5,6 +5,7 @@ public class Boss_col : MonoBehaviour
 {
     public Animator Boss_Animator;
     private GameObject TargetObj, Boss_Skill;
+    public GameObject Demo_End;
     static public float BOSS_Atk_time = -5;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
@@ -38,7 +39,7 @@ public class Boss_col : MonoBehaviour
                 BOSS_live = false;
                 Boss_Animator.SetTrigger("die");
                 Destroy(Boss_Skill);
-                Destroy(gameObject, 1.5f);
+                StartCoroutine(Dead_after(1.5f));
             }
             return;
         }
@@ -599,5 +600,12 @@ public class Boss_col : MonoBehaviour
                 weaponDUCK.color = new Color(0.95f, 0.88f, 0.89f, 1);
                 break;
         }
+    }
+
+    IEnumerator Dead_after(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        Demo_End.SetActive(true);
+        Destroy(gameObject);
     }
 }
