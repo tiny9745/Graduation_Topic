@@ -1,0 +1,101 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BOSS_Blood : MonoBehaviour
+{
+    public Boss_col boss_col;
+    private RectTransform HPimg_White, HPimg_Green;
+    float blood_base = 1;
+    float blood_tmp = 1040;
+    float previous_BOSS_HP_Max;
+
+    IEnumerator Start()
+    {
+        yield return null;
+        TryFindHPImage();
+        previous_BOSS_HP_Max = boss_col.BOSS_HP_Max;
+        UpdateHealthBars();
+    }
+
+    void Update()
+    {
+        CheckAndAdjustHPMax();
+        if (boss_col.BOSS_HP_tmp != boss_col.BOSS_HP)
+        {
+            UpdateGreenHPBar();
+            boss_col.BOSS_HP_tmp = boss_col.BOSS_HP;
+        }
+
+        BOSS_HP_effects();
+    }
+
+    void TryFindHPImage()
+    {
+        if (HPimg_White == null || HPimg_Green == null)
+        {
+            RectTransform[] found = FindObjectsOfType<RectTransform>();
+            foreach (RectTransform rect in found)
+            {
+                if (rect.name == "BOSS_HP_change") HPimg_White = rect;
+                else if (rect.name == "BOSS_HP_change_after") HPimg_Green = rect;
+            }
+            UpdateBloodBase();
+        }
+    }
+
+    void UpdateBloodBase()
+    {
+        if (boss_col.BOSS_HP_Max > 0)
+            blood_base = blood_tmp / boss_col.BOSS_HP_Max;
+        else
+            blood_base = 0;
+    }
+
+    void CheckAndAdjustHPMax()
+    {
+        if (boss_col.BOSS_HP_Max != previous_BOSS_HP_Max)
+        {
+            float ratio = boss_col.BOSS_HP / previous_BOSS_HP_Max;
+            boss_col.BOSS_HP = Mathf.Clamp(ratio * boss_col.BOSS_HP_Max, 0, boss_col.BOSS_HP_Max);
+            boss_col.BOSS_HP_tmp = boss_col.BOSS_HP;
+            previous_BOSS_HP_Max = boss_col.BOSS_HP_Max;
+
+            UpdateBloodBase();
+            UpdateHealthBars();
+        }
+    }
+
+    void UpdateHealthBars()
+    {
+        if (HPimg_White != null)
+            HPimg_White.sizeDelta = new Vector2(boss_col.BOSS_HP_Max * blood_base, HPimg_White.sizeDelta.y);
+
+        if (HPimg_Green != null)
+            HPimg_Green.sizeDelta = new Vector2(boss_col.BOSS_HP * blood_base, HPimg_Green.sizeDelta.y);
+    }
+
+    void UpdateGreenHPBar()
+    {
+        if (HPimg_Green != null)
+        {
+            HPimg_Green.sizeDelta = new Vector2(boss_col.BOSS_HP * blood_base, HPimg_Green.sizeDelta.y);
+        }
+    }
+
+    public void BOSS_HP_effects()
+    {
+        if (HPimg_White != null && HPimg_Green != null && HPimg_White.sizeDelta.x > HPimg_Green.sizeDelta.x)
+        {
+            float diff = HPimg_White.sizeDelta.x - HPimg_Green.sizeDelta.x;
+            float speed = 6f + diff * 0.1f;
+
+            HPimg_White.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * speed;
+
+            if (HPimg_White.sizeDelta.x < HPimg_Green.sizeDelta.x)
+            {
+                HPimg_White.sizeDelta = new Vector2(HPimg_Green.sizeDelta.x, HPimg_White.sizeDelta.y);
+            }
+        }
+    }
+}

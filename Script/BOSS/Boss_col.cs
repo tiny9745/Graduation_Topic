@@ -10,7 +10,7 @@ public class Boss_col : MonoBehaviour
     static public int BOSS_Atk_state = 1;
     static public bool BOSS_Atk02_ready03_waring = false;
     static public bool BOSS_Atk02_ready01 = false, BOSS_Atk02_ready03 = false;
-    public float BOSS_HP_Max = 1000, BOSS_DEF = 10, BOSS_HP;
+    public float BOSS_HP_Max = 1000, BOSS_DEF = 10, BOSS_HP, BOSS_HP_tmp;
     public BOSS01_HP boss_hP; public BOSS01_effect effect;
     public bool stun = false;
     public int NPC_angle = 0;
@@ -26,6 +26,7 @@ public class Boss_col : MonoBehaviour
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
         BOSS_HP = BOSS_HP_Max;
+        BOSS_HP_tmp = BOSS_HP_Max;
         TargetObj = GameObject.Find("Player_S");
     }
     void Update()
@@ -354,7 +355,7 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator BOSS_Atk03_ready01(float wait)
     {
-        BOSS_Atk03_random = Random.Range(1, 2);
+        BOSS_Atk03_random = Random.Range(0, 2);
         switch (BOSS_Atk03_random)
         {
             case 0:
