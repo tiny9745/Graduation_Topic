@@ -27,9 +27,9 @@ public class Ptest : MonoBehaviour
         sortedPieces["Grn"] = new List<Diary_piece>();
     }
     // Update is called once per frame
-    public void _to_Drop()
+    public void _to_Drop(int randomIndex)
     {
-        int randomIndex = Random.Range(5, 8);
+        randomIndex = Random.Range(5, 8);
         for (int i = 0; i < randomIndex; i++)
         {
             AddP();
