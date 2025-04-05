@@ -18,7 +18,7 @@ public class All_return : MonoBehaviour
         static_parameters.MC_DEF_tmp = static_parameters.MC_DEF;
         static_parameters.MC_Wspeed = 20f;
         static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
-        static_parameters.knockback_force = 3;
+        static_parameters.knockback_force = 1;
         static_parameters.MC_ATK_Speed = 1;
         static_parameters.MC_ATK_Speed_tmp = static_parameters.MC_ATK_Speed;
         static_parameters.stage_number = 0;

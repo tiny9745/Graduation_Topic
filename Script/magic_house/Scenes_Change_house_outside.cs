@@ -30,7 +30,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
         {
-            static_parameters.stage_number = 5;
+            static_parameters.stage_number = 1;
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
             StartCoroutine(LoadSceneWithProgress("Fight_241130"));
         }

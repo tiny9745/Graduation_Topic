@@ -29,7 +29,6 @@ public class Ptest : MonoBehaviour
     // Update is called once per frame
     public void _to_Drop(int randomIndex)
     {
-        randomIndex = Random.Range(5, 8);
         for (int i = 0; i < randomIndex; i++)
         {
             AddP();
