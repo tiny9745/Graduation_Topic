@@ -525,6 +525,7 @@ public class NPC01_1_control : MonoBehaviour
                 currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
+            money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money01");
             static_parameters.money += 3;
             _UI.Loadmoney();
