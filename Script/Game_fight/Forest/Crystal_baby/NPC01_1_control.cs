@@ -11,7 +11,7 @@ public class NPC01_1_control : MonoBehaviour
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC01_1, Img_npc,hitbox_Crystal_baby_small, Drop;
     private int DetectDistance = 65;
-    private float NPC01_ATK = 4, NPC01_DEF = 2, NPC_HP_Max = 50, npcSpeed = 9f, NPC_HP, minus;
+    public float NPC01_ATK = 4, NPC01_DEF = 2, NPC_HP_Max = 50, npcSpeed = 9f, NPC_HP, minus;
     float dist;
     private float nextDamageTime = 0.0f,damageCooldown = 1.0f; // Time in seconds between damage instances
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;

@@ -6,20 +6,21 @@ using UnityEngine.AI;
 public class NPC03_control : MonoBehaviour
 {
     public NPC_interactive npc_interactive; public NPC_HP_03 nPC_hP; public NPC_effect_03 effect; public UI _UI;
-    public NavMeshAgent npcNavi;public Transform spriteTransform;
+    public NavMeshAgent npcNavi; public Transform spriteTransform;
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Drop, NPC03, hitbox_Brick_Monster, Img_npc;
-    public int DetectDistance = 80, NPC_angle;
-    private float NPC_HP_Max = 120, npcSpeed = 5f, NPC_HP, NPC03_ATK = 10, NPC03_DEF = 5;
+    private int DetectDistance = 80;
+    public int NPC_angle;
+    public float NPC_HP_Max = 120, npcSpeed = 5f, NPC_HP, NPC03_ATK = 10, NPC03_DEF = 5;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f, dist;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     int open_EnableHitbox = 0;
     public bool stun; private bool isFacingRight = true;
-    private Vector3 lastPosition, presentPosition,lastEnteredDirection;// 記錄進入方向
-    private Quaternion initialRotation;private bool isCoroutineRunning = false,isInDangerZone = false;
-    private SpriteRenderer spriteRenderer; private Color originalColor; 
-    private float fadeDuration = 5f,fadeTimer = 0f;
+    private Vector3 lastPosition, presentPosition, lastEnteredDirection;// 記錄進入方向
+    private Quaternion initialRotation; private bool isCoroutineRunning = false, isInDangerZone = false;
+    private SpriteRenderer spriteRenderer; private Color originalColor;
+    private float fadeDuration = 5f, fadeTimer = 0f;
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
 
@@ -394,7 +395,8 @@ public class NPC03_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
-    void fade(){
+    void fade()
+    {
         if (fadeTimer < fadeDuration)
         {
             fadeTimer += Time.deltaTime;
@@ -442,7 +444,7 @@ public class NPC03_control : MonoBehaviour
         {
             StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
         }
-        
+
     }
     IEnumerator ResetColorAfterDelay(float delay)
     {

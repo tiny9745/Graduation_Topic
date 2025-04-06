@@ -11,7 +11,7 @@ public class NPC04_control : MonoBehaviour
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC04, hitbox_Brick_Monster, Drop, Img_npc;
     private int DetectDistance = 65; public int NPC_angle = 0;
-    private float NPC04_ATK = 7, NPC04_DEF = 20, NPC_HP_Max = 105, npcSpeed = 8f, NPC_HP;
+    public float NPC04_ATK = 7, NPC04_DEF = 20, NPC_HP_Max = 105, npcSpeed = 8f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;

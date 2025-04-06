@@ -11,7 +11,7 @@ public class NPC02_control : MonoBehaviour
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC02, Drop, hitbox_Robot, Img_npc;
     private int DetectDistance = 75; public int NPC_angle = 0;
-    private float NPC02_ATK = 15, NPC02_DEF = 12, NPC_HP_Max = 150, npcSpeed = 5f, NPC_HP;
+    public float NPC02_ATK = 15, NPC02_DEF = 12, NPC_HP_Max = 150, npcSpeed = 5f, NPC_HP;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f; float dist;
     bool hit_Ani = false, hit = false, bomb_Berry = true, dead_open = true, MC_to_Att = true;
     private bool isFacingRight = true, isCoroutineRunning = false; public bool stun = false;
