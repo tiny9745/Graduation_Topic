@@ -11,8 +11,8 @@ public class NPC05_control : MonoBehaviour
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Img_npc, bulletPrefab, NPC05, Drop;
-    public int DetectDistance = 12; public int NPC_angle = 0;
-    public float NPC05_ATK = 35, NPC05_DEF = 15, NPC_HP_Max = 160, npcSpeed = 0f, NPC_HP, fireRate = 1f, bulletSpeed = 20f;
+    private int DetectDistance = 30; public int NPC_angle = 0;
+    private float NPC05_ATK = 35, NPC05_DEF = 17.5f, NPC_HP_Max = 60, npcSpeed = 0f, NPC_HP, fireRate = 3f, bulletSpeed = 10f;
     float dist, nextFireTime = 0f;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     private bool isCoroutineRunning = false, isFacingRight = true; public bool stun = false;
@@ -361,7 +361,7 @@ public class NPC05_control : MonoBehaviour
                 currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
-            static_parameters.money += 6;
+            static_parameters.money += 5;
             _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;

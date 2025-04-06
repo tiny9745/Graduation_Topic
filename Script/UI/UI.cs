@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
     public GameObject TeachiUI;
     private Color newColor = new Color(1, 1, 1, 0.5f);
     public Text money;
+    public Outline money_outline;
     public Image button_image, craft_image;
     public Sprite craft_sprite;
     public Button Pageup, Pagedown;
@@ -128,8 +129,17 @@ public class UI : MonoBehaviour
     }
     public void Loadmoney()
     {
-        money.text = static_parameters.money.ToString();
+        money_color();
     }
+
+    private IEnumerator money_color()
+    {
+        money_outline.effectColor = new Color(95f / 255f, 99f / 255f, 238f / 255f, 1f);
+        money.text = static_parameters.money.ToString();
+        yield return new WaitForSeconds(0.5f);
+         money_outline.effectColor = new Color(1, 1, 1, 1f);
+    }
+
 
     public bool putting_diary(bool isopen)
     {

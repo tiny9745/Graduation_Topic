@@ -10,8 +10,8 @@ public class NPC04_control : MonoBehaviour
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC04, hitbox_Brick_Monster, Drop, Img_npc;
-    public int DetectDistance = 25; public int NPC_angle = 0;
-    public float NPC04_ATK = 13, NPC04_DEF = 15, NPC_HP_Max = 150, npcSpeed = 7.5f, NPC_HP;
+    private int DetectDistance = 65; public int NPC_angle = 0;
+    private float NPC04_ATK = 7, NPC04_DEF = 20, NPC_HP_Max = 105, npcSpeed = 8f, NPC_HP;
     float dist;
     private float damageCooldown = 1.0f, nextDamageTime = 0.0f;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
@@ -466,7 +466,7 @@ public class NPC04_control : MonoBehaviour
                 currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
-            static_parameters.money += 4;
+            static_parameters.money += 7;
             _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;
