@@ -9,19 +9,21 @@ public class NPC01_1_control : MonoBehaviour
     NavMeshAgent npcNavi;
     public Animator animator, animator_to_atk;
     public SpriteRenderer weaponDUCK;
-    public GameObject TargetObj, NPC01_1, Img_npc,hitbox_Crystal_baby_small, Drop;
+    public GameObject TargetObj, NPC01_1, Img_npc, hitbox_Crystal_baby_small, Drop;
     private int DetectDistance = 65;
     public float NPC01_ATK = 4, NPC01_DEF = 2, NPC_HP_Max = 50, npcSpeed = 9f, NPC_HP, minus;
     float dist;
-    private float nextDamageTime = 0.0f,damageCooldown = 1.0f; // Time in seconds between damage instances
+    private float nextDamageTime = 0.0f, damageCooldown = 1.0f; // Time in seconds between damage instances
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     private bool isFacingRight = true; public bool stun = false;
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
     public int NPC_angle = 0;
-    private float fadeDuration = 0.8f,fadeTimer = 0f;
+    private float fadeDuration = 0.8f, fadeTimer = 0f;
     SpriteRenderer spriterenderer;
     public UI _UI;
+    public Animator money_animator;
+
 
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
 
@@ -111,7 +113,7 @@ public class NPC01_1_control : MonoBehaviour
         }
         else if (!hit_Ani)
         {
-            if(isInDangerZone)
+            if (isInDangerZone)
             {
                 PlayWalkAnimation();
             }
@@ -461,7 +463,8 @@ public class NPC01_1_control : MonoBehaviour
             }
         }
     }
-    void fade(){
+    void fade()
+    {
         if (fadeTimer < fadeDuration)
         {
             fadeTimer += Time.deltaTime;
@@ -522,8 +525,9 @@ public class NPC01_1_control : MonoBehaviour
                 currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
+            money_animator.SetTrigger("money01");
             static_parameters.money += 3;
-             _UI.Loadmoney();
+            _UI.Loadmoney();
             Destroy(gameObject);
             dead_open = false;
         }

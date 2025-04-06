@@ -23,6 +23,7 @@ public class NPC03_control : MonoBehaviour
     private float fadeDuration = 5f, fadeTimer = 0f;
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
+    public Animator money_animator;
 
     void Start()
     {
@@ -426,6 +427,7 @@ public class NPC03_control : MonoBehaviour
                 currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
+            money_animator.SetTrigger("money02");
             static_parameters.money += 8;
             _UI.Loadmoney();
             Invoke("dead_after", 5);

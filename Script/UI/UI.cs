@@ -19,7 +19,6 @@ public class UI : MonoBehaviour
     public Image button_image, craft_image;
     public Sprite craft_sprite;
     public Button Pageup, Pagedown;
-
     // Start is called before the first frame update
     void Start()
     {

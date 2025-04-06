@@ -22,6 +22,7 @@ public class NPC05_control : MonoBehaviour
     public AudioSource audioSource; public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
     private float fadeDuration = 5f, fadeTimer = 0f;
+    public Animator money_animator;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -361,6 +362,7 @@ public class NPC05_control : MonoBehaviour
                 currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
+            money_animator.SetTrigger("money02");
             static_parameters.money += 5;
             _UI.Loadmoney();
             Invoke("dead_after", 5);

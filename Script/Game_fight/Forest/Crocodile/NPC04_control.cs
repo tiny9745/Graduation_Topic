@@ -17,13 +17,14 @@ public class NPC04_control : MonoBehaviour
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     int open_EnableHitbox = 0;
     public bool stun = false; private bool isFacingRight = true;
-    private Vector3 lastPosition, presentPosition,lastEnteredDirection; private bool isCoroutineRunning = false;
+    private Vector3 lastPosition, presentPosition, lastEnteredDirection; private bool isCoroutineRunning = false;
     private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor;
-    private float fadeDuration = 5f,fadeTimer = 0f;
+    private float fadeDuration = 5f, fadeTimer = 0f;
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 115f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
+    public Animator money_animator;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -393,7 +394,7 @@ public class NPC04_control : MonoBehaviour
             }
         }
     }
-    
+
     IEnumerator ResetColorAfterDelay(float delay)
     {
         isCoroutineRunning = true; // 設置為 true，表示協程正在運行
@@ -437,7 +438,8 @@ public class NPC04_control : MonoBehaviour
         theScale.x *= -1;
         Img_npc.transform.localScale = theScale;
     }
-    void fade(){
+    void fade()
+    {
         if (fadeTimer < fadeDuration)
         {
             fadeTimer += Time.deltaTime;
@@ -466,6 +468,7 @@ public class NPC04_control : MonoBehaviour
                 currentPosition.y = 2.5f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
+            money_animator.SetTrigger("money02");
             static_parameters.money += 7;
             _UI.Loadmoney();
             Invoke("dead_after", 5);
