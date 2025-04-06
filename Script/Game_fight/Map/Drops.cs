@@ -13,6 +13,7 @@ public class Drops : MonoBehaviour
     void Start()
     {
         randomIndex = Random.Range(5, 9);
+        if(static_parameters.isTeaching)randomIndex=1;
         targetObject = GameObject.Find("UI");
 
         if (targetObject != null)
@@ -51,7 +52,6 @@ public class Drops : MonoBehaviour
             ptest._to_Drop(randomIndex);
             static_parameters.money += Random.Range(25, 41);
             _UI.Loadmoney();
-            Debug.Log("randomIndex: " + randomIndex + " money: " + static_parameters.money);
         }
         yield return new WaitForSeconds(0.65f);
         static_parameters.next_door = true;
