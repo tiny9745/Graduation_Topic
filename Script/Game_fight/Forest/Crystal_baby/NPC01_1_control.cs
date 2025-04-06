@@ -21,6 +21,7 @@ public class NPC01_1_control : MonoBehaviour
     public int NPC_angle = 0;
     private float fadeDuration = 0.8f,fadeTimer = 0f;
     SpriteRenderer spriterenderer;
+    public UI _UI;
 
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
 
@@ -41,6 +42,7 @@ public class NPC01_1_control : MonoBehaviour
         initialRotation = transform.rotation;
         NPC01_1 = GameObject.Find("NPC01_1");
         spriterenderer = Img_npc.GetComponent<SpriteRenderer>();
+        _UI = GameObject.Find("UI").GetComponent<UI>();
         if (NPC01_1 != null)
         {
             Renderer renderer = NPC01_1.GetComponent<Renderer>();
@@ -521,6 +523,7 @@ public class NPC01_1_control : MonoBehaviour
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             static_parameters.money += 3;
+             _UI.Loadmoney();
             Destroy(gameObject);
             dead_open = false;
         }

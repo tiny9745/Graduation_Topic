@@ -129,7 +129,7 @@ public class UI : MonoBehaviour
     }
     public void Loadmoney()
     {
-        money_color();
+        StartCoroutine(money_color());
     }
 
     private IEnumerator money_color()
@@ -137,7 +137,7 @@ public class UI : MonoBehaviour
         money_outline.effectColor = new Color(95f / 255f, 99f / 255f, 238f / 255f, 1f);
         money.text = static_parameters.money.ToString();
         yield return new WaitForSeconds(0.5f);
-         money_outline.effectColor = new Color(1, 1, 1, 1f);
+        money_outline.effectColor = new Color(1, 1, 1, 1f);
     }
 
 
