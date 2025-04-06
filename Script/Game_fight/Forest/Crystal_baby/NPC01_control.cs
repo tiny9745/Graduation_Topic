@@ -9,7 +9,7 @@ public class NPC01_control : MonoBehaviour
     public Animator animator;
     public Animator animator_to_atk;
     public SpriteRenderer weaponDUCK;
-    public GameObject TargetObj, hitbox_Crystal_baby, Drop, Img_npc;
+    public GameObject TargetObj, hitbox_Crystal_baby, Img_npc;
     private int DetectDistance = 70; public int NPC_angle = 0;
     public float NPC01_ATK = 6, NPC01_DEF = 5, NPC_HP_Max = 100, npcSpeed = 7f, NPC_HP;
     float dist;

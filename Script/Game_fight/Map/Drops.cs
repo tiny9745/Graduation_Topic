@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class Drops : MonoBehaviour
@@ -7,14 +8,16 @@ public class Drops : MonoBehaviour
     private UI _UI;
     private Ptest ptest;
     GameObject targetObject;
+    Image diary_icon_Object;
     Animator Chest_Animator;
     int randomIndex;
     bool isAni = false;
     void Start()
     {
         randomIndex = Random.Range(5, 9);
-        if(static_parameters.isTeaching)randomIndex=1;
+        if (static_parameters.isTeaching) randomIndex = 1;
         targetObject = GameObject.Find("UI");
+        // diary_icon_Object = GameObject.Find("note_book");
 
         if (targetObject != null)
         {
@@ -51,6 +54,7 @@ public class Drops : MonoBehaviour
             if (static_parameters.teaching_stop <= 6) static_parameters.teaching_stop = 7;
             ptest._to_Drop(randomIndex);
             static_parameters.money += Random.Range(25, 41);
+
             _UI.Loadmoney();
         }
         yield return new WaitForSeconds(0.65f);
