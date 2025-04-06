@@ -12,9 +12,9 @@ public class All_return : MonoBehaviour
         static_parameters.MC_HP = static_parameters.MC_HP_Max;
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
         static_parameters.MC_HP_Max_tmp = static_parameters.MC_HP_Max;
-        static_parameters.MC_ATK = 13;
+        static_parameters.MC_ATK = 1113;
         static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
-        static_parameters.MC_DEF = 12;
+        static_parameters.MC_DEF = 1112;
         static_parameters.MC_DEF_tmp = static_parameters.MC_DEF;
         static_parameters.MC_Wspeed = 20f;
         static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
