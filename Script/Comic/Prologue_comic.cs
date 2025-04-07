@@ -10,6 +10,9 @@ public class Prologue_comic : MonoBehaviour
     uint comic_step = 0, comic_step_tmp = 0, Wait_time = 0;
     float comic_time_sum = 0, auto_comic_time;
     bool isTopLayer = false;
+    public AudioSource audioSource;
+    public AudioClip C1_1, C1_2, C1_3, C1_4, C2_1, C2_2, C2_3, C2_4,C3_1, C3_2, C3_3, C3_4,C3_5;
+    public AudioClip C4_1, C4_2, C5_1;
     string imagePath = "Sprites/Comic/Prologue/01/comics_1-1"; // 圖檔在 Resources 中的路徑
     // Start is called before the first frame update
     void Start()
@@ -247,6 +250,7 @@ public class Prologue_comic : MonoBehaviour
 
                 change_comic_BG("Sprites/Comic/Leading comic/01/comics01_1");
                 imagePath = "Sprites/Comic/Leading comic/01/comics01_2";
+                audioSource.clip = C1_1;
                 Wait_time = 1; isTopLayer = true;
                 break;
             case 2:
