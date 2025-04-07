@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: feea6214afc96884ab47f2b65976352d, type: 2}
+  audioSource: {fileID: 0}
 --- !u!212 &6209007020723338161
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -160,10 +161,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 54e1c0746a7d6f94db76b971b322c1b6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: -3
   Loop: 0
   Mute: 0
   Spatialize: 0
