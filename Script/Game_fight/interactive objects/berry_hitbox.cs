@@ -64,6 +64,7 @@ public class berry_hitbox : MonoBehaviour
             if (!isExplode)
             {
                 animator_ready.SetBool("ani_bool_ready", true);
+                bomb_hitbox.enabled = true;
                 isExplode = true;
                 timmer = 0;
 
