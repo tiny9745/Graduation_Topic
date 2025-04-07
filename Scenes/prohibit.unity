@@ -40328,7 +40328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665106452557131918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25066262, y: 0.00000000832853, z: -0.0000000021564985, w: 0.9680745}
+  m_LocalRotation: {x: 0.25066262, y: 0.000000008319746, z: -0.0000000021542241, w: 0.9680745}
   m_LocalPosition: {x: -0.5, y: 12.52, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -40989,6 +40989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6405282583491640348}
   - component: {fileID: 5350344735359169788}
+  - component: {fileID: 6405282583491640349}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -45028,7 +45029,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2790218688367779811}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -8.881784e-16, z: 4.440892e-16, w: 1}
+  m_LocalRotation: {x: -0, y: -1.256506e-11, z: 6.974199e-12, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45036,6 +45037,20 @@ Transform:
   - {fileID: 8898520517517776356}
   m_Father: {fileID: 2264014468652260580}
   m_LocalEulerAnglesHint: {x: 41.25, y: 0, z: 0}
+--- !u!114 &6405282583491640349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790218688367779811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8bc16beb2f1c2c428b3999b416e4f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCam: {fileID: 5350344735359169788}
+  targetDistance: -60
 --- !u!114 &6415784048180383798
 MonoBehaviour:
   m_ObjectHideFlags: 0
