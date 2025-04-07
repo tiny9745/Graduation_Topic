@@ -11,7 +11,7 @@ public class Main_menu : MonoBehaviour
     public AudioClip click, move;
     public Image Play_icon_on, Setting_icon_on, Information_icon_on, Exit_icon_on;
     public Image Play_icon_off, Setting_icon_off, Information_icon_off, Exit_icon_off;
-    int key_count = 1, key_count_max = 3;
+    int key_count = 1, key_count_max = 3,K1=1;
     bool isSetting = false;
 
     void Start()
@@ -28,12 +28,14 @@ public class Main_menu : MonoBehaviour
             {
                 key_count = (key_count == 1) ? key_count_max : key_count - 1;
                 key_change();
+                K1 = key_count;
             }
 
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 key_count = (key_count == key_count_max) ? 1 : key_count + 1;
                 key_change();
+                K1 = key_count;
             }
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
@@ -59,6 +61,8 @@ public class Main_menu : MonoBehaviour
             // case 3: OnPointerEnter_Information(); break;
             case 3: OnPointerEnter_Exit(); break;
         }
+        if (K1 != key_count) SE_sound.PlayOneShot(move);
+        
     }
 
     public void Game_Play(){
