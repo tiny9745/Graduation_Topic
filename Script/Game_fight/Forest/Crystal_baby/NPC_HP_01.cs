@@ -9,6 +9,7 @@ public class NPC_HP_01 : MonoBehaviour
     public float MaxHealth; float minus;
     private Vector3 initialScale;
     public NPC01_control control;
+    public AudioSource hit_NPC;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class NPC_HP_01 : MonoBehaviour
 
     public void UpdateHealthBar()
     {
+        hit_NPC.Play();
         float fillAmount = control.NPC_HP / MaxHealth;
         Vector3 newScale = initialScale;
         newScale.x = initialScale.x * fillAmount;
