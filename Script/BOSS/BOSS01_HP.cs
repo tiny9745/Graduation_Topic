@@ -8,7 +8,7 @@ public class BOSS01_HP : MonoBehaviour
     float MaxHealth, minus;
     private Vector3 initialScale;
     public Boss_col control;
-
+    public AudioSource hit_NPC;
     void Start()
     {
         MaxHealth = control.BOSS_HP_Max;
@@ -28,6 +28,7 @@ public class BOSS01_HP : MonoBehaviour
     public void TakeDamage(float damage, float NPC_DEF)
     {
         control.change_color_red();
+        hit_NPC.Play();
         minus = (float)(damage * damage / (damage + NPC_DEF));
         if (minus < 5) minus = 5;
         control.BOSS_HP -= minus;

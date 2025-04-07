@@ -27,6 +27,8 @@ public class NPC01_control : MonoBehaviour
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
 
+    public AudioSource die_NPC;
+
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -35,7 +37,7 @@ public class NPC01_control : MonoBehaviour
         presentPosition = Vector3.forward;
 
         static_parameters.Change_enemy++;
-        NPC_HP = NPC_HP_Max;
+        
         initialRotation = transform.rotation;
         NPC01 = GameObject.Find("NPC01");
         if (NPC01 != null)
@@ -55,27 +57,24 @@ public class NPC01_control : MonoBehaviour
         if (static_parameters.stage_number == 1)
         {
             NPC_HP_Max *= 1;
-            NPC_HP = NPC_HP_Max;
             NPC01_ATK *= 1;
         }
         else if (static_parameters.stage_number == 2)
         {
             NPC_HP_Max *= 1.1f;
-            NPC_HP = NPC_HP_Max;
             NPC01_ATK *= 1;
         }
         else if (static_parameters.stage_number == 3)
         {
             NPC_HP_Max *= 1.3f;
-            NPC_HP = NPC_HP_Max;
             NPC01_ATK *= 1.1f;
         }
         else if (static_parameters.stage_number == 4)
         {
             NPC_HP_Max *= 1.5f;
-            NPC_HP = NPC_HP_Max;
             NPC01_ATK *= 1.2f;
         }
+        NPC_HP = NPC_HP_Max;
     }
 
     void Update()
@@ -101,6 +100,7 @@ public class NPC01_control : MonoBehaviour
         {
             NPC_HP = 0;
             hitbox_Crystal_baby.SetActive(false);
+            die_NPC.Play();
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             fade();
