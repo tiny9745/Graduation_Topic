@@ -88,13 +88,13 @@ public class Main_menu : MonoBehaviour
         // Information_icon_off.gameObject.SetActive(!information);
         Exit_icon_on.gameObject.SetActive(exit);
         Exit_icon_off.gameObject.SetActive(!exit);
+        SE_sound.PlayOneShot(move);
     }
 
     // 方法供 EventTrigger 使用
     public void OnPointerEnter_Play()
     {
         key_count = 1;
-        SE_sound.PlayOneShot(move);
         UpdateIcons(true, false, false, false);
     }
 
