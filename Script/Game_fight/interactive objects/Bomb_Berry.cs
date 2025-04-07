@@ -6,6 +6,7 @@ public class Bomb_Berry : MonoBehaviour
 {
     public int berry = 1;
     public int lastChildCount, startChildCount; // 上一次檢查時的子物件數量
+    public AudioSource berry_take_sound;
     void Start()
     {
         // 紀錄初始子物件數量
@@ -27,6 +28,7 @@ public class Bomb_Berry : MonoBehaviour
         // 如果子物件數量減少，調整 berry
         if (currentChildCount < lastChildCount)
         {
+            berry_take_sound.PlayOneShot(berry_take_sound.clip);
             berry--;
             // 確保 berry 不低於 0
             berry = Mathf.Max(berry, 0);

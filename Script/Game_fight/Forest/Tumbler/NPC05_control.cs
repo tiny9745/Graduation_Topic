@@ -12,7 +12,7 @@ public class NPC05_control : MonoBehaviour
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Img_npc, bulletPrefab, NPC05, Drop;
     private int DetectDistance = 30; public int NPC_angle = 0;
-    public float NPC05_ATK = 35, NPC05_DEF = 17.5f, NPC_HP_Max = 60, npcSpeed = 0f, NPC_HP, fireRate = 3f, bulletSpeed = 10f;
+    public float NPC05_ATK = 35, NPC05_DEF = 17.5f, NPC_HP_Max = 60, npcSpeed = 0f, NPC_HP, fireRate = 0.33f, bulletSpeed = 10f;
     float dist, nextFireTime = 0f;
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true, bomb_Berry = true;
     private bool isCoroutineRunning = false, isFacingRight = true; public bool stun = false;

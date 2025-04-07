@@ -12,7 +12,8 @@ public class berry_hitbox : MonoBehaviour
     public SphereCollider bomb_hitbox;
     public Animator animator_ready;
     public GameObject berry_bomb;
-
+    public AudioSource berry_waring_sound;
+    public AudioSource berry_bomb_sound;
     void Update()
     {
         // 清除已被銷毀的物件以防止 MissingReferenceException
@@ -32,7 +33,7 @@ public class berry_hitbox : MonoBehaviour
             if (bomb_berry.berry == 0 && timmer < explode_time_max)
             {
                 animator_ready.SetBool("ani_bool_ready", false);
-
+                berry_waring_sound.Stop();
                 for (int i = 0; i < Mathf.Min(bomb_berry.lastChildCount, spriteRenderer.Length); i++)
                 {
                     if (spriteRenderer[i] != null)
@@ -64,6 +65,7 @@ public class berry_hitbox : MonoBehaviour
             if (!isExplode)
             {
                 animator_ready.SetBool("ani_bool_ready", true);
+                berry_waring_sound.Play(0);
                 bomb_hitbox.enabled = true;
                 isExplode = true;
                 timmer = 0;
@@ -93,7 +95,7 @@ public class berry_hitbox : MonoBehaviour
 
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
         Instantiate(berry_bomb, pos, transform.rotation);
-
+        berry_bomb_sound.Play(0);
         NPC_interactive.berry = bomb_berry.berry;
 
         // 找尋仍存在的 Player，扣血
