@@ -51,6 +51,31 @@ public class NPC01_control : MonoBehaviour
 
         npcNavi = GetComponent<NavMeshAgent>();
         npcNavi.speed = npcSpeed;
+
+        if (static_parameters.stage_number == 1)
+        {
+            NPC_HP_Max *= 1;
+            NPC_HP = NPC_HP_Max;
+            NPC01_ATK *= 1;
+        }
+        else if (static_parameters.stage_number == 2)
+        {
+            NPC_HP_Max *= 1.1f;
+            NPC_HP = NPC_HP_Max;
+            NPC01_ATK *= 1;
+        }
+        else if (static_parameters.stage_number == 3)
+        {
+            NPC_HP_Max *= 1.3f;
+            NPC_HP = NPC_HP_Max;
+            NPC01_ATK *= 1.1f;
+        }
+        else if (static_parameters.stage_number == 4)
+        {
+            NPC_HP_Max *= 1.5f;
+            NPC_HP = NPC_HP_Max;
+            NPC01_ATK *= 1.2f;
+        }
     }
 
     void Update()
@@ -345,16 +370,16 @@ public class NPC01_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        nPC_hP.TakeDamage(4 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
+                        nPC_hP.TakeDamage(20 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 2:
-                        nPC_hP.TakeDamage(3 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
+                        nPC_hP.TakeDamage(20 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 3:
-                        nPC_hP.TakeDamage(5 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
+                        nPC_hP.TakeDamage(20 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 4:
-                        nPC_hP.TakeDamage(1 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
+                        nPC_hP.TakeDamage(20 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                 }
             }
