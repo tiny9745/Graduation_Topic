@@ -26,9 +26,8 @@ public class NPC01_control : MonoBehaviour
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
-
     public AudioSource die_NPC;
-
+    public AudioClip die_sound;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
