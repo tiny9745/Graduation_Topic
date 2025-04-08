@@ -9,9 +9,10 @@ public class BOSS_Blood : MonoBehaviour
     float blood_base = 1;
     float blood_tmp = 1040;
     float previous_BOSS_HP_Max;
-
+    public Canvas canvas;
     IEnumerator Start()
     {
+        canvas.sortingOrder = -1000;
         yield return null;
         TryFindHPImage();
         previous_BOSS_HP_Max = boss_col.BOSS_HP_Max;
