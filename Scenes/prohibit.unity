@@ -28473,7 +28473,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c917f4e24fa27f94482b2eed79810814, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -41068,7 +41068,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665106452557131918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25066262, y: 0.00000000832853, z: -0.0000000021564985, w: 0.9680745}
+  m_LocalRotation: {x: 0.25066262, y: -0.000000008328531, z: 0.0000000021564988, w: 0.9680745}
   m_LocalPosition: {x: -0.5, y: 12.52, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48648,6 +48648,9 @@ MonoBehaviour:
   walkSpeed: 0
   agent: {fileID: 8830870452476947112}
   navMeshCheckRadius: 1
+  walk_Sound_1: {fileID: 1134836681}
+  walk_Sound_2: {fileID: 795585002}
+  walk_dash_Sound: {fileID: 1541119946}
 --- !u!195 &8830870452476947112
 NavMeshAgent:
   m_ObjectHideFlags: 0
