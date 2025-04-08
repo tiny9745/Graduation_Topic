@@ -203,7 +203,6 @@ public class initiator_MC : MonoBehaviour
                     case 33:
                         if (Skill_public_funtion.skill_33_Dash)
                         {
-                            Debug.Log("skill_33_Dash");
                             Skill_public_funtion.skill_33_Dash = false;
                             if (Skill_public_funtion.skill_32_33_Dash_direction == 1 || Skill_public_funtion.skill_32_33_Dash_direction == 3)
                             {
@@ -241,7 +240,6 @@ public class initiator_MC : MonoBehaviour
 
     IEnumerator Delayed_skill33()
     {
-        Debug.Log("Delayed_skill33");
         yield return new WaitForSeconds(0.15f);
         if (Skill_public_funtion.skill_32_33_Dash_direction == 1 || Skill_public_funtion.skill_32_33_Dash_direction == 3)
         {
@@ -312,7 +310,6 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_41_enter)
                         {
                             Skill_public_funtion.skill_41_enter = false;
-                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian41, Guardian4x_point, transform.rotation);
                         }
                         break;
@@ -320,7 +317,6 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_42_enter)
                         {
                             Skill_public_funtion.skill_42_enter = false;
-                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian42, Guardian4x_point, transform.rotation);
                         }
                         break;
@@ -328,7 +324,6 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_43_enter)
                         {
                             Skill_public_funtion.skill_43_enter = false;
-                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian43, Guardian4x_point, transform.rotation);
 
                         }
@@ -337,7 +332,6 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_44_enter)
                         {
                             Skill_public_funtion.skill_44_enter = false;
-                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian44, Guardian4x_point, transform.rotation);
                         }
                         break;
@@ -345,7 +339,6 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_45_enter)
                         {
                             Skill_public_funtion.skill_45_enter = false;
-                            Debug.Log("Skill_public_funtion.skill_4x_Sorting:" + Skill_public_funtion.skill_4x_Sorting);
                             Instantiate(Guardian45, Guardian4x_point, transform.rotation);
                         }
                         break;
@@ -358,10 +351,8 @@ public class initiator_MC : MonoBehaviour
     public Change_mood C_mood;
     private void Reborn()
     {
-        Debug.Log(string.Join("\n", Skill_public_funtion.validSequences.Select(hs => "{" + string.Join(", ", hs) + "}")));
         // 初始化有效的組合數列
         Skill_public_funtion.validSequences = Skill_public_funtion.validSequences_re.Select(hashset => new HashSet<int>(hashset)).ToList(); // 轉成 List<HashSet<int>>
-        Debug.Log(string.Join("\n", Skill_public_funtion.validSequences.Select(hs => "{" + string.Join(", ", hs) + "}")));
         Icon_slot[] all_icon_slot = Resources.FindObjectsOfTypeAll<Icon_slot>();
         foreach (Icon_slot icon_slot in all_icon_slot)
         {

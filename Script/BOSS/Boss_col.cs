@@ -130,7 +130,6 @@ public class Boss_col : MonoBehaviour
         switch (random)
         {
             case 0://逆時針
-                Debug.Log("逆時針");
                 for (int i = 0; i < BOSS_Atk01_Tips_Tip.Length; i++)
                 {
                     BOSS_Atk01_Tips_Tip[i].gameObject.SetActive(true);

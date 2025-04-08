@@ -130,7 +130,6 @@ public class IconManager : MonoBehaviour
                 Add(all_icon[24]);
                 break;
             default:
-                Debug.Log("Inventory is full");
                 break;
         }
 

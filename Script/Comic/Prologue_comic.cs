@@ -123,10 +123,6 @@ public class Prologue_comic : MonoBehaviour
             // 呼叫淡入效果
             StartCoroutine(FadeInImage(newImage, 0.4f, 300f * scaleFactor));
         }
-        else
-        {
-            Debug.LogError("Failed to load image from Resources: " + imagePath);
-        }
     }
 
     IEnumerator FadeInImage(Image image, float duration, float moveDistance)
@@ -222,10 +218,6 @@ public class Prologue_comic : MonoBehaviour
                 if (newSprite != null)
                 {
                     bgImageComponent.sprite = newSprite;
-                }
-                else
-                {
-                    Debug.LogError("Failed to load image from Resources: " + BG_Path);
                 }
             }
         }
