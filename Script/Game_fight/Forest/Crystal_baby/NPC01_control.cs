@@ -99,7 +99,6 @@ public class NPC01_control : MonoBehaviour
         {
             NPC_HP = 0;
             hitbox_Crystal_baby.SetActive(false);
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             fade();
@@ -511,6 +510,7 @@ public class NPC01_control : MonoBehaviour
 
             Instantiate(NPC01_1, position1, Quaternion.identity);
             Instantiate(NPC01_1, position2, Quaternion.identity);
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
             static_parameters.Change_enemy--;
             Des();
             dead_open = false;

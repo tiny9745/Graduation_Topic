@@ -96,7 +96,6 @@ public class NPC05_control : MonoBehaviour
 
         if (NPC_HP <= 0)
         {
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
             NPC_HP = 0;
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
@@ -393,6 +392,7 @@ public class NPC05_control : MonoBehaviour
             }
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money02");
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
             static_parameters.money += 5;
             _UI.Loadmoney();
             Invoke("dead_after", 5);

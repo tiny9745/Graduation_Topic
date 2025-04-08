@@ -133,7 +133,7 @@ public class NPC01_1_control : MonoBehaviour
             NPC_HP = 0;
             fade();
             hitbox_Crystal_baby_small.SetActive(false);
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue * 0.5f);
+            
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             PlayBombAnimation();
@@ -555,6 +555,7 @@ public class NPC01_1_control : MonoBehaviour
             }
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money01");
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue * 0.5f);
             static_parameters.money += 3;
             _UI.Loadmoney();
             Destroy(gameObject);
