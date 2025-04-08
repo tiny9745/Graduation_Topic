@@ -468,7 +468,7 @@ public class NPC02_control : MonoBehaviour
                 weaponDUCK.color = new UnityEngine.Color(0.61f, 0.8f, 1, 1);
                 break;
             case 3:
-                //Mood.sprite = ;
+                weaponDUCK.color = new Color(0.84f, 0.62f, 0.88f, 1);
                 break;
             case 4:
                 weaponDUCK.color = new UnityEngine.Color(1, 0.93f, 0.59f, 1);
