@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class Play_move : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class Play_move : MonoBehaviour
 
             if (Ani_MC.isDashCooldown_for_move)
             {
-                walk_Sound_1.Play();
+                walk_dash_Sound.Play();
                 newPosition += movement * dashSpeed * Time.fixedDeltaTime;
             }
             else if (Ani_MC.isAttackPlaying)
@@ -48,7 +49,14 @@ public class Play_move : MonoBehaviour
             }
             else
             {
-
+                if (SceneManager.GetActiveScene().name == "magic_house" || SceneManager.GetActiveScene().name == "house_outside")
+                {
+                    walk_Sound_1.Play();
+                }
+                else
+                {
+                    walk_Sound_2.Play();
+                }
                 newPosition += movement * walkSpeed * Time.fixedDeltaTime;
             }
 
