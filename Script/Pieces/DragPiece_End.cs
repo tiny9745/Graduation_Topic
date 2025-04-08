@@ -71,7 +71,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 }
                 else if (checkResult == 2)
                 {
-                    audioSource.PlayOneShot(audioClip[1]);
+                    audioSource.PlayOneShot(audioClip[2]);
                     _ui.putting_diary(false);
                     newColor.a = 1;
                     SetPuzzleColor(key_color);
