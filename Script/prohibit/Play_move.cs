@@ -51,13 +51,23 @@ public class Play_move : MonoBehaviour
             {
                 if (SceneManager.GetActiveScene().name == "magic_house" || SceneManager.GetActiveScene().name == "house_outside")
                 {
-                    walk_Sound_1.loop = true;
-                    walk_Sound_1.Play();
+                    if (walk_Sound_1.isPlaying == false)
+                    {
+                        Debug.Log("walk_Sound_1");
+                        walk_Sound_2.Stop();
+                        walk_Sound_1.loop = true;
+                        walk_Sound_1.Play();
+                    }
                 }
                 else
                 {
-                    walk_Sound_2.loop = true;
-                    walk_Sound_2.Play();
+                    if (walk_Sound_2.isPlaying == false)
+                    {
+                        Debug.Log("walk_Sound_2");
+                        walk_Sound_1.Stop();
+                        walk_Sound_2.loop = true;
+                        walk_Sound_2.Play();
+                    }
                 }
                 newPosition += movement * walkSpeed * Time.fixedDeltaTime;
             }
@@ -69,6 +79,13 @@ public class Play_move : MonoBehaviour
             }
 
             UpdateFaceDirection(movement);
+        }
+        else
+        {
+            walk_Sound_1.loop = false;
+            walk_Sound_2.loop = false;
+            walk_Sound_1.Stop();
+            walk_Sound_2.Stop();
         }
 
         if (movement.magnitude > 0) rb.MovePosition(newPosition);
