@@ -11,8 +11,10 @@ public class Drops : MonoBehaviour
     GameObject targetObject;
     UnityEngine.UI.Image diary_icon_Image;
     Animator Chest_Animator;
-    int randomIndex;
+    int randomIndex,Add;
     bool isAni = false;
+    public AudioSource Ad;
+    public AudioClip[] Piece, money;
     void Start()
     {
         randomIndex = Random.Range(5, 9);
@@ -28,10 +30,6 @@ public class Drops : MonoBehaviour
                 Debug.LogWarning("Image component not found on note_book!");
             }
         }
-        else
-        {
-            Debug.LogWarning("diary_icon not found in the scene!");
-        }
 
         if (targetObject != null)
         {
@@ -40,10 +38,6 @@ public class Drops : MonoBehaviour
             {
                 Debug.LogWarning("Ptest component not found on UI!");
             }
-        }
-        else
-        {
-            Debug.LogWarning("UI not found in the scene!");
         }
         _UI = targetObject.GetComponent<UI>();
         Chest_Animator = GetComponent<Animator>();
@@ -67,11 +61,35 @@ public class Drops : MonoBehaviour
             isAni = true;
             if (static_parameters.teaching_stop <= 6) static_parameters.teaching_stop = 7;
             ptest._to_Drop(randomIndex);
-            static_parameters.money += Random.Range(25, 41);
+            switch (randomIndex)
+            {
+                case 5:
+                    Ad.PlayOneShot(Piece[0]);
+                    break;
+                case 6:
+                    Ad.PlayOneShot(Piece[1]);
+                    break;
+                case 7:
+                    Ad.PlayOneShot(Piece[2]);
+                    break;
+                case 8:
+                    Ad.PlayOneShot(Piece[3]);
+                    break;
+            }
+            Add =Random.Range(25, 41);
+            static_parameters.money += Add;
+            if(Add > 33)
+            {
+                Ad.PlayOneShot(money[0]);
+
+            }else{
+                Ad.PlayOneShot(money[1]);
+            }
             diary_icon_Image.color = new Color(1, 170f / 255f, 170f / 255f, 1);
             _UI.Loadmoney();
         }
         yield return new WaitForSeconds(0.25f);
+
         diary_icon_Image.color = new Color(1, 1, 1, 1);
         yield return new WaitForSeconds(0.4f);
         static_parameters.next_door = true;
