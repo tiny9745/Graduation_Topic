@@ -11,6 +11,8 @@ public class D_UI : MonoBehaviour
     public Text Diary_title, Diary_content_lift, Diary_content_right;
     int itemsPerPage = 8, startIndex;
     public int page = 0;
+    public AudioSource Ad;
+    public AudioClip Flip;
     void Start()
     {
         IconManager.Instance.IconInventoryCallBack += UpdateIcon;
@@ -39,7 +41,8 @@ public class D_UI : MonoBehaviour
         if ((page + 1) * itemsPerPage < IconManager.Instance.IconList.Count)
         {
             page++;
-        }   
+            Ad.PlayOneShot(Flip);
+        }
     }
     public void PreviousPage()
     {
@@ -52,6 +55,7 @@ public class D_UI : MonoBehaviour
                 page = 0;
             }
         }
+        Ad.PlayOneShot(Flip);
         button();
     }
     public void button()
