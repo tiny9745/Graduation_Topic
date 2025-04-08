@@ -68,6 +68,7 @@ public class berry_hitbox : MonoBehaviour
                 Ad.clip = berry_waring_sound;
                 Ad.loop = false;
                 Ad.Play();
+                Invoke("play", 2.33f);
                 bomb_hitbox.enabled = true;
                 isExplode = true;
                 timmer = 0;
@@ -91,6 +92,9 @@ public class berry_hitbox : MonoBehaviour
         }
     }
 
+    void play(){
+        Ad.PlayOneShot(berry_bomb_sound);
+    }
     private void Bomb_Berry_Explode()
     {
         if (bomb_berry.berry == 0) return; // 不爆炸
@@ -98,9 +102,6 @@ public class berry_hitbox : MonoBehaviour
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
         Instantiate(berry_bomb, pos, transform.rotation);
         NPC_interactive.berry = bomb_berry.berry;
-        Ad.clip = berry_bomb_sound;
-        Ad.loop = false;
-        Ad.Play();
 
         // 找尋仍存在的 Player，扣血
         foreach (GameObject obj in objectsInRange)
