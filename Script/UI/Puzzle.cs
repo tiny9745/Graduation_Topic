@@ -14,6 +14,8 @@ public class Puzzle : MonoBehaviour
     public DragPiece_End dragPiece_end;
     public UI UI;
     Diary_icon thisItem;
+    public AudioSource audioSource; // 音效來源
+    public AudioClip[] audioClip; // 音效片段
     void Start()
     {
         Diary_icon[] all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
@@ -35,6 +37,7 @@ public class Puzzle : MonoBehaviour
     }
     public void Complet_piecing()
     {
+        audioSource.PlayOneShot(audioClip[0]);
         cpmplete_piece_object.SetActive(true);
         complete_piece_animator.SetInteger("piece_complete_color", DragPiece_End.puzzle_color);
         composite_col.enabled = false;
