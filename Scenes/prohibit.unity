@@ -14985,7 +14985,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -22570,7 +22570,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -41070,7 +41070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665106452557131918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25066262, y: 0.000000008328527, z: -0.0000000021564979, w: 0.9680745}
+  m_LocalRotation: {x: 0.25066262, y: 0.000000008328528, z: -0.000000002156498, w: 0.9680745}
   m_LocalPosition: {x: -0.5, y: 12.52, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -42905,6 +42905,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 309759891296869655}
   Play_s: {fileID: 2585633922143127783}
+  walk_Sound_1: {fileID: 1134836681}
+  walk_Sound_2: {fileID: 795585002}
+  walk_dash_Sound: {fileID: 1541119946}
 --- !u!114 &3888198225754789208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45772,7 +45775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2790218688367779811}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -2.6645353e-15, z: 1.3322676e-15, w: 1}
+  m_LocalRotation: {x: -0, y: 8.881784e-16, z: -4.440892e-16, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48650,9 +48653,6 @@ MonoBehaviour:
   walkSpeed: 0
   agent: {fileID: 8830870452476947112}
   navMeshCheckRadius: 1
-  walk_Sound_1: {fileID: 1134836681}
-  walk_Sound_2: {fileID: 795585002}
-  walk_dash_Sound: {fileID: 1541119946}
 --- !u!195 &8830870452476947112
 NavMeshAgent:
   m_ObjectHideFlags: 0

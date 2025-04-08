@@ -11,7 +11,7 @@ public class Play_move : MonoBehaviour
     public NavMeshAgent agent; private Vector3 targetPosition;
     public float navMeshCheckRadius = 1.0f;
     Rigidbody rb; Vector3 movement;
-    public AudioSource walk_Sound_1, walk_Sound_2, walk_dash_Sound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,7 +40,6 @@ public class Play_move : MonoBehaviour
 
             if (Ani_MC.isDashCooldown_for_move)
             {
-                walk_dash_Sound.Play();
                 newPosition += movement * dashSpeed * Time.fixedDeltaTime;
             }
             else if (Ani_MC.isAttackPlaying)
@@ -49,16 +48,6 @@ public class Play_move : MonoBehaviour
             }
             else
             {
-                if (SceneManager.GetActiveScene().name == "magic_house" || SceneManager.GetActiveScene().name == "house_outside")
-                {
-                    walk_Sound_1.loop = true;
-                    walk_Sound_1.Play();
-                }
-                else
-                {
-                    walk_Sound_2.loop = true;
-                    walk_Sound_2.Play();
-                }
                 newPosition += movement * walkSpeed * Time.fixedDeltaTime;
             }
 
