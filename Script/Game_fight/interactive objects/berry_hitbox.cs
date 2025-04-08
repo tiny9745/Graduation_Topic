@@ -104,6 +104,7 @@ public class berry_hitbox : MonoBehaviour
             if (obj != null && obj.CompareTag("Player"))
             {
                 static_parameters.MC_HP -= 10 * bomb_berry.berry;
+                bomb_hitbox.enabled = false;
                 break;
             }
         }
