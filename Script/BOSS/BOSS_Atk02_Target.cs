@@ -10,8 +10,8 @@ public class BOSS_Atk02_Target : MonoBehaviour
     private bool[] triggered = new bool[7];
     public GameObject[] BOSS_Atk02_Atk_cards;
     public GameObject[] BOSS_Atk02_hints;
-    public AudioClip[] BOSS_Atk02_waring;
-    public AudioSource BOSS_Atk02_AudioSource;
+    // public AudioClip[] BOSS_Atk02_waring;
+    // public AudioSource BOSS_Atk02_AudioSource;
     void Start()
     {
         for (int i = 0; i < BOSS_Atk02_Ani_target.Length; i++)

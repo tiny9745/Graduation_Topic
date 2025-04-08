@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
     public List<Item> ItemList;
     public delegate void onInventoryChange();
     public onInventoryChange onInventoryCallBack;
+    public AudioSource MC_throw_sound; 
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class InventoryManager : MonoBehaviour
         if (static_parameters.MC_HP > 0)
         {
             Debug.Log("_slot.slotID: " + _slot.slotID);
+            MC_throw_sound.Play();
             bullet_into();
             static_parameters.bullet_quantity--;
             _slot.UseItem();
