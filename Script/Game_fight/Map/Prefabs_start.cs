@@ -165,10 +165,6 @@ public class Prefabs_start : MonoBehaviour
         {
             Instantiate(prefab, hit.position, Quaternion.identity);
         }
-        else
-        {
-            Debug.LogWarning($"無法在範圍內找到有效 NavMesh 位置，跳過此生成 {prefab.name}。");
-        }
     }
     void GenerateDecorate(GameObject prefab)
     {
@@ -180,20 +176,12 @@ public class Prefabs_start : MonoBehaviour
         {
             Instantiate(prefab, hit.position, Quaternion.identity);
         }
-        else
-        {
-            Debug.LogWarning($"無法在範圍內找到有效 NavMesh 位置，跳過此生成 {prefab.name}。");
-        }
     }
     void BakeNavMesh()
     {
         if (navMeshSurface != null)
         {
             navMeshSurface.BuildNavMesh();  // 重新建構NavMesh
-        }
-        else
-        {
-            Debug.LogWarning("NavMeshSurface is not assigned.");
         }
     }
 }

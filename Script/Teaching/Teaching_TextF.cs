@@ -35,8 +35,6 @@ public class Teaching_TextF : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19 && Setting_keybroad.ESC_col == false)
         {
-            Debug.Log("talk_number:" + talk_number);
-            Debug.Log("static_parameters.teaching_stop:" + static_parameters.teaching_stop);
             reading();
         }
         else if (
@@ -262,8 +260,6 @@ public class Teaching_TextF : MonoBehaviour
         }
         if (talk_number == 7)
         {
-            Debug.Log("talk_number:" + talk_number);
-            Debug.Log("static_parameters.teaching_stop:" + static_parameters.teaching_stop);
             if (static_parameters.teaching_stop == 1)
             {
                 talk_number++;

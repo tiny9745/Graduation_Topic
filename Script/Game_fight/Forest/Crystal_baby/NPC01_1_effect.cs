@@ -46,13 +46,9 @@ public class NPC01_1_effect : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log("IconManager.Instance == null");
-        }
+
         if (Skill_public_funtion.play_piano)
         {
-            Debug.Log("piano NPC03 skill");
             if (play_piano_atk < Skill_public_funtion.P_time)
             {
                 play_piano_atk++;
@@ -67,7 +63,6 @@ public class NPC01_1_effect : MonoBehaviour
             }
             else
             {
-                Debug.Log("NPC03 skill_2x complete!");
                 _skill_piano_effect.FadeOutMoveDown(0.25f, 4f);
                 Instantiate(bomb_piano, bomb_point.transform.position, Quaternion.identity);
                 play_piano_atk = 0;
@@ -256,7 +251,6 @@ public class NPC01_1_effect : MonoBehaviour
                             {
                                 HP_control.TakeDamage(5, control.NPC01_DEF);
                                 skill_25_step_time += 0.5f;
-                                Debug.Log("NPC03 skill_25_step_time:" + skill_25_step_time);
                             }
                         }
                         break;
@@ -283,7 +277,6 @@ public class NPC01_1_effect : MonoBehaviour
                     case 15:
                         if (other.gameObject.tag == "MC_bullet")
                         {
-                            Debug.Log("NPC03 Stop");
                             // skill_15_stop_time_trigger = true;
                             // skill_15_stop_time = 0;
                             control.stun = true;
@@ -294,7 +287,6 @@ public class NPC01_1_effect : MonoBehaviour
                     case 31:
                         if (Skill_public_funtion.skill_31_dash && other.gameObject.tag == "Player")
                         {
-                            Debug.Log("NPC03 skill_31");
                             HP_control.TakeDamage(static_parameters.MC_ATK / 2, static_parameters.MC_DEF / 2);
                         }
                         break;
@@ -325,7 +317,6 @@ public class NPC01_1_effect : MonoBehaviour
     }
     void Stun_end15()
     {
-        Debug.Log("NPC03 rewalk");
         skill22_animator.SetBool("skill_bullet15", false);
         control.stun = false;
     }

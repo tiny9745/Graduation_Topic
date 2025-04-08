@@ -48,7 +48,6 @@ public class InventoryManager : MonoBehaviour
             MC_throw_sound.PlayOneShot(audioClip[1]);
             ItemList.Add(newItem);
             static_parameters.bullet_quantity++;
-            Debug.Log("bullet_quantity: " + static_parameters.bullet_quantity);
         }
     }
 
@@ -61,7 +60,6 @@ public class InventoryManager : MonoBehaviour
     {
         if (static_parameters.MC_HP > 0)
         {
-            Debug.Log("_slot.slotID: " + _slot.slotID);
             MC_throw_sound.PlayOneShot(audioClip[0]);
             bullet_into();
             static_parameters.bullet_quantity--;

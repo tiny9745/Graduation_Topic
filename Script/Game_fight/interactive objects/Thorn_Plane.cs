@@ -37,7 +37,6 @@ public class ThornsController : MonoBehaviour
             if (collidersInRange.Remove(other)) // 確保只移除存在於集合中的物件
             {
                 colliderCount--;
-                // Debug.Log("Collider exited: " + other.name + ". Current count: " + colliderCount);
             }
         }
 
@@ -84,7 +83,6 @@ public class ThornsController : MonoBehaviour
 
     private void Rise_Animation()
     {
-        // Debug.Log("Rise");
         foreach (var animator in anim)
         {
             animator.SetBool("Rise", true);
@@ -102,7 +100,6 @@ public class ThornsController : MonoBehaviour
 
     private void Lower_Animation()
     {
-        // Debug.Log("Lower");
         foreach (var animator in anim)
         {
             animator.SetBool("Lower", true);

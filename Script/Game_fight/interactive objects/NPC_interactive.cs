@@ -23,12 +23,10 @@ public class NPC_interactive : MonoBehaviour
     }
     public void NPC_Swam_enter(ref float _NPC_Speed)
     {
-        Debug.Log("NPC_Swam_enter");
         _NPC_Speed /= 2;
     }
     public void NPC_Swam_exit(ref float _NPC_Speed)
     {
-        Debug.Log("NPC_Swam_exit");
         _NPC_Speed *= 2;
     }
 }

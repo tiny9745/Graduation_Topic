@@ -21,14 +21,6 @@ public class NPC05_bullet : MonoBehaviour
         if (cameraObject != null)
         {
             Camera_main = cameraObject.GetComponent<Camera>();
-            if (Camera_main == null)
-            {
-                Debug.LogError("找到名為 'Camera' 的物件，但其上沒有 Camera 組件！");
-            }
-        }
-        else
-        {
-            Debug.LogError("未找到名稱為 'Camera' 的物件！");
         }
     }
 

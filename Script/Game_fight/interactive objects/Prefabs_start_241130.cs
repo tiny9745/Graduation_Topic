@@ -155,9 +155,5 @@ public class Prefabs_start_241130 : MonoBehaviour
             navMeshSurface.BuildNavMesh();  // 重新建構NavMesh
             static_parameters.MC_NPC_col_move = true;
         }
-        else
-        {
-            Debug.LogWarning("NavMeshSurface is not assigned.");
-        }
     }
 }

@@ -13,12 +13,6 @@ public class SpriteToQuad : MonoBehaviour
     {
         // 動態獲取當前物件上的 SpriteRenderer 組件
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if (spriteRenderer == null)
-        {
-            Debug.LogError("SpriteRenderer 組件未找到！請確保物件上有 SpriteRenderer。");
-            return;
-        }
         // 取得 Sprite 的尺寸
         Vector2 spriteSize = spriteRenderer.sprite.bounds.size;
 

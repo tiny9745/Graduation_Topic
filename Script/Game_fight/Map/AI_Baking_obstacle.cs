@@ -84,10 +84,6 @@ public class AI_Baking_obstacle : MonoBehaviour
                 // 在有效位置生成物體
                 Instantiate(selectedObject, randomPosition, Quaternion.identity);
             }
-            else
-            {
-                Debug.LogWarning("Failed to find valid position for object after 100 attempts");
-            }
         }
     }
 
@@ -120,10 +116,6 @@ public class AI_Baking_obstacle : MonoBehaviour
         if (navMeshSurface != null)
         {
             navMeshSurface.BuildNavMesh();  // 重新建構NavMesh
-        }
-        else
-        {
-            Debug.LogWarning("NavMeshSurface is not assigned.");
         }
     }
 }

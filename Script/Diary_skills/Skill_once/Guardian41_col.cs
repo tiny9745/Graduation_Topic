@@ -109,7 +109,6 @@ public class Guardian41_col : MonoBehaviour
     {
         if (static_parameters.MC_HP > 0)
         {
-            Debug.Log("Firepoint.rotation:" + Firepoint.rotation);
             Instantiate(bullet, Firepoint.position, Firepoint.rotation);
         }
     }

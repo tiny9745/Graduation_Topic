@@ -58,8 +58,6 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        // 如果 OnEndDrag 未觸發，可以在這裡進行備援處理
-        Debug.Log("OnPointerUp triggered as fallback");
         OnEndDrag(eventData);
     }
 }

@@ -40,7 +40,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
                 string key_name = Ptest.show[itemNumber - 1].PieceName;
                 currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
-                Debug.Log("Ptest.show[itemNumber - 1].PieceID:" + Ptest.show[itemNumber - 1].PieceID);
 
                 // 清除並重新整理顯示的碎片
                 Ptest.show.Clear();
@@ -147,8 +146,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
             if (combinationList.SequenceEqual(sequenceList))
             {
-                Debug.Log($"完全匹配的組合：{sequence}");
-                Debug.Log("碎片組合成功:" + (i + 1));
                 int j = ((i + 1) % 5 == 0) ? 5 : (i + 1) % 5;
                 j += (int)(math.floor(i / 5) * 10);
                 end_count = j;

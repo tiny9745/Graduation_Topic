@@ -18,13 +18,6 @@ public class berry_hitbox : MonoBehaviour
     {
         // 清除已被銷毀的物件以防止 MissingReferenceException
         objectsInRange.RemoveWhere(obj => obj == null);
-
-        if (spriteRenderer == null || spriteRenderer.Length == 0)
-        {
-            Debug.LogError("spriteRenderer 陣列未初始化或為空！");
-            return;
-        }
-
         if (isExplode)
         {
             timmer += Time.deltaTime;

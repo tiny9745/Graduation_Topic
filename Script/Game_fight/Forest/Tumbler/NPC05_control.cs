@@ -336,10 +336,6 @@ public class NPC05_control : MonoBehaviour
         {
             audioSource.PlayOneShot(meleeSwingSounds[index]);
         }
-        else
-        {
-            Debug.LogWarning($"音效序號 {index} 超出範圍或 AudioSource 未指定");
-        }
     }
 
     public void change_color_red()

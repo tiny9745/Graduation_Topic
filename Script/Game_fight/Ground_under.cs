@@ -11,10 +11,6 @@ public class Ground_under : MonoBehaviour
         {
             ApplyMaterialToChildren(targetObject);
         }
-        else
-        {
-            Debug.LogWarning("未指定目標物件！");
-        }
     }
 
     void ApplyMaterialToChildren(GameObject obj)
@@ -42,10 +38,6 @@ public class Ground_under : MonoBehaviour
             else if (renderer.material != null && renderer.material.mainTexture != null)
             {
                 material.mainTexture = renderer.material.mainTexture;
-            }
-            else
-            {
-                Debug.LogWarning($"{renderer.gameObject.name} 沒有貼圖可抓取！");
             }
 
             // 設定材質給渲染器

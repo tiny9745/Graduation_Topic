@@ -136,7 +136,6 @@ public class NPC04_control : MonoBehaviour
         if (dist >= DetectDistance * 3 / 5 && hit_Ani && open_EnableHitbox == 0)
         {
             hit_Ani = false;
-            Debug.Log("hit_Ani: " + hit_Ani);
         }
 
         lastPosition = transform.position;

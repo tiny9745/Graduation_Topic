@@ -11,10 +11,6 @@ public class Dummy_hit : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player_S");
-        if (Player == null)
-        {
-            Debug.LogError("Player object not found!");
-        }
         if (npcCtrl == null)
         {
             npcCtrl = GetComponentInParent<Dummy_ctrl>();

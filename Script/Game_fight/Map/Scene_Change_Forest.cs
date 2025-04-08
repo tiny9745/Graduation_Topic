@@ -51,7 +51,6 @@ public class Scene_Change_Forest : MonoBehaviour
             into_gameFight_Levels_memory = static_parameters.into_gameFight_Levels;
             Signs.sprite = Signs_Sprite[0];
         }
-        Debug.Log("into_gameFight_Levels_memory:" + into_gameFight_Levels_memory);
     }
     private void Update()
     {

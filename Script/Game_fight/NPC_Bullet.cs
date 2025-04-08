@@ -30,7 +30,6 @@ public class NPC_Bullet : MonoBehaviour
         {
             if (!static_parameters.invincible)
             {
-                Debug.Log(static_parameters.MC_HP);
                 minus = (float)(NPC_ATK * NPC_ATK / (static_parameters.MC_DEF + NPC_ATK));
                 if (minus < 5) minus = 5.0f;
                 static_parameters.MC_HP -= minus;

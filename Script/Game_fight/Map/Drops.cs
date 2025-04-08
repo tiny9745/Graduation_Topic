@@ -25,19 +25,11 @@ public class Drops : MonoBehaviour
         if (foundObj != null)
         {
             diary_icon_Image = foundObj.GetComponent<UnityEngine.UI.Image>();
-            if (diary_icon_Image == null)
-            {
-                Debug.LogWarning("Image component not found on note_book!");
-            }
         }
 
         if (targetObject != null)
         {
             ptest = targetObject.GetComponent<Ptest>();
-            if (ptest == null)
-            {
-                Debug.LogWarning("Ptest component not found on UI!");
-            }
         }
         _UI = targetObject.GetComponent<UI>();
         Chest_Animator = GetComponent<Animator>();

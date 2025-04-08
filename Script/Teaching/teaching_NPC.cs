@@ -68,9 +68,5 @@ public class teaching_NPC : MonoBehaviour
         {
             Instantiate(prefab, hit.position, Quaternion.identity);
         }
-        else
-        {
-            Debug.LogWarning($"無法在範圍內找到有效 NavMesh 位置，跳過此生成 {prefab.name}。");
-        }
     }
 }

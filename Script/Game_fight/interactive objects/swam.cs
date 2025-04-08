@@ -14,17 +14,12 @@ public class swam : MonoBehaviour
             int randomIndex = Random.Range(0, sprites.Length);
             spriteRenderer.sprite = sprites[randomIndex];
         }
-        else
-        {
-            Debug.LogWarning("Sprites array null");
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            // Debug.Log("Player_Swam_enter");
             static_parameters.MC_Wspeed /= 2;
         }
     }
@@ -32,7 +27,6 @@ public class swam : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            // Debug.Log("Player_Swam_exit");
             static_parameters.MC_Wspeed *= 2;
         }
     }
