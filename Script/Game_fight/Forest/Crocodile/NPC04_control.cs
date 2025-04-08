@@ -25,6 +25,7 @@ public class NPC04_control : MonoBehaviour
     float retreatDistance = 115f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
     public Animator money_animator;
+    public AudioSource die_NPC;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -106,6 +107,7 @@ public class NPC04_control : MonoBehaviour
         }
         if (NPC_HP <= 0)
         {
+            die_NPC.Play();
             NPC_HP = 0;
             hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;

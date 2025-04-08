@@ -24,7 +24,7 @@ public class NPC03_control : MonoBehaviour
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
     public Animator money_animator;
-
+    public AudioSource die_NPC;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -100,6 +100,7 @@ public class NPC03_control : MonoBehaviour
         if (TargetObj != null) dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         if (NPC_HP <= 0)
         {
+            die_NPC.Play();
             NPC_HP = 0;
             hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;

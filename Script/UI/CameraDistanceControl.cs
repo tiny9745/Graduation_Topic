@@ -12,8 +12,12 @@ public class CameraDistanceControl : MonoBehaviour
     }
     private void Update()
     {
-        // 這裡可以根據需要調整鏡頭距離
-        if (static_parameters.into_gameFight_Levels == 6)
+        if (static_parameters.MC_HP <= 0)
+        {
+            targetDistance = -15f;
+            SetCameraDistance(targetDistance);
+        }
+        if (static_parameters.stage_number == 6)
         {
             targetDistance = -35;
             SetCameraDistance(targetDistance);

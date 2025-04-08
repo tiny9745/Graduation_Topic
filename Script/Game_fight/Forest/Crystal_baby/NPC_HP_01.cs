@@ -21,7 +21,6 @@ public class NPC_HP_01 : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        hit_NPC.Play();
         float fillAmount = control.NPC_HP / MaxHealth;
         Vector3 newScale = initialScale;
         newScale.x = initialScale.x * fillAmount;
@@ -30,6 +29,7 @@ public class NPC_HP_01 : MonoBehaviour
     // Ensure health is between 0 and maximum health
     public void TakeDamage(float damage, float NPC_DEF)
     {
+        hit_NPC.Play();
         control.change_color_red();
         minus = (float)(damage * damage / (damage + NPC_DEF));
         if (minus < 5) minus = 5;

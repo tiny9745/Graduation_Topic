@@ -8,6 +8,7 @@ public class NPC_HP_02 : MonoBehaviour
     public float MaxHealth, minus;
     private Vector3 initialScale;
     public NPC02_control control;
+    public AudioSource hit_NPC;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class NPC_HP_02 : MonoBehaviour
     // Ensure health is between 0 and maximum health
     public void TakeDamage(float damage, float NPC_DEF)
     {
+        hit_NPC.Play();
         control.change_color_red();
         minus = (float)(damage * damage / (damage + NPC_DEF));
         if (minus < 5) minus = 5;

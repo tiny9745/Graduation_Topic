@@ -21,6 +21,7 @@ public class NPC02_control : MonoBehaviour
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
     private float fadeDuration = 5f, fadeTimer = 0f;
     public Animator money_animator;
+    public AudioSource die_NPC;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -104,6 +105,7 @@ public class NPC02_control : MonoBehaviour
         }
         if (NPC_HP <= 0)
         {
+            die_NPC.Play();
             NPC_HP = 0;
             hitbox_Robot.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;

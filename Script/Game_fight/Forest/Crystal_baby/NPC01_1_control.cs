@@ -23,7 +23,7 @@ public class NPC01_1_control : MonoBehaviour
     SpriteRenderer spriterenderer;
     public UI _UI;
     public Animator money_animator;
-
+    public AudioSource die_NPC;
 
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
 
@@ -96,7 +96,7 @@ public class NPC01_1_control : MonoBehaviour
                     break;
             }
         }
-     
+
         if (static_parameters.stage_number == 1)
         {
             NPC_HP_Max *= 1;
@@ -132,6 +132,7 @@ public class NPC01_1_control : MonoBehaviour
             NPC_HP = 0;
             fade();
             hitbox_Crystal_baby_small.SetActive(false);
+            die_NPC.Play();
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             PlayBombAnimation();

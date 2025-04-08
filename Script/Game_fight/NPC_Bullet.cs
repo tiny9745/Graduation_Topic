@@ -6,8 +6,9 @@ public class NPC_Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
     float NPC_ATK = 0, minus;
-    public float speed,lifetime = 3f;
+    public float speed, lifetime = 3f;
     public int damage = 10;
+    float timemer;
     void Start()
     {
         Destroy(gameObject, lifetime);
@@ -16,6 +17,11 @@ public class NPC_Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timemer += Time.deltaTime;
+        if (timemer >= 5f)
+        {
+            Destroy(gameObject);
+        }
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
     private void OnTriggerEnter(Collider Hit)
