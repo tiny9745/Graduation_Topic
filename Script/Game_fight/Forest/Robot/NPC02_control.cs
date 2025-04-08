@@ -105,7 +105,7 @@ public class NPC02_control : MonoBehaviour
         }
         if (NPC_HP <= 0)
         {
-            die_NPC.Play();
+           AudioSource.PlayClipAtPoint(die_NPC.clip, transform.position);
             NPC_HP = 0;
             hitbox_Robot.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;

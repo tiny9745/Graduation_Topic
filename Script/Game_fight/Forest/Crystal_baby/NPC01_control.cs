@@ -27,7 +27,6 @@ public class NPC01_control : MonoBehaviour
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
     public AudioSource die_NPC;
-    public AudioClip die_sound;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -99,7 +98,7 @@ public class NPC01_control : MonoBehaviour
         {
             NPC_HP = 0;
             hitbox_Crystal_baby.SetActive(false);
-            die_NPC.Play();
+            AudioSource.PlayClipAtPoint(die_NPC.clip, transform.position);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             fade();

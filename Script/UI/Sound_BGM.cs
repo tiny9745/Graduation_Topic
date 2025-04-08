@@ -19,7 +19,10 @@ public class Sound_BGM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BGM_sound.volume = static_parameters._BGM_volue * static_parameters._All_sound;
+        if (static_parameters._BGM_volue != BGM_sound.volume)
+        {
+            BGM_sound.volume = static_parameters._BGM_volue;
+        }
     }
 
     private void OnEnable()
@@ -52,7 +55,6 @@ public class Sound_BGM : MonoBehaviour
         {
             BGM_sound.clip = BGM_clip[1];
         }
-
         BGM_sound.Play();
     }
 }

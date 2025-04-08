@@ -11,4 +11,11 @@ public class SE_volue : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = static_parameters._SE_volue;
     }
+    void Update()
+    {
+        if (audioSource.volume != static_parameters._SE_volue)
+        {
+            audioSource.volume = static_parameters._SE_volue;
+        }
+    }
 }

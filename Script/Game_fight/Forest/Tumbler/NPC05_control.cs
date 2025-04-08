@@ -54,7 +54,7 @@ public class NPC05_control : MonoBehaviour
         {
             nPC_hP = GetComponent<NPC_HP_05>();
         }
-        
+
         if (static_parameters.stage_number == 1)
         {
             NPC_HP_Max *= 1;
@@ -95,7 +95,7 @@ public class NPC05_control : MonoBehaviour
 
         if (NPC_HP <= 0)
         {
-            die_NPC.Play();
+            AudioSource.PlayClipAtPoint(die_NPC.clip, transform.position);
             NPC_HP = 0;
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
