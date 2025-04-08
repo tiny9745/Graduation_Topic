@@ -47,10 +47,6 @@ public class Shadow : MonoBehaviour
         {
             sceneLight.shadows = LightShadows.Soft;
         }
-        else
-        {
-            Debug.LogWarning("Scene light not assigned. Please assign a light source in the inspector.");
-        }
         RectTransform rectTransform = quad.GetComponent<RectTransform>();
         Transform quadTransform = quad.GetComponent<Transform>();
         if (quadTransform != null)

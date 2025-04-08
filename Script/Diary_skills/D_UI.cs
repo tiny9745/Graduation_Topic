@@ -36,7 +36,6 @@ public class D_UI : MonoBehaviour
     }
     public void NextPage()
     {
-        Debug.Log("NextPage");   
         if ((page + 1) * itemsPerPage < IconManager.Instance.IconList.Count)
         {
             page++;
@@ -44,7 +43,6 @@ public class D_UI : MonoBehaviour
     }
     public void PreviousPage()
     {
-        Debug.Log("PreviousPage");
         if(Skill_public_funtion.Reading){
             Diary.SetActive(true); Text.SetActive(false);
         }else{

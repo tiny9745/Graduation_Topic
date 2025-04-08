@@ -45,10 +45,7 @@ public class BOSS01_effect : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log("IconManager.Instance == null");
-        }
+
         if (Skill_public_funtion.play_piano)
         {
             if (play_piano_atk < Skill_public_funtion.P_time)
@@ -254,7 +251,7 @@ public class BOSS01_effect : MonoBehaviour
                             {
                                 HP_control.TakeDamage(5, control.BOSS_DEF);
                                 skill_25_step_time += 0.5f;
-                                Debug.Log("NPC03 skill_25_step_time:" + skill_25_step_time);
+                                
                             }
                         }
                         break;
@@ -265,7 +262,6 @@ public class BOSS01_effect : MonoBehaviour
 
     public void skill_TriggerEnter(Collider other)
     {
-        Debug.Log("skill_TriggerEnter:" + other.gameObject.tag);
         if (IconManager.Instance != null)
         {
             foreach (var icon in IconManager.Instance.IconList)
@@ -282,7 +278,6 @@ public class BOSS01_effect : MonoBehaviour
                     case 15:
                         if (other.gameObject.tag == "MC_bullet")
                         {
-                            Debug.Log("NPC03 Stop");
                             // skill_15_stop_time_trigger = true;
                             // skill_15_stop_time = 0;
                             control.stun = true;
@@ -293,7 +288,6 @@ public class BOSS01_effect : MonoBehaviour
                     case 31:
                         if (Skill_public_funtion.skill_31_dash && other.gameObject.tag == "Player")
                         {
-                            Debug.Log("NPC03 skill_31");
                             HP_control.TakeDamage(static_parameters.MC_ATK / 2, static_parameters.MC_DEF / 2);
                         }
                         break;
@@ -324,7 +318,6 @@ public class BOSS01_effect : MonoBehaviour
     }
     void Stun_end15()
     {
-        Debug.Log("NPC03 rewalk");
         skill22_animator.SetBool("skill_bullet15", false);
         control.stun = false;
     }
