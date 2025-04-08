@@ -15,6 +15,8 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     private Vector3 newPosition_start;
     private bool wave_return = true;
     private bool screen_close = true;
+    public AudioSource Ad;
+    public AudioClip Leave;
 
     void Start()
     {
@@ -47,7 +49,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         float elapsedTime = 0f;
-
+        Ad.PlayOneShot(Leave);
         while (!operation.isDone)
         {
             targetFillAmount = maxFillAmount;
