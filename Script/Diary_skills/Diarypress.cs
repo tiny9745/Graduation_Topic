@@ -9,6 +9,8 @@ public class Diarypress : MonoBehaviour
     public GameObject number, Slots, DText;
     int Choose_diary, DiaryNumber;
     public Text Diary_title, Diary_content;
+    public AudioSource Ad;
+    public AudioClip Click;
     public void Dpress()
     {   
         int.TryParse(number.name, out DiaryNumber); 

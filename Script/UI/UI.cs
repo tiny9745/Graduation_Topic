@@ -19,6 +19,8 @@ public class UI : MonoBehaviour
     public Image button_image, craft_image;
     public Sprite craft_sprite;
     public Button Pageup, Pagedown;
+    public AudioClip Open,Close;
+    public AudioSource Ad;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +78,7 @@ public class UI : MonoBehaviour
                 static_parameters.Bookstate = false;
                 Notebook.SetActive(false);
                 BattleUI.SetActive(true);
+                Ad.PlayOneShot(Close);
             }
         }
     }
@@ -122,6 +125,7 @@ public class UI : MonoBehaviour
                 break;
         }
         piecechange();
+        Ad.PlayOneShot(Open);
         Diaryslots.SetActive(true); Diarytext.SetActive(false); Skill_public_funtion.Reading = false;
         button_image.color = newColor;
         craft_image.sprite = craft_sprite;
