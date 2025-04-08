@@ -51,10 +51,12 @@ public class Play_move : MonoBehaviour
             {
                 if (SceneManager.GetActiveScene().name == "magic_house" || SceneManager.GetActiveScene().name == "house_outside")
                 {
+                    walk_Sound_1.loop = true;
                     walk_Sound_1.Play();
                 }
                 else
                 {
+                    walk_Sound_2.loop = true;
                     walk_Sound_2.Play();
                 }
                 newPosition += movement * walkSpeed * Time.fixedDeltaTime;
