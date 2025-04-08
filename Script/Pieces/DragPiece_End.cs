@@ -18,11 +18,14 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     public Image button_image; // 按鈕圖像
     private int puzzle_count = 0; // 碎片數量計數
     static public int puzzle_color = 2, end_count = -1; // 碎片顏色（默認為 2）
+    public AudioSource audioSource; // 音效來源
+    public AudioClip[] audioClip; // 音效片段
 
     void Start()
     {
         // 初始化有效的組合數列
         Skill_public_funtion.validSequences = Skill_public_funtion.validSequences_re.Select(hashset => new HashSet<int>(hashset)).ToList(); // 轉成 List<HashSet<int>>
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -62,11 +65,13 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
 
                 if (checkResult == -2)
                 {
+                    audioSource.PlayOneShot(audioClip[0]);
                     piece.page = 0;
                     ResetCombination();
                 }
                 else if (checkResult == 2)
                 {
+                    audioSource.PlayOneShot(audioClip[1]);
                     _ui.putting_diary(false);
                     newColor.a = 1;
                     SetPuzzleColor(key_color);
@@ -76,6 +81,10 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                         images_effect_col[i].gameObject.SetActive(false);
                         images_effect_change[i].gameObject.SetActive(true);
                     }
+                }
+                else
+                {
+                    audioSource.PlayOneShot(audioClip[1]);
                 }
                 if (checkResult != 2)
                 {
