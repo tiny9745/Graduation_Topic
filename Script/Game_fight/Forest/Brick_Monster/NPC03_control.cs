@@ -101,7 +101,6 @@ public class NPC03_control : MonoBehaviour
         if (TargetObj != null) dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         if (NPC_HP <= 0)
         {
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
             NPC_HP = 0;
             hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
@@ -458,6 +457,7 @@ public class NPC03_control : MonoBehaviour
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money02");
             static_parameters.money += 8;
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
             _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;
