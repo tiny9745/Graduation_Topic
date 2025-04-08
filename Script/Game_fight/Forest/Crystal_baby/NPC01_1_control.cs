@@ -24,6 +24,7 @@ public class NPC01_1_control : MonoBehaviour
     public UI _UI;
     public Animator money_animator;
     public AudioSource die_NPC;
+    public AudioSource MC_throw_NPC;
 
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
 
@@ -132,7 +133,7 @@ public class NPC01_1_control : MonoBehaviour
             NPC_HP = 0;
             fade();
             hitbox_Crystal_baby_small.SetActive(false);
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue);
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue * 0.5f);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             PlayBombAnimation();
@@ -405,6 +406,7 @@ public class NPC01_1_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_bullet"))
             {
+                MC_throw_NPC.PlayOneShot(MC_throw_NPC.clip);
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {

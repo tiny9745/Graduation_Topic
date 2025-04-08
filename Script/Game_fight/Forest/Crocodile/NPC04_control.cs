@@ -26,6 +26,7 @@ public class NPC04_control : MonoBehaviour
     private bool isInDangerZone = false; // 是否在危險區域內
     public Animator money_animator;
     public AudioSource die_NPC;
+    public AudioSource MC_throw_NPC;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -107,7 +108,7 @@ public class NPC04_control : MonoBehaviour
         }
         if (NPC_HP <= 0)
         {
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue);
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
             NPC_HP = 0;
             hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
@@ -343,6 +344,7 @@ public class NPC04_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_bullet"))
             {
+                MC_throw_NPC.PlayOneShot(MC_throw_NPC.clip);
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
