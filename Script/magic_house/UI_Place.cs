@@ -7,6 +7,8 @@ public class UI_Place : MonoBehaviour
     // Start is called before the first frame update
     public GameObject Upgrade;
     bool isUpgrade,P1 = false;
+    public AudioSource Ad;
+    public AudioClip Open;
     void Start()
     {
         
@@ -21,12 +23,13 @@ public class UI_Place : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player"){
-            P1 = true;        
+            P1 = true;
         }
     }
     void UI1(){
         if(isUpgrade){
             Upgrade.SetActive(true);
+            Ad.PlayOneShot(Open);
         }else{
             Upgrade.SetActive(false);
         }
