@@ -13,7 +13,8 @@ public class InventoryManager : MonoBehaviour
     public List<Item> ItemList;
     public delegate void onInventoryChange();
     public onInventoryChange onInventoryCallBack;
-    public AudioSource MC_throw_sound; 
+    public AudioSource MC_throw_sound;
+    public AudioClip[] audioClip; // 音效片段
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (static_parameters.bullet_quantity < 4)
         {
+            MC_throw_sound.PlayOneShot(audioClip[1]);
             ItemList.Add(newItem);
             static_parameters.bullet_quantity++;
             Debug.Log("bullet_quantity: " + static_parameters.bullet_quantity);
@@ -60,7 +62,7 @@ public class InventoryManager : MonoBehaviour
         if (static_parameters.MC_HP > 0)
         {
             Debug.Log("_slot.slotID: " + _slot.slotID);
-            MC_throw_sound.Play();
+            MC_throw_sound.PlayOneShot(audioClip[0]);
             bullet_into();
             static_parameters.bullet_quantity--;
             _slot.UseItem();
