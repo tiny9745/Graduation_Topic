@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ani_MC : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Ani_MC : MonoBehaviour
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 1f, dashDuration = 0.63f;
     short ATK_count = 0; bool atk_flag = false; float atk_time = 0;
-    public AudioSource walk_Sound_1, walk_Sound_2, walk_dash_Sound;
+    public AudioClip[] walk_Sound;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -105,6 +106,10 @@ public class Ani_MC : MonoBehaviour
         }
         else
         {
+            if (SceneManager.GetActiveScene().name == "magic_house" || SceneManager.GetActiveScene().name == "house_outside")
+            {
+                BGM_sound.clip = BGM_clip[0];
+            }
             static_parameters.Ani_state = 1; // 行走
         }
     }
