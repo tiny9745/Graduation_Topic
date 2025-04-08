@@ -132,7 +132,7 @@ public class NPC01_1_control : MonoBehaviour
             NPC_HP = 0;
             fade();
             hitbox_Crystal_baby_small.SetActive(false);
-            AudioSource.PlayClipAtPoint(die_NPC.clip, transform.position);
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             PlayBombAnimation();

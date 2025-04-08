@@ -95,7 +95,7 @@ public class berry_hitbox : MonoBehaviour
 
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
         Instantiate(berry_bomb, pos, transform.rotation);
-        berry_bomb_sound.Play(0);
+        berry_bomb_sound.PlayOneShot(berry_bomb_sound.clip, static_parameters._SE_volue);
         NPC_interactive.berry = bomb_berry.berry;
 
         // 找尋仍存在的 Player，扣血

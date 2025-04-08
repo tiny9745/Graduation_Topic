@@ -57,7 +57,7 @@ public class NPC02_control : MonoBehaviour
         {
             nPC_hP = GetComponent<NPC_HP_02>();
         }
-        
+
         if (static_parameters.stage_number == 1)
         {
             NPC_HP_Max *= 1;
@@ -105,7 +105,7 @@ public class NPC02_control : MonoBehaviour
         }
         if (NPC_HP <= 0)
         {
-           AudioSource.PlayClipAtPoint(die_NPC.clip, transform.position);
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue);
             NPC_HP = 0;
             hitbox_Robot.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;

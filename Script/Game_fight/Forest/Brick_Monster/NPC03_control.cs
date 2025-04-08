@@ -56,7 +56,7 @@ public class NPC03_control : MonoBehaviour
         {
             npcNavi.speed = npcSpeed;
         }
-        
+
         if (static_parameters.stage_number == 1)
         {
             NPC_HP_Max *= 1;
@@ -100,7 +100,7 @@ public class NPC03_control : MonoBehaviour
         if (TargetObj != null) dist = Vector3.Distance(transform.position, TargetObj.transform.position);
         if (NPC_HP <= 0)
         {
-           AudioSource.PlayClipAtPoint(die_NPC.clip, transform.position);
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue);
             NPC_HP = 0;
             hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;

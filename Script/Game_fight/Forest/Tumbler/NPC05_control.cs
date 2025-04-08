@@ -95,7 +95,7 @@ public class NPC05_control : MonoBehaviour
 
         if (NPC_HP <= 0)
         {
-            AudioSource.PlayClipAtPoint(die_NPC.clip, transform.position);
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue);
             NPC_HP = 0;
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
