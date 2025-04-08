@@ -7,7 +7,7 @@ public class Bomb_Berry : MonoBehaviour
     public int berry = 1;
     public int lastChildCount, startChildCount; // 上一次檢查時的子物件數量
     public AudioSource Ad;
-    public AudioClip berry_take_sound; // 取得音效
+    public AudioClip berry_take_sound,berry_bomb_sound;
     void Start()
     {
         // 紀錄初始子物件數量

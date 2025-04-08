@@ -13,7 +13,7 @@ public class berry_hitbox : MonoBehaviour
     public Animator animator_ready;
     public GameObject berry_bomb;
     public AudioSource Ad;
-    public AudioClip berry_bomb_sound, berry_waring_sound;
+    public AudioClip  berry_waring_sound,berry_bomb_sound;
     void Update()
     {
         // 清除已被銷毀的物件以防止 MissingReferenceException
@@ -48,9 +48,6 @@ public class berry_hitbox : MonoBehaviour
             if (timmer >= explode_time_max)
             {
                 isExplode = false;
-                Ad.clip = berry_bomb_sound;
-                Ad.loop = false;
-                Ad.Play();
                 Bomb_Berry_Explode();
             }
         }
@@ -101,6 +98,9 @@ public class berry_hitbox : MonoBehaviour
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
         Instantiate(berry_bomb, pos, transform.rotation);
         NPC_interactive.berry = bomb_berry.berry;
+        Ad.clip = berry_bomb_sound;
+        Ad.loop = false;
+        Ad.Play();
 
         // 找尋仍存在的 Player，扣血
         foreach (GameObject obj in objectsInRange)
