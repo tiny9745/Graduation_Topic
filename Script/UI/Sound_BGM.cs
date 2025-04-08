@@ -13,7 +13,7 @@ public class Sound_BGM : MonoBehaviour
 
     void Start()
     {
-
+        BGM_sound.clip = BGM_clip[0];
     }
 
     // Update is called once per frame
@@ -43,15 +43,19 @@ public class Sound_BGM : MonoBehaviour
     private void BGM_Play_change()
     {
         BGM_sound.volume = static_parameters._BGM_volue;
-        if (SceneManager.GetActiveScene().name == "magic_house")
+        if (SceneManager.GetActiveScene().name == "magic_house" || SceneManager.GetActiveScene().name == "house_outside")
         {
             BGM_sound.clip = BGM_clip[0];
+        }
+        else if (static_parameters.into_gameFight_Levels == 5)
+        {
+            BGM_sound.clip = BGM_clip[2];
         }
         else if (static_parameters.into_gameFight_Levels == 6)
         {
             BGM_sound.clip = BGM_clip[3];
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 7)
+        else
         {
             BGM_sound.clip = BGM_clip[1];
         }
