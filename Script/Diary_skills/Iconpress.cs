@@ -7,8 +7,11 @@ public class Iconpress : MonoBehaviour
 {
     public GameObject number;
     public static int itemNumber;
+    public AudioSource Ad;
+    public AudioClip Click;
     public void Press()
     {
         int.TryParse(number.name, out itemNumber);
+        Ad.PlayOneShot(Click);
     }
 }
