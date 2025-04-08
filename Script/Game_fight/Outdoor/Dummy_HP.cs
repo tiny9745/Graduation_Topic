@@ -8,6 +8,8 @@ public class Dummy_HP : MonoBehaviour
     public float MaxHealth, minus;
     private Vector3 initialScale;
     public Dummy_ctrl control;
+    public AudioSource Ad;
+    public AudioClip Hit;
 
     void Start()
     {
@@ -32,6 +34,7 @@ public class Dummy_HP : MonoBehaviour
         control.NPC_HP -= minus;
         control.NPC_HP = Mathf.Clamp(control.NPC_HP, 0, MaxHealth);
         Skill_public_funtion.blood_deduction_NPC_count += minus;//skill_add
+        Ad.PlayOneShot(Hit);
         UpdateHealthBar();
     }
 
