@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Shopoint : MonoBehaviour
 {
-    //public GameObject Upgrade;
     UI ui;
     public SpriteRenderer Goods,sign;//指定實體物件
     public Sprite item1, item2, item3, item4, item5;
     public Sprite Price1, Price2, Price3, Price4, Price5;
+    public AudioSource Ad;
+    public AudioClip Heal, fall;
     bool P1 = false;
     int spawn,price;
     void Start()
@@ -31,7 +32,7 @@ public class Shopoint : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not enough money");
+                Ad.PlayOneShot(fall);
             }
         }
     }
@@ -80,18 +81,22 @@ public class Shopoint : MonoBehaviour
             case 0:
                 static_parameters.MC_HP += 40;
                 if (static_parameters.MC_HP > static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                Ad.PlayOneShot(Heal);
                 break;
             case 1:
                 static_parameters.MC_HP += 90;
                 if (static_parameters.MC_HP > static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                Ad.PlayOneShot(Heal);
                 break;
             case 2:
                 static_parameters.MC_HP += 150;
                 if (static_parameters.MC_HP > static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                Ad.PlayOneShot(Heal);
                 break;
             case 3:
                 static_parameters.MC_HP += 300;
                 if (static_parameters.MC_HP > static_parameters.MC_HP_Max) static_parameters.MC_HP = static_parameters.MC_HP_Max;
+                Ad.PlayOneShot(Heal);
                 break;
             case 4:
                 static_parameters.revival = true;
