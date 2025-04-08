@@ -77,7 +77,6 @@ public class Puzzle : MonoBehaviour
     private void Complete_piece_after()
     {
         UI.Onclick3();
-        Debug.Log("Skill_public_funtion.mood_number: " + Skill_public_funtion.mood_number);
         switch (Skill_public_funtion.mood_number)
         {
             case 0:
@@ -91,6 +90,9 @@ public class Puzzle : MonoBehaviour
                 break;
             case 4:
                 Skill_public_funtion.HAPPY += 1;
+                break;
+            case 3:
+                Skill_public_funtion.PAIN += 1;
                 break;
             default:
                 break;

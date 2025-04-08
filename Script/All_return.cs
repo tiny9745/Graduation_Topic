@@ -55,6 +55,7 @@ public class All_return : MonoBehaviour
         Skill_public_funtion.SAD = 0;
         Skill_public_funtion.HAPPY = 0;
         Skill_public_funtion.ANGRY = 0;
+        Skill_public_funtion.PAIN = 0;
         Skill_public_funtion.mood_number = 0;
         Skill_public_funtion.play_piano = false;
         Skill_public_funtion.P_time = 4;
