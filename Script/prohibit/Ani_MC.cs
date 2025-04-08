@@ -14,9 +14,12 @@ public class Ani_MC : MonoBehaviour
     static public bool isAttackPlaying = false;
     static public float DashCD_time = 1f, dashDuration = 0.63f;
     short ATK_count = 0; bool atk_flag = false; float atk_time = 0;
+    public AudioSource audioSource; // 音效播放元件
     public AudioClip[] walk_Sound;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true; // 設定為循環播放
         animator = GetComponent<Animator>();
     }
 
@@ -51,6 +54,7 @@ public class Ani_MC : MonoBehaviour
             Skill_public_funtion.skill_31_dash = true;
             Skill_public_funtion.skill_33_Dash = true;
             Skill_public_funtion.skill_34_Dash = true;
+            audioSource.PlayOneShot(walk_Sound[3]);
             StartCoroutine(DashSequence());
         }
         else if ((Input.GetKeyDown(KeyCode.J) && static_parameters.teaching_stop >= 2) || atk_flag)
@@ -103,12 +107,20 @@ public class Ani_MC : MonoBehaviour
         if (static_parameters.face == 0)
         {
             static_parameters.Ani_state = 0; // 站立
+            audioSource.clip = walk_Sound[0];
+            if (audioSource.isPlaying == false) audioSource.Play();
         }
         else
         {
             if (SceneManager.GetActiveScene().name == "magic_house" || SceneManager.GetActiveScene().name == "house_outside")
             {
-                BGM_sound.clip = BGM_clip[0];
+                audioSource.clip = walk_Sound[1];
+                if (audioSource.isPlaying == false) audioSource.Play();
+            }
+            else
+            {
+                audioSource.clip = walk_Sound[2];
+                if (audioSource.isPlaying == false) audioSource.Play();
             }
             static_parameters.Ani_state = 1; // 行走
         }
