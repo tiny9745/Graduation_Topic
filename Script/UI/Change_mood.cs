@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Change_mood : MonoBehaviour
 {
     public Image Mood, Health, B1, B2, B3, B4;
-    public Sprite wow, sad, happy, angry, normal, bwow, bsad, bhappy, bangry, bnormal;
+    public Sprite wow, sad, happy, angry, normal,pain, bwow, bsad, bhappy, bangry, bnormal, bpain;
     static public int mood = 0;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class Change_mood : MonoBehaviour
     }
     public void Change()
     {
-        MoodChange(Skill_public_funtion.WOW, Skill_public_funtion.SAD, Skill_public_funtion.HAPPY, Skill_public_funtion.ANGRY);
+        MoodChange(Skill_public_funtion.WOW, Skill_public_funtion.SAD, Skill_public_funtion.HAPPY, Skill_public_funtion.ANGRY, Skill_public_funtion.Pain);
         switch (mood)
         {
             case 0:
@@ -32,7 +32,8 @@ public class Change_mood : MonoBehaviour
                 B1.sprite = bsad; B2.sprite = bsad; B3.sprite = bsad; B4.sprite = bsad;
                 break;
             case 3:
-                //Mood.sprite = ;
+                Mood.sprite = pain; Health.color = new Color(0.84f, 0.62f, 0.88f, 1);
+                B1.sprite = bpain; B2.sprite = bpain; B3.sprite = bpain; B4.sprite = bpain;
                 break;
             case 4:
                 Mood.sprite = happy; Health.color = new Color(1, 0.93f, 0.59f, 1);
@@ -45,23 +46,27 @@ public class Change_mood : MonoBehaviour
         }
     }
 
-    void MoodChange(int WOW, int SAD, int HAPPY, int ANGRY)
+    void MoodChange(int WOW, int SAD, int HAPPY, int ANGRY, int PAIN)
     {
-        if (WOW > SAD && WOW > HAPPY && WOW > ANGRY)
+        if (WOW > SAD && WOW > HAPPY && WOW > ANGRY && WOW > PAIN)
         {
             mood = 0;
         }
-        else if (SAD > WOW && SAD > HAPPY && SAD > ANGRY)
+        else if (SAD > WOW && SAD > HAPPY && SAD > ANGRY && SAD > PAIN)
         {
             mood = 2;
         }
-        else if (HAPPY > WOW && HAPPY > SAD && HAPPY > ANGRY)
+        else if (HAPPY > WOW && HAPPY > SAD && HAPPY > ANGRY && HAPPY > PAIN)
         {
             mood = 4;
         }
-        else if (ANGRY > WOW && ANGRY > SAD && ANGRY > HAPPY)
+        else if (ANGRY > WOW && ANGRY > SAD && ANGRY > HAPPY && ANGRY > PAIN)
         {
             mood = 1;
+        }
+        else if (PAIN > WOW && PAIN > SAD && PAIN > HAPPY && PAIN > ANGRY)
+        {
+            mood = 3;
         }
         else
         {
@@ -80,6 +85,10 @@ public class Change_mood : MonoBehaviour
             else if (ANGRY > 0)
             {
                 mood = 1; return;
+            }
+            else if (PAIN > 0)
+            {
+                mood = 3; return;
             }
             else mood = 5;
         }
