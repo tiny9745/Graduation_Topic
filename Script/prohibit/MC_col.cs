@@ -12,6 +12,8 @@ public class MC_col : MonoBehaviour
     public Material Deduct_Blood;
     private Material originalMaterial;
     private NavMeshAgent playerAgent;
+    private AudioSource audioSource; // 音效來源
+    public AudioClip[] audioClip;
 
     void Start()
     {
@@ -26,12 +28,19 @@ public class MC_col : MonoBehaviour
         {
             Blood_Col = GetComponent<Blood_col>();
         }
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = false;
+        audioSource.clip = audioClip[0];
     }
 
     void Update()
     {
         if (static_parameters.MC_HP <= 0)
         {
+            if (static_parameters.Change_enemy != 0)
+            {
+                audioSource.PlayOneShot(audioClip[1]);
+            }
             static_parameters.Change_enemy = 0;
             // playerAgent.enabled = false;
         }

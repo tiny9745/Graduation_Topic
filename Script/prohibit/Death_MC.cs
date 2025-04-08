@@ -17,11 +17,14 @@ public class Death_MC : MonoBehaviour
 
     public Sprite Death_Img_Sprite;
     public Image Death_Img;
+    private AudioSource audioSource; // 音效來源
+    public AudioClip[] audioClip; // 音效片段
 
     void Start()
     {
         MC_S = GameObject.Find("Player_S");
         MC_Img = GameObject.Find("F S0100");
+        audioSource = GetComponent<AudioSource>();
         Diary_icon[] all_icon = Resources.LoadAll<Diary_icon>("icon_skill");
         // 訂閱場景加載完成的事件
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -81,7 +84,7 @@ public class Death_MC : MonoBehaviour
         Death.transform.localScale *= 5;
         Death.transform.localPosition = new Vector3(0, -400, -42);
         animator.SetTrigger("Reborn");
-
+        audioSource.PlayOneShot(audioClip[0]);
         // 確保動畫結束後延遲7.5秒再繼續執行後續程式碼
         yield return new WaitForSeconds(7.5f);
         Death.transform.localPosition = new Vector3(0, -50, -42);
