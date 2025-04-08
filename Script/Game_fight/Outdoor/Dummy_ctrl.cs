@@ -27,10 +27,6 @@ public class Dummy_ctrl : MonoBehaviour
         if (nPC_hP == null)
         {
             nPC_hP = GetComponent<Dummy_HP>();
-            if (nPC_hP == null)
-            {
-                Debug.LogError("Dummy_HP component not found on " + gameObject.name);
-            }
         }
     }
 
@@ -61,11 +57,6 @@ public class Dummy_ctrl : MonoBehaviour
             }
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
-                if (nPC_hP == null)
-                {
-                    Debug.LogError("nPC_hP is not assigned.");
-                    return;
-                }
                 nPC_hP.TakeDamage(static_parameters.MC_ATK, Dummy_DEF);
                 MC_to_Att = false;
                 Skill();//skill_add
