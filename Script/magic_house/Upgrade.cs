@@ -10,11 +10,11 @@ public class Upgrade : MonoBehaviour
                   SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;
     public Text textbox;
     public static short ATK_LV=1, DEF_LV=1, HP_LV=1, Speed_LV=1, Knockback_LV=1,Click=0;
-    short[] ATK_price = { 25, 45, 70, 100, 150 },
-    DEF_price = { 25, 50, 70, 100, 150 },
-    HP_price = { 25, 45, 65, 100, 150 },
-    Speed_price = { 30, 50, 80, 100, 170 },
-    Knockback_price = { 30, 60, 80, 100, 170 };
+    short[] ATK_price = { 30, 45, 70, 100, 140 },
+    DEF_price = { 30, 50, 75, 100, 140 },
+    HP_price = { 30, 45, 70, 100, 140 },
+    Speed_price = { 35, 50, 80, 100, 170 },
+    Knockback_price = { 35, 60, 80, 100, 170 };
     void Start()
     {
 
