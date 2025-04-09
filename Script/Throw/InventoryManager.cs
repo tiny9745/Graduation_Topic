@@ -90,6 +90,11 @@ public class InventoryManager : MonoBehaviour
             Instantiate(bullet44, Firepoint.position, transform.rotation);
         }
     }
+    public void Clear()
+    {
+        ItemList.Clear();
+    } 
+
     private void bullet_into14()
     {
         if (_slot.slotID == 1)

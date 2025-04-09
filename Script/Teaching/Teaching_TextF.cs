@@ -20,7 +20,9 @@ public class Teaching_TextF : MonoBehaviour
     public UI _UI;
     uint talk_number = 0;
     public GameObject Money_object, Throwing_object, Blood_object, Diary_object;
-    // public InventoryManager inventoryManager;
+
+    // public ItemSlot itemSlot;
+    public InventoryManager inventoryManager;
     void Start()
     {
         static_parameters.teaching_stop = -1;
@@ -408,6 +410,7 @@ public class Teaching_TextF : MonoBehaviour
 
     private void Teaching_end()
     {
+        inventoryManager.Clear();
         skip_button.SetActive(false);
         static_parameters.teaching_stop = 101;
         talk_number = 100;

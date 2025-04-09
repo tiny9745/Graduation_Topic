@@ -14,6 +14,13 @@ public class JiangMi : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
+        if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void JM_atk()
     {

@@ -17,6 +17,10 @@ public class Magician : MonoBehaviour
 
     void Update()
     {
+        if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
+        {
+            Destroy(gameObject);
+        }
         if (static_parameters.teaching_stop == 5)
         {
             magicianAnimator.SetBool("ntfx", true);

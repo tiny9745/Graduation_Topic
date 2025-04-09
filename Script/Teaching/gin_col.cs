@@ -54,6 +54,10 @@ public class gin_col : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
+        {
+            Destroy(gameObject);
+        }
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0); // 取得 Layer 0 的動畫狀態
         if (stateInfo.IsName("blocksLB_atk") && stateInfo.normalizedTime >= 0.6f && open_EnableHitbox == 1)
         {

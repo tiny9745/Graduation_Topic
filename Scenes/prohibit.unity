@@ -336,6 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 12897413}
+  - component: {fileID: 12897414}
   m_Layer: 0
   m_Name: JKL
   m_TagString: Untagged
@@ -361,6 +362,18 @@ Transform:
   - {fileID: 223478080}
   m_Father: {fileID: 486702683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &12897414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12897412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff77a73318e6c884ba8ede25430dd1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &13883458
 GameObject:
   m_ObjectHideFlags: 0
@@ -19223,6 +19236,7 @@ GameObject:
   - component: {fileID: 961630732}
   - component: {fileID: 961630734}
   - component: {fileID: 961630733}
+  - component: {fileID: 961630735}
   m_Layer: 0
   m_Name: Z
   m_TagString: Untagged
@@ -19287,6 +19301,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961630731}
   m_CullTransparentMesh: 1
+--- !u!114 &961630735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961630731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff77a73318e6c884ba8ede25430dd1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963834937
 GameObject:
   m_ObjectHideFlags: 0
@@ -22276,6 +22302,7 @@ GameObject:
   - component: {fileID: 1129624254}
   - component: {fileID: 1129624256}
   - component: {fileID: 1129624255}
+  - component: {fileID: 1129624257}
   m_Layer: 0
   m_Name: J
   m_TagString: Untagged
@@ -22340,6 +22367,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129624253}
   m_CullTransparentMesh: 1
+--- !u!114 &1129624257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129624253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff77a73318e6c884ba8ede25430dd1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130206964
 GameObject:
   m_ObjectHideFlags: 0
@@ -23918,6 +23957,7 @@ GameObject:
   - component: {fileID: 1240264107}
   - component: {fileID: 1240264109}
   - component: {fileID: 1240264108}
+  - component: {fileID: 1240264110}
   m_Layer: 0
   m_Name: WASD
   m_TagString: Untagged
@@ -23982,6 +24022,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240264106}
   m_CullTransparentMesh: 1
+--- !u!114 &1240264110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240264106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff77a73318e6c884ba8ede25430dd1cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1246130957
 GameObject:
   m_ObjectHideFlags: 0
@@ -26544,6 +26596,7 @@ MonoBehaviour:
   Throwing_object: {fileID: 5459100527371382390}
   Blood_object: {fileID: 990590615}
   Diary_object: {fileID: 412413367}
+  inventoryManager: {fileID: 3341608546117133715}
 --- !u!1 &1408220187
 GameObject:
   m_ObjectHideFlags: 0
@@ -40727,7 +40780,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665106452557131918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25066262, y: -0.000000008328528, z: 0.000000002156498, w: 0.9680745}
+  m_LocalRotation: {x: 0.25066262, y: -0.00000000832853, z: 0.0000000021564985, w: 0.9680745}
   m_LocalPosition: {x: -0.5, y: 12.52, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45659,7 +45712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2790218688367779811}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -8.881784e-16, z: 4.440892e-16, w: 1}
+  m_LocalRotation: {x: -0, y: 5.3290705e-15, z: -2.8865799e-15, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
