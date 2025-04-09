@@ -18,6 +18,16 @@ public class Ptest : MonoBehaviour
         availablePieces.AddRange(allPieces); InitializePieceSorting();
         // Test();
     }
+
+    public void reset()
+    {
+        availablePieces.Clear();
+        Diary_piece[] allPieces = Resources.LoadAll<Diary_piece>("Piece");
+        availablePieces.AddRange(allPieces);
+        pickedPieces.Clear();
+        show.Clear();
+        InitializePieceSorting();
+    }
     void InitializePieceSorting()
     {
         sortedPieces["Red"] = new List<Diary_piece>();
