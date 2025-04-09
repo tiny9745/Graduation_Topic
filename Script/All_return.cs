@@ -8,7 +8,7 @@ public class All_return : MonoBehaviour
     public UI ui;
     void Start()
     {
-        static_parameters.MC_HP_Max = 500;
+        static_parameters.MC_HP_Max = 300;
         static_parameters.MC_HP = static_parameters.MC_HP_Max;
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
         static_parameters.MC_HP_Max_tmp = static_parameters.MC_HP_Max;
