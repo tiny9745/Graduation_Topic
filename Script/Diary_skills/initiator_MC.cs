@@ -48,7 +48,6 @@ public class initiator_MC : MonoBehaviour
             skill_3x.SetActive(false);
         }
     }
-
     private void fight_instinct()
     {
 
@@ -78,7 +77,9 @@ public class initiator_MC : MonoBehaviour
                             if (Skill_public_funtion.MC_HP_tmp != static_parameters.MC_HP)
                             {
                                 Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
-                                static_parameters.MC_ATK = Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
+
+                                static_parameters.MC_ATK = Skill_public_funtion.skill_02_MC_atk * Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
+                                Debug.Log("skill02:" + static_parameters.MC_ATK);
                                 if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.2f)
                                 {
                                     skill03C.SetInteger("A03C", 3);
@@ -123,6 +124,7 @@ public class initiator_MC : MonoBehaviour
                         case 3:
                         case 4:
                         case 5:
+                            Skill_public_funtion.skill_02_MC_atk = static_parameters.MC_ATK;
                             skill03C.SetInteger("A03C", 0);
                             skill01_animator.SetInteger("skill_0x", 1);
                             break;
