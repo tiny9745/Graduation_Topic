@@ -13,7 +13,7 @@ public class Teaching_MC_ani : MonoBehaviour
         {
             magicianAnimator.SetBool("ntfx", true);
         }
-        if (static_parameters.teaching_stop == 7)
+        if (static_parameters.teaching_stop >= 7)
         {
             magicianAnimator.SetBool("ntfx", false);
         }
