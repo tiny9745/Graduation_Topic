@@ -73,7 +73,7 @@ public class InventoryManager : MonoBehaviour
 
     private void bullet_into()
     {
-        if (_slot.slotID == 0)
+        if (_slot.slotID == 2)
         {
             Instantiate(bullet00, Firepoint.position, transform.rotation);
         }
