@@ -11,7 +11,7 @@ public class Boss_col : MonoBehaviour
     static public int BOSS_Atk_state = 1;
     static public bool BOSS_Atk02_ready03_waring = false;
     static public bool BOSS_Atk02_ready01 = false, BOSS_Atk02_ready03 = false;
-    public float BOSS_HP_Max = 1000, BOSS_DEF = 10, BOSS_HP, BOSS_HP_tmp;
+    public float BOSS_HP_Max = 1200, BOSS_DEF = 10, BOSS_HP, BOSS_HP_tmp;
     public BOSS01_HP boss_hP; public BOSS01_effect effect;
     public bool stun = false;
     public int NPC_angle = 0;

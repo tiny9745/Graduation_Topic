@@ -3,7 +3,7 @@
 public class static_parameters : MonoBehaviour // this change Remembers change the All_return.cs
 {
     //Need save
-    static public float MC_HP_Max = 250, MC_HP = MC_HP_Max, MC_HP_tmp = MC_HP, MC_HP_Max_tmp = MC_HP_Max;
+    static public float MC_HP_Max = 500, MC_HP = MC_HP_Max, MC_HP_tmp = MC_HP, MC_HP_Max_tmp = MC_HP_Max;
     static public float MC_ATK = 13, MC_ATK_tmp = MC_ATK, MC_DEF = 12, MC_DEF_tmp = MC_DEF, MC_Wspeed = 2.5f, MC_Wspeed_tmp = MC_Wspeed, knockback_force = 1, MC_ATK_Speed = 1, MC_ATK_Speed_tmp = MC_ATK_Speed;
     static public int stage_number = 0, stage_number_Boss = 0;
     // static public int stage_number_Store = 0, stage_number_Award = 0;

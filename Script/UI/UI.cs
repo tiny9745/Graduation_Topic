@@ -19,7 +19,7 @@ public class UI : MonoBehaviour
     public Image button_image, craft_image;
     public Sprite craft_sprite;
     public Button Pageup, Pagedown;
-    public AudioClip Open,Close;
+    public AudioClip Open, Close;
     public AudioSource Ad;
     // Start is called before the first frame update
     void Start()
@@ -62,7 +62,25 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 && static_parameters.into_gameFight == false)
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
+        {
+            if (static_parameters.Bookstate)
+            {
+                // Time.timeScale = 1;
+                static_parameters.Bookstate = false;
+                Notebook.SetActive(false);
+                BattleUI.SetActive(true);
+                Ad.PlayOneShot(Close);
+            }
+            else
+            {
+                // Time.timeScale = 0;
+                static_parameters.Bookstate = true;
+                Notebook.SetActive(true);
+                BattleUI.SetActive(false);
+            }
+        }
+        else if (static_parameters.isTeaching == true && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.into_gameFight_Levels == 0))
         {
             if (!static_parameters.Bookstate)
             {

@@ -20,7 +20,7 @@ public class Teaching_TextF : MonoBehaviour
     public UI _UI;
     uint talk_number = 0;
     public GameObject Money_object, Throwing_object, Blood_object, Diary_object;
-
+    // public InventoryManager inventoryManager;
     void Start()
     {
         static_parameters.teaching_stop = -1;
@@ -297,6 +297,7 @@ public class Teaching_TextF : MonoBehaviour
                 open();
                 name_text.text = "曦然";
                 talk_text.text = "妳沒事吧？";
+                // inventoryManager.Remove();
                 teaching_sprite_keycode[2].SetActive(false);
             }
         }

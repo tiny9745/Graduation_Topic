@@ -7,6 +7,7 @@ public class Plugins : MonoBehaviour
     // Update is called once per frame
     private bool InsertKeyPressed = false;
     public UI ui;
+    public Ptest ptest;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Insert))
@@ -18,6 +19,7 @@ public class Plugins : MonoBehaviour
                 static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
                 static_parameters.MC_DEF = 1000;
                 static_parameters.money += 1000;
+                ptest.Test();
                 ui.Loadmoney();
             }
             else

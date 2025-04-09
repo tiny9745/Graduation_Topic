@@ -16,7 +16,7 @@ public class Ptest : MonoBehaviour
     {
         Diary_piece[] allPieces = Resources.LoadAll<Diary_piece>("Piece");
         availablePieces.AddRange(allPieces); InitializePieceSorting();
-        Test();
+        // Test();
     }
     void InitializePieceSorting()
     {
@@ -165,7 +165,7 @@ public class Ptest : MonoBehaviour
         }
         UpdateInventoryUI();
     }
-    void Test()
+    public void Test()
     {
         int k = 0, l = 0;
         for (int i = 0; i < availablePieces.Count; i++)

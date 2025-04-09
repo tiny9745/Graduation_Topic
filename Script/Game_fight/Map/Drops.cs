@@ -8,9 +8,9 @@ public class Drops : MonoBehaviour
     private UI _UI;
     private Ptest ptest;
     GameObject targetObject;
-    UnityEngine.UI.Image diary_icon_Image;
+    Image diary_icon_Image;
     Animator Chest_Animator;
-    int randomIndex,Add;
+    int randomIndex, Add;
     bool isAni = false;
     public AudioSource Ad;
     public AudioClip[] Piece, money;
@@ -23,7 +23,7 @@ public class Drops : MonoBehaviour
         GameObject foundObj = GameObject.Find("note_book");
         if (foundObj != null)
         {
-            diary_icon_Image = foundObj.GetComponent<UnityEngine.UI.Image>();
+            diary_icon_Image = foundObj.GetComponent<Image>();
         }
 
         if (targetObject != null)
@@ -67,21 +67,28 @@ public class Drops : MonoBehaviour
                     Ad.PlayOneShot(Piece[3]);
                     break;
             }
-            Add =Random.Range(25, 41);
+            Add = Random.Range(25, 41);
             static_parameters.money += Add;
-            if(Add > 33)
+            if (Add > 33)
             {
                 Ad.PlayOneShot(money[0]);
 
-            }else{
+            }
+            else
+            {
                 Ad.PlayOneShot(money[1]);
             }
-            diary_icon_Image.color = new Color(1, 170f / 255f, 170f / 255f, 1);
+            if (diary_icon_Image != null)
+            {
+                diary_icon_Image.color = new Color(1, 170f / 255f, 170f / 255f, 1);
+            }
             _UI.Loadmoney();
         }
         yield return new WaitForSeconds(0.25f);
-
-        diary_icon_Image.color = new Color(1, 1, 1, 1);
+        if (diary_icon_Image != null)
+        {
+            diary_icon_Image.color = new Color(1, 1, 1, 1);
+        }
         yield return new WaitForSeconds(0.4f);
         static_parameters.next_door = true;
         Destroy(gameObject);
