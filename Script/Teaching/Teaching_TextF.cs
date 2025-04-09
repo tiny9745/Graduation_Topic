@@ -21,7 +21,7 @@ public class Teaching_TextF : MonoBehaviour
     uint talk_number = 0;
     public GameObject Money_object, Throwing_object, Blood_object, Diary_object;
 
-    // public ItemSlot itemSlot;
+    public ItemSlot[] itemSlot;
     public InventoryManager inventoryManager;
     void Start()
     {
@@ -410,7 +410,17 @@ public class Teaching_TextF : MonoBehaviour
 
     private void Teaching_end()
     {
+        static_parameters.bullet_quantity = 0;
         inventoryManager.Clear();
+        // inventoryManager.Remove();
+        itemSlot[0].Clean();
+        itemSlot[1].Clean();
+        itemSlot[2].Clean();
+        itemSlot[3].Clean();
+        itemSlot[0].RemoveItem();
+        itemSlot[1].RemoveItem();
+        itemSlot[2].RemoveItem();
+        itemSlot[3].RemoveItem();
         skip_button.SetActive(false);
         static_parameters.teaching_stop = 101;
         talk_number = 100;
