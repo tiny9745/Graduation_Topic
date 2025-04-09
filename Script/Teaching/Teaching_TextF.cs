@@ -23,6 +23,8 @@ public class Teaching_TextF : MonoBehaviour
 
     public ItemSlot[] itemSlot;
     public InventoryManager inventoryManager;
+    public PieceManager pieceManager;
+    public Pieceslot[] pieceslot;
     void Start()
     {
         static_parameters.teaching_stop = -1;
@@ -412,7 +414,24 @@ public class Teaching_TextF : MonoBehaviour
     {
         static_parameters.bullet_quantity = 0;
         inventoryManager.Clear();
-        // inventoryManager.Remove();
+        pieceManager.Clear();
+        pieceslot[0].RemoveItem();
+        pieceslot[1].RemoveItem();
+        pieceslot[2].RemoveItem();
+        pieceslot[3].RemoveItem();
+        pieceslot[4].RemoveItem();
+        pieceslot[5].RemoveItem();
+        pieceslot[6].RemoveItem();
+        pieceslot[7].RemoveItem();
+        pieceslot[8].RemoveItem();
+        pieceslot[9].RemoveItem();
+        pieceslot[10].RemoveItem();
+        pieceslot[11].RemoveItem();
+        pieceslot[12].RemoveItem();
+        pieceslot[13].RemoveItem();
+        pieceslot[14].RemoveItem();
+        pieceslot[15].RemoveItem();
+
         itemSlot[0].Clean();
         itemSlot[1].Clean();
         itemSlot[2].Clean();
