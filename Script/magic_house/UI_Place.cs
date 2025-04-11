@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class UI_Place : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Upgrade;
+    public SpriteRenderer  buttonImage;
+    public Sprite F, none;
     bool isUpgrade,P1 = false;
     public AudioSource Ad;
     public AudioClip Open;
@@ -24,6 +25,10 @@ public class UI_Place : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player"){
             P1 = true;
+            buttonImage.sprite = F;
+        }else{
+            P1 = false;
+            buttonImage.sprite = none;
         }
     }
     void UI1(){
