@@ -26,6 +26,7 @@ public class ItemSlot : MonoBehaviour
         item = null;
         ItemImage.sprite = emptySprite;
         ItemName.text = "Empty";
+        slotID = -1;
     }
     public void UseItem()
     {
