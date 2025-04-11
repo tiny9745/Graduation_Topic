@@ -6,16 +6,25 @@ public class SE_volue : MonoBehaviour
 {
     // Start is called before the first frame update
     private AudioSource audioSource;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = static_parameters._SE_volue;
     }
+
     void Update()
     {
         if (audioSource.volume != static_parameters._SE_volue)
         {
             audioSource.volume = static_parameters._SE_volue;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Setting_keybroad.ESC_col)
+                audioSource.Pause();
+            else
+                audioSource.UnPause();
         }
     }
 }
