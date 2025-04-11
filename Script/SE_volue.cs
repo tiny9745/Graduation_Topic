@@ -22,9 +22,13 @@ public class SE_volue : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Setting_keybroad.ESC_col)
+            {
                 audioSource.Pause();
+            }
             else
+            {
                 audioSource.UnPause();
+            }
         }
     }
 }
