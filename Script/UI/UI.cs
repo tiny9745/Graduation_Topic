@@ -39,6 +39,13 @@ public class UI : MonoBehaviour
         {
             TeachiUI.SetActive(true);
         }
+        if (static_parameters.into_gameFight_Levels == 6 || static_parameters.Change_enemy != 0)
+        {
+            static_parameters.Bookstate = false;
+            Notebook.SetActive(false);
+            BattleUI.SetActive(true);
+            Ad.PlayOneShot(Close);
+        }
     }
     public void Onclick1()
     {
