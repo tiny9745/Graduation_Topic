@@ -102,8 +102,8 @@ public class Setting_keybroad : MonoBehaviour
 
     private void Back_Menu()
     {
+        ESC_false();
         SceneManager.LoadScene("menu");
-        Time.timeScale = 1;
         Destroy(Player_S);
         Destroy(Camera);
         Destroy(gameObject);
