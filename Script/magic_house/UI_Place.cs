@@ -10,10 +10,12 @@ public class UI_Place : MonoBehaviour
     public bool isUpgrade, P1 = false;
     public AudioSource Ad;
     public AudioClip Open;
+    public Magician_talk magician_talk;
+    public GameObject magician_talk_object;
     void Start()
     {
         P1 = false;
-        buttonImage.sprite = none;
+        // buttonImage.sprite = none;
     }
 
     // Update is called once per frame
@@ -21,7 +23,15 @@ public class UI_Place : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && P1)
         {
-            isUpgrade = !isUpgrade; UI1();
+            isUpgrade = !isUpgrade; 
+            if (isUpgrade)
+            {
+                magician_talk_object.SetActive(true);
+            }
+            else
+            {
+                magician_talk.close_magician_talk();
+            }  
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -51,5 +61,10 @@ public class UI_Place : MonoBehaviour
         {
             Upgrade.SetActive(false);
         }
+    }
+
+    public void magician_talk_open()
+    {
+        magician_talk.Magician_Talk();
     }
 }
