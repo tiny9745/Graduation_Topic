@@ -9,7 +9,8 @@ public class Upgrade : MonoBehaviour
     public GameObject AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
                   SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;
     public Text textbox;
-    public static short ATK_LV=1, DEF_LV=1, HP_LV=1, Speed_LV=1, Knockback_LV=1,Click=0;
+    public UI_Place UI_place;
+    public static short ATK_LV = 1, DEF_LV = 1, HP_LV = 1, Speed_LV = 1, Knockback_LV = 1, Click = 0;
     short[] ATK_price = { 30, 45, 70, 100, 140 },
     DEF_price = { 30, 50, 75, 100, 140 },
     HP_price = { 30, 45, 70, 100, 140 },
@@ -17,7 +18,7 @@ public class Upgrade : MonoBehaviour
     Knockback_price = { 35, 60, 80, 100, 170 };
     void Start()
     {
-
+        textbox.text = "請選擇升級項目";
     }
     public void ATK()
     {
@@ -25,19 +26,19 @@ public class Upgrade : MonoBehaviour
         switch (ATK_LV)
         {
             case 1:
-                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[0];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n" + "升級價格:" + ATK_price[0];
                 break;
             case 2:
-                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[1];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n" + "升級價格:" + ATK_price[1];
                 break;
             case 3:
-                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[2];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n" + "升級價格:" + ATK_price[2];
                 break;
             case 4:
-                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[3];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n" + "升級價格:" + ATK_price[3];
                 break;
             case 5:
-                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n"+"升級價格:" + ATK_price[4];
+                textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n" + "升級價格:" + ATK_price[4];
                 break;
         }
     }
@@ -47,19 +48,19 @@ public class Upgrade : MonoBehaviour
         switch (DEF_LV)
         {
             case 1:
-                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[0];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n" + "升級價格:" + DEF_price[0];
                 break;
             case 2:
-                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[1];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n" + "升級價格:" + DEF_price[1];
                 break;
             case 3:
-                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[2];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n" + "升級價格:" + DEF_price[2];
                 break;
             case 4:
-                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[3];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n" + "升級價格:" + DEF_price[3];
                 break;
             case 5:
-                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n"+"升級價格:" + DEF_price[4];
+                textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n" + "升級價格:" + DEF_price[4];
                 break;
         }
     }
@@ -69,19 +70,19 @@ public class Upgrade : MonoBehaviour
         switch (HP_LV)
         {
             case 1:
-                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[0];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n" + "升級價格:" + HP_price[0];
                 break;
             case 2:
-                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[1];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n" + "升級價格:" + HP_price[1];
                 break;
             case 3:
-                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[2];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n" + "升級價格:" + HP_price[2];
                 break;
             case 4:
-                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[3];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n" + "升級價格:" + HP_price[3];
                 break;
             case 5:
-                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n"+"升級價格:" + HP_price[4];
+                textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n" + "升級價格:" + HP_price[4];
                 break;
         }
     }
@@ -91,19 +92,19 @@ public class Upgrade : MonoBehaviour
         switch (Speed_LV)
         {
             case 1:
-                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[0];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n" + "升級價格:" + Speed_price[0];
                 break;
             case 2:
-                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[1];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n" + "升級價格:" + Speed_price[1];
                 break;
             case 3:
-                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[2];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n" + "升級價格:" + Speed_price[2];
                 break;
             case 4:
-                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[3];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n" + "升級價格:" + Speed_price[3];
                 break;
             case 5:
-                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n"+"升級價格:" + Speed_price[4];
+                textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n" + "升級價格:" + Speed_price[4];
                 break;
         }
     }
@@ -113,19 +114,19 @@ public class Upgrade : MonoBehaviour
         switch (Knockback_LV)
         {
             case 1:
-                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[0];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n" + "升級價格:" + Knockback_price[0];
                 break;
             case 2:
-                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[1];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n" + "升級價格:" + Knockback_price[1];
                 break;
             case 3:
-                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[2];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n" + "升級價格:" + Knockback_price[2];
                 break;
             case 4:
-                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[3];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n" + "升級價格:" + Knockback_price[3];
                 break;
             case 5:
-                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n"+"升級價格:" + Knockback_price[4];
+                textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n" + "升級價格:" + Knockback_price[4];
                 break;
         }
     }
@@ -286,7 +287,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= HP_price[0])
                         {
                             static_parameters.money -= HP_price[0];
-                            static_parameters.MC_HP_Max += 50; static_parameters.MC_HP = static_parameters.MC_HP_Max;                          
+                            static_parameters.MC_HP_Max += 50; static_parameters.MC_HP = static_parameters.MC_HP_Max;
                             HP_LV++; HB1.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -499,14 +500,21 @@ public class Upgrade : MonoBehaviour
                 }
                 break;
             default:
-            textbox.text = "請選擇升級項目";
+                textbox.text = "請選擇升級項目";
                 break;
         }
     }
     public void Cancel()
     {
         Click = 0;
-        textbox.text = "請選擇升級項目";
+        if (textbox.text == "請選擇升級項目")
+        {
+            UI_place.isUpgrade = !UI_place.isUpgrade;
+            UI_place.UI1();
+        }
+        else
+        {
+            textbox.text = "請選擇升級項目";
+        }
     }
-    
 }
