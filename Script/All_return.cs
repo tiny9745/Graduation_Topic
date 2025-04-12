@@ -101,6 +101,8 @@ public class All_return : MonoBehaviour
         Upgrade.Speed_LV = 1;
         Upgrade.Knockback_LV = 1;
 
+        Magician_talk.talk_number = 0;
+
         ui.Loadmoney();
     }
 }

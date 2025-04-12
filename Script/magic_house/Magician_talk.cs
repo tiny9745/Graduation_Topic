@@ -11,7 +11,8 @@ public class Magician_talk : MonoBehaviour
     public Sprite[] Main_character_face_change;
     public Sprite[] Magician_face_change;
     public Text name_text, talk_text, Narration_text;
-    public int talk_number = 0, into_talk_step = 0;
+    static public int talk_number = 0;
+    public int into_talk_step = 0;
     public UI_Place UI_place;
 
     // Start is called before the first frame update
@@ -48,7 +49,6 @@ public class Magician_talk : MonoBehaviour
         }
         else
         {
-            talk_number = Random.Range(3, 23);
             switch (talk_number)
             {
                 case 3:
@@ -235,7 +235,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -259,7 +258,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -283,7 +281,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -307,7 +304,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -331,7 +327,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -355,7 +350,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -379,7 +373,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -403,7 +396,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -427,7 +419,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -451,7 +442,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -475,7 +465,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -499,7 +488,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -523,7 +511,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -547,7 +534,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -571,7 +557,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -595,7 +580,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -619,7 +603,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -643,7 +626,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -667,7 +649,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }
@@ -691,7 +672,6 @@ public class Magician_talk : MonoBehaviour
                 talk_text.text = "只要看著城堡的屋頂方向，一直走就會到囉。";
                 break;
             default:
-                talk_number++;
                 open_level_up();
                 break;
         }

@@ -23,7 +23,7 @@ public class UI_Place : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && P1)
         {
-            isUpgrade = !isUpgrade; 
+            isUpgrade = !isUpgrade;
             if (isUpgrade)
             {
                 magician_talk_object.SetActive(true);
@@ -32,7 +32,7 @@ public class UI_Place : MonoBehaviour
             else
             {
                 magician_talk.close_magician_talk();
-            }  
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -66,6 +66,10 @@ public class UI_Place : MonoBehaviour
 
     public void magician_talk_open()
     {
+        if (Magician_talk.talk_number > 2)
+        {
+            Magician_talk.talk_number = Random.Range(3, 23);
+        }
         magician_talk.into_talk_step = 0;
         magician_talk.Magician_Talk();
     }
