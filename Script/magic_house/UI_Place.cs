@@ -27,6 +27,7 @@ public class UI_Place : MonoBehaviour
             if (isUpgrade)
             {
                 magician_talk_object.SetActive(true);
+                magician_talk_open();
             }
             else
             {

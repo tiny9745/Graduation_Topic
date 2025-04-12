@@ -27,7 +27,7 @@ public class Magician_talk : MonoBehaviour
         {
             Debug.Log("talk_number = " + talk_number);
             Debug.Log("into_talk_step = " + into_talk_step);
-            into_talk_step++;
+            Magician_Talk();
         }
     }
 
@@ -93,6 +93,7 @@ public class Magician_talk : MonoBehaviour
                     break;
             }
         }
+        into_talk_step++;
     }
 
     void magic_talk()
@@ -142,7 +143,6 @@ public class Magician_talk : MonoBehaviour
                 break;
         }
     }
-
 
     void open_level_up()
     {
