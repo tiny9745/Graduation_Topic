@@ -16298,7 +16298,7 @@ Transform:
   m_GameObject: {fileID: 1455601195591972434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 2, z: 53}
+  m_LocalPosition: {x: 4, y: 0, z: 53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16595,6 +16595,8 @@ MonoBehaviour:
   name_text: {fileID: 8162732016293609428}
   talk_text: {fileID: 8606883859794717152}
   Narration_text: {fileID: 6705815950182376168}
+  talk_number: 0
+  into_talk_step: 0
   UI_place: {fileID: 2081088859}
 --- !u!33 &5079217449714819550
 MeshFilter:
@@ -16644,6 +16646,7 @@ MonoBehaviour:
   wave_bar_range: 30
   Ad: {fileID: 5104066628531120931}
   Leave: {fileID: 8300000, guid: 76f7c6e936c363b4aaef408eee5c5bfa, type: 3}
+  magician_talk: {fileID: 4962806108963524786}
 --- !u!82 &5104066628531120931
 AudioSource:
   m_ObjectHideFlags: 0

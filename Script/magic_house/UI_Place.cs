@@ -66,6 +66,7 @@ public class UI_Place : MonoBehaviour
 
     public void magician_talk_open()
     {
+        magician_talk.into_talk_step = 0;
         magician_talk.Magician_Talk();
     }
 }
