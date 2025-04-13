@@ -66,9 +66,9 @@ public class UI_Place : MonoBehaviour
 
     public void magician_talk_open()
     {
-        if (Magician_talk.talk_number > 2)
+        if (Magician_talk.talk_number_M > 2)
         {
-            Magician_talk.talk_number = Random.Range(3, 23);
+            Magician_talk.talk_number_M = Random.Range(3, 15);
         }
         magician_talk.into_talk_step = 0;
         magician_talk.Magician_Talk();
