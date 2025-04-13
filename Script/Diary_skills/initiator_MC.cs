@@ -269,7 +269,7 @@ public class initiator_MC : MonoBehaviour
                         {
                             Skill_public_funtion.skill_11_throw_time += Time.deltaTime;
                         }
-                        else if (static_parameters.bullet_quantity < 4)
+                        else if (inventoryManager.ItemList.Count < 4)
                         {
                             Skill_public_funtion.skill_11_throw_time = 0;
                             StartCoroutine(skill_11_after());
@@ -294,7 +294,7 @@ public class initiator_MC : MonoBehaviour
 
     IEnumerator skill_11_after()
     {
-        skill11_animatorA[static_parameters.bullet_quantity].SetTrigger("skill11A");
+        skill11_animatorA[inventoryManager.ItemList.Count].SetTrigger("skill11A");
         yield return new WaitForSeconds(1.15f);
         Instantiate(throw11, Firepoint.position, transform.rotation);
     }
