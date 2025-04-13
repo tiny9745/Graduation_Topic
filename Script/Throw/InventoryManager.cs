@@ -32,7 +32,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (static_parameters.bullet_quantity > 0)
+        if (ItemList.Count > 0)
         {
             if (Input.GetKeyDown(KeyCode.K) && static_parameters.Ani_state < 3 && static_parameters.teaching_stop >= 2 && static_parameters.isTeaching == false)
             {
@@ -43,11 +43,10 @@ public class InventoryManager : MonoBehaviour
 
     public void Add(Item newItem)
     {
-        if (static_parameters.bullet_quantity < 4)
+        if (ItemList.Count < 4)
         {
             MC_throw_sound.PlayOneShot(audioClip[1]);
             ItemList.Add(newItem);
-            static_parameters.bullet_quantity++;
         }
     }
 
@@ -62,7 +61,6 @@ public class InventoryManager : MonoBehaviour
         {
             MC_throw_sound.PlayOneShot(audioClip[0]);
             bullet_into();
-            static_parameters.bullet_quantity--;
             _slot.UseItem();
             if (Skill_public_funtion.skill_14_enter)
             {
