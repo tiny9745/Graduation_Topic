@@ -7,7 +7,7 @@ using Unity.Mathematics;
 
 public class DragPiece_End : MonoBehaviour, IDropHandler
 {
-    public Ptest piece; public UI _ui;
+    public Ptest piece; public UI _ui; public Tips tips;
     static public List<int> currentCombination = new List<int>(); // 當前的組合
     public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
     public Image[] images_puzzle_col = new Image[4]; // 圖片顏色陣列
@@ -15,11 +15,11 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     public Image[] images_effect_change = new Image[4]; // 碎片更換陣列
     public Button composite_col;
     private Color newColor = new Color(1, 1, 1, 0.5f); // 按鈕透明度顏色
-    public Image button_image; // 按鈕圖像
-    private int puzzle_count = 0; // 碎片數量計數
+    public Image button_image;
+    private int puzzle_count = 0; 
     static public int puzzle_color = 2, end_count = -1; // 碎片顏色（默認為 2）
-    public AudioSource audioSource; // 音效來源
-    public AudioClip[] audioClip; // 音效片段
+    public AudioSource audioSource; 
+    public AudioClip[] audioClip; 
 
     void Start()
     {
@@ -36,7 +36,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             if (int.TryParse(droppedObject.name, out int itemNumber) && itemNumber > 0)
             {
                 if (static_parameters.teaching_stop == 8) static_parameters.teaching_stop = 9;
-                // 獲取拖放物件的相關數據
                 string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
                 string key_name = Ptest.show[itemNumber - 1].PieceName;
                 currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
@@ -67,6 +66,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     audioSource.PlayOneShot(audioClip[0]);
                     piece.page = 0;
                     ResetCombination();
+                    tips.SetColor("defult");
                 }
                 else if (checkResult == 2)
                 {
@@ -119,6 +119,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                         images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
                     }
                     if (checkResult != 2) newColor.a = 0.5f;
+                    tips.SetColor(key_color);
                 }
             }
         }
@@ -237,7 +238,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         {
             image.SetActive(false);
         }
-
+        tips.SetColor("defult");
         puzzle_count = 0;
         newColor.a = 0.5f;
     }
