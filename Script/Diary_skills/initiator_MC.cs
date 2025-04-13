@@ -14,7 +14,7 @@ public class initiator_MC : MonoBehaviour
     public Animator skill31_animator, skill31_animator_1, skill32_animator_1, skill32_animator_2, skill32_animator_3, skill33_animator_1, skill33_animator_2, skill33_animator_3;
     public Animator[] skill11_animatorA;
     public Transform skill_hit_box31_postion, skill33_Firepoint_1, skill33_Firepoint_2, skill33_Firepoint_3;
-    public InventoryManager inventoryManager;
+    // public InventoryManager inventoryManager;
     private float skill31_triggerDistance = 3f;
 
     private Vector3 Guardian4x_point = Vector3.zero;

@@ -5,8 +5,10 @@ public class ItemContainer : MonoBehaviour
 {
     public Item thisItem;
     public SphereCollider bomb_hitbox;
+    public InventoryManager inventoryManager;
     void Start()
     {
+        inventoryManager = FindObjectOfType<InventoryManager>();
         bomb_hitbox = GetComponent<SphereCollider>();
         bomb_hitbox.enabled = true;
     }
