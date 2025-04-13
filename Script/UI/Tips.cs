@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Tips : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -7,8 +8,9 @@ public class Tips : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Vector2 originalPosition;
     float shiftAmount = 275f;
     public float moveSpeed = 10f;
-
     private Vector2 targetPosition;
+    public Image Tipsimg;
+    public Sprite blue, red, green, purple, yellow,defult; // 顏色圖片
 
     void Start()
     {
@@ -30,6 +32,31 @@ public class Tips : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         targetPosition = originalPosition;
+    }
+
+    public void SetColor(string color)
+    {
+        switch (color.ToLower())
+        {
+            case "blu":
+                Tipsimg.sprite = blue;
+                break;
+            case "red":
+                Tipsimg.sprite = red;
+                break;
+            case "grn":
+                Tipsimg.sprite = green;
+                break;
+            case "prp":
+                Tipsimg.sprite = purple;
+                break;
+            case "yel":
+                Tipsimg.sprite = yellow;
+                break;
+            default:
+                Tipsimg.sprite = defult; // 預設圖片
+                break;
+        }
     }
 }
 
