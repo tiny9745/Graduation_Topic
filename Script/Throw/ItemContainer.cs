@@ -13,7 +13,7 @@ public class ItemContainer : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.gameObject.tag == "Player" && static_parameters.bullet_quantity < 4)
+        if (hit.gameObject.tag == "Player" && InventoryManager.Instance.ItemList.Count < 4)
         {
             bomb_hitbox.enabled = false;
             InventoryManager.Instance.Add(thisItem);
