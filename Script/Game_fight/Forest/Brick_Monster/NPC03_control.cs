@@ -457,7 +457,7 @@ public class NPC03_control : MonoBehaviour
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money02");
             static_parameters.money += 8;
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
+            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue * 0.5f);
             _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;

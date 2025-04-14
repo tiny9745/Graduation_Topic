@@ -11,10 +11,14 @@ public class Loading_241010 : MonoBehaviour
     public float loadingSpeed = 100f;
     public float maxFillAmount = 275f;
     private float scaleFactor;
+
     public float wave_bar_range = 30f;
-    private float targetFillAmount = 0f;
+
+    private float targetFillY = 0f;
+    private float waveCenterX = 0f;
     private float minimumLoadingTime = 2f;
     private float loadingTimeElapsed = 0f;
+
     public Vector3 newPosition_start;
     private GameObject BlackScreen;
     private GameObject player_S;
@@ -29,10 +33,10 @@ public class Loading_241010 : MonoBehaviour
 
         BlackScreen = GameObject.Find("Black");
         player_S = GameObject.Find("Player_S");
-        
+
         if (player_S != null)
             player_S.transform.localPosition = new Vector3(0, 0, -138);
-        
+
         if (BlackScreen != null && Death_MC.isDead)
             BlackScreen.SetActive(false);
 
@@ -46,7 +50,10 @@ public class Loading_241010 : MonoBehaviour
             loadingScreen.SetActive(true);
 
         if (loadingBar != null)
+        {
             newPosition_start = loadingBar.transform.position;
+            waveCenterX = newPosition_start.x;
+        }
 
         StartCoroutine(LoadSceneAsync(targetSceneName));
     }
@@ -56,7 +63,7 @@ public class Loading_241010 : MonoBehaviour
         if (loadingBar == null || loadingScreen == null)
             return;
 
-        if (loadingBar.transform.position.y >= targetFillAmount && screen_close && loadingTimeElapsed >= minimumLoadingTime)
+        if (loadingBar.transform.position.y >= targetFillY && screen_close && loadingTimeElapsed >= minimumLoadingTime)
         {
             screen_close = false;
             loadingScreen.SetActive(false);
@@ -72,38 +79,25 @@ public class Loading_241010 : MonoBehaviour
 
     void Screen_Loading()
     {
-        if (loadingBar == null)
-            return;
-
-        Vector3 newPosition_vertical = loadingBar.transform.position;
-        newPosition_vertical.y = Mathf.MoveTowards(newPosition_vertical.y, targetFillAmount, loadingSpeed * Time.deltaTime);
-        loadingBar.transform.position = newPosition_vertical;
+        Vector3 newPosition = loadingBar.transform.position;
+        newPosition.y = Mathf.MoveTowards(newPosition.y, targetFillY, loadingSpeed * Time.deltaTime);
+        loadingBar.transform.position = newPosition;
     }
 
     void Loading_bar_wave()
     {
-        if (loadingBar == null)
-            return;
+        Vector3 newPosition = loadingBar.transform.position;
+        float waveLeft = waveCenterX - wave_bar_range;
+        float waveRight = waveCenterX + wave_bar_range;
 
-        Vector3 newPosition_horizontal = loadingBar.transform.position;
-        if (newPosition_horizontal.x < newPosition_start.x - wave_bar_range)
-        {
-            wave_return = false;
-        }
-        else if (newPosition_horizontal.x > newPosition_start.x + wave_bar_range)
-        {
+        if (newPosition.x <= waveLeft)
             wave_return = true;
-        }
+        else if (newPosition.x >= waveRight)
+            wave_return = false;
 
-        if (wave_return)
-        {
-            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, loadingSpeed * Time.deltaTime / 3);
-        }
-        else
-        {
-            newPosition_horizontal.x = Mathf.MoveTowards(newPosition_horizontal.x, targetFillAmount, -loadingSpeed * Time.deltaTime / 3);
-        }
-        loadingBar.transform.position = newPosition_horizontal;
+        float xMove = loadingSpeed * Time.deltaTime / 3f;
+        newPosition.x += wave_return ? xMove : -xMove;
+        loadingBar.transform.position = newPosition;
     }
 
     IEnumerator LoadSceneAsync(string sceneName)
@@ -115,13 +109,14 @@ public class Loading_241010 : MonoBehaviour
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / 0.95f);
-            targetFillAmount = progress * maxFillAmount;
+            targetFillY = progress * maxFillAmount;
 
-            if (operation.progress >= 0.95f && loadingTimeElapsed >= minimumLoadingTime)
+            if (progress >= 0.95f && loadingTimeElapsed >= minimumLoadingTime)
             {
                 operation.allowSceneActivation = true;
             }
+
             yield return null;
-        } 
+        }
     }
 }

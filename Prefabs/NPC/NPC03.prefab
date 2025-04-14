@@ -291,7 +291,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4032549033181439169}
   - component: {fileID: 7261411825989990050}
-  - component: {fileID: 3563793196864100407}
   - component: {fileID: 1818161054931281942}
   m_Layer: 8
   m_Name: blocksLF_stb_0
@@ -367,20 +366,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3563793196864100407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324081461190397856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de3d6220f4e21fe4c8a247e3a5b7cca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 7261411825989990050}
-  sceneLight: {fileID: 0}
 --- !u!95 &1818161054931281942
 Animator:
   serializedVersion: 5
