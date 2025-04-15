@@ -34,7 +34,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (ItemList.Count > 0)
         {
-            if ((Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.Mouse1)) && static_parameters.Ani_state < 3 && static_parameters.teaching_stop >= 2 && static_parameters.isTeaching == false)
+            if ((Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.Mouse1)) && static_parameters.Bookstate == false && static_parameters.Ani_state < 3 && static_parameters.teaching_stop >= 2 && static_parameters.isTeaching == false)
             {
                 bullet_fire();
             }
