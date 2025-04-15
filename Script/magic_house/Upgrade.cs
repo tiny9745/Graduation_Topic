@@ -141,7 +141,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= ATK_price[0])
                         {
                             static_parameters.money -= ATK_price[0];
-                            static_parameters.MC_ATK += 5;
+                            static_parameters.MC_ATK += 13;
                             ATK_LV++; AB1.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -154,7 +154,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= ATK_price[1])
                         {
                             static_parameters.money -= ATK_price[1];
-                            static_parameters.MC_ATK += 8;
+                            static_parameters.MC_ATK += 21;
                             ATK_LV++; AB2.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -167,7 +167,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= ATK_price[2])
                         {
                             static_parameters.money -= ATK_price[2];
-                            static_parameters.MC_ATK += 13;
+                            static_parameters.MC_ATK += 34;
                             ATK_LV++; AB3.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -180,7 +180,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= ATK_price[3])
                         {
                             static_parameters.money -= ATK_price[3];
-                            static_parameters.MC_ATK += 21;
+                            static_parameters.MC_ATK += 55;
                             ATK_LV++; AB4.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -193,7 +193,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= ATK_price[4])
                         {
                             static_parameters.money -= ATK_price[4];
-                            static_parameters.MC_ATK += 34;
+                            static_parameters.MC_ATK += 89;
                             ATK_LV++; AB5.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -214,7 +214,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[0])
                         {
                             static_parameters.money -= DEF_price[0];
-                            static_parameters.MC_DEF += 5;
+                            static_parameters.MC_DEF += 8;
                             DEF_LV++; DB1.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -227,7 +227,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[1])
                         {
                             static_parameters.money -= DEF_price[1];
-                            static_parameters.MC_DEF += 8;
+                            static_parameters.MC_DEF += 13;
                             DEF_LV++; DB2.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -240,7 +240,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[2])
                         {
                             static_parameters.money -= DEF_price[2];
-                            static_parameters.MC_DEF += 13;
+                            static_parameters.MC_DEF += 21;
                             DEF_LV++; DB3.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -253,7 +253,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[3])
                         {
                             static_parameters.money -= DEF_price[3];
-                            static_parameters.MC_DEF += 21;
+                            static_parameters.MC_DEF += 34;
                             DEF_LV++; DB4.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -266,7 +266,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= DEF_price[4])
                         {
                             static_parameters.money -= DEF_price[4];
-                            static_parameters.MC_DEF += 34;
+                            static_parameters.MC_DEF += 55;
                             DEF_LV++; DB5.SetActive(true);
                             textbox.text = "升級成功";
                         }

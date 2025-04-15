@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 
 public class Shopoint : MonoBehaviour
@@ -23,7 +20,7 @@ public class Shopoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && P1)
+        if (Input.GetKeyDown(KeyCode.F) && P1 && !Setting_keybroad.ESC_col)
         {
             if (static_parameters.money >= price)
             {
