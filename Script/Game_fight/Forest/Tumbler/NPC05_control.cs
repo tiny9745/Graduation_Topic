@@ -131,7 +131,7 @@ public class NPC05_control : MonoBehaviour
             }
         }
 
-        if (TargetObj != null && npcNavi != null)
+        if (TargetObj != null && npcNavi != null && !stun)
         {
 
             npcNavi.destination = transform.position;
@@ -244,7 +244,7 @@ public class NPC05_control : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0)
+        if (NPC_HP > 0 && !stun)
         {
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
