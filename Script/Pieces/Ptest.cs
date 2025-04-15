@@ -193,8 +193,10 @@ public class Ptest : MonoBehaviour
 
     public void teaching_end_Pieces()
     {
-       int k = 0, l = 0;
-        for (int i = 0; i < availablePieces.Count; i++)
+        int k = 0, l = 0;
+        int count = 0;
+        count = Random.Range(1, 7);
+        for (int i = 0; i < count; i++)
         {
             if (availablePieces[i].PieceName.Substring(0, 3) == "Yel")
             {
