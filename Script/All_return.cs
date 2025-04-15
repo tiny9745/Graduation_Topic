@@ -1,22 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class All_return : MonoBehaviour
 {
     // Start is called before the first frame update
     public UI ui;
-    void Start()
+    private void OnSceneLoaded(Scene scene)
+    {
+        if (scene.name == "magic_house")
+        {
+            Start0();
+        }
+    }
+    public void Start0()
     {
         static_parameters.MC_HP_Max = 500;
         static_parameters.MC_HP = static_parameters.MC_HP_Max;
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
         static_parameters.MC_HP_Max_tmp = static_parameters.MC_HP_Max;
-        static_parameters.MC_ATK = 35;
+        static_parameters.MC_ATK = 40;
         static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
         static_parameters.MC_DEF = 10;
         static_parameters.MC_DEF_tmp = static_parameters.MC_DEF;
-        static_parameters.MC_Wspeed = 20f;
+        static_parameters.MC_Wspeed = 15f;
         static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
         static_parameters.knockback_force = 1;
         static_parameters.MC_ATK_Speed = 1;

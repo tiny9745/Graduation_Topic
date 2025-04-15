@@ -32,6 +32,10 @@ public class Scenes_Change_house_outside : MonoBehaviour
         {
             static_parameters.stage_number = 1;
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
+            foreach(var audio in FindObjectsOfType<AudioSource>()){
+              //audio.Stop();
+              if(audio.isPlaying)Debug.Log(audio.name);
+            }
             StartCoroutine(LoadSceneWithProgress("Fight_241130"));
         }
     }

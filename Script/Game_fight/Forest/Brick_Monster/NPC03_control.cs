@@ -24,8 +24,8 @@ public class NPC03_control : MonoBehaviour
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
     public Animator money_animator;
-    public AudioSource die_NPC;
-    public AudioSource MC_throw_NPC;
+    public AudioClip[] NPC03_audioclip;
+    public AudioSource NPC03_audiosource;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -336,7 +336,7 @@ public class NPC03_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_bullet"))
             {
-                MC_throw_NPC.PlayOneShot(MC_throw_NPC.clip);
+                NPC03_audiosource.PlayOneShot(NPC03_audioclip[1]);
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
@@ -457,7 +457,7 @@ public class NPC03_control : MonoBehaviour
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money02");
             static_parameters.money += 8;
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue * 0.5f);
+            NPC03_audiosource.PlayOneShot(NPC03_audioclip[0]);
             _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;

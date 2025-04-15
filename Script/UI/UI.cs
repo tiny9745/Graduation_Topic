@@ -44,7 +44,6 @@ public class UI : MonoBehaviour
             static_parameters.Bookstate = false;
             Notebook.SetActive(false);
             BattleUI.SetActive(true);
-            Ad.PlayOneShot(Close);
         }
     }
     public void Onclick1()
@@ -95,6 +94,7 @@ public class UI : MonoBehaviour
                 static_parameters.Bookstate = true;
                 Notebook.SetActive(true);
                 BattleUI.SetActive(false);
+                Ad.PlayOneShot(Open);
             }
             else
             {

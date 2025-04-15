@@ -13867,6 +13867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   piece: {fileID: 1086910000}
   _ui: {fileID: 1086909996}
+  tips: {fileID: 0}
   images_puzzle:
   - {fileID: 808646549}
   - {fileID: 147969121}
@@ -20142,7 +20143,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -26503,6 +26504,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  Tipsimg: {fileID: 0}
+  blue: {fileID: 0}
+  red: {fileID: 0}
+  green: {fileID: 0}
+  purple: {fileID: 0}
+  yellow: {fileID: 0}
+  defult: {fileID: 0}
 --- !u!114 &1545728226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39057,7 +39065,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665106452557131918}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25066262, y: -0.000000008328529, z: 0.0000000021564983, w: 0.9680745}
+  m_LocalRotation: {x: 0.25066262, y: 0.00000000832853, z: -0.0000000021564985, w: 0.9680745}
   m_LocalPosition: {x: -0.5, y: 12.52, z: 26.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48625,7 +48633,6 @@ MonoBehaviour:
   skill33_Firepoint_1: {fileID: 167108832}
   skill33_Firepoint_2: {fileID: 310251261}
   skill33_Firepoint_3: {fileID: 1743915123}
-  inventoryManager: {fileID: 3341608546117133715}
   C_mood: {fileID: 990590620}
 --- !u!54 &8830870452476947114
 Rigidbody:
@@ -48717,7 +48724,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
