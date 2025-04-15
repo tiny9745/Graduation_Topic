@@ -104,18 +104,21 @@ public class Death_MC : MonoBehaviour
         switch(Upgrade.Speed_LV)
         {
             case 1:
-                static_parameters.MC_Wspeed = 18f;
+                static_parameters.MC_Wspeed = 15f;
                 break;
             case 2:
-                static_parameters.MC_Wspeed = 22f;
+                static_parameters.MC_Wspeed = 18f;
                 break;
             case 3:
-                static_parameters.MC_Wspeed = 27f;
+                static_parameters.MC_Wspeed = 22f;
                 break;
             case 4:
-                static_parameters.MC_Wspeed = 32f;
+                static_parameters.MC_Wspeed = 27f;
                 break;
             case 5:
+                static_parameters.MC_Wspeed = 32f;
+                break;
+            case 6:
                 static_parameters.MC_Wspeed = 38f;
                 break;
 
