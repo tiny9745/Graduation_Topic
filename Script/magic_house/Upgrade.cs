@@ -373,7 +373,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[1])
                         {
                             static_parameters.money -= Speed_price[1];
-                            static_parameters.MC_Wspeed += 5f;
+                            static_parameters.MC_Wspeed += 4f;
                             Speed_LV++; SB2.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -386,7 +386,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[2])
                         {
                             static_parameters.money -= Speed_price[2];
-                            static_parameters.MC_Wspeed += 8f;
+                            static_parameters.MC_Wspeed += 5f;
                             Speed_LV++; SB3.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -399,7 +399,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[3])
                         {
                             static_parameters.money -= Speed_price[3];
-                            static_parameters.MC_Wspeed += 13f;
+                            static_parameters.MC_Wspeed += 5f;
                             Speed_LV++; SB4.SetActive(true);
                             textbox.text = "升級成功";
                         }
@@ -412,7 +412,7 @@ public class Upgrade : MonoBehaviour
                         if (static_parameters.money >= Speed_price[4])
                         {
                             static_parameters.money -= Speed_price[4];
-                            static_parameters.MC_Wspeed += 21f;
+                            static_parameters.MC_Wspeed += 6f;
                             Speed_LV++; SB5.SetActive(true);
                             textbox.text = "升級成功";
                         }
