@@ -80,15 +80,17 @@ public class Death_MC : MonoBehaviour
         yield return new WaitUntil(() => sceneLoaded);
         yield return new WaitForSeconds(2f);
         // 在場景加載完成後執行重生邏輯
+        static_parameters.reburn_ani = true;
         MC_S.transform.position = new Vector3(0, 0, 0);
-        Death.transform.localScale *= 5;
+        Death.transform.localScale = new Vector3(17f, 17f, 17f);
         Death.transform.localPosition = new Vector3(0, -400, -42);
         animator.SetTrigger("Reborn");
         audioSource.PlayOneShot(audioClip[0]);
         // 確保動畫結束後延遲7.5秒再繼續執行後續程式碼
         yield return new WaitForSeconds(7.5f);
         Death.transform.localPosition = new Vector3(0, 45, -42);
-        Death.transform.localScale /= 5;
+        Death.transform.localScale = new Vector3(3.4f, 3.4f, 3.4f);
+        static_parameters.reburn_ani = false;
         Death.SetActive(false);
         MC_Img.SetActive(true);
         Blood_Screen.SetActive(false);

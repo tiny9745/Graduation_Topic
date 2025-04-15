@@ -15,17 +15,28 @@ public class CameraDistanceControl : MonoBehaviour
     {
         if (static_parameters.stage_number == 6)
         {
-            death_MC.transform.localPosition = new Vector3(0, 32, -42);
-            death_MC.transform.localScale = new Vector3(2.1f, 2.1f, 2.1f);
+            death_MC.transform.localPosition = new Vector3(0, 25, -42);
+            death_MC.transform.localScale = new Vector3(2.05f, 2.05f, 2.05f);
             targetDistance = -35f;
             SetCameraDistance(targetDistance);
         }
         else
         {
-            death_MC.transform.localPosition = new Vector3(0, 45, -42);
-            death_MC.transform.localScale = new Vector3(3.4f, 3.4f, 3.4f);
-            targetDistance = -20f;
-            SetCameraDistance(targetDistance);
+            if (static_parameters.reburn_ani)
+            {
+                death_MC.transform.localPosition = new Vector3(0, -400, -42);
+                death_MC.transform.localScale = new Vector3(17f, 17f, 17f);
+                targetDistance = -20f;
+                SetCameraDistance(targetDistance);
+            }
+            else
+            {
+                death_MC.transform.localPosition = new Vector3(0, 45, -42);
+                death_MC.transform.localScale = new Vector3(3.4f, 3.4f, 3.4f);
+                targetDistance = -20f;
+                SetCameraDistance(targetDistance);
+            }
+
         }
     }
 
