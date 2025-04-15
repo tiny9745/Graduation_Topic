@@ -21,6 +21,12 @@ public class Guardian45_col : MonoBehaviour
         Guardian45_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 6f;
         Skill_public_funtion.skill_4x_Sorting++;
         player = GameObject.Find("Player_S");
+        if (this.transform.rotation.eulerAngles.y != 0)
+        {
+            Vector3 euler = transform.rotation.eulerAngles;
+            euler.y = 0;
+            transform.rotation = Quaternion.Euler(euler);
+        }
     }
 
     void Update()

@@ -27,6 +27,12 @@ public class Guardian41_col : MonoBehaviour
         Skill_public_funtion.skill_4x_Sorting++;
         player = GameObject.Find("Player_S");
         lastPlayerPosition = player.transform.position;
+        if (this.transform.rotation.eulerAngles.y != 0)
+        {
+            Vector3 euler = transform.rotation.eulerAngles;
+            euler.y = 0;
+            transform.rotation = Quaternion.Euler(euler);
+        }
     }
 
     void Update()
@@ -87,11 +93,11 @@ public class Guardian41_col : MonoBehaviour
 
     private void FaceTarget(Transform target)
     {
-        if (target.position.x > transform.position.x && isFacingRight)
+        if (target.position.x > transform.position.x && !isFacingRight)
         {
             Flip();
         }
-        else if (target.position.x < transform.position.x && !isFacingRight)
+        else if (target.position.x < transform.position.x && isFacingRight)
         {
             Flip();
         }

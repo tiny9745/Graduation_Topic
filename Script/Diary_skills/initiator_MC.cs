@@ -319,14 +319,14 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_42_enter)
                         {
                             Skill_public_funtion.skill_42_enter = false;
-                            Instantiate(Guardian42, Guardian4x_point, transform.rotation);
+                            Instantiate(Guardian42, Guardian4x_point, Quaternion.identity);
                         }
                         break;
                     case 43:
                         if (Skill_public_funtion.skill_43_enter)
                         {
                             Skill_public_funtion.skill_43_enter = false;
-                            Instantiate(Guardian43, Guardian4x_point, transform.rotation);
+                            Instantiate(Guardian43, Guardian4x_point, Quaternion.identity);
 
                         }
                         break;
@@ -334,14 +334,14 @@ public class initiator_MC : MonoBehaviour
                         if (Skill_public_funtion.skill_44_enter)
                         {
                             Skill_public_funtion.skill_44_enter = false;
-                            Instantiate(Guardian44, Guardian4x_point, transform.rotation);
+                            Instantiate(Guardian44, Guardian4x_point, Quaternion.identity);
                         }
                         break;
                     case 45:
                         if (Skill_public_funtion.skill_45_enter)
                         {
                             Skill_public_funtion.skill_45_enter = false;
-                            Instantiate(Guardian45, Guardian4x_point, transform.rotation);
+                            Instantiate(Guardian45, Guardian4x_point, Quaternion.identity);
                         }
                         break;
                 }
