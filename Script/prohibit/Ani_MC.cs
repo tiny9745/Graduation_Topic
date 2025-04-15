@@ -16,6 +16,7 @@ public class Ani_MC : MonoBehaviour
     short ATK_count = 0; bool atk_flag = false; float atk_time = 0;
     public AudioSource audioSource; // 音效播放元件
     public AudioClip[] walk_Sound;
+    public Teaching_TextF teaching_TextF;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -34,7 +35,7 @@ public class Ani_MC : MonoBehaviour
 
         if (atk_time >= 0.45f)
         {
-            if ((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.Bookstate == false)
+            if ((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.Bookstate == false && static_parameters.isTeaching == false && (teaching_TextF.talk_number >= 100 || teaching_TextF.talk_number < 12))
             {
                 atk_flag = true;
                 atk_time = 0;
@@ -49,7 +50,7 @@ public class Ani_MC : MonoBehaviour
         if (isAttackPlaying || static_parameters.Ani_state == -1) return;
 
         // 處理輸入
-        if (Input.GetKey(KeyCode.LeftShift) || (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.Mouse2)) && !isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.L)) && !isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
         {
             Skill_public_funtion.skill_31_dash = true;
             Skill_public_funtion.skill_33_Dash = true;
@@ -57,7 +58,7 @@ public class Ani_MC : MonoBehaviour
             audioSource.PlayOneShot(walk_Sound[3]);
             StartCoroutine(DashSequence());
         }
-        else if (((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.Bookstate == false && static_parameters.teaching_stop >= 2) || atk_flag)
+        else if (((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.Bookstate == false && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2 && (teaching_TextF.talk_number >= 100 || teaching_TextF.talk_number < 12)) || atk_flag)
         {
             ATK_Counter();
         }

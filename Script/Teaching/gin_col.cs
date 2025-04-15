@@ -20,8 +20,10 @@ public class gin_col : MonoBehaviour
     private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
     public UI _UI;
+    Ptest ptest;
     void Start()
     {
+        ptest = FindObjectOfType<Ptest>();
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
         presentPosition = Vector3.forward;
@@ -281,6 +283,7 @@ public class gin_col : MonoBehaviour
             {
                 Vector3 currentPosition = transform.position;
                 currentPosition.y = 2.5f;
+                ptest.teaching_end_Pieces();
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             Invoke("dead_after", 5);
