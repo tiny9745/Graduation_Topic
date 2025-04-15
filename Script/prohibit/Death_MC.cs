@@ -96,7 +96,9 @@ public class Death_MC : MonoBehaviour
         Death_Img.sprite = Death_Img_Sprite;
         isDead = true;
         static_parameters.Ani_state = 0;
-        Ani_MC.isAttackPlaying = false;
+        Ani_MC.isAttackPlaying = false; Ani_MC.isDashCooldown = false;
+        static_parameters.invincible = false;
+        Ani_MC.isDashCooldown_for_move = false;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
