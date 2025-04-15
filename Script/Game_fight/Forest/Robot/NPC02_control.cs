@@ -138,7 +138,7 @@ public class NPC02_control : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null)
         {
-            if (dist < DetectDistance && NPC_HP > 0)
+            if (dist < DetectDistance && NPC_HP > 0  && !stun)
             {
                 npcNavi.destination = TargetObj.transform.position;
             }
