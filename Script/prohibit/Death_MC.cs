@@ -100,6 +100,25 @@ public class Death_MC : MonoBehaviour
         static_parameters.Ani_state = 0;
         Ani_MC.isAttackPlaying = false; Ani_MC.isDashCooldown = false;
         static_parameters.invincible = false;
+        switch(Upgrade.Speed_LV)
+        {
+            case 1:
+                static_parameters.MC_Wspeed = 18f;
+                break;
+            case 2:
+                static_parameters.MC_Wspeed = 22f;
+                break;
+            case 3:
+                static_parameters.MC_Wspeed = 27f;
+                break;
+            case 4:
+                static_parameters.MC_Wspeed = 32f;
+                break;
+            case 5:
+                static_parameters.MC_Wspeed = 38f;
+                break;
+
+        }
         Ani_MC.isDashCooldown_for_move = false;
     }
 
