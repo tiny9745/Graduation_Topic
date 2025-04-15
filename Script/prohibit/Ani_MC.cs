@@ -50,7 +50,7 @@ public class Ani_MC : MonoBehaviour
         if (isAttackPlaying || static_parameters.Ani_state == -1) return;
 
         // 處理輸入
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.L)) && !isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.Mouse2)) && !isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0 && static_parameters.Bookstate == false)
         {
             Skill_public_funtion.skill_31_dash = true;
             Skill_public_funtion.skill_33_Dash = true;
