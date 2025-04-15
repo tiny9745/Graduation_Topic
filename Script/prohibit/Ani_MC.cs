@@ -34,7 +34,7 @@ public class Ani_MC : MonoBehaviour
 
         if (atk_time >= 0.45f)
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
             {
                 atk_flag = true;
                 atk_time = 0;
@@ -49,7 +49,7 @@ public class Ani_MC : MonoBehaviour
         if (isAttackPlaying || static_parameters.Ani_state == -1) return;
 
         // 處理輸入
-        if (Input.GetKeyDown(KeyCode.L) && !isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
+        if ((Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.Mouse2)) && !isDashCooldown && IsMoving() && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 0)
         {
             Skill_public_funtion.skill_31_dash = true;
             Skill_public_funtion.skill_33_Dash = true;
@@ -57,7 +57,7 @@ public class Ani_MC : MonoBehaviour
             audioSource.PlayOneShot(walk_Sound[3]);
             StartCoroutine(DashSequence());
         }
-        else if ((Input.GetKeyDown(KeyCode.J) && static_parameters.teaching_stop >= 2) || atk_flag)
+        else if (((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.teaching_stop >= 2) || atk_flag)
         {
             ATK_Counter();
         }
