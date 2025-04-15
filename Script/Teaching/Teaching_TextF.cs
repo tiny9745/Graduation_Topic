@@ -415,6 +415,7 @@ public class Teaching_TextF : MonoBehaviour
 
     private void Teaching_end()
     {
+        static_parameters.isTeaching = true;
         inventoryManager.Clear();
         itemSlot[0].Clean();
         itemSlot[1].Clean();
