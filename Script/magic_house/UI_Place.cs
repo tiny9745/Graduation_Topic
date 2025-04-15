@@ -21,7 +21,7 @@ public class UI_Place : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && P1)
+        if (Input.GetKeyDown(KeyCode.F) && P1 && !Setting_keybroad.ESC_col)
         {
             isUpgrade = !isUpgrade;
             if (isUpgrade)

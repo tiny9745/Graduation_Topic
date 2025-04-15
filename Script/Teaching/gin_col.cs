@@ -15,6 +15,7 @@ public class gin_col : MonoBehaviour
     bool hit_Ani = false, hit = false, dead_open = true, MC_to_Att = true;
     int open_EnableHitbox = 0;
     public bool stun; private bool isFacingRight = true;
+    private float fadeDuration = 5f, fadeTimer = 0f;
     private Vector3 lastPosition, presentPosition;
     private Quaternion initialRotation;
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private UnityEngine.Color originalColor; private bool isCoroutineRunning = false;
@@ -77,6 +78,7 @@ public class gin_col : MonoBehaviour
             hitbox_Brick_Monster.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
+            fade();
             dead();
         }
         else if (hit_Ani)
@@ -303,6 +305,15 @@ public class gin_col : MonoBehaviour
             {
                 StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
             }
+        }
+    }
+    void fade()
+    {
+        if (fadeTimer < fadeDuration)
+        {
+            fadeTimer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, fadeTimer / fadeDuration);
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
         }
     }
     IEnumerator ResetColorAfterDelay(float delay)
