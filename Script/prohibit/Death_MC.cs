@@ -102,6 +102,7 @@ public class Death_MC : MonoBehaviour
         Ani_MC.isDashCooldown = false; Ani_MC.isDashCooldown_for_move = false;
         static_parameters.into_gameFight = false;
         static_parameters.invincible = false;
+        Skill_public_funtion.skill_0X_MC_atk = static_parameters.MC_ATK;
         switch(Upgrade.Speed_LV)
         {
             case 1:

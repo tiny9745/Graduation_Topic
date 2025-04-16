@@ -13,7 +13,7 @@ public class Skill_public_funtion : MonoBehaviour // this change Remembers chang
     static public float MC_HP_tmp = static_parameters.MC_HP;
     static public float MC_Wspeed_tmp = static_parameters.MC_Wspeed;
     static public float skill_01_time = 0;
-    static public float skill_02_MC_atk = static_parameters.MC_ATK;
+    static public float skill_0X_MC_atk = static_parameters.MC_ATK;
     static public bool skill_04_atk = true;
     static public bool skill_05_atk = false;
 

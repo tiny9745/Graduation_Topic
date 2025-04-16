@@ -57,7 +57,6 @@ public class initiator_MC : MonoBehaviour
             {
                 if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
                 {
-                    Skill_public_funtion.skill_02_MC_atk = static_parameters.MC_ATK;
                     switch (icon.iconID)
                     {
                         case 1:
@@ -79,7 +78,7 @@ public class initiator_MC : MonoBehaviour
                             {
                                 Skill_public_funtion.MC_HP_tmp = static_parameters.MC_HP;
 
-                                static_parameters.MC_ATK = Skill_public_funtion.skill_02_MC_atk * Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
+                                static_parameters.MC_ATK = Skill_public_funtion.skill_0X_MC_atk * Mathf.Pow(1.75f - static_parameters.MC_HP / static_parameters.MC_HP_Max, 2);
                                 Debug.Log("skill02:" + static_parameters.MC_ATK);
                                 if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.2f)
                                 {
@@ -101,7 +100,7 @@ public class initiator_MC : MonoBehaviour
                             {
                                 skill04A.SetTrigger("skill04_A");
                                 Skill_public_funtion.skill_04_atk = false;
-                                static_parameters.MC_ATK *= 1.5f;
+                                static_parameters.MC_ATK = Skill_public_funtion.skill_0X_MC_atk * 1.5f;
                             }
                             break;
                         case 5:
@@ -111,7 +110,7 @@ public class initiator_MC : MonoBehaviour
                                 skill05A.SetBool("skill05_bool", true);
                                 Skill_public_funtion.skill_05_atk = true;
                                 static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
-                                static_parameters.MC_ATK *= 1.5f;
+                                static_parameters.MC_ATK = Skill_public_funtion.skill_0X_MC_atk * 1.5f;
                             }
                             break;
                     }
@@ -125,7 +124,7 @@ public class initiator_MC : MonoBehaviour
                         case 3:
                         case 4:
                         case 5:
-                            Skill_public_funtion.skill_02_MC_atk = static_parameters.MC_ATK;
+                            Skill_public_funtion.skill_0X_MC_atk = static_parameters.MC_ATK;
                             skill03C.SetInteger("A03C", 0);
                             skill01_animator.SetInteger("skill_0x", 1);
                             break;

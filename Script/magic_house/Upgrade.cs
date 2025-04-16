@@ -214,6 +214,7 @@ public class Upgrade : MonoBehaviour
                         textbox.text = "已達最高等級";
                         break;
                 }
+                skill_nmueric_renew_ATK();
                 break;
             case 2:
                 switch (DEF_LV)
@@ -628,5 +629,10 @@ public class Upgrade : MonoBehaviour
                 KB1.SetActive(true); KB2.SetActive(true); KB3.SetActive(true); KB4.SetActive(true); KB5.SetActive(true);
                 break;
         }
+    }
+
+    private void skill_nmueric_renew_ATK()
+    {
+        Skill_public_funtion.skill_0X_MC_atk = static_parameters.MC_ATK;
     }
 }
