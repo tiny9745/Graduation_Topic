@@ -21,8 +21,8 @@ public class NPC02_control : MonoBehaviour
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
     private float fadeDuration = 5f, fadeTimer = 0f;
     public Animator money_animator;
-    public AudioSource die_NPC;
-    public AudioSource MC_throw_NPC;
+    public AudioClip[] NPC02_audioclip;
+    public AudioSource NPC02_audiosource;
 
     void Start()
     {
@@ -317,7 +317,7 @@ public class NPC02_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_bullet"))
             {
-                MC_throw_NPC.PlayOneShot(MC_throw_NPC.clip);
+                NPC02_audiosource.PlayOneShot(NPC02_audioclip[1]);
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
@@ -446,7 +446,7 @@ public class NPC02_control : MonoBehaviour
             }
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money01");
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
+            NPC02_audiosource.PlayOneShot(NPC02_audioclip[0]);
             static_parameters.money += 12;
             _UI.Loadmoney();
             Invoke("dead_after", 5);

@@ -23,8 +23,8 @@ public class NPC01_1_control : MonoBehaviour
     SpriteRenderer spriterenderer;
     public UI _UI;
     public Animator money_animator;
-    public AudioSource die_NPC;
-    public AudioSource MC_throw_NPC;
+    public AudioClip[] NPC01_1_audioclip;
+    public AudioSource NPC01_1_audiosource;
 
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
 
@@ -406,7 +406,7 @@ public class NPC01_1_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_bullet"))
             {
-                MC_throw_NPC.PlayOneShot(MC_throw_NPC.clip);
+                NPC01_1_audiosource.PlayOneShot(NPC01_1_audioclip[1]);
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
@@ -555,7 +555,7 @@ public class NPC01_1_control : MonoBehaviour
             }
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money01");
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue * 0.5f);
+            NPC01_1_audiosource.PlayOneShot(NPC01_1_audioclip[0]);
             static_parameters.money += 3;
             _UI.Loadmoney();
             Destroy(gameObject);
