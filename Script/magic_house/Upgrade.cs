@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Upgrade : MonoBehaviour
 {
     // Start is called before the first frame update
+    UI ui;
     public GameObject ATK_plus, DEF_plus, HP_plus, Speed_plus, Knockback_plus;
     public GameObject AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
                   SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;
@@ -132,6 +133,7 @@ public class Upgrade : MonoBehaviour
     }
     public void Pay()
     {
+        ui = GameObject.Find("UI").GetComponent<UI>();
         switch (Click)
         {
             case 1:
@@ -503,6 +505,7 @@ public class Upgrade : MonoBehaviour
                 textbox.text = "請選擇升級項目";
                 break;
         }
+        ui.Loadmoney();
     }
     public void Cancel(){
         Click = 0;
