@@ -76,6 +76,7 @@ public class UI : MonoBehaviour
                 static_parameters.Bookstate = false;
                 Notebook.SetActive(false);
                 BattleUI.SetActive(true);
+                dragPiece_End.ResetCombination();
                 Ad.PlayOneShot(Close);
             }
             else
@@ -102,6 +103,7 @@ public class UI : MonoBehaviour
                 static_parameters.Bookstate = false;
                 Notebook.SetActive(false);
                 BattleUI.SetActive(true);
+                dragPiece_End.ResetCombination();
                 Ad.PlayOneShot(Close);
             }
         }

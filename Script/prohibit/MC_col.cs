@@ -148,13 +148,13 @@ public class MC_col : MonoBehaviour
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
         }
-        if (other.CompareTag("Bomb_Fruit"))
+        if (other.CompareTag("Bomb_Fruit")&& !static_parameters.invincible)
         {
             Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
         }
-        if (other.CompareTag("BOSS_Atk"))
+        if (other.CompareTag("BOSS_Atk")&& !static_parameters.invincible)
         {
             Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
             renderer1.material = Deduct_Blood;
@@ -165,7 +165,7 @@ public class MC_col : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
-        if (other.CompareTag("Thorns") && !Throns_wait)
+        if (other.CompareTag("Thorns") && !Throns_wait&& !static_parameters.invincible)
         {
             Throns_wait = true;
             Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
