@@ -124,7 +124,6 @@ public class Death_MC : MonoBehaviour
                 break;
 
         }
-        Ani_MC.isDashCooldown_for_move = false;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
