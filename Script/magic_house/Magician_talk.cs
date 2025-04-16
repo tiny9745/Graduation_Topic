@@ -15,10 +15,12 @@ public class Magician_talk : MonoBehaviour
     public int into_talk_step = 0;
     public UI_Place UI_place;
     int originalSize, smallerSize;
+    public Canvas canvas;
 
     // Start is called before the first frame update
     void Start()
     {
+        canvas.sortingOrder = -1000;
         originalSize = talk_text.fontSize;
         smallerSize = originalSize / 2;
     }
@@ -26,7 +28,7 @@ public class Magician_talk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && UI_place.isUpgrade)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && UI_place.isUpgrade && !Setting_keybroad.ESC_col)
         {
             Magician_Talk();
         }

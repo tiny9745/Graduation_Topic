@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraDistanceControl : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class CameraDistanceControl : MonoBehaviour
                 death_MC.transform.localPosition = new Vector3(0, -400, -42);
                 death_MC.transform.localScale = new Vector3(17f, 17f, 17f);
                 targetDistance = -20f;
+                SetCameraDistance(targetDistance);
+            }
+            else if (SceneManager.GetActiveScene().name == "magic_house")
+            {
+                death_MC.transform.localPosition = new Vector3(0, 25, -42);
+                death_MC.transform.localScale = new Vector3(3.4f, 3.4f, 3.4f);
+                targetDistance = -12f;
                 SetCameraDistance(targetDistance);
             }
             else

@@ -9,10 +9,6 @@ public class outside_back : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     void Start()
     {
-        if (static_parameters.teaching_stop < 100 || static_parameters.isTeaching == true)
-        {
-            Destroy(gameObject);
-        }
         player_S = GameObject.Find("Player_S");
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = new Color(1, 1, 1, 0.5f);

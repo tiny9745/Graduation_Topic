@@ -103,7 +103,7 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 7:
                 close();
-                teach_text.text = "*WASD控制曦然去玩偶區拿起鴨子布偶來防禦吧！*";
+                teach_text.text = "WASD控制曦然去玩偶區拿起鴨子布偶來防禦吧！";
                 if (static_parameters.teaching_stop == -1)
                 {
                     teaching_sprite_keycode[0].SetActive(true);
@@ -112,14 +112,14 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 8:
                 teaching_sprite_keycode[0].SetActive(false);
-                teach_text.text = "*走出門口，查看莓莓的情況*";
+                teach_text.text = "走出門口，查看莓莓的情況";
                 break;
             case 9:
                 teaching_sprite_keycode[1].SetActive(true);
-                teach_text.text = "*莓莓要受傷了！快按下J鍵使用鴨子布偶來攻擊敵人！*";
+                teach_text.text = "莓莓要受傷了！快按下滑鼠左鍵使用鴨子布偶來攻擊敵人！";
                 break;
             case 10:
-                teach_text.text = "*把剩餘士兵擊退吧！*";
+                teach_text.text = "把剩餘士兵擊退吧！";
                 break;
             case 11:
                 magic_talk();
@@ -154,7 +154,7 @@ public class Teaching_TextF : MonoBehaviour
                 static_parameters.teaching_stop = 6;
                 Diary_object.SetActive(true);
                 teaching_sprite_keycode[3].SetActive(true);
-                teach_text.text = "*按下Z鍵，打開筆記本吧！*";
+                teach_text.text = "按下Z鍵，打開筆記本吧！";
                 break;
             case 18:
                 open(); ;
@@ -170,7 +170,7 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 20:
                 close();
-                teach_text.text = "*將剛剛獲得的碎片拖曳到畫面上試試看！*";
+                teach_text.text = "將剛剛獲得的碎片拖曳到畫面上試試看！";
                 break;
             case 21:
                 close_co();
@@ -266,7 +266,7 @@ public class Teaching_TextF : MonoBehaviour
             if (static_parameters.teaching_stop == 1)
             {
                 talk_number++;
-                teach_text.text = "*走出門口，查看莓莓的情況*";
+                teach_text.text = "走出門口，查看莓莓的情況";
             }
         }
         else if (talk_number == 8)
@@ -275,7 +275,7 @@ public class Teaching_TextF : MonoBehaviour
             {
                 talk_number++;
                 teaching_sprite_keycode[1].SetActive(true);
-                teach_text.text = "*莓莓要受傷了！快按下J鍵使用鴨子布偶來攻擊敵人！*";
+                teach_text.text = "莓莓要受傷了！快按下滑鼠左鍵使用鴨子布偶來攻擊敵人！";
             }
         }
         else if (talk_number == 9)
@@ -285,7 +285,7 @@ public class Teaching_TextF : MonoBehaviour
                 talk_number++;
                 Blood_object.SetActive(true);
                 Throwing_object.SetActive(true);
-                teach_text.text = "*把剩餘士兵擊退吧！*";
+                teach_text.text = "把剩餘士兵擊退吧";
                 teaching_sprite_keycode[1].SetActive(false);
                 teaching_sprite_keycode[2].SetActive(true);
                 Instantiate(teaching_throwing_object, player_S.transform.position, Quaternion.identity, transform);
