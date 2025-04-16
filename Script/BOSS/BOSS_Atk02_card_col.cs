@@ -18,7 +18,7 @@ public class BOSS_Atk02_card_col : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && !static_parameters.invincible)
         {
             static_parameters.MC_HP -= static_parameters.MC_HP_Max * 0.1f;
             Destroy(gameObject);
