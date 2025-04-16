@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class UI_Place : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject Upgrade;
+    public Upgrade UP;
+    public GameObject Ugrade;
     public SpriteRenderer buttonImage;
     public Sprite F, none;
     public bool isUpgrade, P1 = false;
@@ -55,12 +55,13 @@ public class UI_Place : MonoBehaviour
     {
         if (isUpgrade)
         {
-            Upgrade.SetActive(true);
+            Ugrade.SetActive(true);
+            UP.check(Upgrade.ATK_LV, Upgrade.DEF_LV, Upgrade.HP_LV, Upgrade.Speed_LV, Upgrade.Knockback_LV);
             Ad.PlayOneShot(Open);
         }
         else
         {
-            Upgrade.SetActive(false);
+            Ugrade.SetActive(false);
         }
     }
 

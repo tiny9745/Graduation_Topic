@@ -6,6 +6,8 @@ public class Shopoint : MonoBehaviour
     public SpriteRenderer Goods,sign;//指定實體物件
     public Sprite item1, item2, item3, item4, item5;
     public Sprite Price1, Price2, Price3, Price4, Price5;
+    public SpriteRenderer buttonImage;
+    public Sprite F, none;
     public AudioSource Ad;
     public AudioClip Heal, fall;
     bool P1 = false;
@@ -38,6 +40,15 @@ public class Shopoint : MonoBehaviour
         if (other.tag == "Player")
         {
             P1 = true;
+            buttonImage.sprite = F;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            P1 = false;
+            buttonImage.sprite = none;
         }
     }
     void Setgoods(int num)
