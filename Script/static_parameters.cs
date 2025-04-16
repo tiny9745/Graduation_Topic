@@ -30,4 +30,6 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
     static public int into_gameFight_Levels = 0;//戰鬥場景選擇的關卡
     static public bool next_door = false;
     static public bool reburn_ani = false;
+
+    static public bool isUpgrade_tmp = true;
 }

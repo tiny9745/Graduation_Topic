@@ -24,6 +24,7 @@ public class UI_Place : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && P1 && !Setting_keybroad.ESC_col)
         {
             isUpgrade = !isUpgrade;
+            static_parameters.isUpgrade_tmp = true;
             if (isUpgrade)
             {
                 magician_talk_object.SetActive(true);
@@ -61,6 +62,7 @@ public class UI_Place : MonoBehaviour
         }
         else
         {
+            static_parameters.isUpgrade_tmp = false;
             Ugrade.SetActive(false);
         }
     }
