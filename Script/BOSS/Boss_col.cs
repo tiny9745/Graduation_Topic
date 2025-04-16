@@ -39,6 +39,8 @@ public class Boss_col : MonoBehaviour
                 BOSS_live = false;
                 Boss_Animator.SetTrigger("die");
                 Destroy(Boss_Skill);
+                static_parameters.invincible = true;
+                static_parameters.MC_HP += 40;
                 StartCoroutine(Dead_after(1.5f));
             }
             return;
@@ -600,7 +602,6 @@ public class Boss_col : MonoBehaviour
                 break;
         }
     }
-
     IEnumerator Dead_after(float wait)
     {
         yield return new WaitForSeconds(wait);

@@ -12,7 +12,7 @@ public class BOSS_Atk01 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !static_parameters.invincible)
         {
             static_parameters.MC_HP -= BOSS_Atk;
             BOSS_Atk01_Tips_Tip.enabled = false;

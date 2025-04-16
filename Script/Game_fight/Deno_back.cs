@@ -23,6 +23,7 @@ public class Deno_back : MonoBehaviour
         Destroy(UI);
         Destroy(Player_S);
         Destroy(Camera);
+        static_parameters.invincible = false;
         SceneManager.LoadScene("menu");
         image_complete.SetActive(false);
     }
