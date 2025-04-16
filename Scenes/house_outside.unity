@@ -12259,6 +12259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3149005636372109222}
+  - component: {fileID: 3149005636372109223}
   m_Layer: 0
   m_Name: candy door
   m_TagString: Untagged
@@ -12586,6 +12587,19 @@ Transform:
   - {fileID: 748327740}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &3149005636372109223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375740465373367580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827861ea93fb1d04d83a776255ab4adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  back_door: {fileID: 748327739}
 --- !u!212 &3162634358929228541
 SpriteRenderer:
   m_ObjectHideFlags: 0
