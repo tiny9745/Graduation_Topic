@@ -29,7 +29,7 @@ public class initiator_MC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.Delete))
         {
             Reborn();
         }
