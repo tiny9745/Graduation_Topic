@@ -28,6 +28,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && (static_parameters.teaching_stop == 1 || static_parameters.teaching_stop >= 100))
         {
+            static_parameters.isUpgrade_tmp = false;
             magician_talk.close_magician_talk();
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
             StartCoroutine(LoadSceneWithProgress("house_outside"));
@@ -38,6 +39,7 @@ public class Scenes_Change_Magic_house : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && (static_parameters.teaching_stop == 1 || static_parameters.teaching_stop >= 100))
         {
+            static_parameters.isUpgrade_tmp = false;
             magician_talk.close_magician_talk();
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
             StartCoroutine(LoadSceneWithProgress("house_outside"));
