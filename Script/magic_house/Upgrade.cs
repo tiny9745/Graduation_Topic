@@ -213,7 +213,9 @@ public class Upgrade : MonoBehaviour
                     case 6:
                         textbox.text = "已達最高等級";
                         break;
+                        
                 }
+                static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
                 break;
             case 2:
                 switch (DEF_LV)
