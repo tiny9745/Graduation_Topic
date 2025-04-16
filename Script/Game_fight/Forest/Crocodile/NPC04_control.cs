@@ -25,8 +25,8 @@ public class NPC04_control : MonoBehaviour
     float retreatDistance = 115f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
     public Animator money_animator;
-    public AudioSource die_NPC;
-    public AudioSource MC_throw_NPC;
+    public AudioClip[] NPC04_audioclip;
+    public AudioSource NPC04_audiosource;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -342,7 +342,7 @@ public class NPC04_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_bullet"))
             {
-                MC_throw_NPC.PlayOneShot(MC_throw_NPC.clip);
+                NPC04_audiosource.PlayOneShot(NPC04_audioclip[1]);
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
@@ -498,7 +498,7 @@ public class NPC04_control : MonoBehaviour
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money02");
             static_parameters.money += 7;
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
+            NPC04_audiosource.PlayOneShot(NPC04_audioclip[0]);
             _UI.Loadmoney();
             Invoke("dead_after", 5);
             dead_open = false;

@@ -26,8 +26,8 @@ public class NPC01_control : MonoBehaviour
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
-    public AudioSource die_NPC;
-    public AudioSource MC_throw_NPC;
+    public AudioClip[] NPC01_audioclip;
+    public AudioSource NPC01_audiosource;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -364,7 +364,7 @@ public class NPC01_control : MonoBehaviour
 
             if (other.gameObject.CompareTag("MC_bullet"))
             {
-                MC_throw_NPC.PlayOneShot(MC_throw_NPC.clip);
+                NPC01_audiosource.PlayOneShot(NPC01_audioclip[1]);
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
@@ -510,7 +510,7 @@ public class NPC01_control : MonoBehaviour
 
             Instantiate(NPC01_1, position1, Quaternion.identity);
             Instantiate(NPC01_1, position2, Quaternion.identity);
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
+            NPC01_audiosource.PlayOneShot(NPC01_audioclip[0]);
             static_parameters.Change_enemy--;
             Des();
             dead_open = false;

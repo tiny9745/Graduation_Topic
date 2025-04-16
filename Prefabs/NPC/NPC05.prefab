@@ -801,6 +801,7 @@ GameObject:
   - component: {fileID: 2603399157729147372}
   - component: {fileID: 2205547972064253545}
   - component: {fileID: 8899910056404468358}
+  - component: {fileID: 7262188600521960383}
   m_Layer: 8
   m_Name: NPC05
   m_TagString: NPC
@@ -890,8 +891,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ba28066983456844b2bc5c54f9266f4, type: 3}
   spriteTransform: {fileID: 6711105397446213481}
   money_animator: {fileID: 2697514895865491363}
-  die_NPC: {fileID: 2779182728853518810}
-  MC_throw_NPC: {fileID: 5601608005036977999}
+  NPC05_audioclip: []
+  NPC05_audiosource: {fileID: 7353954899821883740}
 --- !u!195 &3665255063097316469
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1098,6 +1099,18 @@ MonoBehaviour:
   skill25_2_animator: {fileID: 2409469628938790005}
   Img_skill02: {fileID: 7761833458448430190}
   Img_skill05: {fileID: 1215400677225775233}
+--- !u!114 &7262188600521960383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695759851995036783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a395d48e6a3c9a442b2dbeaea04b42d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2805396359829303335
 GameObject:
   m_ObjectHideFlags: 0

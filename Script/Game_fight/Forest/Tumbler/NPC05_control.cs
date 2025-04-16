@@ -19,12 +19,12 @@ public class NPC05_control : MonoBehaviour
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public Transform firePoint;
-    public AudioSource audioSource; public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
+     public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
     private float fadeDuration = 5f, fadeTimer = 0f;
     public Animator money_animator;
-    public AudioSource die_NPC;
-    public AudioSource MC_throw_NPC;
+    public AudioClip[] NPC05_audioclip;
+    public AudioSource NPC05_audiosource;
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -43,8 +43,6 @@ public class NPC05_control : MonoBehaviour
                 renderer.enabled = false;
             }
         }
-        audioSource = GetComponent<AudioSource>();
-        audioSource.volume = static_parameters._SE_volue;
         npcNavi = GetComponent<NavMeshAgent>();
         if (npcNavi != null)
         {
@@ -272,7 +270,7 @@ public class NPC05_control : MonoBehaviour
             // Omit the middle
             if (other.gameObject.CompareTag("MC_bullet"))
             {
-                MC_throw_NPC.PlayOneShot(MC_throw_NPC.clip);
+                NPC05_audiosource.PlayOneShot(NPC05_audioclip[1]);
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
@@ -332,9 +330,9 @@ public class NPC05_control : MonoBehaviour
 
     private void PlaySoundAtIndex(int index)
     {
-        if (meleeSwingSounds.Length > index && audioSource != null)
+        if (meleeSwingSounds.Length > index && NPC05_audiosource != null)
         {
-            audioSource.PlayOneShot(meleeSwingSounds[index]);
+            NPC05_audiosource.PlayOneShot(meleeSwingSounds[index]);
         }
     }
 
@@ -388,7 +386,7 @@ public class NPC05_control : MonoBehaviour
             }
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money02");
-            die_NPC.PlayOneShot(die_NPC.clip, static_parameters._SE_volue* 0.5f);
+           NPC05_audiosource.PlayOneShot(NPC05_audioclip[0]);
             static_parameters.money += 5;
             _UI.Loadmoney();
             Invoke("dead_after", 5);
