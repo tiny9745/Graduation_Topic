@@ -122,9 +122,7 @@ public class Death_MC : MonoBehaviour
             case 6:
                 static_parameters.MC_Wspeed = 38f;
                 break;
-
         }
-        Ani_MC.isDashCooldown_for_move = false;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
