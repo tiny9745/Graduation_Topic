@@ -277,16 +277,16 @@ public class NPC05_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        nPC_hP.TakeDamage(20, NPC05_DEF);
+                        nPC_hP.TakeDamage(50, NPC05_DEF);
                         break;
                     case 2:
-                        nPC_hP.TakeDamage(20, NPC05_DEF);
+                        nPC_hP.TakeDamage(50, NPC05_DEF);
                         break;
                     case 3:
-                        nPC_hP.TakeDamage(20, NPC05_DEF);
+                        nPC_hP.TakeDamage(50, NPC05_DEF);
                         break;
                     case 4:
-                        nPC_hP.TakeDamage(20, NPC05_DEF);
+                        nPC_hP.TakeDamage(50, NPC05_DEF);
                         break;
                 }
             }

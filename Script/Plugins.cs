@@ -28,6 +28,7 @@ public class Plugins : MonoBehaviour
                 static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
                 static_parameters.MC_DEF = 10;
                 static_parameters.money -= 1000;
+                if (static_parameters.money < 0) static_parameters.money = 0;
                 ui.Loadmoney();
             }
         }

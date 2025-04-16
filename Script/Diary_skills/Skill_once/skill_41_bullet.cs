@@ -9,6 +9,7 @@ public class skill_41_bullet : MonoBehaviour
     public Animator Guardian_41_bullet;
     public GameObject Img_Guardian; // 需要設定 Guardian 的圖像
     private bool isFacingRight = true;
+    float lifetime = 5;
 
     void Start()
     {
@@ -23,10 +24,12 @@ public class skill_41_bullet : MonoBehaviour
                 CheckAndFlip(nearestNPC.transform.position); // 初始時檢查翻轉
             }
         }
+        Destroy(gameObject, lifetime);
     }
 
     void Update()
     {
+        if (static_parameters.Change_enemy == 0) Destroy(gameObject);
         transform.position += moveDirection * speed * Time.deltaTime;
     }
 

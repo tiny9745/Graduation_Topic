@@ -25,6 +25,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
         player_S = GameObject.Find("Player_S");
         player_S.transform.position = new Vector3(0, 0, -15);
         newPosition_start = new Vector2(737f, -557f);
+        static_parameters.into_gameFight_Levels = Random.Range(0, 5);
     }
     private void OnTriggerEnter(Collider Hit)
     {
@@ -32,9 +33,10 @@ public class Scenes_Change_house_outside : MonoBehaviour
         {
             static_parameters.stage_number = 1;
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
-            foreach(var audio in FindObjectsOfType<AudioSource>()){
-              //audio.Stop();
-              if(audio.isPlaying)Debug.Log(audio.name);
+            foreach (var audio in FindObjectsOfType<AudioSource>())
+            {
+                //audio.Stop();
+                if (audio.isPlaying) Debug.Log(audio.name);
             }
             StartCoroutine(LoadSceneWithProgress("Fight_241130"));
         }

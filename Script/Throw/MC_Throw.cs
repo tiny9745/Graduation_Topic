@@ -5,8 +5,7 @@ using UnityEngine;
 public class MC_Throw : MonoBehaviour
 {
     // Start is called before the first frame update
-    float speed = 15f, lifetime = 3f;
-    public int damage = 10;
+    float speed = 30f, lifetime = 3f;
     public GameObject targetObject;
     Vector3 moveDirection;
     Transform targetTransform;
