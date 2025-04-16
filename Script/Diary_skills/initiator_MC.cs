@@ -57,6 +57,7 @@ public class initiator_MC : MonoBehaviour
             {
                 if (static_parameters.MC_HP / static_parameters.MC_HP_Max <= 0.6f)
                 {
+                    Skill_public_funtion.skill_02_MC_atk = static_parameters.MC_ATK;
                     switch (icon.iconID)
                     {
                         case 1:

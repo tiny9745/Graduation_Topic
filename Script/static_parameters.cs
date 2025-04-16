@@ -31,5 +31,5 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
     static public bool next_door = false;
     static public bool reburn_ani = false;
 
-    static public bool isUpgrade_tmp = true;
+    static public bool isUpgrade_tmp = false;
 }
