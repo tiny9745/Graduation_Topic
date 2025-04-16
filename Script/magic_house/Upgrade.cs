@@ -504,8 +504,7 @@ public class Upgrade : MonoBehaviour
                 break;
         }
     }
-    public void Cancel()
-    {
+    public void Cancel(){
         Click = 0;
         if (textbox.text == "請選擇升級項目")
         {
@@ -515,6 +514,103 @@ public class Upgrade : MonoBehaviour
         else
         {
             textbox.text = "請選擇升級項目";
+        }
+    }
+    public void check(int ATK_LV,int DEF_LV,int HP_LV,int Speed_LV,int Knockback_LV){
+        switch(ATK_LV){
+            case 1:
+            break;
+            case 2:
+            AB1.SetActive(true);
+            break;
+            case 3:
+            AB1.SetActive(true);AB2.SetActive(true);
+            break;
+            case 4:
+            AB1.SetActive(true);AB2.SetActive(true);AB3.SetActive(true);
+            break;
+            case 5:
+            AB1.SetActive(true);AB2.SetActive(true);AB3.SetActive(true);AB4.SetActive(true);
+            break;
+            case 6:
+            AB1.SetActive(true);AB2.SetActive(true);AB3.SetActive(true);AB4.SetActive(true); AB5.SetActive(true);
+            break;
+        }
+        switch(DEF_LV){
+            case 1:
+            break;
+            case 2:
+            DB1.SetActive(true);
+            break;
+            case 3:
+            DB1.SetActive(true);DB2.SetActive(true);
+            break;
+            case 4:
+            DB1.SetActive(true);DB2.SetActive(true);DB3.SetActive(true);
+            break;
+            case 5:
+            DB1.SetActive(true);DB2.SetActive(true);DB3.SetActive(true);DB4.SetActive(true);
+            break;
+            case 6:
+            DB1.SetActive(true);DB2.SetActive(true);DB3.SetActive(true);DB4.SetActive(true); DB5.SetActive(true);
+            break;
+        }
+        switch(HP_LV){
+            case 1:
+            break;
+            case 2:
+            HB1.SetActive(true);
+            break;
+            case 3:
+            HB1.SetActive(true);HB2.SetActive(true);
+            break;
+            case 4:
+            HB1.SetActive(true);HB2.SetActive(true);HB3.SetActive(true);
+            break;
+            case 5:
+            HB1.SetActive(true);HB2.SetActive(true);HB3.SetActive(true);HB4.SetActive(true);
+            break;
+            case 6:
+            HB1.SetActive(true);HB2.SetActive(true);HB3.SetActive(true);HB4.SetActive(true); HB5.SetActive(true);
+            break;
+        }
+        switch(Speed_LV){
+            case 1:
+            break;
+            case 2:
+            SB1.SetActive(true);
+            break;
+            case 3:
+            SB1.SetActive(true);SB2.SetActive(true);
+            break;
+            case 4:
+            SB1.SetActive(true);SB2.SetActive(true);SB3.SetActive(true);
+            break;
+            case 5:
+            SB1.SetActive(true);SB2.SetActive(true);SB3.SetActive(true);SB4.SetActive(true);
+            break;
+            case 6:
+            SB1.SetActive(true);SB2.SetActive(true);SB3.SetActive(true);SB4.SetActive(true); SB5.SetActive(true);
+            break;
+        }
+        switch(Knockback_LV){
+            case 1:
+            break;
+            case 2:
+            KB1.SetActive(true);
+            break;
+            case 3:
+            KB1.SetActive(true);KB2.SetActive(true);
+            break;
+            case 4:
+            KB1.SetActive(true);KB2.SetActive(true);KB3.SetActive(true);
+            break;
+            case 5:
+            KB1.SetActive(true);KB2.SetActive(true);KB3.SetActive(true);KB4.SetActive(true);
+            break;
+            case 6:
+            KB1.SetActive(true);KB2.SetActive(true);KB3.SetActive(true);KB4.SetActive(true); KB5.SetActive(true);
+            break;
         }
     }
 }
