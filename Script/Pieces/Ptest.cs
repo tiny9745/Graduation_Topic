@@ -193,7 +193,7 @@ public class Ptest : MonoBehaviour
 
     public void teaching_end_Pieces()
     {
-       int k = 0, l = 0;
+        int k = 0, l = 0;
         for (int i = 0; i < availablePieces.Count; i++)
         {
             if (availablePieces[i].PieceName.Substring(0, 3) == "Yel")
@@ -203,6 +203,7 @@ public class Ptest : MonoBehaviour
                 show.Add(availablePieces[i]);
                 if (l == 0) k = i;
                 l++;
+                if (l > 3) break;
             }
         }
         for (int j = k; j < (l + k); j++)

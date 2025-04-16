@@ -18,7 +18,7 @@ public class Teaching_TextF : MonoBehaviour
     public Image black;
     public Text name_text, talk_text, Narration_text, teach_text;
     public UI _UI;
-    uint talk_number = 0;
+    public int talk_number = 0;
     public GameObject Money_object, Throwing_object, Blood_object, Diary_object;
 
     public ItemSlot[] itemSlot;
@@ -415,6 +415,7 @@ public class Teaching_TextF : MonoBehaviour
 
     private void Teaching_end()
     {
+        static_parameters.isTeaching = true;
         inventoryManager.Clear();
         itemSlot[0].Clean();
         itemSlot[1].Clean();

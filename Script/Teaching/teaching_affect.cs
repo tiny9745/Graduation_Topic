@@ -71,6 +71,7 @@ public class teaching_affect : MonoBehaviour
                 handle_teaching_4();
                 break;
             case 5:
+                static_parameters.isTeaching = false;
                 Time.timeScale = 1;
                 this.gameObject.SetActive(false);
                 break;
