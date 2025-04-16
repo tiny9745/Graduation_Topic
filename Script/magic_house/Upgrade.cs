@@ -9,7 +9,7 @@ public class Upgrade : MonoBehaviour
     public GameObject ATK_plus, DEF_plus, HP_plus, Speed_plus, Knockback_plus;
     public GameObject AB1, AB2, AB3, AB4, AB5, DB1, DB2, DB3, DB4, DB5, HB1, HB2, HB3, HB4, HB5,
                   SB1, SB2, SB3, SB4, SB5, KB1, KB2, KB3, KB4, KB5;
-    public Text textbox;
+    public Text namebox, textbox;
     public UI_Place UI_place;
     public static short ATK_LV = 1, DEF_LV = 1, HP_LV = 1, Speed_LV = 1, Knockback_LV = 1, Click = 0;
     short[] ATK_price = { 30, 45, 70, 100, 140 },
@@ -19,11 +19,13 @@ public class Upgrade : MonoBehaviour
     Knockback_price = { 35, 60, 80, 100, 170 };
     void Start()
     {
+        namebox.text = "";
         textbox.text = "請選擇升級項目";
     }
     public void ATK()
     {
         Click = 1;
+        namebox.text = "攻擊";
         switch (ATK_LV)
         {
             case 1:
@@ -46,6 +48,7 @@ public class Upgrade : MonoBehaviour
     public void DEF()
     {
         Click = 2;
+        namebox.text = "防禦";
         switch (DEF_LV)
         {
             case 1:
@@ -68,6 +71,7 @@ public class Upgrade : MonoBehaviour
     public void HP()
     {
         Click = 3;
+        namebox.text = "血量";
         switch (HP_LV)
         {
             case 1:
@@ -90,6 +94,7 @@ public class Upgrade : MonoBehaviour
     public void Speed()
     {
         Click = 4;
+        namebox.text = "移速";
         switch (Speed_LV)
         {
             case 1:
@@ -112,6 +117,7 @@ public class Upgrade : MonoBehaviour
     public void Knockback()
     {
         Click = 5;
+        namebox.text = "擊退";
         switch (Knockback_LV)
         {
             case 1:
@@ -507,7 +513,8 @@ public class Upgrade : MonoBehaviour
         }
         ui.Loadmoney();
     }
-    public void Cancel(){
+    public void Cancel()
+    {
         Click = 0;
         if (textbox.text == "請選擇升級項目")
         {
@@ -519,101 +526,107 @@ public class Upgrade : MonoBehaviour
             textbox.text = "請選擇升級項目";
         }
     }
-    public void check(int ATK_LV,int DEF_LV,int HP_LV,int Speed_LV,int Knockback_LV){
-        switch(ATK_LV){
+    public void check(int ATK_LV, int DEF_LV, int HP_LV, int Speed_LV, int Knockback_LV)
+    {
+        switch (ATK_LV)
+        {
             case 1:
-            break;
+                break;
             case 2:
-            AB1.SetActive(true);
-            break;
+                AB1.SetActive(true);
+                break;
             case 3:
-            AB1.SetActive(true);AB2.SetActive(true);
-            break;
+                AB1.SetActive(true); AB2.SetActive(true);
+                break;
             case 4:
-            AB1.SetActive(true);AB2.SetActive(true);AB3.SetActive(true);
-            break;
+                AB1.SetActive(true); AB2.SetActive(true); AB3.SetActive(true);
+                break;
             case 5:
-            AB1.SetActive(true);AB2.SetActive(true);AB3.SetActive(true);AB4.SetActive(true);
-            break;
+                AB1.SetActive(true); AB2.SetActive(true); AB3.SetActive(true); AB4.SetActive(true);
+                break;
             case 6:
-            AB1.SetActive(true);AB2.SetActive(true);AB3.SetActive(true);AB4.SetActive(true); AB5.SetActive(true);
-            break;
+                AB1.SetActive(true); AB2.SetActive(true); AB3.SetActive(true); AB4.SetActive(true); AB5.SetActive(true);
+                break;
         }
-        switch(DEF_LV){
+        switch (DEF_LV)
+        {
             case 1:
-            break;
+                break;
             case 2:
-            DB1.SetActive(true);
-            break;
+                DB1.SetActive(true);
+                break;
             case 3:
-            DB1.SetActive(true);DB2.SetActive(true);
-            break;
+                DB1.SetActive(true); DB2.SetActive(true);
+                break;
             case 4:
-            DB1.SetActive(true);DB2.SetActive(true);DB3.SetActive(true);
-            break;
+                DB1.SetActive(true); DB2.SetActive(true); DB3.SetActive(true);
+                break;
             case 5:
-            DB1.SetActive(true);DB2.SetActive(true);DB3.SetActive(true);DB4.SetActive(true);
-            break;
+                DB1.SetActive(true); DB2.SetActive(true); DB3.SetActive(true); DB4.SetActive(true);
+                break;
             case 6:
-            DB1.SetActive(true);DB2.SetActive(true);DB3.SetActive(true);DB4.SetActive(true); DB5.SetActive(true);
-            break;
+                DB1.SetActive(true); DB2.SetActive(true); DB3.SetActive(true); DB4.SetActive(true); DB5.SetActive(true);
+                break;
         }
-        switch(HP_LV){
+        switch (HP_LV)
+        {
             case 1:
-            break;
+                break;
             case 2:
-            HB1.SetActive(true);
-            break;
+                HB1.SetActive(true);
+                break;
             case 3:
-            HB1.SetActive(true);HB2.SetActive(true);
-            break;
+                HB1.SetActive(true); HB2.SetActive(true);
+                break;
             case 4:
-            HB1.SetActive(true);HB2.SetActive(true);HB3.SetActive(true);
-            break;
+                HB1.SetActive(true); HB2.SetActive(true); HB3.SetActive(true);
+                break;
             case 5:
-            HB1.SetActive(true);HB2.SetActive(true);HB3.SetActive(true);HB4.SetActive(true);
-            break;
+                HB1.SetActive(true); HB2.SetActive(true); HB3.SetActive(true); HB4.SetActive(true);
+                break;
             case 6:
-            HB1.SetActive(true);HB2.SetActive(true);HB3.SetActive(true);HB4.SetActive(true); HB5.SetActive(true);
-            break;
+                HB1.SetActive(true); HB2.SetActive(true); HB3.SetActive(true); HB4.SetActive(true); HB5.SetActive(true);
+                break;
         }
-        switch(Speed_LV){
+        switch (Speed_LV)
+        {
             case 1:
-            break;
+                break;
             case 2:
-            SB1.SetActive(true);
-            break;
+                SB1.SetActive(true);
+                break;
             case 3:
-            SB1.SetActive(true);SB2.SetActive(true);
-            break;
+                SB1.SetActive(true); SB2.SetActive(true);
+                break;
             case 4:
-            SB1.SetActive(true);SB2.SetActive(true);SB3.SetActive(true);
-            break;
+                SB1.SetActive(true); SB2.SetActive(true); SB3.SetActive(true);
+                break;
             case 5:
-            SB1.SetActive(true);SB2.SetActive(true);SB3.SetActive(true);SB4.SetActive(true);
-            break;
+                SB1.SetActive(true); SB2.SetActive(true); SB3.SetActive(true); SB4.SetActive(true);
+                break;
             case 6:
-            SB1.SetActive(true);SB2.SetActive(true);SB3.SetActive(true);SB4.SetActive(true); SB5.SetActive(true);
-            break;
+                SB1.SetActive(true); SB2.SetActive(true); SB3.SetActive(true); SB4.SetActive(true); SB5.SetActive(true);
+                break;
         }
-        switch(Knockback_LV){
+        switch (Knockback_LV)
+        {
             case 1:
-            break;
+                break;
             case 2:
-            KB1.SetActive(true);
-            break;
+                KB1.SetActive(true);
+                break;
             case 3:
-            KB1.SetActive(true);KB2.SetActive(true);
-            break;
+                KB1.SetActive(true); KB2.SetActive(true);
+                break;
             case 4:
-            KB1.SetActive(true);KB2.SetActive(true);KB3.SetActive(true);
-            break;
+                KB1.SetActive(true); KB2.SetActive(true); KB3.SetActive(true);
+                break;
             case 5:
-            KB1.SetActive(true);KB2.SetActive(true);KB3.SetActive(true);KB4.SetActive(true);
-            break;
+                KB1.SetActive(true); KB2.SetActive(true); KB3.SetActive(true); KB4.SetActive(true);
+                break;
             case 6:
-            KB1.SetActive(true);KB2.SetActive(true);KB3.SetActive(true);KB4.SetActive(true); KB5.SetActive(true);
-            break;
+                KB1.SetActive(true); KB2.SetActive(true); KB3.SetActive(true); KB4.SetActive(true); KB5.SetActive(true);
+                break;
         }
     }
 }
