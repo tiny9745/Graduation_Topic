@@ -37,6 +37,7 @@ public class MC_atk : MonoBehaviour
             skill();
             T2 = T1;
         }
+        // else { Debug.Log("error:T1 " + T1 + ",T2 " + T2); }
     }
     void skill()
     {
@@ -60,7 +61,7 @@ public class MC_atk : MonoBehaviour
                     melee2();
                     break;
                 default:
-                break;
+                    break;
             }
         }
     }
@@ -87,7 +88,8 @@ public class MC_atk : MonoBehaviour
         MC_Collider.enabled = false;
         Invoke("wait_return", 1.25f);
     }
-    private void wait_return(){
+    private void wait_return()
+    {
         static_parameters.wait_atk_return = false;
     }
     private void PlaySoundAtIndex(int index)
