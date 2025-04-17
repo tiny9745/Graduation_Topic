@@ -32,4 +32,6 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
     static public bool reburn_ani = false;
 
     static public bool isUpgrade_tmp = false;
+
+    static public int MC_throw = 50;
 }

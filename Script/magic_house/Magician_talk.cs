@@ -15,12 +15,12 @@ public class Magician_talk : MonoBehaviour
     public int into_talk_step = 0;
     public UI_Place UI_place;
     int originalSize, smallerSize;
-    public Canvas canvas;
+    // public Canvas canvas;
 
     // Start is called before the first frame update
     void Start()
     {
-        canvas.sortingOrder = -1000;
+        // canvas.sortingOrder = -1000;
         originalSize = talk_text.fontSize;
         smallerSize = originalSize / 2;
     }

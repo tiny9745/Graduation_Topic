@@ -369,16 +369,16 @@ public class NPC01_control : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        nPC_hP.TakeDamage(50 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
+                        nPC_hP.TakeDamage(static_parameters.MC_throw * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 2:
-                        nPC_hP.TakeDamage(50 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
+                        nPC_hP.TakeDamage(static_parameters.MC_throw * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 3:
-                        nPC_hP.TakeDamage(50 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
+                        nPC_hP.TakeDamage(static_parameters.MC_throw * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                     case 4:
-                        nPC_hP.TakeDamage(50 * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
+                        nPC_hP.TakeDamage(static_parameters.MC_throw * Skill_public_funtion.skill_13_bullet_atk, NPC01_DEF);
                         break;
                 }
             }

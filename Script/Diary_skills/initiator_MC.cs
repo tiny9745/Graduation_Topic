@@ -31,7 +31,7 @@ public class initiator_MC : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Delete))
         {
-            Reborn();
+            // Reborn();
         }
         if (static_parameters.into_gameFight)
         {

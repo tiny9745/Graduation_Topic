@@ -415,6 +415,10 @@ public class Teaching_TextF : MonoBehaviour
 
     private void Teaching_end()
     {
+        teaching_sprite_keycode[0].SetActive(false);
+        teaching_sprite_keycode[1].SetActive(false);
+        teaching_sprite_keycode[2].SetActive(false);
+        teaching_sprite_keycode[3].SetActive(false);
         static_parameters.isTeaching = true;
         inventoryManager.Clear();
         itemSlot[0].Clean();
