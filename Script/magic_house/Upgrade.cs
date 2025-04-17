@@ -638,6 +638,9 @@ public class Upgrade : MonoBehaviour
 
     private void skill_nmueric_renew_ATK()
     {
-        Skill_public_funtion.skill_0X_MC_atk = static_parameters.MC_ATK;
+        static_parameters.MC_ATK_tmp = static_parameters.MC_ATK;
+        Skill_public_funtion.skill_03_MC_atk = static_parameters.MC_ATK;
+        Skill_public_funtion.skill_04_MC_atk = static_parameters.MC_ATK;
+        Skill_public_funtion.skill_05_MC_atk = static_parameters.MC_ATK;
     }
 }

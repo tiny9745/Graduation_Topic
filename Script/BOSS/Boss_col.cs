@@ -29,6 +29,7 @@ public class Boss_col : MonoBehaviour
         BOSS_HP = BOSS_HP_Max;
         BOSS_HP_tmp = BOSS_HP_Max;
         TargetObj = GameObject.Find("Player_S");
+        static_parameters.Change_enemy++;
     }
     void Update()
     {
@@ -40,8 +41,8 @@ public class Boss_col : MonoBehaviour
                 Boss_Animator.SetTrigger("die");
                 Destroy(Boss_Skill);
                 static_parameters.invincible = true;
-                Winning_HP=static_parameters.MC_HP;
-                
+                Winning_HP = static_parameters.MC_HP;
+                static_parameters.Change_enemy = 0;
                 StartCoroutine(Dead_after(1.5f));
             }
             static_parameters.MC_HP = Winning_HP;

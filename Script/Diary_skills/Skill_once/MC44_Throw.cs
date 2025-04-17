@@ -6,7 +6,7 @@ public class MC44_Throw : MonoBehaviour
 {
     public GameObject throw_obj;
     // Start is called before the first frame update
-    public int re_blood = 20;
+    private float re_blood = static_parameters.MC_HP_Max / 12;
     void Start()
     {
         static_parameters.MC_HP += re_blood;

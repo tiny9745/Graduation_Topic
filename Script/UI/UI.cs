@@ -68,10 +68,18 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0 ||static_parameters.into_gameFight_Levels == 5))
+        Debug.Log("static_parameters.into_gameFight_Levels == " + static_parameters.into_gameFight_Levels);
+        Debug.Log("static_parameters.isTeaching == " + static_parameters.isTeaching);
+        Debug.Log("static_parameters.teaching_stop == " + static_parameters.teaching_stop);
+        Debug.Log("static_parameters.Change_enemy ==" + static_parameters.Change_enemy);
+        Debug.Log("static_parameters.isUpgrade_tmp == " + static_parameters.isUpgrade_tmp);
+        Debug.Log("static_parameters.Bookstate == " + static_parameters.Bookstate);
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
         {
+            Debug.Log("openclose()");
             if (static_parameters.Bookstate)
             {
+                Debug.Log("openclose()_if");
                 // Time.timeScale = 1;
                 static_parameters.Bookstate = false;
                 Notebook.SetActive(false);
@@ -81,6 +89,7 @@ public class UI : MonoBehaviour
             }
             else
             {
+                Debug.Log("openclose()_else");
                 // Time.timeScale = 0;
                 static_parameters.Bookstate = true;
                 Notebook.SetActive(true);
