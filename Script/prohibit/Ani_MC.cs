@@ -37,9 +37,9 @@ public class Ani_MC : MonoBehaviour
         {
             if ((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.Bookstate == false && static_parameters.isTeaching == false && (teaching_TextF.talk_number >= 100 || teaching_TextF.talk_number < 12) && static_parameters.isUpgrade_tmp == false)
             {
-                ATK_Counter();
+                ATK_Counter(); atk_time = 0;
             }
-            else if (atk_flag && static_parameters.Ani_state != 0 && static_parameters.Ani_state != 1)
+            /*else if (atk_flag && static_parameters.Ani_state != 0 && static_parameters.Ani_state != 1)
             {
                 // 如果攻擊動畫播放完畢，則重置攻擊計數器
                 atk_flag = false; atk_time = 0;
@@ -48,9 +48,9 @@ public class Ani_MC : MonoBehaviour
             {
                 atk_flag = true;
                 atk_time = 0;
-            }
+            }*/
         }
-        if (atk_time >= 0.65f)
+        if (atk_time >= 0.8f)
         {
             ResetCombo();
         }
@@ -67,7 +67,7 @@ public class Ani_MC : MonoBehaviour
             audioSource.PlayOneShot(walk_Sound[3]);
             StartCoroutine(DashSequence());
         }
-        else if (((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.Bookstate == false && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2 && (teaching_TextF.talk_number >= 100 || teaching_TextF.talk_number < 12) && static_parameters.isUpgrade_tmp == false) || atk_flag)
+        else if ((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.Bookstate == false &&static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2 && (teaching_TextF.talk_number >= 100 || teaching_TextF.talk_number < 12) && static_parameters.isUpgrade_tmp == false)
         {
             ATK_Counter();
         }
@@ -107,6 +107,7 @@ public class Ani_MC : MonoBehaviour
     {
         if (ATK_count < 3)
         {
+            Debug.Log("ATK_count: " + ATK_count);
             ATK_count++;
             static_parameters.Ani_state = ATK_count + 1;
             if (!isAttackPlaying) StartCoroutine(AttackSequence());
@@ -163,7 +164,7 @@ public class Ani_MC : MonoBehaviour
     IEnumerator AttackSequence()
     {
         isAttackPlaying = true; atk_flag = true;
-
+        Debug.Log("static_parameters.Ani_state: " + static_parameters.Ani_state);
         // 播放攻擊動畫
         MC_ani_state();
         switch (static_parameters.Ani_state)
