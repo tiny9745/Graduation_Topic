@@ -11,7 +11,7 @@ public class Boss_col : MonoBehaviour
     static public int BOSS_Atk_state = 1;
     static public bool BOSS_Atk02_ready03_waring = false;
     static public bool BOSS_Atk02_ready01 = false, BOSS_Atk02_ready03 = false;
-    public float BOSS_HP_Max = 3600, BOSS_DEF = 16, BOSS_HP, BOSS_HP_tmp;
+    public float BOSS_HP_Max = 3600, BOSS_DEF = 16, BOSS_HP, BOSS_HP_tmp, Winning_HP;
     public BOSS01_HP boss_hP; public BOSS01_effect effect;
     public bool stun = false;
     public int NPC_angle = 0;
@@ -40,9 +40,11 @@ public class Boss_col : MonoBehaviour
                 Boss_Animator.SetTrigger("die");
                 Destroy(Boss_Skill);
                 static_parameters.invincible = true;
-                static_parameters.MC_HP += 40;
+                Winning_HP=static_parameters.MC_HP;
+                
                 StartCoroutine(Dead_after(1.5f));
             }
+            static_parameters.MC_HP = Winning_HP;
             return;
         }
 
