@@ -50,7 +50,7 @@ public class Ani_MC : MonoBehaviour
                 atk_time = 0;
             }*/
         }
-        if (atk_time >= 0.8f)
+        if (atk_time >= 0.8f||ATK_count>4)
         {
             ResetCombo();
         }
