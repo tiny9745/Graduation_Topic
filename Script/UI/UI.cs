@@ -68,7 +68,7 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0 ||static_parameters.into_gameFight_Levels == 5))
         {
             if (static_parameters.Bookstate)
             {

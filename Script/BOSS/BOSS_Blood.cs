@@ -7,7 +7,7 @@ public class BOSS_Blood : MonoBehaviour
     public Boss_col boss_col;
     private RectTransform HPimg_White, HPimg_Green;
     float blood_base = 1;
-    float blood_tmp = 1040;
+    float blood_tmp = 950;
     float previous_BOSS_HP_Max;
     public Canvas canvas;
     IEnumerator Start()
