@@ -16,9 +16,11 @@ public class Setting_keybroad : MonoBehaviour
     int key_count = 1, key_count_max = 4;
     // Start is called before the first frame update
     static public bool ESC_col = false;
+    public Canvas canvas;
     void Start()
     {
-
+        DontDestroyOnLoad(this);
+        canvas.sortingOrder = 1000;
     }
 
     // Update is called once per frame
