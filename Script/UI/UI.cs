@@ -12,8 +12,7 @@ public class UI : MonoBehaviour
     public GameObject Menu, CH1, CH2, CH3, CH4;
     public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
     public GameObject LeftMark1, LeftMark2, LeftMark3, LeftMark4;
-    public GameObject TeachiUI;
-    public GameObject NotebookUI;
+    public GameObject TeachiUI, NotebookUI;
     private Color newColor = new Color(1, 1, 1, 0.5f);
     public Text money;
     public Outline money_outline;
@@ -40,12 +39,12 @@ public class UI : MonoBehaviour
         {
             TeachiUI.SetActive(true);
         }
-        if (static_parameters.into_gameFight_Levels == 6 || static_parameters.Change_enemy != 0)
-        {
-            static_parameters.Bookstate = false;
-            Notebook.SetActive(false);
-            BattleUI.SetActive(true);
-        }
+        // if (static_parameters.into_gameFight_Levels == 6 || static_parameters.Change_enemy != 0)
+        // {
+        //     static_parameters.Bookstate = false;
+        //     Notebook.SetActive(false);
+        //     BattleUI.SetActive(true);
+        // }
         if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
         {
             NotebookUI.SetActive(true);
@@ -53,6 +52,13 @@ public class UI : MonoBehaviour
         else
         {
             NotebookUI.SetActive(false);
+        }
+        if (static_parameters.teaching_stop > 6 && static_parameters.teaching_stop < 100)
+        {
+            static_parameters.Bookstate = false;
+            Notebook.SetActive(false);
+            BattleUI.SetActive(true);
+            dragPiece_End.ResetCombination();
         }
     }
     public void Onclick1()
@@ -77,12 +83,9 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        Debug.Log("openclose()");
-        Debug.Log("static_parameters.teaching_stop:" + static_parameters.teaching_stop);
-        Debug.Log(" static_parameters.isTeaching:" + static_parameters.isTeaching);
-        if (static_parameters.isTeaching == false && (static_parameters.teaching_stop == 6 || static_parameters.teaching_stop == 24 || static_parameters.teaching_stop >= 100) && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
+        if (static_parameters.isTeaching == false && (static_parameters.teaching_stop == 6 || static_parameters.teaching_stop >= 100) && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
         {
-
+            Debug.Log("openclose()");
             if (static_parameters.Bookstate)
             {
                 // Time.timeScale = 1;
@@ -94,10 +97,31 @@ public class UI : MonoBehaviour
             }
             else
             {
+                Debug.Log("openclose()_else");
                 // Time.timeScale = 0;
                 static_parameters.Bookstate = true;
                 Notebook.SetActive(true);
                 BattleUI.SetActive(false);
+            }
+        }
+        else if (static_parameters.isTeaching == true && (static_parameters.teaching_stop == 6 || static_parameters.teaching_stop >= 100) && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
+        {
+            if (!static_parameters.Bookstate)
+            {
+                // Time.timeScale = 0;
+                static_parameters.Bookstate = true;
+                Notebook.SetActive(true);
+                BattleUI.SetActive(false);
+                Ad.PlayOneShot(Open);
+            }
+            else
+            {
+                // Time.timeScale = 1;
+                static_parameters.Bookstate = false;
+                Notebook.SetActive(false);
+                BattleUI.SetActive(true);
+                dragPiece_End.ResetCombination();
+                Ad.PlayOneShot(Close);
             }
         }
     }

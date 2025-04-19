@@ -5,24 +5,17 @@ using UnityEngine;
 public class Magician : MonoBehaviour
 {
     private SpriteRenderer magicianSprite;
-    private SpriteRenderer SpriteRenderer;
-    public Sprite magicianSprites;
+    public Sprite magicianSprites03;
     public Animator magicianAnimator, magicianAnimator2;
     void Start()
     {
         magicianSprite = GetComponent<SpriteRenderer>();
-        if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
-        {
-            Destroy(gameObject);
-        }
+        // magicianSprites03 = Resources.Load<Sprite>("Sprites/Teaching/Magician/Magician03");
     }
 
     void Update()
     {
-        if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
-        {
-            Destroy(gameObject);
-        }
+        Debug.Log("magicianSprite.sprite.name:" + magicianSprite.sprite.name);
         if (static_parameters.teaching_stop == 5)
         {
             magicianAnimator.SetBool("ntfx", true);
@@ -32,7 +25,9 @@ public class Magician : MonoBehaviour
         {
             magicianAnimator.SetBool("ntfx", false);
             magicianAnimator2.SetBool("ntfx", false);
-            magicianSprite.sprite = magicianSprites;
+            magicianAnimator.enabled = false;
+            magicianAnimator2.enabled = false;
+            magicianSprite.sprite = magicianSprites03;
         }
     }
 }

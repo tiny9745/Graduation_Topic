@@ -8,18 +8,7 @@ public class JiangMi : MonoBehaviour
     public Animator JM_animator;
     void Start()
     {
-        Invoke("JM_atk", .5f);
-        if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
-        {
-            Destroy(gameObject);
-        }
-    }
-    private void Update()
-    {
-        if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
-        {
-            Destroy(gameObject);
-        }
+        Invoke("JM_atk", 2.5f);
     }
 
     private void JM_atk()
