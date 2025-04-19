@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Magician : MonoBehaviour
 {
-    public SpriteRenderer magicianSprite;
+    private SpriteRenderer magicianSprite;
+    private SpriteRenderer SpriteRenderer;
     public Sprite magicianSprites;
     public Animator magicianAnimator, magicianAnimator2;
     void Start()
     {
+        magicianSprite = GetComponent<SpriteRenderer>();
         if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
         {
             Destroy(gameObject);

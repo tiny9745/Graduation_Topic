@@ -58,7 +58,7 @@ public class Blood_col : MonoBehaviour
 
         blood_base = blood_tmp / static_parameters.MC_HP_Max;
 
-        if (HPimg_White != null  && HPimg_Green != null)
+        if (HPimg_White != null && HPimg_Green != null)
         {
             HPimg_White.sizeDelta = new Vector2(static_parameters.MC_HP_Max * blood_base, HPimg_White.sizeDelta.y);
             HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_White.sizeDelta.y);
