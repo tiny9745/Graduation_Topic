@@ -157,7 +157,7 @@ public class Teaching_TextF : MonoBehaviour
                 teach_text.text = "按下Z鍵，打開筆記本吧！";
                 break;
             case 18:
-                open(); ;
+                open();
                 Main_character.sprite = Main_character_face[0];
                 name_text.text = "曦然";
                 talk_text.text = "這個碎片材質跟筆記本一樣耶。";
@@ -189,7 +189,7 @@ public class Teaching_TextF : MonoBehaviour
                 name_text.text = "莓莓";
                 talk_text.text = "我想就能得到更多碎片來拼湊吧？";
                 static_parameters.isTeaching = false;
-                _UI.openclose();
+                _UI.openclose_false();
                 break;
             case 25:
                 Magician.sprite = Magician_face[0];
@@ -313,6 +313,7 @@ public class Teaching_TextF : MonoBehaviour
                 talk_number += 2;
                 _UI.Onclick2();
                 open();
+                skip_button.SetActive(false);
                 Main_character.sprite = Main_character_face[0];
                 name_text.text = "曦然";
                 talk_text.text = "這個碎片材質跟筆記本一樣耶。";

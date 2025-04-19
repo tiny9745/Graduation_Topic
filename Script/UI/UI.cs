@@ -53,13 +53,13 @@ public class UI : MonoBehaviour
         {
             NotebookUI.SetActive(false);
         }
-        if (static_parameters.teaching_stop > 6 && static_parameters.teaching_stop < 100)
-        {
-            static_parameters.Bookstate = false;
-            Notebook.SetActive(false);
-            BattleUI.SetActive(true);
-            dragPiece_End.ResetCombination();
-        }
+        // if (static_parameters.teaching_stop > 6 && static_parameters.teaching_stop < 100)
+        // {
+        //     static_parameters.Bookstate = false;
+        //     Notebook.SetActive(false);
+        //     BattleUI.SetActive(true);
+        //     dragPiece_End.ResetCombination();
+        // }
     }
     public void Onclick1()
     {
@@ -125,6 +125,14 @@ public class UI : MonoBehaviour
             }
         }
     }
+    public void openclose_false()
+    {
+        static_parameters.Bookstate = false;
+        Notebook.SetActive(false);
+        BattleUI.SetActive(true);
+        dragPiece_End.ResetCombination();
+    }
+
     void piecechange()
     {
         switch (Diarystatus)

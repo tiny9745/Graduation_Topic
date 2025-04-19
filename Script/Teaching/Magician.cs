@@ -10,12 +10,10 @@ public class Magician : MonoBehaviour
     void Start()
     {
         magicianSprite = GetComponent<SpriteRenderer>();
-        // magicianSprites03 = Resources.Load<Sprite>("Sprites/Teaching/Magician/Magician03");
     }
 
     void Update()
     {
-        Debug.Log("magicianSprite.sprite.name:" + magicianSprite.sprite.name);
         if (static_parameters.teaching_stop == 5)
         {
             magicianAnimator.SetBool("ntfx", true);
