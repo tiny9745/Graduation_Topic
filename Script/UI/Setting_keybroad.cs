@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Setting_keybroad : MonoBehaviour
 {
-    public GameObject Player_S, Camera;
+    public GameObject Player_S, Camera, ui;
     public GameObject ESC;
     public GameObject _Continue, _Setting, _Back_Menu, _Exit;
 
@@ -108,6 +108,7 @@ public class Setting_keybroad : MonoBehaviour
         SceneManager.LoadScene("menu");
         Destroy(Player_S);
         Destroy(Camera);
+        Destroy(ui);
         Destroy(gameObject);
     }
 

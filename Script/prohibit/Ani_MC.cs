@@ -28,38 +28,15 @@ public class Ani_MC : MonoBehaviour
     {
         // 更新角色位置
         this.transform.position = new Vector3(Play_s.transform.position.x, transform.position.y, Play_s.transform.position.z);
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            // if (static_parameters.Bookstate == false)
-            // {
-            //     Debug.Log("攻擊1:Bookstate=false");
-            // }
-            // if (static_parameters.isTeaching == false)
-            // {
-            //     Debug.Log("攻擊2:isTeaching=false");
-            // }
-            // if (teaching_TextF.talk_number >= 100 || teaching_TextF.talk_number < 12)
-            // {
-            //     Debug.Log("攻擊3:talk_number>=100或<12");
-            // }
-            // if (static_parameters.isUpgrade_tmp == false)
-            // {
-            //     Debug.Log("攻擊4:isUpgrade_tmp=false");
-            // }
-            if (static_parameters.Ani_state == 0)
-            {
-                Debug.Log("攻擊5:static_parameters.Ani_state:" + static_parameters.Ani_state);
-            }
-        }
         // 設定角色面向角度
         UpdateFacingDirection();
         if (atk_flag) atk_time += Time.deltaTime;
 
         if (atk_time >= 0.45f)
         {
-            if ((Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Mouse0)) && static_parameters.Bookstate == false && static_parameters.isTeaching == false && (teaching_TextF.talk_number >= 100 || teaching_TextF.talk_number < 12) && static_parameters.isUpgrade_tmp == false)
+            if ((Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Mouse0)) && static_parameters.Bookstate == false && static_parameters.isTeaching == false && static_parameters.isUpgrade_tmp == false)
             {
-                ATK_Counter(); atk_time = 0;
+                if (!isAttackPlaying) StartCoroutine(AttackSequence()); atk_time = 0;
             }
             /*else if (atk_flag && static_parameters.Ani_state != 0 && static_parameters.Ani_state != 1)
             {
@@ -91,9 +68,9 @@ public class Ani_MC : MonoBehaviour
         }
         else if ((Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0)) && static_parameters.Bookstate == false && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 2 && (teaching_TextF.talk_number >= 100 || teaching_TextF.talk_number < 12) && static_parameters.isUpgrade_tmp == false)
         {
-            ATK_Counter();
+            StartCoroutine(AttackSequence());
         }
-        else if (!isAttackPlaying)
+        else if (!isAttackPlaying && ATK_count == 0)
         {
             DefaultCheck();
         }
@@ -125,17 +102,7 @@ public class Ani_MC : MonoBehaviour
     {
         return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
     }
-    void ATK_Counter()
-    {
-        Debug.Log("攻擊外 ATK_count: " + ATK_count);
-        if (ATK_count <= 4)
-        {
-            Debug.Log("攻擊 ATK_count: " + ATK_count);
-            ATK_count++;
-            static_parameters.Ani_state = ATK_count;
-            if (!isAttackPlaying) StartCoroutine(AttackSequence());
-        }
-    }
+
     void DefaultCheck()
     {
         if (static_parameters.face == 0)
@@ -188,6 +155,8 @@ public class Ani_MC : MonoBehaviour
     {
         isAttackPlaying = true; atk_flag = true;
         // 播放攻擊動畫
+        if (ATK_count < 4) ATK_count++;
+        static_parameters.Ani_state = ATK_count + 1;
         MC_ani_state();
         switch (static_parameters.Ani_state)
         {
@@ -199,6 +168,9 @@ public class Ani_MC : MonoBehaviour
                 break;
             case 4:
                 yield return new WaitForSeconds(1.05f);
+                ATK_count = 0;
+                break;
+            default:
                 ATK_count = 0;
                 break;
         }

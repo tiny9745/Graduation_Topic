@@ -68,18 +68,11 @@ public class UI : MonoBehaviour
     }
     public void openclose()
     {
-        Debug.Log("static_parameters.into_gameFight_Levels == " + static_parameters.into_gameFight_Levels);
-        Debug.Log("static_parameters.isTeaching == " + static_parameters.isTeaching);
-        Debug.Log("static_parameters.teaching_stop == " + static_parameters.teaching_stop);
-        Debug.Log("static_parameters.Change_enemy ==" + static_parameters.Change_enemy);
-        Debug.Log("static_parameters.isUpgrade_tmp == " + static_parameters.isUpgrade_tmp);
-        Debug.Log("static_parameters.Bookstate == " + static_parameters.Bookstate);
         if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
         {
             Debug.Log("openclose()");
             if (static_parameters.Bookstate)
             {
-                Debug.Log("openclose()_if");
                 // Time.timeScale = 1;
                 static_parameters.Bookstate = false;
                 Notebook.SetActive(false);
@@ -96,7 +89,7 @@ public class UI : MonoBehaviour
                 BattleUI.SetActive(false);
             }
         }
-        else if (static_parameters.isTeaching == true && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.into_gameFight_Levels == 0))
+        else if (static_parameters.isTeaching == true && static_parameters.teaching_stop >= 6 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
         {
             if (!static_parameters.Bookstate)
             {

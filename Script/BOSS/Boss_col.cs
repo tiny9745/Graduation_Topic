@@ -24,6 +24,9 @@ public class Boss_col : MonoBehaviour
 
     void Start()
     {
+        BOSS_Atk_time = -5;
+        BOSS_Atk_bool = false;
+        BOSS_live = true;
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color; // 儲存原始顏色
         BOSS_HP = BOSS_HP_Max;
