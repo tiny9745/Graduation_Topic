@@ -78,9 +78,13 @@ public class UI : MonoBehaviour
     {
         if (static_parameters.teaching_stop == 6)
         {
-
+            static_parameters.teaching_stop = 7;
+            static_parameters.Bookstate = true;
+            Notebook.SetActive(true);
+            BattleUI.SetActive(false);
+            Ad.PlayOneShot(Open);
         }
-        if (static_parameters.isTeaching == false && (static_parameters.teaching_stop == 6 || static_parameters.teaching_stop >= 100) && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
         {
             Debug.Log("openclose()");
             if (static_parameters.Bookstate)
@@ -101,7 +105,7 @@ public class UI : MonoBehaviour
                 BattleUI.SetActive(false);
             }
         }
-        else if (static_parameters.isTeaching == true && (static_parameters.teaching_stop == 6 || static_parameters.teaching_stop >= 100) && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
+        else if (static_parameters.isTeaching == true && static_parameters.teaching_stop >= 100 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
         {
             if (!static_parameters.Bookstate)
             {

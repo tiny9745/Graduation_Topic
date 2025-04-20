@@ -19,7 +19,7 @@ public class Magician : MonoBehaviour
             magicianAnimator.SetBool("ntfx", true);
             magicianAnimator2.SetBool("ntfx", true);
         }
-        if (static_parameters.teaching_stop == 7)
+        if (static_parameters.teaching_stop == 6)
         {
             magicianAnimator.SetBool("ntfx", false);
             magicianAnimator2.SetBool("ntfx", false);

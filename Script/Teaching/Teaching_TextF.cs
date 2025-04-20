@@ -36,15 +36,20 @@ public class Teaching_TextF : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 19 && Setting_keybroad.ESC_col == false)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 100 && Setting_keybroad.ESC_col == false)
         {
+            Debug.Log("static_parameters.teaching_stop = " + static_parameters.teaching_stop);
+            Debug.Log("talk_number = " + talk_number);
             reading();
         }
         else if (
-            static_parameters.teaching_stop == 1 || static_parameters.teaching_stop == 3 && talk_number == 8 ||
-            talk_number == 9 && static_parameters.teaching_stop == 5 || talk_number == 10 && static_parameters.teaching_stop == 7 ||
-            talk_number == 17 && Input.GetKeyDown(KeyCode.Z) || talk_number == 21 || talk_number == 31
-            )
+            static_parameters.teaching_stop == 1 ||
+            static_parameters.teaching_stop == 3 && talk_number == 8 ||
+            static_parameters.teaching_stop == 5 && talk_number == 9 ||
+            static_parameters.teaching_stop == 6 && talk_number == 10 ||
+            static_parameters.teaching_stop == 7 && talk_number == 17 ||
+            static_parameters.teaching_stop == 9 && talk_number == 21 ||
+            static_parameters.teaching_stop == 10 && talk_number == 31)
         {
             reading();
         }
@@ -219,6 +224,7 @@ public class Teaching_TextF : MonoBehaviour
                 talk_text.text = "所以……拜託妳去城堡查看詛咒來源，在路上順便蒐集碎片吧！";
                 break;
             case 30:
+                static_parameters.teaching_stop = 10;
                 SceneManager.LoadScene("magic_house");
                 break;
             case 32:
@@ -294,7 +300,7 @@ public class Teaching_TextF : MonoBehaviour
         }
         else if (talk_number == 10)
         {
-            if (static_parameters.teaching_stop == 7)
+            if (static_parameters.teaching_stop == 6)
             {
                 talk_number++;
                 open();
@@ -306,7 +312,7 @@ public class Teaching_TextF : MonoBehaviour
         }
         else if (talk_number == 17)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (static_parameters.teaching_stop == 7)
             {
                 teaching_sprite_keycode[3].SetActive(false);
                 static_parameters.teaching_stop = 8;
