@@ -35,16 +35,19 @@ public class Guardian44_col : MonoBehaviour
     void Update()
     {
         FollowPlayer();
-        if (bullet_time < bullet_time_max)
+        if (static_parameters.MC_HP > 0 && static_parameters.Change_enemy != 0)
         {
-            bullet_time += Time.deltaTime;
-        }
-        else
-        {
-            bullet_time_max = Random.Range(10f, 20f);
-            bullet_time = 0;
-            Guardian_44.SetTrigger("Plant_Guard04_atk");
-            Invoke("bullet_fire", 3f);
+            if (bullet_time < bullet_time_max)
+            {
+                bullet_time += Time.deltaTime;
+            }
+            else
+            {
+                bullet_time_max = Random.Range(10f, 20f);
+                bullet_time = 0;
+                Guardian_44.SetTrigger("Plant_Guard04_atk");
+                Invoke("bullet_fire", 3f);
+            }
         }
         NPC_distance_out();
         MC_Dead();
@@ -110,7 +113,7 @@ public class Guardian44_col : MonoBehaviour
             Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
             Vector3 targetPosition = player.transform.position - directionToPlayer * Guardian44_to_player_distance;
             targetPosition.y = transform.position.y;
-            
+
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
         }
     }

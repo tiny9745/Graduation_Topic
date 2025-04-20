@@ -23,14 +23,15 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     {
         if (GetComponent<Image>().sprite != nullsprite)
         {
-            // 確保物件在拖曳時位於最上層
-            _rectTransform.SetAsLastSibling();
+            _originalParent = transform.parent;
+            transform.SetParent(GameObject.Find("ESC_Canvas").transform, true);
 
             _canvasGroup.alpha = 0.6f;
             _canvasGroup.blocksRaycasts = false;
         }
         else
         {
+
             return;
         }
     }
@@ -54,6 +55,7 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         _canvasGroup.blocksRaycasts = true;
 
         // 回到原本的父物件層級（若需要重設位置）
+        transform.SetParent(_originalParent, true);
         _rectTransform.anchoredPosition = _originalPosition;
     }
     public void OnPointerUp(PointerEventData eventData)

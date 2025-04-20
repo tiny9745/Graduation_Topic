@@ -19,7 +19,7 @@ public class Guardian42_col : MonoBehaviour
     private Queue<Vector3> playerPath = new Queue<Vector3>();
     private float pathLength = 0f;
     private Vector3 lastPlayerPosition;
-    
+
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -45,16 +45,20 @@ public class Guardian42_col : MonoBehaviour
 
     private void UpdateBulletTime()
     {
-        if (bullet_time < bullet_time_max)
+        if (static_parameters.MC_HP > 0 && static_parameters.Change_enemy != 0)
         {
-            bullet_time += Time.deltaTime;
+            if (bullet_time < bullet_time_max)
+            {
+                bullet_time += Time.deltaTime;
+            }
+            else
+            {
+                bullet_time_max = Random.Range(1f, 3f);
+                bullet_time = 0;
+                Ready = true;
+            }
         }
-        else
-        {
-            bullet_time_max = Random.Range(1f, 3f);
-            bullet_time = 0;
-            Ready = true;
-        }
+
     }
 
     private void FaceNearestNPC()
@@ -158,7 +162,7 @@ public class Guardian42_col : MonoBehaviour
             Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
             Vector3 targetPosition = player.transform.position - directionToPlayer * Guardian42_to_player_distance;
             targetPosition.y = transform.position.y;
-            
+
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 5f);
         }
     }

@@ -38,15 +38,18 @@ public class Guardian41_col : MonoBehaviour
     void Update()
     {
         FollowPlayer();
-        if (bullet_time < bullet_time_max)
+        if (static_parameters.MC_HP > 0 && static_parameters.Change_enemy != 0)
         {
-            bullet_time += Time.deltaTime;
-        }
-        else
-        {
-            bullet_time_max = UnityEngine.Random.Range(5f, 8f);
-            bullet_time = 0;
-            Ready = true;
+            if (bullet_time < bullet_time_max)
+            {
+                bullet_time += Time.deltaTime;
+            }
+            else
+            {
+                bullet_time_max = UnityEngine.Random.Range(5f, 8f);
+                bullet_time = 0;
+                Ready = true;
+            }
         }
         FaceNearestNPC(); // 不斷檢測並朝向最近的 NPC
         MC_Dead();

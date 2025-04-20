@@ -32,15 +32,18 @@ public class Guardian45_col : MonoBehaviour
     void Update()
     {
         FollowPlayer();
-        if (bullet_time < bullet_time_max)
+        if (static_parameters.MC_HP > 0 && static_parameters.Change_enemy != 0)
         {
-            bullet_time += Time.deltaTime;
-        }
-        else
-        {
-            bullet_time_max = Random.Range(12f, 15f);
-            bullet_time = 0;
-            Ready = true;
+            if (bullet_time < bullet_time_max)
+            {
+                bullet_time += Time.deltaTime;
+            }
+            else
+            {
+                bullet_time_max = Random.Range(12f, 15f);
+                bullet_time = 0;
+                Ready = true;
+            }
         }
         if (!npc_distance)
         {
