@@ -10,6 +10,8 @@ public class BOSS_Blood : MonoBehaviour
     float blood_tmp = 950;
     float previous_BOSS_HP_Max;
     public Canvas canvas;
+
+    float minus;
     IEnumerator Start()
     {
         canvas.sortingOrder = -1000;
@@ -22,13 +24,18 @@ public class BOSS_Blood : MonoBehaviour
     void Update()
     {
         CheckAndAdjustHPMax();
-        if (boss_col.BOSS_HP_tmp != boss_col.BOSS_HP)
-        {
-            UpdateGreenHPBar();
-            boss_col.BOSS_HP_tmp = boss_col.BOSS_HP;
-        }
-
+        if (boss_col.BOSS_HP_tmp != boss_col.BOSS_HP) UpdateGreenHPBar();
         BOSS_HP_effects();
+    }
+
+    public void TakeDamage(float damage, float NPC_DEF)
+    {
+        boss_col.change_color_red();
+        minus = (float)(damage * damage / (damage + NPC_DEF));
+        if (minus < 5) minus = 5;
+        boss_col.BOSS_HP -= minus;
+        boss_col.BOSS_HP = Mathf.Clamp(boss_col.BOSS_HP, 0, previous_BOSS_HP_Max);
+        Debug.Log("BOSS_HP01:" + boss_col.BOSS_HP);
     }
 
     void TryFindHPImage()
@@ -61,7 +68,6 @@ public class BOSS_Blood : MonoBehaviour
             boss_col.BOSS_HP = Mathf.Clamp(ratio * boss_col.BOSS_HP_Max, 0, boss_col.BOSS_HP_Max);
             boss_col.BOSS_HP_tmp = boss_col.BOSS_HP;
             previous_BOSS_HP_Max = boss_col.BOSS_HP_Max;
-
             UpdateBloodBase();
             UpdateHealthBars();
         }

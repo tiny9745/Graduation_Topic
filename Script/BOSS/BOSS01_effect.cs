@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BOSS01_effect : MonoBehaviour
 {
-    public Boss_col control; public BOSS01_HP HP_control; public skill_piano_effect _skill_piano_effect;
+    public Boss_col control; public BOSS_Blood boss_blood; public skill_piano_effect _skill_piano_effect;
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 10, minus;
     bool piano_flag = true,piano_flag_2 = true;
@@ -139,7 +139,7 @@ public class BOSS01_effect : MonoBehaviour
         if (minus < 5) minus = 5.0f;
         control.BOSS_HP -= minus;
         Skill_public_funtion.B_damage = 0;
-        HP_control.UpdateHealthBar();
+        // HP_control.UpdateHealthBar();
         }
     }
 
@@ -219,7 +219,7 @@ public class BOSS01_effect : MonoBehaviour
                                 }
                             }
                             skill_02.SetTrigger("skill_02");
-                            HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
+                            boss_blood.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
                             break;
                     }
                 }
@@ -250,7 +250,7 @@ public class BOSS01_effect : MonoBehaviour
                             }
                             else if (skill_25_effect_time >= skill_25_step_time)
                             {
-                                HP_control.TakeDamage(5, control.BOSS_DEF);
+                                boss_blood.TakeDamage(5, control.BOSS_DEF);
                                 skill_25_step_time += 0.5f;
                                 
                             }
@@ -289,7 +289,7 @@ public class BOSS01_effect : MonoBehaviour
                     case 31:
                         if (Skill_public_funtion.skill_31_dash && other.gameObject.tag == "Player")
                         {
-                            HP_control.TakeDamage(static_parameters.MC_ATK / 2, static_parameters.MC_DEF / 2);
+                            boss_blood.TakeDamage(static_parameters.MC_ATK / 2, static_parameters.MC_DEF / 2);
                         }
                         break;
                 }
@@ -297,23 +297,23 @@ public class BOSS01_effect : MonoBehaviour
 
             if (other.gameObject.tag == "skill_41_bullet")
             {
-                HP_control.TakeDamage(Skill_public_funtion.skill_41_Atk, static_parameters.MC_DEF);
+                boss_blood.TakeDamage(Skill_public_funtion.skill_41_Atk, static_parameters.MC_DEF);
             }
             if (other.gameObject.tag == "skill_42_bullet")
             {
-                HP_control.TakeDamage(Skill_public_funtion.skill_42_Atk, static_parameters.MC_DEF);
+                boss_blood.TakeDamage(Skill_public_funtion.skill_42_Atk, static_parameters.MC_DEF);
             }
             if (other.gameObject.tag == "skill_45_bullet")
             {
-                HP_control.TakeDamage(Skill_public_funtion.skill_45_Atk, static_parameters.MC_DEF);
+                boss_blood.TakeDamage(Skill_public_funtion.skill_45_Atk, static_parameters.MC_DEF);
             }
             if (other.gameObject.tag == "skill_34_ward")
             {
-                HP_control.TakeDamage(Skill_public_funtion.skill_34_atk, static_parameters.MC_DEF);
+                boss_blood.TakeDamage(Skill_public_funtion.skill_34_atk, static_parameters.MC_DEF);
             }
             if (other.gameObject.tag == "skill_12_ward")
             {
-                HP_control.TakeDamage(Skill_public_funtion.skill_12_atk, static_parameters.MC_DEF);
+                boss_blood.TakeDamage(Skill_public_funtion.skill_12_atk, static_parameters.MC_DEF);
             }
         }
     }
