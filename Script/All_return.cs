@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 public class All_return : MonoBehaviour
 {
     // Start is called before the first frame update
     public UI ui;
-    private void OnSceneLoaded(Scene scene)
+
+    private void Awake()
     {
-        if (scene.name == "magic_house")
-        {
-            Start0();
-        }
+        Start0();
     }
     public void Start0()
     {
+        Debug.Log("Start0 called");
         static_parameters.MC_HP_Max = 500;
         static_parameters.MC_HP = static_parameters.MC_HP_Max;
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;

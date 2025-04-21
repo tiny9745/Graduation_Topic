@@ -90,6 +90,7 @@ public class Death_MC : MonoBehaviour
         yield return new WaitForSeconds(7.5f);
         Death.transform.localPosition = new Vector3(0, 45, -42);
         Death.transform.localScale = new Vector3(3.4f, 3.4f, 3.4f);
+        static_parameters.stage_number = 0;
         static_parameters.reburn_ani = false;
         Death.SetActive(false);
         MC_Img.SetActive(true);

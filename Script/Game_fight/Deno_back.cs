@@ -6,8 +6,11 @@ public class Deno_back : MonoBehaviour
     public GameObject image_complete;
     public GameObject UI, Player_S, Camera;
     // Start is called before the first frame update
+    private Canvas canvas;
     void Start()
     {
+        canvas = GetComponent<Canvas>();
+        canvas.sortingOrder = 900;
         UI = GameObject.Find("UI");
         Player_S = GameObject.Find("Player_S");
         Camera = GameObject.Find("Camera");
