@@ -170,11 +170,12 @@ public class initiator_MC : MonoBehaviour
                         }
                         break;
                     case 32:
-                        if (Skill_public_funtion.skill_32_Dash_end)
+                        if (Skill_public_funtion.skill_32_Dash_end && static_parameters.MC_Wspeed != Skill_public_funtion.skill_32_speed * 1.2f)
                         {
                             Skill_public_funtion.skill_32_Dash_end = false;
                             Skill_public_funtion.skill_32_Dash_time = 0;
-                            static_parameters.MC_Wspeed *= 1.2f;
+                            static_parameters.MC_Wspeed = Skill_public_funtion.skill_32_speed * 1.2f;
+                            Debug.Log("skill32 speed Add:" + static_parameters.MC_Wspeed);
                         }
                         if (Skill_public_funtion.skill_32_Dash_time < 2f)
                         {
@@ -204,7 +205,8 @@ public class initiator_MC : MonoBehaviour
                             skill32_animator_1.SetBool("skill32", false);
                             skill32_animator_2.SetBool("skill32", false);
                             skill32_animator_3.SetBool("skill32", false);
-                            static_parameters.MC_Wspeed /= 1.2f;
+                            static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp;
+                            Debug.Log("skill32 speed Return:" + static_parameters.MC_Wspeed);
                             Skill_public_funtion.skill_32_Dash_time = 15f;
                         }
                         break;
@@ -271,14 +273,17 @@ public class initiator_MC : MonoBehaviour
                 switch (icon.iconID)
                 {
                     case 11:
-                        if (Skill_public_funtion.skill_11_throw_time < 10f)
+                        if (static_parameters.MC_HP > 0 && static_parameters.Change_enemy != 0)
                         {
-                            Skill_public_funtion.skill_11_throw_time += Time.deltaTime;
-                        }
-                        else if (InventoryManager.Instance.ItemList.Count < 4)
-                        {
-                            Skill_public_funtion.skill_11_throw_time = 0;
-                            StartCoroutine(skill_11_after());
+                            if (Skill_public_funtion.skill_11_throw_time < 10f)
+                            {
+                                Skill_public_funtion.skill_11_throw_time += Time.deltaTime;
+                            }
+                            else if (InventoryManager.Instance.ItemList.Count < 4)
+                            {
+                                Skill_public_funtion.skill_11_throw_time = 0;
+                                StartCoroutine(skill_11_after());
+                            }
                         }
                         break;
                     case 13:

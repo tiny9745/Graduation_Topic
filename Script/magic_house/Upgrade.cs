@@ -288,4 +288,9 @@ public class Upgrade : MonoBehaviour
         Skill_public_funtion.skill_04_MC_atk = static_parameters.MC_ATK;
         Skill_public_funtion.skill_05_MC_atk = static_parameters.MC_ATK;
     }
+    private void skill_nmueric_renew_Speed()
+    {
+        static_parameters.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
+        Skill_public_funtion.skill_32_speed = static_parameters.MC_Wspeed;
+    }
 }

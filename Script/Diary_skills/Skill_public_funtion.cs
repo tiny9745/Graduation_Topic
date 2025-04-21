@@ -25,6 +25,7 @@ public class Skill_public_funtion : MonoBehaviour // this change Remembers chang
 
     static public ushort skill_32_33_Dash_direction = 4;
     static public bool skill_31_dash = false, skill_31_open = true, skill_32_Dash_end = false, skill_33_Dash = false, skill_34_Dash = false;
+    static public float skill_32_speed = static_parameters.MC_Wspeed;
     static public float skill_34_atk = 15, skill_12_atk = 5;
     static public float skill_32_Dash_time = 15, skill_35_Dash_Magnification = 1f;
 
