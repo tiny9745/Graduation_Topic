@@ -7,7 +7,7 @@ public class BOSS01_effect : MonoBehaviour
     public Boss_col control; public BOSS_Blood boss_blood; public skill_piano_effect _skill_piano_effect;
     public GameObject bomb_piano, bomb_point, Ward12;
     int play_piano_atk = 0; float NPC_back = 10, minus;
-    bool piano_flag = true;
+    bool piano_flag = true, piano_flag_2 = true;
     public Animator skill_01_1, skill_02, skill04_B, skill05A, skill05B;
     public Animator skill_2x_animator, skill21_animator, skill22_animator, skill23_animator, skill24_animator, skill25_1_animator, skill25_2_animator;
     private bool skill_25_effect = false; private float skill_25_effect_time = 0; private float skill_25_max_time = 2, skill_25_step_time = 0.5f;
@@ -130,13 +130,21 @@ public class BOSS01_effect : MonoBehaviour
             play_piano_atk = 0;
         }
     }
+    void SetFlag2(){
+        piano_flag_2 = false;
+    }
     void damage(float ATK)
     {
         Debug.Log("BD");
-        minus = (float)(ATK * ATK / (control.BOSS_DEF + ATK));
-        if (minus < 5) minus = 5;
-        control.BOSS_HP -= minus;
-        Skill_public_funtion.B_damage = 0;
+        if(piano_flag_2){
+            piano_flag_2 = false;
+            minus = (float)(ATK * ATK / (control.BOSS_DEF + ATK));
+            if (minus < 5) minus = 5;
+            control.BOSS_HP -= minus;
+            Skill_public_funtion.B_damage = 0;
+            Invoke("SetFlag2", 1.1f);
+        }
+        
     }
 
     public void fight_instinct_npc()//被MC攻擊時作用
