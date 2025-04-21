@@ -23,7 +23,6 @@ public class initiator_MC : MonoBehaviour
     void Start()
     {
         previousPosition = transform.position;
-        Skill_public_funtion.MC_Wspeed_tmp = static_parameters.MC_Wspeed;
     }
 
     // Update is called once per frame
@@ -170,11 +169,11 @@ public class initiator_MC : MonoBehaviour
                         }
                         break;
                     case 32:
-                        if (Skill_public_funtion.skill_32_Dash_end && static_parameters.MC_Wspeed != Skill_public_funtion.skill_32_speed * 1.2f)
+                        if (Skill_public_funtion.skill_32_Dash_end && static_parameters.MC_Wspeed != Skill_public_funtion.skill_32_speed * 1.5f)
                         {
                             Skill_public_funtion.skill_32_Dash_end = false;
                             Skill_public_funtion.skill_32_Dash_time = 0;
-                            static_parameters.MC_Wspeed = Skill_public_funtion.skill_32_speed * 1.2f;
+                            static_parameters.MC_Wspeed = Skill_public_funtion.skill_32_speed * 1.5f;
                             Debug.Log("skill32 speed Add:" + static_parameters.MC_Wspeed);
                         }
                         if (Skill_public_funtion.skill_32_Dash_time < 2f)
@@ -205,7 +204,7 @@ public class initiator_MC : MonoBehaviour
                             skill32_animator_1.SetBool("skill32", false);
                             skill32_animator_2.SetBool("skill32", false);
                             skill32_animator_3.SetBool("skill32", false);
-                            static_parameters.MC_Wspeed = static_parameters.MC_Wspeed_tmp;
+                            static_parameters.MC_Wspeed = Skill_public_funtion.skill_32_speed;
                             Debug.Log("skill32 speed Return:" + static_parameters.MC_Wspeed);
                             Skill_public_funtion.skill_32_Dash_time = 15f;
                         }

@@ -79,12 +79,12 @@ public class Upgrade : MonoBehaviour
                     ATK_LV++; AB[ATK_LV - 2].SetActive(true);
                     textbox.text = $"升級成功，剩餘{static_parameters.money}元";
                     if (ATK_LV < 6) textbox.text += "\r\n下一級升級價格:" + ATK_price[ATK_LV - 1] + "元";
+                    skill_nmueric_renew_ATK();
                 }
                 else
                 {
                     textbox.text = $"金錢不足{ATK_price[ATK_LV - 1] - static_parameters.money}元";
                 }
-                skill_nmueric_renew_ATK();
                 break;
             case 2:
                 if (DEF_LV == 6)
@@ -134,6 +134,7 @@ public class Upgrade : MonoBehaviour
                     Speed_LV++; SB[Speed_LV - 2].SetActive(true);
                     textbox.text = $"升級成功，剩餘{static_parameters.money}元";
                     if (Speed_LV < 6) textbox.text += "\r\n下一級升級價格:" + Speed_price[Speed_LV - 1] + "元";
+                    skill_nmueric_renew_Speed();
                 }
                 else
                 {
