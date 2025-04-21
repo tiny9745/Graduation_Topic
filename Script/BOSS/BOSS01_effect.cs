@@ -108,9 +108,9 @@ public class BOSS01_effect : MonoBehaviour
                         skill_25_effect = true;
                         skill25_1_animator.SetBool("skill_bomb25_1", true);
                         skill25_2_animator.SetBool("skill_bomb25_2", true);
-                        continue;
+                        break;
                     default:
-                        continue;
+                        break;
                 }
             }
             damage(Skill_public_funtion.B_damage);
@@ -135,11 +135,11 @@ public class BOSS01_effect : MonoBehaviour
     void damage(float ATK)
     {
         if(piano_flag_2){
-        minus = (float)(ATK * ATK / (control.BOSS_DEF + ATK));
-        if (minus < 5) minus = 5.0f;
-        control.BOSS_HP -= minus;
-        Skill_public_funtion.B_damage = 0;
-        HP_control.UpdateHealthBar();
+            minus = (float)(ATK * ATK / (control.BOSS_DEF + ATK));
+            if (minus < 5) minus = 5;
+            control.BOSS_HP -= minus;
+            Skill_public_funtion.B_damage = 0;
+            HP_control.UpdateHealthBar();
         }
     }
 
