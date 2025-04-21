@@ -94,7 +94,7 @@ public class BOSS01_effect : MonoBehaviour
                         continue;
                     case 23: // Ricochet
                         skill23_animator.SetTrigger("skill_bomb23");
-                        Skill_public_funtion.B_damage += 20;
+                        Skill_public_funtion.B_damage += 25;
                         if(piano_flag)play_piano_atk++;
                         piano_flag = false;
                         continue;
@@ -105,6 +105,7 @@ public class BOSS01_effect : MonoBehaviour
                         continue;
                     case 25: // Smoke Bomb
                         skill_25_effect = true;
+                        Skill_public_funtion.B_damage += 15;
                         skill25_1_animator.SetBool("skill_bomb25_1", true);
                         skill25_2_animator.SetBool("skill_bomb25_2", true);
                         break;
@@ -135,7 +136,6 @@ public class BOSS01_effect : MonoBehaviour
     }
     void damage(float ATK)
     {
-        Debug.Log("BD");
         if(piano_flag_2){
             piano_flag_2 = false;
             minus = (float)(ATK * ATK / (control.BOSS_DEF + ATK));
