@@ -25,7 +25,6 @@ public class Scene_Change_Forest : MonoBehaviour
     private int into_gameFight_Levels_memory = 0;
     bool open = false;
     private int all_stage = 6;
-    public GameObject image_complete;
 
     void Start()
     {
