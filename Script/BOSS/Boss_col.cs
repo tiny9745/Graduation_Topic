@@ -12,7 +12,7 @@ public class Boss_col : MonoBehaviour
     static public bool BOSS_Atk02_ready03_waring = false;
     static public bool BOSS_Atk02_ready01 = false, BOSS_Atk02_ready03 = false;
     public float BOSS_HP_Max = 3600, BOSS_DEF = 16, BOSS_HP, BOSS_HP_tmp, Winning_HP;
-    public BOSS01_HP boss_hP; public BOSS01_effect effect;
+    public BOSS_Blood boss_blood; public BOSS01_effect effect;
     public bool stun = false;
     public int NPC_angle = 0;
     public Transform spriteTransform;
@@ -40,6 +40,7 @@ public class Boss_col : MonoBehaviour
         {
             if (BOSS_live)
             {
+                BOSS_HP = 0;
                 BOSS_live = false;
                 Boss_Animator.SetTrigger("die");
                 Destroy(Boss_Skill);
@@ -531,7 +532,8 @@ public class Boss_col : MonoBehaviour
                 change_color_red();
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
-                boss_hP.TakeDamage(static_parameters.MC_ATK, BOSS_DEF);
+                boss_blood.TakeDamage(static_parameters.MC_ATK, BOSS_DEF);
+                Debug.Log("BOSS_HP01:" + BOSS_HP);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.5f);
                 nextDamageTime = Time.time + damageCooldown;
@@ -548,16 +550,16 @@ public class Boss_col : MonoBehaviour
                 switch (static_parameters._ItemID)
                 {
                     case 1:
-                        boss_hP.TakeDamage(4 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
+                        boss_blood.TakeDamage(4 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
                         break;
                     case 2:
-                        boss_hP.TakeDamage(3 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
+                        boss_blood.TakeDamage(3 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
                         break;
                     case 3:
-                        boss_hP.TakeDamage(5 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
+                        boss_blood.TakeDamage(5 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
                         break;
                     case 4:
-                        boss_hP.TakeDamage(1 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
+                        boss_blood.TakeDamage(1 * Skill_public_funtion.skill_13_bullet_atk, BOSS_DEF);
                         break;
                 }
             }
