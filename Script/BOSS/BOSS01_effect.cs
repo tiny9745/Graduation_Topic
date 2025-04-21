@@ -132,6 +132,7 @@ public class BOSS01_effect : MonoBehaviour
     }
     void damage(float ATK)
     {
+        Debug.Log("BD");
         minus = (float)(ATK * ATK / (control.BOSS_DEF + ATK));
         if (minus < 5) minus = 5;
         control.BOSS_HP -= minus;
