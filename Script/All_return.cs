@@ -96,6 +96,12 @@ public class All_return : MonoBehaviour
         Skill_public_funtion.skill_44_enter = true;
         Skill_public_funtion.skill_45_enter = true;
         Skill_public_funtion.skill_45_Atk = 22;
+        
+        Ani_MC.isDashCooldown = false;
+        Ani_MC.isDashCooldown_for_move = false;
+        Ani_MC.isAttackPlaying = false;
+        Ani_MC.DashCD_time = 1f;
+        Ani_MC.dashDuration = 0.63f;
 
         Boss_col.BOSS_Atk_time = 0;
         Boss_col.BOSS_Atk_state = 1;
