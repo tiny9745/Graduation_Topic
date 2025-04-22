@@ -53,7 +53,6 @@ public class Ani_MC : MonoBehaviour
         {
             ResetCombo();
         }
-
         // 如果動畫正在播放，則不處理其他輸入
         if (isAttackPlaying || static_parameters.Ani_state == -1) return;
 
