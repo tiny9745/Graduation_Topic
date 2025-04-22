@@ -38,16 +38,6 @@ public class Ani_MC : MonoBehaviour
             {
                 if (!isAttackPlaying) StartCoroutine(AttackSequence()); atk_time = 0;
             }
-            /*else if (atk_flag && static_parameters.Ani_state != 0 && static_parameters.Ani_state != 1)
-            {
-                // 如果攻擊動畫播放完畢，則重置攻擊計數器
-                atk_flag = false; atk_time = 0;
-            }
-            else if (atk_flag && static_parameters.Ani_state == 0 && static_parameters.Ani_state == 1)
-            {
-                atk_flag = true;
-                atk_time = 0;
-            }*/
         }
         if (atk_time >= 0.8f || ATK_count > 4)
         {
