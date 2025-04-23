@@ -19,9 +19,13 @@ public class Death_MC_BOSS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(boss_col.BOSS_HP <= 0 || static_parameters.MC_HP <= 0)
+
+        if (boss_col != null)
         {
-            gameObject.SetActive(false);
+            if (boss_col.BOSS_HP <= 0 || static_parameters.MC_HP <= 0)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }
