@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 680573515694877238}
   - component: {fileID: 8941822335750202218}
   - component: {fileID: 2103111527483856509}
+  - component: {fileID: 2253118054223551800}
   m_Layer: 0
   m_Name: Boss-Atk-2-card2
   m_TagString: BOSS_Atk
@@ -230,3 +231,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2253118054223551800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7021978179163928835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938c899d6ae163e49b8a96813e25734e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_col: {fileID: 0}

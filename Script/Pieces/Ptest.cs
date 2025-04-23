@@ -175,14 +175,6 @@ public class Ptest : MonoBehaviour
             show.Add(availablePieces[i]);
             if (l == 0) k = i;
             l++;
-            // if (availablePieces[i].PieceName.Substring(0, 3) == "Red")
-            // {
-            //     pickedPieces.Add(availablePieces[i]);
-            //     SortPiece(availablePieces[i]);
-            //     show.Add(availablePieces[i]);
-            //     if (l == 0) k = i;
-            //     l++;
-            // }
         }
         for (int j = k; j < (l + k); j++)
         {
