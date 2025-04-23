@@ -20,7 +20,7 @@ public class BOSS_AtkObj_skill_effect : MonoBehaviour
     }
     private void OnTriggerEnter(Collider Hit)
     {
-        if (Hit.gameObject.CompareTag("Player"))
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.MC_HP > 0)
         {
             effect.fight_instinct_MC();
         }
