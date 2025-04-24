@@ -20,14 +20,14 @@ public class swam : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            static_parameters.MC_Wspeed /= 2;
+            static_parameters.MC_Wspeed = static_parameters.MC_Wspeed * 0.8f;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
-            static_parameters.MC_Wspeed *= 2;
+            static_parameters.MC_Wspeed  = static_parameters.MC_Wspeed / 0.8f;
         }
     }
 }

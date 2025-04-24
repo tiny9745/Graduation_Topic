@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class Main_menu : MonoBehaviour
 {
     public GameObject _Setting_menu;
+    public GameObject _Information;
     public GameObject _Main_menu;
     public AudioSource SE_sound;
     public AudioClip click, move;
     public Image Play_icon_on, Setting_icon_on, Information_icon_on, Exit_icon_on;
     public Image Play_icon_off, Setting_icon_off, Information_icon_off, Exit_icon_off;
-    int key_count = 1, key_count_max = 3,K1=1;
+    int key_count = 1, key_count_max = 4,K1=1;
     bool isSetting = false;
 
     void Start()
@@ -44,8 +45,8 @@ public class Main_menu : MonoBehaviour
                 {
                     case 1: Game_Play(); break;
                     case 2: Game_Setting(); break;
-                    // case 3: Game_Information(); break;
-                    case 3: Game_Exit(); break;
+                    case 3: Game_Information(); break;
+                    case 4: Game_Exit(); break;
                 }
             }
         }
@@ -58,8 +59,8 @@ public class Main_menu : MonoBehaviour
         {
             case 1: OnPointerEnter_Play(); break;
             case 2: OnPointerEnter_Setting(); break;
-            // case 3: OnPointerEnter_Information(); break;
-            case 3: OnPointerEnter_Exit(); break;
+            case 3: OnPointerEnter_Information(); break;
+            case 4: OnPointerEnter_Exit(); break;
         }
         if (K1 != key_count) SE_sound.PlayOneShot(move);
         
@@ -75,7 +76,7 @@ public class Main_menu : MonoBehaviour
     }  
     public void Game_Information(){
         SE_sound.PlayOneShot(click);
-        SceneManager.LoadScene("Information");
+        _Information.SetActive(true);
     }
     public void Game_Exit(){
         SE_sound.PlayOneShot(click);
@@ -88,8 +89,8 @@ public class Main_menu : MonoBehaviour
         Play_icon_off.gameObject.SetActive(!play);
         Setting_icon_on.gameObject.SetActive(setting);
         Setting_icon_off.gameObject.SetActive(!setting);
-        // Information_icon_on.gameObject.SetActive(information);
-        // Information_icon_off.gameObject.SetActive(!information);
+        Information_icon_on.gameObject.SetActive(information);
+        Information_icon_off.gameObject.SetActive(!information);
         Exit_icon_on.gameObject.SetActive(exit);
         Exit_icon_off.gameObject.SetActive(!exit);
         SE_sound.PlayOneShot(move);
@@ -108,15 +109,15 @@ public class Main_menu : MonoBehaviour
         UpdateIcons(false, true, false, false);
     }
 
-    // public void OnPointerEnter_Information()
-    // {
-    //     key_count = 3;
-    //     UpdateIcons(false, false, true, false);
-    // }
+    public void OnPointerEnter_Information()
+    {
+        key_count = 3;
+        UpdateIcons(false, false, true, false);
+    }
 
     public void OnPointerEnter_Exit()
     {
-        key_count = 3;
+        key_count = 4;
         UpdateIcons(false, false, false, true);
     }
 }
