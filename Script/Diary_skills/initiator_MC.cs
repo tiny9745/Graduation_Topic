@@ -274,7 +274,7 @@ public class initiator_MC : MonoBehaviour
                     case 11:
                         if (static_parameters.MC_HP > 0 && static_parameters.Change_enemy != 0)
                         {
-                            if (Skill_public_funtion.skill_11_throw_time < 10f)
+                            if (Skill_public_funtion.skill_11_throw_time < 7f)
                             {
                                 Skill_public_funtion.skill_11_throw_time += Time.deltaTime;
                             }

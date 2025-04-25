@@ -279,7 +279,7 @@ public class NPC_effect_03 : MonoBehaviour
                         {
                             control.stun = true;
                             skill22_animator.SetBool("skill_bullet15", true);
-                            Invoke(nameof(Stun_end15), 3);
+                            Invoke(nameof(Stun_end15), 2);
                         }
                         break;
                     case 31:
