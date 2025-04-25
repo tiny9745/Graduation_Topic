@@ -38,8 +38,6 @@ public class Teaching_TextF : MonoBehaviour
     {
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && static_parameters.teaching_stop < 100 && Setting_keybroad.ESC_col == false)
         {
-            Debug.Log("static_parameters.teaching_stop = " + static_parameters.teaching_stop);
-            Debug.Log("talk_number = " + talk_number);
             reading();
         }
         else if (
@@ -49,7 +47,7 @@ public class Teaching_TextF : MonoBehaviour
             static_parameters.teaching_stop == 6 && talk_number == 10 ||
             static_parameters.teaching_stop == 7 && talk_number == 17 ||
             static_parameters.teaching_stop == 9 && talk_number == 21 ||
-            static_parameters.teaching_stop == 10 && talk_number == 31)
+            static_parameters.teaching_stop == 10 && talk_number == 37)
         {
             reading();
         }
@@ -57,6 +55,8 @@ public class Teaching_TextF : MonoBehaviour
 
     public void reading()
     {
+        Debug.Log("talk_number = " + talk_number);
+        Debug.Log("static_parameters.teaching_stop = " + static_parameters.teaching_stop);
         switch (talk_number)
         {
             case 0:
@@ -77,7 +77,7 @@ public class Teaching_TextF : MonoBehaviour
             case 2:
                 opce_nav();
                 not_talk();
-                Narration_text.text = "［忽然，外頭傳來了奇怪的聲音。］";
+                Narration_text.text = "忽然，外頭傳來了奇怪的聲音。";
                 break;
             case 3:
                 opce_nav();
@@ -90,7 +90,7 @@ public class Teaching_TextF : MonoBehaviour
                 opce_nav();
                 main_talk();
                 Magician_object.SetActive(false);
-                Narration_text.text = "［曦然待在原地，準備食材。］";
+                Narration_text.text = "曦然待在原地，準備食材。";
                 break;
             case 5:
                 opce_nav();
@@ -108,7 +108,7 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 7:
                 close();
-                teach_text.text = "WASD控制曦然去玩偶區拿起鴨子布偶來防禦吧！";
+                teach_text.text = "<color=red>WASD</color>控制曦然去玩偶區<color=red>拿起鴨子布偶</color>來防禦吧！";
                 if (static_parameters.teaching_stop == -1)
                 {
                     teaching_sprite_keycode[0].SetActive(true);
@@ -117,21 +117,21 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 8:
                 teaching_sprite_keycode[0].SetActive(false);
-                teach_text.text = "走出門口，查看莓莓的情況";
+                teach_text.text = "<color=red>走出門口</color>，查看莓莓的情況";
                 break;
             case 9:
                 teaching_sprite_keycode[1].SetActive(true);
-                teach_text.text = "莓莓要受傷了！快按下滑鼠左鍵使用鴨子布偶來攻擊敵人！";
+                teach_text.text = "莓莓要受傷了！快按下<color=red>滑鼠左鍵</color>使用鴨子布偶來攻擊敵人！";
                 break;
             case 10:
-                teach_text.text = "把剩餘士兵擊退吧！";
+                teach_text.text = "把<color=red>剩餘士兵擊退</color>吧！";
                 break;
             case 11:
                 magic_talk();
                 Magician_object.SetActive(true);
                 Magician.sprite = Magician_face[4];
                 name_text.text = "莓莓";
-                talk_text.text = "我沒事，謝謝妳。但是姜米和其他人變得好奇怪……";
+                talk_text.text = "我沒事，謝謝妳。但是姜米變得好奇怪……";
                 break;
             case 12:
                 main_talk();
@@ -159,7 +159,7 @@ public class Teaching_TextF : MonoBehaviour
                 static_parameters.teaching_stop = 6;
                 Diary_object.SetActive(true);
                 teaching_sprite_keycode[3].SetActive(true);
-                teach_text.text = "按下Z鍵，打開筆記本吧！";
+                teach_text.text = "按下<color=red>Z鍵</color>，打開筆記本吧！";
                 break;
             case 18:
                 open();
@@ -175,94 +175,116 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 20:
                 close();
-                teach_text.text = "將剛剛獲得的碎片拖曳到畫面上試試看！";
+                teach_text.text = "將擁有<color=red>相同特徵</color>的碎片組合起來吧！";
                 break;
             case 21:
                 close_co();
                 break;
             case 22:
                 open();
-                name_text.text = "莓莓";
-                talk_text.text = "出現了一點魔力，哼嗯……似乎跟詛咒有相同的氣息……？";
+                name_text.text = "曦然";
+                talk_text.text = "發……發出了奇怪的光芒！好像出現了什麼東西？";
                 break;
             case 23:
-                Magician.sprite = Magician_face[3];
+                magic_talk();
+                Magician.sprite = Magician_face[4];
                 name_text.text = "莓莓";
-                talk_text.text = "但是碎片還不夠多，也許只要多去打敗那些受詛咒的人或生物";
+                talk_text.text = "這、這是！特殊能力！沒想到這本日記擁有這麼強大的力量！";
                 break;
             case 24:
-                name_text.text = "莓莓";
-                talk_text.text = "我想就能得到更多碎片來拼湊吧？";
-                static_parameters.isTeaching = false;
-                _UI.openclose_false();
+                main_talk();
+                Main_character.sprite = Main_character_face[3];
+                name_text.text = "曦然";
+                talk_text.text = "我確實有感覺到……身體機能似乎得到提升。";
                 break;
             case 25:
+                magic_talk();
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
-                talk_text.text = "蒐集到一定的魔力，也許就可以反向解開詛咒呢。";
+                talk_text.text = "沒錯！這就是其中一種";
+                _UI.openclose_false();
                 break;
             case 26:
+                talk_text.text = "而依照我的猜測，肯定還有更多不同功用的特殊能力。";
+                break;
+            case 27:
+                Magician.sprite = Magician_face[3];
+                talk_text.text = "但是現在碎片還不夠多。";
+                break;
+            case 28:
+                Magician.sprite = Magician_face[0];
+                talk_text.text = "我想只要多去打敗那些受詛咒的人或生物";
+                break;
+            case 29:
+                talk_text.text = "就能得到更多碎片來拼湊出更多特殊能力吧？";
+                break;
+            case 30:
+                talk_text.text = "蒐集到一定的魔力，也許就可以反向解開詛咒呢。";
+                break;
+            case 31:
                 main_talk();
                 Main_character.sprite = Main_character_face[4];
                 name_text.text = "曦然";
                 talk_text.text = "真的嗎？";
                 break;
-            case 27:
+            case 32:
                 magic_talk();
+                Magician.sprite = Magician_face[1];
+                name_text.text = "莓莓";
+                talk_text.text = "我不能保證，但很大的機率是。";
+                break;
+            case 33:
                 Magician.sprite = Magician_face[3];
                 name_text.text = "莓莓";
                 talk_text.text = "不過我沒有辦法和你一起去，詛咒影響我越來越深了";
                 break;
-            case 28:
+            case 34:
                 Magician.sprite = Magician_face[3];
                 name_text.text = "莓莓";
                 talk_text.text = "所以……";
                 break;
-            case 29:
+            case 35:
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
                 talk_text.text = "所以……拜託妳去城堡查看詛咒來源，在路上順便蒐集碎片吧！";
                 break;
-            case 30:
+            case 36:
                 static_parameters.teaching_stop = 10;
                 SceneManager.LoadScene("magic_house");
                 break;
-            case 32:
+            case 37:
                 opce_nav();
-                name_text.text = "莓莓";
-                talk_text.text = "出發前要記得補充好營養，這杯叫做回魂藥水。";
-                break;
-            case 33:
+                magic_talk();
                 name_text.text = "莓莓";
                 talk_text.text = "如果妳不幸被怪物攻擊致死，別擔心！";
                 break;
-            case 34:
+            case 38:
                 Magician.sprite = Magician_face[1];
                 name_text.text = "莓莓";
                 talk_text.text = "妳會重新回到糖果屋裡！不會真的死亡喔！";
                 break;
-            case 35:
+            case 39:
                 main_talk();
                 Main_character.sprite = Main_character_face[1];
                 name_text.text = "曦然";
                 talk_text.text = "哇，真神奇。";
                 break;
-            case 36:
+            case 40:
                 opce_nav();
-                Narration_text.text = "［曦然喝下了回魂藥水，也吃了早餐，準備出發］";
+                Narration_text.text = "曦然喝下了回魂藥水，也吃了早餐，準備出發";
                 break;
-            case 37:
+            case 41:
                 opce_nav();
                 magic_talk();
                 Magician.sprite = Magician_face[0];
                 name_text.text = "莓莓";
                 talk_text.text = "出門小心！願甜蜜與妳同在。";
                 break;
-            case 38:
+            case 42:
                 opce_nav();
-                Narration_text.text = "（遊戲正式開始）";
+                Narration_text.text = "遊戲正式開始";
                 break;
-            case 39:
+            case 43:
                 close();
                 Teaching_end();
                 break;
@@ -272,7 +294,7 @@ public class Teaching_TextF : MonoBehaviour
             if (static_parameters.teaching_stop == 1)
             {
                 talk_number++;
-                teach_text.text = "走出門口，查看莓莓的情況";
+                teach_text.text = "<color=red>走出門口</color>，查看莓莓的情況";
             }
         }
         else if (talk_number == 8)
@@ -281,7 +303,7 @@ public class Teaching_TextF : MonoBehaviour
             {
                 talk_number++;
                 teaching_sprite_keycode[1].SetActive(true);
-                teach_text.text = "莓莓要受傷了！快按下滑鼠左鍵使用鴨子布偶來攻擊敵人！";
+                teach_text.text = "莓莓要受傷了！快按下<color=red>滑鼠左鍵</color>使用鴨子布偶來攻擊敵人！";
             }
         }
         else if (talk_number == 9)
@@ -291,7 +313,7 @@ public class Teaching_TextF : MonoBehaviour
                 talk_number++;
                 Blood_object.SetActive(true);
                 Throwing_object.SetActive(true);
-                teach_text.text = "把剩餘士兵擊退吧";
+                teach_text.text = "把<color=red>剩餘士兵擊退</color>吧！";
                 teaching_sprite_keycode[1].SetActive(false);
                 teaching_sprite_keycode[2].SetActive(true);
                 Instantiate(teaching_throwing_object, player_S.transform.position, Quaternion.identity, transform);
@@ -330,18 +352,21 @@ public class Teaching_TextF : MonoBehaviour
             if (static_parameters.teaching_stop == 9)
             {
                 open();
+                main_talk();
+                Main_character.sprite = Main_character_face[4];
                 talk_number += 2;
-                name_text.text = "莓莓";
-                talk_text.text = "出現了一點魔力，哼嗯……似乎跟詛咒有相同的氣息……？";
+                name_text.text = "曦然";
+                talk_text.text = "發……發出了奇怪的光芒！好像出現了什麼東西？";
             }
         }
-        else if (talk_number == 31)
+        else if (talk_number == 37)
         {
             if (SceneManager.GetActiveScene().name == "magic_house")
             {
                 talk_number++;
                 opce_nav();
-                Narration_text.text = "（回到房屋裡，早餐草莓巧克力蛋餅已經完成，還有一杯粉色回魂藥水）";
+                name_text.text = "莓莓";
+                talk_text.text = "出發前要記得補充好營養，這杯叫做回魂藥水。";
             }
         }
         else

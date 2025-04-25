@@ -80,6 +80,7 @@ public class Puzzle : MonoBehaviour
     private void Complete_piece_after()
     {
         UI.Onclick3();
+        if (static_parameters.teaching_stop == 8) static_parameters.teaching_stop = 9;
         switch (Skill_public_funtion.mood_number)
         {
             case 0:

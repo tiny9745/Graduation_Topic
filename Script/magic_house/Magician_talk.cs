@@ -20,7 +20,6 @@ public class Magician_talk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // canvas.sortingOrder = -1000;
         originalSize = talk_text.fontSize;
         smallerSize = originalSize / 2;
     }

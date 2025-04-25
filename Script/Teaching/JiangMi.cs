@@ -14,7 +14,7 @@ public class JiangMi : MonoBehaviour
     private void JM_atk()
     {
         JM_animator.SetInteger("JM", 1);
-        Invoke("wait", 1.5f);
+        Invoke("wait", 0.5f);
     }
 
     private void wait()

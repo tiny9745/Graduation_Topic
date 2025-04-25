@@ -35,7 +35,6 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         {
             if (int.TryParse(droppedObject.name, out int itemNumber) && itemNumber > 0)
             {
-                if (static_parameters.teaching_stop == 8) static_parameters.teaching_stop = 9;
                 string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
                 string key_name = Ptest.show[itemNumber - 1].PieceName;
                 currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
@@ -70,6 +69,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                 }
                 else if (checkResult == 2)
                 {
+                    // if (static_parameters.teaching_stop == 8) static_parameters.teaching_stop = 9;
                     audioSource.PlayOneShot(audioClip[2]);
                     _ui.putting_diary(false);
                     newColor.a = 1;
