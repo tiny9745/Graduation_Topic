@@ -22,6 +22,8 @@ public class Boss_col : MonoBehaviour
     public AudioClip[] BOSS_Atk02_sound;
     public AudioClip[] BOSS_Atk03_sound;
 
+    private bool boss_open = false;
+
     void Start()
     {
         BOSS_Atk_time = -5;
@@ -33,9 +35,12 @@ public class Boss_col : MonoBehaviour
         BOSS_HP_tmp = BOSS_HP_Max;
         TargetObj = GameObject.Find("Player_S");
         static_parameters.Change_enemy++;
+        Boss_Animator.SetBool("open_before", true);
     }
     void Update()
     {
+        
+        if (boss_open == false) return;
         if (BOSS_HP <= 0)
         {
             if (BOSS_live)
@@ -530,6 +535,7 @@ public class Boss_col : MonoBehaviour
                         break;
                 }
                 change_color_red();
+                Boss_Animator.SetTrigger("hit");
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
                 boss_blood.TakeDamage(static_parameters.MC_ATK, BOSS_DEF);
@@ -547,6 +553,7 @@ public class Boss_col : MonoBehaviour
             if (other.gameObject.CompareTag("MC_bullet"))
             {
                 change_color_red();
+                Boss_Animator.SetTrigger("hit");
                 switch (static_parameters._ItemID)
                 {
                     case 1:
