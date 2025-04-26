@@ -6,7 +6,7 @@ public class Boss_col : MonoBehaviour
     public Animator Boss_Animator;
     private GameObject TargetObj, Boss_Skill;
     public GameObject Demo_End;
-    static public float BOSS_Atk_time = -5;
+    static public float BOSS_Atk_time = 0, BOSS_in_open_time = 0;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
     static public bool BOSS_Atk02_ready03_waring = false;
@@ -26,7 +26,7 @@ public class Boss_col : MonoBehaviour
 
     void Start()
     {
-        BOSS_Atk_time = -5;
+        BOSS_Atk_time = 0;
         BOSS_Atk_bool = false;
         BOSS_live = true;
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -39,8 +39,19 @@ public class Boss_col : MonoBehaviour
     }
     void Update()
     {
-        
-        if (boss_open == false) return;
+        if (boss_open == false)
+        {
+            if (BOSS_in_open_time < 6)
+            {
+                BOSS_in_open_time += Time.deltaTime;
+            }
+            else
+            {
+                Boss_Animator.SetTrigger("open");
+                boss_open = true;
+            }
+            return;
+        }
         if (BOSS_HP <= 0)
         {
             if (BOSS_live)
