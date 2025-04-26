@@ -6,7 +6,8 @@ public class Boss_col : MonoBehaviour
     public Animator Boss_Animator;
     private GameObject TargetObj, Boss_Skill;
     public GameObject Demo_End;
-    static public float BOSS_Atk_time = -5;
+    static public float BOSS_Atk_time = 0;
+    public float BOSS_in_open_time = 0;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
     static public bool BOSS_Atk02_ready03_waring = false;
@@ -22,9 +23,11 @@ public class Boss_col : MonoBehaviour
     public AudioClip[] BOSS_Atk02_sound;
     public AudioClip[] BOSS_Atk03_sound;
 
+    private bool boss_open = false;
+
     void Start()
     {
-        BOSS_Atk_time = -5;
+        BOSS_Atk_time = 0;
         BOSS_Atk_bool = false;
         BOSS_live = true;
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
@@ -33,9 +36,21 @@ public class Boss_col : MonoBehaviour
         BOSS_HP_tmp = BOSS_HP_Max;
         TargetObj = GameObject.Find("Player_S");
         static_parameters.Change_enemy++;
+        Boss_Animator.SetBool("open_before", true);
     }
     void Update()
     {
+        if (boss_open == false)
+        {
+            if (BOSS_in_open_time >= 6)
+            {
+                Boss_Animator.SetBool("open_before", false);
+                Boss_Animator.SetTrigger("open");
+                BOSS_in_open_time = 0;
+                boss_open = true;
+            }
+            return;
+        }
         if (BOSS_HP <= 0)
         {
             if (BOSS_live)
@@ -530,6 +545,7 @@ public class Boss_col : MonoBehaviour
                         break;
                 }
                 change_color_red();
+                Boss_Animator.SetTrigger("hit");
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
                 boss_blood.TakeDamage(static_parameters.MC_ATK, BOSS_DEF);
@@ -547,6 +563,7 @@ public class Boss_col : MonoBehaviour
             if (other.gameObject.CompareTag("MC_bullet"))
             {
                 change_color_red();
+                Boss_Animator.SetTrigger("hit");
                 switch (static_parameters._ItemID)
                 {
                     case 1:
@@ -613,7 +630,7 @@ public class Boss_col : MonoBehaviour
     IEnumerator Dead_after(float wait)
     {
         yield return new WaitForSeconds(wait);
-        Demo_End.SetActive(true);
+        // Demo_End.SetActive(true);
         Destroy(gameObject);
     }
 }
