@@ -40,6 +40,7 @@ public class MC_col : MonoBehaviour
                 audioSource.PlayOneShot(audioClip[1]);
             }
             static_parameters.Change_enemy = 0;
+            static_parameters.next_door = false;
             // playerAgent.enabled = false;
         }
         SetLookDirection(static_parameters.face);

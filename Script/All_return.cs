@@ -55,6 +55,7 @@ public class All_return : MonoBehaviour
         static_parameters.into_gameFight = false;
         static_parameters.isUpgrade_tmp = false;
         static_parameters.MC_throw = 50;
+        static_parameters.next_door = false;
 
         Skill_public_funtion.Reading = false;
         Skill_public_funtion.WOW = 0;

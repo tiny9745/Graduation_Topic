@@ -6,6 +6,7 @@ public class ItemContainer : MonoBehaviour
     public Item thisItem;
     public SphereCollider bomb_hitbox;
     public InventoryManager inventoryManager;
+    public GameObject falsh_ani;
     void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
@@ -20,6 +21,7 @@ public class ItemContainer : MonoBehaviour
             bomb_hitbox.enabled = false;
             InventoryManager.Instance.Add(thisItem);
             InventoryManager.Instance.onInventoryCallBack();
+            Destroy(falsh_ani);
             Destroy(gameObject);
         }
     }

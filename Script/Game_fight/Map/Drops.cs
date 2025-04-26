@@ -90,7 +90,7 @@ public class Drops : MonoBehaviour
             diary_icon_Image.color = new Color(1, 1, 1, 1);
         }
         yield return new WaitForSeconds(0.4f);
-        static_parameters.next_door = true;
+        if (static_parameters.teaching_stop >= 100) static_parameters.next_door = true;
         Destroy(gameObject);
     }
 }

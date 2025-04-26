@@ -22,7 +22,10 @@ public class BOSS_AtkObj_skill_effect : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.MC_HP > 0)
         {
-            effect.fight_instinct_MC();
+            if (effect != null)
+            {
+                effect.fight_instinct_MC();
+            }
         }
     }
 }

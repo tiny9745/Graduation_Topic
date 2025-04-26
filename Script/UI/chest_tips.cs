@@ -20,6 +20,7 @@ public class chest_tips : MonoBehaviour
 
     void Update()
     {
+        if (static_parameters.teaching_stop < 100) return;
         rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, targetPosition, Time.deltaTime * moveSpeed);
         if (static_parameters.next_door && !isEnd)
         {
