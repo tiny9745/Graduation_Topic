@@ -102,7 +102,7 @@ public class initiator_MC : MonoBehaviour
                             {
                                 skill04A.SetTrigger("skill04_A");
                                 Skill_public_funtion.skill_04_atk = false;
-                                static_parameters.MC_ATK = Skill_public_funtion.skill_04_MC_atk * 1.5f;
+                                static_parameters.MC_ATK = Skill_public_funtion.skill_04_MC_atk * 1.7f;
                             }
                             break;
                         case 5:

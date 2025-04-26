@@ -55,7 +55,7 @@ public class Scene_Change_Forest : MonoBehaviour
     {
         if (loadingBar == null) loadingBar = GameObject.Find("BG_pink").GetComponent<Image>();
         if (loadingScreen == null) loadingScreen = GameObject.Find("Load_pink");
-        if (static_parameters.Change_enemy == 0 && static_parameters.next_door == true)
+        if (static_parameters.Change_enemy == 0)
         {
             CloseDoor01.SetActive(false);
             CloseDoor02.SetActive(false);
@@ -75,8 +75,9 @@ public class Scene_Change_Forest : MonoBehaviour
     private void OnTriggerEnter(Collider Hit)
     {
         int i;
-        if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0 && static_parameters.next_door == true)
+        if (Hit.gameObject.CompareTag("Player") && static_parameters.Change_enemy == 0)
         {
+            static_parameters.next_door = false;
             static_parameters.into_gameFight_Levels = into_gameFight_Levels_memory;
             static_parameters.stage_number++;
             foreach(var audio in FindObjectsOfType<AudioSource>())audio.Stop();

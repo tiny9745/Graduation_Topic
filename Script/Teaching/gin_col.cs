@@ -282,7 +282,7 @@ public class gin_col : MonoBehaviour
             if (static_parameters.Change_enemy == 0)
             {
                 Vector3 currentPosition = transform.position;
-                currentPosition.y = 2.5f;
+                currentPosition.y = 4.4f;
                 ptest.teaching_end_Pieces();
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }

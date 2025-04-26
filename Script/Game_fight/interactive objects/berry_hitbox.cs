@@ -48,7 +48,7 @@ public class berry_hitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (bomb_berry.berry != 0 && (other.CompareTag("Player") || other.CompareTag("NPC")))
+        if (bomb_berry.berry != 0 && other.CompareTag("Player"))
         {
             if (!objectsInRange.Contains(other.gameObject))
             {

@@ -45,7 +45,7 @@ public class NPC01_effect : MonoBehaviour
                 }
             }
         }
- 
+
         if (Skill_public_funtion.play_piano)
         {
             if (play_piano_atk < Skill_public_funtion.P_time)
@@ -104,7 +104,7 @@ public class NPC01_effect : MonoBehaviour
                         if (control.NPC_HP < NPC_back)
                             control.NPC_HP = 0;
                         else
-                            transform.position -= NPC_back/2 * Vector3.back;
+                            transform.position -= NPC_back / 2 * Vector3.back;
                         continue;
                     case 25: // Smoke Bomb
                         skill_25_effect = true;
@@ -155,7 +155,7 @@ public class NPC01_effect : MonoBehaviour
                         case 1:
                             skill_01_1.SetTrigger("skill_01_1");
                             Skill_public_funtion.skill_01_time = 0;
-                            static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC01_DEF) / 4;
+                            static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC01_DEF) * 0.3f;
                             if (static_parameters.MC_HP >= static_parameters.MC_HP_Max * 0.6f) static_parameters.MC_HP = static_parameters.MC_HP_Max * 0.6f;
                             break;
                         case 4:
@@ -218,7 +218,7 @@ public class NPC01_effect : MonoBehaviour
                                 }
                             }
                             skill_02.SetTrigger("skill_02");
-                            HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
+                            HP_control.TakeDamage(static_parameters.MC_ATK * 1.5f, static_parameters.MC_DEF * 1.5f);
                             break;
                     }
                 }

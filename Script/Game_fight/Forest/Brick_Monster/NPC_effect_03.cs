@@ -155,7 +155,7 @@ public class NPC_effect_03 : MonoBehaviour
                         case 1:
                             skill_01_1.SetTrigger("skill_01_1");
                             Skill_public_funtion.skill_01_time = 0;
-                            static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) / 4;
+                            static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.NPC03_DEF) * 0.3f;
                             if (static_parameters.MC_HP >= static_parameters.MC_HP_Max * 0.6f) static_parameters.MC_HP = static_parameters.MC_HP_Max * 0.6f;
                             break;
                         case 4:
@@ -218,7 +218,7 @@ public class NPC_effect_03 : MonoBehaviour
                                 }
                             }
                             skill_02.SetTrigger("skill_02");
-                            HP_control.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
+                            HP_control.TakeDamage(static_parameters.MC_ATK * 1.5f, static_parameters.MC_DEF * 1.5f);
                             break;
                     }
                 }

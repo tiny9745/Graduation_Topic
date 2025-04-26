@@ -95,13 +95,13 @@ public class BOSS01_effect : MonoBehaviour
                     case 23: // Ricochet
                         skill23_animator.SetTrigger("skill_bomb23");
                         Skill_public_funtion.B_damage += 25;
-                        if(piano_flag)play_piano_atk++;
+                        if (piano_flag) play_piano_atk++;
                         piano_flag = false;
                         continue;
                     case 24: // Air Bullet
                         skill24_animator.SetTrigger("skill_bomb24");
                         Skill_public_funtion.B_damage += 15;
-                        if (control.BOSS_HP < NPC_back)control.BOSS_HP = 0;
+                        if (control.BOSS_HP < NPC_back) control.BOSS_HP = 0;
                         continue;
                     case 25: // Smoke Bomb
                         skill_25_effect = true;
@@ -131,12 +131,14 @@ public class BOSS01_effect : MonoBehaviour
             play_piano_atk = 0;
         }
     }
-    void SetFlag2(){
+    void SetFlag2()
+    {
         piano_flag_2 = false;
     }
     void damage(float ATK)
     {
-        if(piano_flag_2){
+        if (piano_flag_2)
+        {
             piano_flag_2 = false;
             minus = (float)(ATK * ATK / (control.BOSS_DEF + ATK));
             if (minus < 5) minus = 5;
@@ -144,7 +146,7 @@ public class BOSS01_effect : MonoBehaviour
             Skill_public_funtion.B_damage = 0;
             Invoke("SetFlag2", 1.1f);
         }
-        
+
     }
 
     public void fight_instinct_npc()//被MC攻擊時作用
@@ -160,7 +162,7 @@ public class BOSS01_effect : MonoBehaviour
                         case 1:
                             skill_01_1.SetTrigger("skill_01_1");
                             Skill_public_funtion.skill_01_time = 0;
-                            static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.BOSS_DEF) / 4;
+                            static_parameters.MC_HP += static_parameters.MC_ATK * static_parameters.MC_ATK / (static_parameters.MC_ATK + control.BOSS_DEF) * 0.3f;
                             if (static_parameters.MC_HP >= static_parameters.MC_HP_Max * 0.6f) static_parameters.MC_HP = static_parameters.MC_HP_Max * 0.6f;
                             break;
                         case 4:
@@ -223,7 +225,7 @@ public class BOSS01_effect : MonoBehaviour
                                 }
                             }
                             skill_02.SetTrigger("skill_02");
-                            boss_blood.TakeDamage(static_parameters.MC_ATK / 5, static_parameters.MC_DEF / 5);
+                            boss_blood.TakeDamage(static_parameters.MC_ATK * 1.5f, static_parameters.MC_DEF * 1.5f);
                             break;
                     }
                 }
@@ -256,7 +258,7 @@ public class BOSS01_effect : MonoBehaviour
                             {
                                 boss_blood.TakeDamage(5, control.BOSS_DEF);
                                 skill_25_step_time += 0.5f;
-                                
+
                             }
                         }
                         break;

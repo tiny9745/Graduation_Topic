@@ -381,7 +381,7 @@ public class NPC05_control : MonoBehaviour
             if (static_parameters.Change_enemy == 0)
             {
                 Vector3 currentPosition = transform.position;
-                currentPosition.y = 2.5f;
+                currentPosition.y = 4.4f;
                 Instantiate(Drop, currentPosition, Quaternion.identity);
             }
             money_animator.transform.SetParent(null, true);
