@@ -6,7 +6,8 @@ public class Boss_col : MonoBehaviour
     public Animator Boss_Animator;
     private GameObject TargetObj, Boss_Skill;
     public GameObject Demo_End;
-    static public float BOSS_Atk_time = 0, BOSS_in_open_time = 0;
+    static public float BOSS_Atk_time = 0;
+    public float BOSS_in_open_time = 0;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
     static public int BOSS_Atk_state = 1;
     static public bool BOSS_Atk02_ready03_waring = false;
@@ -41,13 +42,11 @@ public class Boss_col : MonoBehaviour
     {
         if (boss_open == false)
         {
-            if (BOSS_in_open_time < 6)
+            if (BOSS_in_open_time >= 6)
             {
-                BOSS_in_open_time += Time.deltaTime;
-            }
-            else
-            {
+                Boss_Animator.SetBool("open_before", false);
                 Boss_Animator.SetTrigger("open");
+                BOSS_in_open_time = 0;
                 boss_open = true;
             }
             return;
@@ -631,7 +630,7 @@ public class Boss_col : MonoBehaviour
     IEnumerator Dead_after(float wait)
     {
         yield return new WaitForSeconds(wait);
-        Demo_End.SetActive(true);
+        // Demo_End.SetActive(true);
         Destroy(gameObject);
     }
 }
