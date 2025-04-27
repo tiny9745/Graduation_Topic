@@ -9,7 +9,7 @@ public class Puzzle : MonoBehaviour
     public GameObject Book, Ppage, Check;
     public static bool OC = true;
     public GameObject cpmplete_piece_object;
-    public Animator complete_piece_animator;
+    public Animator complete_piece_animator, puzzle_flash_animator;
     public Button composite_col;
     public DragPiece_End dragPiece_end;
     public UI UI;
@@ -40,6 +40,7 @@ public class Puzzle : MonoBehaviour
         audioSource.PlayOneShot(audioClip[0]);
         cpmplete_piece_object.SetActive(true);
         complete_piece_animator.SetInteger("piece_complete_color", DragPiece_End.puzzle_color);
+        puzzle_flash_animator.SetBool("puzzle_flash", false);
         composite_col.enabled = false;
         thisItem = key_count();
 

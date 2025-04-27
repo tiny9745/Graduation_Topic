@@ -20,6 +20,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     static public int puzzle_color = 2, end_count = -1; // 碎片顏色（默認為 2）
     public AudioSource audioSource; 
     public AudioClip[] audioClip; 
+    public Animator puzzle_flash_animator;
 
     void Start()
     {
@@ -75,6 +76,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     newColor.a = 1;
                     SetPuzzleColor(key_color);
                     composite_col.enabled = true;
+                    puzzle_flash_animator.SetBool("puzzle_flash", true);
                     for (int i = 0; i < 4; i++)
                     {
                         images_effect_col[i].gameObject.SetActive(false);
