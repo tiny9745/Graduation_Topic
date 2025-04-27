@@ -8,7 +8,6 @@ public class MC_Throw : MonoBehaviour
     float speed = 30f, lifetime = 3f;
     public GameObject targetObject;
     Vector3 moveDirection;
-    Transform targetTransform;
     private Animator skill13_animator;
     void Start()
     {
@@ -17,8 +16,6 @@ public class MC_Throw : MonoBehaviour
         if (targetObject != null)
         {
             float angle_NPC = FindNearestNPCAngle();
-            targetTransform = targetObject.transform;
-            // moveDirection = -targetTransform.forward;
             float radians = angle_NPC * Mathf.Deg2Rad; // 將角度轉為弧度
             moveDirection = new Vector3(Mathf.Sin(radians), 0, Mathf.Cos(radians)); // 計算絕對方向向量
         }
