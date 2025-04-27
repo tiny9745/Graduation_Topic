@@ -23,7 +23,7 @@ public class UI : MonoBehaviour
     public AudioSource Ad;
 
     public GameObject compass;
-    public Text compass_text;
+    public Text[] compass_text;
     public Image compass_image;
     // Start is called before the first frame update
     void Start()
@@ -207,7 +207,7 @@ public class UI : MonoBehaviour
             compass.SetActive(true);
             if (static_parameters.teaching_stop == 7)
             {
-                
+
             }
         }
         else
