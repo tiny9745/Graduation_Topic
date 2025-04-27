@@ -225,6 +225,7 @@ public class UI : MonoBehaviour
                 {
                     float angle_NPC = FindNearestNPCAngle();
                     Debug.Log("angle_NPC:" + angle_NPC);
+                    compass_tip_in.localEulerAngles = new Vector3(0, 0, -angle_NPC);
                 }
             }
             if (static_parameters.Change_enemy == 0)
