@@ -15,6 +15,7 @@ public class Prologue_comic : MonoBehaviour
     public AudioClip C1_1, C1_2, C1_3, C1_4, C2_1, C2_2, C2_3, C2_4, C3_1, C3_2, C3_3, C3_4, C3_5;
     public AudioClip C4_1, C4_2, C5_1;
     string imagePath = "Sprites/Comic/Prologue/01/comics_1-1"; // 圖檔在 Resources 中的路徑
+    public GameObject tips;
     // Start is called before the first frame update
     void Start()
     {
@@ -243,9 +244,9 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-
                 change_comic_BG("Sprites/Comic/Leading comic/01/comics01_1");
                 imagePath = "Sprites/Comic/Leading comic/01/comics01_2";
+                tips.SetActive(true);
                 audioSource_SE.clip = C1_1; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 Wait_time = 1; isTopLayer = true;
@@ -283,6 +284,7 @@ public class Prologue_comic : MonoBehaviour
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
                 comic_step = 1;
+                tips.SetActive(false);
                 return;
         }
         comic_image_add();

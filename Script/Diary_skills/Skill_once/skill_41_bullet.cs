@@ -77,8 +77,8 @@ public class skill_41_bullet : MonoBehaviour
         yield return new WaitUntil(() =>
         {
             AnimatorStateInfo stateInfo = Guardian_41_bullet.GetCurrentAnimatorStateInfo(0);
-            return stateInfo.IsName("bullet41_bomb") && stateInfo.normalizedTime >= 0.98f;
+            return stateInfo.IsName("die") && stateInfo.normalizedTime >= 0.98f;
         });
-        Destroy(gameObject);
+        Destroy(gameObject, 0.5f);
     }
 }
