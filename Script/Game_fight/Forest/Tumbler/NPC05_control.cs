@@ -301,7 +301,6 @@ public class NPC05_control : MonoBehaviour
                 nPC_hP.UpdateHealthBar();
             }
         }
-        else dead();
     }
 
 
