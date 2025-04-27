@@ -139,39 +139,11 @@ public class MC_col : MonoBehaviour
         Quaternion newRotation = Quaternion.Euler(x, y, z);
         transform.rotation = newRotation;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
+    public void red(){
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
-        if (other.CompareTag("NPC_Att") && !static_parameters.invincible)
-        {
-            Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
-            renderer1.material = Deduct_Blood;
-            StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
-        }
-        if (other.CompareTag("BOSS_Atk")&& !static_parameters.invincible)
-        {
-            Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
-            renderer1.material = Deduct_Blood;
-            StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.5f));
-        }
-    }
-    bool Throns_wait = false;
-    private void OnTriggerStay(Collider other)
-    {
-        Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
-        if (other.CompareTag("Thorns") && !Throns_wait&& !static_parameters.invincible)
-        {
-            Throns_wait = true;
-            Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
-            renderer1.material = Deduct_Blood;
-            StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
-            Invoke("Throns_wait_false", 0.8f);
-        }
-    }
-    void Throns_wait_false()
-    {
-        Throns_wait = false;
+        Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
+        renderer1.material = Deduct_Blood;
+        StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.5f));
     }
     void ATK_speedupdate()
     {
