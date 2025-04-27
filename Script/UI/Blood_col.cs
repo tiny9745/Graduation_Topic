@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Blood_col : MonoBehaviour
 {
+    public MC_col MC_col;
     private RectTransform HPimg_White, HPimg_Green;
     float blood_base = 1;
     float blood_tmp = 1040;
@@ -34,6 +35,7 @@ public class Blood_col : MonoBehaviour
             {
                 HPimg_Green.sizeDelta = new Vector2(static_parameters.MC_HP * blood_base, HPimg_Green.sizeDelta.y);
             }
+            if(static_parameters.MC_HP_tmp > static_parameters.MC_HP) MC_col.red();
             static_parameters.MC_HP_tmp = static_parameters.MC_HP;
         }
 
