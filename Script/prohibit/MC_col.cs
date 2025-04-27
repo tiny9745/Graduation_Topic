@@ -149,12 +149,6 @@ public class MC_col : MonoBehaviour
             renderer1.material = Deduct_Blood;
             StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
         }
-        if (other.CompareTag("Bomb_Fruit")&& !static_parameters.invincible)
-        {
-            Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
-            renderer1.material = Deduct_Blood;
-            StartCoroutine(ResetMaterialAfterDelay(renderer1, 0.2f));
-        }
         if (other.CompareTag("BOSS_Atk")&& !static_parameters.invincible)
         {
             Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
