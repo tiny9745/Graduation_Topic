@@ -8,7 +8,7 @@ public class NPC05_control : MonoBehaviour
 {
     public NPC_interactive npc_interactive; public NPC_HP_05 nPC_hP; public NPC_effect_05 effect; public UI _UI;
     NavMeshAgent npcNavi;
-    public Animator animator, animator_to_atk;
+    public Animator animator, animator_to_atk, bomb_animator;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, Img_npc, bulletPrefab, NPC05, Drop;
     private int DetectDistance = 30; public int NPC_angle = 0;
@@ -19,7 +19,7 @@ public class NPC05_control : MonoBehaviour
     private Vector3 lastPosition;
     private Quaternion initialRotation;
     public Transform firePoint;
-     public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
+    public AudioClip[] meleeSwingSounds;// 0=NPC_ATK, 1=MC_ATK_To_NPC
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor;
     private float fadeDuration = 5f, fadeTimer = 0f;
     public Animator money_animator;
@@ -271,6 +271,7 @@ public class NPC05_control : MonoBehaviour
             if (other.gameObject.CompareTag("MC_bullet"))
             {
                 NPC05_audiosource.PlayOneShot(NPC05_audioclip[1]);
+                bomb_animator.SetTrigger("BOOMFX_bomb");
                 change_color_red();
                 switch (static_parameters._ItemID)
                 {
@@ -385,7 +386,7 @@ public class NPC05_control : MonoBehaviour
             }
             money_animator.transform.SetParent(null, true);
             money_animator.SetTrigger("money02");
-           NPC05_audiosource.PlayOneShot(NPC05_audioclip[0]);
+            NPC05_audiosource.PlayOneShot(NPC05_audioclip[0]);
             static_parameters.money += 5;
             _UI.Loadmoney();
             Invoke("dead_after", 5);

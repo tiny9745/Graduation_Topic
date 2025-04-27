@@ -7,7 +7,7 @@ public class NPC04_control : MonoBehaviour
 {
     public NPC_HP_04 nPC_hP; public NPC_effect_04 effect; public NPC_interactive npc_interactive; public UI _UI;
     NavMeshAgent npcNavi;
-    public Animator animator, animator_to_atk;
+    public Animator animator, animator_to_atk, bomb_animator;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC04, hitbox_Brick_Monster, Drop, Img_npc;
     private int DetectDistance = 65; public int NPC_angle = 0;
@@ -344,6 +344,7 @@ public class NPC04_control : MonoBehaviour
             {
                 NPC04_audiosource.PlayOneShot(NPC04_audioclip[1]);
                 change_color_red();
+                bomb_animator.SetTrigger("BOOMFX_bomb");
                 switch (static_parameters._ItemID)
                 {
                     case 1:

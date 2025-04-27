@@ -7,7 +7,7 @@ public class NPC01_control : MonoBehaviour
     public NPC_HP_01 nPC_hP; public NPC_interactive npc_interactive; public NPC01_effect effect;
     NavMeshAgent npcNavi;
     public Animator animator;
-    public Animator animator_to_atk;
+    public Animator animator_to_atk, bomb_animator;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, hitbox_Crystal_baby, Img_npc;
     private int DetectDistance = 70; public int NPC_angle = 0;
@@ -36,7 +36,7 @@ public class NPC01_control : MonoBehaviour
         presentPosition = Vector3.forward;
 
         static_parameters.Change_enemy++;
-        
+
         initialRotation = transform.rotation;
         NPC01 = GameObject.Find("NPC01");
         if (NPC01 != null)
@@ -129,7 +129,7 @@ public class NPC01_control : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null && !isInDangerZone)
         {
-            if (dist < DetectDistance && NPC_HP > 0  && !stun)
+            if (dist < DetectDistance && NPC_HP > 0 && !stun)
             {
                 npcNavi.destination = TargetObj.transform.position;
             }
@@ -366,6 +366,7 @@ public class NPC01_control : MonoBehaviour
             {
                 NPC01_audiosource.PlayOneShot(NPC01_audioclip[1]);
                 change_color_red();
+                bomb_animator.SetTrigger("BOOMFX_bomb");
                 switch (static_parameters._ItemID)
                 {
                     case 1:

@@ -7,7 +7,7 @@ public class NPC02_control : MonoBehaviour
 {
     public NPC_HP_02 nPC_hP; public NPC_interactive npc_interactive; public NPC_effect_02 effect; public UI _UI;
     NavMeshAgent npcNavi;
-    public Animator animator, animator_to_atk;
+    public Animator animator, animator_to_atk, bomb_animator;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC02, Drop, hitbox_Robot, Img_npc;
     private int DetectDistance = 75; public int NPC_angle = 0;
@@ -138,7 +138,7 @@ public class NPC02_control : MonoBehaviour
 
         if (TargetObj != null && npcNavi != null)
         {
-            if (dist < DetectDistance && NPC_HP > 0  && !stun)
+            if (dist < DetectDistance && NPC_HP > 0 && !stun)
             {
                 npcNavi.destination = TargetObj.transform.position;
             }
@@ -319,6 +319,7 @@ public class NPC02_control : MonoBehaviour
             {
                 NPC02_audiosource.PlayOneShot(NPC02_audioclip[1]);
                 change_color_red();
+                bomb_animator.SetTrigger("BOOMFX_bomb");
                 switch (static_parameters._ItemID)
                 {
                     case 1:

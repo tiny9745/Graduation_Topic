@@ -7,7 +7,7 @@ public class NPC01_1_control : MonoBehaviour
 {
     public NPC_HP_01_1 nPC_hP; public NPC_interactive npc_interactive; public NPC01_1_effect effect;
     NavMeshAgent npcNavi;
-    public Animator animator, animator_to_atk;
+    public Animator animator, animator_to_atk, bomb_animator;
     public SpriteRenderer weaponDUCK;
     public GameObject TargetObj, NPC01_1, Img_npc, hitbox_Crystal_baby_small, Drop;
     private int DetectDistance = 65;
@@ -133,7 +133,7 @@ public class NPC01_1_control : MonoBehaviour
             NPC_HP = 0;
             fade();
             hitbox_Crystal_baby_small.SetActive(false);
-            
+
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             PlayBombAnimation();
@@ -408,6 +408,7 @@ public class NPC01_1_control : MonoBehaviour
             {
                 NPC01_1_audiosource.PlayOneShot(NPC01_1_audioclip[1]);
                 change_color_red();
+                bomb_animator.SetTrigger("BOOMFX_bomb");
                 switch (static_parameters._ItemID)
                 {
                     case 1:
