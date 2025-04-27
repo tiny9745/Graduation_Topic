@@ -250,7 +250,7 @@ public class UI : MonoBehaviour
 
         foreach (GameObject npc in npcs)
         {
-            float distance = Vector3.Distance(transform.position, npc.transform.position); // <--- 這裡改成自己的 transform
+            float distance = Vector3.Distance(targetObject.transform.position, npc.transform.position); // <--- 這裡改成自己的 transform
             if (distance < shortestDistance)
             {
                 shortestDistance = distance;
@@ -260,7 +260,7 @@ public class UI : MonoBehaviour
 
         if (nearestNPC != null)
         {
-            Vector3 directionToNPC = (nearestNPC.transform.position - transform.position).normalized;
+            Vector3 directionToNPC = (nearestNPC.transform.position - targetObject.transform.position).normalized;
             float angle = Vector3.SignedAngle(transform.forward, directionToNPC, Vector3.up);
 
             // 把結果從 -180~180 轉成 0~360 比較好理解
