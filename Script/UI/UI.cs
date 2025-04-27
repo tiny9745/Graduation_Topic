@@ -25,9 +25,11 @@ public class UI : MonoBehaviour
     public GameObject compass, compass_tips;
     public Text compass_text;
     public Transform compass_tip_in;
+    private GameObject targetObject;
     // Start is called before the first frame update
     void Start()
     {
+        targetObject = GameObject.Find("Player_S");
         StartCoroutine(RepeatTask());
     }
 
@@ -49,7 +51,7 @@ public class UI : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.2f);
             compass_col();
         }
     }
@@ -211,24 +213,62 @@ public class UI : MonoBehaviour
     }
     private void compass_col()
     {
-        if (static_parameters.into_gameFight)
+        if (static_parameters.into_gameFight && static_parameters.stage_number < 5)
         {
             compass.SetActive(true);
             compass_text.text = "怪物剩餘數量：" + static_parameters.Change_enemy.ToString();
-            if (static_parameters.Change_enemy == 7)
+            if (static_parameters.Change_enemy <= 7 && static_parameters.Change_enemy > 0)
             {
+                compass_text.color = new Color(238 / 255f, 90 / 255f, 108 / 255f, 1);
                 compass_tips.SetActive(true);
+                if (targetObject != null)
+                {
+                    float angle_NPC = FindNearestNPCAngle();
+                    Debug.Log("angle_NPC:" + angle_NPC);
+                }
+            }
+            if (static_parameters.Change_enemy == 0)
+            {
+                compass_text.color = new Color(0, 0, 0, 1);
+                compass_tips.SetActive(false);
+                compass.SetActive(false);
             }
         }
         else
         {
-            compass.SetActive(false);
+            compass_text.color = new Color(0, 0, 0, 1);
             compass_tips.SetActive(false);
+            compass.SetActive(false);
         }
     }
 
-    void find_NPC()
+    public float FindNearestNPCAngle()
     {
+        GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+        GameObject nearestNPC = null;
+        float shortestDistance = Mathf.Infinity;
 
+        foreach (GameObject npc in npcs)
+        {
+            float distance = Vector3.Distance(transform.position, npc.transform.position); // <--- 這裡改成自己的 transform
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                nearestNPC = npc;
+            }
+        }
+
+        if (nearestNPC != null)
+        {
+            Vector3 directionToNPC = (nearestNPC.transform.position - transform.position).normalized;
+            float angle = Vector3.SignedAngle(transform.forward, directionToNPC, Vector3.up);
+
+            // 把結果從 -180~180 轉成 0~360 比較好理解
+            if (angle < 0)
+                angle += 360f;
+
+            return angle;
+        }
+        return -1;
     }
 }
