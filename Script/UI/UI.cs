@@ -21,6 +21,10 @@ public class UI : MonoBehaviour
     public Button Pageup, Pagedown;
     public AudioClip Open, Close;
     public AudioSource Ad;
+
+    public GameObject compass;
+    public Text compass_text;
+    public Image compass_image;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,20 +43,6 @@ public class UI : MonoBehaviour
         {
             TeachiUI.SetActive(true);
         }
-        // if (static_parameters.into_gameFight_Levels == 6 || static_parameters.Change_enemy != 0)
-        // {
-        //     static_parameters.Bookstate = false;
-        //     Notebook.SetActive(false);
-        //     BattleUI.SetActive(true);
-        // }
-        // if (static_parameters.teaching_stop >= 100 && static_parameters.isTeaching == false)
-        // {
-        //     NotebookUI.SetActive(true);
-        // }
-        // else
-        // {
-        //     NotebookUI.SetActive(false);
-        // }
     }
     public void Onclick1()
     {
@@ -195,7 +185,6 @@ public class UI : MonoBehaviour
         money_outline.effectColor = new Color(1, 1, 1, 1f);
     }
 
-
     public bool putting_diary(bool isopen)
     {
         if (isopen)
@@ -209,6 +198,21 @@ public class UI : MonoBehaviour
             Pagedown.enabled = false;
             Pageup.enabled = false;
             return false;
+        }
+    }
+    private void compass_col()
+    {
+        if (static_parameters.into_gameFight)
+        {
+            compass.SetActive(true);
+            if (static_parameters.teaching_stop == 7)
+            {
+                
+            }
+        }
+        else
+        {
+            compass.SetActive(false);
         }
     }
 }
