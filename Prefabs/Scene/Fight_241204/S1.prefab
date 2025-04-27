@@ -14679,6 +14679,8 @@ MonoBehaviour:
   loadingSpeed: 100
   maxFillAmount: 275
   wave_bar_range: 30
+  door_ani01: {fileID: 4910127183613878934}
+  door_ani02: {fileID: 6127420602310220735}
 --- !u!1 &2487905046935958207
 GameObject:
   m_ObjectHideFlags: 0
@@ -37141,6 +37143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 646076994013635202}
   - component: {fileID: 7748864437707516853}
+  - component: {fileID: 4910127183613878934}
   m_Layer: 0
   m_Name: forestdoor01
   m_TagString: Untagged
@@ -37215,6 +37218,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4910127183613878934
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462073682630347745}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd0d125a5880e043b590abced71cb90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6472394144314437994
 GameObject:
   m_ObjectHideFlags: 0
@@ -45680,6 +45704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3552946457557471707}
   - component: {fileID: 4743025695761448696}
+  - component: {fileID: 6127420602310220735}
   m_Layer: 0
   m_Name: forestdoor02
   m_TagString: Untagged
@@ -45754,6 +45779,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6127420602310220735
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991490592498992163}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce172e1ba8972664bbc890ea72f2bbcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8012875132251868091
 GameObject:
   m_ObjectHideFlags: 0

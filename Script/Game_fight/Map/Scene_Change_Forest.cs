@@ -25,6 +25,7 @@ public class Scene_Change_Forest : MonoBehaviour
     private int into_gameFight_Levels_memory = 0;
     bool open = false;
     private int all_stage = 6;
+    public Animator door_ani01, door_ani02;
 
     void Start()
     {
@@ -59,9 +60,13 @@ public class Scene_Change_Forest : MonoBehaviour
         {
             CloseDoor01.SetActive(false);
             CloseDoor02.SetActive(false);
+            door_ani01.SetBool("tree_flash", true);
+            door_ani02.SetBool("tree_flash", true);
         }
         else
         {
+            door_ani01.SetBool("tree_flash", false);
+            door_ani02.SetBool("tree_flash", false);
             CloseDoor01.SetActive(true);
             CloseDoor02.SetActive(true);
         }

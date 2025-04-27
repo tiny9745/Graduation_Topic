@@ -850,6 +850,8 @@ MonoBehaviour:
   loadingSpeed: 100
   maxFillAmount: 275
   wave_bar_range: 30
+  door_ani01: {fileID: 2718216610518089166}
+  door_ani02: {fileID: 8250171338136620142}
 --- !u!1 &182982041963170511
 GameObject:
   m_ObjectHideFlags: 0
@@ -13363,6 +13365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8833425758461295706}
   - component: {fileID: 6688110931022051297}
+  - component: {fileID: 2718216610518089166}
   m_Layer: 0
   m_Name: forestdoor01
   m_TagString: Untagged
@@ -13437,6 +13440,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2718216610518089166
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637371998671474066}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd0d125a5880e043b590abced71cb90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1645299225996952237
 GameObject:
   m_ObjectHideFlags: 0
@@ -19393,6 +19417,8 @@ MonoBehaviour:
   loadingSpeed: 100
   maxFillAmount: 275
   wave_bar_range: 30
+  door_ani01: {fileID: 8193350310821392903}
+  door_ani02: {fileID: 430151832845456765}
 --- !u!1 &2486968388259035563
 GameObject:
   m_ObjectHideFlags: 0
@@ -36757,6 +36783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5058623682074840326}
   - component: {fileID: 2830341907609997515}
+  - component: {fileID: 8216757682427297191}
   m_Layer: 0
   m_Name: forestdoor01
   m_TagString: Untagged
@@ -36831,6 +36858,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8216757682427297191
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4751298364646770158}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd0d125a5880e043b590abced71cb90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4777299923105736357
 GameObject:
   m_ObjectHideFlags: 0
@@ -50897,6 +50945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 646076994013635202}
   - component: {fileID: 7748864437707516853}
+  - component: {fileID: 8193350310821392903}
   m_Layer: 0
   m_Name: forestdoor01
   m_TagString: Untagged
@@ -50971,6 +51020,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8193350310821392903
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462073682630347745}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd0d125a5880e043b590abced71cb90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6472394144314437994
 GameObject:
   m_ObjectHideFlags: 0
@@ -54302,6 +54372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 718514556372885733}
   - component: {fileID: 5169180944000899719}
+  - component: {fileID: 8250171338136620142}
   m_Layer: 0
   m_Name: forestdoor02
   m_TagString: Untagged
@@ -54376,6 +54447,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8250171338136620142
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6892581541605220807}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce172e1ba8972664bbc890ea72f2bbcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6902138806586322556
 GameObject:
   m_ObjectHideFlags: 0
@@ -55629,6 +55721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3589027721830201432}
   - component: {fileID: 4558485572895955613}
+  - component: {fileID: 2861166751665618569}
   m_Layer: 0
   m_Name: forestdoor02
   m_TagString: Untagged
@@ -55703,6 +55796,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2861166751665618569
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181445329167610979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce172e1ba8972664bbc890ea72f2bbcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7198707645849493030
 GameObject:
   m_ObjectHideFlags: 0
@@ -62434,6 +62548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3552946457557471707}
   - component: {fileID: 4743025695761448696}
+  - component: {fileID: 430151832845456765}
   m_Layer: 0
   m_Name: forestdoor02
   m_TagString: Untagged
@@ -62508,6 +62623,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &430151832845456765
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991490592498992163}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce172e1ba8972664bbc890ea72f2bbcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7992869922379201322
 GameObject:
   m_ObjectHideFlags: 0
@@ -64341,6 +64477,8 @@ MonoBehaviour:
   loadingSpeed: 100
   maxFillAmount: 275
   wave_bar_range: 30
+  door_ani01: {fileID: 8216757682427297191}
+  door_ani02: {fileID: 2861166751665618569}
 --- !u!1 &8225918547574120375
 GameObject:
   m_ObjectHideFlags: 0

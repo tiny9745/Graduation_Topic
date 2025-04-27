@@ -1241,6 +1241,8 @@ MonoBehaviour:
   loadingSpeed: 100
   maxFillAmount: 275
   wave_bar_range: 30
+  door_ani01: {fileID: 9043942116242264431}
+  door_ani02: {fileID: 1428106525082003279}
 --- !u!1 &389417141401408905
 GameObject:
   m_ObjectHideFlags: 0
@@ -7760,6 +7762,8 @@ MonoBehaviour:
   loadingSpeed: 100
   maxFillAmount: 275
   wave_bar_range: 30
+  door_ani01: {fileID: 7012136200485511700}
+  door_ani02: {fileID: 695058386616634831}
 --- !u!1 &1543671050659428039
 GameObject:
   m_ObjectHideFlags: 0
@@ -9884,7 +9888,7 @@ Animator:
   m_GameObject: {fileID: 1894034017881118502}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce172e1ba8972664bbc890ea72f2bbcc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -12066,7 +12070,7 @@ Animator:
   m_GameObject: {fileID: 2301877117796102344}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd0d125a5880e043b590abced71cb90, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -12255,6 +12259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 832483608205323964}
   - component: {fileID: 7002726404001493088}
+  - component: {fileID: 1524112305213580257}
   m_Layer: 0
   m_Name: forestdoor02
   m_TagString: Untagged
@@ -12329,6 +12334,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1524112305213580257
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344875317519696989}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce172e1ba8972664bbc890ea72f2bbcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2370084728184777214
 GameObject:
   m_ObjectHideFlags: 0
@@ -31653,7 +31679,7 @@ Animator:
   m_GameObject: {fileID: 5980499616586123599}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd0d125a5880e043b590abced71cb90, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -35260,6 +35286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4623656194954573793}
   - component: {fileID: 6028469017580350687}
+  - component: {fileID: 6467681078118845969}
   m_Layer: 0
   m_Name: forestdoor01
   m_TagString: Untagged
@@ -35334,6 +35361,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6467681078118845969
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6797414003334268614}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd0d125a5880e043b590abced71cb90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6814979787754180827
 GameObject:
   m_ObjectHideFlags: 0
@@ -40426,6 +40474,8 @@ MonoBehaviour:
   loadingSpeed: 100
   maxFillAmount: 275
   wave_bar_range: 30
+  door_ani01: {fileID: 6467681078118845969}
+  door_ani02: {fileID: 1524112305213580257}
 --- !u!1 &8018714537151552150
 GameObject:
   m_ObjectHideFlags: 0
@@ -40689,7 +40739,7 @@ Animator:
   m_GameObject: {fileID: 8074530347978703914}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce172e1ba8972664bbc890ea72f2bbcc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
