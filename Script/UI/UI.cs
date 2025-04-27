@@ -22,13 +22,13 @@ public class UI : MonoBehaviour
     public AudioClip Open, Close;
     public AudioSource Ad;
 
-    public GameObject compass;
+    public GameObject compass, compass_tips;
     public Text compass_text;
-    public Image compass_image;
+    public Transform compass_tip_in;
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(RepeatTask());
     }
 
     // Update is called once per frame
@@ -42,6 +42,15 @@ public class UI : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "magic_house")
         {
             TeachiUI.SetActive(true);
+        }
+    }
+
+    private IEnumerator RepeatTask()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            compass_col();
         }
     }
     public void Onclick1()
@@ -205,14 +214,21 @@ public class UI : MonoBehaviour
         if (static_parameters.into_gameFight)
         {
             compass.SetActive(true);
-            if (static_parameters.teaching_stop == 7)
+            compass_text.text = "怪物剩餘數量：" + static_parameters.Change_enemy.ToString();
+            if (static_parameters.Change_enemy == 7)
             {
-                
+                compass_tips.SetActive(true);
             }
         }
         else
         {
             compass.SetActive(false);
+            compass_tips.SetActive(false);
         }
+    }
+
+    void find_NPC()
+    {
+
     }
 }
