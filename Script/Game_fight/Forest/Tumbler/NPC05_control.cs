@@ -122,7 +122,7 @@ public class NPC05_control : MonoBehaviour
         if (TargetObj != null && Vector3.Distance(transform.position, TargetObj.transform.position) <= DetectDistance)
         {
             // Shoot at the player
-            if (Time.time >= nextFireTime && NPC_HP > 0)
+            if (Time.time >= nextFireTime && NPC_HP > 0 && !stun)
             {
                 Shoot();
                 nextFireTime = Time.time + 1f / fireRate;
@@ -242,8 +242,7 @@ public class NPC05_control : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && !stun)
-        {
+        if (NPC_HP > 0){
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 Change();

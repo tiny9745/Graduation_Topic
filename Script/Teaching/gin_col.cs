@@ -99,7 +99,7 @@ public class gin_col : MonoBehaviour
         lastPosition = transform.position;
         transform.rotation = initialRotation;
 
-        if (TargetObj != null && npcNavi != null)
+        if (TargetObj != null && npcNavi != null && !stun)
         {
             npcNavi.destination = TargetObj.transform.position;
 
@@ -187,9 +187,9 @@ public class gin_col : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && !stun)
+        if (NPC_HP > 0 )
         {
-            if (other.gameObject.tag == "Player" && Time.time >= nextDamageTime)
+            if (other.gameObject.tag == "Player" && Time.time >= nextDamageTime && !stun)
             {
                 if (open_EnableHitbox == 0)
                 {
