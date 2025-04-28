@@ -321,9 +321,9 @@ public class NPC01_control : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 && Time.time >= nextDamageTime && !stun)
+        if (NPC_HP > 0)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player" && !stun && Time.time >= nextDamageTime)
             {
                 if (open_EnableHitbox == 0)
                 {
