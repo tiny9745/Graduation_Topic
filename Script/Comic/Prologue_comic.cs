@@ -244,40 +244,40 @@ public class Prologue_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                change_comic_BG("Sprites/Comic/Leading comic/01/comics01_1");
-                imagePath = "Sprites/Comic/Leading comic/01/comics01_2";
+                change_comic_BG("Sprites/Comic/boss_comic/1/comics01_1");
+                imagePath = "Sprites/Comic/boss_comic/1/comics01_2";
                 tips.SetActive(true);
                 audioSource_SE.clip = C1_1; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 Wait_time = 1; isTopLayer = true;
                 break;
             case 2:
-                imagePath = "Sprites/Comic/Leading comic/01/word box01_1";
+                imagePath = "Sprites/Comic/boss_comic/1/word box01_1";
                 audioSource_SE.clip = C1_2; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 Wait_time = 0;
                 break;
             case 3:
-                imagePath = "Sprites/Comic/Leading comic/01/comics01_3";
+                imagePath = "Sprites/Comic/boss_comic/1/comics01_3";
                 audioSource_SE.clip = C1_3; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 break;
             case 4:
-                imagePath = "Sprites/Comic/Leading comic/01/comics01_4";
+                imagePath = "Sprites/Comic/boss_comic/1/comics01_4";
                 Wait_time = 1;
                 break;
             case 5:
-                imagePath = "Sprites/Comic/Leading comic/01/word box01_2";
+                imagePath = "Sprites/Comic/boss_comic/1/word box01_2";
                 Wait_time = 0;
                 break;
             case 6:
-                imagePath = "Sprites/Comic/Leading comic/01/comics01_5";
+                imagePath = "Sprites/Comic/boss_comic/1/comics01_5";
                 audioSource_SE.clip = C1_4; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 Wait_time = 1;
                 break;
             case 7:
-                imagePath = "Sprites/Comic/Leading comic/01/word box01_3";
+                imagePath = "Sprites/Comic/boss_comic/1/word box01_3";
                 Wait_time = 0;
                 break;
             case 8:
@@ -296,54 +296,54 @@ public class Prologue_comic : MonoBehaviour
         {
             case 1:
                 change_comic_BG("Sprites/Comic/Leading comic/white BG");
-                imagePath = "Sprites/Comic/Leading comic/02/comics02_1";
+                imagePath = "Sprites/Comic/boss_comic/2/comics02_1";
                 audioSource_SE.clip = C2_1; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 Wait_time = 1;
                 break;
             case 2:
-                imagePath = "Sprites/Comic/Leading comic/02/word box02_1";
+                imagePath = "Sprites/Comic/boss_comic/2/word box02_1";
                 break;
             case 3:
-                imagePath = "Sprites/Comic/Leading comic/02/word box02_2";
+                imagePath = "Sprites/Comic/boss_comic/2/word box02_2";
                 Wait_time = 0;
                 break;
             case 4:
-                imagePath = "Sprites/Comic/Leading comic/02/comics02_2";
+                imagePath = "Sprites/Comic/boss_comic/2/comics02_2";
                 audioSource_SE.clip = C2_2; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 isTopLayer = false;
                 break;
             case 5:
-                imagePath = "Sprites/Comic/Leading comic/02/comics02_3";
+                imagePath = "Sprites/Comic/boss_comic/2/comics02_3";
                 isTopLayer = true; Wait_time = 1;
                 break;
             case 6:
-                imagePath = "Sprites/Comic/Leading comic/02/word box02_3";
+                imagePath = "Sprites/Comic/boss_comic/2/word box02_3";
                 audioSource_SE.clip = C2_3; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 Wait_time = 0;
                 break;
             case 7:
-                imagePath = "Sprites/Comic/Leading comic/02/comics02_4";
+                imagePath = "Sprites/Comic/boss_comic/2/comics02_4";
                 Wait_time = 1;
                 break;
             case 8:
-                imagePath = "Sprites/Comic/Leading comic/02/word box02_4";
+                imagePath = "Sprites/Comic/boss_comic/2/word box02_4";
                 Wait_time = 0;
                 break;
             case 9:
-                imagePath = "Sprites/Comic/Leading comic/02/comics02_5";
+                imagePath = "Sprites/Comic/boss_comic/2/comics02_5";
                 isTopLayer = false; Wait_time = 1;
                 break;
             case 10:
-                imagePath = "Sprites/Comic/Leading comic/02/word box02_5";
+                imagePath = "Sprites/Comic/boss_comic/2/word box02_5";
                 audioSource_SE.clip = C2_4; audioSource_SE.loop = false;
                 audioSource_SE.Play();
                 isTopLayer = true;
                 break;
             case 11:
-                imagePath = "Sprites/Comic/Leading comic/02/word box02_7";
+                imagePath = "Sprites/Comic/boss_comic/2/word box02_7";
                 Wait_time = 0;
                 break;
             case 12:
@@ -540,6 +540,5 @@ public class Prologue_comic : MonoBehaviour
                 SceneManager.LoadScene("prohibit");
                 return;
         }
-
     }
 }

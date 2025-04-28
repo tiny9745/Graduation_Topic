@@ -25,7 +25,7 @@ public class Boss_col : MonoBehaviour
     public GameObject paper_story;
 
     private bool boss_open = false;
-
+    public GameObject BOSS_comic;
     void Start()
     {
         BOSS_Atk_time = 0;
@@ -38,6 +38,9 @@ public class Boss_col : MonoBehaviour
         TargetObj = GameObject.Find("Player_S");
         static_parameters.Change_enemy++;
         Boss_Animator.SetBool("open_before", true);
+
+        BOSS_comic = GameObject.Find("BOSS_comic");
+        Debug.Log("BOSS_comic：" + BOSS_comic.name);
     }
     void Update()
     {
