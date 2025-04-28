@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class BOSS_comic : MonoBehaviour
 {
     public Canvas canvas; // 需要將新建的 Image 放到的 Canvas
-    public GameObject Image_box;
+    // public GameObject Image_box;
     uint comic_step = 0, comic_step_tmp = 0, Wait_time = 0;
     float comic_time_sum = 0, auto_comic_time;
-    bool isTopLayer = false;
+    int isTopLayer = 1; // 1:上層 2:中層 3:下層
     string imagePath = "Sprites/Comic/boss_comic/1/"; // 圖檔在 Resources 中的路徑
-    public GameObject tips;
+    public GameObject tips, BG_Image;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,13 +37,16 @@ public class BOSS_comic : MonoBehaviour
         if (comic_step != comic_step_tmp)
         {
             comic_step_tmp = comic_step;
+            Debug.Log("comic_step = " + static_parameters.Comic_scene_sort);
             switch (static_parameters.Comic_scene_sort)
             {
                 case 0:
+                    Debug.Log("comic_step0 = " + comic_step);
                     imagePath = "Sprites/Comic/boss_comic/1/";
                     comic_image_Prologue01();
                     break;
                 case 1:
+                    Debug.Log("comic_step1 = " + comic_step);
                     imagePath = "Sprites/Comic/boss_comic/2/";
                     comic_image_Prologue02();
                     break;
@@ -76,42 +79,54 @@ public class BOSS_comic : MonoBehaviour
             if (comicTransform == null)
             {
                 // 如果不存在 Comic 物件，創建一個新的 GameObject 作為容器
-                GameObject comicObject = new GameObject("Comic");
-                comicObject.transform.SetParent(canvas.transform); // 設置父物件為 Canvas
+                GameObject comicObject = new GameObject("Comic", typeof(RectTransform));
+                comicObject.transform.SetParent(canvas.transform, false); // ★ SetParent時用false，防止亂縮放
                 comicTransform = comicObject.transform;
+
+                // 設定Comic容器置中
+                RectTransform comicRect = comicTransform.GetComponent<RectTransform>();
+                comicRect.anchorMin = new Vector2(0.5f, 0.5f);
+                comicRect.anchorMax = new Vector2(0.5f, 0.5f);
+                comicRect.pivot = new Vector2(0.5f, 0.5f);
+                comicRect.anchoredPosition = new Vector2(0, -225f);
+                comicRect.sizeDelta = Vector2.zero; // 讓它跟隨內容物大小
             }
 
-            // 計算縮放比例
-            float scaleX = Screen.width / 1920f;
-            float scaleY = Screen.height / 1080f;
-            float scaleFactor = Mathf.Min(scaleX, scaleY); // 保持原始寬高比
-
             // 動態建立新的 Image 物件
-            GameObject newImageObject = new GameObject("Comic_Image" + comic_step.ToString());
-            newImageObject.transform.SetParent(comicTransform); // 設置父物件為 Comic
+            GameObject newImageObject = new GameObject("Comic_Image" + comic_step.ToString(), typeof(RectTransform));
+            newImageObject.transform.SetParent(comicTransform, false); // ★ 同樣SetParent要false保持本地設定
 
             // 新增 Image 組件
             Image newImage = newImageObject.AddComponent<Image>();
-
-            // 設置 Image 的 Sprite 為載入的圖片
             newImage.sprite = newSprite;
+            newImage.SetNativeSize(); // 初始設定成Sprite原尺寸
 
-            // 設定 Image 的位置和大小
+            // 設定 RectTransform
             RectTransform rectTransform = newImage.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = new Vector2(1920 * scaleFactor, 1080 * scaleFactor); // 調整大小
-            rectTransform.anchoredPosition = new Vector2(0, -300 * scaleFactor); // 調整位置
+            rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+            rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+            rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            rectTransform.anchoredPosition = new Vector2(0, 0); // 完全置中
 
-            if (isTopLayer)
+            // 縮放到螢幕適應
+            rectTransform.sizeDelta = new Vector2(1920, 1080);
+
+            // 控制順序
+            if (isTopLayer == 1)
             {
-                newImageObject.transform.SetSiblingIndex(comicTransform.childCount - 1); // 最上層
+                newImageObject.transform.SetSiblingIndex(comicTransform.childCount - 1); // 放到最上面
             }
-            else
+            else if (isTopLayer == 2)
             {
-                newImageObject.transform.SetSiblingIndex(0); // 最底層
+                newImageObject.transform.SetSiblingIndex(1); // 放到中間
+            }
+            else if (isTopLayer == 3)
+            {
+                newImageObject.transform.SetSiblingIndex(0); // 放到底層
             }
 
             // 呼叫淡入效果
-            StartCoroutine(FadeInImage(newImage, 0.4f, 300f * scaleFactor));
+            StartCoroutine(FadeInImage(newImage, 0.4f, 300f));
         }
     }
 
@@ -120,10 +135,6 @@ public class BOSS_comic : MonoBehaviour
         float elapsedTime = 0f;
         Color newColor = image.color;
         Vector3 originalPosition = image.transform.position; // 儲存初始位置
-
-        // 計算縮放比例
-        float scaleFactor = Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
-        moveDistance *= scaleFactor;
 
         // 初始化 alpha 為 0（完全透明）
         newColor.a = 0f;
@@ -159,10 +170,6 @@ public class BOSS_comic : MonoBehaviour
         Color newColor = image.color;
         Vector3 originalPosition = image.transform.position; // 儲存初始位置
 
-        // 計算縮放比例
-        float scaleFactor = Mathf.Min(Screen.width / 1920f, Screen.height / 1080f);
-        moveDistance *= scaleFactor;
-
         // 持續時間內逐步減少 alpha
         while (elapsedTime < duration)
         {
@@ -185,30 +192,12 @@ public class BOSS_comic : MonoBehaviour
 
     void DeleteAllImagesUnderCanvas()
     {
-        foreach (Transform child in Image_box.transform)
+        Transform comicTransform = canvas.transform.Find("Comic"); // 找到 Comic 這個容器
+        if (comicTransform != null)
         {
-            Image image = child.GetComponent<Image>();
-            if (image != null)
+            foreach (Transform child in comicTransform)
             {
-                Destroy(child.gameObject); // 刪除包含 Image 的 GameObject
-            }
-        }
-    }
-
-    void change_comic_BG(string BG_Path)
-    {
-        GameObject BG_Image = GameObject.Find("BG");
-        if (BG_Image != null)
-        {
-            Image bgImageComponent = BG_Image.GetComponent<Image>();
-
-            if (bgImageComponent != null)
-            {
-                Sprite newSprite = Resources.Load<Sprite>(BG_Path);
-                if (newSprite != null)
-                {
-                    bgImageComponent.sprite = newSprite;
-                }
+                Destroy(child.gameObject); // 刪除 Comic 底下所有的Comic_Image
             }
         }
     }
@@ -229,17 +218,23 @@ public class BOSS_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                change_comic_BG("Sprites/Comic/boss_comic/1/b-bg");
+                isTopLayer = 3;
+                imagePath = "Sprites/Comic/boss_comic/1/b-bg";
+                comic_image_add();
                 imagePath = "Sprites/Comic/boss_comic/1/b1";
                 tips.SetActive(true);
-                Wait_time = 1; isTopLayer = true;
+                Wait_time = 1;
+                isTopLayer = 1;
                 break;
             case 2:
                 imagePath = "Sprites/Comic/boss_comic/1/b2";
                 Wait_time = 0;
+                isTopLayer = 2;
                 break;
             case 3:
                 imagePath = "Sprites/Comic/boss_comic/1/b3";
+                Wait_time = 1;
+                isTopLayer = 1;
                 break;
             case 4:
                 imagePath = "Sprites/Comic/boss_comic/1/b4";
@@ -248,18 +243,22 @@ public class BOSS_comic : MonoBehaviour
             case 5:
                 imagePath = "Sprites/Comic/boss_comic/1/b5";
                 Wait_time = 0;
+                isTopLayer = 2;
                 break;
             case 6:
                 imagePath = "Sprites/Comic/boss_comic/1/b6";
                 Wait_time = 1;
+                isTopLayer = 1;
                 break;
             case 7:
                 imagePath = "Sprites/Comic/boss_comic/1/b7";
                 Wait_time = 0;
+                isTopLayer = 2;
                 break;
             case 8:
                 imagePath = "Sprites/Comic/boss_comic/1/b7-1";
                 Wait_time = 1;
+                isTopLayer = 1;
                 break;
             case 9:
                 imagePath = "Sprites/Comic/boss_comic/1/b8";
@@ -279,9 +278,12 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 13:
                 imagePath = "Sprites/Comic/boss_comic/1/b12";
+                isTopLayer = 2;
+                Wait_time = 1;
                 break;
             case 14:
                 imagePath = "Sprites/Comic/boss_comic/1/b12-1";
+                isTopLayer = 1;
                 Wait_time = 1;
                 break;
             case 15:
@@ -311,7 +313,10 @@ public class BOSS_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                change_comic_BG("Sprites/Comic/boss_comic/2/c-bg");
+                isTopLayer = 3;
+                imagePath = "Sprites/Comic/boss_comic/2/c-bg";
+                comic_image_add();
+                isTopLayer = 1;
                 imagePath = "Sprites/Comic/boss_comic/2/comics02_1";
                 Wait_time = 1;
                 break;
@@ -324,11 +329,10 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 4:
                 imagePath = "Sprites/Comic/boss_comic/2/c3";
-                isTopLayer = false;
                 break;
             case 5:
                 imagePath = "Sprites/Comic/boss_comic/2/c3-1";
-                isTopLayer = true; Wait_time = 1;
+                Wait_time = 1;
                 break;
             case 6:
                 imagePath = "Sprites/Comic/boss_comic/2/c4";
@@ -344,17 +348,18 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 9:
                 imagePath = "Sprites/Comic/boss_comic/2/c6-1";
-                isTopLayer = false; Wait_time = 1;
+                Wait_time = 1;
                 break;
             case 10:
                 imagePath = "Sprites/Comic/boss_comic/2/c6-2";
-                isTopLayer = true;
                 break;
             case 11:
+                isTopLayer = 2;
                 imagePath = "Sprites/Comic/boss_comic/2/c7";
                 Wait_time = 0;
                 break;
             case 12:
+                isTopLayer = 1;
                 imagePath = "Sprites/Comic/boss_comic/2/c8";
                 break;
             case 13:
@@ -363,11 +368,10 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 14:
                 imagePath = "Sprites/Comic/boss_comic/2/c8-2";
-                isTopLayer = false;
                 break;
             case 15:
                 imagePath = "Sprites/Comic/boss_comic/2/c9";
-                isTopLayer = true; Wait_time = 1;
+                Wait_time = 1;
                 break;
             case 16:
                 imagePath = "Sprites/Comic/boss_comic/2/c10";
@@ -375,7 +379,7 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 17:
                 imagePath = "Sprites/Comic/boss_comic/2/c11";
-                isTopLayer = false; Wait_time = 1;
+                Wait_time = 1;
                 break;
             case 18:
                 static_parameters.Comic_scene_sort = 0;
@@ -383,5 +387,6 @@ public class BOSS_comic : MonoBehaviour
                 gameObject.SetActive(false);
                 return;
         }
+        comic_image_add();
     }
 }

@@ -35,7 +35,6 @@ public class BOSS_Blood : MonoBehaviour
         if (minus < 5) minus = 5;
         boss_col.BOSS_HP -= minus;
         boss_col.BOSS_HP = Mathf.Clamp(boss_col.BOSS_HP, 0, previous_BOSS_HP_Max);
-        Debug.Log("BOSS_HP01:" + boss_col.BOSS_HP);
     }
 
     void TryFindHPImage()

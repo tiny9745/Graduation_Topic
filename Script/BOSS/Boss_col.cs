@@ -25,7 +25,6 @@ public class Boss_col : MonoBehaviour
     public GameObject paper_story;
 
     private bool boss_open = false;
-    public GameObject BOSS_comic;
     void Start()
     {
         BOSS_Atk_time = 0;
@@ -38,9 +37,6 @@ public class Boss_col : MonoBehaviour
         TargetObj = GameObject.Find("Player_S");
         static_parameters.Change_enemy++;
         Boss_Animator.SetBool("open_before", true);
-
-        BOSS_comic = GameObject.Find("BOSS_comic");
-        Debug.Log("BOSS_comic：" + BOSS_comic.name);
     }
     void Update()
     {
@@ -553,7 +549,6 @@ public class Boss_col : MonoBehaviour
                 effect.piano_Skill();
                 effect.fight_instinct_npc();
                 boss_blood.TakeDamage(static_parameters.MC_ATK, BOSS_DEF);
-                Debug.Log("BOSS_HP01:" + BOSS_HP);
                 MC_to_Att = false;
                 Invoke("wait_MC_att", 0.5f);
                 nextDamageTime = Time.time + damageCooldown;
