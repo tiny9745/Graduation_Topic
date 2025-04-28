@@ -28,25 +28,32 @@ public class Scenes_Change_house_outside : MonoBehaviour
         newPosition_start = new Vector2(737f, -557f);
         static_parameters.into_gameFight_Levels = Random.Range(0, 5);
     }
+
+    private void Update()
+    {
+        if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
+        {
+            outdoor01.SetBool("out_flash", true);
+            outdoor02.SetBool("out_flash", true);
+        }
+        else
+        {
+            outdoor01.SetBool("out_flash", false);
+            outdoor02.SetBool("out_flash", false);
+        }
+    }
     private void OnTriggerEnter(Collider Hit)
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
         {
             static_parameters.stage_number = 4;
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
-            outdoor01.SetBool("out_flash", true);
-            outdoor02.SetBool("out_flash", true);
             foreach (var audio in FindObjectsOfType<AudioSource>())
             {
                 //audio.Stop();
                 if (audio.isPlaying) Debug.Log(audio.name);
             }
             StartCoroutine(LoadSceneWithProgress("Fight_241130"));
-        }
-        else
-        {
-            outdoor01.SetBool("out_flash", false);
-            outdoor02.SetBool("out_flash", false);
         }
     }
 

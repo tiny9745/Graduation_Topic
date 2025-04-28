@@ -5,7 +5,7 @@ public class Boss_col : MonoBehaviour
 {
     public Animator Boss_Animator;
     private GameObject TargetObj, Boss_Skill;
-    public GameObject Demo_End;
+    public GameObject Demo_End, BOSS_health_bar;
     static public float BOSS_Atk_time = 0;
     public bool BOSS_in_open_time = false;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
@@ -22,6 +22,7 @@ public class Boss_col : MonoBehaviour
     public AudioClip[] BOSS_Atk01_sound;
     public AudioClip[] BOSS_Atk02_sound;
     public AudioClip[] BOSS_Atk03_sound;
+    public GameObject paper_story;
 
     private bool boss_open = false;
 
@@ -633,8 +634,13 @@ public class Boss_col : MonoBehaviour
         yield return new WaitUntil(() =>
         {
             AnimatorStateInfo stateInfo = Boss_Animator.GetCurrentAnimatorStateInfo(0);
-            return stateInfo.IsName("bullet41_bomb") && stateInfo.normalizedTime >= 0.98f;
+            return stateInfo.IsName("die") && stateInfo.normalizedTime >= 0.98f;
         });
+        yield return new WaitForSeconds(0.5f);
+        Vector3 currentPosition = transform.position;
+        currentPosition.y = 4.4f;
+        Instantiate(paper_story, currentPosition, Quaternion.identity);
+        Destroy(BOSS_health_bar);
         Destroy(gameObject);
     }
 }

@@ -95,7 +95,7 @@ public class BOSS_Blood : MonoBehaviour
         if (HPimg_White != null && HPimg_Green != null && HPimg_White.sizeDelta.x > HPimg_Green.sizeDelta.x)
         {
             float diff = HPimg_White.sizeDelta.x - HPimg_Green.sizeDelta.x;
-            float speed = 6f + diff * 0.1f;
+            float speed = 20f + diff * 0.25f;
 
             HPimg_White.sizeDelta -= new Vector2(1, 0) * Time.deltaTime * speed;
 
