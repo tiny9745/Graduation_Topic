@@ -12289,8 +12289,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8661687990307143754}
   - component: {fileID: 7599471929494391526}
+  - component: {fileID: 8661687990307143755}
   m_Layer: 0
-  m_Name: forestdoor01
+  m_Name: out_forestdoor01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12978,8 +12979,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4047095955089849810}
   - {fileID: 8661687990307143754}
+  - {fileID: 4047095955089849810}
   - {fileID: 2556909975461718177}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13959,13 +13960,35 @@ GameObject:
   m_Component:
   - component: {fileID: 4047095955089849810}
   - component: {fileID: 2648013530421476155}
+  - component: {fileID: 7085123306079292512}
   m_Layer: 0
-  m_Name: forestdoor02
+  m_Name: out_forestdoor02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &7085123306079292512
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085123306079292511}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc8bb1eb46340a8428b765946e886586, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!222 &7158067161689685459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14473,6 +14496,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4086981618743628827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8661687990307143755
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511604624625606972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ecc732206d715e4b9c57266223d1157, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8743603802872406754
 MonoBehaviour:
   m_ObjectHideFlags: 0

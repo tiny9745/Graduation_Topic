@@ -17,6 +17,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
     private Vector3 newPosition_start;
     private bool wave_return = true;
     private bool screen_close = true;
+    public Animator outdoor01, outdoor02;
 
     public GameObject player_S;
 
@@ -33,12 +34,19 @@ public class Scenes_Change_house_outside : MonoBehaviour
         {
             static_parameters.stage_number = 4;
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
+            outdoor01.SetBool("out_flash", true);
+            outdoor02.SetBool("out_flash", true);
             foreach (var audio in FindObjectsOfType<AudioSource>())
             {
                 //audio.Stop();
                 if (audio.isPlaying) Debug.Log(audio.name);
             }
             StartCoroutine(LoadSceneWithProgress("Fight_241130"));
+        }
+        else
+        {
+            outdoor01.SetBool("out_flash", false);
+            outdoor02.SetBool("out_flash", false);
         }
     }
 
