@@ -5,7 +5,7 @@ public class Boss_col : MonoBehaviour
 {
     public Animator Boss_Animator;
     private GameObject TargetObj, Boss_Skill;
-    public GameObject Demo_End, BOSS_health_bar;
+    public GameObject BOSS_health_bar;
     static public float BOSS_Atk_time = 0;
     public bool BOSS_in_open_time = false;
     static public bool BOSS_Atk_bool = false, BOSS_live = true;
@@ -628,7 +628,6 @@ public class Boss_col : MonoBehaviour
     }
     IEnumerator Dead_after()
     {
-        // Demo_End.SetActive(true);
         yield return new WaitUntil(() =>
         {
             AnimatorStateInfo stateInfo = Boss_Animator.GetCurrentAnimatorStateInfo(0);

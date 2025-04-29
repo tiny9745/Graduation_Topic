@@ -9,14 +9,16 @@ public class BOSS_comic : MonoBehaviour
     // public GameObject Image_box;
     uint comic_step = 0, comic_step_tmp = 0, Wait_time = 0;
     float comic_time_sum = 0, auto_comic_time;
-    int isTopLayer = 1; // 1:上層 2:中層 3:下層
+    bool isTopLayer = true;
     string imagePath = "Sprites/Comic/boss_comic/1/"; // 圖檔在 Resources 中的路徑
     public GameObject tips, BG_Image;
     // Start is called before the first frame update
+    public GameObject Demo_End;
     void Start()
     {
         comic_step_tmp = comic_step;
         DeleteAllImagesUnderCanvas();
+        BG_Image.SetActive(true);
     }
 
     // Update is called once per frame
@@ -69,6 +71,22 @@ public class BOSS_comic : MonoBehaviour
         }
     }
 
+    void change_comic_BG(string BG_Path)
+    {
+        if (BG_Image != null)
+        {
+            Image bgImageComponent = BG_Image.GetComponent<Image>();
+            if (bgImageComponent != null)
+            {
+                Sprite newSprite = Resources.Load<Sprite>(BG_Path);
+                if (newSprite != null)
+                {
+                    bgImageComponent.sprite = newSprite;
+                }
+            }
+        }
+    }
+
     private void comic_image_add()
     {
         Sprite newSprite = Resources.Load<Sprite>(imagePath);
@@ -112,15 +130,11 @@ public class BOSS_comic : MonoBehaviour
             rectTransform.sizeDelta = new Vector2(1920, 1080);
 
             // 控制順序
-            if (isTopLayer == 1)
+            if (isTopLayer)
             {
                 newImageObject.transform.SetSiblingIndex(comicTransform.childCount - 1); // 放到最上面
             }
-            else if (isTopLayer == 2)
-            {
-                newImageObject.transform.SetSiblingIndex(1); // 放到中間
-            }
-            else if (isTopLayer == 3)
+            else
             {
                 newImageObject.transform.SetSiblingIndex(0); // 放到底層
             }
@@ -218,23 +232,21 @@ public class BOSS_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                isTopLayer = 3;
-                imagePath = "Sprites/Comic/boss_comic/1/b-bg";
-                comic_image_add();
+                change_comic_BG("Sprites/Comic/boss_comic/1/b-bg");
                 imagePath = "Sprites/Comic/boss_comic/1/b1";
                 tips.SetActive(true);
                 Wait_time = 1;
-                isTopLayer = 1;
+                isTopLayer = true;
                 break;
             case 2:
                 imagePath = "Sprites/Comic/boss_comic/1/b2";
-                Wait_time = 0;
-                isTopLayer = 2;
+                Wait_time = 1;
+                isTopLayer = false;
                 break;
             case 3:
                 imagePath = "Sprites/Comic/boss_comic/1/b3";
                 Wait_time = 1;
-                isTopLayer = 1;
+                isTopLayer = true;
                 break;
             case 4:
                 imagePath = "Sprites/Comic/boss_comic/1/b4";
@@ -242,63 +254,68 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 5:
                 imagePath = "Sprites/Comic/boss_comic/1/b5";
-                Wait_time = 0;
-                isTopLayer = 2;
+                Wait_time = 1;
+                isTopLayer = false;
                 break;
             case 6:
                 imagePath = "Sprites/Comic/boss_comic/1/b6";
                 Wait_time = 1;
-                isTopLayer = 1;
                 break;
             case 7:
+                comic_image_add();
                 imagePath = "Sprites/Comic/boss_comic/1/b7";
-                Wait_time = 0;
-                isTopLayer = 2;
+                isTopLayer = false;
+                Wait_time = 1;
                 break;
             case 8:
-                imagePath = "Sprites/Comic/boss_comic/1/b7-1";
-                Wait_time = 1;
-                isTopLayer = 1;
+                imagePath = "Sprites/Comic/boss_comic/1/b7-0";
+                isTopLayer = true;
+                Wait_time = 0;
                 break;
             case 9:
-                imagePath = "Sprites/Comic/boss_comic/1/b8";
+                imagePath = "Sprites/Comic/boss_comic/1/b7-1";
                 Wait_time = 0;
                 break;
             case 10:
-                imagePath = "Sprites/Comic/boss_comic/1/b9";
+                imagePath = "Sprites/Comic/boss_comic/1/b8";
                 Wait_time = 1;
                 break;
             case 11:
-                imagePath = "Sprites/Comic/boss_comic/1/b10";
+                imagePath = "Sprites/Comic/boss_comic/1/b9";
                 Wait_time = 1;
                 break;
             case 12:
-                imagePath = "Sprites/Comic/boss_comic/1/b11";
-                Wait_time = 0;
+                imagePath = "Sprites/Comic/boss_comic/1/b10";
+                Wait_time = 1;
                 break;
             case 13:
-                imagePath = "Sprites/Comic/boss_comic/1/b12";
-                isTopLayer = 2;
+                imagePath = "Sprites/Comic/boss_comic/1/b11";
                 Wait_time = 1;
                 break;
             case 14:
-                imagePath = "Sprites/Comic/boss_comic/1/b12-1";
-                isTopLayer = 1;
+                imagePath = "Sprites/Comic/boss_comic/1/b12";
+                isTopLayer = false;
                 Wait_time = 1;
                 break;
             case 15:
-                imagePath = "Sprites/Comic/boss_comic/1/b12-2";
+                imagePath = "Sprites/Comic/boss_comic/1/b12-1";
+                isTopLayer = true;
                 Wait_time = 0;
                 break;
             case 16:
-                imagePath = "Sprites/Comic/boss_comic/1/b12-3";
-                Wait_time = 1;
+                imagePath = "Sprites/Comic/boss_comic/1/b12-2";
+                Wait_time = 0;
                 break;
             case 17:
-                imagePath = "Sprites/Comic/boss_comic/1/b12-4";
+                imagePath = "Sprites/Comic/boss_comic/1/b12-3";
                 Wait_time = 0;
                 break;
             case 18:
+                imagePath = "Sprites/Comic/boss_comic/1/b12-4";
+                Wait_time = 0;
+                break;
+            case 19:
+                Wait_time = 2;
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
                 comic_step = 1;
@@ -313,30 +330,30 @@ public class BOSS_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
-                isTopLayer = 3;
-                imagePath = "Sprites/Comic/boss_comic/2/c-bg";
-                comic_image_add();
-                isTopLayer = 1;
+                change_comic_BG("Sprites/Comic/boss_comic/2/c-bg");
+                isTopLayer = true;
                 imagePath = "Sprites/Comic/boss_comic/2/comics02_1";
                 Wait_time = 1;
                 break;
             case 2:
                 imagePath = "Sprites/Comic/boss_comic/2/c1";
+                Wait_time = 1;
                 break;
             case 3:
                 imagePath = "Sprites/Comic/boss_comic/2/c2";
-                Wait_time = 0;
+                Wait_time = 1;
                 break;
             case 4:
                 imagePath = "Sprites/Comic/boss_comic/2/c3";
+                Wait_time = 1;
                 break;
             case 5:
                 imagePath = "Sprites/Comic/boss_comic/2/c3-1";
-                Wait_time = 1;
+                Wait_time = 0;
                 break;
             case 6:
                 imagePath = "Sprites/Comic/boss_comic/2/c4";
-                Wait_time = 0;
+                Wait_time = 1;
                 break;
             case 7:
                 imagePath = "Sprites/Comic/boss_comic/2/c5";
@@ -344,23 +361,25 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 8:
                 imagePath = "Sprites/Comic/boss_comic/2/c6";
-                Wait_time = 0;
+                Wait_time = 1;
                 break;
             case 9:
                 imagePath = "Sprites/Comic/boss_comic/2/c6-1";
-                Wait_time = 1;
+                Wait_time = 0;
                 break;
             case 10:
                 imagePath = "Sprites/Comic/boss_comic/2/c6-2";
-                break;
-            case 11:
-                isTopLayer = 2;
-                imagePath = "Sprites/Comic/boss_comic/2/c7";
                 Wait_time = 0;
                 break;
+            case 11:
+                isTopLayer = false;
+                imagePath = "Sprites/Comic/boss_comic/2/c7";
+                Wait_time = 1;
+                break;
             case 12:
-                isTopLayer = 1;
+                isTopLayer = true;
                 imagePath = "Sprites/Comic/boss_comic/2/c8";
+                Wait_time = 1;
                 break;
             case 13:
                 imagePath = "Sprites/Comic/boss_comic/2/c8-1";
@@ -368,6 +387,7 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 14:
                 imagePath = "Sprites/Comic/boss_comic/2/c8-2";
+                Wait_time = 0;
                 break;
             case 15:
                 imagePath = "Sprites/Comic/boss_comic/2/c9";
@@ -375,15 +395,19 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 16:
                 imagePath = "Sprites/Comic/boss_comic/2/c10";
-                Wait_time = 0;
+                Wait_time = 1;
                 break;
             case 17:
                 imagePath = "Sprites/Comic/boss_comic/2/c11";
                 Wait_time = 1;
                 break;
             case 18:
+                Wait_time = 2;
                 static_parameters.Comic_scene_sort = 0;
                 comic_step = 1;
+                DeleteAllImagesUnderCanvas();
+                BG_Image.SetActive(false);
+                Demo_End.SetActive(true);
                 gameObject.SetActive(false);
                 return;
         }
