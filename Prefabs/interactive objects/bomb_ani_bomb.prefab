@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6844514842049866653}
   - component: {fileID: 6002649868026519092}
   - component: {fileID: 8139642929416931979}
+  - component: {fileID: 827498322439824927}
   m_Layer: 0
   m_Name: bomb_ani_bomb
   m_TagString: Untagged
@@ -95,7 +96,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4a7856cdf0dd93449a42887fd763606b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,6 +104,18 @@ SpriteRenderer:
   m_Size: {x: 15.37, y: 11.52}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &827498322439824927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171298661249958598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b619fb069b2554983bc0b701acf7cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
