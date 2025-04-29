@@ -34,4 +34,6 @@ public class static_parameters : MonoBehaviour // this change Remembers change t
     static public bool isUpgrade_tmp = false;
 
     static public int MC_throw = 50;
+
+    static public int fragmentsnumber_hold = 0, diary_number_hold = 0; //日記&碎片持有數
 }

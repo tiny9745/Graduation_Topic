@@ -97,7 +97,7 @@ public class All_return : MonoBehaviour
         Skill_public_funtion.skill_44_enter = true;
         Skill_public_funtion.skill_45_enter = true;
         Skill_public_funtion.skill_45_Atk = 22;
-        
+
         Ani_MC.isDashCooldown = false;
         Ani_MC.isDashCooldown_for_move = false;
         Ani_MC.isAttackPlaying = false;
@@ -116,7 +116,9 @@ public class All_return : MonoBehaviour
 
         Magician_talk.talk_number_M = 0;
 
-        Ptest.pickedPieces = new List<Diary_piece>();;
+        static_parameters.fragmentsnumber_hold = 0;
+        static_parameters.diary_number_hold = 0;
+        Ptest.pickedPieces = new List<Diary_piece>(); ;
         Ptest.show = new List<Diary_piece>();
 
         ui.Loadmoney();

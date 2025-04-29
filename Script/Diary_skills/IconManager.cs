@@ -56,78 +56,103 @@ public class IconManager : MonoBehaviour
         {
             case 1:
                 Add(all_icon[5]);
+                static_parameters.diary_number++;
                 break;
             case 2:
                 Add(all_icon[6]);
+                static_parameters.diary_number++;
                 break;
             case 3:
                 Add(all_icon[7]);
+                static_parameters.diary_number++;
                 break;
             case 4:
                 Add(all_icon[8]);
+                static_parameters.diary_number++;
                 break;
             case 5:
                 Add(all_icon[9]);
+                static_parameters.diary_number++;
                 break;
             case 11:
                 Add(all_icon[15]);
+                static_parameters.diary_number++;
                 break;
             case 12:
                 Add(all_icon[16]);
+                static_parameters.diary_number++;
                 break;
             case 13:
                 Add(all_icon[17]);
+                static_parameters.diary_number++;
                 break;
             case 14:
                 Add(all_icon[18]);
+                static_parameters.diary_number++;
                 break;
             case 15:
                 Add(all_icon[19]);
+                static_parameters.diary_number++;
                 break;
             case 21:
                 Add(all_icon[0]);
+                static_parameters.diary_number++;
                 break;
             case 22:
                 Add(all_icon[1]);
+                static_parameters.diary_number++;
                 break;
             case 23:
                 Add(all_icon[2]);
+                static_parameters.diary_number++;
                 break;
             case 24:
                 Add(all_icon[3]);
+                static_parameters.diary_number++;
                 break;
             case 25:
                 Add(all_icon[4]);
+                static_parameters.diary_number++;
                 break;
             case 31:
                 Add(all_icon[10]);
+                static_parameters.diary_number++;
                 break;
             case 32:
                 Add(all_icon[11]);
+                static_parameters.diary_number++;
                 break;
             case 33:
                 Add(all_icon[12]);
+                static_parameters.diary_number++;
                 break;
             case 34:
                 Add(all_icon[13]);
+                static_parameters.diary_number++;
                 break;
             case 35:
                 Add(all_icon[14]);
+                static_parameters.diary_number++;
                 break;
             case 41:
                 Add(all_icon[20]);
+                static_parameters.diary_number++;
                 break;
             case 42:
                 Add(all_icon[21]);
+                static_parameters.diary_number++;
                 break;
             case 43:
                 Add(all_icon[22]);
+                static_parameters.diary_number++;
                 break;
             case 44:
                 Add(all_icon[23]);
+                static_parameters.diary_number++;
                 break;
             case 45:
                 Add(all_icon[24]);
+                static_parameters.diary_number++;
                 break;
             default:
                 break;

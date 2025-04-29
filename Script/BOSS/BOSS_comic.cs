@@ -14,6 +14,7 @@ public class BOSS_comic : MonoBehaviour
     public GameObject tips, BG_Image;
     // Start is called before the first frame update
     public GameObject Demo_End;
+    float offsetY;
     void Start()
     {
         static_parameters.Bookstate = true;
@@ -28,8 +29,7 @@ public class BOSS_comic : MonoBehaviour
         comic_time_sum += Time.deltaTime;
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
-            static_parameters.Comic_scene_sort = 0;
-            comic_step = 1;
+            BOSS_comic_END();
         }
         if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && comic_time_sum > 0.5f)
         {
@@ -107,7 +107,10 @@ public class BOSS_comic : MonoBehaviour
                 comicRect.anchorMin = new Vector2(0.5f, 0.5f);
                 comicRect.anchorMax = new Vector2(0.5f, 0.5f);
                 comicRect.pivot = new Vector2(0.5f, 0.5f);
-                comicRect.anchoredPosition = new Vector2(0, -225f);
+
+                // comicRect.anchoredPosition = new Vector2(0, offsetY);
+                // comicRect.anchoredPosition = new Vector2(0, -270f);
+                comicRect.anchoredPosition = new Vector2(0, 0);
                 comicRect.sizeDelta = Vector2.zero; // 讓它跟隨內容物大小
             }
 
@@ -141,69 +144,37 @@ public class BOSS_comic : MonoBehaviour
             }
 
             // 呼叫淡入效果
-            StartCoroutine(FadeInImage(newImage, 0.4f, 300f));
+            StartCoroutine(FadeInImage(newImage, 0.4f));
         }
     }
 
-    IEnumerator FadeInImage(Image image, float duration, float moveDistance)
+    IEnumerator FadeInImage(Image image, float duration)
     {
         float elapsedTime = 0f;
-        Color newColor = image.color;
-        Vector3 originalPosition = image.transform.position; // 儲存初始位置
+        RectTransform rectTransform = image.GetComponent<RectTransform>();
 
-        // 初始化 alpha 為 0（完全透明）
-        newColor.a = 0f;
-        image.color = newColor;
+        // 起始位置：原點往下 offset 300
+        Vector2 startPos = rectTransform.anchoredPosition - new Vector2(0, 300);
+        // 結束位置：原點
+        Vector2 endPos = rectTransform.anchoredPosition;
 
-        // 持續時間內逐步增加 alpha
+        // 初始化位置
+        rectTransform.anchoredPosition = startPos;
+
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
 
-            // 更新透明度
-            newColor.a = Mathf.Clamp01(elapsedTime / duration);
-            image.color = newColor;
+            // 線性插值從 startPos 到 endPos
+            rectTransform.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
 
-            // 更新 Y 軸位置，逐步增加至 moveDistance
-            float newYPosition = Mathf.Lerp(originalPosition.y, originalPosition.y + moveDistance, elapsedTime / duration);
-            image.transform.position = new Vector3(originalPosition.x, newYPosition, originalPosition.z);
-
-            yield return null; // 等待下一幀
+            yield return null;
         }
 
-        // 確保最後完全顯示
-        newColor.a = 1f;
-        image.color = newColor;
-
-        // 確保 Y 軸移動到最終位置
-        image.transform.position = new Vector3(originalPosition.x, originalPosition.y + moveDistance, originalPosition.z);
+        // 保險設定
+        rectTransform.anchoredPosition = endPos;
     }
-
-    IEnumerator FadeOutImage(Image image, float duration, float moveDistance)
-    {
-        float elapsedTime = 0f;
-        Color newColor = image.color;
-        Vector3 originalPosition = image.transform.position; // 儲存初始位置
-
-        // 持續時間內逐步減少 alpha
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            newColor.a = 1 - Mathf.Clamp01(elapsedTime / duration); // 更新透明度
-            image.color = newColor;
-
-            // 更新 Y 軸位置，逐步減少至 moveDistance
-            float newYPosition = Mathf.Lerp(originalPosition.y, originalPosition.y + moveDistance, elapsedTime / duration);
-            image.transform.position = new Vector3(originalPosition.x, newYPosition, originalPosition.z);
-
-            yield return null; // 等待下一幀
-        }
-
-        // 確保最後完全隱藏
-        newColor.a = 0f;
-        image.color = newColor;
-    }
-
 
     void DeleteAllImagesUnderCanvas()
     {
@@ -252,6 +223,7 @@ public class BOSS_comic : MonoBehaviour
             case 4:
                 imagePath = "Sprites/Comic/boss_comic/1/b4";
                 Wait_time = 1;
+                tips.SetActive(false);
                 break;
             case 5:
                 imagePath = "Sprites/Comic/boss_comic/1/b5";
@@ -320,7 +292,6 @@ public class BOSS_comic : MonoBehaviour
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
                 comic_step = 1;
-                tips.SetActive(false);
                 return;
         }
         comic_image_add();
@@ -404,15 +375,25 @@ public class BOSS_comic : MonoBehaviour
                 break;
             case 18:
                 Wait_time = 2;
-                static_parameters.Comic_scene_sort = 0;
-                static_parameters.Bookstate = false;
-                comic_step = 1;
-                DeleteAllImagesUnderCanvas();
-                BG_Image.SetActive(false);
-                Demo_End.SetActive(true);
-                gameObject.SetActive(false);
+                BOSS_comic_END();
                 return;
         }
         comic_image_add();
+    }
+
+    private void BOSS_comic_END()
+    {
+        static_parameters.Comic_scene_sort = 0;
+        static_parameters.Bookstate = false;
+        comic_step = 100;
+        DeleteAllImagesUnderCanvas();
+        BG_Image.SetActive(false);
+        Demo_End.SetActive(true);
+        BOSS_comic_END_after(0.25f);
+    }
+    IEnumerator BOSS_comic_END_after(float time_T)
+    {
+        yield return new WaitForSeconds(time_T);
+        gameObject.SetActive(false);
     }
 }

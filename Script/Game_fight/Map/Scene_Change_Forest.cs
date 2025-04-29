@@ -85,7 +85,7 @@ public class Scene_Change_Forest : MonoBehaviour
             static_parameters.next_door = false;
             static_parameters.into_gameFight_Levels = into_gameFight_Levels_memory;
             static_parameters.stage_number++;
-            foreach(var audio in FindObjectsOfType<AudioSource>())audio.Stop();
+            foreach (var audio in FindObjectsOfType<AudioSource>()) audio.Stop();
             if (static_parameters.stage_number < all_stage)
             {
                 i = static_parameters.stage_number;
