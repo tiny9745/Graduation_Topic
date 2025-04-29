@@ -131,6 +131,7 @@ public class NPC01_1_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
+            gameObject.tag = "Untagged";
             fade();
             hitbox_Crystal_baby_small.SetActive(false);
 

@@ -98,6 +98,7 @@ public class NPC01_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
+            gameObject.tag = "Untagged";
             hitbox_Crystal_baby.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;

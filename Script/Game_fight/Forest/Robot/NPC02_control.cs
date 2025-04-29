@@ -108,6 +108,7 @@ public class NPC02_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
+            gameObject.tag = "Untagged";
             hitbox_Robot.SetActive(false);
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;

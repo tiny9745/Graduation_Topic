@@ -16,6 +16,7 @@ public class BOSS_comic : MonoBehaviour
     public GameObject Demo_End;
     void Start()
     {
+        static_parameters.Bookstate = true;
         comic_step_tmp = comic_step;
         DeleteAllImagesUnderCanvas();
         BG_Image.SetActive(true);
@@ -404,6 +405,7 @@ public class BOSS_comic : MonoBehaviour
             case 18:
                 Wait_time = 2;
                 static_parameters.Comic_scene_sort = 0;
+                static_parameters.Bookstate = false;
                 comic_step = 1;
                 DeleteAllImagesUnderCanvas();
                 BG_Image.SetActive(false);

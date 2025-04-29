@@ -95,6 +95,7 @@ public class NPC05_control : MonoBehaviour
         if (NPC_HP <= 0)
         {
             NPC_HP = 0;
+            gameObject.tag = "Untagged";
             Img_npc.transform.position += 1.5f * Time.deltaTime * Vector3.down;
             npcNavi.speed = 0;
             fade();

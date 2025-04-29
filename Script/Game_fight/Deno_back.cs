@@ -16,11 +16,6 @@ public class Deno_back : MonoBehaviour
         Camera = GameObject.Find("Camera");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void End_Back_menu()
     {
         Destroy(UI);

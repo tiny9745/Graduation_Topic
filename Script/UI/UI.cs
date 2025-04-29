@@ -87,7 +87,6 @@ public class UI : MonoBehaviour
         }
         if (static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100 && (static_parameters.into_gameFight == false || static_parameters.Change_enemy == 0))
         {
-            Debug.Log("openclose()");
             if (static_parameters.Bookstate)
             {
                 // Time.timeScale = 1;
@@ -99,7 +98,6 @@ public class UI : MonoBehaviour
             }
             else
             {
-                Debug.Log("openclose()_else");
                 // Time.timeScale = 0;
                 static_parameters.Bookstate = true;
                 Notebook.SetActive(true);
