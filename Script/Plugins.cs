@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Plugins : MonoBehaviour
 {
@@ -31,6 +32,13 @@ public class Plugins : MonoBehaviour
                 if (static_parameters.money < 0) static_parameters.money = 0;
                 ui.Loadmoney();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            ptest.Test();
+            static_parameters.into_gameFight_Levels = 5;
+            static_parameters.stage_number = 5;
+            SceneManager.LoadScene("Fight_241130");
         }
     }
 }

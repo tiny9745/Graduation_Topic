@@ -46,7 +46,7 @@ public class Scenes_Change_house_outside : MonoBehaviour
     {
         if (Hit.gameObject.CompareTag("Player") && static_parameters.isTeaching == false && static_parameters.teaching_stop >= 100)
         {
-            static_parameters.stage_number = 1;
+            static_parameters.stage_number = 4;
             loadingBar.rectTransform.anchoredPosition = new Vector2(737f, -557f);
             foreach (var audio in FindObjectsOfType<AudioSource>())
             {

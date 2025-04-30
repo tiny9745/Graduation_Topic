@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro; // 別忘了引入 TextMeshPro 的命名空間
 
 public class Loading_241010 : MonoBehaviour
 {
@@ -23,11 +24,12 @@ public class Loading_241010 : MonoBehaviour
     private GameObject BlackScreen;
     private GameObject player_S;
 
-    public Text Loaing_Tips;
-    private string[] Loading_Tips;
+    public TextMeshProUGUI Loading_Tips;
+    private string[] Loading_Tips_texts;
 
     private bool wave_return = true;
     private bool screen_close = true;
+    bool isChange_tips = false;
 
     void Start()
     {
@@ -57,7 +59,6 @@ public class Loading_241010 : MonoBehaviour
             newPosition_start = loadingBar.transform.position;
             waveCenterX = newPosition_start.x;
         }
-        Loading_Tips_Change();
         StartCoroutine(LoadSceneAsync(targetSceneName));
     }
 
@@ -69,6 +70,8 @@ public class Loading_241010 : MonoBehaviour
         if (loadingBar.transform.position.y >= targetFillY && screen_close && loadingTimeElapsed >= minimumLoadingTime)
         {
             screen_close = false;
+            if (isChange_tips == false) Loading_Tips_Change();
+            isChange_tips = true;
             loadingScreen.SetActive(false);
         }
         else if (screen_close)
@@ -125,7 +128,7 @@ public class Loading_241010 : MonoBehaviour
 
     private void Loading_Tips_Change()
     {
-        Loading_Tips = new string[]
+        Loading_Tips_texts = new string[]
         {
             "聽說全部的日記技能其實有25個！？",
             "魔法師莓莓似乎有著不可告人的身分……",
@@ -146,7 +149,7 @@ public class Loading_241010 : MonoBehaviour
             "鴨子布偶真的好柔軟～但打人起來也特別疼痛唷！",
             "摸清楚敵人攻擊套路，就不用再害怕他們啦。"
         };
-        int randomIndex = Random.Range(0, Loading_Tips.Length);
-        Loaing_Tips.text = Loading_Tips[randomIndex];
+        int randomIndex = Random.Range(0, Loading_Tips_texts.Length);
+        Loading_Tips.text = Loading_Tips_texts[randomIndex];
     }
 }
