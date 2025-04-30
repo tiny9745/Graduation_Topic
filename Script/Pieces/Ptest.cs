@@ -29,7 +29,6 @@ public class Ptest : MonoBehaviour
     // Update is called once per frame
     public void _to_Drop(int Random)
     {
-        static_parameters.fragmentsnumber_hold += Random;
         for (int i = 0; i < Random; i++)
         {
             AddP();
@@ -169,13 +168,11 @@ public class Ptest : MonoBehaviour
     public void Test()
     {
         int k = 0, l = 0;
-        static_parameters.fragmentsnumber_hold = 36;
         for (int i = 0; i < availablePieces.Count; i++)
         {
             pickedPieces.Add(availablePieces[i]);
             SortPiece(availablePieces[i]);
             show.Add(availablePieces[i]);
-            static_parameters.fragmentsnumber_hold++;
             if (l == 0) k = i;
             l++;
         }
@@ -196,7 +193,6 @@ public class Ptest : MonoBehaviour
                 pickedPieces.Add(availablePieces[i]);
                 SortPiece(availablePieces[i]);
                 show.Add(availablePieces[i]);
-                static_parameters.fragmentsnumber_hold++;
                 if (l == 0) k = i;
                 l++;
                 if (l > 3) break;
