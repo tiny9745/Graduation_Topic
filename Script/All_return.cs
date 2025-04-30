@@ -116,7 +116,6 @@ public class All_return : MonoBehaviour
 
         Magician_talk.talk_number_M = 0;
 
-        static_parameters.fragmentsnumber_hold = 0;
         static_parameters.diary_number_hold = 0;
         Ptest.pickedPieces = new List<Diary_piece>(); ;
         Ptest.show = new List<Diary_piece>();
