@@ -59,6 +59,7 @@ public class Sound_BGM : MonoBehaviour
         {
             BGM_sound.clip = BGM_clip[1];
         }
+        if (!Boss_col.BOSS_live)BGM_sound.clip = BGM_clip[2];;
         BGM_sound.Play();
     }
 }
