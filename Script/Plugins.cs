@@ -33,6 +33,12 @@ public class Plugins : MonoBehaviour
                 ui.Loadmoney();
             }
         }
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            static_parameters.into_gameFight_Levels = 4;
+            static_parameters.stage_number = 4;
+            SceneManager.LoadScene("Fight_241130");
+        }
         if (Input.GetKeyDown(KeyCode.F12))
         {
             ptest.Test();
