@@ -23,6 +23,17 @@ public class Sound_BGM : MonoBehaviour
         {
             BGM_sound.volume = static_parameters._BGM_volue;
         }
+        if (static_parameters.stage_number == 6)
+        {
+            if (static_parameters.Bookstate && BGM_sound.isPlaying)
+            {
+                BGM_sound.Pause();
+            }
+            else if (static_parameters.Bookstate == false && BGM_sound.isPlaying == false)
+            {
+                BGM_sound.UnPause();
+            }
+        }
     }
 
     private void OnEnable()
@@ -59,7 +70,6 @@ public class Sound_BGM : MonoBehaviour
         {
             BGM_sound.clip = BGM_clip[1];
         }
-        if (!Boss_col.BOSS_live)BGM_sound.clip = BGM_clip[2];
         BGM_sound.Play();
     }
 }

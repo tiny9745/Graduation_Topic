@@ -17,7 +17,6 @@ public class BOSS_comic : MonoBehaviour
     float offsetY;
     void Start()
     {
-        static_parameters.Bookstate = true;
         comic_step_tmp = comic_step;
         DeleteAllImagesUnderCanvas();
         BG_Image.SetActive(true);
@@ -204,6 +203,7 @@ public class BOSS_comic : MonoBehaviour
         switch (comic_step)
         {
             case 1:
+                static_parameters.Bookstate = true;
                 change_comic_BG("Sprites/Comic/boss_comic/1/b-bg");
                 imagePath = "Sprites/Comic/boss_comic/1/b1";
                 tips.SetActive(true);

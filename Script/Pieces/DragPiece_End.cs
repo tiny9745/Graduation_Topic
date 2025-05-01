@@ -14,7 +14,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     public Image[] images_effect_col = new Image[4]; // 碎片裝飾陣列
     public Image[] images_effect_change = new Image[4]; // 碎片更換陣列
     public Button composite_col;
-    private Color newColor = new Color(1, 1, 1, 0.5f); // 按鈕透明度顏色
+    private Color newColor = new Color(1, 1, 1, 0.0f); // 按鈕透明度顏色
     public Image button_image;
     private int puzzle_count = 0;
     static public int puzzle_color = 2, end_count = -1; // 碎片顏色（默認為 2）
@@ -120,7 +120,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
                     {
                         images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
                     }
-                    if (checkResult != 2) newColor.a = 0.5f;
+                    if (checkResult != 2) newColor.a = 0f;
                     tips.SetColor(key_color);
                 }
             }
@@ -199,7 +199,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             image.SetActive(false);
         }
         puzzle_count = 0;
-        newColor.a = 0.5f;
+        newColor.a = 0f;
     }
 
     public void Combination_End()
@@ -242,7 +242,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         }
         tips.SetColor("defult");
         puzzle_count = 0;
-        newColor.a = 0.5f;
+        newColor.a = 0f;
     }
 
     private void SetPuzzleColor(string key_color)

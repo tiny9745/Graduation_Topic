@@ -13,7 +13,7 @@ public class berry_hitbox : MonoBehaviour
     public Animator animator_ready;
     public GameObject berry_bomb;
     public AudioSource Ad;
-    public AudioClip  berry_waring_sound,berry_bomb_sound;
+    public AudioClip berry_waring_sound, berry_bomb_sound;
     void Update()
     {
         // 清除已被銷毀的物件以防止 MissingReferenceException
@@ -85,7 +85,9 @@ public class berry_hitbox : MonoBehaviour
         }
     }
 
-    void play(){
+    void play()
+    {
+        if (bomb_berry.berry == 0) return;
         Ad.PlayOneShot(berry_bomb_sound);
     }
     private void Bomb_Berry_Explode()

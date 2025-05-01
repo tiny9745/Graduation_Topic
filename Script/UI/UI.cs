@@ -13,7 +13,7 @@ public class UI : MonoBehaviour
     public GameObject BookMark1, BookMark2, BookMark3, BookMark4;
     public GameObject LeftMark1, LeftMark2, LeftMark3, LeftMark4;
     public GameObject TeachiUI, NotebookUI;
-    private Color newColor = new Color(1, 1, 1, 0.5f);
+    private Color newColor = new Color(1, 1, 1, 0f);
     public Text money;
     public Outline money_outline;
     public Image button_image, craft_image;

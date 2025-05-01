@@ -8,7 +8,8 @@ public class Boss_col : MonoBehaviour
     public GameObject BOSS_health_bar;
     static public float BOSS_Atk_time = 0;
     public bool BOSS_in_open_time = false;
-    static public bool BOSS_Atk_bool = false, BOSS_live = true;
+    static public bool BOSS_Atk_bool = false;
+    bool BOSS_live = true;
     static public int BOSS_Atk_state = 1;
     static public bool BOSS_Atk02_ready03_waring = false;
     static public bool BOSS_Atk02_ready01 = false, BOSS_Atk02_ready03 = false;
