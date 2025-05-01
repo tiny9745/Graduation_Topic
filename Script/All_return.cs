@@ -12,7 +12,6 @@ public class All_return : MonoBehaviour
     }
     public void Start0()
     {
-        Debug.Log("Start0 called");
         static_parameters.MC_HP_Max = 500;
         static_parameters.MC_HP = static_parameters.MC_HP_Max;
         static_parameters.MC_HP_tmp = static_parameters.MC_HP;
