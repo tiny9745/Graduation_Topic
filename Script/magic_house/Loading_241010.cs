@@ -60,6 +60,7 @@ public class Loading_241010 : MonoBehaviour
             waveCenterX = newPosition_start.x;
         }
         StartCoroutine(LoadSceneAsync(targetSceneName));
+        Loading_Tips_Change();
     }
 
     void Update()
