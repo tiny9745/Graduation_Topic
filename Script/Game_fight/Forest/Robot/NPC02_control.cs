@@ -23,7 +23,6 @@ public class NPC02_control : MonoBehaviour
     public Animator money_animator;
     public AudioClip[] NPC02_audioclip;
     public AudioSource NPC02_audiosource;
-
     void Start()
     {
         spriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();

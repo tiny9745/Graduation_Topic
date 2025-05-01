@@ -139,7 +139,8 @@ public class MC_col : MonoBehaviour
         Quaternion newRotation = Quaternion.Euler(x, y, z);
         transform.rotation = newRotation;
     }
-    public void red(){
+    public void red()
+    {
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
         renderer1.material = Deduct_Blood;

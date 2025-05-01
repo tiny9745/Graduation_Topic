@@ -239,7 +239,8 @@ public class NPC05_control : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0){
+        if (NPC_HP > 0)
+        {
             if (other.gameObject.CompareTag("MC_Att") && MC_to_Att)
             {
                 Change();
