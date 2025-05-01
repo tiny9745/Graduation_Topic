@@ -58,30 +58,26 @@ public class NPC03_control : MonoBehaviour
             npcNavi.speed = npcSpeed;
         }
 
-        if (static_parameters.stage_number == 1)
+        switch (static_parameters.stage_number)
         {
-            NPC_HP_Max *= 1;
-            NPC_HP = NPC_HP_Max;
-            NPC03_ATK *= 1;
+            case 1:
+                NPC_HP_Max *= 1;
+                NPC03_ATK *= 1;
+                break;
+            case 2:
+                NPC_HP_Max *= 1.1f;
+                NPC03_ATK *= 1;
+                break;
+            case 3:
+                NPC_HP_Max *= 1.3f;
+                NPC03_ATK *= 1.1f;
+                break;
+            case 4:
+                NPC_HP_Max *= 1.5f;
+                NPC03_ATK *= 1.2f;
+                break;
         }
-        else if (static_parameters.stage_number == 2)
-        {
-            NPC_HP_Max *= 1.1f;
-            NPC_HP = NPC_HP_Max;
-            NPC03_ATK *= 1;
-        }
-        else if (static_parameters.stage_number == 3)
-        {
-            NPC_HP_Max *= 1.3f;
-            NPC_HP = NPC_HP_Max;
-            NPC03_ATK *= 1.1f;
-        }
-        else if (static_parameters.stage_number == 4)
-        {
-            NPC_HP_Max *= 1.5f;
-            NPC_HP = NPC_HP_Max;
-            NPC03_ATK *= 1.2f;
-        }
+        NPC_HP = NPC_HP_Max;
     }
 
     void Update()

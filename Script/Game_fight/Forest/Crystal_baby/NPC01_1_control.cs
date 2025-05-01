@@ -28,7 +28,6 @@ public class NPC01_1_control : MonoBehaviour
 
     public Transform spriteTransform; private SpriteRenderer spriteRenderer; private Color originalColor; private bool isCoroutineRunning = false;
 
-
     string dangerTag = "Thorns"; // 區域的 Tag
     float retreatDistance = 5f; // 移動距離
     private bool isInDangerZone = false; // 是否在危險區域內
@@ -98,30 +97,26 @@ public class NPC01_1_control : MonoBehaviour
             }
         }
 
-        if (static_parameters.stage_number == 1)
+        switch (static_parameters.stage_number)
         {
-            NPC_HP_Max *= 1;
-            NPC_HP = NPC_HP_Max;
-            NPC01_ATK *= 1;
+            case 1:
+                NPC_HP_Max *= 1;
+                NPC01_ATK *= 1;
+                break;
+            case 2:
+                NPC_HP_Max *= 1.1f;
+                NPC01_ATK *= 1;
+                break;
+            case 3:
+                NPC_HP_Max *= 1.3f;
+                NPC01_ATK *= 1.1f;
+                break;
+            case 4:
+                NPC_HP_Max *= 1.5f;
+                NPC01_ATK *= 1.2f;
+                break;
         }
-        else if (static_parameters.stage_number == 2)
-        {
-            NPC_HP_Max *= 1.1f;
-            NPC_HP = NPC_HP_Max;
-            NPC01_ATK *= 1;
-        }
-        else if (static_parameters.stage_number == 3)
-        {
-            NPC_HP_Max *= 1.3f;
-            NPC_HP = NPC_HP_Max;
-            NPC01_ATK *= 1.1f;
-        }
-        else if (static_parameters.stage_number == 4)
-        {
-            NPC_HP_Max *= 1.5f;
-            NPC_HP = NPC_HP_Max;
-            NPC01_ATK *= 1.2f;
-        }
+        NPC_HP = NPC_HP_Max;
     }
 
     void Update()
@@ -363,9 +358,9 @@ public class NPC01_1_control : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (NPC_HP > 0 )
+        if (NPC_HP > 0)
         {
-            if (other.gameObject.tag == "Player" && !stun && Time.time >= nextDamageTime )
+            if (other.gameObject.tag == "Player" && !stun && Time.time >= nextDamageTime)
             {
                 if (open_EnableHitbox)
                 {

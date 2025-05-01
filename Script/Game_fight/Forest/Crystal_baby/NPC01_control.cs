@@ -53,25 +53,25 @@ public class NPC01_control : MonoBehaviour
         npcNavi = GetComponent<NavMeshAgent>();
         npcNavi.speed = npcSpeed;
 
-        if (static_parameters.stage_number == 1)
+
+        switch (static_parameters.stage_number)
         {
-            NPC_HP_Max *= 1;
-            NPC01_ATK *= 1;
-        }
-        else if (static_parameters.stage_number == 2)
-        {
-            NPC_HP_Max *= 1.1f;
-            NPC01_ATK *= 1;
-        }
-        else if (static_parameters.stage_number == 3)
-        {
-            NPC_HP_Max *= 1.3f;
-            NPC01_ATK *= 1.1f;
-        }
-        else if (static_parameters.stage_number == 4)
-        {
-            NPC_HP_Max *= 1.5f;
-            NPC01_ATK *= 1.2f;
+            case 1:
+                NPC_HP_Max *= 1;
+                NPC01_ATK *= 1;
+                break;
+            case 2:
+                NPC_HP_Max *= 1.1f;
+                NPC01_ATK *= 1;
+                break;
+            case 3:
+                NPC_HP_Max *= 1.3f;
+                NPC01_ATK *= 1.1f;
+                break;
+            case 4:
+                NPC_HP_Max *= 1.5f;
+                NPC01_ATK *= 1.2f;
+                break;
         }
         NPC_HP = NPC_HP_Max;
     }
