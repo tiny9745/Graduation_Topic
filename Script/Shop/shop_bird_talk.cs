@@ -7,6 +7,7 @@ public class shop_bird_talk : MonoBehaviour
     // Start is called before the first frame update
 
     int talk_count = 0;
+    int talk_number = 0;
     void Start()
     {
 
@@ -23,6 +24,29 @@ public class shop_bird_talk : MonoBehaviour
 
     void shop_bird_Talk()
     {
-
+        if (talk_count == 0)
+        {
+            talk_count = 1;
+            GameObject.Find("shop_bird").GetComponent<Animator>().SetTrigger("talk_1");
+            GameObject.Find("shop_bird").GetComponent<Animator>().SetBool("talk", true);
+        }
+        else if (talk_count == 1)
+        {
+            talk_count = 2;
+            GameObject.Find("shop_bird").GetComponent<Animator>().SetTrigger("talk_2");
+            GameObject.Find("shop_bird").GetComponent<Animator>().SetBool("talk", true);
+        }
+        else if (talk_count == 2)
+        {
+            talk_count = 3;
+            GameObject.Find("shop_bird").GetComponent<Animator>().SetTrigger("talk_3");
+            GameObject.Find("shop_bird").GetComponent<Animator>().SetBool("talk", true);
+        }
+        else if (talk_count == 3)
+        {
+            talk_count = 0;
+            GameObject.Find("shop_bird").GetComponent<Animator>().SetTrigger("talk_4");
+            GameObject.Find("shop_bird").GetComponent<Animator>().SetBool("talk", true);
+        }
     }
 }
