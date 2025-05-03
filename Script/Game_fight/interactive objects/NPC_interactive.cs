@@ -14,7 +14,7 @@ public class NPC_interactive : MonoBehaviour
         if (npc_timmer >= Thorns.damage_time)
         {
             npc_timmer = 0;
-            _NPC_HP -= 1;
+            _NPC_HP -= 2;
         }
     }
     public void NPC_Bomb_Berry(ref float _NPC_HP)

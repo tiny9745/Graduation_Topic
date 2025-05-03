@@ -30,10 +30,10 @@ public class Skill_public_funtion : MonoBehaviour // this change Remembers chang
     static public float skill_32_Dash_time = 15, skill_35_Dash_Magnification = 1f;
 
     static public int skill_4x_Sorting = 1;
-    static public bool skill_41_enter = true; static public int skill_41_Atk = 10;
-    static public bool skill_42_enter = true; static public int skill_42_Atk = 6;
+    static public bool skill_41_enter = true; static public int skill_41_Atk = 35;
+    static public bool skill_42_enter = true; static public int skill_42_Atk = 18;
     static public bool skill_43_enter = true, skill_44_enter = true;
-    static public bool skill_45_enter = true; static public int skill_45_Atk = 22;
+    static public bool skill_45_enter = true; static public int skill_45_Atk = 66;
 
     static public List<HashSet<int>> validSequences; // 有效的組合數列
     static public List<HashSet<int>> validSequences_re = new List<HashSet<int>>(){
