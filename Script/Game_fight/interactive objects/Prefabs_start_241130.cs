@@ -11,12 +11,13 @@ public class Prefabs_start_241130 : MonoBehaviour
     private Bounds navMeshBounds;
     private float randomX, randomZ;
     private int Number_NPC01, Number_NPC02, Number_NPC03, Number_NPC04, Number_NPC05;
+    public UI ui;
     void Start()
     {
+        ui = GameObject.Find("UI").GetComponent<UI>();
         static_parameters.MC_NPC_col_move = false; // 禁止 NPC 移動
         // 計算初始 NavMesh 範圍
         UpdateNavMeshBounds();
-
         // 設定 NPC 數量
         SetNPCNumbers();
 
@@ -25,7 +26,7 @@ public class Prefabs_start_241130 : MonoBehaviour
         static_parameters.into_gameFight = true;
         // 延遲生成確保範圍正確
         Invoke("BakeNavMesh", 1.5f);
-        Invoke("NPC_into", 3.2f);
+        Invoke("NPC_into", 2.5f);
     }
 
     void OnDestroy()
@@ -63,7 +64,6 @@ public class Prefabs_start_241130 : MonoBehaviour
                     break;
             }
         }
-
     }
 
     void UpdateNavMeshBounds()
@@ -106,6 +106,7 @@ public class Prefabs_start_241130 : MonoBehaviour
         {
             GenerateNPC(prefabNPC05);
         }
+        ui.openclose_false();
     }
 
     void GenerateNPC(GameObject prefab)

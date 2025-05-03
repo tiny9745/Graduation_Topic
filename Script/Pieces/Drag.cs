@@ -55,9 +55,10 @@ public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
         _canvasGroup.blocksRaycasts = true;
 
         // 回到原本的父物件層級（若需要重設位置）
-        transform.SetParent(_originalParent, true);
+        transform.SetParent(_originalParent, false);
         _rectTransform.anchoredPosition = _originalPosition;
     }
+
     public void OnPointerUp(PointerEventData eventData)
     {
         OnEndDrag(eventData);

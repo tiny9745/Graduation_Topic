@@ -99,7 +99,6 @@ MonoBehaviour:
   bomb_hitbox: {fileID: 2484349344046770048}
   inventoryManager: {fileID: 0}
   falsh_ani: {fileID: 84899248284213747}
-  hit_box: {fileID: 6175940213541665275}
 --- !u!212 &6209007020723338161
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -460,7 +459,6 @@ GameObject:
   - component: {fileID: 4952138006261575214}
   - component: {fileID: 3865401769412750128}
   - component: {fileID: 8973502835351557929}
-  - component: {fileID: 2367576773962626155}
   - component: {fileID: 525241609473118334}
   - component: {fileID: 7246219497437236140}
   m_Layer: 0
@@ -592,22 +590,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!208 &2367576773962626155
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6829575668444537915}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 2.5, y: 2.5, z: 1}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!82 &525241609473118334
 AudioSource:
   m_ObjectHideFlags: 0

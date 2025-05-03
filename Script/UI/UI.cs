@@ -127,6 +127,7 @@ public class UI : MonoBehaviour
     }
     public void openclose_false()
     {
+        Debug.Log("openclose_false");
         static_parameters.Bookstate = false;
         Notebook.SetActive(false);
         BattleUI.SetActive(true);
