@@ -10,7 +10,7 @@ public class Magician_talk : MonoBehaviour
     public Image Main_character_body, Magician_body;
     public Sprite[] Main_character_face_change;
     public Sprite[] Magician_face_change;
-    public Text name_text, talk_text, Narration_text;
+    public Text name_text, talk_text;
     static public int talk_number_M = 0;
     public int into_talk_step = 0;
     public UI_Place UI_place;
