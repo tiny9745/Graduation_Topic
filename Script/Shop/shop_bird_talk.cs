@@ -21,12 +21,11 @@ public class shop_bird_talk : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && P1 && !Setting_keybroad.ESC_col)
+        if (Input.GetKeyDown(KeyCode.F) && P1 && !Setting_keybroad.ESC_col && static_parameters.isUpgrade_tmp == false)
         {
-
+            static_parameters.isUpgrade_tmp = true;
             bird_talk.SetActive(true);
             if (talk_count != 0) talk_count = Random.Range(1, 5);
-            Debug.Log("talk_count:" + talk_count);
             shop_bird_Talk();
         }
         else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && P1)
@@ -88,33 +87,25 @@ public class shop_bird_talk : MonoBehaviour
                     break;
                 case 1:
                     Grma_bird_talk();
-                    Main_character_face.sprite = Main_character_face_change[0];
-                    bird_body.sprite = bird_face_change[0];
                     name_text.text = "婆婆";
                     talk_text.text = "就是賣一些……ZZzzz……";
                     break;
                 case 2:
-                    Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[1];
                     name_text.text = "鸚鵡";
                     talk_text.text = "走過路過千萬不要錯過嘎，全國最豐富最優秀的商品都在這～裡嘎！";
                     break;
                 case 3:
-                    Main_character_face.sprite = Main_character_face_change[0];
-                    bird_body.sprite = bird_face_change[1];
                     name_text.text = "鸚鵡";
                     talk_text.text = "唉唷可愛的小孩嘎～這裡有賣好吃的糖果餅乾～嘎！";
                     break;
                 case 4:
-                    Main_character_face.sprite = Main_character_face_change[0];
-                    bird_body.sprite = bird_face_change[1];
                     name_text.text = "鸚鵡";
                     talk_text.text = "都是熱銷款，要買要快嘎！";
                     break;
                 case 5:
-                    talk_number = 0;
                     talk_count = 1;
-                    bird_talk.SetActive(false);
+                    End_talk();
                     break;
             }
         }
@@ -123,6 +114,7 @@ public class shop_bird_talk : MonoBehaviour
             switch (talk_number)
             {
                 case 0:
+                    Grma_bird_talk();
                     Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[1];
                     name_text.text = "鸚鵡";
@@ -135,8 +127,7 @@ public class shop_bird_talk : MonoBehaviour
                     talk_text.text = "吃了保證妳元氣滿滿嘎！";
                     break;
                 case 3:
-                    bird_talk.SetActive(false);
-                    talk_number = 0;
+                    End_talk();
                     break;
             }
         }
@@ -145,6 +136,7 @@ public class shop_bird_talk : MonoBehaviour
             switch (talk_number)
             {
                 case 0:
+                    Grma_bird_talk();
                     Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[2];
                     name_text.text = "鸚鵡";
@@ -154,8 +146,7 @@ public class shop_bird_talk : MonoBehaviour
                     talk_text.text = "賣妳這樣已經很便宜了嘎！";
                     break;
                 case 2:
-                    talk_number = 0;
-                    bird_talk.SetActive(false);
+                    End_talk();
                     break;
             }
         }
@@ -164,6 +155,7 @@ public class shop_bird_talk : MonoBehaviour
             switch (talk_number)
             {
                 case 0:
+                    Grma_bird_talk();
                     Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[0];
                     name_text.text = "鸚鵡";
@@ -173,8 +165,7 @@ public class shop_bird_talk : MonoBehaviour
                     talk_text.text = "如何嘎，要再多買一包嗎嘎？";
                     break;
                 case 2:
-                    talk_number = 0;
-                    bird_talk.SetActive(false);
+                    End_talk();
                     break;
             }
         }
@@ -183,6 +174,7 @@ public class shop_bird_talk : MonoBehaviour
             switch (talk_number)
             {
                 case 0:
+                    Grma_bird_talk();
                     Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[0];
                     name_text.text = "鸚鵡";
@@ -192,11 +184,17 @@ public class shop_bird_talk : MonoBehaviour
                     talk_text.text = "小孩，快買幾十幾包回去吃吧嘎！";
                     break;
                 case 2:
-                    talk_number = 0;
-                    bird_talk.SetActive(false);
+                    End_talk();
                     break;
             }
         }
+    }
+
+    void End_talk()
+    {
+        bird_talk.SetActive(false);
+        static_parameters.isUpgrade_tmp = false;
+        talk_number = 0;
     }
 
     void Grma_bird_talk()
