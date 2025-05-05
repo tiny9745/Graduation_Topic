@@ -17,38 +17,45 @@ public class shop_bird_talk : MonoBehaviour
     // bool talk_flag = true;
     public SpriteRenderer F_button_object;
     public Sprite F_button;
-    void Start()
-    {
+    bool P1 = false;
 
-    }
-
-    // Update is called once per frame
-
-    void OnTriggerEnter(Collider other)
+    void Update()
     {
-        F_button_object.sprite = F_button;
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && P1 && !Setting_keybroad.ESC_col)
         {
-            Debug.Log("F key pressed");
+
             bird_talk.SetActive(true);
+            if (talk_count != 0) talk_count = Random.Range(1, 5);
+            Debug.Log("talk_count:" + talk_count);
+            shop_bird_Talk();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
+        else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && P1)
         {
             talk_number++;
             shop_bird_Talk();
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            P1 = true;
+            F_button_object.sprite = F_button;
+        }
+    }
+
     void OnTriggerExit(Collider other)
     {
-        F_button_object.sprite = null;
+        if (other.tag == "Player")
+        {
+            F_button_object.sprite = null;
+            P1 = false;
+        }
     }
 
     void shop_bird_Talk()
     {
-        if (talk_count != 0) Random.Range(1, 5);
         switch (talk_count)
         {
             case 0:
@@ -105,8 +112,8 @@ public class shop_bird_talk : MonoBehaviour
                     talk_text.text = "都是熱銷款，要買要快嘎！";
                     break;
                 case 5:
-                    talk_number++;
-                    talk_count = 0;
+                    talk_number = 0;
+                    talk_count = 1;
                     bird_talk.SetActive(false);
                     break;
             }
@@ -119,11 +126,17 @@ public class shop_bird_talk : MonoBehaviour
                     Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[1];
                     name_text.text = "鸚鵡";
-                    talk_text.text = "這可是今天新鮮製成的蛋糕嘎！要趕快買來吃嘎！吃了保證妳元氣滿滿嘎！";
+                    talk_text.text = "這可是今天新鮮製成的蛋糕嘎！";
                     break;
                 case 1:
+                    talk_text.text = "要趕快買來吃嘎！";
+                    break;
+                case 2:
+                    talk_text.text = "吃了保證妳元氣滿滿嘎！";
+                    break;
+                case 3:
                     bird_talk.SetActive(false);
-                    talk_count = 0;
+                    talk_number = 0;
                     break;
             }
         }
@@ -135,10 +148,13 @@ public class shop_bird_talk : MonoBehaviour
                     Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[2];
                     name_text.text = "鸚鵡";
-                    talk_text.text = "馬卡龍要烤得好可是需要很多功夫的嘎！賣妳這樣已經很便宜了嘎！";
+                    talk_text.text = "馬卡龍要烤得好可是需要很多功夫的嘎！";
                     break;
                 case 1:
-                    talk_count = 0;
+                    talk_text.text = "賣妳這樣已經很便宜了嘎！";
+                    break;
+                case 2:
+                    talk_number = 0;
                     bird_talk.SetActive(false);
                     break;
             }
@@ -151,10 +167,13 @@ public class shop_bird_talk : MonoBehaviour
                     Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[0];
                     name_text.text = "鸚鵡";
-                    talk_text.text = "手工餅乾酥脆爽口嘎，絕對不會嗑斷牙嘎！如何嘎，要再多買一包嗎嘎？";
+                    talk_text.text = "手工餅乾酥脆爽口嘎，絕對不會嗑斷牙嘎！";
                     break;
                 case 1:
-                    talk_count = 0;
+                    talk_text.text = "如何嘎，要再多買一包嗎嘎？";
+                    break;
+                case 2:
+                    talk_number = 0;
                     bird_talk.SetActive(false);
                     break;
             }
@@ -167,10 +186,13 @@ public class shop_bird_talk : MonoBehaviour
                     Main_character_face.sprite = Main_character_face_change[0];
                     bird_body.sprite = bird_face_change[0];
                     name_text.text = "鸚鵡";
-                    talk_text.text = "甘甜不膩的糖果大人小孩鸚鵡都愛嘎！小孩，快買幾十幾包回去吃吧嘎！";
+                    talk_text.text = "甘甜不膩的糖果大人小孩鸚鵡都愛嘎！";
                     break;
                 case 1:
-                    talk_count = 0;
+                    talk_text.text = "小孩，快買幾十幾包回去吃吧嘎！";
+                    break;
+                case 2:
+                    talk_number = 0;
                     bird_talk.SetActive(false);
                     break;
             }
