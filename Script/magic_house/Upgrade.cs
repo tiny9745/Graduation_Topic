@@ -60,6 +60,7 @@ public class Upgrade : MonoBehaviour
         Click = 5;
         namebox.text = "擊退";
         textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n";
+        if (Speed_LV < 6) textbox.text += "升級價格:" + Knockback_price[Knockback_LV - 1] + "元";
     }
     public void Pay()
     {

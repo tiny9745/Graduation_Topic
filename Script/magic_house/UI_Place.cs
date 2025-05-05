@@ -59,10 +59,12 @@ public class UI_Place : MonoBehaviour
             Ugrade.SetActive(true);
             UP.check(Upgrade.ATK_LV, Upgrade.DEF_LV, Upgrade.HP_LV, Upgrade.Speed_LV, Upgrade.Knockback_LV);
             Ad.PlayOneShot(Open);
+            static_parameters.MC_NPC_col_move = false;
         }
         else
         {
             static_parameters.isUpgrade_tmp = false;
+            static_parameters.MC_NPC_col_move = true;
             Ugrade.SetActive(false);
         }
     }
