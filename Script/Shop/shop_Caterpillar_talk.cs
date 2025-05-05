@@ -34,7 +34,7 @@ public class shop_Caterpillar_talk : MonoBehaviour
             if (talk_count != 0) talk_count = Random.Range(1, 3);
             shop_Caterpillar_Talk();
         }
-        else if ((Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) && P1)
+        else if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
         {
             talk_number++;
             shop_Caterpillar_Talk();
@@ -56,6 +56,7 @@ public class shop_Caterpillar_talk : MonoBehaviour
         {
             F_button_object.sprite = null;
             P1 = false;
+            if (talk_count != 0) P1 = true;
         }
     }
 
@@ -252,6 +253,7 @@ public class shop_Caterpillar_talk : MonoBehaviour
 
     void End_talk()
     {
+        if (F_button_object.sprite == null) P1 = false;
         Caterpillar_talk.SetActive(false);
         static_parameters.isUpgrade_tmp = false;
         talk_number = 0;
@@ -260,14 +262,12 @@ public class shop_Caterpillar_talk : MonoBehaviour
     void caterpillar_talk()
     {
         Main_character_face.color = new Color(0.5f, 0.5f, 0.5f, 1);
-
         Main_character_body.color = new Color(0.5f, 0.5f, 0.5f, 1);
         Caterpillar_body.color = new Color(1, 1, 1, 1);
     }
     void main_talk()
     {
         Main_character_face.color = new Color(1, 1, 1, 1);
-
         Main_character_body.color = new Color(1, 1, 1, 1);
         Caterpillar_body.color = new Color(0.5f, 0.5f, 0.5f, 1);
     }
