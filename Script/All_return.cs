@@ -89,13 +89,10 @@ public class All_return : MonoBehaviour
         Skill_public_funtion.skill_14_enter = false;
         Skill_public_funtion.skill_4x_Sorting = 1;
         Skill_public_funtion.skill_41_enter = true;
-        Skill_public_funtion.skill_41_Atk = 10;
         Skill_public_funtion.skill_42_enter = true;
-        Skill_public_funtion.skill_42_Atk = 6;
         Skill_public_funtion.skill_43_enter = true;
         Skill_public_funtion.skill_44_enter = true;
         Skill_public_funtion.skill_45_enter = true;
-        Skill_public_funtion.skill_45_Atk = 22;
 
         Ani_MC.isDashCooldown = false;
         Ani_MC.isDashCooldown_for_move = false;
