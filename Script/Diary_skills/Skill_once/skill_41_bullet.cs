@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class skill_41_bullet : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 15f;
     private GameObject targetObject;
     private Vector3 moveDirection;
     public Animator Guardian_41_bullet;

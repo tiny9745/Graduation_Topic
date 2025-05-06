@@ -171,6 +171,7 @@ public class Guardian42_col : MonoBehaviour
     {
         if (static_parameters.MC_HP <= 0)
         {
+            Debug.Log("MC Dead");
             Destroy(gameObject);
         }
     }
