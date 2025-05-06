@@ -31,6 +31,11 @@ public class Guardian45_col : MonoBehaviour
 
     void Update()
     {
+        if (static_parameters.MC_HP <= 0 || player == null)
+        {
+            MC_Dead();
+            return;
+        }
         FollowPlayer();
         if (static_parameters.MC_HP > 0 && static_parameters.Change_enemy != 0)
         {
@@ -172,9 +177,6 @@ public class Guardian45_col : MonoBehaviour
 
     private void MC_Dead()
     {
-        if (static_parameters.MC_HP <= 0||player == null)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

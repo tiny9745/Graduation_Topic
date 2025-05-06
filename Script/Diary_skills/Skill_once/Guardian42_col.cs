@@ -37,10 +37,14 @@ public class Guardian42_col : MonoBehaviour
 
     void Update()
     {
+        if (static_parameters.MC_HP <= 0 || player == null)
+        {
+            MC_Dead();
+            return;
+        }
         FollowPlayer();
         UpdateBulletTime();
         FaceNearestNPC();
-        MC_Dead();
     }
 
     private void UpdateBulletTime()
@@ -169,10 +173,6 @@ public class Guardian42_col : MonoBehaviour
 
     private void MC_Dead()
     {
-        if (static_parameters.MC_HP <= 0||player == null)
-        {
-            Debug.Log("MC Dead");
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
