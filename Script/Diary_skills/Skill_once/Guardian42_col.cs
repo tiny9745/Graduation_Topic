@@ -169,7 +169,7 @@ public class Guardian42_col : MonoBehaviour
 
     private void MC_Dead()
     {
-        if (static_parameters.MC_HP <= 0 ||!Boss_col.BOSS_live)
+        if (static_parameters.MC_HP <= 0 ||Skill_public_funtion.skill_41_enter)
         {
             Debug.Log("MC Dead");
             Destroy(gameObject);
