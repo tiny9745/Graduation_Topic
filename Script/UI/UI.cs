@@ -36,7 +36,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && DragPiece_End.puzzle_color == -1)
         {
             openclose();
             C_mood.Change();

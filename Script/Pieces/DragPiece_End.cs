@@ -17,7 +17,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     private Color newColor = new Color(1, 1, 1, 0.0f); // 按鈕透明度顏色
     public Image button_image;
     private int puzzle_count = 0;
-    static public int puzzle_color = 2, end_count = -1; // 碎片顏色（默認為 2）
+    static public int puzzle_color = -1, end_count = -1; // 碎片顏色（默認為 2）
     public AudioSource audioSource;
     public AudioClip[] audioClip;
     public Animator puzzle_flash_animator;
