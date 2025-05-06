@@ -158,7 +158,7 @@ public class Guardian41_col : MonoBehaviour
 
     private void MC_Dead()
     {
-        if (static_parameters.MC_HP <= 0)
+        if (static_parameters.MC_HP <= 0||player == null)
         {
             Destroy(gameObject);
         }
