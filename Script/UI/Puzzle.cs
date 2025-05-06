@@ -104,6 +104,7 @@ public class Puzzle : MonoBehaviour
         }
         IconManager.Instance.Addicon(DragPiece_End.end_count);
         cpmplete_piece_object.SetActive(false);
+        DragPiece_End.puzzle_color = -1;
         complete_piece_animator.SetInteger("piece_complete_color", -1);
     }
 }

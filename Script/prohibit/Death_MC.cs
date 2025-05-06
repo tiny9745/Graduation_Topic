@@ -75,7 +75,7 @@ public class Death_MC : MonoBehaviour
         // 加載場景
         Death_Img.sprite = Death_Img_Sprite;
         SceneManager.LoadScene("magic_house");
-
+        static_parameters.stage_number = 0;
         // 等待場景加載完成
         yield return new WaitUntil(() => sceneLoaded);
         yield return new WaitForSeconds(2f);
@@ -90,7 +90,7 @@ public class Death_MC : MonoBehaviour
         yield return new WaitForSeconds(7.5f);
         Death.transform.localPosition = new Vector3(0, 45, -42);
         Death.transform.localScale = new Vector3(3.4f, 3.4f, 3.4f);
-        static_parameters.stage_number = 0;
+
         static_parameters.reburn_ani = false;
         Death.SetActive(false);
         MC_Img.SetActive(true);

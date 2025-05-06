@@ -16,6 +16,7 @@ public class UI : MonoBehaviour
     private Color newColor = new Color(1, 1, 1, 0f);
     public Text money;
     public Outline money_outline;
+    public DragPiece_End dragPiece_end;
     public Image button_image, craft_image;
     public Sprite craft_sprite;
     public Button Pageup, Pagedown;
@@ -36,7 +37,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && DragPiece_End.puzzle_color != -1)
         {
             openclose();
             C_mood.Change();

@@ -175,7 +175,7 @@ public class Teaching_TextF : MonoBehaviour
                 break;
             case 20:
                 close();
-                teach_text.text = "將擁有<color=red>相同特徵</color>的碎片組合起來吧！";
+                teach_text.text = "將剛剛獲得<color=red>相同特徵</color>的碎片由右側拖曳到左側組合起來吧！";
                 break;
             case 21:
                 close_co();

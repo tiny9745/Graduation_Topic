@@ -401,6 +401,7 @@ public class Prologue_comic : MonoBehaviour
                 Wait_time = 0;
                 break;
             case 10:
+                isTopLayer = false;
                 imagePath = "Sprites/Comic/Leading comic/03/comics03_6";
                 audioSource_SE.clip = C3_5; audioSource_SE.loop = false;
                 audioSource_SE.Play();
@@ -409,6 +410,7 @@ public class Prologue_comic : MonoBehaviour
                 audioSource_BGM.Play();
                 break;
             case 11:
+                isTopLayer = true;
                 static_parameters.Comic_scene_sort++;
                 DeleteAllImagesUnderCanvas();
                 comic_step = 1;
@@ -473,17 +475,21 @@ public class Prologue_comic : MonoBehaviour
                 break;
             case 14:
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_6";
-                Wait_time = 1; isTopLayer = false;
+                Wait_time = 1; 
+                isTopLayer = false;
                 break;
             case 15:
+                isTopLayer = true;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_9";
-                isTopLayer = true; Wait_time = 0;
+                Wait_time = 0;
                 break;
             case 16:
+                isTopLayer = false;
                 imagePath = "Sprites/Comic/Leading comic/04/comics04_7";
                 Wait_time = 1;
                 break;
             case 17:
+                isTopLayer = true;
                 imagePath = "Sprites/Comic/Leading comic/04/word box04_10";
                 audioSource_SE.clip = C4_2; audioSource_SE.loop = false;
                 audioSource_SE.Play();
