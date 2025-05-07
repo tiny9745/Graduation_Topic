@@ -8,7 +8,7 @@ public class Shop_NPC : MonoBehaviour
     public GameObject[] npc_talks;
     void Start()
     {
-        npc_random_number = (ushort)Random.Range(0, 1);
+        npc_random_number = (ushort)Random.Range(0, 2);
         npc_talks[npc_random_number].SetActive(true);
     }
 }

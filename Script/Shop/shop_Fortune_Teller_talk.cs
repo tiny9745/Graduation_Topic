@@ -30,7 +30,6 @@ public class shop_Fortune_Teller_talk : MonoBehaviour
         {
             static_parameters.isUpgrade_tmp = true;
             Fortune_Teller_talk.SetActive(true);
-            if (talk_count != 0) talk_count = Random.Range(1, 3);
             shop_fortune_Teller_Talk();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
@@ -129,7 +128,6 @@ public class shop_Fortune_Teller_talk : MonoBehaviour
                     talk_text.text = "……";
                     break;
                 case 11:
-                    talk_count = 1;
                     End_talk();
                     break;
             }
@@ -261,6 +259,8 @@ public class shop_Fortune_Teller_talk : MonoBehaviour
         talk_number = 0;
         Fortune_Teller_talk.SetActive(false);
         static_parameters.isUpgrade_tmp = false;
+        talk_count++;
+        if (talk_count > 2) talk_count = 0;
     }
 
     void fortune_Teller_talk()

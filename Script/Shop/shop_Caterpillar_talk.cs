@@ -31,7 +31,6 @@ public class shop_Caterpillar_talk : MonoBehaviour
         {
             static_parameters.isUpgrade_tmp = true;
             Caterpillar_talk.SetActive(true);
-            if (talk_count != 0) talk_count = Random.Range(1, 3);
             shop_Caterpillar_Talk();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
@@ -133,7 +132,6 @@ public class shop_Caterpillar_talk : MonoBehaviour
                     talk_text.text = $"<size={smallerSize}>原來是莓雷迪斯……</size>";
                     break;
                 case 10:
-                    talk_count = 1;
                     End_talk();
                     break;
             }
@@ -257,6 +255,8 @@ public class shop_Caterpillar_talk : MonoBehaviour
         Caterpillar_talk.SetActive(false);
         static_parameters.isUpgrade_tmp = false;
         talk_number = 0;
+        talk_count++;
+        if (talk_count > 2) talk_count = 0;
     }
 
     void caterpillar_talk()
