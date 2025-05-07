@@ -19,9 +19,11 @@ public class skill_41_bullet : MonoBehaviour
             GameObject nearestNPC = FindNearestNPC();
             if (nearestNPC != null)
             {
-                moveDirection = (nearestNPC.transform.position - transform.position).normalized; // 朝向最近 NPC
-                transform.forward = moveDirection; // 確保子彈朝向移動方向
-                CheckAndFlip(nearestNPC.transform.position); // 初始時檢查翻轉
+                Vector3 rawDir = nearestNPC.transform.position - transform.position;
+                rawDir.y = 0f;
+                moveDirection = rawDir.normalized;
+                transform.forward = moveDirection;
+                CheckAndFlip(nearestNPC.transform.position);
             }
         }
         Destroy(gameObject, lifetime);
