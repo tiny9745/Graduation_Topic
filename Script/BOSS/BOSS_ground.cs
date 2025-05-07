@@ -28,6 +28,7 @@ public class BOSS_ground : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Boss_col.BOSS_live = true;
         boss_col.BOSS_in_open_time = true;
         isGrounded = true;
         this_collider.enabled = false;

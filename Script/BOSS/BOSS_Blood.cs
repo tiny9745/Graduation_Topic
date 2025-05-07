@@ -26,6 +26,10 @@ public class BOSS_Blood : MonoBehaviour
         CheckAndAdjustHPMax();
         if (boss_col.BOSS_HP_tmp != boss_col.BOSS_HP) UpdateGreenHPBar();
         BOSS_HP_effects();
+        if (Boss_col.BOSS_live == false)
+        {
+            static_parameters.MC_HP = boss_col.Winning_HP;
+        }
     }
 
     public void TakeDamage(float damage, float NPC_DEF)

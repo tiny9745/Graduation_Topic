@@ -65,7 +65,7 @@ public class Boss_col : MonoBehaviour
                 static_parameters.Change_enemy = 0;
                 StartCoroutine(Dead_after());
             }
-            static_parameters.MC_HP = Winning_HP;
+
             return;
         }
 
