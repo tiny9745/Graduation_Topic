@@ -7,174 +7,156 @@ using Unity.Mathematics;
 
 public class DragPiece_End : MonoBehaviour, IDropHandler
 {
-    public Ptest piece; public UI _ui; public Tips tips;
+    public Ptest piece;
+    public UI _ui;
+    public Tips tips;
     static public List<int> currentCombination = new List<int>(); // 當前的組合
-    public GameObject[] images_puzzle = new GameObject[4]; // 圖片陣列
-    public Image[] images_puzzle_col = new Image[4]; // 圖片顏色陣列
-    public Image[] images_effect_col = new Image[4]; // 碎片裝飾陣列
-    public Image[] images_effect_change = new Image[4]; // 碎片更換陣列
+    public GameObject[] images_puzzle = new GameObject[4];
+    public Image[] images_puzzle_col = new Image[4];
+    public Image[] images_effect_col = new Image[4];
+    public Image[] images_effect_change = new Image[4];
     public Button composite_col;
-    private Color newColor = new Color(1, 1, 1, 0.0f); // 按鈕透明度顏色
+    private Color newColor = new Color(1, 1, 1, 0.0f);
     public Image button_image;
     private int puzzle_count = 0;
-    static public int puzzle_color = -1, end_count = -1; // 碎片顏色（默認為 2）
+    static public int puzzle_color = -1, end_count = -1;
     public AudioSource audioSource;
     public AudioClip[] audioClip;
     public Animator puzzle_flash_animator;
 
     void Start()
     {
-        // 初始化有效的組合數列
-        Skill_public_funtion.validSequences = Skill_public_funtion.validSequences_re.Select(hashset => new HashSet<int>(hashset)).ToList(); // 轉成 List<HashSet<int>>
+        Skill_public_funtion.validSequences = Skill_public_funtion.validSequences_re
+            .Select(hashset => new HashSet<int>(hashset)).ToList();
         audioSource = GetComponent<AudioSource>();
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        GameObject droppedObject = eventData.pointerDrag;
-        if (droppedObject != null)
+        var droppedObject = eventData.pointerDrag;
+        if (droppedObject == null) return;
+        if (!int.TryParse(droppedObject.name, out int itemNumber) || itemNumber <= 0) return;
+
+        var pieceData = Ptest.show[itemNumber - 1];
+        string keyName = pieceData.PieceName;
+        string keyColor = keyName.Substring(0, 3);
+        currentCombination.Add(pieceData.PieceID);
+
+        Ptest.show.Clear();
+        PieceManager.Instance.Clear();
+
+        int result = CheckCombination(currentCombination);
+
+        if (result == -2)
         {
-            if (int.TryParse(droppedObject.name, out int itemNumber) && itemNumber > 0)
+            audioSource.PlayOneShot(audioClip[0]);
+            piece.page = 0;
+            ResetCombination();
+            tips.SetColor("defult");
+            button_image.color = new Color(1, 1, 1, 0);
+            return;
+        }
+
+        bool isFull = (result == 2);
+        bool isPartial = (result == 1);
+
+        if (isFull)
+        {
+            audioSource.PlayOneShot(audioClip[2]);
+            _ui.putting_diary(false);
+            newColor.a = 1;
+            button_image.color = newColor;
+            SetPuzzleColor(keyColor);
+            composite_col.enabled = true;
+            puzzle_flash_animator.SetBool("puzzle_flash", true);
+
+            for (int i = 0; i < 4; i++)
             {
-                string key_color = Ptest.show[itemNumber - 1].PieceName.Substring(0, 3);
-                string key_name = Ptest.show[itemNumber - 1].PieceName;
-                currentCombination.Add(Ptest.show[itemNumber - 1].PieceID);
+                images_effect_col[i].gameObject.SetActive(false);
+                images_effect_change[i].gameObject.SetActive(true);
+            }
+        }
+        else if (isPartial)
+        {
+            audioSource.PlayOneShot(audioClip[1]);
+            newColor.a = 0;
+            button_image.color = newColor;
 
-                // 清除並重新整理顯示的碎片
-                Ptest.show.Clear();
-                PieceManager.Instance.Clear();
+            for (int i = 0; i < 4; i++)
+            {
+                images_effect_col[i].gameObject.SetActive(true);
+                images_effect_change[i].gameObject.SetActive(false);
+            }
+        }
 
-                for (int i = Ptest.pickedPieces.Count - 1; i >= 0; i--)
+        if (isPartial)
+        {
+            foreach (var pd in Ptest.pickedPieces)
+            {
+                if (pd.PieceName == keyName)
                 {
-                    if (key_name == Ptest.pickedPieces[i].PieceName)
-                    {
-                        Ptest.pickedPieces[i].survival_state = "Drag";
-                    }
-                    else if (key_color == Ptest.pickedPieces[i].PieceName.Substring(0, 3) && Ptest.pickedPieces[i].survival_state == "Alive")
-                    {
-                        Ptest.show.Add(Ptest.pickedPieces[i]);
-                        PieceManager.Instance.Add(Ptest.pickedPieces[i]);
-                    }
+                    pd.survival_state = "Drag";
                 }
+                else if (pd.survival_state == "Alive")
+                {
+                    var test = new List<int>(currentCombination) { pd.PieceID };
+                    bool can = Skill_public_funtion.validSequences
+                        .Any(seq => new HashSet<int>(test).IsSubsetOf(seq));
 
-                // 檢查組合並處理結果
-                int checkResult = CheckCombination(currentCombination);
-                // animation_col.SetInteger("fragment_control", checkResult);
-
-                if (checkResult == -2)
-                {
-                    audioSource.PlayOneShot(audioClip[0]);
-                    piece.page = 0;
-                    ResetCombination();
-                    tips.SetColor("defult");
-                }
-                else if (checkResult == 2)
-                {
-                    // if (static_parameters.teaching_stop == 8) static_parameters.teaching_stop = 9;
-                    audioSource.PlayOneShot(audioClip[2]);
-                    _ui.putting_diary(false);
-                    newColor.a = 1;
-                    SetPuzzleColor(key_color);
-                    composite_col.enabled = true;
-                    puzzle_flash_animator.SetBool("puzzle_flash", true);
-                    for (int i = 0; i < 4; i++)
+                    if (can)
                     {
-                        images_effect_col[i].gameObject.SetActive(false);
-                        images_effect_change[i].gameObject.SetActive(true);
+                        Ptest.show.Add(pd);
+                        PieceManager.Instance.Add(pd);
                     }
-                }
-                else
-                {
-                    audioSource.PlayOneShot(audioClip[1]);
-                }
-                if (checkResult != 2)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        images_effect_col[i].gameObject.SetActive(true);
-                        images_effect_change[i].gameObject.SetActive(false);
-                    }
-                }
-
-                if (puzzle_count != 0)
-                {
-                    _ui.putting_diary(false);
-                    images_puzzle[puzzle_count - 1].SetActive(true);
-                    if (key_color == "Blu")
-                    {
-                        images_puzzle_col[puzzle_count - 1].color = new Color(170f / 255f, 219f / 255f, 255f / 255f, 1);
-                    }
-                    if (key_color == "Red")
-                    {
-                        images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 190f / 255f, 190f / 255f, 1);
-                    }
-                    if (key_color == "Grn")
-                    {
-                        images_puzzle_col[puzzle_count - 1].color = new Color(170f / 255f, 255f / 255f, 160f / 255f, 1);
-                    }
-                    if (key_color == "Prp")
-                    {
-                        images_puzzle_col[puzzle_count - 1].color = new Color(230f / 255f, 195f / 255f, 255f / 255f, 1);
-                    }
-                    if (key_color == "Yel")
-                    {
-                        images_puzzle_col[puzzle_count - 1].color = new Color(225f / 255f, 225f / 255f, 195f / 255f, 1);
-                    }
-                    if (checkResult != 2) newColor.a = 0f;
-                    tips.SetColor(key_color);
                 }
             }
         }
-        button_image.color = newColor;
+
+        if (puzzle_count > 0)
+        {
+            int idx = puzzle_count - 1;
+            images_puzzle[idx].SetActive(true);
+            Color col = keyColor switch
+            {
+                "Blu" => new Color(170 / 255f, 219 / 255f, 255 / 255f, 1),
+                "Red" => new Color(225 / 255f, 190 / 255f, 190 / 255f, 1),
+                "Grn" => new Color(170 / 255f, 255 / 255f, 160 / 255f, 1),
+                "Prp" => new Color(230 / 255f, 195 / 255f, 255 / 255f, 1),
+                "Yel" => new Color(225 / 255f, 225 / 255f, 195 / 255f, 1),
+                _ => Color.white
+            };
+            images_puzzle_col[idx].color = col;
+            tips.SetColor(keyColor);
+        }
     }
 
     private int CheckCombination(List<int> combination)
     {
-        HashSet<int> combinationSet = new HashSet<int>(combination);
-        if (Ptest.show.Count == 0)
-        {
-            return -2;
-        }
+        HashSet<int> currentSet = new HashSet<int>(combination);
 
-        // 先檢查是否有完全匹配的組合
         for (int i = 0; i < Skill_public_funtion.validSequences.Count; i++)
         {
-            HashSet<int> sequence = Skill_public_funtion.validSequences[i];
+            HashSet<int> validSet = Skill_public_funtion.validSequences[i];
 
-            List<int> combinationList = new List<int>(combinationSet);
-            List<int> sequenceList = new List<int>(sequence);
-
-            combinationList.Sort();
-            sequenceList.Sort();
-
-            if (combinationList.SequenceEqual(sequenceList))
+            if (currentSet.IsSubsetOf(validSet))
             {
-                int j = ((i + 1) % 5 == 0) ? 5 : (i + 1) % 5;
-                j += (int)(math.floor(i / 5) * 10);
-                end_count = j;
-                puzzle_count++;
-                Skill_public_funtion.mood_number = (int)math.floor(i / 5);
-                return 2;
+                if (currentSet.SetEquals(validSet))
+                {
+                    int j = ((i + 1) % 5 == 0) ? 5 : (i + 1) % 5;
+                    j += (int)(math.floor(i / 5) * 10);
+                    end_count = j;
+                    puzzle_count++;
+                    Skill_public_funtion.mood_number = (int)math.floor(i / 5);
+                    return 2;
+                }
+                else
+                {
+                    puzzle_count++;
+                    return 1;
+                }
             }
         }
 
-        // 若沒有完全匹配的組合，再檢查是否為子集
-        for (int i = 0; i < Skill_public_funtion.validSequences.Count; i++)
-        {
-            HashSet<int> sequence = Skill_public_funtion.validSequences[i];
-
-            List<int> combinationList = new List<int>(combinationSet);
-            List<int> sequenceList = new List<int>(sequence);
-
-            combinationList.Sort();
-            sequenceList.Sort();
-
-            if (IsSubset(combinationList, sequenceList))
-            {
-                puzzle_count++;
-                return 1;
-            }
-        }
         return -2;
     }
 
@@ -183,7 +165,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
         _ui.putting_diary(true);
         Ptest.show.Clear();
         PieceManager.Instance.Clear();
-        // 重置當前組合
+
         foreach (var piece in Ptest.pickedPieces)
         {
             if (currentCombination.Contains(piece.PieceID))
@@ -193,53 +175,53 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             Ptest.show.Add(piece);
             PieceManager.Instance.Add(piece);
         }
+
         currentCombination.Clear();
+
         foreach (var image in images_puzzle)
         {
             image.SetActive(false);
         }
+
         puzzle_count = 0;
         newColor.a = 0f;
     }
 
     public void Combination_End()
     {
-        // 儲存要移除的組合
         List<HashSet<int>> removedSequences = new List<HashSet<int>>();
         foreach (var sequence in Skill_public_funtion.validSequences)
         {
-            // 檢查 currentCombination 是否等於 validSequences 的某一項
             if (new HashSet<int>(currentCombination).SetEquals(sequence))
             {
                 removedSequences.Add(sequence);
             }
         }
 
-        // 從 validSequences 中移除符合條件的組合
         foreach (var sequence in removedSequences)
         {
-            sequence.Clear(); // 清空原有內容
-            sequence.Add(999); // 添加 999
+            sequence.Clear();
+            sequence.Add(999);
         }
 
-        // 清空 currentCombination 並重置碎片顯示
         foreach (var piece in Ptest.pickedPieces)
         {
-            if (currentCombination.Contains(piece.PieceID)) // 確定為 List 中數值
+            if (currentCombination.Contains(piece.PieceID))
             {
                 PieceManager.Instance.Remove(piece);
                 piece.survival_state = "Alive";
             }
-            Ptest.show.Clear();
-            PieceManager.Instance.Clear();
         }
 
+        Ptest.show.Clear();
+        PieceManager.Instance.Clear();
         currentCombination.Clear();
 
         foreach (var image in images_puzzle)
         {
             image.SetActive(false);
         }
+
         tips.SetColor("defult");
         puzzle_count = 0;
         newColor.a = 0f;
@@ -255,10 +237,5 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             case "Prp": puzzle_color = 3; break;
             case "Yel": puzzle_color = 4; break;
         }
-    }
-
-    private bool IsSubset(List<int> subset, List<int> superset)
-    {
-        return new HashSet<int>(subset).IsSubsetOf(superset);
     }
 }
