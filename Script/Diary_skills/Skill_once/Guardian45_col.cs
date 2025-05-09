@@ -17,6 +17,7 @@ public class Guardian45_col : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Guardian45");
         DontDestroyOnLoad(this);
         Guardian45_to_player_distance = Skill_public_funtion.skill_4x_Sorting * 6f;
         Skill_public_funtion.skill_4x_Sorting++;
@@ -54,7 +55,6 @@ public class Guardian45_col : MonoBehaviour
         {
             NPC_distance_out();
         }
-        MC_Dead();
     }
 
     private void OnTriggerStay(Collider collision)
@@ -177,6 +177,7 @@ public class Guardian45_col : MonoBehaviour
 
     private void MC_Dead()
     {
+        Debug.Log("Guardian45 dead");
         Destroy(gameObject);
     }
 }
