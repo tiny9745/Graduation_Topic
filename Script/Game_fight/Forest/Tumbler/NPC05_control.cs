@@ -270,6 +270,7 @@ public class NPC05_control : MonoBehaviour
                 NPC05_audiosource.PlayOneShot(NPC05_audioclip[1]);
                 bomb_animator.SetTrigger("BOOMFX_bomb");
                 change_color_red();
+                effect.fight_instinct_npc();
                 switch (static_parameters._ItemID)
                 {
                     case 1:

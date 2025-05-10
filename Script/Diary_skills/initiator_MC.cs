@@ -66,9 +66,9 @@ public class initiator_MC : MonoBehaviour
                             }
                             if (Skill_public_funtion.skill_01_time > 10f)
                             {
+                                Skill_public_funtion.skill_01_time = 0;
                                 skill_01_2.SetTrigger("skill_01_2");
                                 static_parameters.MC_HP -= static_parameters.MC_HP_Max / 20;
-                                Skill_public_funtion.skill_01_time = 0;
                             }
                             break;
                         case 2:

@@ -563,6 +563,7 @@ public class Boss_col : MonoBehaviour
             if (other.gameObject.CompareTag("MC_bullet"))
             {
                 change_color_red();
+                effect.fight_instinct_npc();
                 Boss_Animator.SetTrigger("hit");
                 switch (static_parameters._ItemID)
                 {
