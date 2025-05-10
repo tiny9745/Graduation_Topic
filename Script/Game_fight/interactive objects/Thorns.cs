@@ -26,7 +26,7 @@ public class Thorns : MonoBehaviour
             if (timmer >= damage_time)
             {
                 timmer = 0;
-                static_parameters.MC_HP -= 1;
+                static_parameters.MC_HP -= 3;
             }     
         }
     }

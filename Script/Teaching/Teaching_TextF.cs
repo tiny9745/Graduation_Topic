@@ -303,7 +303,7 @@ public class Teaching_TextF : MonoBehaviour
             {
                 talk_number++;
                 teaching_sprite_keycode[1].SetActive(true);
-                teach_text.text = "莓莓要受傷了！！！快按下<color=red>滑鼠左鍵</color>使用鴨子布偶來攻擊敵人！";
+                teach_text.text = "莓莓要受傷了！靠近敵人後快<color=red>滑鼠左鍵</color>來攻擊敵人！";
             }
         }
         else if (talk_number == 9)

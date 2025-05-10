@@ -30,6 +30,29 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
             .Select(hashset => new HashSet<int>(hashset)).ToList();
         audioSource = GetComponent<AudioSource>();
     }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            for (int i = 0; i < images_puzzle.Length; i++)
+            {
+                if (images_puzzle[i].activeSelf)
+                {
+                    OnRightClickPuzzle(i);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void OnRightClickPuzzle(int index)
+    {
+        if (!images_puzzle[index].activeSelf) return;
+        audioSource.PlayOneShot(audioClip[0]); // 播放退回音效
+        ResetCombination(); // 重置拼湊
+        tips.SetColor("defult");
+        button_image.color = new Color(1, 1, 1, 0);
+    }
 
     public void OnDrop(PointerEventData eventData)
     {

@@ -28,6 +28,7 @@ public class Boss_col : MonoBehaviour
     private bool boss_open = false;
     void Start()
     {
+        Winning_HP = static_parameters.MC_HP;
         BOSS_Atk_time = 0;
         BOSS_Atk_bool = false;
         BOSS_live = true;
@@ -65,7 +66,6 @@ public class Boss_col : MonoBehaviour
                 static_parameters.Change_enemy = 0;
                 StartCoroutine(Dead_after());
             }
-
             return;
         }
 
