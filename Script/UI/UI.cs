@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -39,7 +37,6 @@ public class UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && DragPiece_End.puzzle_color == -1)
         {
             openclose();
-            C_mood.Change();
         }
         if (SceneManager.GetActiveScene().name == "magic_house")
         {
@@ -124,10 +121,10 @@ public class UI : MonoBehaviour
                 Ad.PlayOneShot(Close);
             }
         }
+        C_mood.Change();
     }
     public void openclose_false()
     {
-        Debug.Log("openclose_false");
         static_parameters.Bookstate = false;
         Notebook.SetActive(false);
         BattleUI.SetActive(true);
