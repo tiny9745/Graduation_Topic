@@ -51,7 +51,7 @@ public class Drops : MonoBehaviour
         {
             isAni = true;
             if (static_parameters.teaching_stop == 7) static_parameters.teaching_stop = 8;
-            ptest._to_Drop(randomIndex);
+            if (!static_parameters.isTeaching) ptest._to_Drop(randomIndex);
             switch (randomIndex)
             {
                 case 5:
