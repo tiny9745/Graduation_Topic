@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class MC_col : MonoBehaviour
 {
     public Blood_col Blood_Col;
-    public Animator animator;
+    public Animator animator, Hit_MC;
     public Transform spriteTransform;
     public Material Deduct_Blood;
     private Material originalMaterial;
@@ -141,6 +141,7 @@ public class MC_col : MonoBehaviour
     }
     public void red()
     {
+        Hit_MC.SetTrigger("Hit_MC");
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
         renderer1.material = Deduct_Blood;
