@@ -509,7 +509,7 @@ public class NPC01_1_control : MonoBehaviour
     {
         isCoroutineRunning = true; // 設置為 true，表示協程正在運行
         yield return new WaitForSeconds(delay);  // 等待指定的延遲時間
-        spriteRenderer.color = UnityEngine.Color.white; // 重置顏色為白色
+        spriteRenderer.color =  new Color(1, 1, 1, 240 / 255f); // 重置顏色
         isCoroutineRunning = false; // 協程結束後將旗標設回 false
     }
     public float GetNPC01_ATK()

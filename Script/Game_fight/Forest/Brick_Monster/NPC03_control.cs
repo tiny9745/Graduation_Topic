@@ -474,7 +474,6 @@ public class NPC03_control : MonoBehaviour
         {
             StartCoroutine(ResetColorAfterDelay(0.75F)); // 啟動協程
         }
-
     }
     IEnumerator ResetColorAfterDelay(float delay)
     {
