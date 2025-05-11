@@ -61,7 +61,7 @@ public class berry_hitbox : MonoBehaviour
                 Ad.clip = berry_waring_sound;
                 Ad.loop = false;
                 Ad.Play();
-                Invoke("play", 2.33f);
+                Invoke("play", 2.35f);
                 bomb_hitbox.enabled = true;
                 isExplode = true;
                 timmer = 0;
@@ -107,7 +107,6 @@ public class berry_hitbox : MonoBehaviour
                 break;
             }
         }
-
         bomb_berry.Destroy_Berry();
     }
 }
