@@ -81,6 +81,6 @@ public class skill_41_bullet : MonoBehaviour
             AnimatorStateInfo stateInfo = Guardian_41_bullet.GetCurrentAnimatorStateInfo(0);
             return stateInfo.IsName("bullet41_bomb") && stateInfo.normalizedTime >= 0.98f;
         });
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject);
     }
 }

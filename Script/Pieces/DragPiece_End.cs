@@ -48,6 +48,7 @@ public class DragPiece_End : MonoBehaviour, IDropHandler
     private void OnRightClickPuzzle(int index)
     {
         if (!images_puzzle[index].activeSelf) return;
+        piece.page = 0;
         audioSource.PlayOneShot(audioClip[0]); // 播放退回音效
         ResetCombination(); // 重置拼湊
         tips.SetColor("defult");

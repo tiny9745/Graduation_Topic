@@ -28,7 +28,7 @@ public class BOSS_Blood : MonoBehaviour
         BOSS_HP_effects();
         if (Boss_col.BOSS_live == false)
         {
-            static_parameters.MC_HP = boss_col.Winning_HP;
+            static_parameters.MC_HP = static_parameters.MC_HP_Max;
         }
     }
 
