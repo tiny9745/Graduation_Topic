@@ -32,36 +32,37 @@ public class Upgrade : MonoBehaviour
         Click = 1;
         namebox.text = "攻擊";
         textbox.text = "小拳拳捶你胸口！你說不痛？哼！升級成超大拳頭，甜蜜爆擊你喲！\n";
-        if (ATK_LV < 6) textbox.text += "升級價格:" + ATK_price[ATK_LV - 1] + "元";
+        if (ATK_LV < 6) textbox.text += "升級價格:" + ATK_price[ATK_LV - 1] + "元，持有" + static_parameters.money + "元";
     }
     public void DEF()
     {
         Click = 2;
         namebox.text = "防禦";
         textbox.text = "神力盾牌速來加持，讓怪物的攻擊變得跟奶油一樣輕飄飄又軟綿綿！\n";
-        if (DEF_LV < 6) textbox.text += "升級價格:" + DEF_price[DEF_LV - 1] + "元";
+        if (DEF_LV < 6) textbox.text += "升級價格:" + DEF_price[DEF_LV - 1] + "元，持有" + static_parameters.money + "元";
     }
     public void HP()
     {
         Click = 3;
         namebox.text = "血量";
         textbox.text = "來吧，把草莓蛋糕疊得越高越好！只會增加血量，絕對不加血壓哦！\n";
-        if (HP_LV < 6) textbox.text += "升級價格:" + HP_price[HP_LV - 1] + "元";
+        if (HP_LV < 6) textbox.text += "升級價格:" + HP_price[HP_LV - 1] + "元，持有" + static_parameters.money + "元";
     }
     public void Speed()
     {
         Click = 4;
         namebox.text = "移速";
         textbox.text = "好像在腳底抹滿了巧克力醬，讓速度快到連流星都追不上你的尾巴！\n";
-        if (Speed_LV < 6) textbox.text += "升級價格:" + Speed_price[Speed_LV - 1] + "元";
+        if (Speed_LV < 6) textbox.text += "升級價格:" + Speed_price[Speed_LV - 1] + "元，持有" + static_parameters.money + "元";
     }
     public void Knockback()
     {
         Click = 5;
         namebox.text = "擊退";
         textbox.text = "不要小看我的力量，看我輕輕一個揮擊，就把怪物打去外太空度假！\n";
-        if (Speed_LV < 6) textbox.text += "升級價格:" + Knockback_price[Knockback_LV - 1] + "元";
+        if (Speed_LV < 6) textbox.text += "升級價格:" + Knockback_price[Knockback_LV - 1] + "元，持有" + static_parameters.money + "元";
     }
+
     public void Pay()
     {
         ui = GameObject.Find("UI").GetComponent<UI>();
@@ -79,7 +80,7 @@ public class Upgrade : MonoBehaviour
                     static_parameters.MC_throw += (int)ATK_add[ATK_LV - 1];
                     ATK_LV++; AB[ATK_LV - 2].SetActive(true);
                     textbox.text = $"升級成功，剩餘{static_parameters.money}元";
-                    if (ATK_LV < 6) textbox.text += "\r\n下一級升級價格:" + ATK_price[ATK_LV - 1] + "元";
+                    if (ATK_LV < 6) textbox.text += "\r\n下一級升級價格:" + ATK_price[ATK_LV - 1] + "元，持有" + static_parameters.money + "元";
                     skill_nmueric_renew_ATK();
                 }
                 else
@@ -98,7 +99,7 @@ public class Upgrade : MonoBehaviour
                     static_parameters.MC_DEF += DEF_add[DEF_LV - 1];
                     DEF_LV++; DB[DEF_LV - 2].SetActive(true);
                     textbox.text = $"升級成功，剩餘{static_parameters.money}元";
-                    if (DEF_LV < 6) textbox.text += "\r\n下一級升級價格:" + DEF_price[DEF_LV - 1] + "元";
+                    if (DEF_LV < 6) textbox.text += "\r\n下一級升級價格:" + DEF_price[DEF_LV - 1] + "元，持有" + static_parameters.money + "元";
                 }
                 else
                 {
@@ -116,7 +117,7 @@ public class Upgrade : MonoBehaviour
                     static_parameters.MC_HP_Max += HP_add[HP_LV - 1]; static_parameters.MC_HP = static_parameters.MC_HP_Max;
                     HP_LV++; HB[HP_LV - 2].SetActive(true);
                     textbox.text = $"升級成功，剩餘{static_parameters.money}元";
-                    if (HP_LV < 6) textbox.text += "\r\n下一級升級價格:" + HP_price[HP_LV - 1] + "元";
+                    if (HP_LV < 6) textbox.text += "\r\n下一級升級價格:" + HP_price[HP_LV - 1] + "元，持有" + static_parameters.money + "元";
                 }
                 else
                 {
@@ -134,7 +135,7 @@ public class Upgrade : MonoBehaviour
                     static_parameters.MC_Wspeed += Speed_add[Speed_LV - 1];
                     Speed_LV++; SB[Speed_LV - 2].SetActive(true);
                     textbox.text = $"升級成功，剩餘{static_parameters.money}元";
-                    if (Speed_LV < 6) textbox.text += "\r\n下一級升級價格:" + Speed_price[Speed_LV - 1] + "元";
+                    if (Speed_LV < 6) textbox.text += "\r\n下一級升級價格:" + Speed_price[Speed_LV - 1] + "元，持有" + static_parameters.money + "元";
                     skill_nmueric_renew_Speed();
                 }
                 else
@@ -153,7 +154,7 @@ public class Upgrade : MonoBehaviour
                     static_parameters.knockback_force += Knockback_add[Knockback_LV - 1];
                     Knockback_LV++; KB[Knockback_LV - 2].SetActive(true);
                     textbox.text = $"升級成功，剩餘{static_parameters.money}元";
-                    if (Knockback_LV < 6) textbox.text += "\r\n下一級升級價格:" + Knockback_price[Knockback_LV - 1] + "元";
+                    if (Knockback_LV < 6) textbox.text += "\r\n下一級升級價格:" + Knockback_price[Knockback_LV - 1] + "元，持有" + static_parameters.money + "元";
                 }
                 else
                 {
