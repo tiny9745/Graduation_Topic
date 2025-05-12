@@ -18,6 +18,10 @@ public class D_UI : MonoBehaviour
         IconManager.Instance.IconInventoryCallBack += UpdateIcon;
         DSlot = DSlotPoint.GetComponentsInChildren<D_slot>();
     }
+    void Awake()
+    {
+        // IconManager.Instance.IconInventoryCallBack += UpdateIcon;
+    }
 
     // Update is called once per frame
     void UpdateIcon()

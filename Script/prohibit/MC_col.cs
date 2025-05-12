@@ -142,6 +142,7 @@ public class MC_col : MonoBehaviour
     public void red()
     {
         Hit_MC.SetTrigger("Hit_MC");
+        audioSource.PlayOneShot(audioClip[2]);
         Renderer renderer1 = spriteTransform.GetComponent<Renderer>();
         Deduct_Blood.SetColor("_Color", new Color(1, 0, 0, 0.5f));
         renderer1.material = Deduct_Blood;
