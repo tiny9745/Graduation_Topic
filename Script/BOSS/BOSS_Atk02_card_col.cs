@@ -6,6 +6,12 @@ public class BOSS_Atk02_card_col : MonoBehaviour
 {
     float speed = 30f;
     float Timer = 0;
+
+    public Boss_col Boss_col;
+    void Start()
+    {
+        Boss_col = GameObject.Find("Boss01").GetComponent<Boss_col>();
+    }
     void Update()
     {
         // 根據物件的朝向向前移動

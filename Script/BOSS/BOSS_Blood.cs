@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BOSS_Blood : MonoBehaviour
@@ -28,7 +27,7 @@ public class BOSS_Blood : MonoBehaviour
         CheckAndAdjustHPMax();
         if (boss_col.BOSS_HP_tmp != boss_col.BOSS_HP) UpdateGreenHPBar();
         BOSS_HP_effects();
-        if (Boss_col.BOSS_live == false)
+        if (boss_col.BOSS_live == false)
         {
             static_parameters.MC_HP = live_HP;
         }
