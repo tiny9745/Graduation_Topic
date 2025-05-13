@@ -57,6 +57,7 @@ public class Boss_col : MonoBehaviour
             if (BOSS_live)
             {
                 BOSS_HP = 0;
+                boss_blood.live_HP = static_parameters.MC_HP;
                 BOSS_live = false;
                 Boss_Animator.SetTrigger("die");
                 Destroy(Boss_Skill);

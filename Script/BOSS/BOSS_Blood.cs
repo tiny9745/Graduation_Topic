@@ -11,6 +11,8 @@ public class BOSS_Blood : MonoBehaviour
     float previous_BOSS_HP_Max;
     public Canvas canvas;
 
+    public float live_HP = static_parameters.MC_HP_Max;
+
     float minus;
     IEnumerator Start()
     {
@@ -28,7 +30,7 @@ public class BOSS_Blood : MonoBehaviour
         BOSS_HP_effects();
         if (Boss_col.BOSS_live == false)
         {
-            static_parameters.MC_HP = static_parameters.MC_HP_Max;
+            static_parameters.MC_HP = live_HP;
         }
     }
 
