@@ -20,25 +20,26 @@ public class D_UI : MonoBehaviour
     }
     void Awake()
     {
-        // IconManager.Instance.IconInventoryCallBack += UpdateIcon;
+        //sbutton();
     }
 
     // Update is called once per frame
     void UpdateIcon()
     {
         startIndex = page * itemsPerPage;
+        Debug.Log("startIndex: " + startIndex);
         for (int i = startIndex; i < startIndex + 8; i++)
         {
+            Debug.Log("i: " + i);
             if (i < IconManager.Instance.IconList.Count)
             {
-                DSlot[i].AddIcon(IconManager.Instance.IconList[i]);
+                DSlot[i - startIndex].AddIcon(IconManager.Instance.IconList[i]);
             }
             else
             {
-                DSlot[i].Clean();
+                DSlot[i - startIndex].Clean();
             }
         }
-        button();
     }
     public void NextPage()
     {
@@ -47,29 +48,39 @@ public class D_UI : MonoBehaviour
             page++;
             Ad.PlayOneShot(Flip);
         }
+        UpdateIcon();
+        button();
     }
     public void PreviousPage()
     {
-        if(Skill_public_funtion.Reading){
+        if (Skill_public_funtion.Reading)
+        {
             Diary.SetActive(true); Text.SetActive(false);
-        }else{
-            if (page > 0){
+        }
+        else
+        {
+            if (page > 0)
+            {
                 page--;
-            } else{
+            }
+            else
+            {
                 page = 0;
             }
         }
         Ad.PlayOneShot(Flip);
+        UpdateIcon();
         button();
     }
     public void button()
     {
         if (Skill_public_funtion.Reading)
         {
-            Pagedown.SetActive(false); Pageup.SetActive(true);    
+            Pagedown.SetActive(false); Pageup.SetActive(true);
         }
         else
         {
+            Debug.Log("page");
             if (page == 0)
             {
                 Pageup.SetActive(false);
@@ -78,13 +89,16 @@ public class D_UI : MonoBehaviour
             {
                 Pageup.SetActive(true);
             }
+            Debug.Log((page + 1) * itemsPerPage + " " + IconManager.Instance.IconList.Count);
             if ((page + 1) * itemsPerPage < IconManager.Instance.IconList.Count)
             {
-                Pagedown.SetActive(false);
+                Pagedown.SetActive(true);
+                Debug.Log("pagedownT");
             }
             else
             {
                 Pagedown.SetActive(false);
+                Debug.Log("pagedownF");
             }
         }
 
