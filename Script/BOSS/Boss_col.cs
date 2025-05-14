@@ -9,7 +9,7 @@ public class Boss_col : MonoBehaviour
     static public float BOSS_Atk_time = 0;
     public bool BOSS_in_open_time = false;
     static public bool BOSS_Atk_bool = false;
-    static public bool BOSS_live = true;
+    public bool BOSS_live = true;
     static public int BOSS_Atk_state = 1;
     static public bool BOSS_Atk02_ready03_waring = false;
     static public bool BOSS_Atk02_ready01 = false, BOSS_Atk02_ready03 = false;
@@ -57,6 +57,7 @@ public class Boss_col : MonoBehaviour
             if (BOSS_live)
             {
                 BOSS_HP = 0;
+                boss_blood.live_HP = static_parameters.MC_HP;
                 BOSS_live = false;
                 Boss_Animator.SetTrigger("die");
                 Destroy(Boss_Skill);
