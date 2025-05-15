@@ -47,7 +47,7 @@ public class Drops : MonoBehaviour
             AnimatorStateInfo stateInfo = Chest_Animator.GetCurrentAnimatorStateInfo(0);
             return stateInfo.IsName($"chest{randomIndex}") && stateInfo.normalizedTime >= 0.75f;
         });
-        if (targetObject != null && isAni == false)
+        if (targetObject != null && isAni == false && static_parameters.teaching_stop <= 100)
         {
             isAni = true;
             if (static_parameters.teaching_stop == 7) static_parameters.teaching_stop = 8;
@@ -72,7 +72,6 @@ public class Drops : MonoBehaviour
             if (Add > 33)
             {
                 Ad.PlayOneShot(money[0]);
-
             }
             else
             {

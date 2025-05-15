@@ -56,6 +56,7 @@ public class D_UI : MonoBehaviour
         if (Skill_public_funtion.Reading)
         {
             Diary.SetActive(true); Text.SetActive(false);
+            Skill_public_funtion.Reading = false;
         }
         else
         {
