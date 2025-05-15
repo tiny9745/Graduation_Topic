@@ -47,7 +47,7 @@ public class Drops : MonoBehaviour
             AnimatorStateInfo stateInfo = Chest_Animator.GetCurrentAnimatorStateInfo(0);
             return stateInfo.IsName($"chest{randomIndex}") && stateInfo.normalizedTime >= 0.75f;
         });
-        if (targetObject != null && isAni == false && static_parameters.teaching_stop <= 100)
+        if (targetObject != null && isAni == false && static_parameters.teaching_stop >= 100)
         {
             isAni = true;
             if (static_parameters.teaching_stop == 7) static_parameters.teaching_stop = 8;

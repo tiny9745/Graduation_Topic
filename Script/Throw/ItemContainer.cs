@@ -18,7 +18,7 @@ public class ItemContainer : MonoBehaviour
     {
         if (hit.gameObject.tag == "Player" && InventoryManager.Instance.ItemList.Count < 4)
         {
-            bomb_hitbox.enabled = false;
+            if (bomb_hitbox != null) bomb_hitbox.enabled = false;
             InventoryManager.Instance.Add(thisItem);
             InventoryManager.Instance.onInventoryCallBack();
             Destroy(falsh_ani);
