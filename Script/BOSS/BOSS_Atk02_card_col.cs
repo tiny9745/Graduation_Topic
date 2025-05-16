@@ -8,6 +8,7 @@ public class BOSS_Atk02_card_col : MonoBehaviour
     float Timer = 0;
 
     public Boss_col Boss_col;
+    public BOSS_Blood boss_blood;
     void Start()
     {
         Boss_col = GameObject.Find("Boss01").GetComponent<Boss_col>();
@@ -17,7 +18,7 @@ public class BOSS_Atk02_card_col : MonoBehaviour
         // 根據物件的朝向向前移動
         transform.Translate(Vector3.down * speed * Time.deltaTime, Space.Self);
         Timer += Time.deltaTime;
-        if (Timer > 5 || static_parameters.stage_number == 0 || Boss_col.BOSS_live == false)
+        if (Timer > 5 || static_parameters.stage_number == 0 || Boss_col == null)
         {
             Destroy(gameObject);
         }

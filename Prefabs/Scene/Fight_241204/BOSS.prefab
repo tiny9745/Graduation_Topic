@@ -9863,7 +9863,6 @@ MonoBehaviour:
   BOSS_DEF: 10
   BOSS_HP: 0
   BOSS_HP_tmp: 0
-  Winning_HP: 0
   boss_blood: {fileID: 4909873939822135057}
   effect: {fileID: 3968350904618038784}
   stun: 0
@@ -24957,6 +24956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss_col: {fileID: 7626806564892770208}
+  boss_blood: {fileID: 4909873939822135057}
 --- !u!1 &2990553813770413578
 GameObject:
   m_ObjectHideFlags: 0
@@ -50280,6 +50280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss_col: {fileID: 7626806564892770208}
   canvas: {fileID: 9038150372920911115}
+  BOSS_live: 1
+  live_HP: 500
 --- !u!1 &6056926025768274066
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,8 @@ public class BOSS_Blood : MonoBehaviour
     float blood_tmp = 950;
     float previous_BOSS_HP_Max;
     public Canvas canvas;
-
+    public bool BOSS_live = true;
+    private bool live_change = false;
     public float live_HP = static_parameters.MC_HP_Max;
 
     float minus;
@@ -27,7 +28,7 @@ public class BOSS_Blood : MonoBehaviour
         CheckAndAdjustHPMax();
         if (boss_col.BOSS_HP_tmp != boss_col.BOSS_HP) UpdateGreenHPBar();
         BOSS_HP_effects();
-        if (boss_col.BOSS_live == false)
+        if (BOSS_live == false)
         {
             static_parameters.MC_HP = live_HP;
         }
